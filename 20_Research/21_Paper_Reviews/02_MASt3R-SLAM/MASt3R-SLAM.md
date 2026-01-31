@@ -11,7 +11,7 @@ code_link:
 ---
 
 # 요약 
-- ads
+
 
 # Sections
 # Abstract
