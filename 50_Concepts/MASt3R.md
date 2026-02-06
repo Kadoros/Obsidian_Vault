@@ -3,6 +3,8 @@ tags:
   - concept
 parent_concept:
 ---
+두가지 시점에서 찍은 rgb 데이터를 가지고 각 픽셀의 깊이를 예측하여 3D point map을 과 그에 대응돼는 **Confidence Map**을  생성 + 더 나아가 특징점 백터와 그 신뢰도를 생성 하는 인공 신경망 
+
 - Matching And Stereo 3D Reconstruction
 	- **Matching:** 두 이미지 사이의 동일한 지점을 찾는 기능이 대폭 강화되었습니다.
 	- **Stereo:** 두 장의 이미지(Stereo Pair)를 기본 단위로 입력받습니다.

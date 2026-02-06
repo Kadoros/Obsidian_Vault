@@ -12,14 +12,14 @@ MASt3R 신경망을 사용하는데 걍 픽셀 샘플링 해서 조금만 포이
 	- 있긴하군요
 		- **3R-GS는 "실시간 로봇 주행"이 불가능합니다.**
 		    - 3R-GS는 데이터를 몽땅 모아놓고 수만 번 반복 학습(Iteration)을 돌려 완벽한 모델을 깎아내는 **"오프라인 최적화 도구"**입니다.
-			    - ![[../21_Paper_Reviews/03_3R-GS/Pasted image 20260128014953.png]]
-			    - ![[../21_Paper_Reviews/03_3R-GS/Pasted image 20260128015032.png]]
+			    - ![[../../90_Resources/92_Images/Pasted image 20260128014953.png]]
+			    - ![[../../90_Resources/92_Images/Pasted image 20260128015032.png]]
 		    - **결정적 이유:** 모든 카메라 포즈를 하나의 **Global MLP** 로 묶어놔서, 로봇이 이동하며 맵이 커질 때마다 **처음부터 다시 학습**해야 하는 구조입니다. 즉, "끝없이 들어오는 데이터(Online)"를 처리할 수 없습니다.
 
 - 그러면 생각해 보자 MASt3R로 sparse하게 초기화하고 3DGS로 맵을 채우는 게..?
 	- 이미 있어요 [[../21_Paper_Reviews/04_MASt3R-GS/MASt3R-GS|MASt3R-GS]] 
 	- 그런데 큰 환경에서는 터진다 그리고 정확도가 조금 떨어짐 
-	- ![[../21_Paper_Reviews/04_MASt3R-GS/Pasted image 20260128020654.png]]
+	- ![[../../90_Resources/92_Images/Pasted image 20260128020654.png]]
 - 그러면 큰 환경에서는 터진다 를 집중 해보자 그러면 [[../21_Paper_Reviews/01_GS_SLAM/GS_SLAM|GS_SLAM]] 이 녀석 에서 내가 생각한것  처럼 위의[[../21_Paper_Reviews/04_MASt3R-GS/MASt3R-GS|MASt3R-GS]] 에 다가 
 	- 걍 3dgs들을 어떤 부분을 한 구역으로 나누고 그 구역의 중심(카메라의 이동위치)를  그래프의 노드로 하고 강제로 움직이고 그리고 최적화 하면 될지도 
 - 라고 생각 했다는 것을 넣어 보면?
@@ -81,6 +81,6 @@ MASt3R가 뱉어내는 **'Confidence Map(신뢰도 지도)'**
 기존 3DGS SLAM은 보통 **'색상(Photometric Loss)'** , 깊이 로스 에만 매달립니다. 
 색상이 좀 틀려도, **MASt3R라는 거대 모델이 알고 있는 '기하학적 진리(Geometric Truth)'** 를 픽셀 단위로 주입하기 때문에 맵이 훨씬 단단(Robust)해집니다
 
-![[../../Pasted image 20260128153614.png]]  
+![[../../90_Resources/92_Images/Pasted image 20260128153614.png]]  
 
 로스 함수를 이렇게 변경하면 rgbd 입력을 받는 3d gs 에서 걍 깊이를 측정을 안해도 되지 않을까? 
