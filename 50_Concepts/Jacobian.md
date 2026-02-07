@@ -20,3 +20,8 @@ $$J = \begin{bmatrix} \frac{\partial u}{\partial x} & \frac{\partial u}{\partial
 
 비선형 함수가 있을떄 국소 영역만 보면 선형 같다. 그래서 backprapagation 때 선형으로 퉁치는 것 
 
+
+종류
+1. [[[[Analytical Jacobians]]|Analytical Jacobians]]
+2. [[Numerical Jacobian|Numerical Jacobian]]
+3. [[AutoDiff|AutoDiff]]
