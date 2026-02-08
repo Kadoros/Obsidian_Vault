@@ -737,4 +737,53 @@ Squared Euclidean Distance를 cost 로 하여  [[Levenberg-Marquardt|Levenberg-M
 
 
 
-###  3.3. Tracking and Pointmap Fusion
+
+###  3.3 Tracking
+요약 하자면 이전 프래임들이 예측해 둔 포인트와 지금 키 프래임에서 찍은 포인트의 방향 + 거리의 차이를 분석해서 그 차이를 줄임으로서 카메라 삼각뿔을 움직여 최적화한다.
+
+최적화에서 중요한 에러와 최적화 알고리즘을 정의 한다 
+1. 에러$$ E_r = \sum \left\|\frac{ \psi(\tilde{\mathbf{X}}_k) - \psi(\mathbf{T}_{kf} \mathbf{X}_f)} {w(q,\sigma^2)} \right\|_\rho^2 $$
+	1. 여기서는 [[Huber Norm|Huber Norm]]를 사용하고 q 즉 Match Confidence에 대한 Weighting Function을 사용하여 민감도를 조절 하고 있다. 
+2. 최적화 알고리즘 :Gauss-Newton on Manifold
+
+####  3.3.1. Error 
+#####  3.3.1.1 왜 3D point 를 바로 이용 하지 않을까?
+ 걍 두 3D 점 사이의 거리를 줄이는 것이 가장 직관적이다.
+$$ E_p = \sum \| \tilde{\mathbf{X}}_k - \mathbf{T}_{kf} \mathbf{X}_f \|^2 $$
+하지만 이거를 쓰지 않는다. 왜냐하면 MASt3R가 예측한 **깊이(Depth, $z$) 값은 노이즈가 심하고 일관성이 떨어지기 때문
+깊이가 조금만 틀려도 3D 공간상의 오차는 엄청나게 커져서 최적화를 방해
+
+$$ E_r = \sum \left\| \psi(\tilde{\mathbf{X}}_k) - \psi(\mathbf{T}_{kf} \mathbf{X}_f) \right\|^2 $$
+*   **의미:** 방향(Direction)만 맞으면 ok
+*   **장점:** Robust
+#####  3.3.1.2 $\psi(\mathbf{X}), \space \psi(\tilde{\mathbf{X}}_k) ,\space \psi(\mathbf{T}_{kf} \mathbf{X}_f)$
+일단 여기서 X 행렬은 전체 h * w 의 픽셀을 가지고 있다 그런더 한 픽셀은 \[x,y,z\]을 가지고 있다. 즉  2차원 격자 형태(H,W,3) 인 것임 
+$$\psi(\mathbf{X}) = \frac{\mathbf{X}}{\|\mathbf{X}\|_2}$$
+
+@`/mast3r_slam/geometry.py` 
+@point_to_ray_dist(X, jacobian=False)`
+
+``` python
+def point_to_dist(X):
+    #기본값이 L2
+    d = torch.linalg.norm(X, dim=-1, keepdim=True) 
+    return d
+
+def point_to_ray_dist(X, jacobian=False):
+	b = X.shape[:-1]
+	d = point_to_dist(X)
+	d_inv = 1.0 / d
+	r = d_inv * X
+	rd = torch.cat((r, d), dim=-1) # Dim 4
+	if not jacobian: 
+		return rd 
+	else: 
+	# ... (Jacobian 계산 생략) ... 
+		return rd, drd_dX
+```
+여기서 ray 값과 distance 값을 구할 수 있다. 
+여기서 r 이 $\psi(\mathbf{X})$이다 
+코드는 rd를 반환하는데, 이는 Ray(ψ)와 Distance(d)를 합친 벡터
+	논문 본문에는 Ray만 강조되어 있지만, 회전(Rotation)만 최적화되는 퇴화(Degeneracy)를 막기 위해 거리 오차(rd)도 작게 포함한다
+
+
