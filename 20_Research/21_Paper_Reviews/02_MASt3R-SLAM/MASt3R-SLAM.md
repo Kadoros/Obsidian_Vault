@@ -737,8 +737,8 @@ Squared Euclidean Distance를 cost 로 하여  [[Levenberg-Marquardt|Levenberg-M
 
 
 
-
-###  3.3 Tracking
+###  3.3. Tracking and Pointmap Fusion
+####  3.3.1 Tracking
 요약 하자면 이전 프래임들이 예측해 둔 포인트와 지금 키 프래임에서 찍은 포인트의 방향 + 거리의 차이를 분석해서 그 차이를 줄임으로서 카메라 삼각뿔을 움직여 최적화한다.
 
 최적화에서 중요한 에러와 최적화 알고리즘을 정의 한다 
@@ -746,8 +746,8 @@ Squared Euclidean Distance를 cost 로 하여  [[Levenberg-Marquardt|Levenberg-M
 	1. 여기서는 [[Huber Norm|Huber Norm]]를 사용하고 q 즉 Match Confidence에 대한 Weighting Function을 사용하여 민감도를 조절 하고 있다. 
 2. 최적화 알고리즘 :Gauss-Newton on Manifold
 
-####  3.3.1. Error 
-#####  3.3.1.1 왜 3D point 를 바로 이용 하지 않을까?
+#####  3.3.1.1. Error 
+######  3.3.1.1.1 왜 3D point 를 바로 이용 하지 않을까?
  걍 두 3D 점 사이의 거리를 줄이는 것이 가장 직관적이다.
 $$ E_p = \sum \| \tilde{\mathbf{X}}_k - \mathbf{T}_{kf} \mathbf{X}_f \|^2 $$
 하지만 이거를 쓰지 않는다. 왜냐하면 MASt3R가 예측한 **깊이(Depth, $z$) 값은 노이즈가 심하고 일관성이 떨어지기 때문
@@ -756,13 +756,11 @@ $$ E_p = \sum \| \tilde{\mathbf{X}}_k - \mathbf{T}_{kf} \mathbf{X}_f \|^2 $$
 $$ E_r = \sum \left\| \psi(\tilde{\mathbf{X}}_k) - \psi(\mathbf{T}_{kf} \mathbf{X}_f) \right\|^2 $$
 *   **의미:** 방향(Direction)만 맞으면 ok
 *   **장점:** Robust
-#####  3.3.1.2 $\psi(\mathbf{X}), \space \psi(\tilde{\mathbf{X}}_k) ,\space \psi(\mathbf{T}_{kf} \mathbf{X}_f)$
+######  3.3.1.1.2 $\psi(\mathbf{X})$
 일단 여기서 X 행렬은 전체 h * w 의 픽셀을 가지고 있다 그런더 한 픽셀은 \[x,y,z\]을 가지고 있다. 즉  2차원 격자 형태(H,W,3) 인 것임 
 $$\psi(\mathbf{X}) = \frac{\mathbf{X}}{\|\mathbf{X}\|_2}$$
 
 @`/mast3r_slam/geometry.py` 
-@point_to_ray_dist(X, jacobian=False)`
-
 ``` python
 def point_to_dist(X):
     #기본값이 L2
@@ -786,4 +784,99 @@ def point_to_ray_dist(X, jacobian=False):
 코드는 rd를 반환하는데, 이는 Ray(ψ)와 Distance(d)를 합친 벡터
 	논문 본문에는 Ray만 강조되어 있지만, 회전(Rotation)만 최적화되는 퇴화(Degeneracy)를 막기 위해 거리 오차(rd)도 작게 포함한다
 
+######  3.3.1.1.3 $\psi(\tilde{\mathbf{X}}_k)$
+@`/mast3r_slam/tracker.py`
+``` python
+def opt_pose_ray_dist_sim3(self, Xf, Xk, T_WCf, T_WCk, Qk, valid):
+    ...
+    rd_k = point_to_ray_dist(Xk, jacobian=False)
+
+    old_cost = float("inf")
+    for step in range(self.cfg["max_iters"]):
+        ...
+```
+rd_k: $\psi(\tilde{\mathbf{X}}_k)$ 이다
+함수를 콜할 때 이미 있는 기본 맵데이터를 한번 가져와서 연산만 해주는 것이다. 
+for 루트 위에 있다. 즉 그냥 한 번 
+###### 3.3.1.1.4 $\mathbf{T}_{kf} \mathbf{X}_f$
+@`/mast3r_slam/tracker.py`
+``` python
+def opt_pose_ray_dist_sim3(self, Xf, Xk, T_WCf, T_WCk, Qk, valid):
+    ...
+    T_CkCf = T_WCk.inv() * T_WCf
+    ...
+    for step in range(self.cfg["max_iters"]):
+	    Xf_Ck, dXf_Ck_dT_CkCf = act_Sim3(T_CkCf, Xf, jacobian=True)
+        ...
+```
+@`/mast3r_slam/geomatry.py`
+``` python
+def act_Sim3(X: lietorch.Sim3, pC: torch.Tensor, jacobian=False):
+	pW = X.act(pC)
+	if not jacobian:
+		return pW
+	dpC_dt = torch.eye(3, device=pW.device).repeat(*pW.shape[:-1], 1, 1)
+	dpC_dR = -skew_sym(pW)
+	dpc_ds = pW.reshape(*pW.shape[:-1], -1, 1)
+	# view(-1, mdim)
+	return pW, torch.cat([dpC_dt, dpC_dR, dpc_ds], dim=-1) 
+```
+\todo 뭔말이니?
+###### 3.3.1.1.5 $\psi(\mathbf{T}_{kf} \mathbf{X}_f)$, $\psi(\tilde{\mathbf{X}}_k) - \psi(\mathbf{T}_{kf} \mathbf{X}_f)$, 
+@`/mast3r_slam/tracker.py`
+``` python
+def opt_pose_ray_dist_sim3(self, Xf, Xk, T_WCf, T_WCk, Qk, valid):
+    ...
+    #psi(X_k)
+	rd_k = point_to_ray_dist(Xk, jacobian=False)
+	
+	for step in range(self.cfg["max_iters"]):
+	    # 2. 현재 점 변환: T_kf * X_f
+	    Xf_Ck, dXf_Ck_dT_CkCf = act_Sim3(T_CkCf, Xf, jacobian=True)
+	    # 3. 변환된 점을 Ray로: psi(T_kf * X_f)
+	    # r = z-h(x)
+	    rd_f_Ck, drd_f_Ck_dXf_Ck = point_to_ray_dist(
+								    Xf_Ck, jacobian=True)
+	    # 4. 에러(Residual) 계산: r = psi(X_k) - psi(T_kf * X_f)
+	    r = rd_k - rd_f_Ck
+	        ...
+```
+그래서 구한 $\mathbf{T}_{kf} \mathbf{X}_f$을 normalize 해준뒤 잔차 벡터를 계산해준다. 
+
+###### 3.3.1.1.6 ${w(q,\sigma^2)}$
+
+$$w(\mathbf{q}, \sigma^2) = \begin{cases} \sigma^2 / \mathbf{q} & \mathbf{q} > \mathbf{q}_{min} \\ \infty & \text{otherwise} \end{cases}$$
+$$\frac{r}{w(q, \sigma^2)}= r \cdot \frac{q}{\sigma^2} $$
+
+**즉, 코드에서는 `(1 / sigma) * sqrt(q)`를 계산해야 논문의 의도와 정확히 일치하는 걸세.**
+@`/config/base.yml`
+``` yml
+tracking:
+	sigma_ray: 0.003
+	sigma_dist: 1e+1
+```
+@`/mast3r_slam/tracker.py`
+``` python
+def opt_pose_ray_dist_sim3(self, Xf, Xk, T_WCf, T_WCk, Qk, valid):
+    sqrt_info_ray = 1 / self.cfg["sigma_ray"] * valid * torch.sqrt(Qk) 
+    sqrt_info_dist = 1 / self.cfg["sigma_dist"] * valid * torch.sqrt(Qk) 
+    # 2. Ray(3차원)와 Distance(1차원) 가중치를 합쳐서 4차원 가중치 벡터 생성 
+    sqrt_info = torch.cat((sqrt_info_ray.repeat(1, 3), 
+						    sqrt_info_dist), dim=1)
+```
+
+| 논문 기호                           | 코드 변수명                  | 의미                              |
+| :------------------------------ | :---------------------- | :------------------------------ |
+| $q$                             | `Qk`                    | MASt3R가 예측한 매칭 신뢰도 (Confidence) |
+| $\sigma$                        | `self.cfg["sigma_ray"]` | 광선 방향에 대한 예상 노이즈 표준편차           |
+| $q_{min}$                       | `self.cfg["Q_conf"]`    | 신뢰도가 너무 낮은 점을 버리기 위한 임계값        |
+| $w(q, \sigma^2)$                | `1 / sqrt_info**2`      | 가중치 함수 (분산의 역수 개념)              |
+| $1/\sqrt{w}$                    | `sqrt_info`             | **실제 잔차에 곱해지는 가중치**             |
+| $\mathbf{q} > \mathbf{q}_{min}$ | valid                   | 기준선에 알맞은가                       |
+만약 valid 가 0이면 sqrt_info_ray == 0?
+
+그런대 코드를 보면 조금 이상하다 
+$$  \frac{\sqrt{q}}{\sigma} = \sqrt{\frac{q}{\sigma^2}} =  \sqrt{w(q,\sigma^2)}$$
+이와 같이 가중치 
+###### 3.3.1.1.8 $\frac{ \psi(\tilde{\mathbf{X}}_k) - \psi(\mathbf{T}_{kf} \mathbf{X}_f)} {w(q,\sigma^2)}$
 
