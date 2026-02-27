@@ -1,7 +1,7 @@
 name: Sync All Notes to Quartz Blog
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   deploy:
