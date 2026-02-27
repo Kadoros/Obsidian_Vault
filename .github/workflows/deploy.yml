@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Blog Repo
         uses: actions/checkout@v3
         with:
-          repository: kadoros1130/kadoros-blog  # 예: kadoros1130/quartz-blog
+          repository: Kadoros/kadoros-blog  # 예: kadoros1130/quartz-blog
           token: ${{ secrets.BLOG_DEPLOY_TOKEN }}
           path: destination
 
