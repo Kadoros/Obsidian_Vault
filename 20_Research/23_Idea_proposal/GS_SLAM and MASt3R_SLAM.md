@@ -29,45 +29,22 @@ MASt3R 신경망을 사용하는데 걍 픽셀 샘플링 해서 조금만 포이
 
 
 
+Hierarchical MASt3R-GS SLAM
+Initialization: MASt3R를 이용해 Sparse한 포인트 클라우드와 초기 포즈를 빠르게 확보.
+Mapping:구역(Sub-map)별로 3D Gaussian을 배치하여 대규모 환경에서의 연산 부하 방지.
+Optimization: 카메라 궤적의 노드를 그래프 형태로 관리하고, 루프 클로징(Loop Closing) 시 그래프 최적화(Pose-graph optimization)를 통해 전체 맵의 정합성을 강제로 맞춤.
+
+3R-GS의 한계: Global MLP 구조로 인한 온라인 처리 불가 및 확장성 결여.
+MASt3R-GS의 한계: 단일 맵 구조로 인해 대규모 환경(Large-scale)에서 메모리 및 최적화 속도 저하.
+맵을 '파편화(Decentralized Sub-maps)'하고 이를 '그래프(Graph)'로 연결하여 **Scalability**를 확보.
+
+Q1 MASt3R-GS가 대규모 환경에서 붕괴되는 문제를 해결하기 위해, 맵을 **Sub-map 단위의 노드로 분할하고 Pose-graph로 최적화**하는 방식을 생각했습니다.분할 맵 방식을 MASt3R와 결합한 최신 논문이 더 있을까요?
+
+Large-scale 환경에서 3DGS를 배치할 때, 새로운 구역으로 진입할 때마다 **새로운 노드를 생성하고 이전 노드의 Gaussian들을 'Freezing'** 시키는 방식이 현실적으로 실시간성(Real-time) 확보에 도움이 될까요?
+
+MASt3R를 단순 초기화용(Sparse Point)으로만 쓸지, 아니면 Sub-map 간의 **Relative Pose를 정교하게 계산하는 Local Loop Closure** 엔진으로 쓰는 것이 더 효율적일까요?
 
 
-## 💡 연구 아이디어 요약 및 검토
-
-### 1. 핵심 아이디어: "Hierarchical MASt3R-GS SLAM"
-
-- **Initialization:** MASt3R를 이용해 Sparse한 포인트 클라우드와 초기 포즈를 빠르게 확보.
-    
-- **Mapping:** 구역(Sub-map)별로 3D Gaussian을 배치하여 대규모 환경에서의 연산 부하 방지.
-    
-- **Optimization:** 카메라 궤적의 노드를 그래프 형태로 관리하고, 루프 클로징(Loop Closing) 시 그래프 최적화(Pose-graph optimization)를 통해 전체 맵의 정합성을 강제로 맞춤.
-    
-
-### 2. 왜 이 아이디어가 유효한가?
-
-- **3R-GS의 한계:** Global MLP 구조로 인한 온라인 처리 불가 및 확장성 결여.
-    
-- **MASt3R-GS의 한계:** 단일 맵 구조로 인해 대규모 환경(Large-scale)에서 메모리 및 최적화 속도 저하.
-    
-- **해결책:** 맵을 '파편화(Decentralized Sub-maps)'하고 이를 '그래프(Graph)'로 연결하여 **Scalability**를 확보.
-    
-
----
-
-## 👨‍🏫 교수님/선배님께 질문할 리스트
-
-교수님이나 Large-scale 3DGS를 연구하는 선배님께 이렇게 질문해 보세요.
-
-### 질문 A. 관련 기존 연구(Prior Arts) 확인
-
-> "MASt3R-GS가 대규모 환경에서 붕괴되는 문제를 해결하기 위해, 맵을 **Sub-map 단위의 노드로 분할하고 Pose-graph로 최적화**하는 방식을 생각했습니다. 혹시 **'Splat-SLAM'**이나 **'LIV-Gaussians'**처럼 분할 맵 방식을 MASt3R와 결합한 최신 논문이 더 있을까요?"
-
-### 질문 B. 기술적 구현 가능성
-
-> "Large-scale 환경에서 3DGS를 배치할 때, 새로운 구역으로 진입할 때마다 **새로운 노드를 생성하고 이전 노드의 Gaussian들을 'Freezing'** 시키는 방식이 현실적으로 실시간성(Real-time) 확보에 도움이 될까요?"
-
-### 질문 C. MASt3R의 역할 정의
-
-> "MASt3R를 단순 초기화용(Sparse Point)으로만 쓸지, 아니면 Sub-map 간의 **Relative Pose를 정교하게 계산하는 Local Loop Closure** 엔진으로 쓰는 것이 더 효율적일까요?"
 
 
 

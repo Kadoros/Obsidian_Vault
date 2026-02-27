@@ -2,12 +2,15 @@
 tags:
   - Paper
   - SLAM
-parent_concept: "[[../../../50_Concepts/SLAM|SLAM]]"
+parent_concept:
+  - "[[../../../50_Concepts/SLAM|SLAM]]"
+  - "[[../../../50_Concepts/MASt3R|MASt3R]]"
 status: 2nd Reading
 date: 2026-01-27
 paper_link: https://arxiv.org/abs/2412.12392
 pdf: "[[PDF/MASt3R-SLAM_pdf.pdf]]"
 code_link:
+published: "true"
 ---
 
 # 요약 
@@ -32,6 +35,9 @@ code_link:
 - 실시간 3d 맵 전역 최적화; 포즈는 전역 최적화함
 - 어려운 환경 예 저조도 격한 움직임
 
+# output
+![[../../../90_Resources/92_Images/MASt3R-SLAM_20260217_0719.png]]
+![[../../../90_Resources/92_Images/MASt3R-SLAM_20260217_0720.png]]
 # Sections
 
 ## Abstract
@@ -212,9 +218,7 @@ Squared Euclidean Distance를 cost 로 하여  [[../../../50_Concepts/Levenberg 
 $$E(\mathbf{p})=\underbrace { \left\| \psi \left( [\mathbf{X}_i^i]_{\mathbf{p}} \right) - \psi (\mathbf{x}) \right\|^2}_{Squared Euclidean Distance}$$
 
 이 식을 사용하여 최적화 하기 위해서 Residual Vector, r 의 형태로 표현한다. 
-$$
-r(\mathbf{p}) = \psi \left( [\mathbf{X}_i^i]_{\mathbf{p}} \right) - \psi (\mathbf{x}) 
-$$@`/mast3r_slam/backend/src/matching_kernels.cu` 
+$$r(\mathbf{p}) = \psi \left( [\mathbf{X}_i^i]_{\mathbf{p}} \right) - \psi (\mathbf{x}) $$@`/mast3r_slam/backend/src/matching_kernels.cu` 
 @`iter_proj_kernel()`
 ```cpp
 for (int j=0; j<3; j++) {
@@ -455,20 +459,9 @@ $$\delta = \Delta \mathbf{p}= \begin{bmatrix}
 \Delta {v} 
 \end{bmatrix}$$
 $$(J^T J + \lambda I) \delta = J^T e$$
-$$ \begin{bmatrix} 
-A_{00} & A_{01}\\
-A_{10} & A_{11}
-\end{bmatrix}
+$$\begin{bmatrix} A_{00} & A_{01}\\A_{10} & A_{11} \end{bmatrix} \begin{bmatrix} \Delta {u} \\ \Delta {v} \end{bmatrix} = \begin{bmatrix} b_{0} \\ b_{1}  \end{bmatrix}$$
 
-\begin{bmatrix} 
-\Delta {u}  \\
-\Delta {v} 
-\end{bmatrix} 
-
-= \begin{bmatrix} 
-b_{0} \\
-b_{1} 
-\end{bmatrix}$$$$\begin{bmatrix} \Delta u \\ \Delta v \end{bmatrix} = \frac{1}{\det} \begin{bmatrix} A_{11} & -A_{01} \\ -A_{01} & A_{00} \end{bmatrix} \begin{bmatrix} b_0 \\ b_1 \end{bmatrix}$$$$\frac{1}{\det(H)} = \frac{1}{A_{00}A_{11} - A_{01}^2}$$@`/mast3r_slam/backend/src/matching_kernels.cu` 
+$$\begin{bmatrix} \Delta u \\ \Delta v \end{bmatrix} = \frac{1}{\det} \begin{bmatrix} A_{11} & -A_{01} \\ -A_{01} & A_{00} \end{bmatrix} \begin{bmatrix} b_0 \\ b_1 \end{bmatrix}$$$$\frac{1}{\det(H)} = \frac{1}{A_{00}A_{11} - A_{01}^2}$$@`/mast3r_slam/backend/src/matching_kernels.cu` 
 @`iter_proj_kernel(... , const float lambda_init, ...)`
 ```cpp
 // Solve system
@@ -485,8 +478,8 @@ clamp(v_new, 1, h-2);
 ```
 현재 위치 $(u, v)$에 계산된 이동량 $(\Delta u, \Delta v)$를 더해서 새로운 위치를 추정합니다.
 clamp 함수로 
-
-#####   3.2.5.5. result evaluation 
+%%  %%
+#####   3.2.5.6. result evaluation 
 @3.2.2.  $[\mathbf{X}_i^i]_{\mathbf{p}}$, 3.2.3 $\psi \left( [\mathbf{X}i^i]_{\mathbf{p}} \right)$, 3.2.5.1. How to optimize 에서 확인 할 수 있는 것 처럼 new_cost를 계산한다. 
 @`/mast3r_slam/backend/src/matching_kernels.cu` 
 @`iter_proj_kernel(... ,torch Tensor. converged , ...)`
@@ -726,7 +719,7 @@ $$= 2(1 - \cos\theta)$$
 #### 3.2.9   코사인을 이용한 직관 밑 논문 부연 설명
 
 $$\mathbf{p}^* = \arg \min_{\mathbf{p}} \left\| \psi \left( [\mathbf{X}_i^i]_{\mathbf{p}} \right) - \psi (\mathbf{x}) \right\|^2 . \space \space \space \space \space where \space  x∈ X_{i}^j$$
-Squared Euclidean Distance를 cost 로 하여  [[Levenberg-Marquardt|Levenberg-Marquardt|]] 알고리즘으로 푼다
+Squared Euclidean Distance를 cost 로 하여  [[../../../50_Concepts/Levenberg Marquardt|Levenberg Marquardt]] 알고리즘으로 푼다
 
 그런데 왜 $$\|\psi_1 - \psi_2\|^2 = 2(1 - \cos \theta), \space \cos \theta=\psi_1^T \psi_2$$라고 하면서 설명을 할까? 코드에서는 쓰이지도 않는데 말이다. 
 ![[../../../90_Resources/92_Images/MASt3R-SLAM_3.2Matching_Additional_explanation.png]]
@@ -742,10 +735,13 @@ Squared Euclidean Distance를 cost 로 하여  [[Levenberg-Marquardt|Levenberg-M
 요약 하자면 이전 프래임들이 예측해 둔 포인트와 지금 키 프래임에서 찍은 포인트의 방향 + 거리의 차이를 분석해서 그 차이를 줄임으로서 카메라 삼각뿔을 움직여 최적화한다.
 
 최적화에서 중요한 에러와 최적화 알고리즘을 정의 한다 
-1. 에러$$ E_r = \sum \left\|\frac{ \psi(\tilde{\mathbf{X}}_k) - \psi(\mathbf{T}_{kf} \mathbf{X}_f)} {w(q,\sigma^2)} \right\|_\rho^2 $$
-	1. 여기서는 [[Huber Norm|Huber Norm]]를 사용하고 q 즉 Match Confidence에 대한 Weighting Function을 사용하여 민감도를 조절 하고 있다. 
+1. 에러$$E_r = \sum \left\|\frac{ \psi(\tilde{\mathbf{X}}_k) - \psi(\mathbf{T}_{kf} \mathbf{X}_f)} {w(q,\sigma^2)} \right\|_\rho^2$$
+	1. 여기서는 [[../../../50_Concepts/Huber Norm|Huber Norm]]를 사용하고 q 즉 Match Confidence에 대한 Weighting Function을 사용하여 민감도를 조절 하고 있다. 
 2. 최적화 알고리즘 :Gauss-Newton on Manifold
 
+
+주의! 에러가 코드에서는 위 수식과는 다르게 다음 과 같이 계산 된다 
+$$E_r = \sum \left\|\frac{ \psi(\tilde{\mathbf{X}}_k) - \psi(\mathbf{T}_{kf} \mathbf{X}_f)} {\sqrt{w(q,\sigma^2)}} \right\|_\rho^2$$
 #####  3.3.1.1. Error 
 ######  3.3.1.1.1 왜 3D point 를 바로 이용 하지 않을까?
  걍 두 3D 점 사이의 거리를 줄이는 것이 가장 직관적이다.
@@ -846,9 +842,7 @@ def opt_pose_ray_dist_sim3(self, Xf, Xk, T_WCf, T_WCk, Qk, valid):
 ###### 3.3.1.1.6 ${w(q,\sigma^2)}$
 
 $$w(\mathbf{q}, \sigma^2) = \begin{cases} \sigma^2 / \mathbf{q} & \mathbf{q} > \mathbf{q}_{min} \\ \infty & \text{otherwise} \end{cases}$$
-$$\frac{r}{w(q, \sigma^2)}= r \cdot \frac{q}{\sigma^2} $$
 
-**즉, 코드에서는 `(1 / sigma) * sqrt(q)`를 계산해야 논문의 의도와 정확히 일치하는 걸세.**
 @`/config/base.yml`
 ``` yml
 tracking:
@@ -871,12 +865,167 @@ def opt_pose_ray_dist_sim3(self, Xf, Xk, T_WCf, T_WCk, Qk, valid):
 | $\sigma$                        | `self.cfg["sigma_ray"]` | 광선 방향에 대한 예상 노이즈 표준편차           |
 | $q_{min}$                       | `self.cfg["Q_conf"]`    | 신뢰도가 너무 낮은 점을 버리기 위한 임계값        |
 | $w(q, \sigma^2)$                | `1 / sqrt_info**2`      | 가중치 함수 (분산의 역수 개념)              |
-| $1/\sqrt{w}$                    | `sqrt_info`             | **실제 잔차에 곱해지는 가중치**             |
+| $1/\sqrt{w}$                    | `sqrt_info`             | 실제 잔차에 곱해지는 가중치                 |
 | $\mathbf{q} > \mathbf{q}_{min}$ | valid                   | 기준선에 알맞은가                       |
-만약 valid 가 0이면 sqrt_info_ray == 0?
-
+3.3.1.1.6.1 sqrt_info
 그런대 코드를 보면 조금 이상하다 
-$$  \frac{\sqrt{q}}{\sigma} = \sqrt{\frac{q}{\sigma^2}} =  \sqrt{w(q,\sigma^2)}$$
-이와 같이 가중치 
-###### 3.3.1.1.8 $\frac{ \psi(\tilde{\mathbf{X}}_k) - \psi(\mathbf{T}_{kf} \mathbf{X}_f)} {w(q,\sigma^2)}$
+$$  \frac{\sqrt{q}}{\sigma} = \sqrt{\frac{q}{\sigma^2}} =  \sqrt{ \frac{1}{w(q,\sigma^2)}}$$
+이와 같이 가중치 함수의 역수 제곱근으로 계산하고 있다!! 뭐냐 이거...
 
+
+
+3.3.1.1.6.2 valid
+valid는 $\mathbf{q} > \mathbf{q}_{min}$ 를 확인 하는 녀석이다. 
+만약 valid 가 0이면 sqrt_info = 0이다. 이는 무슨 말일까?
+xf
+여기서 otherwise 케이스 인것이다. 그리고 이 가중치 함수는 분모에 들어간다 하지만 실제 코드에서는 역수의 제곱근(`sqrt_info`,  $\sqrt{\frac{1}{w}}$})이 곱해진다 . 즉 같은 경우에서 에러는 0이 된다. 
+
+###### 3.3.1.1.7 $E_r = \sum \left\|\frac{ \psi(\tilde{\mathbf{X}}_k) - \psi(\mathbf{T}_{kf} \mathbf{X}_f)} {\sqrt{w(q,\sigma^2)}} \right\|_\rho^2$
+$$E = \sum\left\| \frac{r}{\sqrt{w(q,\sigma^2)}} \right\|_{\rho}^2$$
+ $$\frac{1}{\sqrt{w(q, \sigma^2)}} = \frac{1}{\sqrt{\sigma^2 / q}} = \frac{\sqrt{q}}{\sigma}$$
+ Huber Loss $\rho(x)$를 미분하여 가중치 함수로 만들면 $w_{huber}(x) = \frac{\rho'(x)}{x}$가 된다 (??)
+ - 에러가 작을 때 ($|x| < \delta$): $w_{huber} = 1$
+ - 에러가 클 때 ($|x| \ge \delta$): $w_{huber} = \frac{\delta}{|x|}$ (에러를 줄여줌)
+
+우리가 구하고자 하는 최종 가중치 행열은 구 가중치 행열의 곱이다 
+$$\mathbf{W} = W_{conf} \cdot W_{huber} = \left( \frac{q}{\sigma^2} \right) \cdot w_{huber}(r_{white})$$
+
+3.3.1.1.7.1 Confidence Weighting (Whitening)
+@`/mast3r_slam/tracker.py`
+```python
+def solve(self, sqrt_info, r, J):
+	...
+	# sqrt_info는 위에서 계산됨: (1 / sigma) * sqrt(Qk)
+	whitened_r = sqrt_info * r
+	...
+```
+*   **수식:** $r_{white} = \frac{\sqrt{q}}{\sigma} \cdot r$
+*   **의미:** 잔차 $r$에 네트워크의 신뢰도($q$)와 분산($\sigma$)을 반영하여 스케일링함. 신뢰도가 높으면 잔차를 키워서 중요하게 다루고, 낮으면 0에 가깝게 만듦.
+
+3.3.1.1.7.2. Robust Weighting (Huber)
+@`/mast3r_slam/tracker.py`
+```python
+def solve(self, sqrt_info, r, J):
+	...
+	robust_sqrt_info = sqrt_info * torch.sqrt(
+	    huber(whitened_r, k=self.cfg["huber"])
+	)
+	...
+```
+*   **수식:** $\sqrt{W_{total}} = \frac{\sqrt{q}}{\sigma} \cdot \sqrt{w_{huber}(r_{white})}$
+*   **설명:**
+    *   `huber(...)` 함수는 Huber 가중치 $w_{huber}$를 반환함.
+    *   우리는 $Ax=b$ 형태를 만들기 위해 가중치의 **제곱근($\sqrt{\cdot}$)** 이 필요함.
+    *   `sqrt_info`($\sqrt{W_{conf}}$)와 `sqrt(huber)`($\sqrt{W_{huber}}$)를 곱해서 **최종 가중치 제곱근**을 만듦.
+
+3.3.1.1.7.3 Weighted Residual Vector Construction (b)
+```python
+def solve(self, sqrt_info, r, J):
+	...
+	# b = sqrt(W) * r
+	b = (robust_sqrt_info * r).view(-1, 1) 
+	...
+```
+$$ \mathbf{b} = \sqrt{\mathbf{W}} r $$
+3.3.1.1.7.4 Objective Function Evaluation (Total Cost)
+```python
+def solve(self, sqrt_info, r, J):
+	...
+	cost = 0.5 * (b.T @ b).item()
+	...
+	return tau_j, cost
+```
+$$E = \sum\left\| \frac{r}{\sqrt{w(q,\sigma^2)}} \right\|_{\rho}^2$$
+  $$E = \sum \rho(r_{white})$$ 
+ $$\rho(x) \rightarrow \frac{1}{2} w_{huber}(x) \cdot x^2 \quad (\text{IRLS Approximation})$$ ?????
+ $$\mathbf{W} = w_{huber} \cdot W_{conf}$$
+
+$$\tilde{r}=\mathbf{r} \times \sqrt{\mathbf{W}}$$
+$$\|\tilde{r}\|^2 = \tilde{r}^T \tilde{r} = (\mathbf{r} \times \sqrt{\mathbf{W}})^T (\mathbf{r} \times \sqrt{\mathbf{W}}) = r^T {\mathbf{W}} r$$
+ $$E = \frac{1}{2} \mathbf{b}^T \mathbf{b} = \frac{1}{2} \|\mathbf{b}\|^2$$  $$E = \frac{1}{2} \underbrace{(\sqrt{\mathbf{W}}\mathbf{r})^T}_{\mathbf{b}^T} \underbrace{(\sqrt{\mathbf{W}}\mathbf{r})}_{\mathbf{b}} = \frac{1}{2} \mathbf{r}^T \mathbf{W} \mathbf{r}$$ 여기서 1/2가 왜 들어가지는 지는 모르겠다 던진다. 뭐 미분 할때 에케 되는 것 아닐까?
+
+Gauss-Newton 등 최적화 과정에서 에러 함수를 미분할 때 발생하는 계수 2를 상쇄하여 $J^T r$형태를 깔끔하게 도출하기 위한 수학적 관례(Convention)로 이해함.
+
+
+
+#####  3.3.1.2. 최적화  
+엄 lie Algabra 가 뭐에요..? 뭐요 exp? ... ㅎ
+
+회전 행열 안깨지게 하면서 최적화 시키는 방법
+#### 3.3.2 pointmap fusion
+ $$\tilde{\mathbf{X}}_k^k \leftarrow \frac{\tilde{\mathbf{C}}_k^k \tilde{\mathbf{X}}_k^k + \mathbf{C}_f^k (\mathbf{T}_{kf} \mathbf{X}_f^f)}{\tilde{\mathbf{C}}_k^k + \mathbf{C}_f^k}$$
+ $$\tilde{\mathbf{C}}_k^k \leftarrow \tilde{\mathbf{C}}_k^k + \mathbf{C}_f^k$$ 
+k위치에서 본 정제된 포인트 맵($\tilde{\mathbf{X}}_k^k$)과 f 위치에서의 포인트 맵을 k위치에서 본 포인트맵으로 변환한것  $\mathbf{T}_{kf} \mathbf{X}_f^f$ 이 있을떄 각 accumulate 된 Confidence($\tilde{\mathbf{C}}_k^k$)와 새로운 거의 Confidence ($\mathbf{C}_f^k$)를 이용해서 평균을 낸것을 정제된 포인트맵에 저장함 
+또한 accumulate된 Confidence를 업데이트함 
+
+@`/mast3r_slam/tracker.py`
+```python
+def track(self, frame: Frame):
+	...
+	# Use pose to transform points to update keyframe
+	Xkk = T_CkCf.act(Xkf)
+	keyframe.update_pointmap(Xkk, Ckf)
+	...
+```
+@`/mast3r_slam/frame.py`
+```python
+def update_pointmap(self, X: torch.Tensor, C: torch.Tensor
+	iltering_mode = config["tracking"]["filtering_mode"]
+	...
+	elif filtering_mode == "weighted_pointmap":
+		# 논문 Equation (8) 구현 
+		# X_new = (C_old * X_old + C_new * X_new) / (C_old + C_new)
+		self.X_canon = ((self.C * self.X_canon) + (C * X)) / (self.C + C)
+		# C_new = C_old + C_new
+		
+		self.C = self.C + C
+		self.N += 1
+	...
+```
+
+
+### 3.4. Graph Construction and Loop Closure
+여기서는 키프래임을 선택하는 기준을 이야기하고 또한 loop closure 을 한다 
+#### 3.4.1 keyframe selection
+@`/mast3r_slam/tracker.py`
+```python
+def track(self, frame: Frame):
+	...
+	# Keyframe selection
+	# valid matching points들의 합계 
+	n_valid = valid_kf.sum()
+	#유효 픽셀 비율 %
+	match_frac_k = n_valid / valid_kf.numel()
+	#현재 프레임이 키프레임의 '서로 다른' 지점들을 얼마나 다양하게 보고 있는가?
+	unique_frac_f = (
+		torch.unique(idx_f2k[valid_match_k[:, 0]]).shape[0] / valid_kf.numel()
+	)
+	#인개점보다 match_frac_k,unique_frac_f 중 하나라도 작으면 새 프래임 찍음
+	new_kf = min(match_frac_k, unique_frac_f) < self.cfg["match_frac_thresh"]
+	...
+```
+- valid matching points들의 합계 는 이미 outlier and now confidence 등의 요소를 제외함 
+- $\frac{\text{유효 매칭 수}}{\text{전체 픽셀 수}}$
+- idx_f2k: 현재 프레임(F)의 픽셀이 키프레임(K)의 **어느 픽셀**에 매칭되는지 가리키는 인덱스
+- 
+@`/mast3r_slam/main.py`
+```python
+if __name__ == "__main__":
+	...
+	if mode == Mode.TRACKING:
+	add_new_kf, match_info, try_reloc = tracker.track(frame)
+	if try_reloc:
+		states.set_mode(Mode.RELOC)
+	states.set_frame(frame)
+...
+	if add_new_kf:
+		keyframes.append(frame)
+		states.queue_global_optimization(len(keyframes) - 1)
+		# In single threaded mode, wait for the backend to finish
+		while config["single_thread"]:
+			with states.lock:
+				if len(states.global_optimizer_tasks) == 0:
+					break
+			time.sleep(0.01)
+	...
+```

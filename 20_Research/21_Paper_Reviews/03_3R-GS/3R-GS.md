@@ -5,7 +5,7 @@ parent_concept:
   - "[[../../../50_Concepts/SLAM|SLAM]]"
   - "[[../02_MASt3R-SLAM/MASt3R-SLAM|MASt3R-SLAM]]"
   - "[[../01_GS_SLAM/GS_SLAM|GS_SLAM]]"
-status: 1st Reading
+status: skimming
 date: 2026-01-28
 paper_link: https://arxiv.org/pdf/2504.04294
 pdf: "[[PDF/3R-GS.pdf]]"

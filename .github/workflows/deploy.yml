@@ -1,0 +1,38 @@
+name: Sync All Notes to Quartz Blog
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Private Repo
+        uses: actions/checkout@v3
+        with:
+          path: source
+
+      - name: Checkout Blog Repo
+        uses: actions/checkout@v3
+        with:
+          repository: 본인ID/블로그레포이름  # 예: kadoros1130/quartz-blog
+          token: ${{ secrets.BLOG_DEPLOY_TOKEN }}
+          path: destination
+
+      - name: Sync Content
+        run: |
+          # 1. 블로그 레포의 기존 content 폴더 내용 삭제 (깔끔한 동기화 위해)
+          rm -rf destination/content/*
+          
+          # 2. 소스 레포의 모든 내용을 블로그 레포의 content 폴더로 복사
+          # .git, .github 등 설정 파일은 제외하고 복사합니다.
+          rsync -av --exclude='.git/' --exclude='.github/' --exclude='.obsidian/' source/ destination/content/
+
+      - name: Push to Blog Repo
+        working-directory: destination  # 이 줄이 추가되었습니다.
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Sync all notes from private vault" || exit 0
+          git push
