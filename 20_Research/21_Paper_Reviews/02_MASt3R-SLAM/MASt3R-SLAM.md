@@ -12,7 +12,7 @@ pdf: "[[PDF/MASt3R-SLAM_pdf.pdf]]"
 code_link:
 published: "true"
 ---
-
+ 
 # 요약 
 - 핵심 
 	- [[MASt3R]] 이라는 인공 신경망을 통해서 두 이미지 인풋을 통해 3d point map 과 특징점 백터 그리고 신뢰도 를 각각 만들고 이를 통해서 설계된 실시간  [[../../../50_Concepts/Monocular SLAM|Monocular SLAM]], [[Dense SLAM]]을 구현
@@ -1027,5 +1027,5 @@ if __name__ == "__main__":
 				if len(states.global_optimizer_tasks) == 0:
 					break
 			time.sleep(0.01)
-	...
+	... 
 ```
