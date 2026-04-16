@@ -27,8 +27,8 @@ parent_concept:
 | **설정 단계**          | **주요 변경점**                           | **결과**                                                                                                                       |
 | ------------------ | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
 | **Default**        | `base.yaml` (표준 설정)                  | **Tracking Failure:** 입구컷 (`Failed to relocalize`)![[../../90_Resources/92_Images/Rigid SLAM의 내시경 환경 적응성_20260217_0702.png]] |
-| **Golden Balance** | `rel_error: 5.0`, `subsample: 2`     | ![[../../90_Resources/92_Images/Rigid SLAM의 내시경 환경 적응성_20260217_0706.png]]                                                                          |
-| **Nuclear Option** | `rel_error: 10000.0`, `min_match: 0` | ![[../../90_Resources/92_Images/Rigid SLAM의 내시경 환경 적응성_20260217_0706_1.png]]                                                                                   |
+| **Golden Balance** | `rel_error: 5.0`, `subsample: 2`     | ![[../../90_Resources/92_Images/Rigid SLAM의 내시경 환경 적응성_20260217_0706.png]]                                                   |
+| **Nuclear Option** | `rel_error: 10000.0`, `min_match: 0` | ![[../../90_Resources/92_Images/Rigid SLAM의 내시경 환경 적응성_20260217_0706_1.png]]                                                 |
 
 ---
 
