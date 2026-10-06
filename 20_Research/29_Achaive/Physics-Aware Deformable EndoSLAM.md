@@ -6,7 +6,7 @@ parent_concept:
 **연구 목표:** PINO(Physics-Informed Neural Operator)를 활용한 강건한 비강체(Deformable) 내시경 SLAM
 
 ### 1. 배경 및 문제 제기 (Motivation)
-*   **기존 EndoSLAM의 한계:** 장기는 비강체임. 기존 SLAM은 이를 단순한 Optical Flow으로 추적하여, **반사광, 피, 텍스처 소실** 발생 시 기하학적 붕괴가 빈번함. [[20_Research/23_Idea_proposal/Rigid SLAM의 내시경 환경 적응성|Rigid SLAM의 내시경 환경 적응성]]
+*   **기존 EndoSLAM의 한계:** 장기는 비강체임. 기존 SLAM은 이를 단순한 Optical Flow으로 추적하여, **반사광, 피, 텍스처 소실** 발생 시 기하학적 붕괴가 빈번함. [[../24_Idea_proposal/Rigid SLAM의 내시경 환경 적응성|Rigid SLAM의 내시경 환경 적응성]]
 *   **물리적 제약의 부재:** 현재 모델들은 '조직의 물리적 특성'을 고려하지 않고 순수 시각적 정보에만 의존하여, 장기의 변형이 물리적으로 불가능한 수준까지 찌그러지는 오차를 방지하지 못함.
 ### 2. 제안 방법 (Proposed Method: PINO-EndoSLAM)
 *   **핵심 컨셉:** **PINO를 SLAM의 '물리 엔진'이자 '사전 지식(Prior)'으로 활용.**
