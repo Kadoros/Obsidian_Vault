@@ -4,7 +4,7 @@ tags:
 course: IB DP Math AA HL
 unit: 수열과 과학적 표기
 level: 표준
-topic: "과학적 표기 + 수열 대량 연습"
+topic: "Topic 1 총복습 70문항 (표기·수열·지수·로그·정의역)"
 ---
 1. Write $45\,000\,000$ in the form $a \times 10^k$, where $1 \le a < 10$ and $k \in \mathbb{Z}$.
     
