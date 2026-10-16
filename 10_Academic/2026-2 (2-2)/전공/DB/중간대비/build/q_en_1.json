@@ -1,0 +1,1601 @@
+{
+ "1-def-1": {
+  "prompt": "Which of the following is the correct definition of a 'Database System'?",
+  "choices": [
+   "A collection of logically related data",
+   "Software that manages data",
+   "DB + DBMS software",
+   "A person who designs the DB"
+  ]
+ },
+ "1-def-2": {
+  "prompt": "A DBMS is software used for (a) , constructing, (b) and sharing databases.",
+  "answer": "(a) defining / (b) manipulating",
+  "accept_add": [
+   [
+    "defined",
+    "definition"
+   ],
+   [
+    "manipulation",
+    "manipulated"
+   ]
+  ]
+ },
+ "1-def-3": {
+  "prompt": "MySQL, SQLite and Oracle are examples of DBs, and the tables stored in them are the DBMS.",
+  "explain": "MySQL, SQLite and Oracle are DBMSs (software). The collection of data managed by that software is the DB."
+ },
+ "1-def-4": {
+  "prompt": "Define DB, DBMS and database system in one line each.",
+  "answer": "DB: a logically coherent collection of related data (managed by a DBMS). DBMS: software that efficiently manages data in a structured way (defining, constructing, manipulating and sharing databases). Database system: DB + DBMS software.",
+  "keys": [
+   "DB = a collection of related data",
+   "DBMS = management software (define, construct, manipulate, share)",
+   "Database system = DB + DBMS"
+  ]
+ },
+ "1-why-1": {
+  "prompt": "When a messaging app's data is managed in a text file, which group of problems does 'What if the machine crashes while the app is writing a new entry?' belong to?",
+  "choices": [
+   "Data Integrity",
+   "Data Management",
+   "Data Durability",
+   "Data Abstraction"
+  ]
+ },
+ "1-why-2": {
+  "prompt": "Which of the following is an example of a 'data integrity' problem?",
+  "choices": [
+   "How do we find a specific message quickly?",
+   "What if a friend's info is entered twice by mistake?",
+   "What if many users write at the same time?",
+   "How do we recover after a crash?"
+  ],
+  "explain": "Integrity: message length limit, duplicate friends, friends with the same name. Management: fast search, concurrent access. Durability: crashes, recovery."
+ },
+ "1-when-1": {
+  "prompt": "Which of the following is NOT a case where a customized database is better than a DBMS?",
+  "choices": [
+   "A simple application that is not expected to change at all",
+   "Stringent real-time requirements",
+   "An embedded system with limited storage capacity",
+   "Multiple users updating the same data at the same time"
+  ],
+  "explain": "Concurrent multi-user access is exactly the case where a DBMS (concurrency control) is needed."
+ },
+ "1-when-2": {
+  "prompt": "List at least two kinds of overhead that come with using a DBMS.",
+  "answer": "High initial investment in hardware, software and training; the cost of the generality a DBMS provides for defining and processing data; the overhead of security, concurrency control, recovery and integrity functions.",
+  "keys": [
+   "High initial investment (HW, SW, training)",
+   "Cost of generality",
+   "Overhead of security, concurrency control, recovery and integrity functions"
+  ]
+ },
+ "1-char-1": {
+  "prompt": "Where is the definition of the database structure and constraints (metadata) stored?",
+  "choices": [
+   "Application program source code",
+   "DBMS catalog",
+   "External schema",
+   "Transaction log"
+  ]
+ },
+ "1-char-2": {
+  "prompt": "Explain the 'self-describing nature' of a database system.",
+  "answer": "A database system contains not only the database itself but also metadata, i.e., the definition of the database structure and constraints. The metadata is stored in the DBMS catalog and is needed to maintain the database.",
+  "keys": [
+   "Contains the DB + metadata",
+   "Metadata = definition of structure and constraints",
+   "Stored in the catalog"
+  ]
+ },
+ "1-char-3": {
+  "prompt": "Metadata is defined using SQL DDL."
+ },
+ "1-char-4": {
+  "prompt": "Metadata is the definition of the database (a) and constraints, and it is stored in the DBMS (b) .",
+  "answer": "(a) structure / (b) catalog",
+  "accept_add": [
+   [],
+   [
+    "catalogue"
+   ]
+  ]
+ },
+ "1-abs-1": {
+  "prompt": "What is the name of the property that 'programs are not affected even when the data structure changes'?",
+  "choices": [
+   "Program-data independence",
+   "Self-describing nature",
+   "Multiple views",
+   "Concurrency control"
+  ]
+ },
+ "1-abs-2": {
+  "prompt": "Data abstraction means showing users the physical level of data (how it is stored, how operations are implemented) while hiding the logical level.",
+  "explain": "It is the opposite. It provides a conceptual (logical) representation and hides the physical-level details."
+ },
+ "1-abs-3": {
+  "prompt": "Explain the 'data abstraction' characteristic of a database system.",
+  "answer": "It provides insulation between programs and data. A database system provides a conceptual representation of data (objects, their properties and their interrelationships) and hides the complex physical-level details, such as how data is stored and how operations are implemented. Therefore programs are not affected when the data structure changes (program-data independence).",
+  "keys": [
+   "Insulation between programs and data",
+   "Provides a conceptual (logical) representation, hides physical details",
+   "Program-data independence"
+  ]
+ },
+ "1-abs-4": {
+  "prompt": "Which of the following is 'hidden' by data abstraction?",
+  "choices": [
+   "Objects",
+   "Properties of objects",
+   "Relationships among objects",
+   "How the data is stored on disk"
+  ]
+ },
+ "1-view-1": {
+  "prompt": "Which statement about a view is correct?",
+  "choices": [
+   "A base table explicitly stored in the DB",
+   "A separate copy of the DB made for each user",
+   "Virtual data that is derived from the database but not explicitly stored",
+   "A schema that describes the physical storage structure"
+  ]
+ },
+ "1-view-2": {
+  "prompt": "Thanks to the support of multiple views, users do not need to know whether the data they see is stored or derived."
+ },
+ "1-view-3": {
+  "prompt": "Give two examples of 'multiple views' in a university DB, and explain why this characteristic is needed.",
+  "answer": "Examples: a view that prints each student's transcript, and a view that checks each course's prerequisites. Each user needs a different perspective of the data, so the same database provides each user with suitable virtual data (views).",
+  "keys": [
+   "Two examples (transcript, prerequisites, etc.)",
+   "Each user needs a different perspective"
+  ]
+ },
+ "1-view-4": {
+  "prompt": "A view is virtual data that is (a) from the database but not explicitly (b) .",
+  "answer": "(a) derived / (b) stored",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "1-share-1": {
+  "prompt": "The ACID properties that a transaction must satisfy are Atomicity, (a) , Isolation and (b) .",
+  "answer": "(a) Consistency / (b) Durability",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "1-share-2": {
+  "prompt": "Which DBMS function is needed when several reservation agents try to assign the last remaining seat on a flight at the same time?",
+  "choices": [
+   "Catalog",
+   "Concurrency control",
+   "View",
+   "Data independence"
+  ]
+ },
+ "1-share-3": {
+  "prompt": "Define a 'transaction', and name the properties a transaction must satisfy in a multiuser environment.",
+  "answer": "A transaction is a collection of operations that performs a single logical function. It must satisfy ACID (Atomicity, Consistency, Isolation, Durability).",
+  "keys": [
+   "A collection of operations performing a single logical function",
+   "The four ACID properties"
+  ]
+ },
+ "1-share-4": {
+  "prompt": "The data-sharing characteristic means managing the data of different applications in separate databases.",
+  "explain": "The data of many applications is integrated and managed in a 'single database', and multiple users access it at the same time."
+ },
+ "1-char-5": {
+  "prompt": "List the four characteristics of the database approach and explain each in one line.",
+  "answer": "1) Self-describing nature: contains the DB together with metadata (in the catalog). 2) Data abstraction: provides a conceptual representation and hides physical details (program-data independence). 3) Support of multiple views: provides different virtual data (views) for each user. 4) Sharing of data and multiuser transaction processing: multiple users access the data at the same time; concurrency control and ACID.",
+  "keys": [
+   "Self-describing nature",
+   "Data abstraction",
+   "Multiple views",
+   "Sharing of data and multiuser transaction processing"
+  ]
+ },
+ "1-dm-1": {
+  "prompt": "Which category of data model does the ER model belong to?",
+  "choices": [
+   "Conceptual",
+   "Representational",
+   "Physical",
+   "External"
+  ]
+ },
+ "1-dm-2": {
+  "prompt": "Which data model describes 'record formats, record orderings and access paths'?",
+  "choices": [
+   "Conceptual",
+   "Representational",
+   "Physical",
+   "Logical"
+  ]
+ },
+ "1-dm-3": {
+  "prompt": "A representational data model hides physical storage details but can be implemented directly on a computer system."
+ },
+ "1-dm-4": {
+  "prompt": "List the three categories of data models and explain each in one line.",
+  "answer": "Conceptual (high-level): concepts close to the way users perceive data (the ER model). Representational: how the DBMS manages data; hides physical details but can be implemented directly (the relational model). Physical (low-level): how data is stored, e.g., record formats, record orderings and access paths; meant for specialists.",
+  "keys": [
+   "Conceptual = users' perspective",
+   "Representational = between conceptual and physical, how the DBMS manages data",
+   "Physical = storage details and access paths"
+  ]
+ },
+ "1-3s-1": {
+  "prompt": "In the three-schema architecture, which describes 'the part of the database that a particular user group is interested in'?",
+  "choices": [
+   "External schema",
+   "Conceptual schema",
+   "Internal schema",
+   "Catalog"
+  ]
+ },
+ "1-3s-2": {
+  "prompt": "In the three-schema architecture, at which level is the actual data stored?",
+  "choices": [
+   "External level",
+   "Conceptual level",
+   "Only the physical (internal) level",
+   "All three levels"
+  ]
+ },
+ "1-3s-3": {
+  "prompt": "The conceptual schema describes the logical structure of the database using a (a) data model, and the internal schema describes the physical storage structure using a (b) data model.",
+  "answer": "(a) representational / (b) physical",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "1-3s-4": {
+  "prompt": "Explain the goal of the three-schema architecture and its three levels (schemas).",
+  "answer": "Goal: to separate user applications from the physical database, achieving independence between programs and data. External level (external schema / user view): the part of the database a particular user group is interested in. Conceptual level (conceptual schema): describes the logical structure of the whole database using a representational data model, hiding physical storage. Internal level (internal schema): describes the physical storage structure and access paths using a physical data model.",
+  "keys": [
+   "Goal: separate applications from the physical DB (independence)",
+   "External: a user group's view",
+   "Conceptual: logical structure of the whole DB",
+   "Internal: physical storage structure"
+  ]
+ },
+ "1-3s-5": {
+  "prompt": "The conceptual schema deals with high-level concepts such as entities, data types, relationships, user operations and constraints."
+ },
+ "1-3s-6": {
+  "prompt": "In a university DB, which level describes 'all the details of storage and the access paths'?",
+  "choices": [
+   "External level",
+   "Conceptual level",
+   "Internal level",
+   "Application level"
+  ]
+ },
+ "1-map-1": {
+  "prompt": "Actual data exists only at the internal level. Explain how the DBMS processes a request specified on an external schema.",
+  "answer": "The DBMS transforms the request using the mappings between levels. A request on the external schema is transformed into a request on the conceptual schema and then on the internal schema, and is processed over the stored database; the extracted result is reformatted to match the user's external view. The mapping information is also stored in the catalog.",
+  "keys": [
+   "Request transformed external → conceptual → internal",
+   "Result reformatted to the external view",
+   "Mapping information is in the catalog"
+  ]
+ },
+ "1-map-2": {
+  "prompt": "The mapping information between schemas is also stored in the catalog."
+ },
+ "1-di-1": {
+  "prompt": "Which property means that adding a new data item to the conceptual schema does not require changing the external schemas or application programs?",
+  "choices": [
+   "Logical data independence",
+   "Physical data independence",
+   "Self-describing nature",
+   "Referential integrity"
+  ]
+ },
+ "1-di-2": {
+  "prompt": "Which property means that the conceptual schema stays the same even when an access path (index) is added to speed up retrieval?",
+  "choices": [
+   "Logical data independence",
+   "Physical data independence",
+   "Support of multiple views",
+   "Data sharing"
+  ]
+ },
+ "1-di-3": {
+  "prompt": "Data independence is the capacity to change the schema at one level without having to change the schema at the next (a) level. Logical independence concerns changing the (b) schema, and physical independence concerns changing the (c) schema.",
+  "answer": "(a) higher / (b) conceptual / (c) internal",
+  "accept_add": [
+   [
+    "upper",
+    "higher-level"
+   ],
+   [],
+   [
+    "physical"
+   ]
+  ]
+ },
+ "1-di-4": {
+  "prompt": "Explain logical data independence and physical data independence with examples.",
+  "answer": "Data independence: the capacity to change the schema at one level without having to change the schema at the next higher level. Logical: the conceptual schema can be changed (e.g., adding or removing data) while the external schemas and application programs stay the same. Physical: the internal schema can be changed (e.g., reorganizing storage structures, adding an access path such as an index) while the conceptual schema stays the same. It reduces the maintenance burden on existing application programs.",
+  "keys": [
+   "Definition: a lower-level change does not affect the higher level",
+   "Logical = change to the conceptual schema + example",
+   "Physical = change to the internal schema + example"
+  ]
+ },
+ "1-di-5": {
+  "prompt": "Physical data independence is the capacity to change the conceptual schema without having to change the internal schema.",
+  "explain": "The direction is reversed. It is the capacity to change the internal schema without having to change the conceptual schema (the next higher level)."
+ },
+ "1-di-6": {
+  "prompt": "What is the greatest benefit of data independence?",
+  "choices": [
+   "Saving storage space",
+   "Faster queries",
+   "Reduced maintenance burden on existing application programs",
+   "Stronger security"
+  ]
+ },
+ "2-proc-1": {
+  "prompt": "In the database design process, which step translates the requirements into a 'conceptual schema'?",
+  "choices": [
+   "Requirements collection and analysis",
+   "Conceptual design",
+   "Logical design",
+   "Physical design"
+  ]
+ },
+ "2-proc-2": {
+  "prompt": "Which two designs belong to the implementation step?",
+  "choices": [
+   "Requirements analysis, conceptual design",
+   "Conceptual design, logical design",
+   "Logical design (database schema), physical design (physical layout)",
+   "ER design, view design"
+  ]
+ },
+ "2-ent-1": {
+  "prompt": "In the ER model, what is 'a thing in the real world with an independent existence that is distinguishable from other things'?",
+  "choices": [
+   "Entity",
+   "Attribute",
+   "Relationship",
+   "Domain"
+  ]
+ },
+ "2-ent-2": {
+  "prompt": "Something that exists only conceptually, such as a company, can also be an entity.",
+  "explain": "An entity may be a physical object (an employee) or a conceptual one (a company, a course)."
+ },
+ "2-ent-3": {
+  "prompt": "Define entity, attribute and relationship in the ER model.",
+  "answer": "Entity: a thing in the real world with an independent existence that is distinguishable from other things (a physical or conceptual object). Attribute: a particular property that describes an entity. Relationship: an association among several entities.",
+  "keys": [
+   "Entity = independent existence, distinguishable",
+   "Attribute = property that describes an entity",
+   "Relationship = association among entities"
+  ]
+ },
+ "2-ent-4": {
+  "prompt": "Which of the following is NOT an 'attribute'?",
+  "choices": [
+   "An employee's name",
+   "An employee's address",
+   "A company's headquarters location",
+   "An employee's association with the department they work for"
+  ],
+  "explain": "The association with a department is a relationship (WORKS_FOR). In the initial design it is included like an attribute, and in refinement it is changed into a relationship."
+ },
+ "2-attr-1": {
+  "prompt": "What kind of attribute is Address = (Street_address, City, State, Zip)?",
+  "choices": [
+   "Composite attribute",
+   "Multivalued attribute",
+   "Derived attribute",
+   "Key attribute"
+  ]
+ },
+ "2-attr-2": {
+  "prompt": "If an employee can have several degrees, what kind of attribute is College_degrees?",
+  "choices": [
+   "Composite attribute",
+   "Multivalued attribute",
+   "Derived attribute",
+   "Simple attribute"
+  ]
+ },
+ "2-attr-3": {
+  "prompt": "Age, which can be computed from Birth_date, is a(n)?",
+  "choices": [
+   "Composite attribute",
+   "Multivalued attribute",
+   "Derived attribute",
+   "Key attribute"
+  ]
+ },
+ "2-attr-4": {
+  "prompt": "In an ER diagram, a multivalued attribute is drawn as a (a) oval, and a derived attribute is drawn as a (b) oval.",
+  "answer": "(a) double / (b) dashed",
+  "accept_add": [
+   [
+    "double-lined",
+    "double line"
+   ],
+   []
+  ]
+ },
+ "2-attr-5": {
+  "prompt": "List the three ways of classifying attributes and give one example for each.",
+  "answer": "1) Composite vs simple: a composite attribute can be divided into smaller parts (Address = Street, City, State, Zip); a simple (atomic) one cannot (City). 2) Single-valued vs multivalued: one value per entity (Age, SSN) vs a set of values (Phone numbers, College degrees). 3) Stored vs derived: stored in the DB (Birth_date) vs computed from other attributes (Age).",
+  "keys": [
+   "Composite/simple + example",
+   "Single-valued/multivalued + example",
+   "Stored/derived + example"
+  ]
+ },
+ "2-attr-6": {
+  "prompt": "DEPARTMENT's Locations is a composite attribute because a department can have several locations.",
+  "explain": "Several values = a multivalued attribute. Composite means one value is divided into several parts."
+ },
+ "2-attr-7": {
+  "prompt": "EMPLOYEE's Name = (Fname, Minit, Lname) is a(n)?",
+  "choices": [
+   "Composite attribute",
+   "Multivalued attribute",
+   "Derived attribute",
+   "Weak attribute"
+  ]
+ },
+ "2-key-1": {
+  "prompt": "An entity type can have more than one key attribute.",
+  "explain": "e.g., CAR's keys = Registration, Vehicle_id."
+ },
+ "2-key-2": {
+  "prompt": "Which statement about CAR's Registration(Number, State) is correct?",
+  "choices": [
+   "A multivalued key",
+   "A composite key in which two attributes together form one key",
+   "A derived key",
+   "A partial key"
+  ]
+ },
+ "2-key-3": {
+  "prompt": "What is a key attribute in the ER model, and how is it shown in the diagram?",
+  "answer": "An attribute whose values are distinct for each entity, so it uniquely identifies each entity. Several attributes together can form a key, and an entity type can have more than one key. In the diagram the attribute name is underlined.",
+  "keys": [
+   "Distinct value for each entity → uniquely identifies it",
+   "Shown underlined"
+  ]
+ },
+ "2-key-4": {
+  "prompt": "In the diagram, a key attribute is shown with a(n) (a) , and the partial key of a weak entity is shown with a (b) underline.",
+  "answer": "(a) underline / (b) dashed",
+  "accept_add": [
+   [
+    "underlined",
+    "solid underline"
+   ],
+   []
+  ]
+ },
+ "2-not-1": {
+  "prompt": "What does a double diamond represent in an ER diagram?",
+  "choices": [
+   "Weak entity type",
+   "Multivalued attribute",
+   "Identifying relationship type",
+   "M:N relationship"
+  ]
+ },
+ "2-not-2": {
+  "prompt": "What does E₁ — R ═ E₂ (double line only on the E₂ side) mean?",
+  "choices": [
+   "E₁ has total participation in R",
+   "E₂ has total participation in R",
+   "R is 1:N",
+   "E₂ is a weak entity"
+  ]
+ },
+ "2-not-3": {
+  "prompt": "A double rectangle represents a weak entity type."
+ },
+ "2-not-4": {
+  "prompt": "In an ER diagram, an entity type is drawn as a (a) , a relationship type as a (b) , and an attribute as an oval.",
+  "answer": "(a) rectangle / (b) diamond",
+  "accept_add": [
+   [
+    "box"
+   ],
+   [
+    "rhombus"
+   ]
+  ]
+ },
+ "2-init-1": {
+  "prompt": "In the initial COMPANY design, what is the problem with EMPLOYEE attributes such as Department, Supervisor and Works_on, and how is it fixed?",
+  "answer": "These attributes actually refer to other entities (a department, another employee, projects). Relationships are hidden implicitly as attributes, so they must be changed into explicit relationship types (WORKS_FOR, SUPERVISION, WORKS_ON).",
+  "keys": [
+   "Attributes that refer to other entities = implicit relationships",
+   "Change them into relationship types"
+  ]
+ },
+ "2-init-2": {
+  "prompt": "In the initial COMPANY design, what are the key attributes of DEPARTMENT?",
+  "choices": [
+   "Only Number",
+   "Only Name",
+   "Manager",
+   "Both Name and Number (each unique)"
+  ]
+ },
+ "2-rel-1": {
+  "prompt": "What is the 'degree' of a relationship type?",
+  "choices": [
+   "The number of relationship instances",
+   "The number of participating entity types",
+   "The number of relationship attributes",
+   "The maximum of the cardinality ratio"
+  ]
+ },
+ "2-rel-2": {
+  "prompt": "What is the degree of SUPPLY(SUPPLIER, PART, PROJECT)?",
+  "choices": [
+   "1 (unary)",
+   "2 (binary)",
+   "3 (ternary)",
+   "M:N"
+  ]
+ },
+ "2-rel-3": {
+  "prompt": "Most relationships in database systems are binary."
+ },
+ "2-rel-4": {
+  "prompt": "What is a 'role name' of a relationship type, and when is it required?",
+  "answer": "The role that a participating entity plays in each relationship instance (e.g., in WORKS_FOR, EMPLOYEE = worker, DEPARTMENT = employer). It helps explain what the relationship means. It is required in a recursive relationship, where the same entity type participates more than once, to distinguish the participants.",
+  "keys": [
+   "The role a participating entity plays",
+   "Required in recursive relationships"
+  ]
+ },
+ "2-rec-1": {
+  "prompt": "Which of the following is an example of a recursive relationship?"
+ },
+ "2-rec-2": {
+  "prompt": "In a recursive relationship the same entity type participates more than once, so role names must be specified."
+ },
+ "2-rec-3": {
+  "prompt": "Explain why SUPERVISION is a recursive relationship, and what information is needed to interpret an instance r = (e₁, e₂).",
+  "answer": "Because the EMPLOYEE entity type participates in the same relationship in two roles, supervisor and supervisee. To interpret r = (e₁, e₂), i.e., 'who supervises whom', we must know which side plays the supervisor role and which plays the supervisee role (the role names).",
+  "keys": [
+   "The same entity type participates in two roles",
+   "Role names distinguish supervisor/supervisee"
+  ]
+ },
+ "2-rec-4": {
+  "prompt": "In the recursive relationship SUPERVISION, EMPLOYEE participates in the (a) role and the (b) role.",
+  "accept_add": [
+   [
+    "boss",
+    "manager"
+   ],
+   [
+    "subordinate"
+   ]
+  ]
+ },
+ "2-card-1": {
+  "prompt": "What is the cardinality ratio for 'an employee works for only one department, and a department can have any number of employees'?"
+ },
+ "2-card-2": {
+  "prompt": "What is the cardinality ratio of WORKS_ON (an employee works on many projects, and a project has many employees)?"
+ },
+ "2-card-3": {
+  "prompt": "What is the cardinality ratio of MANAGES (an employee manages at most one department, and a department has at most one manager)?"
+ },
+ "2-card-4": {
+  "prompt": "The cardinality ratio specifies the (a) number of relationship instances that an entity can participate in, and the participation constraint specifies whether the existence of an entity (b) on its being related to another entity through the relationship.",
+  "answer": "(a) maximum / (b) depends",
+  "accept_add": [
+   [],
+   [
+    "depends",
+    "dependency",
+    "existence dependency"
+   ]
+  ]
+ },
+ "2-card-5": {
+  "prompt": "In the 1:N relationship WORKS_FOR, one entity on the N-side (EMPLOYEE) is related to at most one entity on the 1-side (DEPARTMENT)."
+ },
+ "2-card-6": {
+  "prompt": "Explain the three cardinality ratios for binary relationships with COMPANY examples.",
+  "answer": "1:1 — MANAGES: an employee manages at most one department, and a department has at most one manager. 1:N — WORKS_FOR: a department (1) can have any number of employees (N), and an employee works for only one department. M:N — WORKS_ON: an employee works on many projects, and a project has many employees."
+ },
+ "2-part-1": {
+  "prompt": "'Every employee must work for some department.' What is EMPLOYEE's participation in WORKS_FOR?",
+  "choices": [
+   "Total participation",
+   "Partial participation",
+   "1:1 participation",
+   "Weak participation"
+  ]
+ },
+ "2-part-2": {
+  "prompt": "Why is EMPLOYEE's participation in MANAGES partial?",
+  "choices": [
+   "Because each department has one manager",
+   "Because a manager must be an employee",
+   "Because not every employee manages a department",
+   "Because MANAGES is 1:1"
+  ]
+ },
+ "2-part-3": {
+  "prompt": "Total participation is drawn as a double line in an ER diagram."
+ },
+ "2-part-4": {
+  "prompt": "Define total participation and partial participation, and explain each using EMPLOYEE as an example.",
+  "answer": "Total participation: every entity must participate in the relationship (existence dependency). e.g., every employee works for a department, so EMPLOYEE has total participation in WORKS_FOR. Partial participation: not every entity needs to participate. e.g., only some employees manage a department, so EMPLOYEE has partial participation in MANAGES.",
+  "keys": [
+   "Total = every entity participates + WORKS_FOR example",
+   "Partial = only some + MANAGES example"
+  ]
+ },
+ "2-part-5": {
+  "prompt": "A weak entity type's participation in its identifying relationship is always?",
+  "choices": [
+   "Total participation",
+   "Partial participation",
+   "M:N",
+   "1:1"
+  ]
+ },
+ "2-part-6": {
+  "prompt": "In CONTROLS, DEPARTMENT has total participation and PROJECT has partial participation.",
+  "explain": "It is the opposite. Every project must have a controlling department, so PROJECT is total; some departments have no projects, so DEPARTMENT is partial."
+ },
+ "2-mm-1": {
+  "prompt": "In (min, max) notation, what does min = 0 mean?",
+  "choices": [
+   "Total participation",
+   "Partial participation",
+   "1:1 relationship",
+   "Weak entity"
+  ]
+ },
+ "2-mm-2": {
+  "prompt": "'A course may or may not use a textbook, but not more than five.' What is COURSE's participation in USES?"
+ },
+ "2-mm-3": {
+  "prompt": "'An instructor teaches 2 to 4 courses.' What is INSTRUCTOR's participation in TEACHES?"
+ },
+ "2-mm-4": {
+  "prompt": "In (min, max) notation for the MANAGES relationship, the EMPLOYEE side is (a) and the DEPARTMENT side is (b) .",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "2-mm-5": {
+  "prompt": "Given the following requirements, write the (min, max) of each participation.\n• A course (COURSE) may or may not use a textbook, but not more than five.\n• A course is taught by at least 1 and at most 4 instructors.\n• A textbook (TEXT) is used in some courses (textbooks that are not used are not recorded).\n• An instructor teaches 2 to 4 courses.\n\nINSTRUCTOR —(①)— TEACHES —(②)— COURSE —(③)— USES —(④)— TEXT",
+  "answer": "① INSTRUCTOR's participation in TEACHES: (2, 4)\n② COURSE's participation in TEACHES: (1, 4)\n③ COURSE's participation in USES: (0, 5)\n④ TEXT's participation in USES: (1, N)",
+  "explain": "(min,max) means how many times one such entity participates in the relationship. min 0 = partial, min ≥ 1 = total."
+ },
+ "2-mm-6": {
+  "prompt": "When WORKS_FOR (DEPARTMENT 1 : EMPLOYEE N) is written in (min, max) notation, (1, 1) is placed on the EMPLOYEE side.",
+  "explain": "One employee participates in exactly one WORKS_FOR instance. The trap is that its position looks reversed compared with the '1' of 1:N notation, which is placed on the DEPARTMENT side."
+ },
+ "2-mm-7": {
+  "prompt": "In the refined COMPANY ER diagram, write the (min, max) of the following participations.\n(1) EMPLOYEE's participation in WORKS_FOR  (2) EMPLOYEE's participation in MANAGES  (3) PROJECT's participation in CONTROLS  (4) the participation of EMPLOYEE in the supervisee role in SUPERVISION  (5) DEPENDENT's participation in DEPENDENTS_OF",
+  "explain": "An employee works for exactly one department; manages at most one department (possibly none); a project has exactly one controlling department; an employee has at most one supervisor (Borg has none); a dependent belongs to exactly one employee."
+ },
+ "2-ra-1": {
+  "prompt": "Why can't the attribute Hours of the M:N relationship WORKS_ON be migrated to an entity type?",
+  "choices": [
+   "Because Hours is multivalued",
+   "Because Hours is determined only by the employee–project combination",
+   "Because Hours is a derived attribute",
+   "Because WORKS_ON is an identifying relationship"
+  ]
+ },
+ "2-ra-2": {
+  "prompt": "Where can the attribute StartDate of the 1:N relationship WORKS_FOR be migrated?",
+  "choices": [
+   "Only to DEPARTMENT",
+   "To either side",
+   "Only to EMPLOYEE (the N-side)",
+   "It cannot be migrated"
+  ]
+ },
+ "2-ra-3": {
+  "prompt": "The StartDate of the 1:1 relationship MANAGES can be migrated to either EMPLOYEE or DEPARTMENT."
+ },
+ "2-ra-4": {
+  "prompt": "Explain whether an attribute of a relationship type can be migrated to a participating entity type, for each of 1:1, 1:N and M:N.",
+  "answer": "1:1: it can be migrated to either participating entity type (MANAGES.StartDate). 1:N: it can be migrated only to the entity type on the N-side, because one N-side entity participates in at most one relationship instance, so its value is uniquely determined (WORKS_FOR.StartDate → EMPLOYEE). M:N: it cannot be migrated to either entity, because the value is determined only by the combination of participating entities (WORKS_ON.Hours).",
+  "keys": [
+   "1:1 = either side",
+   "1:N = N-side only (with reason)",
+   "M:N = cannot be migrated (determined by the combination)"
+  ]
+ },
+ "2-ra-5": {
+  "prompt": "An attribute of a 1:N relationship can be migrated only to the entity on the (a) side, and an attribute of an M:N relationship cannot be migrated because it is determined by the (b) of participating entities.",
+  "answer": "(a) N / (b) combination",
+  "accept_add": [
+   [
+    "N-side",
+    "many"
+   ],
+   []
+  ]
+ },
+ "2-weak-1": {
+  "prompt": "Which is the correct definition of a weak entity type?",
+  "choices": [
+   "An entity type that does not have key attributes of its own",
+   "An entity type with only one attribute",
+   "An entity type that has only partial participation",
+   "An entity type that is not referenced by any other entity"
+  ]
+ },
+ "2-weak-2": {
+  "prompt": "Which attribute, such as DEPENDENT's Dependent_name, distinguishes weak entities related to the same owner?",
+  "choices": [
+   "Primary key",
+   "Candidate key",
+   "Partial key",
+   "Foreign key"
+  ]
+ },
+ "2-weak-3": {
+  "prompt": "A weak entity can be uniquely identified by its partial key alone.",
+  "explain": "Another employee may also have a dependent with the same name (Tom). It is identified by the owner's key + the partial key."
+ },
+ "2-weak-4": {
+  "prompt": "Explain weak entity type, identifying relationship and partial key using DEPENDENT as an example.",
+  "answer": "Weak entity type: an entity type that has no key attributes of its own and depends on an identifying (owner) entity type (DEPENDENT depends on EMPLOYEE). Identifying relationship: the relationship that relates the weak entity type to its owner (DEPENDENTS_OF); drawn as a double diamond; the weak entity always has total participation in it. Partial key: the attribute that distinguishes weak entities related to the same owner (Dependent_name). Identified by the owner's key (Ssn) + the partial key.",
+  "keys": [
+   "Weak entity = no key of its own, depends on the owner",
+   "Identifying relationship = links to the owner, total participation",
+   "Identified by partial key + owner's key"
+  ]
+ },
+ "2-weak-5": {
+  "prompt": "A weak entity is related to its owner entity through a(n) (a) relationship, and it always has (b) participation in this relationship.",
+  "answer": "(a) identifying / (b) total",
+  "accept_add": [
+   [],
+   [
+    "total participation"
+   ]
+  ]
+ },
+ "2-weak-6": {
+  "prompt": "How is a weak entity type drawn in an ER diagram?",
+  "choices": [
+   "A dashed rectangle",
+   "A double rectangle + a double diamond (identifying relationship)",
+   "An oval",
+   "A double oval"
+  ]
+ },
+ "2-ref-1": {
+  "prompt": "In refining the COMPANY design, which relationship type does PROJECT's Controlling_department attribute become?"
+ },
+ "2-ref-2": {
+  "prompt": "Which statement about the WORKS_ON relationship in COMPANY is correct?",
+  "choices": [
+   "1:N, no attributes",
+   "1:1, StartDate",
+   "M:N, partial participation on both sides",
+   "M:N, total participation on both sides, attribute Hours"
+  ]
+ },
+ "2-ref-3": {
+  "prompt": "List the 3 steps of the ER schema design process.",
+  "answer": "(1) Describe the entity types and their attributes based on the requirements. (2) Specify the relationship types and their constraints (cardinality ratio, participation constraint). (3) Change attributes that represent relationships into relationship types.",
+  "keys": [
+   "Entity types and attributes",
+   "Relationship types and constraints",
+   "Attributes that represent relationships → relationship types"
+  ]
+ },
+ "2-ref-4": {
+  "prompt": "In MANAGES, EMPLOYEE has partial participation and DEPARTMENT has total participation."
+ },
+ "2-ref-5": {
+  "prompt": "List the six relationship types of the refined COMPANY design and the cardinality ratio of each.",
+  "answer": "MANAGES 1:1 (EMPLOYEE–DEPARTMENT)\nWORKS_FOR 1:N (DEPARTMENT 1, EMPLOYEE N)\nCONTROLS 1:N (DEPARTMENT 1, PROJECT N)\nSUPERVISION 1:N (supervisor 1, supervisee N)\nWORKS_ON M:N (EMPLOYEE–PROJECT, attribute Hours)\nDEPENDENTS_OF 1:N (EMPLOYEE 1, DEPENDENT N, identifying relationship)"
+ },
+ "2-ref-6": {
+  "prompt": "What are the participations of EMPLOYEE and DEPENDENT in DEPENDENTS_OF?",
+  "choices": [
+   "Both total",
+   "EMPLOYEE partial, DEPENDENT total",
+   "EMPLOYEE total, DEPENDENT partial",
+   "Both partial"
+  ],
+  "explain": "An employee may have no dependents, but a dependent must belong to an employee."
+ },
+ "2-prac-1": {
+  "prompt": "In the MOVIE DB, 'each movie is produced by one production company, and a production company produces many movies'. What is the PRODUCES relationship?",
+  "choices": [
+   "PRODUCTION 1 : MOVIE N, MOVIE total participation",
+   "M:N",
+   "1:1",
+   "MOVIE 1 : PRODUCTION N"
+  ]
+ },
+ "2-prac-2": {
+  "prompt": "In the MOVIE DB's ACTS relationship, what are Role and {Quotes}?",
+  "choices": [
+   "Attributes of ACTOR",
+   "Attributes of MOVIE",
+   "Attributes of the ACTS (M:N) relationship",
+   "Weak entities"
+  ],
+  "explain": "The role and quotes an actor has in a movie are determined by the actor–movie combination, so they are attributes of the M:N relationship."
+ },
+ "2-prac-3": {
+  "prompt": "In the CONF_REVIEW DB, which requirement cannot be expressed by the SUBMITS (AUTHOR–PAPER, M:N) relationship alone, and how was it solved?",
+  "answer": "The requirement 'for each paper, one of its authors is designated as the contact author'. SUBMITS only links multiple authors and cannot show which of them is the contact author. So a separate relationship IS_CONTACT (AUTHOR (0,N) – PAPER (1,1)) is added. (Alternatively, an Is_contact attribute on SUBMITS.)",
+  "keys": [
+   "Requirement to designate a contact author",
+   "Add the IS_CONTACT relationship, PAPER (1,1)"
+  ]
+ },
+ "2-prac-4": {
+  "prompt": "Design the REVIEWER–REVIEWS–PAPER part from the following requirements. Give the entity keys, the (min, max) of the relationship, and the relationship attributes.\n• A reviewer is identified by e-mail; a reviewer is recorded only after doing at least one review, and may review many papers.\n• A paper is identified by an id assigned by the system; at least 2 and at most 4 reviewers are assigned to it.\n• For each assigned paper, a reviewer rates four items (technical merit, readability, originality, relevance) on a 1–10 scale, gives an overall recommendation, and writes two kinds of comments: one for the committee and one for the authors.",
+  "answer": "REVIEWER(key R_email) —(1,N)— REVIEWS —(2,4)— PAPER(key P_id)\nAttributes of REVIEWS: Recommendation, Comments(For_committee, Feedback) composite, Rating(C1 Technical_merit, C2 Readability, C3 Originality, C4 Relevance) composite\nTotal participation on both sides (min ≥ 1).",
+  "keys": [
+   "REVIEWER key R_email, PAPER key P_id",
+   "REVIEWER (1,N)",
+   "PAPER (2,4)",
+   "Relationship attributes: Recommendation, composite Comments, composite Rating"
+  ]
+ },
+ "2-prac-5": {
+  "prompt": "In the MOVIE DB, the key of MOVIE is a composite key made of (Title, Year)."
+ },
+ "2-prac-6": {
+  "prompt": "Design the following requirements as an ER schema (entities, keys, relationships, cardinality, participation).\n• A library member (MEMBER) is identified by a member number and has a name.\n• A book (BOOK) is identified by its ISBN and has a title and authors (possibly several).\n• A member can borrow many books, and a book keeps records of being borrowed by many members. For each loan, the borrow date and the return date are recorded.\n• Some members have never borrowed a book.",
+  "answer": "MEMBER(key Member_no, Name) — BORROWS — BOOK(key ISBN, Title, {Author} multivalued)\nBORROWS: M:N, relationship attributes Borrow_date, Return_date\nMEMBER has partial participation in BORROWS (min 0); BOOK's participation is not stated in the requirements, so it is left partial.",
+  "keys": [
+   "MEMBER key Member_no, BOOK key ISBN",
+   "Author is multivalued",
+   "BORROWS M:N + borrow date and return date are relationship attributes",
+   "MEMBER partial participation"
+  ]
+ },
+ "3-rm-1": {
+  "prompt": "Who proposed the relational data model, and when?"
+ },
+ "3-rm-2": {
+  "prompt": "List the four advantages of the relational data model.",
+  "answer": "Simplicity (flat table structure), data integrity (ensures valid, consistent and accurate data), ease of data manipulation (high-level languages such as SQL), security (authentication, authorization, encryption).",
+  "keys": [
+   "Simplicity",
+   "Data integrity",
+   "Ease of data manipulation (SQL)",
+   "Security"
+  ]
+ },
+ "3-rm-3": {
+  "prompt": "In the relational model, a relation corresponds to a table, a tuple to a (a) , and an attribute to a (b) .",
+  "answer": "(a) row / (b) column",
+  "accept_add": [
+   [
+    "record"
+   ],
+   [
+    "column header"
+   ]
+  ]
+ },
+ "3-dom-1": {
+  "prompt": "What is the 'degree' of a relation schema?",
+  "choices": [
+   "The number of attributes",
+   "The number of tuples",
+   "The number of keys",
+   "The number of foreign keys"
+  ]
+ },
+ "3-dom-2": {
+  "prompt": "STUDENT(Name, Ssn, Home_phone, Address, Office_phone, Age, Gpa) has 5 tuples. What is its degree?"
+ },
+ "3-dom-3": {
+  "prompt": "Domain = data (a) + (b) . e.g., Employee_ages: integers between 15 and 80.",
+  "answer": "(a) type / (b) constraints",
+  "accept_add": [
+   [
+    "data type"
+   ],
+   []
+  ]
+ },
+ "3-dom-4": {
+  "prompt": "A tuple is an ordered list of n values, and each value is an element of the corresponding attribute's domain or NULL."
+ },
+ "3-dom-5": {
+  "prompt": "Explain the difference between a relation schema and a relation instance (state).",
+  "answer": "Relation schema R(A₁, …, Aₙ): the relation name and a list of attributes (the structure; rarely changes). Relation instance r(R): the set of n-tuples {t₁, …, tₘ} at a given moment (the data; changes constantly with updates).",
+  "keys": [
+   "Schema = name + list of attributes",
+   "Instance = a set of tuples (changes over time)"
+  ]
+ },
+ "3-ch-1": {
+  "prompt": "In the relational model, a multivalued attribute can be stored as a set in a single cell.",
+  "explain": "Values in a tuple must be atomic. A multivalued attribute is represented by a separate relation."
+ },
+ "3-ch-2": {
+  "prompt": "How is the composite attribute Address(Street, City, Zip) represented in the relational model?",
+  "choices": [
+   "As a separate relation",
+   "By its simple component attributes Street, City, Zip",
+   "Combined into a single string",
+   "It cannot be represented"
+  ]
+ },
+ "3-ch-3": {
+  "prompt": "When is a NULL value used?",
+  "answer": "When the attribute value is unknown, unavailable, or does not apply to that tuple (undefined / not applicable).",
+  "keys": [
+   "Unknown",
+   "Unavailable",
+   "Not applicable"
+  ]
+ },
+ "3-ch-4": {
+  "prompt": "A relation is a set of tuples, so by definition the same tuple cannot appear twice."
+ },
+ "3-st-1": {
+  "prompt": "What makes up a relational database schema S?",
+  "choices": [
+   "A set of relation states",
+   "A set of tuples",
+   "A set of relation schemas + a set of integrity constraints IC",
+   "The catalog and views"
+  ]
+ },
+ "3-st-2": {
+  "prompt": "A database state that violates even one integrity constraint is an invalid state."
+ },
+ "3-st-3": {
+  "prompt": "In the COMPANY relational database schema diagram, what do the arrows represent?",
+  "choices": [
+   "Primary keys",
+   "Referential integrity (FK → referenced PK)",
+   "Functional dependencies",
+   "Cardinality ratios"
+  ]
+ },
+ "3-st-4": {
+  "prompt": "Define a relational database schema and a relational database state, and explain what a 'valid state' is.",
+  "answer": "Relational database schema: a set of relation schemas {R₁…Rₘ} and a set of integrity constraints IC. Relational database state: a set of relation states rᵢ, one for each Rᵢ. Valid state: a state that satisfies all the integrity constraints in IC.",
+  "keys": [
+   "Schema = set of relation schemas + IC",
+   "State = set of relation states",
+   "Valid = satisfies all constraints"
+  ]
+ },
+ "3-key-1": {
+  "prompt": "What is the difference between a superkey and a key?",
+  "choices": [
+   "A key has only one attribute",
+   "A key satisfies minimality (removing any attribute leaves a set that is not a superkey)",
+   "A superkey allows NULL",
+   "There is no difference"
+  ]
+ },
+ "3-key-2": {
+  "prompt": "Every key is a superkey, but not every superkey is a key."
+ },
+ "3-key-3": {
+  "prompt": "In EMPLOYEE(Ssn, Fname, Lname, …), if Ssn is a key, what is {Ssn, Lname}?",
+  "choices": [
+   "A superkey but not a key",
+   "A key",
+   "A candidate key",
+   "Not even a superkey"
+  ]
+ },
+ "3-key-4": {
+  "prompt": "Key constraint: for any two distinct tuples t₁, t₂, t₁[(a)] ≠ t₂[(a)]. A key is a (b) superkey.",
+  "answer": "(a) SK / (b) minimal",
+  "accept_add": [
+   [],
+   [
+    "minimum"
+   ]
+  ]
+ },
+ "3-key-5": {
+  "prompt": "Define superkey and key, and explain the difference using {Ssn, Home_phone} as an example.",
+  "answer": "Superkey: a subset of attributes that uniquely identifies each tuple (no two distinct tuples can have the same value). Key: a minimal superkey, i.e., a superkey such that removing any attribute leaves a set that is no longer a superkey. {Ssn, Home_phone} is a superkey, but even after removing Home_phone, {Ssn} is still unique, so it is not a key; {Ssn} is a key.",
+  "keys": [
+   "Definition of superkey (uniquely identifies)",
+   "Key = minimal superkey",
+   "Example: still unique without Home_phone → {Ssn} is the key"
+  ]
+ },
+ "3-key-6": {
+  "prompt": "Given the following state of R(A, B, C, D), list all the attribute sets that could be 'keys (minimal superkeys)' in this state.\n\nA | B | C | D\n1 | x | p | 10\n2 | x | q | 10\n3 | y | p | 20\n4 | y | q | 20",
+  "answer": "{A}, {B, C}, {C, D}\n\nAll values of A are distinct, so A alone is a key. B, C and D each have duplicates. {B,C}: (x,p),(x,q),(y,p),(y,q) are all distinct → key. {C,D}: (p,10),(q,10),(p,20),(q,20) are all distinct → key. {B,D}: (x,10),(x,10) is duplicated → not a key.",
+  "explain": "Strictly speaking, a key is a property of the schema (all possible states), so from a single state we can only decide what 'could be' a key.",
+  "keys": [
+   "{A}",
+   "{B, C}",
+   "{C, D}",
+   "{B, D} is not a key"
+  ]
+ },
+ "3-key-7": {
+  "prompt": "Every relation has at least one superkey.",
+  "explain": "Tuples are all distinct, so the set of all attributes is a default superkey."
+ },
+ "3-ck-1": {
+  "prompt": "In CAR(License_number, Engine_serial_number, Make, Model, Year), if License_number and Engine_serial_number are each keys, what are these two called?",
+  "choices": [
+   "Superkeys",
+   "Foreign keys",
+   "Candidate keys",
+   "Partial keys"
+  ]
+ },
+ "3-ck-2": {
+  "prompt": "It is usually better to choose as the primary key a candidate key with a single attribute or a small number of attributes."
+ },
+ "3-ck-3": {
+  "prompt": "Explain the relationship between candidate keys and the primary key, and give the SQL clause used to specify a candidate key that is not the primary key.",
+  "answer": "If a relation schema has more than one key, each is called a candidate key, and one of them is designated as the primary key used to identify tuples (underlined in the schema). The other candidate keys are specified with the UNIQUE clause in SQL.",
+  "keys": [
+   "More than one key = candidate keys",
+   "One is designated as the PK",
+   "The others are UNIQUE"
+  ]
+ },
+ "3-ck-4": {
+  "prompt": "How is the primary key shown in a relation schema diagram?",
+  "choices": [
+   "Underlined",
+   "In bold",
+   "With an arrow",
+   "With a double line"
+  ]
+ },
+ "3-ei-1": {
+  "prompt": "What is the entity integrity constraint?",
+  "choices": [
+   "An FK value is a referenced PK value or NULL",
+   "No primary key value can be NULL",
+   "No two tuples can have the same key value",
+   "No attribute can be NULL"
+  ]
+ },
+ "3-ei-2": {
+  "prompt": "Explain why the entity integrity constraint is needed.",
+  "answer": "If two or more tuples had NULL primary keys, we could not distinguish them when referencing them from other relations. The PK is used to identify tuples, so it must not be NULL.",
+  "keys": [
+   "If the PK is NULL, tuples cannot be distinguished or referenced"
+  ]
+ },
+ "3-ei-3": {
+  "prompt": "In the composite primary key (Essn, Pno), Pno may be NULL as long as Essn is not NULL.",
+  "explain": "No part of the PK may be NULL."
+ },
+ "3-ei-4": {
+  "prompt": "Which statement about the Office_phone attribute, which contains NULLs, is correct?",
+  "choices": [
+   "It can be a candidate key",
+   "It can be the primary key",
+   "It must be a foreign key",
+   "It cannot be the primary key because of entity integrity"
+  ]
+ },
+ "3-ri-1": {
+  "prompt": "Which statement of the referential integrity constraint is correct?",
+  "choices": [
+   "An FK value either equals the PK value of some tuple in the referenced relation or is NULL",
+   "An FK value cannot be NULL",
+   "A PK value cannot be NULL",
+   "An FK cannot reference its own relation"
+  ]
+ },
+ "3-ri-2": {
+  "prompt": "A foreign key may also reference its own relation."
+ },
+ "3-ri-3": {
+  "prompt": "When EMPLOYEE.Dno references DEPARTMENT.Dnumber, EMPLOYEE is the (a) relation and DEPARTMENT is the (b) relation.",
+  "answer": "(a) referencing / (b) referenced",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "3-ri-4": {
+  "prompt": "Define the referential integrity constraint, and use an example to explain the problem that occurs without it.",
+  "answer": "The FK value of relation R₁ must either equal the PK value of some tuple in R₂ or be NULL (the FK and the PK have the same domain). Without it: if EMPLOYEE.Dno = 3 but department 3 does not exist in DEPARTMENT, we cannot interpret which department that employee works for. It is needed to maintain consistency among tuples of the two relations.",
+  "keys": [
+   "FK = a referenced PK value or NULL",
+   "Referencing a nonexistent tuple cannot be interpreted (example)"
+  ]
+ },
+ "3-ri-5": {
+  "prompt": "List all the foreign keys in the following schema (underline = PK).\nSTUDENT(Ssn, Name, Major, Bdate)\nCOURSE(Course#, Cname, Dept)\nENROLL(Ssn, Course#, Quarter, Grade)  — PK (Ssn, Course#, Quarter)\nBOOK_ADOPTION(Course#, Quarter, Book_isbn)  — PK (Course#, Quarter)\nTEXT(Book_isbn, Book_title, Publisher, Author)"
+ },
+ "3-ri-6": {
+  "prompt": "List all the foreign keys in the following schema, and give a one-line reason why each is needed.\nSALESPERSON(Ssn, Name, Start_year, Dept_no)\nTRIP(Ssn, From_city, To_city, Departure_date, Return_date, Trip_id)  — PK Trip_id\nEXPENSE(Trip_id, Account#, Amount)  — PK (Trip_id, Account#)",
+  "answer": "TRIP.Ssn → SALESPERSON.Ssn: a trip must be assigned to an existing salesperson\nEXPENSE.Trip_id → TRIP.Trip_id: an expense is paid for a specific trip",
+  "keys": [
+   "TRIP.Ssn → SALESPERSON",
+   "EXPENSE.Trip_id → TRIP",
+   "A reason for each"
+  ]
+ },
+ "3-ri-7": {
+  "prompt": "An FK and the PK it references must have the same domain."
+ },
+ "3-ins-1": {
+  "prompt": "Which constraints can an Insert operation violate?",
+  "choices": [
+   "Only referential integrity",
+   "Only the key constraint",
+   "The key constraint and referential integrity",
+   "All of the key constraint, entity integrity and referential integrity"
+  ]
+ },
+ "3-ins-2": {
+  "prompt": "In the COMPANY state, what happens if <'Alicia', 'J', 'Zelaya', '999887777', …, '987654321', 4> is inserted into EMPLOYEE?",
+  "choices": [
+   "Key constraint violation (Ssn 999887777 already exists)",
+   "Entity integrity violation",
+   "Referential integrity violation",
+   "No violation"
+  ]
+ },
+ "3-ins-3": {
+  "prompt": "What happens if <'Cecilia', 'F', 'Kolonsky', '677678989', …, '987654321', 7> is inserted into EMPLOYEE? (There is no Dnumber=7 in DEPARTMENT.)",
+  "choices": [
+   "Key constraint violation",
+   "Entity integrity violation",
+   "Referential integrity violation",
+   "No violation"
+  ]
+ },
+ "3-ins-4": {
+  "prompt": "Inserting <'Cecilia', 'F', 'Kolonsky', '677678989', …, NULL, 4> into EMPLOYEE violates referential integrity because Super_ssn is NULL.",
+  "explain": "An FK may be NULL. This insertion satisfies all constraints."
+ },
+ "3-ins-5": {
+  "prompt": "In the COMPANY state (lecture slides 3-1 p.12), state which constraint each of the following insertions violates ('none' if there is no violation).\n(1) A tuple with Ssn=NULL into EMPLOYEE\n(2) A new tuple with Ssn='123456789' into EMPLOYEE\n(3) <'453453453', 10, 5.0> into WORKS_ON\n(4) <'677678989', 1, 10.0> into WORKS_ON\n(5) <2, 'Seoul'> into DEPT_LOCATIONS",
+  "answer": "(1) Entity integrity (the PK is NULL)\n(2) Key constraint (Smith already has 123456789)\n(3) None (English exists, project 10 exists, and the combination (453453453, 10) does not exist yet)\n(4) Referential integrity (there is no employee with Ssn 677678989)\n(5) Referential integrity (there is no department with Dnumber 2)",
+  "keys": [
+   "(1) Entity integrity",
+   "(2) Key constraint",
+   "(3) None",
+   "(4) Referential integrity",
+   "(5) Referential integrity"
+  ]
+ },
+ "3-ins-6": {
+  "prompt": "In an Insert, if the new tuple's key value already exists, the (a) constraint is violated; if part of the PK is NULL, the (b) constraint is violated; and if the referenced tuple does not exist, the (c) constraint is violated.",
+  "answer": "(a) key / (b) entity integrity / (c) referential integrity",
+  "accept_add": [
+   [
+    "key constraint"
+   ],
+   [],
+   []
+  ]
+ },
+ "3-del-1": {
+  "prompt": "Which constraints can a Delete operation violate?",
+  "choices": [
+   "The key constraint",
+   "Only referential integrity",
+   "Entity integrity",
+   "All three"
+  ]
+ },
+ "3-del-2": {
+  "prompt": "Deleting the tuple (Essn='999887777', Pno=10) from WORKS_ON violates referential integrity.",
+  "explain": "No tuple references the WORKS_ON tuple."
+ },
+ "3-del-3": {
+  "prompt": "Explain why Delete cannot violate any constraint other than referential integrity.",
+  "answer": "A deletion does not create new values, so it cannot create a duplicate key (key constraint) or a NULL PK (entity integrity). Only when the deleted tuple is referenced by the FK of other tuples do those FKs point to a nonexistent tuple, which violates referential integrity.",
+  "keys": [
+   "No new values, so key and entity integrity cannot be violated",
+   "Deleting a referenced tuple violates referential integrity"
+  ]
+ },
+ "3-del-4": {
+  "prompt": "In the COMPANY state, state whether each of the following deletions violates referential integrity, and if so, which relations' tuples reference it.\n(1) Ssn='999887777' from EMPLOYEE\n(2) Pnumber=30 from PROJECT\n(3) (Essn='123456789', Dependent_name='Michael') from DEPENDENT\n(4) Dnumber=1 from DEPARTMENT",
+  "answer": "(1) Violation: 2 WORKS_ON tuples (Pno 30, 10)\n(2) Violation: 3 WORKS_ON tuples (Zelaya, Jabbar, Wallace)\n(3) No violation: no relation references DEPENDENT\n(4) Violation: EMPLOYEE (Borg's Dno=1), PROJECT (Reorganization's Dnum=1), DEPT_LOCATIONS (1, Houston)",
+  "keys": [
+   "(1) WORKS_ON",
+   "(2) WORKS_ON",
+   "(3) None",
+   "(4) EMPLOYEE, PROJECT, DEPT_LOCATIONS"
+  ]
+ },
+ "3-upd-1": {
+  "prompt": "When does an Update operation cause constraint problems?",
+  "choices": [
+   "Always, whatever attribute is changed",
+   "Only when a non-key attribute is changed",
+   "Only when a PK or FK attribute is changed",
+   "Never"
+  ]
+ },
+ "3-upd-2": {
+  "prompt": "What happens if the Ssn of the EMPLOYEE tuple with Ssn='999887777' is changed to '987654321'?",
+  "choices": [
+   "No violation",
+   "Only the key constraint",
+   "Only referential integrity",
+   "Both the key constraint and referential integrity"
+  ],
+  "explain": "987654321 is Wallace's Ssn (duplicate key), and the WORKS_ON tuples that referenced 999887777 now point to a nonexistent employee."
+ },
+ "3-upd-3": {
+  "prompt": "What happens if the Dno of the EMPLOYEE tuple with Ssn='999887777' is changed to 7? (There is no department 7.)",
+  "choices": [
+   "Key constraint",
+   "Referential integrity",
+   "Entity integrity",
+   "No violation"
+  ]
+ },
+ "3-upd-4": {
+  "prompt": "An update that changes EMPLOYEE's Salary does not violate the key, entity integrity or referential integrity constraints.",
+  "explain": "It is neither a PK nor an FK attribute. (Domain constraints are a separate matter.)"
+ },
+ "3-upd-5": {
+  "prompt": "In the COMPANY state, state which constraint each of the following updates violates ('none' if there is no violation).\n(1) Change Dnum of PROJECT Pnumber=10 to 5\n(2) Change Mgr_ssn of DEPARTMENT Dnumber=5 to '111111111'\n(3) Change Pno of WORKS_ON (Essn='123456789', Pno=1) to 2\n(4) Change Ssn of EMPLOYEE Ssn='888665555' to NULL",
+  "answer": "(1) None (department 5 exists)\n(2) Referential integrity (there is no employee with Ssn 111111111)\n(3) Key constraint (the tuple (123456789, 2) already exists)\n(4) Entity integrity (the PK is set to NULL) + referential integrity as well, since other tuples reference 888665555",
+  "keys": [
+   "(1) None",
+   "(2) Referential integrity",
+   "(3) Key constraint",
+   "(4) Entity integrity (+ referential)"
+  ]
+ },
+ "3-upd-6": {
+  "prompt": "Summarize which constraints Insert, Delete and Update can each violate.",
+  "answer": "Insert: the key constraint, entity integrity and referential integrity are all possible. Delete: only referential integrity. Update: the key constraint and referential integrity (a problem only when a PK or FK is changed).",
+  "keys": [
+   "Insert = all three",
+   "Delete = referential integrity only",
+   "Update = key and referential (when a PK/FK is changed)"
+  ]
+ },
+ "3-me-1": {
+  "prompt": "When mapping a regular entity type, what happens to the composite attribute Name(Fname, Minit, Lname)?",
+  "choices": [
+   "It becomes a separate relation",
+   "Only its simple component attributes Fname, Minit, Lname are included",
+   "It is included as a single attribute Name",
+   "It is included as an FK"
+  ]
+ },
+ "3-me-2": {
+  "prompt": "When mapping a regular entity type, multivalued attributes are also included in the same relation.",
+  "explain": "A multivalued attribute becomes a separate relation (next step)."
+ },
+ "3-me-3": {
+  "prompt": "Describe the procedure for mapping a regular entity type E to a relation.",
+  "answer": "Create a relation R that includes all the simple attributes of E. For a composite attribute, include only its simple component attributes. Choose one of E's key attributes as the primary key of R (multivalued attributes become separate relations in the next step).",
+  "keys": [
+   "Include all simple attributes",
+   "Composite → component attributes",
+   "Choose one key as the PK"
+  ]
+ },
+ "3-me-4": {
+  "prompt": "When mapping DEPARTMENT (Name and Number are both keys), if Number is chosen as the PK, what happens to Name?",
+  "choices": [
+   "It is discarded",
+   "It becomes an FK",
+   "It is kept as a UNIQUE candidate key",
+   "It becomes a separate relation"
+  ]
+ },
+ "3-mv-1": {
+  "prompt": "What is the primary key of DEPT_LOCATIONS, the relation created by mapping DEPARTMENT's multivalued attribute Locations?",
+  "choices": [
+   "Dnumber",
+   "Dlocation",
+   "(Dnumber, Dlocation)",
+   "A newly created Loc_id"
+  ]
+ },
+ "3-mv-2": {
+  "prompt": "A multivalued attribute A is mapped to a separate relation R; the PK K of the original relation is included in R as a(n) (a) , and the combination of (b) is the PK of R.",
+  "answer": "(a) foreign key / (b) A and K",
+  "accept_add": [
+   [],
+   [
+    "A and K",
+    "K and A"
+   ]
+  ]
+ },
+ "3-mv-3": {
+  "prompt": "EMPLOYEE (key Ssn) has the multivalued attributes {Phone} and {Skill}. Write the relations that result from mapping these two, with their PKs and FKs.",
+  "answer": "EMP_PHONE(Ssn, Phone)  PK (Ssn, Phone), FK Ssn → EMPLOYEE\nEMP_SKILL(Ssn, Skill)  PK (Ssn, Skill), FK Ssn → EMPLOYEE\n(a separate relation for each multivalued attribute)",
+  "keys": [
+   "Two separate relations, one per multivalued attribute",
+   "PK = (Ssn, attribute)",
+   "FK Ssn → EMPLOYEE"
+  ]
+ },
+ "3-mv-4": {
+  "prompt": "In a relation created by mapping a multivalued attribute, the key value of the original entity is repeated in several tuples."
+ },
+ "3-mw-1": {
+  "prompt": "What is the primary key of the relation created by mapping the weak entity DEPENDENT?",
+  "choices": [
+   "Dependent_name",
+   "(Essn, Dependent_name)",
+   "Essn",
+   "A new surrogate key"
+  ]
+ },
+ "3-mw-2": {
+  "prompt": "When mapping a weak entity, the identifying relationship type (DEPENDENTS_OF) becomes a separate relation.",
+  "explain": "Including the owner's PK as an FK is itself the mapping of the identifying relationship."
+ },
+ "3-mw-3": {
+  "prompt": "Describe the procedure for mapping a weak entity type W.",
+  "answer": "Create a relation R that includes all the simple attributes of W (component attributes for composites). Include the PK of the owner entity type in R as an FK (this is the mapping of the identifying relationship). The combination of the owner's PK and W's partial key is the PK of R.",
+  "keys": [
+   "Include the simple attributes",
+   "Owner's PK as an FK (mapping of the identifying relationship)",
+   "PK = owner's PK + partial key"
+  ]
+ },
+ "3-mw-4": {
+  "prompt": "BUILDING (key Bname, Address) and the weak entity ROOM (partial key Room_no, Capacity, {Equipment}) are related by the identifying relationship HAS. Map them to a relational schema (show PKs and FKs).",
+  "keys": [
+   "ROOM PK (Bname, Room_no)",
+   "ROOM.Bname is an FK",
+   "Multivalued Equipment becomes a separate relation whose PK includes ROOM's entire PK"
+  ]
+ },
+ "3-m11-1": {
+  "prompt": "When mapping the 1:1 relationship MANAGES with the foreign key approach, which side is better for the FK?",
+  "choices": [
+   "EMPLOYEE, which has partial participation",
+   "DEPARTMENT, which has total participation",
+   "It does not matter",
+   "A separate relation"
+  ]
+ },
+ "3-m11-2": {
+  "prompt": "Using MANAGES as an example, explain why it is better to put the FK on the total-participation side when mapping a 1:1 relationship with the foreign key approach.",
+  "answer": "On the total-participation side (DEPARTMENT), every tuple participates in the relationship, so the FK (Mgr_ssn) always has a value. Conversely, if D_managed and Mgr_start_date were put on the partial-participation side (EMPLOYEE), most employees, who do not manage a department, would have NULLs, which is wasteful.",
+  "keys": [
+   "No NULLs on the total-participation side",
+   "Putting it on the partial-participation side causes many NULLs"
+  ]
+ },
+ "3-m11-3": {
+  "prompt": "Which of the following is NOT one of the three approaches to mapping a 1:1 relationship?",
+  "choices": [
+   "Foreign key approach",
+   "Merged relation approach",
+   "Cross-reference (relationship relation) approach",
+   "Multivalued attribute approach"
+  ]
+ },
+ "3-m11-4": {
+  "prompt": "An attribute of a 1:1 relationship (e.g., Mgr_start_date) is included in the same relation where the FK is placed."
+ },
+ "3-m11-5": {
+  "prompt": "PERSON (key Pid, Name) and PASSPORT (key Passport_no, Issue_date) are related by the 1:1 relationship HOLDS. Every passport belongs to a person (total), but some people have no passport (partial). There is a relationship attribute Since. Map them using the foreign key approach.",
+  "answer": "PERSON(Pid, Name)\nPASSPORT(Passport_no, Issue_date, Pid, Since)  FK Pid → PERSON, Pid is UNIQUE (1:1)\nThe FK is placed on PASSPORT, the total-participation side, to avoid NULLs.",
+  "keys": [
+   "FK on PASSPORT (total participation)",
+   "Relationship attribute Since also on PASSPORT",
+   "UNIQUE on the FK since it is 1:1"
+  ]
+ },
+ "3-m11-6": {
+  "prompt": "1:1 relationship, foreign key approach: choose one relation S and include the (a) of the other relation T as an FK. It is better to choose the (b) participation side as S.",
+  "answer": "(a) PK / (b) total",
+  "accept_add": [
+   [],
+   [
+    "total participation"
+   ]
+  ]
+ },
+ "3-m1n-1": {
+  "prompt": "When the 1:N relationship WORKS_FOR (DEPARTMENT 1 : EMPLOYEE N) is mapped, where does the FK go?",
+  "choices": [
+   "Dno in EMPLOYEE",
+   "Essn in DEPARTMENT",
+   "Only in a separate relation",
+   "Both"
+  ]
+ },
+ "3-m1n-2": {
+  "prompt": "Explain why the FK is placed in the N-side relation when mapping a 1:N relationship.",
+  "answer": "One N-side entity is related to at most one 1-side entity, so it can be represented by a single FK value. If the FK were put on the 1-side, one tuple would have to reference several N-side entities, making it multivalued and violating the atomic-value rule.",
+  "keys": [
+   "The N-side has at most one partner → a single FK",
+   "Putting it on the 1-side makes it multivalued"
+  ]
+ },
+ "3-m1n-3": {
+  "prompt": "What is the result of mapping SUPERVISION (recursive 1:N)?",
+  "choices": [
+   "A separate relation SUPERVISION(Ssn, Super_ssn) is required",
+   "Super_ssn in DEPARTMENT",
+   "Super_ssn in EMPLOYEE (a self-referencing FK)",
+   "It cannot be mapped"
+  ]
+ },
+ "3-m1n-4": {
+  "prompt": "A 1:N relationship can also be mapped with the cross-reference (relationship relation) approach, but the foreign key approach is preferred because it reduces the number of relations."
+ },
+ "3-m1n-5": {
+  "prompt": "DEPARTMENT (key Dnumber) and PROJECT (key Pnumber) are related by the 1:N relationship CONTROLS (department 1 : project N). PROJECT has total participation in CONTROLS, and there is a relationship attribute Since. Write the mapping result.",
+  "answer": "DEPARTMENT(Dname, Dnumber, …)\nPROJECT(Pname, Pnumber, Plocation, Dnum, Since)  FK Dnum → DEPARTMENT.Dnumber, Dnum NOT NULL (total participation)\nThe relationship attribute Since also goes in PROJECT, the N-side.",
+  "keys": [
+   "FK Dnum in PROJECT (N-side)",
+   "Since also in PROJECT",
+   "Total participation → NOT NULL (optional)"
+  ]
+ },
+ "3-m1n-6": {
+  "prompt": "1:N relationship, foreign key approach: include the PK of the other relation as an FK in the relation S on the (a) side, and also include the simple attributes of the relationship in (b) .",
+  "accept_add": [
+   [
+    "N-side",
+    "many"
+   ],
+   [
+    "the N-side relation"
+   ]
+  ]
+ },
+ "3-mmn-1": {
+  "prompt": "How is an M:N relationship mapped?",
+  "choices": [
+   "Foreign key approach",
+   "Merged relation approach",
+   "Only the cross-reference (relationship relation) approach",
+   "As a multivalued attribute"
+  ]
+ },
+ "3-mmn-2": {
+  "prompt": "What is the PK of the relation created by mapping WORKS_ON (EMPLOYEE M : PROJECT N, attribute Hours)?"
+ },
+ "3-mmn-3": {
+  "prompt": "Explain why an M:N relationship cannot be represented by a single foreign key, and describe the mapping procedure.",
+  "answer": "Entities on both sides are related to many entities on the other side, so whichever side the FK is put on, it becomes multivalued. Therefore, create a separate relationship relation S, include the PKs of the participating entity relations as FKs, make the combination of the FKs the PK, and also include the simple attributes of the relationship in S.",
+  "keys": [
+   "Both sides have many → a single FK is impossible",
+   "Separate relationship relation",
+   "PK = combination of the FKs",
+   "Include the relationship attributes"
+  ]
+ },
+ "3-mmn-4": {
+  "prompt": "STUDENT (key Sid) and COURSE (key Cid) are related by the M:N relationship ENROLLS (attributes Grade, Semester). A student may take the same course again in a different semester. Map them.",
+  "answer": "STUDENT(Sid, …), COURSE(Cid, …)\nENROLLS(Sid, Cid, Semester, Grade)  FK Sid → STUDENT, FK Cid → COURSE\nPK (Sid, Cid, Semester): because of retakes, (Sid, Cid) alone is not unique, so Semester is included",
+  "keys": [
+   "Separate relation ENROLLS",
+   "Two FKs",
+   "Semester included in the PK (retakes)",
+   "Grade included"
+  ]
+ },
+ "3-mmn-5": {
+  "prompt": "An M:N relationship relation (e.g., WORKS_ON) is also called a lookup table."
+ },
+ "3-mmn-6": {
+  "prompt": "M:N relationship mapping: create a separate relation S, include the (a) of the participating relations as FKs, and make the (b) of those FKs the PK of S.",
+  "answer": "(a) PK / (b) combination",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "3-mna-1": {
+  "prompt": "What is the result of mapping the ternary relationship SUPPLY (SUPPLIER, PROJECT, PART, attribute Quantity)?",
+  "choices": [
+   "Two FKs in SUPPLIER",
+   "SUPPLY(Sname, Proj_name, Part_no, Quantity), PK = combination of the three FKs",
+   "An FK in PART",
+   "It cannot be mapped"
+  ]
+ },
+ "3-mna-2": {
+  "prompt": "An n-ary relationship is mapped with the same cross-reference approach as M:N."
+ },
+ "3-mna-3": {
+  "prompt": "Describe the procedure for mapping an n-ary relationship type.",
+  "answer": "Create a separate relation S to represent the relationship, include the PKs of the n participating entity relations as FKs, usually make the combination of all the FKs the PK, and also include the simple attributes of the relationship in S.",
+  "keys": [
+   "Separate relation",
+   "n PKs as FKs",
+   "Combination of the FKs as the PK",
+   "Include the relationship attributes"
+  ]
+ },
+ "3-mna-4": {
+  "prompt": "DOCTOR(Did), PATIENT(Pid) and DRUG(Drug_code) are related by the ternary relationship PRESCRIBES (attributes Date, Dosage). Map them.",
+  "answer": "PRESCRIBES(Did, Pid, Drug_code, Date, Dosage)\nFK Did → DOCTOR, Pid → PATIENT, Drug_code → DRUG\nPK (Did, Pid, Drug_code) (include Date as well if the same prescription can be made on several days)",
+  "keys": [
+   "Separate relation PRESCRIBES",
+   "Three FKs",
+   "PK = combination of the three FKs",
+   "Date, Dosage included"
+  ]
+ },
+ "3-ms-1": {
+  "prompt": "In the ER-to-relational correspondence, what does a 'multivalued attribute' correspond to?",
+  "choices": [
+   "Attribute",
+   "Domain",
+   "Relation and foreign key",
+   "Primary key"
+  ]
+ },
+ "3-ms-2": {
+  "prompt": "In the ER-to-relational correspondence, what does a 'value set' correspond to?",
+  "choices": [
+   "Relation",
+   "Domain",
+   "Foreign key",
+   "Candidate key"
+  ]
+ },
+ "3-ms-3": {
+  "prompt": "An M:N relationship type corresponds to a relationship relation and (a) FKs, and an n-ary relationship type corresponds to a relationship relation and (b) FKs.",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "3-ms-4": {
+  "prompt": "Map the following ER schema to a relational schema (show PKs and FKs).\n• COLLEGE(CName key, COffice, CPhone)\n• INSTRUCTOR(Id key, IName, Rank)\n• DEAN: COLLEGE (1,1) — INSTRUCTOR (0,1), 1:1\n• DEPT(DCode key, DName)\n• ADMINS: COLLEGE (0,N) — DEPT (1,1), 1:N\n• EMPLOYS: DEPT (0,N) — INSTRUCTOR (1,1), 1:N\n• STUDENT(Sid key, SName, {Phone})\n• TAKES: STUDENT M:N SECTION(SecId key), attribute Grade",
+  "answer": "COLLEGE(CName, COffice, CPhone, DeanId)  FK DeanId → INSTRUCTOR.Id (1:1, in COLLEGE, the total-participation side)\nINSTRUCTOR(Id, IName, Rank, DCode)  FK DCode → DEPT (EMPLOYS, N-side)\nDEPT(DCode, DName, CName)  FK CName → COLLEGE (ADMINS, N-side)\nSTUDENT(Sid, SName)\nSTUDENT_PHONE(Sid, Phone)  PK (Sid, Phone), FK Sid → STUDENT\nSECTION(SecId, …)\nTAKES(Sid, SecId, Grade)  PK (Sid, SecId), FK Sid → STUDENT, SecId → SECTION",
+  "keys": [
+   "DEAN → FK in COLLEGE",
+   "EMPLOYS → DCode in INSTRUCTOR",
+   "ADMINS → CName in DEPT",
+   "Phone → separate relation",
+   "TAKES relationship relation, PK (Sid, SecId), Grade"
+  ]
+ },
+ "3-ms-5": {
+  "prompt": "Map the COMPANY ER diagram (lecture slides 2 p.45) to a relational schema: write the resulting six relations, and state where each relationship type, the multivalued attribute and the weak entity went.",
+  "answer": "EMPLOYEE(Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary, Super_ssn, Dno)\nDEPARTMENT(Dname, Dnumber, Mgr_ssn, Mgr_start_date)\nDEPT_LOCATIONS(Dnumber, Dlocation)\nPROJECT(Pname, Pnumber, Plocation, Dnum)\nWORKS_ON(Essn, Pno, Hours)\nDEPENDENT(Essn, Dependent_name, Sex, Bdate, Relationship)\n\nMANAGES(1:1) → DEPARTMENT.Mgr_ssn, Mgr_start_date / WORKS_FOR(1:N) → EMPLOYEE.Dno / SUPERVISION(1:N) → EMPLOYEE.Super_ssn / CONTROLS(1:N) → PROJECT.Dnum / WORKS_ON(M:N) → relationship relation WORKS_ON / multivalued Locations → DEPT_LOCATIONS / weak entity DEPENDENT → PK (Essn, Dependent_name)",
+  "keys": [
+   "6 relations",
+   "1:1 and 1:N become FKs (Mgr_ssn, Dno, Super_ssn, Dnum)",
+   "WORKS_ON relationship relation",
+   "DEPT_LOCATIONS",
+   "DEPENDENT PK (Essn, Dependent_name)"
+  ]
+ },
+ "3-ms-6": {
+  "prompt": "A key attribute in the ER model becomes a primary key (or secondary key) in the relational model."
+ }
+}
