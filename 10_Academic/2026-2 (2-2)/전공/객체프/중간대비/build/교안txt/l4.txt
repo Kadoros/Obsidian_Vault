@@ -1,0 +1,373 @@
+Lecture 3 : Object Oriented Design
+                  (chapter 3. of Timothy Budd’s “Intro to OOP” book)
+
+
+
+
+Acknowledgement : courtesy of Prof. Timothy Budd lecture slides
+        OOP Technique Example :
+       Responsibility Driven Design
+n   OOP = a set of interacting objects
+
+n   Each object is a component that has responsibility in a
+    community.
+
+n   System is divided into various activities that the system has to
+    perform. Then, those activities(responsibilities) are distributed
+    among objects in the system.
+
+n   After completing a list of responsibilities, we need to decide a
+    set of objects and determine which responsibilities should be
+    assigned to which object.
+
+n   Responsibilities in an object should be closely related.
+              Design Process
+n Specification
+  n Imprecise
+                      n Software
+
+  n Ambiguous          System Design
+                        n concrete logic
+  n Unclear
+           Development Process
+1.   Initial Description(Specification)
+2.   Refine Specification
+3.   Identification of Components
+4.   Identification of Components Responsibilities
+5.   Formalize the interface
+6.   Designing the subsystem
+7.   Implementing components
+8.   Integration of components
+9.   Maintenance & Evolution
+           An Example, the IIKH
+    IIKH(Intelligent Interactive Kitchen Helper)
+n Imagine you are the chief software architect in a major
+  computing firm
+
+n The president of the firm rushes into your office with a
+  specification for IIKH, the next PC-based product. It
+  is drawn on the back of a dinner napkin
+                1.Initial Description
+n Briefly, IIKH is a PC-based application
+    n   that will replace the box of index cards of recipes in the average kitchen. But
+        more than simply maintaining a database of recipes, the kitchen helper assists
+        in the planning of meals for an extended period, say a week. The user of the
+        IIKH can sit down at a terminal, browse the database of recipes, and
+        interactively create a series of menus. The IIKH will automatically scale the
+        recipes to any number of servings and will print out menus for the entire week,
+        for a particular day, or for a particular meal. And it will print an integrated
+        grocery list of all the items needed for the recipes for the entire period.
+
+n   Initial description : Ambiguous, Unclear
+n   We need to clarify the ambigueties in the description.
+         2. Refine Specification
+                  (Working Through Scenarios)
+n Because of the ambiguity in the specification, the
+  major tool we will use to uncover the desired
+  behavior is to walk through application scenarios
+   n Pretend we had already a working application. Walk through
+     the various uses of the system
+   n Establish the ``look and feel'' of the system
+
+   n Make sure we have uncovered all the intended uses
+
+   n Develop descriptive documentation
+
+   n Create the high level software design
+
+
+
+n Other authors use the term ``use-cases'' for this
+  process of developing scenarios
+   n   시스템 사용에 대한 시나리오의 집합
+Scenario Example
+          Abilities of the IIKH
+n Here are some of the things a user can do
+ with the IIKH
+  n Browse a database of recipes
+
+  n Add a new recipe to the database
+
+  n Edit or annotate an existing recipe
+
+  n Plan a meal consisting of several courses
+
+  n Scale a recipe for some number of users
+
+  n Plan a longer period, say a week
+
+  n Generate a grocery list that includes all the
+
+    items in all the menus for a period
+  n …
+ 3. Identification of Components
+n Component
+  n an abstract design entity with which we can
+
+   associate responsibilities for different tasks
+
+  n must have a small well defined set of
+
+   responsibilities
+
+  n should interact with other components to the
+
+   minimal extent possible
+ 4. Identification of Components Responsibilities
+
+n CRC Cards
+  n Components are most easily described using
+
+   CRC cards
+   The first component, The Greeter
+n When the application is started, the Greeter
+  puts an informative and friendly welcome
+  window (the greeting) on the screen
+
+n Actions
+  n Casually browse the database of recipes
+
+  n Add a new recipe
+
+  n Edit or annotate a recipe
+
+  n Review a plan for several meals
+
+  n Create a plan of meals
+  The Recipe Database Component
+n Actions
+  n Must Maintain the Database of recipes
+
+  n Must Allow the user to browse the database
+
+  n Must permit the user to edit or annotate an
+
+    existing recipe
+  n Must permit the user to add a new recipe
+   Responsibilities of a Recipe
+n Tasks
+  n Maintains the list of ingredients and
+
+    transformation algorithm
+  n Must know how to edit these data values
+
+  n Must know how to interactively display itself on
+
+    the output device
+  n Must know how to print itself
+
+  n etc
+      The Planner Component
+n Permits the user to select a sequence of
+  dates for planning
+n Permits the user to edit an existing plan
+n Associates with Date object
+          The Date Component
+n User can edit specific meals
+n User can annotate information about dates
+  n ''Bob's Birthday'', ``Christmas Dinner'', …
+
+n Can print out grocery list for entire set of
+  meals
+         The Meal Component
+n holds information about a single meal
+  n Allows user to interact with the recipe database to
+
+    select individual recipes for meals
+  n User sets number of people to be present at meal,
+
+    recipes are automatically scaled
+  n Can produce grocery list for entire meal, by
+
+    combining grocery lists from individual scaled
+    recipes
+          The Six Components
+n everything can be accomplished using only six
+  software components
+
+
+
+
+n You can at this point assign the different components
+  to different programmers for development
+ Characteristics of Components
+n Behavior and State
+n Instances and Classes
+n Coupling and Cohesion
+n Interface and Implementation
+          Behavior and State
+n Behavior
+  n the set of actions a component can perform
+
+
+
+n State
+  n all the information (data values) held within a
+
+    component
+
+n it is common for behavior to change state
+       Instances and Classes
+n There are likely many instances of recipe,
+  but they will all behave in the same way
+n We say the behavior is common to the
+  class Recipe
+       Coupling and Cohesion
+n Cohesion
+  n the degree to which the tasks assigned to a
+
+    component seem to form a meaningful unit.
+  n Want to maximize cohesion
+
+
+
+n Coupling
+  n the degree to which the ability to fulfill a
+
+    certain responsibility depends upon the
+    actions of another component
+  n Want to minimize coupling
+  Interface and Implementation
+n We have characterized software
+ components by what they can do
+
+n The user of a software component need
+ only know what it does, not how it does it
+Two views of a Software System
+n information hiding
+  n purposeful hiding of implementation details
+       Public and Private View
+n Public view
+  n those features (data or behavior) that other
+
+    components can see and use
+
+n Private view
+  n those features (data or behavior) that are used
+
+    only within the component
+      5. Formalize the Interface
+n formalize the channels of communication between
+  the components
+  n The general structure of each component is identified
+  n Components with only one behavior may be made into
+
+    functions
+  n Components with many behaviors are probably more easily
+
+    implemented as classes
+  n Names are given to each of the responsibilities - these will
+
+    eventually be mapped on to procedure names
+  n Function parameters should be identified
+  n Information is assigned to each component and accounted
+
+    for
+  n Scenarios are replayed in order to ensure all data is available
+        The selection of names
+n should be evocative in the context of the problem
+n should be short
+n should be pronounceable (read them out load)
+n Names should be consistent within the project
+n Avoid digits within a name
+                6. Design
+n Transform description into SW layout
+
+
+n Design data structures in each component
+
+
+n Transform behavior description into
+ algorithms.
+       7. Implementing Components
+n implement the desired activities in each component
+
+
+n Unit testing: Subsystems are validated individually
+   n Identify necessary conditions for correct functioning.
+   n Test input values to verify that SW component will perform
+
+     correctly when presented with legal input values
+   8. Integration of Components
+n Components are slowly integrated into completed
+  system, using stubs as yet unimplemented parts.
+
+n Stubs
+   n   simple dummy routines with no behavior or with very limited
+       behavior
+
+
+n Errors discovered during integration cause
+  reinvestigation of validation techniques performed at
+  the subsystem level.
+     9. Maintenance and Evolution
+n   Software Maintenance
+    n   Activities subsequent to the delivery of the initial working version of
+        SW system
+n   Software does not remain fixed after the first working version is
+    released
+    n   Errors or bugs can be discovered. Must be corrected
+    n   Requirements may change. Say as a result of government
+        regulations, or standardization among similar products
+    n   Hardware may change
+    n   Users expectations may change. Greater functionality, more
+        features. Often as a result of competition from similar products
+    n   Better documentation may be required
+n   Good Design
+    n   Recognizes the inevitability of changes and plans an
+        accommodation for them from the very beginning
+           Prepare for Change!
+n User requirements change with experience, hardware
+  changes, government regulations change.
+  n Try to predict the most likely sources of change, and isolate
+    the effect. Common changes include interfaces, file formats,
+    communication protocols
+  n Isolate interfaces to hardware that is likely to change
+
+  n Reduce dependency of one software component on another
+
+  n Keep accurate record of the reasoning behind every major
+
+    decision in the design documentation.
+            Common Design Flaws
+n   Direct modification
+    n   Components that make direct modification of data values in other
+        components are a direct violation of encapsulation
+n   Too Much Responsibility
+    n   Components with too much responsibility are difficult to understand
+        and to use
+n   No Responsibility
+    n   Components with no responsibility serve no purpose
+n   Components with unused responsibility
+    n   Usually the result of designing software components without
+        thinking about how they will be used
+n   Misleading Names
+    n   Names should be short and unambiguously indicate what the
+        responsibilities of the component involve
+                   보충 자료 (강의 페이지)
+n   IIKH: Object Oriented Design (Tim Budd, Intro to OOP, Chapter 3)
+     n   Project 1 참고 자료
+Budd Ch.3 Object-Oriented Design (1/23)
+Budd Ch.3 Object-Oriented Design (2/23)
+Budd Ch.3 Object-Oriented Design (3/23)
+Budd Ch.3 Object-Oriented Design (4/23)
+Budd Ch.3 Object-Oriented Design (5/23)
+Budd Ch.3 Object-Oriented Design (6/23)
+Budd Ch.3 Object-Oriented Design (7/23)
+Budd Ch.3 Object-Oriented Design (8/23)
+Budd Ch.3 Object-Oriented Design (9/23)
+Budd Ch.3 Object-Oriented Design (10/23)
+Budd Ch.3 Object-Oriented Design (11/23)
+Budd Ch.3 Object-Oriented Design (12/23)
+Budd Ch.3 Object-Oriented Design (13/23)
+Budd Ch.3 Object-Oriented Design (14/23)
+Budd Ch.3 Object-Oriented Design (15/23)
+Budd Ch.3 Object-Oriented Design (16/23)
+Budd Ch.3 Object-Oriented Design (17/23)
+Budd Ch.3 Object-Oriented Design (18/23)
+Budd Ch.3 Object-Oriented Design (19/23)
+Budd Ch.3 Object-Oriented Design (20/23)
+Budd Ch.3 Object-Oriented Design (21/23)
+Budd Ch.3 Object-Oriented Design (22/23)
+Budd Ch.3 Object-Oriented Design (23/23)
+

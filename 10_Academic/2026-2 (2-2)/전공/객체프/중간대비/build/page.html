@@ -1,0 +1,854 @@
+<title>객체프 중간 트레이너</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Nanum+Pen+Script&display=swap">
+<style>
+/* Layout: exam-sheet on faint graph paper; red-pen marks for grading. Top bar + tabs, two-pane practice view that stacks on phones. */
+:root{
+  --paper:#f3f5fa; --sheet:#ffffff; --ink:#1a2132; --muted:#5b6478; --line:#dde2ec;
+  --grid:rgba(52,84,196,.07); --accent:#2d52cf; --accent-weak:#e7edfd; --accent-ink:#ffffff;
+  --pen:#d1372b; --ok:#1d8656; --ok-weak:#e3f4ec; --warn:#a96d12; --warn-weak:#fbf0dc; --bad:#c3352b; --bad-weak:#fbe6e4;
+  --code-bg:#f2f4f9;
+  --f-body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --f-pen:"Nanum Pen Script","Apple SD Gothic Neo",cursive;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0e121a; --sheet:#151b26; --ink:#e5e9f2; --muted:#97a0b4; --line:#262e3f;
+  --grid:rgba(125,155,255,.05); --accent:#7b98ff; --accent-weak:#1c2643; --accent-ink:#0e121a;
+  --pen:#ff6d5f; --ok:#4cc28d; --ok-weak:#143024; --warn:#e2a84b; --warn-weak:#33270f; --bad:#ff6d5f; --bad-weak:#3a1a18;
+  --code-bg:#10151f; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#0e121a; --sheet:#151b26; --ink:#e5e9f2; --muted:#97a0b4; --line:#262e3f;
+  --grid:rgba(125,155,255,.05); --accent:#7b98ff; --accent-weak:#1c2643; --accent-ink:#0e121a;
+  --pen:#ff6d5f; --ok:#4cc28d; --ok-weak:#143024; --warn:#e2a84b; --warn-weak:#33270f; --bad:#ff6d5f; --bad-weak:#3a1a18;
+  --code-bg:#10151f; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1180px;margin:0 auto;padding:12px 16px 0;display:flex;flex-direction:column;gap:10px}
+.brand{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 16px}
+.brand h1{margin:0;font-size:20px;font-weight:700;letter-spacing:-.01em}
+.brand .course{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.chip{font-family:var(--f-mono);font-size:11.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:var(--sheet);color:var(--muted);white-space:nowrap}
+.chip.dday{color:var(--pen);border-color:color-mix(in srgb,var(--pen) 40%,var(--line));font-weight:600}
+.chip.live{color:var(--ok)} .chip.local{color:var(--warn)}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs button{font:inherit;font-size:14px;font-weight:500;background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);padding:8px 12px 9px;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+nav.tabs button:focus-visible,button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.view{padding-top:22px}
+h2{font-size:16px;margin:0 0 10px;font-weight:700;text-wrap:balance}
+h3{font-size:14px;margin:0 0 8px;font-weight:600}
+.label{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:22px}
+.stat{padding:12px 14px}
+.stat .v{font-family:var(--f-mono);font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat .s{font-size:12px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px}
+@media (max-width:880px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.tbl-wrap{overflow-x:auto}
+table.topics{width:100%;border-collapse:collapse;font-size:13.5px}
+table.topics th{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:500;text-align:left;padding:10px 10px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.topics td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.topics tr:last-child td{border-bottom:0}
+table.topics tr.dim td{opacity:.55}
+.tname{font-weight:500}
+.tscope{font-size:11.5px;color:var(--muted)}
+.dots{display:inline-flex;gap:2px}
+.dots i{width:6px;height:12px;border-radius:2px;background:var(--line);display:inline-block}
+.dots i.on{background:var(--accent)}
+.dots i.on.recent{background:var(--pen)}
+.bar{height:8px;border-radius:4px;background:var(--line);overflow:hidden;min-width:70px}
+.bar>b{display:block;height:100%;background:var(--accent);border-radius:4px}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:12.5px}
+.st{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap;display:inline-block}
+.st.none{background:var(--line);color:var(--muted)}
+.st.weak{background:var(--bad-weak);color:var(--bad)}
+.st.mid{background:var(--warn-weak);color:var(--warn)}
+.st.good{background:var(--ok-weak);color:var(--ok)}
+.btn{font:inherit;font-size:13.5px;font-weight:500;border-radius:8px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);padding:7px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:none;border-color:transparent;color:var(--accent);padding-inline:6px}
+.btn.sm{font-size:12.5px;padding:4px 9px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.recs{display:flex;flex-direction:column}
+.rec{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;font:inherit;color:inherit;text-align:left}
+.rec:last-child{border-bottom:0}
+.rec:hover{background:var(--accent-weak)}
+.rec .q{font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.yr{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);white-space:nowrap}
+.why{font-size:11.5px;color:var(--muted)}
+/* practice */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+select,input[type=text]{font:inherit;font-size:13.5px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);max-width:100%}
+label.tog{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--muted);cursor:pointer}
+.practice{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:880px){.practice{grid-template-columns:minmax(0,1fr)}}
+.qlist{max-height:calc(100vh - 230px);overflow:auto;position:sticky;top:120px}
+@media (max-width:880px){.qlist{max-height:260px;position:static}}
+.qrow{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:8px;align-items:center;width:100%;padding:8px 12px;border:0;border-bottom:1px solid var(--line);background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.qrow:hover{background:var(--accent-weak)} .qrow.cur{background:var(--accent-weak);box-shadow:inset 3px 0 0 var(--accent)}
+.qrow .t{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.sd.good{background:var(--ok)} .sd.mid{background:var(--warn)} .sd.weak{background:var(--bad)}
+.qcard{padding:18px 20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.qmeta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tag{font-size:11.5px;padding:2px 8px;border-radius:6px;background:var(--accent-weak);color:var(--accent);font-weight:500}
+.tag.scope-likely{background:var(--warn-weak);color:var(--warn)}
+.tag.scope-low,.tag.scope-out{background:var(--line);color:var(--muted)}
+.prompt{font-size:15px;white-space:pre-wrap;max-width:75ch}
+pre.code{margin:0;font-family:var(--f-mono);font-size:12.5px;line-height:1.55;background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;white-space:pre}
+textarea{width:100%;min-height:150px;font-family:var(--f-mono);font-size:13px;line-height:1.55;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--sheet);color:var(--ink);resize:vertical}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.result{border-top:1px dashed var(--line);padding-top:14px;display:flex;flex-direction:column;gap:12px}
+.mark{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.pen{font-family:var(--f-pen);color:var(--pen);font-size:44px;line-height:1;transform:rotate(-4deg);display:inline-block;min-width:70px}
+.pen small{font-size:26px}
+.fb{font-size:14px;max-width:70ch}
+.missed{margin:0;padding-left:18px;font-size:13.5px;color:var(--bad)}
+.tip{font-size:13.5px;background:var(--warn-weak);color:var(--ink);border-radius:8px;padding:9px 12px;max-width:75ch}
+.tip b{color:var(--warn)}
+.selfgrade{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.empty{padding:28px 20px;text-align:center;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted)}
+.err{font-size:13px;color:var(--bad)}
+/* mock */
+.mockhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px 16px;margin-bottom:14px;position:sticky;top:112px;z-index:3}
+.timer{font-family:var(--f-mono);font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}
+.timer.low{color:var(--pen)}
+.mockq{padding:16px 18px;margin-bottom:12px;display:flex;flex-direction:column;gap:10px}
+.years{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.yearcard{padding:12px 14px;text-align:left;font:inherit;color:inherit;cursor:pointer;display:flex;flex-direction:column;gap:4px}
+.yearcard:hover{border-color:var(--accent)}
+.yearcard .y{font-family:var(--f-mono);font-size:18px;font-weight:600}
+/* history */
+.chart{width:100%;height:auto;display:block}
+.hist{width:100%;border-collapse:collapse;font-size:13px}
+.hist td,.hist th{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left}
+.hist th{font-family:var(--f-mono);font-size:10.5px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+.wrong{padding:16px 18px;margin-bottom:12px;display:flex;flex-direction:column;gap:10px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+@media (max-width:700px){.cols{grid-template-columns:minmax(0,1fr)}}
+.cols pre{white-space:pre-wrap}
+/* course */
+.chead{padding:16px 18px;display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.chead .row{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline}
+.chead h2{margin:0;font-size:18px}
+.pbar{height:10px;border-radius:5px;background:var(--line);overflow:hidden}
+.pbar>b{display:block;height:100%;background:var(--ok);border-radius:5px}
+.course{display:grid;grid-template-columns:280px minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:880px){.course{grid-template-columns:minmax(0,1fr)}}
+.steps{position:sticky;top:120px;max-height:calc(100vh - 140px);overflow:auto}
+@media (max-width:880px){.steps{position:static;max-height:240px}}
+.stage{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:10px 12px 4px}
+.step{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:8px;align-items:center;width:100%;padding:7px 12px;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer;font-size:13px}
+.step:hover{background:var(--accent-weak)} .step.cur{background:var(--accent-weak);box-shadow:inset 3px 0 0 var(--accent)}
+.step .n{font-family:var(--f-mono);font-size:11px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);color:var(--muted)}
+.step.pass .n{background:var(--ok);border-color:var(--ok);color:var(--accent-ink)}
+.step.skip .n{border-style:dashed}
+.step .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.goal{background:var(--accent-weak);border-radius:8px;padding:10px 14px;font-size:14px;max-width:75ch}
+.goal b{color:var(--accent)}
+.verdict{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 14px;border-radius:8px}
+.verdict.ok{background:var(--ok-weak)} .verdict.no{background:var(--bad-weak)}
+.verdict .msg{font-weight:600;flex:1;min-width:200px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <h1>객체프 중간 트레이너</h1>
+      <span class="course">49156 · 손봉수 · 기출 2009–2025</span>
+      <div class="chips">
+        <span class="chip dday" id="dday">중간고사 주간 10/20–10/26</span>
+        <span class="chip" id="store">저장소 연결 중…</span>
+        <span class="chip" id="grader">채점: 확인 중…</span>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-v="course" aria-selected="false" id="tab-course" hidden>오늘의 코스</button>
+      <button role="tab" data-v="dash" aria-selected="true">대시보드</button>
+      <button role="tab" data-v="practice" aria-selected="false">문제 풀기</button>
+      <button role="tab" data-v="mock" aria-selected="false">모의고사</button>
+      <button role="tab" data-v="wrong" aria-selected="false">오답노트</button>
+      <button role="tab" data-v="hist" aria-selected="false">기록</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="view" id="v-course" hidden></section>
+  <section class="view" id="v-dash"></section>
+  <section class="view" id="v-practice" hidden></section>
+  <section class="view" id="v-mock" hidden></section>
+  <section class="view" id="v-wrong" hidden></section>
+  <section class="view" id="v-hist" hidden></section>
+</main>
+
+<script>
+(() => {
+const TOPICS = {
+  encap:["캡슐화·추상화·ADT"], se:["SW 공학 기초"], copy:["복사 생성자·얕은/깊은 복사"], couple:["결합도·응집도"],
+  paradigm:["프로그래밍 패러다임"], fileio:["파일 입출력"], design:["OO 설계·IIKH·stub"], trace:["코드 오류·출력 추적"],
+  quality:["좋은 SW의 요소"], ctor:["생성자"], constfn:["const 멤버함수"], passing:["인자 전달 방식"], friend:["friend"],
+  static:["static 멤버"], assert:["assert·불변식"], memory:["메모리·포인터"], inline:["inline 함수"], stack:["TIntStack 구현"],
+  opover:["연산자 오버로딩 (Proj2)"], inherit:["상속·virtual"]
+};
+const SCOPE = { in:"배운 범위", likely:"L04 후반", low:"Proj2 코딩", out:"범위 밖" };
+const SCOPE_W = { in:1, likely:.9, low:.3, out:0 };
+const TYPE = { blank:"빈칸", short:"서술", code:"코드 작성", trace:"오류·출력" };
+const MID_YEARS = [2009,2010,2011,2012,2013,2014,2015,2016,2017,2019,2022,2023,2024,2025];
+const RECENT = new Set([2022,2023,2024,2025]);
+const EXAM_DAY = new Date(2026, 9, 20);
+
+const $ = (s, el=document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ls = {
+  get(k, d){ try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+
+let bank = [], extra = [], attempts = [];
+let db = null, sample = null;
+let filters = ls.get("oop-filters", { topic:"", year:"", type:"", status:"", hideOut:true });
+let curId = ls.get("oop-cur", null);
+let view = ls.get("oop-view", "dash");
+let mock = ls.get("oop-mock", null);           // {year, start, answers:{}, done:false, results:{}}
+const results = {};                             // qid -> last grading result shown in this visit
+let course = null;                              // db course/current: {title, since, note, steps:[{qid|mock, stage, goal, pass}]}
+let dbMocks = [];
+let courseFocus = null;                         // step index pinned on screen until "다음 단계"
+
+/* ── derived ───────────────────────── */
+const allQ = () => bank.concat(extra);
+const qById = id => allQ().find(q => q.id === id);
+function latestByQ(){
+  const m = {};
+  for (const a of attempts) if (!m[a.qid] || a.at > m[a.qid].at) m[a.qid] = a;
+  return m;
+}
+function level(score){ if (score == null) return "none"; return score >= .85 ? "good" : score >= .6 ? "mid" : "weak"; }
+const LV = { none:"미시도", weak:"약점", mid:"보통", good:"숙달" };
+
+function topicStats(){
+  const latest = latestByQ();
+  const out = {};
+  for (const t of Object.keys(TOPICS)){
+    const qs = bank.filter(q => q.topics.includes(t));
+    const years = new Set(qs.filter(q => !String(q.id).includes("F")).map(q => q.year));
+    const tried = qs.filter(q => latest[q.id]);
+    const mastery = tried.length ? tried.reduce((s,q)=>s+latest[q.id].score,0)/tried.length : null;
+    const scope = qs.some(q=>q.scope==="in") ? "in" : qs.some(q=>q.scope==="likely") ? "likely" : qs.some(q=>q.scope==="low") ? "low" : "out";
+    out[t] = { qs, years, recent:[...years].filter(y=>RECENT.has(y)).length, total:qs.length, tried:tried.length, mastery, scope };
+  }
+  return out;
+}
+function recommendations(n=6){
+  const latest = latestByQ(), ts = topicStats();
+  const scored = allQ().filter(q => SCOPE_W[q.scope] > 0).map(q => {
+    const l = latest[q.id];
+    const need = l ? 1 - l.score : 1.15;
+    const freq = Math.max(...q.topics.map(t => (ts[t]?.years.size||0) + 2*(ts[t]?.recent||0)));
+    const recency = q.year >= 2022 ? 1.3 : q.year >= 2015 ? 1 : .8;
+    return { q, s: need * (4 + freq) * recency * SCOPE_W[q.scope] * (l && l.score >= .85 ? .1 : 1) };
+  }).sort((a,b) => b.s - a.s);
+  return scored.slice(0,n).map(x => x.q);
+}
+
+/* ── storage ───────────────────────── */
+function setStoreChip(){
+  const el = $("#store");
+  if (db){ el.textContent = "기록 저장: 클라우드"; el.className = "chip live"; }
+  else { el.textContent = "기록 저장: 이 브라우저만"; el.className = "chip local"; }
+}
+function setGraderChip(){
+  const el = $("#grader");
+  el.textContent = sample ? "채점: Claude + 자가채점" : "채점: 자가채점";
+}
+async function saveAttempt(a){
+  a.at = Date.now();
+  a.answer = String(a.answer || "").slice(0, 8000);
+  const id = a.at + "-" + Math.random().toString(36).slice(2,8);
+  if (db){
+    try { await db.collection("attempts").doc(id).set(a); return id; }
+    catch(e){ toastErr("기록을 저장하지 못했어 (" + (e.code||"error") + "). 이번 기록은 이 브라우저에만 남겨둘게."); }
+  }
+  const loc = ls.get("oop-attempts", []); loc.push({ ...a, _id:id }); ls.set("oop-attempts", loc);
+  attempts.push({ ...a, _id:id }); renderAll(); return id;
+}
+async function updateAttempt(id, patch){
+  if (db && !String(id).startsWith("local")){
+    try { await db.collection("attempts").doc(id).update(patch); return; } catch(e){}
+  }
+  const loc = ls.get("oop-attempts", []);
+  const i = loc.findIndex(x => x._id === id); if (i >= 0){ Object.assign(loc[i], patch); ls.set("oop-attempts", loc); }
+  const j = attempts.findIndex(x => x._id === id); if (j >= 0){ Object.assign(attempts[j], patch); renderAll(); }
+}
+function toastErr(msg){ const el = document.createElement("div"); el.className = "err"; el.textContent = msg; $("main").prepend(el); setTimeout(()=>el.remove(), 6000); }
+
+/* ── grading ───────────────────────── */
+function gradingPrompt(q, ans){
+  return `You grade one answer from a C++ Object-Oriented Programming midterm (Prof. Bong-Soo Sohn, Chung-Ang University). The real exam requires answers in English and penalizes otherwise.
+
+Grade the student's answer against the model answer.
+- Accept synonyms and equivalent meaning; the model answer follows the lecture slides' wording, which is preferred but not required.
+- Fill-in-blank: grade each blank separately and give partial credit proportionally.
+- Short answer: credit each key idea in the model answer; respect any word limit loosely.
+- Code: judge correctness of logic and C++ syntax; ignore trivial typos; deduct for memory errors (shallow copy, missing delete[], wrong pointer syntax).
+- Output trace: every output line must match in order; partial credit per correct section.
+- If the answer is written in Korean instead of English, still grade the content but cap the score at 0.8 and mention it.
+- An empty or "모르겠다"-style answer scores 0.
+
+Question type: ${q.type} | points: ${q.pts}
+Question: ${q.prompt}
+${q.code ? "Code given in the question:\n" + q.code + "\n" : ""}
+Model answer:
+${q.answer}
+${q.tip ? "Grading note (Korean): " + q.tip + "\n" : ""}
+Student answer:
+<<<
+${ans}
+>>>
+
+Reply with only this JSON:
+{"score": <number 0..1>, "verdict": "correct" | "partial" | "wrong", "feedback": "<Korean, casual 반말, 1-3 sentences, concrete: what was right/wrong>", "missed": ["<short Korean item the student missed>", ...], "english": "<Korean note if the English wording would likely lose points, else empty string>"}`;
+}
+async function claudeGrade(q, ans){
+  const tier = (q.type === "code" || q.type === "trace") ? "default" : "quick";
+  const r = await sample.json(gradingPrompt(q, ans), { modelTier: tier });
+  let score = Number(r?.score); if (!isFinite(score)) score = 0; score = Math.max(0, Math.min(1, score));
+  return { score, verdict: r.verdict || (score >= .85 ? "correct" : score > 0 ? "partial" : "wrong"),
+           feedback: String(r.feedback || ""), missed: Array.isArray(r.missed) ? r.missed.map(String).slice(0,6) : [],
+           english: String(r.english || "") };
+}
+function sampleErrMsg(e){
+  const c = e?.code;
+  if (c === "not_granted") return "Claude 채점이 허용되지 않았어. 답 보기로 자가채점해줘.";
+  if (c === "rate_limited") return "채점 요청이 몰렸어. 잠깐 뒤에 다시 눌러줘.";
+  if (c === "invalid_json") return "채점 결과를 읽지 못했어. 한 번 더 눌러보거나 자가채점해줘.";
+  return "채점에 실패했어 (" + (c || "error") + "). 자가채점으로 기록할 수 있어.";
+}
+
+/* ── course ───────────────────────── */
+const skipKey = () => "oop-course-skip-" + (course?.since || 0);
+function stepState(st){
+  const since = course.since || 0, pass = st.pass ?? .85;
+  if (st.mock){
+    const ms = dbMocks.concat(ls.get("oop-mock-history", [])).filter(m => m.year === st.mock && m.at >= since);
+    const best = ms.length ? Math.max(...ms.map(m => m.score/100)) : null;
+    return { tries: ms.length, best, passed: best != null && best >= (st.pass ?? .7) };
+  }
+  const as = attempts.filter(a => a.qid === st.qid && a.at >= since);
+  const best = as.length ? Math.max(...as.map(a => a.score)) : null;
+  return { tries: as.length, best, last: as.length ? as.reduce((x,a)=>a.at>x.at?a:x).score : null, passed: best != null && best >= pass };
+}
+function nextStepIndex(){
+  const skips = ls.get(skipKey(), []);
+  const ss = course.steps.map(stepState);
+  let i = ss.findIndex((s,k) => !s.passed && !skips.includes(k));
+  if (i < 0) i = ss.findIndex(s => !s.passed);
+  return i;
+}
+function stepTitle(st){
+  if (st.mock) return st.mock + " 중간 모의고사";
+  const q = qById(st.qid); if (!q) return st.qid;
+  return (q.source === "claude" ? "변형 " : q.year + (String(q.id).includes("F") ? " 기말 " : " ")) + q.no;
+}
+function renderCourse(){
+  const el = $("#v-course");
+  if (!course || !course.steps?.length){ el.innerHTML = `<div class="sheet empty">아직 코스가 없어. Claude한테 "코스 짜줘"라고 하면 여기 생겨.</div>`; return; }
+  const ss = course.steps.map(stepState);
+  const done = ss.filter(s => s.passed).length;
+  const skips = ls.get(skipKey(), []);
+  if (courseFocus == null || courseFocus >= course.steps.length) courseFocus = nextStepIndex();
+  const fi = courseFocus;
+  let lastStage = null;
+  const list = course.steps.map((st,k) => {
+    const s = ss[k];
+    const head = st.stage && st.stage !== lastStage ? `<div class="stage">${esc(st.stage)}</div>` : ""; lastStage = st.stage || lastStage;
+    const cls = ["step", s.passed ? "pass" : "", skips.includes(k) && !s.passed ? "skip" : "", k === fi ? "cur" : ""].join(" ");
+    const right = s.best != null ? `<span class="st ${level(s.best)}">${Math.round(s.best*100)}</span>` : "";
+    return `${head}<button class="${cls}" data-step="${k}"><span class="n">${s.passed ? "✓" : k+1}</span><span class="t">${esc(stepTitle(st))}</span>${right}</button>`;
+  }).join("");
+  let main;
+  if (fi < 0){
+    main = `<div class="sheet empty" style="color:var(--ok)"><span class="pen" style="color:var(--ok)">완주!</span><p>코스 전부 통과했어. Claude한테 "확인쫌" 하면 다음 코스를 짜줄 거야.</p></div>`;
+  } else {
+    const st = course.steps[fi], s = ss[fi];
+    const goal = `<div class="goal"><b>STEP ${fi+1}/${course.steps.length}</b> · ${esc(st.goal || "")}<div class="note" style="margin-top:4px">통과 기준: ${Math.round((st.pass ?? (st.mock ? .7 : .85))*100)}점 이상${s.tries ? ` · 이 코스에서 ${s.tries}번 시도, 최고 ${Math.round((s.best||0)*100)}점` : ""}</div></div>`;
+    if (st.mock){
+      main = `<div class="sheet qcard">${goal}
+        <p class="fb">80분 타이머를 켜고 ${st.mock} 시험지를 처음부터 끝까지 풀어. 중간에 답 보지 말고 끝까지 가는 게 포인트야.</p>
+        <div class="actions"><button class="btn primary" data-startmock="${st.mock}">모의고사 시작</button>${stepNav(fi, s)}</div></div>`;
+    } else {
+      const q = qById(st.qid);
+      main = q ? `${goal.replace('class="goal"','class="goal" style="margin-bottom:12px"')}${questionCard(q, null, true)}<div id="cverdict" style="margin-top:12px">${verdictBlock(fi)}</div>`
+               : `<div class="sheet empty">문항(${esc(st.qid)})을 불러오는 중…</div>`;
+    }
+  }
+  el.innerHTML = `<div class="sheet chead">
+      <div class="row"><h2>${esc(course.title || "오늘의 코스")}</h2><span class="num muted">${done}/${course.steps.length} 통과</span></div>
+      <div class="pbar"><b style="width:${Math.round(done/course.steps.length*100)}%"></b></div>
+      ${course.note ? `<div class="note">${esc(course.note)}</div>` : ""}
+    </div>
+    <div class="course"><div class="sheet steps">${list}</div><div>${main}</div></div>`;
+  if (fi >= 0 && !course.steps[fi].mock) curId = course.steps[fi].qid;
+}
+function stepNav(fi, s){
+  const isLast = fi === course.steps.length - 1;
+  return `<span style="flex:1"></span>${!s.passed ? `<button class="btn ghost" data-skip="${fi}">나중에 하기</button>` : ""}${s.passed && !isLast ? `<button class="btn primary" data-nextstep="1">다음 단계 →</button>` : ""}`;
+}
+function verdictBlock(fi){
+  const st = course.steps[fi], q = qById(st.qid), r = results[q?.id];
+  const s = stepState(st);
+  if (!r || r.state === "loading" || r.score == null) return s.passed ? `<div class="verdict ok"><span class="msg">이미 통과한 단계야.</span>${stepNav(fi, s)}</div>` : `<div class="actions">${stepNav(fi, s)}</div>`;
+  const pass = st.pass ?? .85;
+  if (r.score >= pass) return `<div class="verdict ok"><span class="msg">통과! ${Math.round(r.score*100)}점</span>${stepNav(fi, s)}</div>`;
+  return `<div class="verdict no"><span class="msg">${Math.round(r.score*100)}점, 통과까지 ${Math.round(pass*100)}점. 빨간 항목이랑 포인트 읽고, 답 지우고 처음부터 다시 써봐.</span>
+    <button class="btn" data-retry="1">답 지우고 다시</button>${stepNav(fi, s)}</div>`;
+}
+
+/* ── render: dashboard ───────────────────────── */
+function renderDash(){
+  const latest = latestByQ(), ts = topicStats();
+  const inScope = allQ().filter(q => q.scope !== "out");
+  const solved = inScope.filter(q => latest[q.id]);
+  const avg = solved.length ? solved.reduce((s,q)=>s+latest[q.id].score,0)/solved.length : null;
+  const wrongN = solved.filter(q => latest[q.id].score < .7).length;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const todayN = attempts.filter(a => a.at >= today.getTime()).length;
+  const ptsTot = inScope.reduce((s,q)=>s+q.pts,0), ptsGot = solved.reduce((s,q)=>s+q.pts*latest[q.id].score,0);
+
+  const rows = Object.entries(ts).sort((a,b) => (b[1].years.size + 2*b[1].recent) - (a[1].years.size + 2*a[1].recent)).map(([t,s]) => {
+    const lv = level(s.mastery);
+    const dots = MID_YEARS.map(y => `<i class="${s.years.has(y) ? "on" + (RECENT.has(y) ? " recent" : "") : ""}" title="${y}"></i>`).join("");
+    return `<tr class="${s.scope === "out" ? "dim" : ""}">
+      <td><div class="tname">${esc(TOPICS[t][0])}</div><div class="tscope">${SCOPE[s.scope]}</div></td>
+      <td><span class="dots" aria-label="${s.years.size}개 연도 출제">${dots}</span> <span class="num">${s.years.size}</span></td>
+      <td><div class="bar" title="${s.tried}/${s.total} 문항 시도"><b style="width:${Math.round((s.mastery ?? 0)*100)}%"></b></div>
+          <span class="num muted">${s.tried}/${s.total}</span></td>
+      <td><span class="st ${lv}">${LV[lv]}</span></td>
+      <td><button class="btn sm ghost" data-topic="${t}">풀기 →</button></td></tr>`;
+  }).join("");
+
+  const recs = recommendations(7).map(q => {
+    const l = latest[q.id];
+    const why = l ? `지난번 ${Math.round(l.score*100)}점` : (q.year >= 2022 ? "최근 기출 · 미시도" : "미시도");
+    return `<button class="rec" data-go="${esc(q.id)}"><span class="yr">${q.year}${String(q.id).includes("F")?" 기말":""} ${esc(q.no)}</span>
+      <span class="q">${esc(q.prompt)}</span><span class="why">${why}</span></button>`;
+  }).join("");
+
+  $("#v-dash").innerHTML = `
+    <div class="stats">
+      <div class="sheet stat"><div class="label">푼 문항</div><div class="v">${solved.length}<span class="muted" style="font-size:15px"> / ${inScope.length}</span></div><div class="s">범위 밖 문항 제외</div></div>
+      <div class="sheet stat"><div class="label">평균 점수</div><div class="v">${avg == null ? "—" : Math.round(avg*100)}</div><div class="s">문항별 최근 채점 기준</div></div>
+      <div class="sheet stat"><div class="label">배점 환산</div><div class="v">${Math.round(ptsGot)}<span class="muted" style="font-size:15px"> / ${ptsTot}</span></div><div class="s">전 기출 배점 합</div></div>
+      <div class="sheet stat"><div class="label">오답 대기</div><div class="v" style="color:var(--bad)">${wrongN}</div><div class="s">최근 70점 미만</div></div>
+      <div class="sheet stat"><div class="label">오늘</div><div class="v">${todayN}</div><div class="s">채점한 횟수</div></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <h2>주제별 출제 빈도와 숙달도</h2>
+        <p class="note" style="margin:-4px 0 10px">막대 하나가 중간고사 한 해(2009→2025)야. 빨간 칸은 최근 4년(2022–2025). 위에서부터 자주 나온 순서.</p>
+        <div class="sheet tbl-wrap"><table class="topics">
+          <thead><tr><th>주제</th><th>출제 연도</th><th>숙달도</th><th>상태</th><th></th></tr></thead>
+          <tbody>${rows}</tbody></table></div>
+      </div>
+      <div>
+        <h2>다음에 풀 문제</h2>
+        <p class="note" style="margin:-4px 0 10px">출제 빈도 높고, 최근에 나왔고, 아직 못 맞힌 순서.</p>
+        <div class="sheet recs">${recs || `<div class="empty">추천할 문제가 없어. 다 숙달!</div>`}</div>
+        <h2 style="margin-top:22px">범위 표시</h2>
+        <div class="sheet" style="padding:12px 14px;font-size:13px;display:flex;flex-direction:column;gap:6px">
+          <div><span class="tag">배운 범위</span> L01–L04 앞부분, C++ in Summary (10/7 수업까지)</div>
+          <div><span class="tag scope-likely">L04 후반</span> 복사 생성자·static·const·inline·friend·참조. 10/14 수업에서 나갈 것으로 예상</div>
+          <div><span class="tag scope-low">Proj2 코딩</span> Complex/inf_int 구현. 프로젝트 마감이 시험 뒤라 가능성 낮음</div>
+          <div><span class="tag scope-out">범위 밖</span> 상속·virtual. 예전 시험에만 나옴</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ── render: practice ───────────────────────── */
+function filteredQs(){
+  const latest = latestByQ();
+  return allQ().filter(q => {
+    if (filters.hideOut && q.scope === "out") return false;
+    if (filters.topic && !q.topics.includes(filters.topic)) return false;
+    if (filters.year && String(q.year) + (String(q.id).includes("F") ? "F" : "") !== filters.year && !(filters.year === "extra" && q.source === "claude")) return false;
+    if (filters.type && q.type !== filters.type) return false;
+    const l = latest[q.id];
+    if (filters.status === "new" && l) return false;
+    if (filters.status === "wrong" && !(l && l.score < .7)) return false;
+    if (filters.status === "notgood" && l && l.score >= .85) return false;
+    return true;
+  }).sort((a,b) => b.year - a.year || a.id.localeCompare(b.id, undefined, {numeric:true}));
+}
+function renderPractice(keepFocus){
+  const qs = filteredQs(), latest = latestByQ();
+  if (!qs.find(q => q.id === curId)) curId = qs[0]?.id ?? null;
+  const yearOpts = MID_YEARS.slice().reverse().map(y => `<option value="${y}" ${filters.year==String(y)?"selected":""}>${y} 중간</option>`).join("")
+    + `<option value="2022F" ${filters.year==="2022F"?"selected":""}>2022 기말(일부)</option>`
+    + (extra.length ? `<option value="extra" ${filters.year==="extra"?"selected":""}>Claude 변형 문제</option>` : "");
+  const topicOpts = Object.keys(TOPICS).map(t => `<option value="${t}" ${filters.topic===t?"selected":""}>${esc(TOPICS[t][0])}</option>`).join("");
+  const list = qs.map(q => {
+    const l = latest[q.id];
+    return `<button class="qrow ${q.id===curId?"cur":""}" data-q="${esc(q.id)}"><span class="sd ${l?level(l.score):""}"></span>
+      <span class="t">${esc(q.prompt)}</span><span class="yr">${q.source==="claude"?"변형":q.year} ${esc(q.no)}</span></button>`;
+  }).join("");
+  $("#v-practice").innerHTML = `
+    <div class="filters">
+      <select id="f-topic" aria-label="주제"><option value="">모든 주제</option>${topicOpts}</select>
+      <select id="f-year" aria-label="연도"><option value="">모든 연도</option>${yearOpts}</select>
+      <select id="f-type" aria-label="유형"><option value="">모든 유형</option>${Object.entries(TYPE).map(([k,v])=>`<option value="${k}" ${filters.type===k?"selected":""}>${v}</option>`).join("")}</select>
+      <select id="f-status" aria-label="상태">
+        <option value="" ${!filters.status?"selected":""}>전체</option>
+        <option value="new" ${filters.status==="new"?"selected":""}>안 푼 것</option>
+        <option value="notgood" ${filters.status==="notgood"?"selected":""}>숙달 전</option>
+        <option value="wrong" ${filters.status==="wrong"?"selected":""}>틀린 것</option></select>
+      <label class="tog"><input type="checkbox" id="f-out" ${filters.hideOut?"checked":""}> 범위 밖 숨기기</label>
+      <span class="note">${qs.length}문항</span>
+    </div>
+    <div class="practice">
+      <div class="sheet qlist">${list || `<div class="empty">조건에 맞는 문제가 없어.</div>`}</div>
+      <div id="qpane">${curId ? questionCard(qById(curId), qs) : `<div class="sheet empty">왼쪽에서 문제를 골라줘.</div>`}</div>
+    </div>`;
+  const cur = $(".qrow.cur"); if (cur && !keepFocus) cur.scrollIntoView({ block:"nearest" });
+}
+function questionCard(q, qs, inCourse){
+  const latest = latestByQ()[q.id];
+  const draft = inCourse ? ls.get("oop-cdraft-" + (course?.since||0) + "-" + q.id, "") : ls.get("oop-draft-" + q.id, "");
+  const idx = qs ? qs.findIndex(x => x.id === q.id) : -1;
+  const res = results[q.id];
+  return `<div class="sheet qcard">
+    <div class="qmeta">
+      <span class="label">${q.source==="claude" ? "Claude 변형" : q.year + (String(q.id).includes("F") ? " 기말" : " 중간")} · ${esc(q.no)} · ${q.pts}점 · ${TYPE[q.type]}</span>
+      ${q.topics.map(t => `<span class="tag">${esc(TOPICS[t]?.[0] || t)}</span>`).join("")}
+      <span class="tag scope-${q.scope}">${SCOPE[q.scope]}</span>
+      ${latest ? `<span class="st ${level(latest.score)}">최근 ${Math.round(latest.score*100)}점 · ${attempts.filter(a=>a.qid===q.id).length}회</span>` : ""}
+    </div>
+    <div class="prompt">${esc(q.prompt)}</div>
+    ${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
+    <label class="label" for="ans">내 답 (실전처럼 영어로)</label>
+    <textarea id="ans" data-q="${esc(q.id)}" ${inCourse ? 'data-course="1"' : ""} spellcheck="false" placeholder="${q.type==="blank" ? "(a) ...  (b) ..." : q.type==="trace" ? "(a) line ...\n출력:\n..." : "Answer in English"}">${esc(draft)}</textarea>
+    <div class="actions">
+      ${sample ? `<button class="btn primary" id="b-grade">Claude 채점</button>` : ""}
+      <button class="btn" id="b-reveal">답 보고 자가채점</button>
+      ${inCourse ? "" : `<span style="flex:1"></span>`}
+      ${idx > 0 ? `<button class="btn ghost" data-q="${esc(qs[idx-1].id)}">← 이전</button>` : ""}
+      ${idx >= 0 && idx < qs.length-1 ? `<button class="btn ghost" data-q="${esc(qs[idx+1].id)}">다음 →</button>` : ""}
+    </div>
+    <div id="res">${res ? resultBlock(q, res) : ""}</div>
+  </div>`;
+}
+function resultBlock(q, r){
+  if (r.state === "loading") return `<div class="result"><div class="note">${q.type==="code"||q.type==="trace" ? "Claude가 코드를 읽고 채점하는 중… (보통 10–40초)" : "Claude가 채점하는 중…"}</div></div>`;
+  const mark = r.score == null ? "" : `<span class="pen">${Math.round(r.score*q.pts*10)/10}<small>/${q.pts}</small></span>`;
+  return `<div class="result">
+    ${r.error ? `<div class="err">${esc(r.error)}</div>` : ""}
+    ${r.score != null ? `<div class="mark">${mark}<div class="fb">${esc(r.feedback || "")}</div></div>` : ""}
+    ${r.missed?.length ? `<ul class="missed">${r.missed.map(m=>`<li>${esc(m)}</li>`).join("")}</ul>` : ""}
+    ${r.english ? `<div class="tip"><b>영어 표현</b> ${esc(r.english)}</div>` : ""}
+    <div><div class="label" style="margin-bottom:6px">모범답안</div><pre class="code" style="white-space:pre-wrap">${esc(q.answer)}</pre></div>
+    ${q.tip ? `<div class="tip"><b>포인트</b> ${esc(q.tip)}${q.src ? ` <span class="muted">· ${esc(q.src)}</span>` : ""}</div>` : (q.src ? `<div class="note">출처: ${esc(q.src)}</div>` : "")}
+    <div class="selfgrade"><span class="note">${r.attemptId ? (r.grader === "claude" ? "채점이 이상하면 직접 고쳐:" : "기록됨. 다시 매기려면:") : "스스로 매겨서 기록:"}</span>
+      <button class="btn sm" data-self="1">맞음</button><button class="btn sm" data-self="0.5">절반</button><button class="btn sm" data-self="0">틀림</button></div>
+  </div>`;
+}
+function refreshCard(){
+  const q = qById(curId); if (!q) return;
+  const box = $("#res"); if (box) box.innerHTML = results[q.id] ? resultBlock(q, results[q.id]) : "";
+  const v = $("#cverdict"); if (v && view === "course" && courseFocus >= 0) v.innerHTML = verdictBlock(courseFocus);
+}
+
+/* ── render: mock ───────────────────────── */
+function mockQs(year){
+  return bank.filter(q => q.year === year && !String(q.id).includes("F") && q.scope !== "out");
+}
+function renderMock(){
+  const el = $("#v-mock");
+  if (!mock){
+    const mocks = ls.get("oop-mock-history", []);
+    el.innerHTML = `<h2>모의고사</h2>
+      <p class="note" style="margin:-4px 0 14px">실제 시험처럼 80분 타이머를 켜고 한 해 시험지를 통째로 풀어. 제출하면 문항별로 채점해서 100점 만점으로 환산해줘. 범위 밖 문항은 빠져 있어.</p>
+      <div class="years">${MID_YEARS.slice().reverse().map(y => {
+        const qs = mockQs(y), pts = qs.reduce((s,q)=>s+q.pts,0);
+        const last = mocks.filter(m => m.year === y).sort((a,b)=>b.at-a.at)[0];
+        return `<button class="sheet yearcard" data-mock="${y}"><span class="y">${y}</span>
+          <span class="note">${qs.length}문항 · ${pts}점</span>
+          <span class="note">${last ? `지난 기록 <b style="color:var(--pen)">${last.score}</b>점` : "아직 안 봄"}</span></button>`;
+      }).join("")}</div>`;
+    return;
+  }
+  const qs = mockQs(mock.year);
+  const graded = mock.done;
+  let body = qs.map((q,i) => {
+    const r = mock.results?.[q.id];
+    return `<div class="sheet mockq">
+      <div class="qmeta"><span class="label">${esc(q.no)} · ${q.pts}점 · ${TYPE[q.type]}</span></div>
+      <div class="prompt">${esc(q.prompt)}</div>
+      ${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
+      <textarea id="m-${i}" data-mq="${esc(q.id)}" spellcheck="false" ${graded?"readonly":""}>${esc(mock.answers?.[q.id] || "")}</textarea>
+      ${r ? resultBlockMock(q, r) : ""}
+    </div>`;
+  }).join("");
+  const total = qs.reduce((s,q)=>s+q.pts,0);
+  const got = graded ? qs.reduce((s,q)=>s+q.pts*(mock.results?.[q.id]?.score||0),0) : 0;
+  el.innerHTML = `<div class="sheet mockhead">
+      <div><div class="label">${mock.year} 중간 모의고사</div>
+        ${graded ? `<span class="pen">${Math.round(got/total*100)}<small>/100</small></span>` : `<div class="timer" id="timer">80:00</div>`}</div>
+      <div class="actions">
+        ${graded ? `<button class="btn" id="mock-exit">목록으로</button>` :
+          `<span class="note" id="mock-prog"></span><button class="btn" id="mock-quit">그만두기</button><button class="btn primary" id="mock-submit">제출하고 채점</button>`}
+      </div></div>${body}`;
+  tickTimer();
+}
+function resultBlockMock(q, r){
+  if (r.state === "loading") return `<div class="note">채점 중…</div>`;
+  return `<div class="result">
+    ${r.error ? `<div class="err">${esc(r.error)}</div>` : ""}
+    <div class="mark"><span class="pen">${r.score==null?"?":Math.round(r.score*q.pts*10)/10}<small>/${q.pts}</small></span><div class="fb">${esc(r.feedback||"")}</div></div>
+    ${r.missed?.length ? `<ul class="missed">${r.missed.map(m=>`<li>${esc(m)}</li>`).join("")}</ul>` : ""}
+    <details><summary class="note" style="cursor:pointer">모범답안 보기</summary><pre class="code" style="white-space:pre-wrap;margin-top:8px">${esc(q.answer)}</pre>${q.tip?`<div class="tip" style="margin-top:8px"><b>포인트</b> ${esc(q.tip)}</div>`:""}</details>
+  </div>`;
+}
+let timerHandle = null;
+function tickTimer(){
+  clearInterval(timerHandle);
+  if (!mock || mock.done) return;
+  const upd = () => {
+    const el = $("#timer"); if (!el) return;
+    const left = Math.max(0, 80*60 - Math.floor((Date.now() - mock.start)/1000));
+    el.textContent = String(Math.floor(left/60)).padStart(2,"0") + ":" + String(left%60).padStart(2,"0");
+    el.classList.toggle("low", left < 600);
+    if (left === 0) el.textContent = "시간 끝";
+  };
+  upd(); timerHandle = setInterval(upd, 1000);
+}
+async function submitMock(){
+  const qs = mockQs(mock.year);
+  mock.results = {};
+  const btn = $("#mock-submit"); if (btn) btn.disabled = true;
+  const prog = $("#mock-prog");
+  let i = 0;
+  const one = async q => {
+    const ans = (mock.answers?.[q.id] || "").trim();
+    let r;
+    if (!ans) r = { score:0, feedback:"빈칸으로 냈어.", missed:[] };
+    else if (!sample) r = { score:null, feedback:"Claude 채점을 쓸 수 없어서 모범답안만 보여줄게. 문제 풀기 탭에서 자가채점할 수 있어.", missed:[] };
+    else { try { r = await claudeGrade(q, ans); } catch(e){ r = { score:null, error: sampleErrMsg(e), missed:[] }; } }
+    mock.results[q.id] = r;
+    if (r.score != null) await saveAttempt({ qid:q.id, score:r.score, verdict:r.verdict||"", grader: ans ? "claude" : "blank", answer:ans, feedback:r.feedback||"", missed:r.missed||[], mode:"mock" });
+    i++; if (prog) prog.textContent = `채점 ${i}/${qs.length}`;
+  };
+  const queue = qs.slice();
+  await Promise.all([0,1].map(async () => { while (queue.length) await one(queue.shift()); }));
+  mock.done = true;
+  const total = qs.reduce((s,q)=>s+q.pts,0);
+  const got = qs.reduce((s,q)=>s+q.pts*(mock.results[q.id]?.score||0),0);
+  const hist = ls.get("oop-mock-history", []); hist.push({ year:mock.year, score:Math.round(got/total*100), at:Date.now(), mins: Math.round((Date.now()-mock.start)/60000) }); ls.set("oop-mock-history", hist);
+  if (db){ try { await db.collection("mocks").doc(String(Date.now())).set({ year:mock.year, score:Math.round(got/total*100), at:Date.now(), mins: Math.round((Date.now()-mock.start)/60000) }); } catch {} }
+  ls.set("oop-mock", mock);
+  renderMock(); window.scrollTo({ top:0 });
+}
+
+/* ── render: wrong notes ───────────────────────── */
+function renderWrong(){
+  const latest = latestByQ();
+  const wrong = allQ().filter(q => latest[q.id] && latest[q.id].score < .7).sort((a,b)=>latest[a.id].score - latest[b.id].score);
+  $("#v-wrong").innerHTML = `<h2>오답노트</h2>
+    <p class="note" style="margin:-4px 0 14px">가장 최근 채점이 70점 미만인 문항. 다시 풀어서 맞히면 여기서 빠져.</p>
+    ${wrong.length ? wrong.map(q => { const l = latest[q.id]; return `<div class="sheet wrong">
+      <div class="qmeta"><span class="label">${q.source==="claude"?"변형":q.year} · ${esc(q.no)} · ${q.pts}점</span>${q.topics.map(t=>`<span class="tag">${esc(TOPICS[t]?.[0]||t)}</span>`).join("")}
+        <span class="pen" style="font-size:30px;margin-left:auto">${Math.round(l.score*100)}</span></div>
+      <div class="prompt">${esc(q.prompt)}</div>
+      ${l.feedback ? `<div class="fb">${esc(l.feedback)}</div>` : ""}
+      <div class="cols"><div><div class="label">내 답</div><pre class="code">${esc(l.answer || "(기록 없음)")}</pre></div>
+        <div><div class="label">모범답안</div><pre class="code">${esc(q.answer)}</pre></div></div>
+      <div><button class="btn sm" data-go="${esc(q.id)}">다시 풀기 →</button></div></div>`; }).join("")
+    : `<div class="sheet empty">아직 틀린 문제가 없어. 문제를 풀고 채점하면 여기 모여.</div>`}`;
+}
+
+/* ── render: history ───────────────────────── */
+function renderHist(){
+  const days = [];
+  const d0 = new Date(); d0.setHours(0,0,0,0);
+  for (let i = 13; i >= 0; i--){
+    const s = d0.getTime() - i*86400000, e = s + 86400000;
+    const as = attempts.filter(a => a.at >= s && a.at < e);
+    days.push({ s, n: as.length, avg: as.length ? as.reduce((x,a)=>x+a.score,0)/as.length : null });
+  }
+  const W = 640, H = 170, pad = 28, bw = (W - pad*2) / 14;
+  const maxN = Math.max(5, ...days.map(d=>d.n));
+  const bars = days.map((d,i) => {
+    const h = (H - 50) * d.n / maxN, x = pad + i*bw + 4, y = H - 24 - h;
+    const dt = new Date(d.s);
+    return `<rect x="${x}" y="${y}" width="${bw-8}" height="${Math.max(h, d.n?2:0)}" rx="3" fill="var(--accent)" opacity="${d.n?0.85:0}"/>
+      ${d.avg != null ? `<circle cx="${x+(bw-8)/2}" cy="${H-24-(H-50)*d.avg}" r="3.5" fill="var(--pen)"/>` : ""}
+      ${d.n ? `<text x="${x+(bw-8)/2}" y="${y-5}" font-size="10" text-anchor="middle" fill="var(--muted)" font-family="JetBrains Mono, monospace">${d.n}</text>` : ""}
+      <text x="${x+(bw-8)/2}" y="${H-8}" font-size="10" text-anchor="middle" fill="var(--muted)" font-family="JetBrains Mono, monospace">${dt.getMonth()+1}/${dt.getDate()}</text>`;
+  }).join("");
+  const rows = attempts.slice().sort((a,b)=>b.at-a.at).slice(0,60).map(a => {
+    const q = qById(a.qid); const dt = new Date(a.at);
+    return `<tr><td class="num">${dt.getMonth()+1}/${dt.getDate()} ${String(dt.getHours()).padStart(2,"0")}:${String(dt.getMinutes()).padStart(2,"0")}</td>
+      <td><button class="btn ghost sm" data-go="${esc(a.qid)}">${q ? (q.source==="claude"?"변형":q.year) + " " + esc(q.no) : esc(a.qid)}</button></td>
+      <td>${q ? esc(TOPICS[q.topics[0]]?.[0] || "") : ""}</td>
+      <td><span class="st ${level(a.score)}">${Math.round(a.score*100)}</span></td>
+      <td class="note">${a.grader === "claude" ? "Claude" : a.grader === "blank" ? "빈칸" : "자가"}${a.mode==="mock"?" · 모의":""}</td></tr>`;
+  }).join("");
+  const mocks = ls.get("oop-mock-history", []).slice().sort((a,b)=>b.at-a.at);
+  $("#v-hist").innerHTML = `<h2>최근 2주</h2>
+    <div class="sheet" style="padding:12px 14px;margin-bottom:22px;overflow-x:auto">
+      <svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="일별 채점 횟수와 평균 점수">
+        <line x1="${pad}" x2="${W-pad}" y1="${H-24}" y2="${H-24}" stroke="var(--line)"/>
+        <line x1="${pad}" x2="${W-pad}" y1="26" y2="26" stroke="var(--line)" stroke-dasharray="3 4"/>
+        <text x="${W-pad}" y="20" font-size="10" text-anchor="end" fill="var(--muted)" font-family="JetBrains Mono, monospace">● 평균 점수 (점선 = 100)</text>
+        ${bars}
+      </svg>
+      <div class="note">막대: 그날 채점한 횟수 · 빨간 점: 그날 평균 점수</div>
+    </div>
+    ${mocks.length ? `<h2>모의고사</h2><div class="sheet tbl-wrap" style="margin-bottom:22px"><table class="hist"><thead><tr><th>날짜</th><th>시험지</th><th>점수</th><th>걸린 시간</th></tr></thead><tbody>
+      ${mocks.map(m => { const dt = new Date(m.at); return `<tr><td class="num">${dt.getMonth()+1}/${dt.getDate()}</td><td>${m.year} 중간</td><td><span class="pen" style="font-size:26px">${m.score}</span></td><td class="num">${m.mins}분</td></tr>`; }).join("")}
+      </tbody></table></div>` : ""}
+    <h2>채점 기록</h2>
+    <div class="sheet tbl-wrap">${rows ? `<table class="hist"><thead><tr><th>시각</th><th>문항</th><th>주제</th><th>점수</th><th>방식</th></tr></thead><tbody>${rows}</tbody></table>` : `<div class="empty">아직 기록이 없어. 문제 풀기 탭에서 첫 문제를 채점하면 여기 쌓여.</div>`}</div>`;
+}
+
+/* ── shell ───────────────────────── */
+function renderAll(){
+  const d = Math.ceil((EXAM_DAY - new Date(new Date().toDateString()))/86400000);
+  $("#dday").textContent = d > 0 ? `중간고사 주간까지 D-${d}` : d > -7 ? "중간고사 주간" : "중간고사 끝";
+  const tc = $("#tab-course"); if (tc) tc.hidden = !course;
+  if (view === "course"){
+    const ta = $("#ans"); if (document.activeElement === ta) return;
+    if (results[curId]?.state === "loading") return;
+    renderCourse();
+  }
+  else if (view === "dash") renderDash();
+  else if (view === "practice"){
+    const ta = $("#ans"); const focused = document.activeElement === ta;
+    if (focused) { refreshList(); return; }
+    renderPractice();
+  }
+  else if (view === "mock"){ if (!mock || mock.done) renderMock(); }
+  else if (view === "wrong") renderWrong();
+  else if (view === "hist") renderHist();
+}
+function refreshList(){
+  const latest = latestByQ();
+  document.querySelectorAll(".qrow").forEach(b => { const l = latest[b.dataset.q]; const sd = b.querySelector(".sd"); sd.className = "sd " + (l ? level(l.score) : ""); });
+}
+function show(v){
+  view = v; ls.set("oop-view", v);
+  document.querySelectorAll("nav.tabs button").forEach(b => b.setAttribute("aria-selected", String(b.dataset.v === v)));
+  document.querySelectorAll("section.view").forEach(s => s.hidden = s.id !== "v-" + v);
+  if (v === "mock") renderMock(); else renderAll();
+  window.scrollTo({ top:0 });
+}
+function goQuestion(id){
+  const q = qById(id); if (!q) return;
+  if (!filteredQs().find(x => x.id === id)) filters = { topic:"", year:"", type:"", status:"", hideOut: q.scope !== "out" };
+  ls.set("oop-filters", filters);
+  curId = id; ls.set("oop-cur", id); show("practice");
+}
+
+document.addEventListener("click", async e => {
+  const t = e.target.closest("button, [data-go]"); if (!t) return;
+  if (t.matches("nav.tabs button")) return show(t.dataset.v);
+  if (t.dataset.go) return goQuestion(t.dataset.go);
+  if (t.dataset.step != null){ courseFocus = Number(t.dataset.step); renderCourse(); $("#v-course .course > div:last-child")?.scrollIntoView({ block:"nearest" }); return; }
+  if (t.dataset.nextstep){ const q = curId; courseFocus = nextStepIndex(); if (q) delete results[q]; renderCourse(); window.scrollTo({ top:0 }); return; }
+  if (t.dataset.skip != null){ const k = Number(t.dataset.skip); const sk = ls.get(skipKey(), []); if (!sk.includes(k)) sk.push(k); ls.set(skipKey(), sk); delete results[curId]; courseFocus = nextStepIndex(); renderCourse(); window.scrollTo({ top:0 }); return; }
+  if (t.dataset.retry){ const q = curId; delete results[q]; ls.set("oop-cdraft-" + (course?.since||0) + "-" + q, ""); renderCourse(); $("#ans")?.focus(); return; }
+  if (t.dataset.startmock){ mock = { year:Number(t.dataset.startmock), start:Date.now(), answers:{}, done:false }; ls.set("oop-mock", mock); return show("mock"); }
+  if (t.dataset.topic){ filters = { ...filters, topic:t.dataset.topic, year:"", status:"" }; ls.set("oop-filters", filters); curId = null; return show("practice"); }
+  if (t.dataset.q && (t.classList.contains("qrow") || t.classList.contains("ghost"))){ curId = t.dataset.q; ls.set("oop-cur", curId); renderPractice(); $("#qpane")?.scrollIntoView({ block:"nearest" }); return; }
+  if (t.id === "b-reveal"){
+    const q = qById(curId); results[q.id] = results[q.id]?.score != null ? results[q.id] : { score:null }; refreshCard(); return;
+  }
+  if (t.id === "b-grade"){
+    const q = qById(curId); const ans = ($("#ans")?.value || "").trim();
+    if (!ans){ results[q.id] = { score:null, error:"답을 먼저 써줘. 모르면 '답 보고 자가채점'을 눌러." }; return refreshCard(); }
+    t.disabled = true; results[q.id] = { state:"loading" }; refreshCard();
+    try {
+      const r = await claudeGrade(q, ans);
+      const attemptId = await saveAttempt({ qid:q.id, score:r.score, verdict:r.verdict, grader:"claude", answer:ans, feedback:r.feedback, missed:r.missed, mode:"practice" });
+      results[q.id] = { ...r, grader:"claude", attemptId };
+    } catch(err){ results[q.id] = { score:null, error: sampleErrMsg(err) }; }
+    if (curId === q.id) { refreshCard(); const b = $("#b-grade"); if (b) b.disabled = false; }
+    return;
+  }
+  if (t.dataset.self != null){
+    const q = qById(curId); const score = Number(t.dataset.self); const r = results[q.id] || {};
+    if (r.attemptId){ await updateAttempt(r.attemptId, { score, grader: r.grader === "claude" ? "claude+self" : "self" }); results[q.id] = { ...r, score, feedback: r.feedback }; }
+    else {
+      const ans = ($("#ans")?.value || "").trim();
+      const attemptId = await saveAttempt({ qid:q.id, score, verdict: score>=1?"correct":score>0?"partial":"wrong", grader:"self", answer:ans, feedback:"", missed:[], mode:"practice" });
+      results[q.id] = { ...r, score, grader:"self", attemptId, feedback: score>=1?"맞음으로 기록했어.":score>0?"절반으로 기록했어.":"틀림으로 기록했어. 오답노트에 들어가." };
+    }
+    refreshCard(); refreshList(); return;
+  }
+  if (t.dataset.mock){ mock = { year:Number(t.dataset.mock), start:Date.now(), answers:{}, done:false }; ls.set("oop-mock", mock); return renderMock(); }
+  if (t.id === "mock-submit") return submitMock();
+  if (t.id === "mock-quit" || t.id === "mock-exit"){ mock = null; ls.set("oop-mock", null); clearInterval(timerHandle); return renderMock(); }
+});
+document.addEventListener("input", e => {
+  const t = e.target;
+  if (t.id === "ans") ls.set(t.dataset.course ? "oop-cdraft-" + (course?.since||0) + "-" + t.dataset.q : "oop-draft-" + t.dataset.q, t.value);
+  if (t.dataset.mq && mock){ mock.answers = mock.answers || {}; mock.answers[t.dataset.mq] = t.value; ls.set("oop-mock", mock); }
+});
+document.addEventListener("change", e => {
+  const t = e.target; const map = { "f-topic":"topic", "f-year":"year", "f-type":"type", "f-status":"status" };
+  if (map[t.id]){ filters[map[t.id]] = t.value; }
+  else if (t.id === "f-out"){ filters.hideOut = t.checked; }
+  else return;
+  ls.set("oop-filters", filters); curId = null; renderPractice();
+});
+
+/* ── boot ───────────────────────── */
+async function boot(){
+  attempts = ls.get("oop-attempts", []).map(a => ({ ...a, _id: a._id || "local" }));
+  show(view);
+  try { const r = await fetch("bank.json"); bank = (await r.json()).questions; }
+  catch { $("main").innerHTML = `<div class="sheet empty">문제은행(bank.json)을 불러오지 못했어. 새로고침해줘.</div>`; return; }
+  renderAll(); setStoreChip(); setGraderChip();
+  if (window.claude?.use){
+    claude.use("sample").then(s => { sample = s; setGraderChip(); if (view === "practice") renderPractice(true); }).catch(()=>{});
+    const d = await claude.use("db").catch(() => null);
+    if (d){
+      db = d; setStoreChip();
+      db.collection("attempts").orderBy("at","desc").limit(1000).onSnapshot(snap => {
+        const remote = snap.docs.map(x => ({ ...x.data(), _id: x.id }));
+        const local = ls.get("oop-attempts", []).map(a => ({ ...a, _id: a._id || "local" }));
+        attempts = remote.concat(local.filter(l => !remote.find(r => r._id === l._id)));
+        renderAll();
+      }, () => { db = null; setStoreChip(); });
+      db.doc("course/current").onSnapshot(snap => {
+        const firstTime = !course;
+        course = snap.exists ? snap.data() : null;
+        if (course && firstTime && !ls.get("oop-course-seen-" + course.since, false)){ ls.set("oop-course-seen-" + course.since, true); courseFocus = null; show("course"); return; }
+        renderAll();
+      }, () => {});
+      db.collection("mocks").onSnapshot(snap => { dbMocks = snap.docs.map(x => x.data()); renderAll(); }, () => {});
+      db.collection("extra_questions").onSnapshot(snap => {
+        extra = snap.docs.map(x => ({ id:x.id, source:"claude", year:0, no:"", pts:5, type:"short", topics:[], scope:"in", code:"", tip:"", src:"", ...x.data() }));
+        renderAll();
+      }, () => {});
+    }
+  }
+}
+boot();
+})();
+</script>
+

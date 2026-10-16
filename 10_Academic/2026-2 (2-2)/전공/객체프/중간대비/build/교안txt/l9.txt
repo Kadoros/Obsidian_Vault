@@ -1,0 +1,36 @@
+[ This is not homework. You do not need to submit anything for this.
+  Just think about the questions below and try answer to the questions. ]
+
+static memory allocation vs dynamic memory allocation
+
+when we can create and use arrays.
+
+example of static memory allocation for using array:
+    int x[10];
+    x[0]=3;
+    x[2]=7;
+
+example of dynamic memory allocation for using array:
+    // C-style
+    int* x;
+    x = (int*)malloc(sizeof(x)*10);
+    x[0]=3;
+    x[2]=7;
+     …
+    free(x);
+
+     // C++ style
+     int* y;
+     int n=10;
+     y = new int[n];
+     y[0]=3;
+     y[2]=7;
+      …
+     delete[] y;
+
+Question: What are
+  1. advantages of the static memory allocation for using array:
+  2. disadvantages of static memory allocation for using array:
+  3. advantages of dynamic memory allocation for using array:
+  4. disadvantages of dynamic memory allocation for using array:
+

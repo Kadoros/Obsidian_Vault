@@ -1,0 +1,704 @@
+C++ in Summary
+               1. C++ Compiler
+• Compiler
+   – Converting high-level language code to machine language code
+            C++ program                             Machine
+                                 Compiler           language
+             int main…                              010101…
+
+
+• C++ compiler generates executable file (binary code) from
+  C++ source code (files).
+
+• Visual Studio 20xx
+   – Installed in our PC rooms (Building 208 4th, 5th, 6th floors)
+
+• g++ (LINUX, macOS, MS Windows, cygwin, …)
+   > g++ -o TestProg TestProg.cpp
+   Ø ./TestProg
+ 2. Useful Youtube Tutorials for
+         C++ Beginner
+• Compile C++ with Visual Studio 2017
+     https://youtu.be/2Oi0jynRy9E
+
+• C++ Tutorial for Beginners – Full Course
+     https://youtu.be/vLnPwxZdW4Y
+
+• Using Makefile for compiling multiple C++
+  source files
+      https://youtu.be/aw9wHbFTnAQ
+       Visual Studio 2008 :
+Creating Command-Line Program
+       Visual Studio 2008
+Creating Command-Line Program
+       Visual Studio 2008
+Creating Command-Line Program
+       Visual Studio 2008
+Creating Command-Line Program
+       Visual Studio 2008
+Creating Command-Line Program
+
+
+                    Build (compile)
+                      &
+                    execute
+     3. “Hello World!” code
+                    header file
+
+
+
+
+• It is OK to use C code in C++ program
+   4. Standard Input/Output
+• cout : screen stream object
+                                comments
+        (standard output)
+   4. Standard Input/Output
+• cin : keyboard stream object
+              (standard input)
+                              Formatting
+   • formatting similar to printf
+   • std::format (C++20)
+   • std::print (C++23)
+// src_print.cpp                                          [program output]
+#include <iostream>                                       pi=   3.14 , age=21
+#include <cstdio>                                         pi=   3.14 , age=21
+#include <print>                                          pi=   3.14 , age=21
+#include <format>
+
+using namespace std;
+
+int main()
+{
+        double pi=3.141592;
+        int age = 21;
+        printf("pi=%7.2f , age=%d\n",pi,age);
+        cout << format("pi={:7.2f} , age={}\n",pi,age);
+        print("pi={:7.2f} , age={}\n",pi,age);
+        return 0;
+}
+     5. Variables and Data Types
+• Variable
+      – Named memory location where data value is stored
+      – Each variable has a certain type
+      – Variables must be declared before use in a program
+•    char (1 byte) : capable of holding one character (ascii code)
+•    int (4 bytes) : integer
+•    float (4 bytes) : single-precision floating point
+•    double (8 bytes) : double-precision floating point
+     type     size                min value                   max value
+    char    1byte    -27 = -128                  27-1 = 127
+    short   2byte    -215 = -32,768              215-1 = 32,767
+    int     4byte    -231 = -2,147,483,648       231-1 = 2,147,483,647
+
+• min/max values are defined in <limits> header file
+• use unsigned type when representing only positive numbers
+    • unsigned char , unsigned short, unsigned int
+                 6. string type
+• standard type for storing and manipulating text
+  (a class provided by the C++ standard library)
+• Unlike C-style strings (char *),
+• string automatically manages memory and
+• provides many convenient functions
+• getline(cin,str) function is used to read a line of text.
+
+• Example code
+   – src_string.cpp
+   – src_getline.cpp
+7 : Control Structures
+ if, loop (while, for)
+    Conditional Statement: if
+• block : enclosed by { }
+• if , if-else , if – else if - else
+
+• Example
+  if ( num1 >= num2 )
+  {
+       printf(“num1 is greater than num2\n“);
+       printf(“The difference is: %d\n”, num1- num2);
+  } else {
+       printf(“num2 is greater than or equal to num1\n”;
+       printf(“The difference is: %d\n”, num2 – num1);
+  }
+        while - loop
+
+  num = 1;
+  Sum = 0;
+
+             true
+                    sum = sum + num;
+ num <= 10
+                    num = num + 1;
+
+false                num = 1;
+                     sum = 0;
+                     while (num <= 10) {
+                          sum = sum + num;
+                          num = num + 1;
+                      }
+                             for - loop
+• Repetition
+  for ( (1);          (2);     (3)    )                         (1)
+  {
+      (body)
+  }
+                                                                             FALSE
+                                                                (2)
+
+    (1)     control variable initialization
+    (2)     Test Conditon                                             TRUE
+    (3)     Modification of control variable value
+
+                                                                body
+order : (1) (2) body (3) (2) body (3) (2) body … body (3) (2)
+
+
+* Example
+                                                                (3)
+    sum=0;
+    for(int num = 1; num <= 10; num++ ) {
+         sum += num;
+         num++;
+    }
+           break & continue
+• break in loop                • continue in loop
+  – go out of the loop block     – go to condition-test and next
+    and execute next to the        iteration of the loop
+    loop
+
+  – Example                      – Example
+
+  while (1) {                    sum = 0;
+      cin >> j;                  for (i = 0; i <= n; i++) {
+    if (j == 0)                      if (i % 2 == 0)
+          break;                          continue;
+      result = i/j;                  sum += i;
+  }                              }
+                  8. Functions
+
+
+
+
+• local variables vs global variables
+• local variables (including parameter variables)
+    • created when function is called
+    • deleted when function returns
+            why use functions?
+• many reasons
+ – Don’t have to repeat the same block of code many times. Make
+ that code block a function and call it when needed.
+ – Reuse : useful functions can be reused in a number of programs.
+ – top-down technique : Make an outline and hierarchy of the steps
+ needed to solve your problem and create a function for each step.
+ – Easy to debug : Get one function working well then move on to
+ the others.
+ – Easy to modify and expand : Just add more functions to extend
+ program capability
+ – Readabilty : Make program self-documenting and readable.
+                                       9. array
+•       a fixed-sized collection of elements of the same type
+•       stored consecutively in memory
+•       fast random access (ex) x[15]=3;
+•       string as an array of characters   (ex) src_string_cstyle.c
+    int main()
+    {                                       int main()
+        int x0, x1, x2, x3, x4;             {
+                                                int x[5], i;
+        cout << "Get 5 integers : ";
+        cin >> x0;                              cout << "Get 5 integers : ";
+        cin >> x1;                              for (i = 0; i < 5; ++i)
+        cin >> x2;                                  cin >> x[i];
+        cin >> x3;
+        cin >> x4;                              cout << "Reverse order : ";
+                                                for (i = 4; i >= 0; --i)
+        cout << "Reverse Order : ";                 cout << x[i] << " " ;
+        cout << x4 << " ";                      cout << "\n";
+        cout << x3 << " ";
+        cout << x2 << " ";                      return 0;
+        cout << x1 << " ";                  }
+        cout << x0 << ”\n";
+        return 0;
+    }
+                                 10. pointer
+•   pointer type variable
+     – “pointer” usually means memory address
+     – a variable that stores memory address
+     – size is always: 8 bytes (in 64-bit systems), 4 bytes (in 32-bit systems)
+int *xPtr, x;        // xPtr is pointer
+                     // x is an integer type
+
+x = 5;               // assignment
+xPtr = &x;           // xPtr points to x that means
+                     // the value of xPtr is the address of x
+
+*xPtr = 10;          // the value xPtr points to is changed to 10
+                     // that means x becomes 10
+cout << x;           // result is 10
+
+
+•   Remember
+     – *
+           (i) multiplication operator (binary operator), ex) z=x*y;
+           (ii) the-value-of operator (unary operator), ex) *x=5;
+           (iii) pointer type declaration, ex) int *x;
+     – &
+           (i) bitwise-AND operator (binary operator), ex) z=x&y;
+           (ii) address-of operator (unary operator), ex) x=&y;
+           (iii) reference type declaration, ex) int& y=x;
+ 11. Dynamic memory allocation
+• array/pointer : almost the same as C
+• dynamic memory allocation
+  – “dynamic” means “… occurs at run-time (execution-time)”
+  – malloc (in C) ó new (in C++)
+  – free (in C) ó delete (in C++)
+    ex) in C                          ex) in C++
+    int *x;                           int *x;
+    x=(int*)malloc(10*sizeof(int));   x=new int[10];
+
+    …                                 …
+
+    free(x);                          delete[] x;
+
+
+
+• static allocation vs dynamic allocation
+  – see the class webpage , src_array.cpp
+12. C++ class
+                    class
+• class: data structure type that can contain
+  member data and member functions.
+• class constructor/destructor
+
+  – member function that is automatically called when
+    the object is created/deleted.
+• pointers to class object
+ #include <iostream>
+ using namespace std;
+
+ class Rectangle {
+    private:
+         int width, height;
+    public:
+         Rectangle() { width=1; height=1; }
+         Rectangle(int x, int y) : width(x), height(y) {}
+         int area() { return width*height; }
+ };
+
+ int main()
+ {
+         Rectangle obj(3,4);
+         Rectangle *foo, *bar, *baz;
+
+        foo = &obj;
+        bar = new Rectangle(5,6);
+        baz = new Rectangle[2];
+
+        cout << "obj's area: " << obj.area() << '\n';
+        cout << "*foo's area: " << foo->area() << '\n';
+        cout << "*bar's area: " << bar->area() << '\n';
+        cout << "baz[0]'s area: " << baz[0].area() << '\n';
+        cout << "baz[1]'s area: " << baz[1].area() << '\n';
+        delete bar;
+        delete[] baz;
+
+        return 0;
+ }
+13. C++ File Processing
+• file stream class
+  – ofstream: stream class to write on files
+  – ifstream: stream class to read from files
+  – fstream: stream class to read and write from/to files
+            File Processing
+• File Open
+  – Text? Or Binary?
+  – In case of writing, append? Or truncate?
+  – File Position (automatic? Or User-Control?)
+
+                File Processing
+File open                             File close
+                 (Read/Write)
+File open mode
+           File Open/Close
+• Default mode
+
+
+
+
+• Check if file open was OK
+
+• Closing a file
+Text File (Write)- Example
+Text File (Read) - Example
+Status Check
+ Get and Put Stream Positioning
+• tellg()/tellp()
+  – Returns current get/put position
+
+
+• seekg()/seekp()
+  – Change the location of the get/put position
+  seekg(position);
+  seekp(position);
+  seekg(offset, direction);
+  seekp(offset, direction);
+File Position Example
+Binary File Processing
+                     보충 자료 (강의 페이지)
+
+•   C++ Namespace (cplusplus.com)
+     –   https://cplusplus.com/doc/oldtutorial/namespaces/
+•   static vs. dynamic memory allocation (토론 자료)
+•   예제 소스: src_print, src_string, src_getline, src_getline_fileio, src_string_cst
+    yle, src_array
+     –   src_getline_fileio 입력 파일: example.txt
+static vs. dynamic memory allocation
+                                  src_print.cpp
+ 1   #include <iostream>
+ 2   #include <cstdio>
+ 3   #include <print>
+ 4   #include <format>
+ 5
+ 6   using namespace std;
+ 7
+ 8   int main()
+ 9   {
+10       double pi=3.141592;
+11       int age = 21;
+12       printf("pi=%7.2f , age=%d\n",pi,age);
+13       cout << format("pi={:7.2f} , age={}\n",pi,age);
+14       print("pi={:7.2f} , age={}\n",pi,age);
+15
+16       return 0;
+17   }
+                              src_string.cpp (1/4)
+ 1   #include <iostream>
+ 2   #include <string>
+ 3   using namespace std;
+ 4
+ 5   int main() {
+ 6       // 1. Creating strings
+ 7       string s1 = "Hello";
+ 8       string s2("World");
+ 9       string s3;               // empty string
+10
+11      // 2. Concatenation
+12      s3 = s1 + " " + s2;
+13      cout << s3 << endl;       // Hello World
+14
+15      // 3. Length
+16      cout << "Length: " << s3.length() << endl;
+17      cout << "Size: " << s3.size() << endl; // same as length()
+18
+19      // 4. Accessing individual characters
+20      cout << s3[0] << endl;     // H
+21      cout << s3.at(1) << endl; // e
+22
+23      // 5. Modifying a character
+24      s3[0] = 'h';
+25      cout << s3 << endl;        // hello World
+26
+27      // 6. Adding text
+                           src_string.cpp (2/4)
+28   s3 += "!";
+29   s3.append(" C++");
+30   cout << s3 << endl;        // hello World! C++
+31
+32   // 7. Finding a substring
+33   size_t pos = s3.find("World");
+34
+35   if (pos != string::npos)
+36       cout << "Found at index: " << pos << endl;
+37
+38   // 8. Extracting a substring
+39   string sub = s3.substr(6, 5);
+40   cout << sub << endl;       // World
+41
+42   // 9. Replacing part of a string
+43   s3.replace(6, 5, "C++");
+44   cout << s3 << endl;        // hello C++! C++
+45
+46   // 10. Inserting text
+47   s3.insert(5, " beautiful");
+48   cout << s3 << endl;        // hello beautiful C++! C++
+49
+50   // 11. Erasing part of a string
+51   s3.erase(5, 10);
+52   cout << s3 << endl;        // hello C++! C++
+53
+54   // 12. String comparison
+                            src_string.cpp (3/4)
+55   string a = "apple";
+56   string b = "banana";
+57
+58   if (a < b)
+59       cout << "apple comes before banana" << endl;
+60
+61   if (a == "apple")
+62       cout << "a is apple" << endl;
+63
+64   // 13. Checking whether a string is empty
+65   if (s3.empty())
+66       cout << "String is empty" << endl;
+67
+68   // 14. Iterating through characters
+69   for (char c : s3)
+70       cout << c << ' ';
+71   cout << endl;
+72
+73   // 15. C-style string when needed
+74   const char* p = s3.c_str();
+75   cout << p << endl;
+76
+77   // 16. Numeric Conversions
+78   string doubleStr = "123.45";
+79   string intStr = "67";
+80   double dval = stod(doubleStr);   // String to double
+81   int ival = stoi(intStr);   // String to int
+                             src_string.cpp (4/4)
+82       string formatted1 = to_string(dval * 2); // Number to string
+83       string formatted2 = to_string(ival * 2); // Number to string
+84       cout << "conversion result: " << formatted1 << " , " << formatted2 << "\n";
+85
+86       return 0;
+87   }
+                            src_getline.cpp (1/2)
+  1 #include <iostream>
+  2 #include <string>
+  3 #include <sstream>
+  4 #include <fstream>
+  5 using namespace std;
+  6
+  7 int main()
+  8 {
+  9     cout << "[student_id] [name] [department] [age] [GPA(score)]\n";
+ 10
+ 11     string student_id;
+ 12     string name;
+ 13     string dept;
+ 14     int age;
+ 15     double GPA;
+ 16     double GPA_total=0.0;
+ 17     string linestr;
+ 18     int count=0;
+ 19
+ 20
+ 21     while (getline(cin,linestr)) {
+ 22 // ifstream myfile("example.txt");
+ 23 // while (getline(myfile,linestr)) {
+ 24         if (linestr.empty()) break;
+ 25         istringstream iss(linestr); // istringstream treats a string as an input
+stream.
+ 26         iss >> student_id >> name >> dept >> age >> GPA ;
+ 27         cout << "student_id: " << student_id << "\n";
+                             src_getline.cpp (2/2)
+28           cout << "name: " << name << "\n";
+29           cout << "department: " << dept << "\n";
+30           cout << "age: " << age << "\n";
+31           cout << "GPA(score): " << GPA << "\n";
+32           GPA_total += GPA;
+33           count++;
+34        }
+35   //   myfile.close();
+36        cout << "GPA average: " << GPA_total/count << "\n";
+37
+38        return 0;
+39   }
+                        src_getline_fileio.cpp (1/2)
+ 1   #include <iostream>
+ 2   #include <string>
+ 3   #include <sstream>
+ 4   #include <fstream>
+ 5   using namespace std;
+ 6
+ 7   int main()
+ 8   {
+ 9       cout << "[student_id] [name] [department] [age] [GPA(score)]\n";
+10
+11      string student_id;
+12      string name;
+13      string dept;
+14      int age;
+15      double GPA;
+16      double GPA_total=0.0;
+17      string linestr;
+18      string temp_str;
+19      int count=0;
+20
+21
+22   //    while (getline(cin,linestr)) {
+23     ifstream myfile("example.txt");
+24     ofstream out("example_out.txt");
+25     while (getline(myfile,linestr)) {
+26           if (linestr.empty()) break;
+27
+                        src_getline_fileio.cpp (2/2)
+ 28          student_id=linestr.substr(0,8);
+ 29          name=linestr.substr(10,10);
+ 30          dept=linestr.substr(20,10);
+ 31          age=stoi(linestr.substr(30,3));
+ 32          GPA=stod(linestr.substr(40,4));
+ 33
+ 34          cout << "student_id: " << student_id << "\n";
+ 35          cout << "name: " << name << "\n";
+ 36          cout << "department: " << dept << "\n";
+ 37          cout << "age: " << age << "\n";
+ 38          cout << "GPA(score): " << GPA << "\n";
+ 39          GPA_total += GPA;
+ 40          count++;
+ 41          temp_str=format("{:10s}{:20s}{:20s}{:10d}{:10.2f}\n",student_id,name,dept
+,age,GPA);
+ 42          cout << temp_str;
+ 43          out << temp_str;
+ 44      }
+ 45    myfile.close();
+ 46    out.close();
+ 47      cout << "GPA average: " << GPA_total/count << "\n";
+ 48
+ 49      return 0;
+ 50 }
+                  example.txt (src_getline_fileio 입력)
+1   20221523   Lisa_Kim Comp_Sci    21   4.12
+2   20242123   Homer_Lee Elec_Eng   22   3.51
+3   20231118   Bart_Park Mech_Eng   23   3.81
+                           src_string_cstyle.c (1/4)
+ 1   #include <stdio.h>
+ 2   #include <string.h>
+ 3   #include <stdlib.h>
+ 4
+ 5   int main(void) {
+ 6       // 1. Creating strings
+ 7       char s1[100] = "Hello";
+ 8       char s2[100] = "World";
+ 9       char s3[200] = "";           // empty string
+10
+11      // 2. Concatenation
+12      strcpy(s3, s1);
+13      strcat(s3, " ");
+14      strcat(s3, s2);
+15      printf("%s\n", s3);           // Hello World
+16
+17      // 3. Length
+18      printf("Length: %zu\n", strlen(s3));
+19
+20      // 4. Accessing individual characters
+21      printf("%c\n", s3[0]);         // H
+22      printf("%c\n", s3[1]);         // e
+23
+24      // 5. Modifying a character
+25      s3[0] = 'h';
+26      printf("%s\n", s3);           // hello World
+27
+                      src_string_cstyle.c (2/4)
+28   // 6. Adding text
+29   strcat(s3, "!");
+30   strcat(s3, " C");
+31   printf("%s\n", s3);            // hello World! C
+32
+33   // 7. Finding a substring
+34   char *pos = strstr(s3, "World");
+35
+36   if (pos != NULL)
+37       printf("Found at index: %td\n", pos - s3);
+38
+39   // 8. Extracting a substring
+40   char sub[6];
+41   strncpy(sub, s3 + 6, 5);
+42   sub[5] = '\0';
+43   printf("%s\n", sub);           // World
+44
+45   // 9. Replacing part of a string
+46   // replacement is not supported in C
+47
+48   // 10. Inserting text
+49   // insertion is not supported in C
+50
+51   // 11. Erasing part of a string
+52   // erase 6 characters starting at index 5
+53   // erase is not supported
+54
+                      src_string_cstyle.c (3/4)
+55   // 12. String comparison
+56   char a[] = "apple";
+57   char b[] = "banana";
+58
+59   if (strcmp(a, b) < 0)
+60       printf("apple comes before banana\n");
+61
+62   if (strcmp(a, "apple") == 0)
+63       printf("a is apple\n");
+64
+65   // 13. Checking whether a string is empty
+66   if (strlen(s3) == 0)
+67       printf("String is empty\n");
+68
+69   // 14. Iterating through characters
+70   for (size_t i = 0; i < strlen(s3); i++)
+71       printf("%c ", s3[i]);
+72
+73   printf("\n");
+74
+75   // 15. C-style string
+76   const char *p = s3;
+77   printf("%s\n", p);
+78
+79   // 16. Numeric conversions
+80   char doubleStr[] = "123.45";
+81   char intStr[] = "67";
+                          src_string_cstyle.c (4/4)
+82
+83       double dval = atof(doubleStr);   // String to double
+84       int ival = (int)atoi(intStr); // String to int
+85
+86       char formatted1[50];
+87       char formatted2[50];
+88
+89       sprintf(formatted1, "%f", dval * 2);
+90       sprintf(formatted2, "%d", ival * 2);
+91
+92       printf("conversion result: %s , %s\n",
+93              formatted1, formatted2);
+94
+95       return 0;
+96   }
+                              src_array.cpp (1/2)
+ 1   #include <iostream>
+ 2   using namespace std;
+ 3
+ 4   int main() {
+ 5       // 1. Standard Array
+ 6       int stackArray[3] = {10, 20, 30};
+ 7
+ 8      // 2. Dynamic Memory Allocation
+ 9      int size;
+10      cout << "input size: ";
+11      cin >> size;
+12      int* heapArray = new int[size];
+13
+14      // 3. Pointer Operations
+15      int* ptrToStack = stackArray;
+16
+17      // Populate the heap array using pointer offset notation
+18      cout << "enter " << size << " integers: \n";
+19      for (int i = 0; i < size; ++i) {
+20          cin >> heapArray[i];
+21      }
+22
+23      // 4. Output Comparisons
+24      for (int i = 0; i < 3; ++i) {
+25          cout << "stackArray[" << i << "]=" << stackArray[i]
+26               << " | *(ptrToStack+" << i << ")=" << *(ptrToStack + i) << "\n";
+27      }
+                              src_array.cpp (2/2)
+28
+29       for (int i = 0; i < size; ++i) {
+30           cout << "*(heapArray+" << i << ")= " << *(heapArray + i)
+31                     << " | heapArray[" << i << "]=" << heapArray[i] << "\n";
+32       }
+33
+34       // 5. Memory Cleanup
+35       // Only heap-allocated memory requires manual deletion.
+36       delete[] heapArray;
+37
+38       return 0;
+39   }
+

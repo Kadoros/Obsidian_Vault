@@ -1,0 +1,596 @@
+           Lecture 4 :
+Data Abstraction with C++ : class
+             Data Abstraction
+n Data Abstraction
+  n Creating classes with appropriate functionality,
+
+    which hide the unnecessary details
+
+
+n Data Encapsulation
+  n Implementation is encapsulated by the interface and
+
+    the only way to get to the implementation legally is
+    through the interface
+
+n Information Hiding
+  n Implementation is hidden from user
+            Internal and External Views
+n Data Abstraction
+   n Separation of interface and implementation
+   n Interface : the outside, or service view, describes what an
+
+     object does
+   n Implementation : the inside view describes how it does
+
+
+
+   n   A Service View
+        n   The ability to characterize an object by the service it provides,
+            without knowing how it performs its task
+
+
+
+
+                            <two views of the same system>
+Benefits of Data Encapsulation
+         Class : Behavior and State
+n   Class
+     n   Fundamental unit of data abstraction in C++
+
+
+n   Behavior (method)
+     n   The actions that an instance can perform in response to a request.
+     n   Implemented by methods
+
+n   State (variable)
+     n   The data that an object must maintain in order to successfully
+         complete its behavior.
+     n   Stored in instance variables (also known as data members, or data
+         fields).
+      Methods (member function)
+n Name
+  n   will be matched to a message to determine when the method
+      should be executed
+
+n Signature
+  n the combination of return type and argument types
+  n Methods with the same name can be distinguished by
+
+    different signatures
+
+n Body
+  n   the code that will be executed when the method is invoked in
+      response to a message
+            Message Passing
+n Differences : message & a function call
+
+
+  n A message is always given to some object, called
+
+    the receiver
+
+  n The action performed in response is determined
+
+    by the receiver, different receivers can do different
+    actions in response to the same message
+      Message Passing Syntax
+n Three different part
+
+
+  aGame.displayCard (aCard, 42, 27);
+
+
+  n Message receiver
+
+  n Message selector
+
+  n Arguments (optional)
+  Avoid data members in the public interface
+
+n Why?
+  n Consistency
+  n Precise control over the accessiblity of data members
+       n No access, Read-only, read-write, write-only
+
+  n   Functional abstraction
+       n You can later replace the data member with a computation
+
+
+
+         class AccessLevels {
+         public :
+                   int getReadOnly() const { return readOnly; }
+                   void setReadWrite(int value) { readWrite=value; }
+                   int getReadWrite() const { return readWrite; }
+                   void setWriteOnly(int value) { writeOnly=value; }
+         private :
+                   int noAccess; // no access to this int
+                   int readOnly;
+                   int readWrite;
+                   int writeOnly;
+         };
+   Accessor (or getter) method
+n A method that simply returns an internal data
+  value
+
+n Why Use?
+  n make the data field read-only
+
+  n Provides better documentation that the data field
+
+    is accessible
+  n Make it easier to later change the access behavior
+
+    (e.g. count # of accesses)
+      Mutator (setter) method
+n used to change the variable of an object
+
+
+n Mutators are less common than
+ accessors, but reasons for using are
+ similar
+       Ensuring reliability of abstractions-
+         class invariants and assertions
+n Class invariant
+   n Every class might have conditions that must always be true
+     inside an object.
+   n Add the condition to ensure that every member function
+     code checks these conditions
+
+
+n In C/C++, we use assert macro : assert(e)
+   n If e is true, just continue
+   n If e is false, the program is stopped with an error message
+
+     indicating the failure of the assertion.
+   n #include <assert.h>
+
+   n can be used to implement programs that are more reliable
+                      Class example
+class PlayingCard {
+public:
+   enum Suits {Spade, Diamond, Club, Heart};
+   enum Colors {Red, Black};
+
+   PlayingCard ();
+   PlayingCard (Suits is, int ir)                // constructor
+   {    suitValue = is; rankValue = ir; faceUp = true; }
+   ~PlayingCard () {}                            // destructor
+
+   Suits suit () const { return suitValue; }           // getter
+   int rank () const;              // getter
+   void setFaceUp (bool up) { faceUp = up; }   // setter
+   Colors color ();
+
+private:
+   Suits suitValue;
+   int rankValue;
+   bool faceUp;
+};
+                   Visibility Modifier
+n differentiate the interface and implementation views
+    of a class
+
+n public
+    n   external (interface , service) view
+    n   can be seen and manipulated by anybody (all clients)
+
+
+n private
+    n   internal (implementation) view
+    n   accessible only within a class (class implementors)
+
+n   protected
+    n   Discussed in inheritance
+                         Constructor
+n   a method that initializes data members of a newly created object.
+n   Implicitly invoked when an object is created
+n   No return type/value
+
+n   has the same name as the class
+      class PlayingCard {
+      // constructor, initialize new playing card
+      public :
+               PlayingCard (Suits is, int ir)
+               {        suit = is; rank = ir; faceUp = true; } ...
+      } ;
+
+n   Member initializer
+              PlayingCard (Suits is, int ir) : suit(is), rank(ir)
+              {        faceUp = true; } ...
+          Default constructor
+n If we did not declare any constructor in
+ class, the compiler would generate a
+ default constructor.
+
+n The default constructor looks like :
+     TintStack::TIntStack() { /* Empty */ }
+               Copy Constructor (1)
+n   A copy constructor is called whenever a new object is created
+    from an existing object with the same type.
+
+n   Typical constructor
+    n   Person q("Mickey"); // constructor is used to build q.
+
+
+n   Copy constructor
+    n   Person r(p); // copy constructor is used to build r.
+    n   Person p = q; // copy constructor is used to initialize in declaration
+    n   f(p); // copy constructor initializes formal value parameter.
+
+
+n   Assignment operator
+    n   p = q; // Assignment operator, no constructor or copy constructor.
+    n          // interpreted as p.operator=(q);
+    n   Person& operator=(const Person& p) { … }
+              Copy Constructor (2)
+n   How to declare copy constructor?
+    n   Person(const Person& p) { … }
+
+
+n   Don't write a copy constructor if shallow copies are ok
+    n   Compiler automatically generates default copy construct, default
+        operator assignment and default destructor if we don’t provide them.
+
+    n   Shallow copy ?
+    n   Deep copy ?
+
+n   If you need a copy constructor, you also need
+    n   a destructor and
+    n   operator=
+
+
+n   Why?
+                     Object Creation
+n Example
+
+PlayingCard aCard(diamond, 3);
+
+PlayingCard* aCardPtr = new PlayingCard(diamond, 3);
+PlayingCard* CardsPtr = new PlayingCard[100];
+// dynamic memory allocation
+
+delete aCardPtr; // deallocation
+delete [] CardsPtr;  // deallocation
+
+n   Memory Leak ?
+n   Dangling Pointer?
+n   Garbage Collection ?
+               static and const
+n static
+  n all instance share the same value.
+
+  n One per class
+
+
+
+n const
+  n it will not be reassigned
+
+
+  static const int Spade = 1;
+  static const int Diamond = 2;
+  static const int Club = 3;
+  static const int Heart = 4;
+                     static example
+// In File.h
+class File {
+    static int open_files;
+    // detail omitted
+public :
+    File(const String& filename, const String& modes);
+    File(const File&);
+    ~File();
+    static int existing() { return open_files; } // File::existing() will return
+                                                 // the number of existing File objects
+    // static method cannot access non-static class data and functions
+}
+
+// In File.c
+int File::open_files = 0;
+
+File::File(const String& filename, const String& modes) {
+    ++open_files;
+    // othe details omitted
+}
+
+File::~File() {
+    --open_files;
+    // other details omitted
+}
+       const member functions
+n const member function does not modify any
+  data members of the object on which it is
+  called. (read-only function)
+n This restriction is enforced by the compiler
+n Benefits of const member function
+  n A const member function assures its clients of its
+
+     benign nature. (safety , readability)
+
+n Example
+  int PlayingCard::rank () const
+ { return rankValue; }
+       inline member function
+n What is inline function ?
+
+
+n Why useful?
+
+
+n inline function in classes
+            Order of methods
+n Guideline
+  n List important topics first
+
+  n Constructors are generally very important, list
+
+    them first
+  n Put public features before private ones
+
+  n Break long lists into groups
+
+  n List items in alphabetical order to make it
+
+    easier to search
+   Separation of definition and implementation
+
+class PlayingCard {
+   public: ... Colors color () ;
+... };
+
+PlayingCard::Colors PlayingCard::color ( ) {
+   // return the face color of a playing card
+   if ((suit == Diamond) || (suit == Heart))
+       return Red;
+   return Black;
+}
+                           friend
+n friend function of a class has the right to access
+  the non-public members of the class
+
+n To declare all member functions of class ClassTwo
+  as friends of classOne, place a declaration of the
+  form
+
+  friend class ClassTwo;
+
+
+
+  in the definition of class ClassOne
+                friend example
+class Count
+{
+   friend void setX(Count& , int);
+public :
+   Count() : x(0) { }
+private :
+   int x;
+};
+
+void setX(Count &c, int val)
+{
+   c.x=val;
+}
+
+…
+       Reference Operator ‘&’
+n reference : alias for an object
+
+
+n Frequently used for pass-by-reference
+
+
+n can be used to avoid the run-time impact of
+  passing large arguments by value
+
+n Parameters, return values, and variables can
+  all be defined as “references”
+                         References
+n   call by reference
+    double square (double &x) { return x *= x; }
+    int bar (void) {
+         double foo = 10.0;
+         square (foo);
+         cout << foo; // prints 100.0
+    }
+
+
+n   In C, this can be written using pointer
+    double square (double *x) { return *x *= *x; }
+    int bar (void) {
+         double foo = 10.0;
+         square (&foo);
+         printf (%f, foo); /* prints 100.0 */
+    }
+                  References
+n A function can also return a reference to
+ an object, i.e., an lvalue
+
+ Vector<int> v (10);
+ v[3] = 100; // v.operator[] (3) = 100;
+ int i = v[3]; // int i = v.operator[] (3);
+                              References
+n References are implemented similarly to const
+  pointers.
+
+n Difference ?
+   n   References must refer to an actual object, but pointers can refer to
+       lots of other things that aren’t objects, e.g.,
+        n   Pointers can refer to the special value 0 in C++ (often referred to as NULL)
+   n   In general, use of references is safer, less ambiguous, and more
+       restricted than pointers
+
+   void printDouble(const double& rd)
+   { cout << rd; } // no need to test rd; it must refer to a double
+
+   void printDouble(const double *pd)
+   { if (pd) cout << *pd ; } // check for null pointer
+               Argument Pasing Modes
+                  (The Client’s View)
+1.   void X::f(T arg)           // pass by value
+2.   void X::f(const T arg)     // pass by value
+3.   void X::f(T& arg)          // pass by reference
+4.   void X::f(const T& arg)    // pass by referene
+5.   void X::f(T* argp)         // pass by pointer
+6.   void X::f(const T* argp)   // pass by pointer
+7.   void X::f(T* const argp)   // pointer is constant
+8.   void X::f(const T* const argp)
+
+• X : class name
+• T : data type
+• Do not ever use pass by reference (without const qualifier) mode for
+  read-only parameters
+     Selecting correct mode for arguments
+n Avoid passing large objects by value
+    n   Why?
+
+n   When passing primitive type arguments (or small objects), use
+    value arguments
+    n   pass-by-value is safer
+n   Use const qualifiers for arguments and functions wherever
+    possible.
+    n   Make the program more robust
+n   Don’t pass pointers when you mean to pass objects.
+    n  void f (T* object);
+    a.  Pointer object can be NULL. But, there is no null reference.
+    b.  Passing a reference does not tansfer the ownership of the object
+        to the callee.
+         Writing memory safe classes
+n   Avoid making copies of objects. Copying an object is expensive
+     n   Avoid creating new objects. Try to reuse existing objects
+     n   Use const reference parameters when appropriate
+     n   Use const member functions
+     n   Use pointers instead of references as data members.
+     n   Avoid storage allocation in the default constructor. Delay it until the
+         member is accessed.
+     n   Use reference counting wherever possible.
+
+
+n   Resist tricks in the initial stage
+     n   Stick with safety first; make sure no memory leaks exist
+     n   Don’t worry about optimization in the early stages of development.
+                 Client’s responsibilities
+                with classes and functions
+1.   understand the purpose of the class. Even if the name of the class indicates
+     that if it is what you need, the documentation may suggest otherwise.
+2.   Clearly understand what the class implementor expects from you, the client.
+     There is a contract between the client and the implementor.
+3.   Pay attention to every member function; in particular, const member
+     functions-ther are safer
+4.   Understand the arguments being passed.
+5.   Understand what your responsibility is when pointers and references are
+     returned from functions.
+6.   If the class documentation and the information in the header file differ, get
+     clarification as to which is correct one before using the class
+7.   Prefer functions that accept arguments that are pointers and references to
+     const. Ther are safer.
+8.   Even if the class implementor is your brother, don’t rely on any undocumented
+     class details that he might have told you. Stick to the class interface and
+     documentation.
+9.   Be wary of classes that don’t implement the minimum set of member
+     functions
+C++ Advanced Topics
+                               Guideline
+n Never return a reference to a local object
+    within the function.
+#include <cassert> // assert
+#include <iostream> // cout, endl
+int f () { int i = 2; return i;}
+int* g () { int j = 2; return &j;} // warning: address of local variable 'j' returned
+int& h () { int k = 2; return k;} // warning: reference to local variable 'k' returned
+
+int main ()
+{
+          using namespace std;
+          cout << "FunctionReturns.c++" << endl;
+          { int v = f(); assert(v == 2); }
+          { int* p = g(); assert(*p == 2); // ? }
+          { int& r = h(); assert(r == 2); // ? }
+          cout << "Done." << endl;
+          return 0;
+}
+              Copy-On-Write
+n Object creation and destruction is expensive
+  n If the copy constructor of a large object is
+
+    frequently called, significant time is spent in
+    copying and deleting the dynamically allocated
+    memory.
+
+n Copy-on-write
+  n Allocate new memory only when writing!
+
+  n Otherwise share the data between original and
+
+    newly created object.
+  n Keep reference count (use count) variable.
+                 TString Example
+n Look at TString.h and TString.cpp on class website
+
+
+
+
+       s : TString        k : TString     m : TString
+
+
+
+
+                        use_count=3
+                            str
+
+
+
+                     “ADD ONE TO COBOL”
+                TString Example
+n s.to_lower();
+  n writing to s creates memory for new data
+
+
+
+      s : TString           k : TString           m : TString
+
+
+
+
+     use_count=1                          use_count=2
+         str                                  str
+
+
+
+       “add one to cobol”                   “ADD ONE TO COBOL”
+                     보충 자료 (강의 페이지)
+n   Benefits of Data Encapsulation (Handout 2)
+n   Static Members of a C++ class
+     n   https://www.tutorialspoint.com/cplusplus/cpp_static_members.htm
+n   sample C++ code for pointer and reference type: ref.cpp
+Handout 2: Benefits of Data Encapsulation
+                 Static Members of a C++ class
+
+n   static members of a class can be used when handling property of the c
+    lass.
+n   static member variable: one per class.
+     n   it can be accessed even if there is no created object.
+n   static member function: can be called even if there is no created object
+     n   using class name and :: operator (e.g. class_name::static_function() )
+     n   it cannot access non-static member variable/function.
+                      ref.cpp (pointer vs. reference)
+ 1   #include <iostream>
+ 2   using namespace std;
+ 3
+ 4   int main()
+ 5   {
+ 6       int x=5;
+ 7       int* y;
+ 8       int& z=x;
+ 9       y=&x;
+10       int w=*y;
+11       x=9;
+12       z=*y*x;
+13       x++;
+14       z=x&*y;
+15       cout << x << " " << *y << " " << z << " " << w << endl;   // print the values
+16       return 0;
+17   }
+

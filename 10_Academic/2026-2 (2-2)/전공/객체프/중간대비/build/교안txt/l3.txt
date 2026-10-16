@@ -1,0 +1,349 @@
+             Lecture 2
+Intro. To Software Engineering and
+   Object-Oriented Programming
+               (1/2)
+
+        Bong-Soo Sohn
+      Chung-Ang University
+ What is a Good Program?
+(Factors of Good Software)
+                      Software Crisis
+n   rapid increases in computer power and the complexity of the
+    problems (SW).
+n   Software technology can not follow the complexity.
+
+n   the difficulty of writing correct, understandable, and verifiable
+    computer programs
+
+n   SW Symptoms
+     n   Unmanageable
+     n   difficult to maintain
+     n   Over-budget.
+     n   Over-time (late)
+     n   Poor quality
+     n   Software often did not meet requirements.
+n   Cause : complexity
+                   Software Life Cycle
+1.       Requirement Analysis
+     -     Problem specification
+2.       Design
+     -     Program structure
+     -     Module specification
+3.       Implementation
+4.       Test
+     -     unit test
+     -     integration test
+5.       Maintenance
+
+Fred Brooks states that over 90% of the costs of a typical system arise in
+the maintenance phase, and that any successful piece of software will
+inevitably be maintained.
+                 Software Engineering
+n Definition
+  n    [IEEE Definition] The application of a systematic, disciplined, quantifiable
+       approach to the development, operation, and maintenance of software
+      , that is, application of engineering to software
+
+  n   [Firtz Bauer] The establishment and use of sound engineering principles in
+      order to economically obtain software that is reliable and works efficiently
+
+
+
+n Goals
+  n produce a correct, efficient, and reliable software
+
+  n minimize the cost of software development and
+
+      maintenance
+                       Goals of SE
+n Maintainability
+   n   the ability to easily make changes, enhancements, or
+       improvements.
+n Dependability
+   n   the ability to rely on the software to function properly when
+       needed.
+n Efficiency
+   n   the ability for software to use computing resources
+       effectively (mainly space and time).
+n Usability
+   n   the ability for the end user to easily and effectively put the
+       software to proper use.
+          Software Properties
+n Modularity – divide and conquer.
+n Encapsulation – hide the implementation.
+n Localization – collect similar things together.
+n Abstraction – simplifying complex reality.
+n Uniformity – make everything look similar.
+n Completeness – do everything required.
+n Confirmability – be able to prove that the
+  software works properly.
+    Programming Methodology
+n Unstructured Programming
+
+
+n Procedural Programming
+n Modular(Structured) Programming
+
+
+n Object Oriented Programming
+    Unstructured Programming
+n Consists of only one main program.
+n a sequence of commands or statements
+n Only global data
+n Use goto statement
+
+
+n Disadvantage
+  n If there is the same statement sequence?
+                 Spaghetti Code
+n Code with complex and tangled structure
+  n With goto’s jumping all over the place
+  n Almost impossible to understand
+
+  n Hard to follow the flow
+
+  n Difficult to modify
+          Procedural Programming
+n   The abuses of spaghetti code led to structured programming
+    languages to support procedural programming
+
+n   Program
+    n   A sequence of procedure calls
+n   Procedure
+    n   the same seqeunce of statements
+
+
+n   More structured : reduce repetition
+n   More error-free
+
+n   Structured Programming
+    n   Top-down approach
+    n   Divide and conquer
+    n   Functional decomposition
+                   Modular Programming
+n   SW is composed of separate parts (module)
+
+n   procedures of a common functionality are
+    grouped together into separate modules
+
+n   module
+    n   Program uses modules through interface.
+    n   Interface : visible, implementation : hidden
+    n   Improve maintainability
+    Don’t use Global Variables
+n Using global variables : unsafe!
+           Modularized Data
+n Localize data inside
+  the modules
+n This makes modules
+  more independent of
+  one another
+n Safe!
+          Local data
+               Problems of
+     Procedural/Modular Programming
+
+n Decoupled (seperation of) data and operations
+
+
+n   Doesn’t work well in large systems
+    n   Difficult to debug, extend, and maintain
+    n   Code reuse limited
+
+
+n Explicit creation and destruction
+
+
+
+
+n Many others compared to OOP
+    OOP (Object Oriented Programming)
+n   Program consists of a set of interacting objects.
+
+n   Each object keeps its own state.
+
+n   Combine data and operation into an object
+           What is an Object?
+n Object is an instance of a class
+n Objects have
+  n identity
+
+  n attribute
+
+  n behavior (method)
+
+  n relationships with other objects
+   Structured Programming vs OOP
+
+Structured
+                    Car, Book, Apple, Ship
+Programming
+
+
+              ride              eat          read      operate
+
+
+
+
+              Car               Apple           Book         Ship
+
+ OOP
+              ride               eat            read       operate
+   Structured Programming vs OOP
+
+Procedural
+                     data + function = program
+Programming
+
+
+                                                 object
+
+                                                  data
+              data     +     function    =
+                                                 function
+
+
+ OOP
+                     object + object = program
+               Views of OOP
+n OOP does not consider the problem domain as just a
+  flow of processings.
+
+n OOP defines objects related to the problem domain
+  and regards these objects communicate information
+  each other (through message passing).
+
+n On the other hand, structured programming treats
+  data and operations independently even though they
+  are related.
+  Software Components(부품화)
+n In OO programs, an object works as a component(부
+  품) of software
+n Interface of an object should be well defined.
+        Why Object Oriented?
+n Good for developing large software
+n Maintainability
+n Reuse software, not rewrite
+n Increase
+  n Programmer productivity
+
+  n Quality of software
+
+  n Understandability of software
+
+  n Scalability (extensibility,reusability) of software
+
+  n Lifetime (maintainability) of software
+                      OOP
+n What is problem?
+  n Traditional structured programming is not
+
+   sufficient for large software maintenance and
+   reuse.
+
+n Solution? OOP
+  n Improve reusability
+
+  n SW reliability is increased using reusable
+
+   modules which are already well-tested and
+   error-free .
+             OOP concepts
+n Data Abstraction
+  n Abstract Data Type
+
+n Object
+  n Information hiding/encapsulation
+
+n Class
+n Inheritance
+n Polymorphism
+n Dynamic binding
+           ADT(Abstract Data Type)
+n A set of data variables and associated operations that
+  are precisely specified independent of any particular
+  implementation.
+
+n ADT = data + operations (no implementation)
+
+
+n In OOP,
+   n   We don’t define data for defining procedures,
+   n   But we do define procedures necessary for defining data
+   n   ADT is a type that combines data and the procedures
+                      class
+n In C++, “class” is used for defining ADT
+
+
+n Defines attributes and behaviors of an object
+  n Attributes : member variables
+
+  n Behaviors : member functions
+                               Object
+n   Object is an instance of class
+
+n   Consists of
+    n   Internal data
+    n   Internal operations
+    n   Interface operations
+
+n   Only class methods can access the internal data of an object.
+
+n   Message passing
+    n   Request some work to other object through calling a method.
+Object Overview
+     Information Hiding/Encapsulation
+n   Encapsulation conceals the functional details of a class
+    from objects that send messages to it.
+
+n   Internal data of an object can be modified only through an
+    interface
+                    Class vs Object
+n   Each object generated by the same class is different objects
+    n   When the objects are created, different memory space and address
+        are assigned to each object with unique identifier.
+
+n   Objects created by the same class share the class’s methods.
+
+n   An object can be dynamically constructed or destructed in
+    memory during run-time.
+                        Inheritance
+n   A child class (Sub class) inherits attributes and behaviors of
+    parent classes (super class).
+n   and can define their own attributes and behaviors.
+
+n   The properties (variables,methods) of a child class should be
+    mostly similar to the properties of parent classes.
+
+n   Goal : Object (class) Reuse
+n   In large SW development, code reuse reduces costs.
+n   We can reuse well-defined classes.
+n   Related programs can define new classes using inheritance.
+                      Polymorphism
+n   Allows the same method (message) to different meaning.
+
+n   the ability of objects belonging to different data types to respond
+    to method calls of the same name, each one according to an
+    appropriate type-specific behavior.
+
+
+
+n   In C++
+    n   Virtual function
+    n   Operator overloading
+    n   Function overloading
+    n   Template
+       Benefits of Object Model
+n Builds a system that evolves over time
+   n Entendible
+   n Stable
+
+n Thinking in terms of objects and classes is much
+  easier for humans
+n Separating the client and implementor prevents
+  accidental damage through data encapsulation
+n Reusability
+                 보충 자료 (강의 페이지)
+n   Handout 1: Factors of Good Software
+Handout 1: Factors of Good Software
+

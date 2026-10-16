@@ -28,3 +28,4 @@ $$\varphi(x_t) \to \lambda\varphi(x_{t-1}) \to \lambda^2 \varphi(x_{t-2}) \to \d
 ## 관련
 - 비선형 PDE에서 모드가 섞이는 문제(대각화 실패)를 "대각화되는 공간으로 들어 올려" 해결 → [[Diagonalization of Convolution]], [[계수 구조에 물리 주입]]
 - Koopman은 보통 비자기수반 → 자기수반 스펙트럼 이론 먼저 ([[함수해석학 로드맵]])
+- 계수 공간 선형 동역학 $\dot c = Ac$ → [[Galerkin Projection]], [[Dissipative Operator]]

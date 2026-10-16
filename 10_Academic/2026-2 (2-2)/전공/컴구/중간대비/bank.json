@@ -1,0 +1,5687 @@
+{
+ "version": 1,
+ "questions": [
+  {
+   "id": "1-ci-1",
+   "concept": "course-info",
+   "type": "mc",
+   "prompt": "이 수업의 중간·기말 답안 작성 언어는?",
+   "choices": [
+    "한국어만",
+    "영어만",
+    "한국어·영어 자유",
+    "시험지에 따라 다름"
+   ],
+   "answer": 1,
+   "explain": "모든 수업·시험이 영어, 답도 영어로 (01주-1).",
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ci-2",
+   "concept": "course-info",
+   "type": "ox",
+   "prompt": "중간고사 범위에는 파이프라인 구현이 포함된다.",
+   "answer": false,
+   "explain": "중간 = 단순(single-cycle) 버전까지. 파이프라인은 기말.",
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ci-3",
+   "concept": "course-info",
+   "type": "blank",
+   "prompt": "평가 비율: 출석 (a)%, 중간 (b)%, 기말 45%",
+   "answer": "(a) 10 / (b) 45",
+   "accept": [
+    [
+     "10"
+    ],
+    [
+     "45"
+    ]
+   ],
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-cl-1",
+   "concept": "classes-ideas",
+   "type": "mc",
+   "prompt": "슈퍼컴퓨터의 성능 지표로 슬라이드가 든 것은?",
+   "choices": [
+    "MIPS",
+    "CPI",
+    "FLOPS",
+    "Clock rate"
+   ],
+   "answer": 2,
+   "explain": "FLOPS(floating-point operations per second) > MIPS.",
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-cl-2",
+   "concept": "classes-ideas",
+   "type": "mc",
+   "prompt": "전력·성능·비용 제약이 가장 엄격한 컴퓨터 종류는?",
+   "choices": [
+    "Supercomputer",
+    "Server",
+    "Personal computer",
+    "Embedded computer"
+   ],
+   "answer": 3,
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-cl-3",
+   "concept": "classes-ideas",
+   "type": "mc",
+   "prompt": "Eight Great Ideas에 들어가지 '않는' 것은?",
+   "choices": [
+    "Make the common case fast",
+    "Performance via pipelining",
+    "Smaller is faster",
+    "Hierarchy of memories"
+   ],
+   "answer": 2,
+   "explain": "'Smaller is faster'는 MIPS 설계 원칙 2. 8가지 아이디어엔 없음.",
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-bp-1",
+   "concept": "below-program",
+   "type": "mc",
+   "prompt": "System software에 속하는 두 가지는?",
+   "choices": [
+    "Web browser와 Compiler",
+    "Compiler와 Operating System",
+    "OS와 Processor",
+    "Assembler와 Memory"
+   ],
+   "answer": 1,
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-bp-2",
+   "concept": "below-program",
+   "type": "ox",
+   "prompt": "Assembly language는 사람이 읽을 수 있으면서 기계어와 거의 일대일로 대응하는 언어다.",
+   "answer": true,
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-co-1",
+   "concept": "components",
+   "type": "mc",
+   "prompt": "Processor를 구성하는 두 요소는?",
+   "choices": [
+    "Datapath와 Control unit",
+    "ALU와 Memory",
+    "Register와 Cache",
+    "Bus와 I/O"
+   ],
+   "answer": 0,
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-co-2",
+   "concept": "components",
+   "type": "ox",
+   "prompt": "LAN·Wi-Fi 같은 네트워크 어댑터는 I/O 장치에 포함된다.",
+   "answer": true,
+   "explain": "교수님: 많이 헷갈리는 부분.",
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-co-3",
+   "concept": "components",
+   "type": "short",
+   "prompt": "Processor의 두 구성 요소를 쓰고 각각의 역할을 한 줄로 설명하시오. (영어로)",
+   "answer": "Datapath: performs the actual data processing (arithmetic, logical, and memory access operations) using ALU, registers, MUXes and buses.\nControl unit: interprets (decodes) instructions fetched from memory and generates control signals that direct the datapath.",
+   "keys": [
+    "Datapath: actual data processing (arithmetic/logical/memory access)",
+    "Control unit: interprets instructions",
+    "generates control signals for the datapath"
+   ],
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-co-4",
+   "concept": "components",
+   "type": "mc",
+   "prompt": "RAM과 ROM에 대한 설명으로 옳은 것은?",
+   "choices": [
+    "RAM은 비휘발성, ROM은 휘발성",
+    "둘 다 휘발성",
+    "RAM은 휘발성, ROM은 부팅용 펌웨어를 저장하는 비휘발성",
+    "캐시는 보통 DRAM으로 만든다"
+   ],
+   "answer": 2,
+   "explain": "캐시는 보통 SRAM.",
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-isa-1",
+   "concept": "isa",
+   "type": "short",
+   "prompt": "ISA(Instruction Set Architecture)란 무엇이며 가장 중요한 이점은? (영어로)",
+   "answer": "ISA is the interface (contract) between hardware and low-level software: it defines how instructions are executed, which registers are available, and how data is accessed and manipulated. It lets developers write software without knowing hardware details; key benefit: portability (hardware can evolve without changing software).",
+   "keys": [
+    "interface between hardware and low-level software",
+    "defines instructions/registers/data access (contract)",
+    "hides hardware detail (abstraction)",
+    "portability"
+   ],
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-isa-2",
+   "concept": "isa",
+   "type": "ox",
+   "prompt": "ISA 덕분에 하드웨어가 바뀌어도 소프트웨어를 고치지 않고 실행할 수 있다(portability).",
+   "answer": true,
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-isa-3",
+   "concept": "isa",
+   "type": "mc",
+   "prompt": "컴퓨터 시스템에서 가장 빠른 메모리로 프로세서 안에 있는 것은?",
+   "choices": [
+    "Cache",
+    "Register",
+    "DRAM",
+    "SSD"
+   ],
+   "answer": 1,
+   "lesson": "L1-1",
+   "unit": "U1"
+  },
+  {
+   "id": "1-pf-1",
+   "concept": "perf-factors",
+   "type": "mc",
+   "prompt": "'연산당 실행되는 기계 명령어 수'를 결정하는 요소가 '아닌' 것은?",
+   "choices": [
+    "Programming language",
+    "Compiler",
+    "Architecture(ISA)",
+    "Algorithm의 연산 수"
+   ],
+   "answer": 3,
+   "explain": "알고리즘은 연산 수를 결정. 연산당 명령어 수는 언어·컴파일러·아키텍처.",
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-pf-2",
+   "concept": "perf-factors",
+   "type": "ox",
+   "prompt": "Moore's Law에 따르면 IC capacity가 18–24개월마다 두 배가 되므로 단일 프로세서 성능도 제한 없이 계속 오른다.",
+   "answer": false,
+   "explain": "전력 제약(power wall) 때문에 막힘.",
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-pf-3",
+   "concept": "perf-factors",
+   "type": "mc",
+   "prompt": "같은 정렬 작업에서 bubble sort(n²) 대신 merge sort(n log n)를 쓰면 주로 줄어드는 것은?",
+   "choices": [
+    "실행되는 연산의 수",
+    "CPI",
+    "Clock rate",
+    "Clock period"
+   ],
+   "answer": 0,
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-rt-1",
+   "concept": "response-throughput",
+   "type": "mc",
+   "prompt": "Throughput의 정의는?",
+   "choices": [
+    "한 작업이 끝나는 데 걸리는 시간",
+    "단위 시간당 처리하는 작업량",
+    "클럭 한 사이클의 길이",
+    "명령어당 사이클 수"
+   ],
+   "answer": 1,
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-rt-2",
+   "concept": "response-throughput",
+   "type": "blank",
+   "prompt": "Response time은 (a) 또는 execution time이라고도 부른다.",
+   "answer": "(a) latency",
+   "accept": [
+    [
+     "latency",
+     "레이턴시",
+     "지연시간"
+    ]
+   ],
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-rt-3",
+   "concept": "response-throughput",
+   "type": "short",
+   "prompt": "Response time과 throughput을 각각 정의하시오. (영어로)",
+   "answer": "Response time (latency, execution time): how long it takes to complete one task/job.\nThroughput: total work done per unit time (e.g., tasks or transactions per hour).",
+   "keys": [
+    "response time = time to do one task",
+    "throughput = work per unit time"
+   ],
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-pr-1",
+   "concept": "perf-ratio",
+   "type": "calc",
+   "prompt": "같은 프로그램이 시스템 A에서 12 s, B에서 30 s 걸린다. A는 B보다 몇 배 빠른가? 과정을 쓰시오.",
+   "answer": "Perf_A / Perf_B = Time_B / Time_A = 30 / 12 = 2.5\nA is 2.5 times faster than B.",
+   "keys": [
+    "성능 비 = 시간의 역비",
+    "30/12",
+    "2.5"
+   ],
+   "slot": 3,
+   "pts": 6,
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-pr-2",
+   "concept": "perf-ratio",
+   "type": "mc",
+   "prompt": "Performance_X / Performance_Y = n 일 때 같은 값은?",
+   "choices": [
+    "Time_X / Time_Y",
+    "Time_X × Time_Y",
+    "Time_Y / Time_X",
+    "1 / (Time_X + Time_Y)"
+   ],
+   "answer": 2,
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-pr-3",
+   "concept": "perf-ratio",
+   "type": "ox",
+   "prompt": "X의 실행 시간이 Y의 실행 시간의 2배이면, X가 Y보다 2배 빠르다.",
+   "answer": false,
+   "explain": "실행 시간이 길면 느림. Y가 2배 빠름.",
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-pr-4",
+   "concept": "perf-ratio",
+   "type": "calc",
+   "prompt": "컴퓨터 P는 어떤 프로그램을 8 s에, Q는 같은 프로그램을 10 s에 실행한다. 'P is n times faster than Q'의 n은?",
+   "answer": "n = Time_Q / Time_P = 10 / 8 = 1.25",
+   "keys": [
+    "Time_Q / Time_P",
+    "1.25"
+   ],
+   "slot": 3,
+   "pts": 6,
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-pr-5",
+   "concept": "perf-ratio",
+   "type": "blank",
+   "prompt": "Performance_X = 1 / (a)",
+   "answer": "(a) Execution time_X",
+   "accept": [
+    [
+     "executiontimex",
+     "executiontime",
+     "실행시간",
+     "responsetime",
+     "cputime"
+    ]
+   ],
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-pr-6",
+   "concept": "perf-ratio",
+   "type": "calc",
+   "prompt": "시스템 A가 B보다 4배 빠르다. B의 실행 시간이 20 s일 때 A의 실행 시간은?",
+   "answer": "Time_B / Time_A = 4 → Time_A = 20 / 4 = 5 s",
+   "keys": [
+    "Time_B/Time_A = 4",
+    "5 s"
+   ],
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ctd-1",
+   "concept": "cpu-time-def",
+   "type": "mc",
+   "prompt": "수업에서 'execution time'이라고 하면 무엇을 뜻하나?",
+   "choices": [
+    "Elapsed time",
+    "System CPU time",
+    "User CPU time",
+    "I/O time"
+   ],
+   "answer": 2,
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ctd-2",
+   "concept": "cpu-time-def",
+   "type": "blank",
+   "prompt": "CPU time = (a) CPU time + (b) CPU time",
+   "answer": "(a) user / (b) system",
+   "accept": [
+    [
+     "user",
+     "유저",
+     "사용자"
+    ],
+    [
+     "system",
+     "kernel",
+     "시스템"
+    ]
+   ],
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ctd-3",
+   "concept": "cpu-time-def",
+   "type": "calc",
+   "prompt": "Clock rate가 2.5 GHz일 때 clock period는?",
+   "answer": "Clock period = 1 / 2.5×10⁹ Hz = 0.4×10⁻⁹ s = 0.4 ns = 400 ps",
+   "keys": [
+    "역수",
+    "400 ps (0.4 ns)"
+   ],
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ctd-4",
+   "concept": "cpu-time-def",
+   "type": "ox",
+   "prompt": "Elapsed time은 I/O·OS 오버헤드까지 포함하므로 CPU 성능만 비교하기에는 부정확하다.",
+   "answer": true,
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ctd-5",
+   "concept": "cpu-time-def",
+   "type": "mc",
+   "prompt": "Clock period가 250 ps면 clock rate는?",
+   "choices": [
+    "2 GHz",
+    "4 GHz",
+    "250 MHz",
+    "25 GHz"
+   ],
+   "answer": 1,
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ct-1",
+   "concept": "cpu-time",
+   "type": "calc",
+   "prompt": "Computer A는 2 GHz에서 프로그램을 10 s에 실행한다. 6 s에 실행하는 Computer B를 설계하려는데, B는 clock rate를 올리는 대가로 A보다 1.2배 많은 clock cycle이 필요하다. B의 clock rate는?",
+   "answer": "Clock cycles_A = CPU time_A × Clock rate_A = 10 s × 2×10⁹ Hz = 20×10⁹\nClock cycles_B = 1.2 × 20×10⁹ = 24×10⁹\nClock rate_B = Clock cycles_B / CPU time_B = 24×10⁹ / 6 s = 4×10⁹ Hz = 4 GHz",
+   "keys": [
+    "Cycles_A = 20×10⁹",
+    "Cycles_B = 1.2 × Cycles_A = 24×10⁹",
+    "Rate_B = 24×10⁹ / 6",
+    "4 GHz"
+   ],
+   "slot": 3,
+   "pts": 6,
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ct-2",
+   "concept": "cpu-time",
+   "type": "calc",
+   "prompt": "Computer A는 3 GHz에서 15 s 걸린다. Computer B로 같은 프로그램을 10 s에 돌리고 싶은데, B는 A보다 1.5배의 clock cycle이 필요하다. B의 clock rate는?",
+   "answer": "Cycles_A = 15 × 3×10⁹ = 45×10⁹\nCycles_B = 1.5 × 45×10⁹ = 67.5×10⁹\nRate_B = 67.5×10⁹ / 10 = 6.75 GHz",
+   "keys": [
+    "45×10⁹",
+    "67.5×10⁹",
+    "6.75 GHz"
+   ],
+   "slot": 3,
+   "pts": 6,
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ct-3",
+   "concept": "cpu-time",
+   "type": "mc",
+   "prompt": "CPU Time과 같지 '않은' 식은?",
+   "choices": [
+    "CPU clock cycles × Clock cycle time",
+    "CPU clock cycles / Clock rate",
+    "IC × CPI / Clock rate",
+    "Clock rate / CPU clock cycles"
+   ],
+   "answer": 3,
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ct-4",
+   "concept": "cpu-time",
+   "type": "ox",
+   "prompt": "Clock rate를 높이면 CPU clock cycle 수가 늘어나는 trade-off가 흔히 있다.",
+   "answer": true,
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ct-5",
+   "concept": "cpu-time",
+   "type": "calc",
+   "prompt": "어떤 프로그램이 4×10⁹ clock cycle을 쓰고 clock rate가 2 GHz다. CPU time은?",
+   "answer": "CPU time = cycles / rate = 4×10⁹ / 2×10⁹ = 2 s",
+   "keys": [
+    "cycles / rate",
+    "2 s"
+   ],
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ct-6",
+   "concept": "cpu-time",
+   "type": "blank",
+   "prompt": "성능을 높이려면 clock cycle 수를 (a)거나 clock rate를 (b)야 한다.",
+   "answer": "(a) 줄이 / (b) 높여",
+   "accept": [
+    [
+     "줄이",
+     "줄",
+     "감소",
+     "decrease",
+     "reduce",
+     "줄여"
+    ],
+    [
+     "높이",
+     "높여",
+     "올려",
+     "증가",
+     "increase"
+    ]
+   ],
+   "lesson": "L1-2",
+   "unit": "U1"
+  },
+  {
+   "id": "1-cpi-1",
+   "concept": "cpi",
+   "type": "calc",
+   "prompt": "Computer A: cycle time 250 ps, CPI 2.0. Computer B: cycle time 500 ps, CPI 1.2. 같은 ISA·같은 프로그램일 때 어느 쪽이 몇 배 빠른가?",
+   "answer": "Let IC = I.\nCPU time_A = I × 2.0 × 250 ps = 500·I ps\nCPU time_B = I × 1.2 × 500 ps = 600·I ps\nPerf_A / Perf_B = 600I / 500I = 1.2 → A is 1.2 times faster than B",
+   "keys": [
+    "IC를 I로 둠",
+    "A = 500I ps",
+    "B = 600I ps",
+    "A가 1.2배 빠름"
+   ],
+   "slot": 4,
+   "pts": 6,
+   "lesson": "L1-3",
+   "unit": "U1"
+  },
+  {
+   "id": "1-cpi-2",
+   "concept": "cpi",
+   "type": "calc",
+   "prompt": "Computer A: clock 2 GHz, CPI 1.5. Computer B: clock 3 GHz, CPI 2.4. 같은 프로그램에서 어느 쪽이 몇 배 빠른가?",
+   "answer": "CPU time_A = I × 1.5 / 2×10⁹ = 0.75·I ns\nCPU time_B = I × 2.4 / 3×10⁹ = 0.8·I ns\nPerf_A / Perf_B = 0.8 / 0.75 ≈ 1.067 → A is about 1.07 times faster",
+   "keys": [
+    "IC×CPI/rate",
+    "A 0.75I ns, B 0.8I ns",
+    "A가 약 1.07배 빠름"
+   ],
+   "slot": 4,
+   "pts": 6,
+   "lesson": "L1-3",
+   "unit": "U1"
+  },
+  {
+   "id": "1-cpi-3",
+   "concept": "cpi",
+   "type": "mc",
+   "prompt": "CPI를 주로 결정하는 것은?",
+   "choices": [
+    "Program만",
+    "CPU hardware (organization)",
+    "Technology만",
+    "Clock rate"
+   ],
+   "answer": 1,
+   "explain": "슬라이드: CPI는 CPU hardware가 결정. 요약표에선 program·language·compiler·ISA·organization 모두 영향.",
+   "lesson": "L1-3",
+   "unit": "U1"
+  },
+  {
+   "id": "1-cpi-4",
+   "concept": "cpi",
+   "type": "blank",
+   "prompt": "Clock Cycles = (a) × (b)",
+   "answer": "(a) Instruction Count / (b) CPI",
+   "accept": [
+    [
+     "instructioncount",
+     "ic",
+     "명령어수"
+    ],
+    [
+     "cpi",
+     "cyclesperinstruction"
+    ]
+   ],
+   "lesson": "L1-3",
+   "unit": "U1"
+  },
+  {
+   "id": "1-cpi-5",
+   "concept": "cpi",
+   "type": "calc",
+   "prompt": "IC = 2×10⁹, CPI = 1.5, clock rate = 3 GHz인 프로그램의 CPU time은?",
+   "answer": "CPU time = IC × CPI / rate = 2×10⁹ × 1.5 / 3×10⁹ = 1 s",
+   "keys": [
+    "IC×CPI/rate",
+    "1 s"
+   ],
+   "lesson": "L1-3",
+   "unit": "U1"
+  },
+  {
+   "id": "1-cpi-6",
+   "concept": "cpi",
+   "type": "ox",
+   "prompt": "두 컴퓨터를 같은 프로그램으로 비교할 때 IC를 몰라도 성능 비는 구할 수 있다.",
+   "answer": true,
+   "explain": "같은 IC는 비율에서 약분 (교수님 풀이 방식).",
+   "lesson": "L1-3",
+   "unit": "U1"
+  },
+  {
+   "id": "1-wc-1",
+   "concept": "weighted-cpi",
+   "type": "calc",
+   "prompt": "클래스 A, B, C의 CPI가 1, 2, 3이다. Sequence 1은 A 2개, B 1개, C 2개, Sequence 2는 A 4개, B 1개, C 1개를 실행한다. 각 sequence의 평균 CPI와 더 빠른 쪽은?",
+   "answer": "Seq 1: IC = 5, cycles = 2×1 + 1×2 + 2×3 = 10 → CPI = 10/5 = 2.0\nSeq 2: IC = 6, cycles = 4×1 + 1×2 + 1×3 = 9 → CPI = 9/6 = 1.5\nSeq 2 uses fewer cycles (9 < 10), so it is faster (same clock).",
+   "keys": [
+    "seq1 10 cycles / 5",
+    "CPI 2.0",
+    "seq2 9 cycles / 6",
+    "CPI 1.5",
+    "seq2가 빠름(사이클 적음)"
+   ],
+   "slot": 4,
+   "pts": 6,
+   "lesson": "L1-3",
+   "unit": "U1"
+  },
+  {
+   "id": "1-wc-2",
+   "concept": "weighted-cpi",
+   "type": "calc",
+   "prompt": "CPI가 A=1, B=3, C=4인 클래스로, 프로그램이 A 50%, B 30%, C 20%로 구성된다. 평균 CPI는?",
+   "answer": "CPI = 1×0.5 + 3×0.3 + 4×0.2 = 0.5 + 0.9 + 0.8 = 2.2",
+   "keys": [
+    "relative frequency 가중",
+    "2.2"
+   ],
+   "slot": 4,
+   "pts": 6,
+   "lesson": "L1-3",
+   "unit": "U1"
+  },
+  {
+   "id": "1-wc-3",
+   "concept": "weighted-cpi",
+   "type": "ox",
+   "prompt": "명령어 수가 더 많은 코드 sequence는 항상 더 느리다.",
+   "answer": false,
+   "explain": "예제에서 Seq 2가 명령어는 6개로 많지만 사이클 9로 더 빠름.",
+   "lesson": "L1-3",
+   "unit": "U1"
+  },
+  {
+   "id": "1-wc-4",
+   "concept": "weighted-cpi",
+   "type": "blank",
+   "prompt": "가중 평균 CPI = Σ CPI_i × (IC_i / IC)에서 IC_i / IC를 (a)라고 한다.",
+   "answer": "(a) relative frequency",
+   "accept": [
+    [
+     "relativefrequency",
+     "상대빈도",
+     "상대도수"
+    ]
+   ],
+   "lesson": "L1-3",
+   "unit": "U1"
+  },
+  {
+   "id": "1-wc-5",
+   "concept": "weighted-cpi",
+   "type": "calc",
+   "prompt": "CPI: A=2, B=4. 프로그램 X는 A 300개·B 100개, 프로그램 Y는 A 100개·B 200개. 각각의 총 cycle과 평균 CPI는?",
+   "answer": "X: cycles = 300×2 + 100×4 = 1000, IC = 400, CPI = 2.5\nY: cycles = 100×2 + 200×4 = 1000, IC = 300, CPI ≈ 3.33",
+   "keys": [
+    "X 1000 cycles, CPI 2.5",
+    "Y 1000 cycles, CPI 3.33"
+   ],
+   "lesson": "L1-3",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ps-1",
+   "concept": "perf-summary",
+   "type": "mc",
+   "prompt": "Clock rate에 영향을 주는 것만 고른 것은?",
+   "choices": [
+    "Algorithm, Compiler",
+    "Programming language, ISA",
+    "Hardware organization, Technology",
+    "Compiler, Technology"
+   ],
+   "answer": 2,
+   "lesson": "L1-3",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ps-2",
+   "concept": "perf-summary",
+   "type": "ox",
+   "prompt": "Compiler는 instruction count와 CPI 모두에 영향을 준다.",
+   "answer": true,
+   "lesson": "L1-3",
+   "unit": "U1"
+  },
+  {
+   "id": "1-ps-3",
+   "concept": "perf-summary",
+   "type": "blank",
+   "prompt": "CPU Time = (Instructions / Program) × ((a) / Instruction) × (Seconds / (b))",
+   "answer": "(a) Clock cycles / (b) Clock cycle",
+   "accept": [
+    [
+     "clockcycles",
+     "cycles",
+     "clockcycle"
+    ],
+    [
+     "clockcycle",
+     "cycle",
+     "clockcycles"
+    ]
+   ],
+   "lesson": "L1-3",
+   "unit": "U1"
+  },
+  {
+   "id": "1-pw-1",
+   "concept": "power",
+   "type": "calc",
+   "prompt": "새 CPU가 capacitive load는 옛 CPU의 85%, voltage와 frequency는 각각 15% 낮다. 전력 비 P_new / P_old는?",
+   "answer": "P ∝ C × V² × F\nP_new/P_old = 0.85 × 0.85² × 0.85 = 0.85⁴ ≈ 0.52",
+   "keys": [
+    "P ∝ C·V²·F",
+    "0.85⁴",
+    "≈ 0.52"
+   ],
+   "slot": 5,
+   "pts": 5,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-pw-2",
+   "concept": "power",
+   "type": "mc",
+   "prompt": "Power wall의 원인으로 옳은 것은?",
+   "choices": [
+    "전압을 더 낮출 수 없고 열을 더 제거할 수 없음",
+    "트랜지스터 수가 줄어듦",
+    "클럭이 너무 느림",
+    "메모리가 부족함"
+   ],
+   "answer": 0,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-pw-3",
+   "concept": "power",
+   "type": "ox",
+   "prompt": "Power wall 때문에 업계는 multicore로 방향을 바꿨고, 이는 programmer의 명시적 병렬 프로그래밍을 요구한다.",
+   "answer": true,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-am-1",
+   "concept": "amdahl",
+   "type": "calc",
+   "prompt": "100 s 프로그램 중 곱셈이 80 s다. 전체를 5배 빠르게 하려면 곱셈을 몇 배 빨리 해야 하나?",
+   "answer": "T_improved = 80/n + 20, 목표 20 s (100/5)\n20 = 80/n + 20 → 80/n = 0 → 불가능. 곱셈을 무한히 빠르게 해도 최대 5배.",
+   "keys": [
+    "T = 80/n + 20",
+    "목표 20 s",
+    "불가능 (n → ∞)"
+   ],
+   "slot": 5,
+   "pts": 5,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-am-2",
+   "concept": "amdahl",
+   "type": "calc",
+   "prompt": "100 s 프로그램 중 곱셈이 80 s다. 전체를 4배 빠르게 하려면 곱셈을 몇 배 빨리 해야 하나?",
+   "answer": "목표 100/4 = 25 s\n25 = 80/n + 20 → 80/n = 5 → n = 16",
+   "keys": [
+    "목표 25 s",
+    "80/n = 5",
+    "16배"
+   ],
+   "slot": 5,
+   "pts": 5,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-am-3",
+   "concept": "amdahl",
+   "type": "blank",
+   "prompt": "T_improved = T_affected / (a) + T_(b)",
+   "answer": "(a) improvement factor / (b) unaffected",
+   "accept": [
+    [
+     "improvementfactor",
+     "개선배수",
+     "speedup",
+     "개선율"
+    ],
+    [
+     "unaffected",
+     "영향받지않는부분"
+    ]
+   ],
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-am-4",
+   "concept": "amdahl",
+   "type": "ox",
+   "prompt": "Amdahl's Law의 pitfall: 한 부분을 n배 개선하면 전체 성능도 n배 좋아진다고 기대하는 것.",
+   "answer": true,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-am-5",
+   "concept": "amdahl",
+   "type": "calc",
+   "prompt": "실행 시간 50 s 중 메모리 접근이 30 s다. 메모리 접근을 3배 빠르게 하면 새 실행 시간과 speedup은?",
+   "answer": "T = 30/3 + 20 = 30 s\nSpeedup = 50 / 30 ≈ 1.67",
+   "keys": [
+    "30/3 + 20",
+    "30 s",
+    "약 1.67배"
+   ],
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-am-6",
+   "concept": "amdahl",
+   "type": "mc",
+   "prompt": "Amdahl's Law가 주는 설계 교훈과 가장 가까운 것은?",
+   "choices": [
+    "Smaller is faster",
+    "Make the common case fast",
+    "Simplicity favors regularity",
+    "Hierarchy of memories"
+   ],
+   "answer": 1,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-mi-1",
+   "concept": "mips-metric",
+   "type": "calc",
+   "prompt": "A와 B는 둘 다 4 GHz. IC는 A 10 billion, B 8 billion, CPI는 A 1.0, B 1.1. 각각의 MIPS와 CPU time을 구하고 어느 쪽이 실제로 빠른지 쓰시오.",
+   "answer": "MIPS = Clock rate / (CPI × 10⁶)\nMIPS_A = 4×10⁹ / (1.0×10⁶) = 4000, MIPS_B = 4×10⁹ / (1.1×10⁶) ≈ 3636\nCPU time_A = 10×10⁹ × 1.0 / 4×10⁹ = 2.5 s\nCPU time_B = 8×10⁹ × 1.1 / 4×10⁹ = 2.2 s\nMIPS says A, but B is actually faster (Perf_A/Perf_B = 2.2/2.5 = 0.88).",
+   "keys": [
+    "MIPS_A 4000",
+    "MIPS_B ≈ 3636",
+    "time A 2.5 s",
+    "time B 2.2 s",
+    "B가 실제로 빠름"
+   ],
+   "slot": 5,
+   "pts": 5,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-mi-2",
+   "concept": "mips-metric",
+   "type": "short",
+   "prompt": "MIPS가 성능 지표로 부적절한 이유를 쓰시오. (영어로)",
+   "answer": "MIPS = IC / (Execution time × 10⁶) = Clock rate / (CPI × 10⁶), so the instruction count cancels out. It does not account for differences in ISAs between computers or differences in instruction complexity, and CPI varies between programs on the same CPU.",
+   "keys": [
+    "instruction count가 빠짐(약분)",
+    "ISA 차이 반영 못 함",
+    "명령어 복잡도 차이 반영 못 함",
+    "CPI가 프로그램마다 다름"
+   ],
+   "slot": 2,
+   "pts": 3,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-mi-3",
+   "concept": "mips-metric",
+   "type": "ox",
+   "prompt": "MIPS 값이 높은 컴퓨터가 항상 같은 프로그램을 더 빨리 실행한다.",
+   "answer": false,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-mi-4",
+   "concept": "mips-metric",
+   "type": "blank",
+   "prompt": "MIPS = Clock rate / ((a) × 10⁶)",
+   "answer": "(a) CPI",
+   "accept": [
+    [
+     "cpi"
+    ]
+   ],
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-mi-5",
+   "concept": "mips-metric",
+   "type": "calc",
+   "prompt": "3 GHz, CPI 1.5인 컴퓨터의 MIPS rating은?",
+   "answer": "MIPS = 3×10⁹ / (1.5 × 10⁶) = 2000",
+   "keys": [
+    "rate/(CPI×10⁶)",
+    "2000"
+   ],
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-sp-1",
+   "concept": "spec-idle",
+   "type": "mc",
+   "prompt": "SPEC CPU 벤치마크에 대한 설명으로 옳은 것은?",
+   "choices": [
+    "I/O가 거의 없는 프로그램들의 elapsed time으로 CPU 성능을 본다",
+    "서버 전력만 측정한다",
+    "MIPS 값을 비교한다",
+    "CPI만 측정한다"
+   ],
+   "answer": 0,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-sp-2",
+   "concept": "spec-idle",
+   "type": "ox",
+   "prompt": "슬라이드의 i7은 10% 부하에서도 최대 전력의 약 절반(47%)을 쓴다 → 저부하에서도 전력이 많이 든다.",
+   "answer": true,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-rc-1",
+   "concept": "risc-cisc",
+   "type": "short",
+   "prompt": "RISC와 CISC를 비교하시오 (예시 아키텍처, 장점, 단점). (영어로)",
+   "answer": "RISC (e.g., MIPS, ARM, PowerPC): small, simple instruction set → faster execution, power-efficient, scalable (easier parallelism); but needs more instructions for complex tasks (larger programs).\nCISC (e.g., x86, x86-64): large, complex instructions to minimize instructions per program → smaller program size, backward compatibility; but slower execution and higher power consumption.",
+   "keys": [
+    "RISC 예: MIPS/ARM",
+    "CISC 예: x86",
+    "RISC 장점: 빠름·전력 효율·확장성",
+    "RISC 단점: 명령어 수 많음",
+    "CISC 장점: 프로그램 작음·호환성",
+    "CISC 단점: 느림·전력 큼"
+   ],
+   "slot": 2,
+   "pts": 3,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-rc-2",
+   "concept": "risc-cisc",
+   "type": "mc",
+   "prompt": "x86-64는 어느 쪽인가?",
+   "choices": [
+    "RISC",
+    "CISC",
+    "VLIW",
+    "둘 다 아님"
+   ],
+   "answer": 1,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-rc-3",
+   "concept": "risc-cisc",
+   "type": "ox",
+   "prompt": "RISC의 단점은 복잡한 작업에 더 많은 명령어가 필요해 프로그램 크기가 커질 수 있다는 것이다.",
+   "answer": true,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "1-rc-4",
+   "concept": "risc-cisc",
+   "type": "mc",
+   "prompt": "MIPS architecture의 'MIPS'가 뜻하는 것은?",
+   "choices": [
+    "Millions of Instructions Per Second",
+    "Multiple Instruction Pipeline System",
+    "Microprocessor without Interlocked Pipeline Stages",
+    "Memory Instruction Processing Set"
+   ],
+   "answer": 2,
+   "lesson": "L1-4",
+   "unit": "U1"
+  },
+  {
+   "id": "2-mc-1",
+   "concept": "mips-classes",
+   "type": "mc",
+   "prompt": "MIPS 명령어 '형식(format)' 분류가 아닌 것은?",
+   "choices": [
+    "R-format",
+    "I-format",
+    "J-format",
+    "B-format"
+   ],
+   "answer": 3,
+   "lesson": "L2-1",
+   "unit": "U2"
+  },
+  {
+   "id": "2-mc-2",
+   "concept": "mips-classes",
+   "type": "ox",
+   "prompt": "MIPS는 RISC ISA의 전형적인 예다.",
+   "answer": true,
+   "lesson": "L2-1",
+   "unit": "U2"
+  },
+  {
+   "id": "2-af-1",
+   "concept": "arith-format",
+   "type": "calc",
+   "prompt": "C 코드 `a = b + c + d;`를 MIPS 산술 명령어로 쓰시오 (변수 이름을 그대로 피연산자로 써도 됨).",
+   "answer": "add a, b, c\nadd a, a, d",
+   "keys": [
+    "두 줄로 분해",
+    "add a, b, c",
+    "add a, a, d"
+   ],
+   "lesson": "L2-1",
+   "unit": "U2"
+  },
+  {
+   "id": "2-af-2",
+   "concept": "arith-format",
+   "type": "mc",
+   "prompt": "`add a, b, c`의 의미는?",
+   "choices": [
+    "b = a + c",
+    "a = b + c",
+    "c = a + b",
+    "a = a + b + c"
+   ],
+   "answer": 1,
+   "lesson": "L2-1",
+   "unit": "U2"
+  },
+  {
+   "id": "2-af-3",
+   "concept": "arith-format",
+   "type": "blank",
+   "prompt": "Design Principle 1: (a) favors (b)",
+   "answer": "(a) Simplicity / (b) regularity",
+   "accept": [
+    [
+     "simplicity",
+     "단순성"
+    ],
+    [
+     "regularity",
+     "규칙성"
+    ]
+   ],
+   "lesson": "L2-1",
+   "unit": "U2"
+  },
+  {
+   "id": "2-af-4",
+   "concept": "arith-format",
+   "type": "ox",
+   "prompt": "MIPS 산술 명령어는 모두 destination 1개와 source 2개의 형식을 따른다.",
+   "answer": true,
+   "lesson": "L2-1",
+   "unit": "U2"
+  },
+  {
+   "id": "2-rg-1",
+   "concept": "registers",
+   "type": "calc",
+   "prompt": "`f = (g + h) - (i + j);`를 MIPS로 쓰시오. f, g, h, i, j는 각각 $s0, $s1, $s2, $s3, $s4에 있다.",
+   "answer": "add $t0, $s1, $s2   # g + h\nadd $t1, $s3, $s4   # i + j\nsub $s0, $t0, $t1   # f = (g+h) - (i+j)",
+   "keys": [
+    "add $t0, $s1, $s2",
+    "add $t1, $s3, $s4",
+    "sub $s0, $t0, $t1 (결과는 $s0)"
+   ],
+   "slot": 7,
+   "pts": 6,
+   "lesson": "L2-1",
+   "unit": "U2"
+  },
+  {
+   "id": "2-rg-2",
+   "concept": "registers",
+   "type": "mc",
+   "prompt": "MIPS 레지스터의 개수와 크기는?",
+   "choices": [
+    "16개 × 32 bit",
+    "32개 × 64 bit",
+    "32개 × 32 bit",
+    "64개 × 32 bit"
+   ],
+   "answer": 2,
+   "lesson": "L2-1",
+   "unit": "U2"
+  },
+  {
+   "id": "2-rg-3",
+   "concept": "registers",
+   "type": "blank",
+   "prompt": "Design Principle 2: (a) is faster",
+   "answer": "(a) Smaller",
+   "accept": [
+    [
+     "smaller",
+     "작을수록",
+     "small"
+    ]
+   ],
+   "lesson": "L2-1",
+   "unit": "U2"
+  },
+  {
+   "id": "2-rg-4",
+   "concept": "registers",
+   "type": "ox",
+   "prompt": "MIPS 산술 명령어는 메모리에 있는 피연산자로 직접 연산할 수 있다.",
+   "answer": false,
+   "explain": "레지스터 피연산자만. 메모리는 lw/sw로.",
+   "lesson": "L2-1",
+   "unit": "U2"
+  },
+  {
+   "id": "2-rg-5",
+   "concept": "registers",
+   "type": "calc",
+   "prompt": "`x = y - (z + 5);`를 MIPS로 쓰시오. x, y, z는 $s0, $s1, $s2.",
+   "answer": "addi $t0, $s2, 5     # z + 5\nsub  $s0, $s1, $t0   # x = y - (z+5)",
+   "keys": [
+    "addi로 z+5",
+    "sub $s0, $s1, $t0"
+   ],
+   "lesson": "L2-1",
+   "unit": "U2"
+  },
+  {
+   "id": "2-mb-1",
+   "concept": "memory-basics",
+   "type": "mc",
+   "prompt": "MIPS 메모리 주소에 대한 설명으로 옳은 것은?",
+   "choices": [
+    "word 단위로 주소가 붙는다",
+    "byte 단위로 주소가 붙고 word 주소는 4의 배수",
+    "주소는 항상 홀수",
+    "레지스터와 같은 주소 공간"
+   ],
+   "answer": 1,
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-mb-2",
+   "concept": "memory-basics",
+   "type": "calc",
+   "prompt": "int 배열 A의 base address가 0x1000이다. A[5]의 주소는?",
+   "answer": "0x1000 + 5 × 4 = 0x1000 + 20 = 0x1014",
+   "keys": [
+    "base + index × 4",
+    "0x1014"
+   ],
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-mb-3",
+   "concept": "memory-basics",
+   "type": "ox",
+   "prompt": "레지스터가 32개뿐이라 배열·구조체 같은 composite data는 메모리에 둔다.",
+   "answer": true,
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-en-1",
+   "concept": "endian",
+   "type": "calc",
+   "prompt": "32-bit 값 0x12345678을 주소 0–3에 저장한다. Big endian과 little endian에서 각 주소의 값을 쓰시오.",
+   "answer": "Big endian:    0: 12, 1: 34, 2: 56, 3: 78\nLittle endian: 0: 78, 1: 56, 2: 34, 3: 12",
+   "keys": [
+    "big: MSB(12)가 0번지",
+    "little: LSB(78)가 0번지",
+    "byte 안 자리 순서 유지"
+   ],
+   "slot": 6,
+   "pts": 5,
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-en-2",
+   "concept": "endian",
+   "type": "calc",
+   "prompt": "32-bit 값 0x34125678을 주소 0–3에 저장한다. Big endian과 little endian에서 각 주소의 값은?",
+   "answer": "Big endian:    0: 34, 1: 12, 2: 56, 3: 78\nLittle endian: 0: 78, 1: 56, 2: 12, 3: 34",
+   "keys": [
+    "big 34 12 56 78",
+    "little 78 56 12 34"
+   ],
+   "slot": 6,
+   "pts": 5,
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-en-3",
+   "concept": "endian",
+   "type": "mc",
+   "prompt": "0xA1B2C3D4를 little endian으로 저장할 때 주소 0의 값은?",
+   "choices": [
+    "A1",
+    "1A",
+    "4D",
+    "D4"
+   ],
+   "answer": 3,
+   "explain": "LSB byte = D4. 두 자리 순서는 뒤집지 않음.",
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-en-4",
+   "concept": "endian",
+   "type": "ox",
+   "prompt": "Little endian에서는 0x12345678의 마지막 byte 78을 0번지에 87로 저장한다.",
+   "answer": false,
+   "explain": "byte 안의 두 자리 순서는 바꾸지 않는다 → 78.",
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-en-5",
+   "concept": "endian",
+   "type": "blank",
+   "prompt": "Big endian은 (a)를 가장 낮은 주소에, little endian은 (b)를 가장 낮은 주소에 저장한다.",
+   "answer": "(a) MSB / (b) LSB",
+   "accept": [
+    [
+     "msb",
+     "mostsignificantbyte",
+     "최상위바이트"
+    ],
+    [
+     "lsb",
+     "leastsignificantbyte",
+     "최하위바이트"
+    ]
+   ],
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-en-6",
+   "concept": "endian",
+   "type": "calc",
+   "prompt": "0xCAFE0012를 주소 100–103에 big endian과 little endian으로 저장할 때 각 주소의 값은?",
+   "answer": "Big:    100: CA, 101: FE, 102: 00, 103: 12\nLittle: 100: 12, 101: 00, 102: FE, 103: CA",
+   "keys": [
+    "big CA FE 00 12",
+    "little 12 00 FE CA"
+   ],
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-lw-1",
+   "concept": "lw-sw",
+   "type": "calc",
+   "prompt": "`g = h + A[8];`을 MIPS로 쓰시오. g는 $s1, h는 $s2, A의 base address는 $s3.",
+   "answer": "lw  $t0, 32($s3)     # A[8], offset = 8 × 4\nadd $s1, $s2, $t0",
+   "keys": [
+    "offset 32",
+    "lw $t0, 32($s3)",
+    "add $s1, $s2, $t0"
+   ],
+   "slot": 7,
+   "pts": 6,
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-lw-2",
+   "concept": "lw-sw",
+   "type": "calc",
+   "prompt": "`A[12] = h + A[8];`을 MIPS로 쓰시오. h는 $s2, A의 base address는 $s3.",
+   "answer": "lw  $t0, 32($s3)\nadd $t0, $s2, $t0\nsw  $t0, 48($s3)     # 12 × 4 = 48",
+   "keys": [
+    "lw offset 32",
+    "add",
+    "sw $t0, 48($s3)"
+   ],
+   "slot": 7,
+   "pts": 6,
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-lw-3",
+   "concept": "lw-sw",
+   "type": "mc",
+   "prompt": "`sw $t0, 8($s1)`에서 $t0의 역할은?",
+   "choices": [
+    "메모리에 쓸 값(source)",
+    "읽어 온 값을 받을 destination",
+    "base address",
+    "offset"
+   ],
+   "answer": 0,
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-lw-4",
+   "concept": "lw-sw",
+   "type": "ox",
+   "prompt": "`lw $t0, $t1($s3)`처럼 offset 자리에 레지스터를 쓸 수 있다.",
+   "answer": false,
+   "explain": "offset은 상수만. 시험 OX에서 무조건 False, 코드에 쓰면 0점.",
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-lw-5",
+   "concept": "lw-sw",
+   "type": "calc",
+   "prompt": "`B[3] = B[1] + B[2];`를 MIPS로 쓰시오. B의 base address는 $s4 (int 배열).",
+   "answer": "lw  $t0, 4($s4)\nlw  $t1, 8($s4)\nadd $t0, $t0, $t1\nsw  $t0, 12($s4)",
+   "keys": [
+    "offset 4, 8",
+    "add",
+    "sw offset 12"
+   ],
+   "slot": 7,
+   "pts": 6,
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-lw-6",
+   "concept": "lw-sw",
+   "type": "blank",
+   "prompt": "`lw dest, (a)(base)` — 괄호 앞에는 (a)가, 괄호 안에는 (b)가 들어간다.",
+   "answer": "(a) offset / (b) base address",
+   "accept": [
+    [
+     "offset",
+     "상수offset",
+     "오프셋",
+     "상수"
+    ],
+    [
+     "baseaddress",
+     "base",
+     "베이스주소",
+     "기준주소",
+     "레지스터"
+    ]
+   ],
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-lw-7",
+   "concept": "lw-sw",
+   "type": "calc",
+   "prompt": "`x = A[i];`를 MIPS로 쓰시오. x는 $s0, i는 $s1, A의 base는 $s2. (offset에 레지스터를 쓰지 말 것)",
+   "answer": "sll $t1, $s1, 2      # i * 4\nadd $t1, $t1, $s2    # &A[i]\nlw  $s0, 0($t1)",
+   "keys": [
+    "sll로 ×4",
+    "base와 add",
+    "lw $s0, 0($t1)"
+   ],
+   "slot": 7,
+   "pts": 6,
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-rm-1",
+   "concept": "reg-vs-mem",
+   "type": "mc",
+   "prompt": "레지스터 대신 메모리에 변수를 두면 생기는 일은?",
+   "choices": [
+    "CPI가 0이 된다",
+    "명령어 수가 줄어든다",
+    "load/store가 필요해 실행 명령어 수가 늘어난다",
+    "클럭이 빨라진다"
+   ],
+   "answer": 2,
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-rm-2",
+   "concept": "reg-vs-mem",
+   "type": "blank",
+   "prompt": "자주 쓰지 않는 변수만 메모리로 내보내는 것을 (a)이라고 한다.",
+   "answer": "(a) spill",
+   "accept": [
+    [
+     "spill",
+     "spilling",
+     "스필"
+    ]
+   ],
+   "lesson": "L2-2",
+   "unit": "U2"
+  },
+  {
+   "id": "2-im-1",
+   "concept": "immediate",
+   "type": "calc",
+   "prompt": "레지스터 $s1의 값을 $s2로 복사하는 MIPS 명령어를 쓰시오 (교수님 기준).",
+   "answer": "add $s2, $s1, $zero",
+   "explain": "addi에 $zero를 넣으면 0점 (교수님 4주-2).",
+   "keys": [
+    "add 사용",
+    "$zero와 더함"
+   ],
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-im-2",
+   "concept": "immediate",
+   "type": "mc",
+   "prompt": "`$s2 = $s1 - 1`을 하는 올바른 MIPS 명령어는?",
+   "choices": [
+    "subi $s2, $s1, 1",
+    "sub $s2, $s1, 1",
+    "addi $s2, $s1, -1",
+    "addi $s2, $s1, $zero"
+   ],
+   "answer": 2,
+   "explain": "subtract immediate는 없다.",
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-im-3",
+   "concept": "immediate",
+   "type": "ox",
+   "prompt": "$zero 레지스터에 값을 쓰면 그 값으로 바뀐다.",
+   "answer": false,
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-im-4",
+   "concept": "immediate",
+   "type": "blank",
+   "prompt": "Design Principle 3: Make the (a) case fast",
+   "answer": "(a) common",
+   "accept": [
+    [
+     "common",
+     "흔한",
+     "일반적인"
+    ]
+   ],
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-im-5",
+   "concept": "immediate",
+   "type": "ox",
+   "prompt": "교수님 기준으로 `addi $v0, $s0, $zero`는 레지스터 복사로 올바른 코드다.",
+   "answer": false,
+   "explain": "$zero는 레지스터라 immediate 자리에 못 씀 → add $v0, $s0, $zero.",
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-tw-1",
+   "concept": "twos",
+   "type": "mc",
+   "prompt": "32-bit 2의 보수로 표현할 수 있는 범위는?",
+   "choices": [
+    "0 ~ 2³²−1",
+    "−2³¹ ~ 2³¹−1",
+    "−2³² ~ 2³²",
+    "−(2³¹−1) ~ 2³¹"
+   ],
+   "answer": 1,
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-tw-2",
+   "concept": "twos",
+   "type": "calc",
+   "prompt": "8-bit 2의 보수 `11111010`의 10진수 값은?",
+   "answer": "−1×2⁷ + 1×2⁶ + 1×2⁵ + 1×2⁴ + 1×2³ + 0 + 1×2¹ + 0 = −128 + 122 = −6\n(또는 반전+1 → 00000110 = 6 → −6)",
+   "keys": [
+    "sign bit 1 → 음수",
+    "−6"
+   ],
+   "slot": 6,
+   "pts": 5,
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-tw-3",
+   "concept": "twos",
+   "type": "mc",
+   "prompt": "32-bit `1111 … 1111` (모두 1)의 2의 보수 값은?",
+   "choices": [
+    "−1",
+    "−2,147,483,648",
+    "4,294,967,295",
+    "0"
+   ],
+   "answer": 0,
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-tw-4",
+   "concept": "twos",
+   "type": "ox",
+   "prompt": "음이 아닌 수는 unsigned와 2의 보수에서 표현이 같다.",
+   "answer": true,
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-tw-5",
+   "concept": "twos",
+   "type": "blank",
+   "prompt": "n-bit unsigned 범위는 0 ~ (a), 2의 보수 범위는 (b) ~ 2^(n−1) − 1",
+   "answer": "(a) 2^n − 1 / (b) −2^(n−1)",
+   "accept": [
+    [
+     "2^n1",
+     "2n1",
+     "2^n−1",
+     "2ⁿ1"
+    ],
+    [
+     "2^n1",
+     "2^(n1)",
+     "2n1",
+     "−2^(n−1)"
+    ]
+   ],
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-tw-6",
+   "concept": "twos",
+   "type": "calc",
+   "prompt": "8-bit 2의 보수로 표현 가능한 최솟값과 최댓값을 이진수와 10진수로 쓰시오.",
+   "answer": "최솟값: 1000 0000 = −128\n최댓값: 0111 1111 = +127",
+   "keys": [
+    "10000000 = −128",
+    "01111111 = 127"
+   ],
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ng-1",
+   "concept": "negation",
+   "type": "calc",
+   "prompt": "−10을 32-bit 2의 보수로 쓰시오 (과정 포함).",
+   "answer": "+10 = 0000 0000 0000 0000 0000 0000 0000 1010\ninvert = 1111 1111 1111 1111 1111 1111 1111 0101\n+1 = 1111 1111 1111 1111 1111 1111 1111 0110 (0xFFFFFFF6)",
+   "keys": [
+    "+10 이진",
+    "비트 반전",
+    "+1",
+    "…1111 0110"
+   ],
+   "slot": 6,
+   "pts": 5,
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ng-2",
+   "concept": "negation",
+   "type": "calc",
+   "prompt": "−5를 32-bit 2의 보수(16진수)로 쓰시오.",
+   "answer": "+5 = 0…0101 → 반전 1…1010 → +1 = 1…1011 = 0xFFFFFFFB",
+   "keys": [
+    "반전 + 1",
+    "0xFFFFFFFB"
+   ],
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ng-3",
+   "concept": "negation",
+   "type": "blank",
+   "prompt": "Signed negation: (a) and add 1",
+   "answer": "(a) Complement",
+   "accept": [
+    [
+     "complement",
+     "invert",
+     "반전",
+     "비트반전",
+     "보수"
+    ]
+   ],
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ng-4",
+   "concept": "negation",
+   "type": "ox",
+   "prompt": "x + x̄ (x의 모든 비트를 반전한 값) = −1 이므로 −x = x̄ + 1 이다.",
+   "answer": true,
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-se-1",
+   "concept": "sign-ext",
+   "type": "calc",
+   "prompt": "8-bit 값 +2 (`0000 0010`)와 −2 (`1111 1110`)를 16-bit로 sign extension하시오.",
+   "answer": "+2: 0000 0000 0000 0010\n−2: 1111 1111 1111 1110",
+   "explain": "교안 p.21의 '1111 1111 1000 0010'은 오타.",
+   "keys": [
+    "+2는 위를 0으로",
+    "−2는 위를 1로",
+    "1111 1111 1111 1110"
+   ],
+   "slot": 6,
+   "pts": 5,
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-se-2",
+   "concept": "sign-ext",
+   "type": "mc",
+   "prompt": "MIPS에서 sign extension이 일어나지 '않는' 경우는?",
+   "choices": [
+    "addi의 immediate",
+    "lb로 읽은 byte",
+    "beq의 변위(offset)",
+    "lbu로 읽은 byte"
+   ],
+   "answer": 3,
+   "explain": "lbu·lhu는 zero extension.",
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-se-3",
+   "concept": "sign-ext",
+   "type": "calc",
+   "prompt": "16-bit −3 (`1111 1111 1111 1101`)을 32-bit로 확장하면? 16진수로도 쓰시오.",
+   "answer": "1111 1111 1111 1111 1111 1111 1111 1101 = 0xFFFFFFFD",
+   "keys": [
+    "위 16 bit를 1로",
+    "0xFFFFFFFD"
+   ],
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-se-4",
+   "concept": "sign-ext",
+   "type": "ox",
+   "prompt": "Sign extension은 값을 보존하기 위해 sign bit를 왼쪽으로 복제한다.",
+   "answer": true,
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-se-5",
+   "concept": "sign-ext",
+   "type": "ox",
+   "prompt": "교안 p.21의 예 '−2 = 1111 1110 → 1111 1111 1000 0010'은 올바른 sign extension이다.",
+   "answer": false,
+   "explain": "오타. 1111 1111 1111 1110이 맞음.",
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-se-6",
+   "concept": "sign-ext",
+   "type": "calc",
+   "prompt": "8-bit −6 (`1111 1010`)을 16-bit로 sign extension하면?",
+   "answer": "1111 1111 1111 1010",
+   "keys": [
+    "위 8 bit를 1로",
+    "1111 1111 1111 1010"
+   ],
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-hx-1",
+   "concept": "hex",
+   "type": "calc",
+   "prompt": "16진수 `eca8 6420`을 이진수로 바꾸시오.",
+   "answer": "1110 1100 1010 1000 0110 0100 0010 0000",
+   "keys": [
+    "자리당 4 bit",
+    "1110 1100 1010 1000 0110 0100 0010 0000"
+   ],
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-hx-2",
+   "concept": "hex",
+   "type": "mc",
+   "prompt": "이진 `0011 1100`의 16진수는?",
+   "choices": [
+    "0x3A",
+    "0x3C",
+    "0xC3",
+    "0x60"
+   ],
+   "answer": 1,
+   "lesson": "L2-3",
+   "unit": "U2"
+  },
+  {
+   "id": "2-eb-1",
+   "concept": "encoding-basics",
+   "type": "mc",
+   "prompt": "$t0, $s0, $sp의 레지스터 번호는?",
+   "choices": [
+    "0, 8, 31",
+    "8, 17, 30",
+    "8, 16, 29",
+    "16, 8, 29"
+   ],
+   "answer": 2,
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-eb-2",
+   "concept": "encoding-basics",
+   "type": "blank",
+   "prompt": "MIPS 명령어는 (a)-bit로 인코딩되고, 맨 앞 (b) bit가 opcode다.",
+   "answer": "(a) 32 / (b) 6",
+   "accept": [
+    [
+     "32"
+    ],
+    [
+     "6"
+    ]
+   ],
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-eb-3",
+   "concept": "encoding-basics",
+   "type": "mc",
+   "prompt": "$t8, $t9의 레지스터 번호는?",
+   "choices": [
+    "16, 17",
+    "8, 9",
+    "26, 27",
+    "24, 25"
+   ],
+   "answer": 3,
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-rf-1",
+   "concept": "r-format",
+   "type": "calc",
+   "prompt": "`add $t0, $s1, $s2`를 R-format 필드(10진수)와 이진수, 16진수로 쓰시오. ($s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2, add의 funct = 32)",
+   "answer": "op 0 | rs 17 | rt 18 | rd 8 | shamt 0 | funct 32\n000000 10001 10010 01000 00000 100000\n= 0x02324020",
+   "keys": [
+    "rs=$s1(17), rt=$s2(18), rd=$t0(8)",
+    "순서: rs rt rd",
+    "funct 32",
+    "0x02324020"
+   ],
+   "slot": 8,
+   "pts": 6,
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-rf-2",
+   "concept": "r-format",
+   "type": "calc",
+   "prompt": "`sub $s0, $t0, $t1`의 기계어를 이진수와 16진수로 쓰시오. ($s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2, sub의 funct = 34)",
+   "answer": "op 0 | rs 8 | rt 9 | rd 16 | shamt 0 | funct 34\n000000 01000 01001 10000 00000 100010\n= 0x01098022",
+   "keys": [
+    "rs=$t0(8)",
+    "rt=$t1(9)",
+    "rd=$s0(16)",
+    "0x01098022"
+   ],
+   "slot": 8,
+   "pts": 6,
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-rf-3",
+   "concept": "r-format",
+   "type": "mc",
+   "prompt": "R-format 필드의 순서로 옳은 것은?",
+   "choices": [
+    "op rd rs rt shamt funct",
+    "op rs rd rt shamt funct",
+    "op rs rt rd shamt funct",
+    "op rt rs rd funct shamt"
+   ],
+   "answer": 2,
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-rf-4",
+   "concept": "r-format",
+   "type": "ox",
+   "prompt": "R-format 명령어의 opcode는 항상 0이고 연산 종류는 funct가 정한다.",
+   "answer": true,
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-rf-5",
+   "concept": "r-format",
+   "type": "blank",
+   "prompt": "어셈블리 `add rd, rs, rt`에서 destination은 맨 (a)에 오지만, 기계어에서 rd는 rs, rt (b)에 온다.",
+   "answer": "(a) 앞 / (b) 뒤",
+   "accept": [
+    [
+     "앞",
+     "처음",
+     "첫번째",
+     "first"
+    ],
+    [
+     "뒤",
+     "다음",
+     "나중",
+     "after",
+     "뒤에"
+    ]
+   ],
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-rf-6",
+   "concept": "r-format",
+   "type": "calc",
+   "prompt": "기계어 `000000 10001 10010 01000 00000 101010`을 어셈블리로 바꾸시오. (funct 42 = slt, $s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2)",
+   "answer": "slt $t0, $s1, $s2",
+   "keys": [
+    "rs=17 → $s1",
+    "rt=18 → $s2",
+    "rd=8 → $t0",
+    "slt"
+   ],
+   "slot": 8,
+   "pts": 6,
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-rf-7",
+   "concept": "r-format",
+   "type": "calc",
+   "prompt": "`and $t0, $t1, $t2`의 기계어를 16진수로 쓰시오. (and의 funct = 36, $s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2)",
+   "answer": "000000 01001 01010 01000 00000 100100 = 0x012A4024",
+   "keys": [
+    "rs 9, rt 10, rd 8",
+    "funct 100100",
+    "0x012A4024"
+   ],
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-if-1",
+   "concept": "i-format",
+   "type": "mc",
+   "prompt": "I-format의 필드 구성은?",
+   "choices": [
+    "op(6) rs(5) rt(5) rd(5) shamt(5) funct(6)",
+    "op(6) rs(5) rt(5) constant(16)",
+    "op(6) address(26)",
+    "op(6) rt(5) constant(21)"
+   ],
+   "answer": 1,
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-if-2",
+   "concept": "i-format",
+   "type": "mc",
+   "prompt": "`lw $t0, 32($s3)`에서 rt 필드에 들어가는 레지스터는?",
+   "choices": [
+    "$t0 (destination)",
+    "$s3 (base)",
+    "32",
+    "rt 필드는 쓰지 않음"
+   ],
+   "answer": 0,
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-if-3",
+   "concept": "i-format",
+   "type": "calc",
+   "prompt": "`lw $t0, 32($s3)`의 기계어를 이진수와 16진수로 쓰시오. (lw opcode = 35, $s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2)",
+   "answer": "op 35 | rs 19 | rt 8 | 32\n100011 10011 01000 0000 0000 0010 0000 = 0x8E680020",
+   "keys": [
+    "rs = base $s3(19)",
+    "rt = $t0(8)",
+    "imm 32",
+    "0x8E680020"
+   ],
+   "slot": 8,
+   "pts": 6,
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-if-4",
+   "concept": "i-format",
+   "type": "blank",
+   "prompt": "Design Principle 4: Good design demands good (a)",
+   "answer": "(a) compromises",
+   "accept": [
+    [
+     "compromises",
+     "compromise",
+     "절충",
+     "타협"
+    ]
+   ],
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-if-5",
+   "concept": "i-format",
+   "type": "ox",
+   "prompt": "I-format의 상수 필드는 16 bit라서 −2¹⁵ ~ 2¹⁵ − 1 범위를 표현한다.",
+   "answer": true,
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-if-6",
+   "concept": "i-format",
+   "type": "calc",
+   "prompt": "`addi $s3, $s3, -1`의 기계어를 16진수로 쓰시오. (addi opcode = 8, $s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2)",
+   "answer": "001000 10011 10011 1111 1111 1111 1111 = 0x2273FFFF",
+   "keys": [
+    "rs = rt = 19",
+    "−1 = 0xFFFF",
+    "0x2273FFFF"
+   ],
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ex-1",
+   "concept": "encode-example",
+   "type": "calc",
+   "prompt": "C 코드 `A[300] = h + A[300];`을 MIPS로 쓰고 각 명령어의 필드를 10진수로 쓰시오. $t1 = A의 base address, $s2 = h. (lw = 35, sw = 43, add funct = 32)",
+   "answer": "lw  $t0, 1200($t1)    → 35 | 9 | 8 | 1200\nadd $t0, $s2, $t0     → 0 | 18 | 8 | 8 | 0 | 32\nsw  $t0, 1200($t1)    → 43 | 9 | 8 | 1200",
+   "keys": [
+    "offset 300×4 = 1200",
+    "lw 35 9 8 1200",
+    "add 0 18 8 8 0 32",
+    "sw 43 9 8 1200"
+   ],
+   "slot": 8,
+   "pts": 6,
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ex-2",
+   "concept": "encode-example",
+   "type": "mc",
+   "prompt": "A[300]의 byte offset은? (int 배열)",
+   "choices": [
+    "300",
+    "600",
+    "1200",
+    "2400"
+   ],
+   "answer": 2,
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ex-3",
+   "concept": "encode-example",
+   "type": "calc",
+   "prompt": "`lw $t0, 1200($t1)`의 이진 표현을 쓰시오. ($t0 = 8, $t1 = 9)",
+   "answer": "100011 01001 01000 0000 0100 1011 0000  (= 0x8D2804B0)",
+   "keys": [
+    "op 100011",
+    "rs 01001",
+    "rt 01000",
+    "1200 = 0000 0100 1011 0000"
+   ],
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ex-4",
+   "concept": "encode-example",
+   "type": "calc",
+   "prompt": "`sw $t0, 48($s3)`의 16진수 기계어는? (sw = 43, $t0 = 8, $s3 = 19)",
+   "answer": "101011 10011 01000 0000 0000 0011 0000 = 0xAE680030",
+   "keys": [
+    "op 43",
+    "rs 19",
+    "rt 8",
+    "0xAE680030"
+   ],
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "2-sh-1",
+   "concept": "shift",
+   "type": "mc",
+   "prompt": "`sll $t2, $s0, 4`의 효과는?",
+   "choices": [
+    "$s0 / 16",
+    "$s0 + 4",
+    "$s0 × 16",
+    "$s0 × 4"
+   ],
+   "answer": 2,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-sh-2",
+   "concept": "shift",
+   "type": "ox",
+   "prompt": "srl은 왼쪽을 0으로 채우므로 음수(2의 보수)를 2^i로 나누는 데 그대로 쓸 수 있다.",
+   "answer": false,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-sh-3",
+   "concept": "shift",
+   "type": "blank",
+   "prompt": "R-format에서 shift할 칸 수는 (a) 필드에 들어간다.",
+   "answer": "(a) shamt",
+   "accept": [
+    [
+     "shamt",
+     "shiftamount"
+    ]
+   ],
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-sh-4",
+   "concept": "shift",
+   "type": "calc",
+   "prompt": "$s0 = 0000 … 0000 1001 (9)일 때 `sll $t2, $s0, 4`의 결과를 이진수와 10진수로 쓰시오.",
+   "answer": "0000 … 1001 0000 = 144",
+   "keys": [
+    "왼쪽 4칸, 오른쪽 0 채움",
+    "144"
+   ],
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ao-1",
+   "concept": "and-or-nor",
+   "type": "calc",
+   "prompt": "$t1 = 0000 0000 0000 0000 0011 1100 0000 0000, $t2 = 0000 0000 0000 0000 0000 1101 1100 0000일 때 `and $t0, $t1, $t2`와 `or $t0, $t1, $t2`의 결과는?",
+   "answer": "and: 0000 0000 0000 0000 0000 1100 0000 0000\nor:  0000 0000 0000 0000 0011 1101 1100 0000",
+   "keys": [
+    "and 결과",
+    "or 결과"
+   ],
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ao-2",
+   "concept": "and-or-nor",
+   "type": "mc",
+   "prompt": "MIPS에서 $t1의 모든 비트를 반전(NOT)하는 방법은?",
+   "choices": [
+    "not $t0, $t1",
+    "nor $t0, $t1, $zero",
+    "xor $t0, $t1, $zero",
+    "sub $t0, $zero, $t1"
+   ],
+   "answer": 1,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ao-3",
+   "concept": "and-or-nor",
+   "type": "ox",
+   "prompt": "AND는 원하는 비트만 남기고 나머지를 0으로 만드는 마스킹에 쓴다.",
+   "answer": true,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-bi-1",
+   "concept": "branch-instr",
+   "type": "mc",
+   "prompt": "`bne rs, rt, L1`의 동작은?",
+   "choices": [
+    "rs == rt면 L1로",
+    "rs != rt면 L1로",
+    "항상 L1로",
+    "rs < rt면 L1로"
+   ],
+   "answer": 1,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-bi-2",
+   "concept": "branch-instr",
+   "type": "ox",
+   "prompt": "`j L1`은 조건 없이 L1로 점프한다.",
+   "answer": true,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ie-1",
+   "concept": "if-else",
+   "type": "calc",
+   "prompt": "`if (i == j) f = g + h; else f = g - h;`를 MIPS로 쓰시오. f, g, h, i, j = $s0, $s1, $s2, $s3, $s4.",
+   "answer": "      bne $s3, $s4, Else\n      add $s0, $s1, $s2\n      j   Exit\nElse: sub $s0, $s1, $s2\nExit:",
+   "keys": [
+    "bne로 반대 조건 검사",
+    "add $s0, $s1, $s2",
+    "j Exit",
+    "Else: sub",
+    "Exit 레이블"
+   ],
+   "slot": 9,
+   "pts": 8,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ie-2",
+   "concept": "if-else",
+   "type": "calc",
+   "prompt": "`if (a != b) x = x + 1;`을 MIPS로 쓰시오. a, b, x = $s0, $s1, $s2.",
+   "answer": "      beq  $s0, $s1, Skip\n      addi $s2, $s2, 1\nSkip:",
+   "keys": [
+    "beq로 반대 조건",
+    "addi $s2, $s2, 1",
+    "Skip 레이블"
+   ],
+   "slot": 9,
+   "pts": 8,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ie-3",
+   "concept": "if-else",
+   "type": "mc",
+   "prompt": "if-else 컴파일에서 if 블록 끝에 `j Exit`가 필요한 이유는?",
+   "choices": [
+    "else 블록을 건너뛰려고",
+    "루프를 반복하려고",
+    "레지스터를 저장하려고",
+    "함수에서 복귀하려고"
+   ],
+   "answer": 0,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ie-4",
+   "concept": "if-else",
+   "type": "calc",
+   "prompt": "`if (i < j) f = 1; else f = 0;`을 slt를 써서 MIPS로 쓰시오 (분기 없이 가능하면 그렇게). i, j, f = $s3, $s4, $s0.",
+   "answer": "slt $s0, $s3, $s4",
+   "keys": [
+    "slt 한 줄로 끝",
+    "rs = i, rt = j"
+   ],
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ie-5",
+   "concept": "if-else",
+   "type": "calc",
+   "prompt": "`if (x == 0) y = y - 5; else y = y + 5;`를 MIPS로 쓰시오. x, y = $s0, $s1.",
+   "answer": "      bne  $s0, $zero, Else\n      addi $s1, $s1, -5\n      j    Exit\nElse: addi $s1, $s1, 5\nExit:",
+   "keys": [
+    "bne $s0, $zero",
+    "addi -5 (subi 없음)",
+    "j Exit",
+    "Else: addi 5"
+   ],
+   "slot": 9,
+   "pts": 8,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-wl-1",
+   "concept": "while-loop",
+   "type": "calc",
+   "prompt": "`while (save[i] == k) i += 1;`을 MIPS로 쓰시오. i = $s3, k = $s5, save의 base = $s6.",
+   "answer": "Loop: sll  $t1, $s3, 2\n      add  $t1, $t1, $s6\n      lw   $t0, 0($t1)\n      bne  $t0, $s5, Exit\n      addi $s3, $s3, 1\n      j    Loop\nExit:",
+   "keys": [
+    "sll ×4",
+    "add base",
+    "lw offset 0",
+    "bne로 탈출",
+    "addi i+1",
+    "j Loop"
+   ],
+   "slot": 9,
+   "pts": 8,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-wl-2",
+   "concept": "while-loop",
+   "type": "ox",
+   "prompt": "while 루프에서 `lw $t0, $s3($s6)`처럼 인덱스 레지스터를 offset에 바로 쓸 수 있다.",
+   "answer": false,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-wl-3",
+   "concept": "while-loop",
+   "type": "calc",
+   "prompt": "`while (A[i] != 0) i++;`을 MIPS로 쓰시오. i = $s0, A의 base = $s1 (int 배열).",
+   "answer": "Loop: sll  $t1, $s0, 2\n      add  $t1, $t1, $s1\n      lw   $t0, 0($t1)\n      beq  $t0, $zero, Exit\n      addi $s0, $s0, 1\n      j    Loop\nExit:",
+   "keys": [
+    "주소 계산",
+    "lw 0($t1)",
+    "beq $t0, $zero, Exit",
+    "j Loop"
+   ],
+   "slot": 9,
+   "pts": 8,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-wl-4",
+   "concept": "while-loop",
+   "type": "mc",
+   "prompt": "`sll $t1, $s3, 2`를 쓰는 이유는?",
+   "choices": [
+    "i를 2배 하려고",
+    "int 배열 원소가 4 byte라서 index × 4",
+    "부호를 확장하려고",
+    "루프를 끝내려고"
+   ],
+   "answer": 1,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-wl-5",
+   "concept": "while-loop",
+   "type": "calc",
+   "prompt": "`sum = 0; for (i = 0; i < 10; i++) sum += i;`을 MIPS로 쓰시오. sum = $s0, i = $s1.",
+   "answer": "      add  $s0, $zero, $zero\n      add  $s1, $zero, $zero\nLoop: slti $t0, $s1, 10\n      beq  $t0, $zero, Exit\n      add  $s0, $s0, $s1\n      addi $s1, $s1, 1\n      j    Loop\nExit:",
+   "keys": [
+    "초기화",
+    "slti로 i<10",
+    "beq로 탈출",
+    "sum += i",
+    "i++",
+    "j Loop"
+   ],
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-sl-1",
+   "concept": "slt",
+   "type": "calc",
+   "prompt": "$s0 = 1111 … 1111, $s1 = 0000 … 0001일 때 `slt $t0, $s0, $s1`과 `sltu $t0, $s0, $s1`의 결과는?",
+   "answer": "slt (signed): −1 < +1 → $t0 = 1\nsltu (unsigned): 4,294,967,295 > 1 → $t0 = 0",
+   "keys": [
+    "slt → 1",
+    "sltu → 0",
+    "signed/unsigned 해석"
+   ],
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-sl-2",
+   "concept": "slt",
+   "type": "mc",
+   "prompt": "`slti $t0, $a0, 1`에서 $a0 = 1이면 $t0는?",
+   "choices": [
+    "0",
+    "1",
+    "−1",
+    "변하지 않음"
+   ],
+   "answer": 0,
+   "explain": "1 < 1은 거짓.",
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-sl-3",
+   "concept": "slt",
+   "type": "calc",
+   "prompt": "`if ($s1 < $s2) goto L;`을 MIPS 두 줄로 쓰시오.",
+   "answer": "slt $t0, $s1, $s2\nbne $t0, $zero, L",
+   "keys": [
+    "slt",
+    "bne $t0, $zero"
+   ],
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-sl-4",
+   "concept": "slt",
+   "type": "ox",
+   "prompt": "`blt`는 MIPS의 진짜 명령어가 아니라 slt + bne로 바뀌는 pseudo-instruction이다.",
+   "answer": true,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-bd-1",
+   "concept": "branch-design",
+   "type": "short",
+   "prompt": "MIPS가 blt, bge 같은 명령어 대신 beq, bne + slt를 쓰는 이유는? (영어로)",
+   "answer": "Hardware for <, ≥ is slower than for =, ≠. Combining comparison with branching would do more work per instruction and require a slower clock, penalizing all instructions. beq/bne (with slt) is a good design compromise.",
+   "keys": [
+    "<,> 비교 하드웨어가 느림",
+    "명령어당 일 증가 → 클럭 느려짐",
+    "모든 명령어 손해",
+    "beq/bne = 좋은 절충"
+   ],
+   "slot": 2,
+   "pts": 3,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-bd-2",
+   "concept": "branch-design",
+   "type": "ox",
+   "prompt": "blt를 하드웨어 명령어로 넣으면 그 명령어만 느려지고 다른 명령어는 영향이 없다.",
+   "answer": false,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "2-jj-1",
+   "concept": "jal-jr",
+   "type": "mc",
+   "prompt": "100번지의 `jal Proc`(Proc는 388번지)를 실행한 직후 $ra와 PC는?",
+   "choices": [
+    "$ra = 100, PC = 388",
+    "$ra = 388, PC = 104",
+    "$ra = 104, PC = 388",
+    "$ra = 104, PC = 104"
+   ],
+   "answer": 2,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-jj-2",
+   "concept": "jal-jr",
+   "type": "blank",
+   "prompt": "프로시저에서 복귀하는 명령어는 (a) $ra 이다.",
+   "answer": "(a) jr",
+   "accept": [
+    [
+     "jr",
+     "jumpregister"
+    ]
+   ],
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-jj-3",
+   "concept": "jal-jr",
+   "type": "ox",
+   "prompt": "jal은 다음 명령어의 주소(PC + 4)를 $ra에 저장한다.",
+   "answer": true,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ru-1",
+   "concept": "reg-usage",
+   "type": "mc",
+   "prompt": "callee가 사용하려면 저장·복원해야 하는 레지스터는?",
+   "choices": [
+    "$t0–$t9",
+    "$s0–$s7",
+    "$a0–$a3",
+    "$zero"
+   ],
+   "answer": 1,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ru-2",
+   "concept": "reg-usage",
+   "type": "mc",
+   "prompt": "MIPS 스택에서 4 byte 공간을 확보하는 명령어는?",
+   "choices": [
+    "addi $sp, $sp, -4",
+    "addi $sp, $sp, 4",
+    "subi $sp, 4",
+    "lw $sp, 4($sp)"
+   ],
+   "answer": 0,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ru-3",
+   "concept": "reg-usage",
+   "type": "blank",
+   "prompt": "$a0–$a3는 (a), $v0–$v1은 (b)용 레지스터다.",
+   "answer": "(a) 인자 / (b) 결과값",
+   "accept": [
+    [
+     "인자",
+     "argument",
+     "arguments",
+     "인수",
+     "매개변수"
+    ],
+    [
+     "결과값",
+     "결과",
+     "result",
+     "results",
+     "returnvalue",
+     "반환값"
+    ]
+   ],
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ru-4",
+   "concept": "reg-usage",
+   "type": "ox",
+   "prompt": "스택은 높은 주소에서 낮은 주소 방향으로 자란다.",
+   "answer": true,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-lf-1",
+   "concept": "leaf",
+   "type": "calc",
+   "prompt": "`int leaf_example(int g, h, i, j) { int f; f = (g + h) - (i + j); return f; }`를 MIPS로 쓰시오. 인자는 $a0–$a3, f는 $s0, 결과는 $v0.",
+   "answer": "leaf_example:\n  addi $sp, $sp, -4\n  sw   $s0, 0($sp)\n  add  $t0, $a0, $a1\n  add  $t1, $a2, $a3\n  sub  $s0, $t0, $t1\n  add  $v0, $s0, $zero\n  lw   $s0, 0($sp)\n  addi $sp, $sp, 4\n  jr   $ra",
+   "keys": [
+    "$sp −4, sw $s0",
+    "g+h, i+j",
+    "sub $s0",
+    "add $v0, $s0, $zero",
+    "lw $s0 복원",
+    "$sp +4",
+    "jr $ra"
+   ],
+   "slot": 10,
+   "pts": 8,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-lf-2",
+   "concept": "leaf",
+   "type": "mc",
+   "prompt": "leaf_example에서 $s0을 스택에 저장하는 이유는?",
+   "choices": [
+    "$s0이 인자라서",
+    "$s0이 $ra라서",
+    "$s0은 saved 레지스터라 callee가 원래 값을 보존해야 해서",
+    "스택 포인터라서"
+   ],
+   "answer": 2,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-lf-3",
+   "concept": "leaf",
+   "type": "ox",
+   "prompt": "Leaf procedure는 다른 프로시저를 호출하지 않는 프로시저다.",
+   "answer": true,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-lf-4",
+   "concept": "leaf",
+   "type": "calc",
+   "prompt": "`int sum3(int a, int b, int c) { return a + b + c; }`를 MIPS로 쓰시오 (saved 레지스터 사용 안 함). 인자 $a0–$a2, 결과 $v0.",
+   "answer": "sum3:\n  add $t0, $a0, $a1\n  add $v0, $t0, $a2\n  jr  $ra",
+   "keys": [
+    "임시 레지스터만 사용 → 스택 불필요",
+    "add 두 번",
+    "jr $ra"
+   ],
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-lf-5",
+   "concept": "leaf",
+   "type": "calc",
+   "prompt": "leaf_example에서 f를 $s0, $s1 두 saved 레지스터에 나눠 쓴다면 프롤로그(스택 저장)는 어떻게 바뀌나?",
+   "answer": "addi $sp, $sp, -8\nsw   $s1, 4($sp)\nsw   $s0, 0($sp)\n(에필로그는 같은 offset에서 lw 후 addi $sp, $sp, 8)",
+   "keys": [
+    "−8 확보",
+    "각각 다른 offset에 sw",
+    "복원 offset 일치"
+   ],
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-nl-1",
+   "concept": "nonleaf",
+   "type": "calc",
+   "prompt": "재귀 `int fact(int n) { if (n < 1) return 1; else return n * fact(n - 1); }`를 MIPS로 쓰시오. 인자 $a0, 결과 $v0.",
+   "answer": "fact:\n  addi $sp, $sp, -8\n  sw   $ra, 4($sp)\n  sw   $a0, 0($sp)\n  slti $t0, $a0, 1\n  beq  $t0, $zero, L1\n  addi $v0, $zero, 1\n  addi $sp, $sp, 8\n  jr   $ra\nL1:\n  addi $a0, $a0, -1\n  jal  fact\n  lw   $a0, 0($sp)\n  lw   $ra, 4($sp)\n  addi $sp, $sp, 8\n  mul  $v0, $a0, $v0\n  jr   $ra",
+   "keys": [
+    "$sp −8, $ra·$a0 저장",
+    "slti + beq",
+    "base case $v0 = 1",
+    "n−1, jal fact",
+    "같은 offset에서 복원",
+    "mul",
+    "jr $ra"
+   ],
+   "slot": 10,
+   "pts": 8,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-nl-2",
+   "concept": "nonleaf",
+   "type": "mc",
+   "prompt": "Non-leaf procedure가 호출 전에 스택에 반드시 저장해야 하는 것은?",
+   "choices": [
+    "$zero",
+    "$t 레지스터 전부",
+    "$sp",
+    "$ra와 호출 뒤에 필요한 인자·임시값"
+   ],
+   "answer": 3,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-nl-3",
+   "concept": "nonleaf",
+   "type": "ox",
+   "prompt": "fact에서 $a0를 0($sp)에, $ra를 4($sp)에 저장했다면 복원할 때 $a0를 4($sp)에서 읽어도 된다.",
+   "answer": false,
+   "explain": "반대로 복원하면 0점 (교수님 4주-1).",
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-nl-4",
+   "concept": "nonleaf",
+   "type": "short",
+   "prompt": "Non-leaf procedure에서 $ra를 스택에 저장해야 하는 이유를 쓰시오. (영어로)",
+   "answer": "Because the procedure itself calls another procedure with jal, which overwrites $ra with a new return address. Without saving it on the stack, the original return address to the caller would be lost.",
+   "keys": [
+    "jal이 $ra를 덮어씀",
+    "원래 복귀 주소를 잃음"
+   ],
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-nl-5",
+   "concept": "nonleaf",
+   "type": "blank",
+   "prompt": "fact에서 n < 1 검사는 `slti $t0, $a0, 1` 다음 `(a) $t0, $zero, L1`으로 한다.",
+   "answer": "(a) beq",
+   "accept": [
+    [
+     "beq"
+    ]
+   ],
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ft-1",
+   "concept": "fact-trace",
+   "type": "calc",
+   "prompt": "100번지에서 `jal fact`로 fact(3)을 호출한다. $sp 초기값은 500. 재귀가 가장 깊어졌을 때까지 각 단계의 $sp와 스택에 저장된 (a0, ra)를 쓰시오.",
+   "answer": "fact(3): $sp 492, 0($sp) = 3, 4($sp) = 104\nfact(2): $sp 484, 0($sp) = 2, 4($sp) = L1+8\nfact(1): $sp 476, 0($sp) = 1, 4($sp) = L1+8\nfact(0): $sp 468, 0($sp) = 0, 4($sp) = L1+8\n(fact(0)에서 slti → $t0 = 1 → $v0 = 1 반환)",
+   "keys": [
+    "492/484/476/468",
+    "첫 ra = 104",
+    "이후 ra = L1+8",
+    "a0 = 3,2,1,0"
+   ],
+   "slot": 10,
+   "pts": 8,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ft-2",
+   "concept": "fact-trace",
+   "type": "mc",
+   "prompt": "fact(1) 실행 중 `slti $t0, $a0, 1`의 결과와 그 다음 동작은?",
+   "choices": [
+    "$t0 = 1, base case로 1 반환",
+    "$t0 = 0, beq가 L1로 분기해 fact(0) 호출",
+    "$t0 = 1, L1로 분기",
+    "$t0 = 0, 바로 jr $ra"
+   ],
+   "answer": 1,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ft-3",
+   "concept": "fact-trace",
+   "type": "calc",
+   "prompt": "fact(3)이 모두 끝나면 $v0와 $sp, 마지막 jr이 가는 주소는?",
+   "answer": "$v0 = 6 (1 → 1×1 → 2×1 → 3×2), $sp = 500 (원래대로), jr $ra → 104",
+   "keys": [
+    "$v0 = 6",
+    "$sp = 500",
+    "104로 복귀"
+   ],
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ft-4",
+   "concept": "fact-trace",
+   "type": "ox",
+   "prompt": "fact(3) 호출 시 스택은 총 4개의 frame(각 8 byte)이 쌓였다가 모두 해제된다.",
+   "answer": true,
+   "explain": "fact(3), (2), (1), (0) — 500 → 468.",
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ss-1",
+   "concept": "stack-size",
+   "type": "mc",
+   "prompt": "교수님 기준으로, char 인자 2개를 받는 재귀 함수가 $ra와 인자를 저장할 스택 크기는?",
+   "choices": [
+    "4 byte",
+    "6 byte",
+    "8 byte",
+    "12 byte"
+   ],
+   "answer": 1,
+   "explain": "$ra 4 + char 1 + char 1 = 6.",
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ss-2",
+   "concept": "stack-size",
+   "type": "mc",
+   "prompt": "int 인자 1개를 받는 재귀 함수가 $ra와 인자를 저장할 스택 크기는?",
+   "choices": [
+    "4",
+    "6",
+    "8",
+    "16"
+   ],
+   "answer": 2,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ss-3",
+   "concept": "stack-size",
+   "type": "ox",
+   "prompt": "strcpy처럼 char 배열을 다뤄도 스택에 저장하는 값이 int(i)라면 $sp는 4만큼 움직인다.",
+   "answer": true,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-by-1",
+   "concept": "byte-ops",
+   "type": "calc",
+   "prompt": "`void strcpy(char x[], char y[]) { int i = 0; while ((x[i] = y[i]) != '\\0') i += 1; }`를 MIPS로 쓰시오. x, y는 $a0, $a1, i는 $s0.",
+   "answer": "strcpy:\n  addi $sp, $sp, -4\n  sw   $s0, 0($sp)\n  add  $s0, $zero, $zero\nL1: add  $t1, $s0, $a1\n  lbu  $t2, 0($t1)\n  add  $t3, $s0, $a0\n  sb   $t2, 0($t3)\n  beq  $t2, $zero, L2\n  addi $s0, $s0, 1\n  j    L1\nL2: lw   $s0, 0($sp)\n  addi $sp, $sp, 4\n  jr   $ra",
+   "keys": [
+    "$s0 저장",
+    "i = 0",
+    "주소 = i + base (×4 없음)",
+    "lbu / sb",
+    "beq로 '\\0' 검사",
+    "i++, j L1",
+    "복원, jr"
+   ],
+   "slot": 10,
+   "pts": 8,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-by-2",
+   "concept": "byte-ops",
+   "type": "mc",
+   "prompt": "char 배열 x[i]의 주소 계산이 int 배열과 다른 점은?",
+   "choices": [
+    "원소가 1 byte라서 index에 4를 곱하지 않는다",
+    "index에 8을 곱한다",
+    "base address가 필요 없다",
+    "offset에 레지스터를 쓸 수 있다"
+   ],
+   "answer": 0,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-by-3",
+   "concept": "byte-ops",
+   "type": "mc",
+   "prompt": "1 byte를 읽어 32-bit로 zero extend하는 명령어는?",
+   "choices": [
+    "lw",
+    "lb",
+    "lbu",
+    "sb"
+   ],
+   "answer": 2,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "2-lu-1",
+   "concept": "lui-ori",
+   "type": "calc",
+   "prompt": "32-bit 상수 0x007D0900을 $s0에 넣는 MIPS 코드를 쓰시오 (0x007D = 125, 0x0900 = 2304).",
+   "answer": "lui $s0, 125         # 0x007D → upper 16 bits\nori $s0, $s0, 2304   # 0x0900 → lower 16 bits",
+   "keys": [
+    "lui로 위 16 bit",
+    "ori로 아래 16 bit"
+   ],
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-lu-2",
+   "concept": "lui-ori",
+   "type": "ox",
+   "prompt": "아래 16 bit를 채울 때 addi 대신 ori를 쓰는 이유는 addi가 immediate를 sign extend하기 때문이다.",
+   "answer": true,
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ba-1",
+   "concept": "branch-addr",
+   "type": "blank",
+   "prompt": "Branch target address = (PC + (a)) + offset × (b)",
+   "answer": "(a) 4 / (b) 4",
+   "accept": [
+    [
+     "4"
+    ],
+    [
+     "4"
+    ]
+   ],
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ba-2",
+   "concept": "branch-addr",
+   "type": "calc",
+   "prompt": "beq가 108번지에 있고 분기 대상이 124번지다. beq의 offset 필드 값은?",
+   "answer": "offset = (124 − (108 + 4)) / 4 = 12 / 4 = 3",
+   "keys": [
+    "PC + 4 = 112",
+    "(124 − 112)/4",
+    "3"
+   ],
+   "slot": 15,
+   "pts": 6,
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ba-3",
+   "concept": "branch-addr",
+   "type": "calc",
+   "prompt": "beq가 1000번지에 있고 offset 필드가 −3이다. 분기 대상 주소는?",
+   "answer": "(1000 + 4) + (−3) × 4 = 1004 − 12 = 992",
+   "keys": [
+    "PC+4 = 1004",
+    "−3 × 4 = −12",
+    "992"
+   ],
+   "slot": 15,
+   "pts": 6,
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ba-4",
+   "concept": "branch-addr",
+   "type": "mc",
+   "prompt": "PC-relative branch가 도달할 수 있는 범위는?",
+   "choices": [
+    "±2¹⁵ bytes",
+    "±2¹⁵ words(명령어)",
+    "±2²⁶ words",
+    "전체 메모리"
+   ],
+   "answer": 1,
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ba-5",
+   "concept": "branch-addr",
+   "type": "calc",
+   "prompt": "분기 대상이 너무 멀어 16-bit offset으로 표현할 수 없을 때 assembler는 `beq $s0, $s1, L1`을 어떻게 바꾸나?",
+   "answer": "    bne $s0, $s1, L2\n    j   L1\nL2: …",
+   "keys": [
+    "조건 반전 bne",
+    "j L1",
+    "L2 레이블"
+   ],
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ba-6",
+   "concept": "branch-addr",
+   "type": "ox",
+   "prompt": "beq의 offset 필드에는 분기 대상의 byte 주소 차이가 그대로 들어간다.",
+   "answer": false,
+   "explain": "명령어(word) 개수 차이. ×4는 하드웨어(shift left 2)가 함.",
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ja-1",
+   "concept": "jump-addr",
+   "type": "mc",
+   "prompt": "J-format에서 address 필드는 몇 bit인가?",
+   "choices": [
+    "16",
+    "5",
+    "26",
+    "32"
+   ],
+   "answer": 2,
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ja-2",
+   "concept": "jump-addr",
+   "type": "calc",
+   "prompt": "Loop가 80000번지, `j Loop`의 address 필드 값은?",
+   "answer": "80000 / 4 = 20000",
+   "keys": [
+    "Target = address × 4",
+    "20000"
+   ],
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ja-3",
+   "concept": "jump-addr",
+   "type": "calc",
+   "prompt": "80012번지의 `bne $t0, $s5, Exit`에서 offset 필드가 2일 때 Exit의 주소는?",
+   "answer": "(80012 + 4) + 2 × 4 = 80024",
+   "keys": [
+    "PC+4 = 80016",
+    "+8",
+    "80024"
+   ],
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-ja-4",
+   "concept": "jump-addr",
+   "type": "mc",
+   "prompt": "jr은 어느 형식인가?",
+   "choices": [
+    "R-format",
+    "I-format",
+    "J-format",
+    "FP format"
+   ],
+   "answer": 0,
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-am-1",
+   "concept": "addr-modes",
+   "type": "mc",
+   "prompt": "lw, sw가 쓰는 addressing mode는?",
+   "choices": [
+    "PC-relative",
+    "Pseudo-direct",
+    "Base (displacement)",
+    "Immediate"
+   ],
+   "answer": 2,
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-am-2",
+   "concept": "addr-modes",
+   "type": "mc",
+   "prompt": "beq, bne가 쓰는 addressing mode는?",
+   "choices": [
+    "PC-relative",
+    "Register",
+    "Base",
+    "Pseudo-direct"
+   ],
+   "answer": 0,
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-tr-1",
+   "concept": "translate",
+   "type": "mc",
+   "prompt": "Linker가 하는 일이 '아닌' 것은?",
+   "choices": [
+    "segment 병합",
+    "레이블 주소 결정",
+    "위치 의존·외부 참조 수정",
+    "가상 주소 공간 생성 후 프로그램을 메모리에 복사"
+   ],
+   "answer": 3,
+   "explain": "마지막은 loader.",
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-tr-2",
+   "concept": "translate",
+   "type": "calc",
+   "prompt": "pseudo-instruction `move $t0, $t1`과 `blt $t0, $t1, L`을 실제 MIPS 명령어로 바꾸시오.",
+   "answer": "move $t0, $t1 → add $t0, $zero, $t1\nblt $t0, $t1, L → slt $at, $t0, $t1\n                  bne $at, $zero, L",
+   "keys": [
+    "add $t0, $zero, $t1",
+    "slt $at",
+    "bne $at, $zero, L"
+   ],
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-tr-3",
+   "concept": "translate",
+   "type": "ox",
+   "prompt": "Dynamic linking은 라이브러리 프로시저가 호출될 때만 링크·로드한다.",
+   "answer": true,
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-fa-1",
+   "concept": "fallacies",
+   "type": "ox",
+   "prompt": "강력한(복잡한) 명령어를 쓰면 항상 성능이 높아진다.",
+   "answer": false,
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "2-fa-2",
+   "concept": "fallacies",
+   "type": "mc",
+   "prompt": "MIPS 설계 원칙 4개에 들어가지 '않는' 것은?",
+   "choices": [
+    "Simplicity favors regularity",
+    "Smaller is faster",
+    "Hierarchy of memories",
+    "Good design demands good compromises"
+   ],
+   "answer": 2,
+   "lesson": "L2-7",
+   "unit": "U2"
+  },
+  {
+   "id": "3-ad-1",
+   "concept": "int-add",
+   "type": "calc",
+   "prompt": "4-bit로 7 + 6과 7 − 6을 계산하시오 (뺄셈은 2의 보수 덧셈으로).",
+   "answer": "7 + 6: 0111 + 0110 = 1101 (13, unsigned)\n7 − 6 = 7 + (−6): −6 = 1010 → 0111 + 1010 = 1 0001 → carry 버림 → 0001 = 1",
+   "keys": [
+    "0111+0110",
+    "−6 = 1010",
+    "결과 0001"
+   ],
+   "lesson": "L3-1",
+   "unit": "U3"
+  },
+  {
+   "id": "3-ad-2",
+   "concept": "int-add",
+   "type": "ox",
+   "prompt": "뺄셈은 빼는 수의 2의 보수를 더하는 것으로 처리할 수 있다.",
+   "answer": true,
+   "lesson": "L3-1",
+   "unit": "U3"
+  },
+  {
+   "id": "3-of-1",
+   "concept": "overflow",
+   "type": "mc",
+   "prompt": "오버플로가 '절대' 일어나지 않는 경우는?",
+   "choices": [
+    "양수 + 양수",
+    "음수 + 음수",
+    "양수 + 음수",
+    "음수 − 양수"
+   ],
+   "answer": 2,
+   "lesson": "L3-1",
+   "unit": "U3"
+  },
+  {
+   "id": "3-of-2",
+   "concept": "overflow",
+   "type": "calc",
+   "prompt": "4-bit 2의 보수에서 0110 (6) + 0101 (5)를 계산하고 오버플로 여부를 판정하시오.",
+   "answer": "0110 + 0101 = 1011 → sign bit 1 (음수). 양수 + 양수가 음수 → overflow.",
+   "keys": [
+    "1011",
+    "양+양인데 sign 1",
+    "overflow"
+   ],
+   "slot": 6,
+   "pts": 5,
+   "lesson": "L3-1",
+   "unit": "U3"
+  },
+  {
+   "id": "3-of-3",
+   "concept": "overflow",
+   "type": "calc",
+   "prompt": "4-bit 2의 보수에서 1100 (−4) + 1011 (−5)을 계산하고 오버플로 여부를 판정하시오.",
+   "answer": "1100 + 1011 = 1 0111 → 4 bit = 0111 → sign 0 (양수). 음수 + 음수가 양수 → overflow.",
+   "keys": [
+    "0111",
+    "음+음인데 sign 0",
+    "overflow"
+   ],
+   "lesson": "L3-1",
+   "unit": "U3"
+  },
+  {
+   "id": "3-of-4",
+   "concept": "overflow",
+   "type": "blank",
+   "prompt": "양수 − 음수에서 결과 sign bit가 (a)이면 오버플로, 음수 − 양수에서 결과 sign bit가 (b)이면 오버플로.",
+   "answer": "(a) 1 / (b) 0",
+   "accept": [
+    [
+     "1"
+    ],
+    [
+     "0"
+    ]
+   ],
+   "lesson": "L3-1",
+   "unit": "U3"
+  },
+  {
+   "id": "3-of-5",
+   "concept": "overflow",
+   "type": "ox",
+   "prompt": "4-bit에서 0011 + 1110 (3 + (−2))은 결과에 carry가 나오므로 오버플로다.",
+   "answer": false,
+   "explain": "양수+음수는 오버플로 없음. carry out ≠ overflow.",
+   "lesson": "L3-1",
+   "unit": "U3"
+  },
+  {
+   "id": "3-of-6",
+   "concept": "overflow",
+   "type": "mc",
+   "prompt": "현대 CPU가 정수 오버플로를 처리하는 방식으로 수업에서 말한 것은?",
+   "choices": [
+    "무시한다",
+    "exception으로 처리",
+    "항상 0으로 만든다",
+    "결과를 64 bit로 확장"
+   ],
+   "answer": 1,
+   "lesson": "L3-1",
+   "unit": "U3"
+  },
+  {
+   "id": "3-mb-1",
+   "concept": "mult-basic",
+   "type": "mc",
+   "prompt": "n-bit × n-bit 곱셈 결과는 최대 몇 bit?",
+   "choices": [
+    "n",
+    "n+1",
+    "2n",
+    "n²"
+   ],
+   "answer": 2,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-mb-2",
+   "concept": "mult-basic",
+   "type": "calc",
+   "prompt": "종이 곱셈으로 1000 × 1001을 계산하고 10진수로 확인하시오.",
+   "answer": "1000 + 0000(shift) + 0000(shift) + 1000(3칸 shift) = 1001000 = 72 (8 × 9)",
+   "keys": [
+    "부분곱",
+    "1001000",
+    "72"
+   ],
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-m1-1",
+   "concept": "mult-v1",
+   "type": "calc",
+   "prompt": "원래 곱셈기(Multiplicand 8-bit shift left, Multiplier 4-bit shift right, Product 8-bit)로 0110 × 0011을 계산하시오. 각 반복의 Multiplier, Multiplicand, Product를 쓰시오.",
+   "answer": "0: Mplier 0011, Mcand 0000 0110, Prod 0000 0000\n1: LSB=1 → Prod = 0000 0110; shift → Mplier 0001, Mcand 0000 1100\n2: LSB=1 → Prod = 0001 0010; shift → Mplier 0000, Mcand 0001 1000\n3: LSB=0 → no add; shift → 0000, 0011 0000\n4: LSB=0 → no add; shift → 0000, 0110 0000\nProduct = 0001 0010 (18)",
+   "keys": [
+    "매 반복 LSB 검사",
+    "LSB=1일 때만 덧셈",
+    "매 반복 두 번 shift",
+    "결과 0001 0010 = 18"
+   ],
+   "slot": 11,
+   "pts": 8,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-m1-2",
+   "concept": "mult-v1",
+   "type": "calc",
+   "prompt": "원래 곱셈기로 0111 × 0101을 계산하시오 (반복마다 Product 값).",
+   "answer": "1: LSB=1 → Prod 0000 0111 (Mcand → 0000 1110)\n2: LSB=0 → Prod 0000 0111 (Mcand → 0001 1100)\n3: LSB=1 → Prod 0010 0011 (Mcand → 0011 1000)\n4: LSB=0 → Prod 0010 0011\n= 35",
+   "keys": [
+    "0000 0111",
+    "0010 0011",
+    "35"
+   ],
+   "slot": 11,
+   "pts": 8,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-m1-3",
+   "concept": "mult-v1",
+   "type": "mc",
+   "prompt": "원래 곱셈기에서 매 반복 Multiplicand와 Multiplier가 하는 shift는?",
+   "choices": [
+    "Multiplicand 왼쪽, Multiplier 오른쪽",
+    "둘 다 왼쪽",
+    "Multiplicand 오른쪽, Multiplier 왼쪽",
+    "LSB가 1일 때만 shift"
+   ],
+   "answer": 0,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-m1-4",
+   "concept": "mult-v1",
+   "type": "ox",
+   "prompt": "원래 곱셈기에서 Product 레지스터는 처음에 0으로 초기화한다.",
+   "answer": true,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-m1-5",
+   "concept": "mult-v1",
+   "type": "mc",
+   "prompt": "원래 곱셈기(32-bit)에서 Multiplicand 레지스터와 ALU의 크기는?",
+   "choices": [
+    "32-bit, 32-bit",
+    "32-bit, 64-bit",
+    "64-bit, 32-bit",
+    "64-bit, 64-bit"
+   ],
+   "answer": 3,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-m1-6",
+   "concept": "mult-v1",
+   "type": "ox",
+   "prompt": "원래 곱셈기에서 Multiplier의 LSB가 0이면 그 반복에서는 shift도 하지 않는다.",
+   "answer": false,
+   "explain": "LSB와 상관없이 매 반복 shift.",
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-m2-1",
+   "concept": "mult-v2",
+   "type": "calc",
+   "prompt": "개선된 곱셈기(Multiplicand 4-bit, Product 8-bit shift right)로 0011 × 0101을 계산하시오. 각 반복의 Product를 쓰시오.",
+   "answer": "0: Product = 0000 0101 (아래 절반 = multiplier)\n1: LSB=1 → 위 += 0011 → 0011 0101 → >>1 → 0001 1010\n2: LSB=0 → >>1 → 0000 1101\n3: LSB=1 → 위 += 0011 → 0011 1101 → >>1 → 0001 1110\n4: LSB=0 → >>1 → 0000 1111\n= 15",
+   "keys": [
+    "초기: 아래 절반 = multiplier",
+    "LSB=1이면 위 절반에 더함",
+    "매 반복 >>1",
+    "0000 1111 = 15"
+   ],
+   "slot": 11,
+   "pts": 8,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-m2-2",
+   "concept": "mult-v2",
+   "type": "calc",
+   "prompt": "개선된 곱셈기로 1001 × 0110을 계산하시오 (반복마다 Product).",
+   "answer": "0: 0000 0110\n1: LSB=0 → >>1 → 0000 0011\n2: LSB=1 → 1001 0011 → >>1 → 0100 1001\n3: LSB=1 → 1101 1001 → >>1 → 0110 1100\n4: LSB=0 → >>1 → 0011 0110 = 54",
+   "keys": [
+    "0100 1001",
+    "0110 1100",
+    "0011 0110 = 54"
+   ],
+   "slot": 11,
+   "pts": 8,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-m2-3",
+   "concept": "mult-v2",
+   "type": "mc",
+   "prompt": "개선된 곱셈기의 종료 조건은?",
+   "choices": [
+    "Product가 0",
+    "shift 횟수 = multiplier 비트 수",
+    "shift 횟수 = multiplicand 비트 수",
+    "Multiplicand가 0"
+   ],
+   "answer": 1,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-m2-4",
+   "concept": "mult-v2",
+   "type": "ox",
+   "prompt": "개선된 곱셈기에는 별도의 Multiplier 레지스터가 없고, multiplier는 Product 레지스터의 아래 절반에 들어간다.",
+   "answer": true,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-m2-5",
+   "concept": "mult-v2",
+   "type": "short",
+   "prompt": "개선된 곱셈기가 원래 곱셈기보다 나은 점을 하드웨어 크기 관점에서 쓰시오. (영어로)",
+   "answer": "The multiplicand register and ALU only need to be 32 bits (not 64), and the multiplier shares the product register's lower half, so no separate multiplier register is needed; only the product shifts right.",
+   "keys": [
+    "Multiplicand·ALU가 32-bit",
+    "multiplier가 Product 아래 절반을 공유",
+    "Product만 shift right"
+   ],
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-m2-6",
+   "concept": "mult-v2",
+   "type": "blank",
+   "prompt": "개선된 곱셈기에서 LSB가 1이면 multiplicand를 Product의 (a) 절반에 더하고, 매 반복 Product를 (b)쪽으로 shift한다.",
+   "answer": "(a) 위 / (b) 오른",
+   "accept": [
+    [
+     "위",
+     "upper",
+     "상위",
+     "왼쪽"
+    ],
+    [
+     "오른",
+     "오른쪽",
+     "right",
+     "우"
+    ]
+   ],
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-me-1",
+   "concept": "mult-examples",
+   "type": "calc",
+   "prompt": "week5 Example 1: 원래 곱셈기로 1010 × 0010의 과정을 보이시오.",
+   "answer": "0: Mplier 0010, Mcand 0000 1010, Prod 0000 0000\n1: LSB=0 → no add; Mplier 0001, Mcand 0001 0100\n2: LSB=1 → Prod = 0001 0100; Mplier 0000, Mcand 0010 1000\n3: LSB=0; Mcand 0101 0000\n4: LSB=0; Mcand 1010 0000\nProduct = 0001 0100 (20)",
+   "keys": [
+    "1회차 덧셈 없음",
+    "2회차 Prod = 0001 0100",
+    "결과 20"
+   ],
+   "slot": 11,
+   "pts": 8,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-me-2",
+   "concept": "mult-examples",
+   "type": "calc",
+   "prompt": "week5 Example 2: 개선된 곱셈기로 1010 × 1100의 과정을 보이시오.",
+   "answer": "0: 0000 1100\n1: LSB=0 → >>1 → 0000 0110\n2: LSB=0 → >>1 → 0000 0011\n3: LSB=1 → 1010 0011 → >>1 → 0101 0001\n4: LSB=1 → 1111 0001 → >>1 → 0111 1000 (120)",
+   "keys": [
+    "0000 0011",
+    "0101 0001",
+    "0111 1000 = 120"
+   ],
+   "slot": 11,
+   "pts": 8,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-me-3",
+   "concept": "mult-examples",
+   "type": "mc",
+   "prompt": "Example 2의 3회차에서 위 절반에 1010을 더하기 직전 Product가 0000 0011이다. 더한 직후 값은?",
+   "choices": [
+    "0000 1101",
+    "1010 0000",
+    "1010 0011",
+    "0101 0001"
+   ],
+   "answer": 2,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-mi-1",
+   "concept": "mult-instr",
+   "type": "mc",
+   "prompt": "64-bit 곱 결과의 위 32 bit가 저장되는 레지스터는?",
+   "choices": [
+    "HI",
+    "LO",
+    "$v0",
+    "$ra"
+   ],
+   "answer": 0,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-mi-2",
+   "concept": "mult-instr",
+   "type": "ox",
+   "prompt": "`mul rd, rs, rt`는 64-bit 곱의 아래 32 bit만 rd에 넣는다.",
+   "answer": true,
+   "lesson": "L3-2",
+   "unit": "U3"
+  },
+  {
+   "id": "3-db-1",
+   "concept": "div-basic",
+   "type": "blank",
+   "prompt": "Dividend = (a) × Divisor + (b)",
+   "answer": "(a) Quotient / (b) Remainder",
+   "accept": [
+    [
+     "quotient",
+     "몫"
+    ],
+    [
+     "remainder",
+     "나머지"
+    ]
+   ],
+   "lesson": "L3-3",
+   "unit": "U3"
+  },
+  {
+   "id": "3-db-2",
+   "concept": "div-basic",
+   "type": "mc",
+   "prompt": "Restoring division에서 빼기 결과가 음수일 때 하는 일은?",
+   "choices": [
+    "몫에 1을 넣는다",
+    "divisor를 다시 더해 원래 값으로 복구하고 몫에 0",
+    "나눗셈을 중단한다",
+    "divisor를 2배 한다"
+   ],
+   "answer": 1,
+   "lesson": "L3-3",
+   "unit": "U3"
+  },
+  {
+   "id": "3-db-3",
+   "concept": "div-basic",
+   "type": "ox",
+   "prompt": "Signed division에서 나머지(remainder)는 dividend와 같은 부호를 가진다.",
+   "answer": true,
+   "lesson": "L3-3",
+   "unit": "U3"
+  },
+  {
+   "id": "3-db-4",
+   "concept": "div-basic",
+   "type": "calc",
+   "prompt": "1001010 ÷ 1000의 몫과 나머지를 이진수와 10진수로 쓰시오.",
+   "answer": "몫 1001 (9), 나머지 10 (2) — 74 = 9 × 8 + 2",
+   "keys": [
+    "몫 1001",
+    "나머지 10",
+    "74 = 9×8 + 2"
+   ],
+   "lesson": "L3-3",
+   "unit": "U3"
+  },
+  {
+   "id": "3-d1-1",
+   "concept": "div-v1",
+   "type": "calc",
+   "prompt": "나눗셈기(Divisor 8-bit shift right, 처음엔 왼쪽 절반 / Remainder 8-bit / Quotient 4-bit shift left)로 0000 0111 ÷ 0010을 계산하시오. 각 반복의 판정과 Quotient, Remainder를 쓰시오.",
+   "answer": "Divisor 초기 0010 0000, Rem 0000 0111\n1: Rem−Div < 0 → 복구, Q 0000, Div → 0001 0000\n2: < 0 → 복구, Q 0000, Div → 0000 1000\n3: 0000 0111 − 0000 1000 < 0 → 복구, Q 0000, Div → 0000 0100\n4: 0000 0111 − 0000 0100 = 0000 0011 ≥ 0 → Q 0001, Div → 0000 0010\n5: 0000 0011 − 0000 0010 = 0000 0001 ≥ 0 → Q 0011\nQuotient = 0011 (3), Remainder = 0000 0001 (1)",
+   "keys": [
+    "Divisor 초기 0010 0000",
+    "n+1 = 5회",
+    "음수면 add back + 0",
+    "Q = 0011 (3)",
+    "R = 1"
+   ],
+   "slot": 12,
+   "pts": 7,
+   "lesson": "L3-3",
+   "unit": "U3"
+  },
+  {
+   "id": "3-d1-2",
+   "concept": "div-v1",
+   "type": "calc",
+   "prompt": "같은 나눗셈기로 0000 1101 ÷ 0011을 계산하시오 (몫·나머지와 ≥0이 된 반복).",
+   "answer": "Divisor 0011 0000에서 시작.\n1, 2회: 음수 → 복구\n3회: 0000 1101 − 0000 1100 = 0000 0001 ≥ 0 → Q 0001\n4회: 0000 0001 − 0000 0110 < 0 → Q 0010\n5회: 0000 0001 − 0000 0011 < 0 → Q 0100\nQ = 0100 (4), R = 1",
+   "keys": [
+    "3회차만 ≥ 0",
+    "Q = 0100 = 4",
+    "R = 1"
+   ],
+   "slot": 12,
+   "pts": 7,
+   "lesson": "L3-3",
+   "unit": "U3"
+  },
+  {
+   "id": "3-d1-3",
+   "concept": "div-v1",
+   "type": "mc",
+   "prompt": "4-bit 나눗셈기는 몇 번 반복하나?",
+   "choices": [
+    "3",
+    "4",
+    "5",
+    "8"
+   ],
+   "answer": 2,
+   "explain": "n + 1 = 5 (32-bit면 33번).",
+   "lesson": "L3-3",
+   "unit": "U3"
+  },
+  {
+   "id": "3-d1-4",
+   "concept": "div-v1",
+   "type": "ox",
+   "prompt": "나눗셈기에서 Divisor는 처음에 Divisor 레지스터의 왼쪽(위) 절반에 놓인다.",
+   "answer": true,
+   "lesson": "L3-3",
+   "unit": "U3"
+  },
+  {
+   "id": "3-d1-5",
+   "concept": "div-v1",
+   "type": "mc",
+   "prompt": "Rem − Div가 음수인지 판단하는 방법은?",
+   "choices": [
+    "결과의 첫 비트(sign bit)가 1인지",
+    "결과가 짝수인지",
+    "Quotient의 LSB",
+    "Divisor의 MSB"
+   ],
+   "answer": 0,
+   "lesson": "L3-3",
+   "unit": "U3"
+  },
+  {
+   "id": "3-d1-6",
+   "concept": "div-v1",
+   "type": "blank",
+   "prompt": "Rem ≥ 0이면 Quotient를 왼쪽 shift하고 새 LSB에 (a), Rem < 0이면 Divisor를 (b) 복구하고 LSB에 0.",
+   "answer": "(a) 1 / (b) 더해",
+   "accept": [
+    [
+     "1"
+    ],
+    [
+     "더해",
+     "더해서",
+     "다시더해",
+     "addback",
+     "add",
+     "plusback",
+     "더함"
+    ]
+   ],
+   "lesson": "L3-3",
+   "unit": "U3"
+  },
+  {
+   "id": "3-dx-1",
+   "concept": "div-example",
+   "type": "calc",
+   "prompt": "week5 Example 3: 0001 0100 ÷ 0010을 나눗셈기로 계산하시오.",
+   "answer": "Div 0010 0000, Rem 0001 0100\n1: 1111 0100 <0 → 복구, Q 0000, Div 0001 0000\n2: 0000 0100 ≥0 → Q 0001, Div 0000 1000\n3: 1111 1100 <0 → 복구, Q 0010, Div 0000 0100\n4: 0000 0000 ≥0 → Q 0101, Div 0000 0010\n5: 1111 1110 <0 → 복구, Q 1010\nQuotient 1010 (10), Remainder 0",
+   "keys": [
+    "2회 ≥0",
+    "4회 ≥0",
+    "Q = 1010 = 10",
+    "R = 0"
+   ],
+   "slot": 12,
+   "pts": 7,
+   "lesson": "L3-3",
+   "unit": "U3"
+  },
+  {
+   "id": "3-dx-2",
+   "concept": "div-example",
+   "type": "mc",
+   "prompt": "Example 3의 1회차에서 0001 0100 − 0010 0000의 결과는?",
+   "choices": [
+    "0000 0100",
+    "1111 0100",
+    "0001 0100",
+    "1110 1100"
+   ],
+   "answer": 1,
+   "lesson": "L3-3",
+   "unit": "U3"
+  },
+  {
+   "id": "3-d2-1",
+   "concept": "div-v2",
+   "type": "mc",
+   "prompt": "개선된 나눗셈기의 특징은?",
+   "choices": [
+    "Divisor·ALU를 32-bit로 줄이고 몫을 Remainder 레지스터에 함께 넣는다",
+    "Divisor를 64-bit로 늘린다",
+    "Quotient 레지스터를 두 개 쓴다",
+    "곱셈기와 같은 회로를 쓴다"
+   ],
+   "answer": 0,
+   "lesson": "L3-3",
+   "unit": "U3"
+  },
+  {
+   "id": "3-d2-2",
+   "concept": "div-v2",
+   "type": "ox",
+   "prompt": "0으로 나누는지(divisor = 0) 먼저 검사해야 한다.",
+   "answer": true,
+   "lesson": "L3-3",
+   "unit": "U3"
+  },
+  {
+   "id": "3-if-1",
+   "concept": "ieee-format",
+   "type": "mc",
+   "prompt": "IEEE 754 single precision의 sign, exponent, fraction 비트 수는?",
+   "choices": [
+    "1, 11, 52",
+    "1, 8, 23",
+    "1, 7, 24",
+    "2, 8, 22"
+   ],
+   "answer": 1,
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-if-2",
+   "concept": "ieee-format",
+   "type": "mc",
+   "prompt": "Double precision의 bias는?",
+   "choices": [
+    "127",
+    "128",
+    "1024",
+    "1023"
+   ],
+   "answer": 3,
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-if-3",
+   "concept": "ieee-format",
+   "type": "blank",
+   "prompt": "x = (−1)^S × ((a) + Fraction) × 2^(Exponent − (b))",
+   "answer": "(a) 1 / (b) Bias",
+   "accept": [
+    [
+     "1"
+    ],
+    [
+     "bias",
+     "127",
+     "바이어스"
+    ]
+   ],
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-if-4",
+   "concept": "ieee-format",
+   "type": "ox",
+   "prompt": "정규화된 수의 맨 앞 '1.'은 항상 1이라 저장하지 않는다 (hidden bit).",
+   "answer": true,
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-if-5",
+   "concept": "ieee-format",
+   "type": "short",
+   "prompt": "IEEE 754에서 exponent를 bias(excess) 표현으로 저장하는 이유와 single에서 bias 값을 쓰시오. (영어로)",
+   "answer": "Exponent is stored as actual exponent + bias so that the stored exponent is always unsigned (easy to compare/sort). Single precision bias = 127 (double = 1023).",
+   "keys": [
+    "stored = actual + bias",
+    "exponent가 unsigned",
+    "single bias 127"
+   ],
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-if-6",
+   "concept": "ieee-format",
+   "type": "calc",
+   "prompt": "Single precision에서 exponent 필드가 1000 0010이면 실제 지수는?",
+   "answer": "130 − 127 = 3",
+   "keys": [
+    "130",
+    "−127",
+    "3"
+   ],
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-ie-1",
+   "concept": "ieee-examples",
+   "type": "calc",
+   "prompt": "−0.75를 IEEE 754 single precision으로 표현하시오 (S, Exponent, Fraction, 16진수).",
+   "answer": "0.75 = 0.11₂ = 1.1₂ × 2⁻¹\nS = 1, Exponent = −1 + 127 = 126 = 0111 1110, Fraction = 1000…0\n1 01111110 10000000000000000000000 = 0xBF400000",
+   "keys": [
+    "1.1 × 2⁻¹",
+    "S = 1",
+    "E = 126 = 01111110",
+    "F = 100…0",
+    "0xBF400000"
+   ],
+   "slot": 13,
+   "pts": 6,
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-ie-2",
+   "concept": "ieee-examples",
+   "type": "calc",
+   "prompt": "0.625를 IEEE 754 single precision으로 표현하시오.",
+   "answer": "0.625 = 0.101₂ = 1.01₂ × 2⁻¹\nS = 0, E = 126 = 0111 1110, F = 0100…0\n0 01111110 01000000000000000000000 = 0x3F200000",
+   "keys": [
+    "1.01 × 2⁻¹",
+    "E = 126",
+    "F = 0100…",
+    "0x3F200000"
+   ],
+   "slot": 13,
+   "pts": 6,
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-ie-3",
+   "concept": "ieee-examples",
+   "type": "calc",
+   "prompt": "−3.75를 IEEE 754 single precision으로 표현하시오.",
+   "answer": "3.75 = 11.11₂ = 1.111₂ × 2¹\nS = 1, E = 1 + 127 = 128 = 1000 0000, F = 1110…0\n1 10000000 11100000000000000000000 = 0xC0700000",
+   "keys": [
+    "1.111 × 2¹",
+    "E = 128 = 10000000",
+    "F = 111000…",
+    "0xC0700000"
+   ],
+   "slot": 13,
+   "pts": 6,
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-ie-4",
+   "concept": "ieee-examples",
+   "type": "calc",
+   "prompt": "−12.5를 IEEE 754 single precision으로 표현하시오.",
+   "answer": "12.5 = 1100.1₂ = 1.1001₂ × 2³\nS = 1, E = 3 + 127 = 130 = 1000 0010, F = 1001 0…0\n1 10000010 10010000000000000000000 = 0xC1480000",
+   "keys": [
+    "1.1001 × 2³",
+    "E = 130",
+    "F = 1001…",
+    "0xC1480000"
+   ],
+   "slot": 13,
+   "pts": 6,
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-ie-5",
+   "concept": "ieee-examples",
+   "type": "calc",
+   "prompt": "−0.75를 IEEE 754 double precision으로 표현하시오 (exponent·fraction 비트 수 주의).",
+   "answer": "S = 1, Exponent = −1 + 1023 = 1022 = 011 1111 1110 (11 bit), Fraction = 1000…0 (52 bit)\n= 0xBFE8000000000000",
+   "keys": [
+    "E = 1022 (11 bit)",
+    "F 52 bit",
+    "0xBFE8000000000000"
+   ],
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-ie-6",
+   "concept": "ieee-examples",
+   "type": "calc",
+   "prompt": "single precision `0 01111111 10000000000000000000000`의 10진수 값은?",
+   "answer": "E = 127 → 2⁰, significand 1.1₂ = 1.5 → 1.5",
+   "keys": [
+    "E−127 = 0",
+    "1.1₂",
+    "1.5"
+   ],
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-ie-7",
+   "concept": "ieee-examples",
+   "type": "calc",
+   "prompt": "−2.25를 IEEE 754 single precision 16진수로 쓰시오.",
+   "answer": "2.25 = 10.01₂ = 1.001₂ × 2¹ → S 1, E 128, F 0010…0 → 1 10000000 00100000000000000000000 = 0xC0100000",
+   "keys": [
+    "1.001 × 2¹",
+    "E 128",
+    "0xC0100000"
+   ],
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-ir-1",
+   "concept": "ieee-range",
+   "type": "mc",
+   "prompt": "Single precision에서 exponent = 255, fraction ≠ 0이 뜻하는 것은?",
+   "choices": [
+    "0",
+    "±∞",
+    "Denormal",
+    "NaN"
+   ],
+   "answer": 3,
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-ir-2",
+   "concept": "ieee-range",
+   "type": "mc",
+   "prompt": "Single precision의 대략적인 십진 정밀도는?",
+   "choices": [
+    "6자리",
+    "16자리",
+    "23자리",
+    "3자리"
+   ],
+   "answer": 0,
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-ir-3",
+   "concept": "ieee-range",
+   "type": "ox",
+   "prompt": "Exponent = 0이고 fraction ≠ 0이면 denormal number이며 hidden bit는 0이다.",
+   "answer": true,
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-ir-4",
+   "concept": "ieee-range",
+   "type": "calc",
+   "prompt": "Single precision에서 가장 작은 정규화 양수와 가장 큰 수의 exponent 필드 값과 실제 지수는?",
+   "answer": "최소: exponent 0000 0001 → 1 − 127 = −126 (1.0 × 2⁻¹²⁶)\n최대: exponent 1111 1110 → 254 − 127 = +127 (≈ 2.0 × 2¹²⁷)",
+   "keys": [
+    "00000001 → −126",
+    "11111110 → +127",
+    "00000000·11111111은 예약"
+   ],
+   "lesson": "L3-4",
+   "unit": "U3"
+  },
+  {
+   "id": "3-fa-1",
+   "concept": "fp-add",
+   "type": "calc",
+   "prompt": "4자리 이진 FP로 0.5 + (−0.4375)를 4단계로 계산하시오.",
+   "answer": "1.000×2⁻¹ + (−1.110×2⁻²)\n1. Align: −1.110×2⁻² → −0.111×2⁻¹\n2. Add: 1.000 − 0.111 = 0.001 × 2⁻¹\n3. Normalize: 1.000×2⁻⁴ (no over/underflow)\n4. Round: 1.000×2⁻⁴ = 0.0625",
+   "keys": [
+    "작은 지수를 큰 쪽에 맞춤",
+    "0.001 × 2⁻¹",
+    "1.000 × 2⁻⁴",
+    "0.0625"
+   ],
+   "slot": 13,
+   "pts": 6,
+   "lesson": "L3-5",
+   "unit": "U3"
+  },
+  {
+   "id": "3-fa-2",
+   "concept": "fp-add",
+   "type": "mc",
+   "prompt": "FP 덧셈의 첫 단계는?",
+   "choices": [
+    "지수가 작은 쪽 significand를 shift해 지수를 맞춘다",
+    "significand를 곱한다",
+    "지수를 더한다",
+    "부호를 정한다"
+   ],
+   "answer": 0,
+   "lesson": "L3-5",
+   "unit": "U3"
+  },
+  {
+   "id": "3-fa-3",
+   "concept": "fp-add",
+   "type": "calc",
+   "prompt": "4자리 십진 FP로 9.999×10¹ + 1.610×10⁻¹을 계산하시오.",
+   "answer": "1. 1.610×10⁻¹ → 0.016×10¹\n2. 9.999 + 0.016 = 10.015 ×10¹\n3. 1.0015×10²\n4. round → 1.002×10²",
+   "keys": [
+    "align 0.016×10¹",
+    "10.015",
+    "1.0015×10²",
+    "1.002×10²"
+   ],
+   "lesson": "L3-5",
+   "unit": "U3"
+  },
+  {
+   "id": "3-fm-1",
+   "concept": "fp-mul",
+   "type": "calc",
+   "prompt": "4자리 이진 FP로 0.5 × (−0.4375)를 5단계로 계산하시오 (biased exponent도 쓰시오).",
+   "answer": "1.000×2⁻¹ × −1.110×2⁻²\n1. Exponent: −1 + −2 = −3 (biased: 126 + 125 − 127 = 124 = −3 + 127)\n2. 1.000 × 1.110 = 1.110 → 1.110×2⁻³\n3. Normalized, no over/underflow\n4. Round: no change\n5. Sign: + × − = − → −1.110×2⁻³ = −0.21875",
+   "keys": [
+    "지수 −3",
+    "bias 한 번 빼기",
+    "1.110 × 2⁻³",
+    "부호 −",
+    "−0.21875"
+   ],
+   "slot": 13,
+   "pts": 6,
+   "lesson": "L3-5",
+   "unit": "U3"
+  },
+  {
+   "id": "3-fm-2",
+   "concept": "fp-mul",
+   "type": "ox",
+   "prompt": "biased exponent 두 개를 더하면 bias가 두 번 들어가므로 bias를 한 번 빼야 한다.",
+   "answer": true,
+   "lesson": "L3-5",
+   "unit": "U3"
+  },
+  {
+   "id": "3-fm-3",
+   "concept": "fp-mul",
+   "type": "mc",
+   "prompt": "FP 곱셈에서 결과의 부호는 언제 정하나 (슬라이드 순서)?",
+   "choices": [
+    "1단계",
+    "2단계",
+    "3단계",
+    "5단계 (마지막)"
+   ],
+   "answer": 3,
+   "lesson": "L3-5",
+   "unit": "U3"
+  },
+  {
+   "id": "3-fi-1",
+   "concept": "fp-instr",
+   "type": "mc",
+   "prompt": "MIPS single precision FP 레지스터는?",
+   "choices": [
+    "$t0–$t9",
+    "$f0–$f31",
+    "$s0–$s7",
+    "HI/LO"
+   ],
+   "answer": 1,
+   "lesson": "L3-5",
+   "unit": "U3"
+  },
+  {
+   "id": "3-fi-2",
+   "concept": "fp-instr",
+   "type": "ox",
+   "prompt": "Double precision은 FP 레지스터 두 개($f0/$f1)를 짝지어 쓴다.",
+   "answer": true,
+   "lesson": "L3-5",
+   "unit": "U3"
+  },
+  {
+   "id": "4-pi-1",
+   "concept": "proc-intro",
+   "type": "mc",
+   "prompt": "중간고사 범위의 프로세서 구현은?",
+   "choices": [
+    "단순(single-cycle) 버전",
+    "파이프라인 버전",
+    "멀티사이클 버전",
+    "슈퍼스칼라"
+   ],
+   "answer": 0,
+   "lesson": "L4-1",
+   "unit": "U4"
+  },
+  {
+   "id": "4-pi-2",
+   "concept": "proc-intro",
+   "type": "ox",
+   "prompt": "중간고사 답안에 수업에서 정한 명령어 집합 밖의 명령어를 쓰면 0점 처리된다고 공지됐다.",
+   "answer": true,
+   "lesson": "L4-1",
+   "unit": "U4"
+  },
+  {
+   "id": "4-pi-3",
+   "concept": "proc-intro",
+   "type": "mc",
+   "prompt": "week6 p.2의 'Simple subset of instructions'에 '없는' 것은?",
+   "choices": [
+    "lw",
+    "beq",
+    "or",
+    "addi"
+   ],
+   "answer": 3,
+   "lesson": "L4-1",
+   "unit": "U4"
+  },
+  {
+   "id": "4-es-1",
+   "concept": "exec-steps",
+   "type": "mc",
+   "prompt": "명령어 실행에서 ALU가 계산하는 것이 '아닌' 것은?",
+   "choices": [
+    "산술 결과",
+    "load/store용 메모리 주소",
+    "instruction memory에서 읽은 명령어",
+    "분기 대상 주소"
+   ],
+   "answer": 2,
+   "lesson": "L4-1",
+   "unit": "U4"
+  },
+  {
+   "id": "4-es-2",
+   "concept": "exec-steps",
+   "type": "blank",
+   "prompt": "분기하지 않으면 PC ← PC + (a). 명령어 하나는 (b) bit다.",
+   "answer": "(a) 4 / (b) 32",
+   "accept": [
+    [
+     "4"
+    ],
+    [
+     "32"
+    ]
+   ],
+   "lesson": "L4-1",
+   "unit": "U4"
+  },
+  {
+   "id": "4-es-3",
+   "concept": "exec-steps",
+   "type": "ox",
+   "prompt": "명령어 하나(1 word)는 32 byte다.",
+   "answer": false,
+   "explain": "32 bit = 4 byte. 녹음의 '32 bytes'는 말실수.",
+   "lesson": "L4-1",
+   "unit": "U4"
+  },
+  {
+   "id": "4-co-1",
+   "concept": "cpu-overview",
+   "type": "short",
+   "prompt": "week6 p.6 'Can't just join wires together'에서 MUX가 필요한 세 곳과 각 MUX가 고르는 두 입력을 쓰시오. (영어로)",
+   "answer": "1. PC input: PC + 4 vs. branch target address\n2. ALU second input: register (Read data 2) vs. sign-extended immediate from the instruction\n3. Register write data: ALU result vs. data read from data memory",
+   "keys": [
+    "PC: PC+4 vs branch target",
+    "ALU 입력: register vs immediate",
+    "쓰기 데이터: ALU vs memory"
+   ],
+   "slot": 16,
+   "pts": 9,
+   "lesson": "L4-1",
+   "unit": "U4"
+  },
+  {
+   "id": "4-co-2",
+   "concept": "cpu-overview",
+   "type": "mc",
+   "prompt": "lw에서 ALU 결과는 무엇인가?",
+   "choices": [
+    "레지스터에 쓸 최종 값",
+    "data memory에 접근할 주소",
+    "다음 PC",
+    "분기 오프셋"
+   ],
+   "answer": 1,
+   "lesson": "L4-1",
+   "unit": "U4"
+  },
+  {
+   "id": "4-co-3",
+   "concept": "cpu-overview",
+   "type": "ox",
+   "prompt": "서로 다른 출처의 선은 그냥 하나로 연결(join)하면 된다.",
+   "answer": false,
+   "lesson": "L4-1",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ce-1",
+   "concept": "comb-elements",
+   "type": "mc",
+   "prompt": "조합 소자(combinational element)의 특징은?",
+   "choices": [
+    "출력이 현재 입력만의 함수",
+    "값을 저장한다",
+    "클럭 edge에만 바뀐다",
+    "write 신호가 필요하다"
+   ],
+   "answer": 0,
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ce-2",
+   "concept": "comb-elements",
+   "type": "mc",
+   "prompt": "다음 중 상태(sequential) 소자는?",
+   "choices": [
+    "AND gate",
+    "Multiplexer",
+    "ALU",
+    "Register"
+   ],
+   "answer": 3,
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ce-3",
+   "concept": "comb-elements",
+   "type": "blank",
+   "prompt": "ALU는 Y = F(A, B)이고, R-format에서 F는 명령어의 맨 아래 6 bit인 (a)로 정해진다.",
+   "answer": "(a) funct",
+   "accept": [
+    [
+     "funct",
+     "function",
+     "functioncode",
+     "펑션코드",
+     "funct필드"
+    ]
+   ],
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ce-4",
+   "concept": "comb-elements",
+   "type": "ox",
+   "prompt": "32-bit 데이터는 데이터패스에서 선 32개(bus)로 전달된다.",
+   "answer": true,
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-mx-1",
+   "concept": "mux-basic",
+   "type": "blank",
+   "prompt": "Multiplexer: Y = S ? (a) : (b)",
+   "answer": "(a) I1 / (b) I0",
+   "accept": [
+    [
+     "i1"
+    ],
+    [
+     "i0"
+    ]
+   ],
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-mx-2",
+   "concept": "mux-basic",
+   "type": "mc",
+   "prompt": "MUX의 선택선 S = 0이면?",
+   "choices": [
+    "0번(I0)으로 표시된 입력이 출력",
+    "1번 입력이 출력",
+    "두 입력의 AND",
+    "출력 없음"
+   ],
+   "answer": 0,
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-mx-3",
+   "concept": "mux-basic",
+   "type": "ox",
+   "prompt": "MUX 신호값은 입력선의 위·아래 위치가 아니라 그림에 표시된 번호(0/1)로 정해진다.",
+   "answer": true,
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-mx-4",
+   "concept": "mux-basic",
+   "type": "mc",
+   "prompt": "시험의 MUX 그림에서 원하는 입력선 옆에 '1'이 적혀 있다. 선택 신호는?",
+   "choices": [
+    "0",
+    "1",
+    "X",
+    "위치에 따라 다름"
+   ],
+   "answer": 1,
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-mx-5",
+   "concept": "mux-basic",
+   "type": "short",
+   "prompt": "MUX의 역할과 데이터패스에 MUX가 필요한 이유를 쓰시오. (영어로)",
+   "answer": "A multiplexer selects one of several inputs according to a select signal (Y = S ? I1 : I0). The datapath needs MUXes because the same component (e.g., ALU input, register write data, next PC) gets data from different sources for different instructions, and wires cannot simply be joined together.",
+   "keys": [
+    "select signal로 입력 하나 선택",
+    "명령어마다 출처가 다름",
+    "선을 그냥 합칠 수 없음"
+   ],
+   "slot": 1,
+   "pts": 3,
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-mx-6",
+   "concept": "mux-basic",
+   "type": "ox",
+   "prompt": "MUX는 조합 소자(combinational element)다.",
+   "answer": true,
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-se-1",
+   "concept": "seq-elements",
+   "type": "mc",
+   "prompt": "Edge-triggered register가 값을 갱신하는 시점은 (슬라이드 기준)?",
+   "choices": [
+    "Clk이 1인 동안 계속",
+    "Clk이 0 → 1로 바뀔 때",
+    "Clk이 1 → 0으로 바뀔 때만",
+    "Write가 0일 때"
+   ],
+   "answer": 1,
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-se-2",
+   "concept": "seq-elements",
+   "type": "ox",
+   "prompt": "Write control이 있는 레지스터는 clock edge이면서 write 입력이 1일 때만 값을 바꾼다.",
+   "answer": true,
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-se-3",
+   "concept": "seq-elements",
+   "type": "blank",
+   "prompt": "레지스터 파일의 write control 신호 이름은 (a)이다.",
+   "answer": "(a) RegWrite",
+   "accept": [
+    [
+     "regwrite"
+    ]
+   ],
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-se-4",
+   "concept": "seq-elements",
+   "type": "short",
+   "prompt": "Combinational element와 state(sequential) element를 비교하시오. (영어로)",
+   "answer": "Combinational elements operate on data; their output is a function of the current input only (e.g., AND gate, MUX, adder, ALU). State elements store information; registers update their stored value on a clock edge (edge-triggered), possibly only when a write control is 1.",
+   "keys": [
+    "combinational: output = f(input)",
+    "state: store information",
+    "clock edge에 갱신",
+    "예시"
+   ],
+   "slot": 1,
+   "pts": 3,
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-cl-1",
+   "concept": "clocking",
+   "type": "mc",
+   "prompt": "Clock period를 결정하는 것은?",
+   "choices": [
+    "가장 짧은 지연",
+    "레지스터 개수",
+    "가장 긴 조합 회로 지연",
+    "명령어 수"
+   ],
+   "answer": 2,
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-cl-2",
+   "concept": "clocking",
+   "type": "ox",
+   "prompt": "조합 회로는 state element에서 입력을 받아 클럭 edge 사이에 데이터를 변환하고 state element로 출력한다.",
+   "answer": true,
+   "lesson": "L4-2",
+   "unit": "U4"
+  },
+  {
+   "id": "4-fe-1",
+   "concept": "fetch",
+   "type": "mc",
+   "prompt": "Instruction fetch에서 PC가 연결되는 두 곳은?",
+   "choices": [
+    "Instruction memory의 read address와 +4 adder",
+    "Data memory와 ALU",
+    "Register file과 sign-extend",
+    "Control과 ALU control"
+   ],
+   "answer": 0,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-fe-2",
+   "concept": "fetch",
+   "type": "ox",
+   "prompt": "PC는 32-bit register다.",
+   "answer": true,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-fe-3",
+   "concept": "fetch",
+   "type": "blank",
+   "prompt": "Instruction fetch: PC → (a) memory, 동시에 PC + (b) 계산",
+   "answer": "(a) instruction / (b) 4",
+   "accept": [
+    [
+     "instruction",
+     "instructionmemory",
+     "명령어"
+    ],
+    [
+     "4"
+    ]
+   ],
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-rd-1",
+   "concept": "r-datapath",
+   "type": "mc",
+   "prompt": "R-format 실행 단계로 옳은 것은?",
+   "choices": [
+    "메모리 읽기 → ALU → 레지스터 쓰기",
+    "레지스터 2개 읽기 → ALU 연산 → 레지스터 쓰기",
+    "레지스터 1개 읽기 → sign extend → 메모리 쓰기",
+    "PC + offset → 분기"
+   ],
+   "answer": 1,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-rd-2",
+   "concept": "r-datapath",
+   "type": "ox",
+   "prompt": "R-format 명령어는 레지스터에 결과를 쓰므로 RegWrite = 1이다.",
+   "answer": true,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-rd-3",
+   "concept": "r-datapath",
+   "type": "blank",
+   "prompt": "Register file의 Read register 1, Read register 2, Write register 입력은 각각 (a) bit다.",
+   "answer": "(a) 5",
+   "accept": [
+    [
+     "5"
+    ]
+   ],
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ls-1",
+   "concept": "ls-datapath",
+   "type": "mc",
+   "prompt": "lw가 켜는 신호 조합은?",
+   "choices": [
+    "MemWrite, RegWrite",
+    "MemRead, MemWrite",
+    "MemRead, RegWrite",
+    "MemWrite만"
+   ],
+   "answer": 2,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ls-2",
+   "concept": "ls-datapath",
+   "type": "mc",
+   "prompt": "sw가 켜는 메모리 신호는?",
+   "choices": [
+    "MemRead",
+    "MemWrite",
+    "MemtoReg",
+    "RegWrite"
+   ],
+   "answer": 1,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ls-3",
+   "concept": "ls-datapath",
+   "type": "ox",
+   "prompt": "load/store의 16-bit offset은 ALU에 들어가기 전에 32-bit로 sign extend된다.",
+   "answer": true,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ls-4",
+   "concept": "ls-datapath",
+   "type": "ox",
+   "prompt": "lw를 실행할 때는 MemWrite를 1로 켠다.",
+   "answer": false,
+   "explain": "lw는 MemRead. 6주-1 23:18의 말실수에 주의.",
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bd-1",
+   "concept": "br-datapath",
+   "type": "mc",
+   "prompt": "beq에서 두 레지스터가 같은지는 어떻게 확인하나?",
+   "choices": [
+    "AND 게이트로",
+    "두 값을 더해서",
+    "ALU로 빼서 Zero 출력 확인",
+    "sign extend로"
+   ],
+   "answer": 2,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bd-2",
+   "concept": "br-datapath",
+   "type": "short",
+   "prompt": "beq의 분기 대상 주소를 계산하는 데이터패스 단계를 쓰시오. (영어로)",
+   "answer": "Sign-extend the 16-bit displacement to 32 bits, shift it left by 2 (word displacement → byte offset, ×4), and add it to PC + 4 (already computed during instruction fetch).",
+   "keys": [
+    "sign-extend",
+    "shift left 2 (×4)",
+    "PC + 4에 더함"
+   ],
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bd-3",
+   "concept": "br-datapath",
+   "type": "ox",
+   "prompt": "Shift left 2는 offset에 4를 곱하는 것과 같다.",
+   "answer": true,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bd-4",
+   "concept": "br-datapath",
+   "type": "mc",
+   "prompt": "분기 상수를 byte 주소가 아니라 '줄(명령어) 수'로 주는 이유로 교수님이 든 것은?",
+   "choices": [
+    "4로 안 나눠지는 값이 들어가면 심각한 오류가 나므로",
+    "비트를 아끼려고",
+    "ALU가 빼기만 해서",
+    "jump와 구분하려고"
+   ],
+   "answer": 0,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-cp-1",
+   "concept": "composing",
+   "type": "short",
+   "prompt": "단순 데이터패스에서 MUX가 들어가는 네 곳과 각 MUX를 제어하는 신호를 쓰시오. (영어로)",
+   "answer": "1. ALU input: register vs. immediate → ALUSrc\n2. Register write data: ALU output vs. data memory → MemtoReg\n3. Next PC: PC + 4 vs. branch target → Branch AND Zero (PCSrc)\n4. Write register number: rt vs. rd → RegDst",
+   "keys": [
+    "ALUSrc",
+    "MemtoReg",
+    "PCSrc = Branch AND Zero",
+    "RegDst"
+   ],
+   "slot": 16,
+   "pts": 9,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-cp-2",
+   "concept": "composing",
+   "type": "mc",
+   "prompt": "단순 데이터패스가 instruction memory와 data memory를 분리하는 이유는?",
+   "choices": [
+    "메모리가 싸서",
+    "한 클럭 사이클에 명령어 하나를 실행하고 각 요소는 한 번에 한 기능만 하므로",
+    "캐시 때문에",
+    "파이프라인 때문에"
+   ],
+   "answer": 1,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-cp-3",
+   "concept": "composing",
+   "type": "mc",
+   "prompt": "쓰기 레지스터 번호를 rt와 rd 중에서 고르는 MUX의 신호는?",
+   "choices": [
+    "ALUSrc",
+    "MemtoReg",
+    "Branch",
+    "RegDst"
+   ],
+   "answer": 3,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-cp-4",
+   "concept": "composing",
+   "type": "ox",
+   "prompt": "단순(single-cycle) 데이터패스는 모든 명령어를 한 클럭 사이클에 실행한다.",
+   "answer": true,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-cp-5",
+   "concept": "composing",
+   "type": "mc",
+   "prompt": "레지스터 쓰기 데이터를 ALU 결과와 메모리 값 중에서 고르는 신호는?",
+   "choices": [
+    "RegDst",
+    "ALUSrc",
+    "MemtoReg",
+    "MemRead"
+   ],
+   "answer": 2,
+   "lesson": "L4-3",
+   "unit": "U4"
+  },
+  {
+   "id": "4-df-1",
+   "concept": "dp-fields",
+   "type": "mc",
+   "prompt": "p.3 데이터패스에서 Instruction [31–26]이 들어가는 곳은?",
+   "choices": [
+    "Control",
+    "ALU control",
+    "Sign-extend",
+    "Read register 1"
+   ],
+   "answer": 0,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-df-2",
+   "concept": "dp-fields",
+   "type": "mc",
+   "prompt": "Instruction [5–0]이 들어가는 곳은?",
+   "choices": [
+    "Control",
+    "ALU control",
+    "Data memory",
+    "Shift left 2"
+   ],
+   "answer": 1,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-df-3",
+   "concept": "dp-fields",
+   "type": "blank",
+   "prompt": "rs [25–21] → Read register (a), rt [20–16] → Read register 2와 RegDst MUX의 (b)번 입력",
+   "answer": "(a) 1 / (b) 0",
+   "accept": [
+    [
+     "1"
+    ],
+    [
+     "0"
+    ]
+   ],
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-df-4",
+   "concept": "dp-fields",
+   "type": "mc",
+   "prompt": "Instruction [15–0]이 들어가는 곳은?",
+   "choices": [
+    "Control",
+    "RegDst MUX",
+    "Sign-extend",
+    "PC"
+   ],
+   "answer": 2,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-rt-1",
+   "concept": "dp-rtype",
+   "type": "sig",
+   "prompt": "p.3 데이터패스에서 R-type 명령어(add $t0, $s1, $s2)의 제어 신호 값을 채우시오.",
+   "sig": {
+    "RegDst": "1",
+    "ALUSrc": "0",
+    "MemtoReg": "0",
+    "RegWrite": "1",
+    "MemRead": "0",
+    "MemWrite": "0",
+    "Branch": "0",
+    "ALUOp1": "1",
+    "ALUOp0": "0"
+   },
+   "answer": "RegDst=1  ALUSrc=0  MemtoReg=0  RegWrite=1  MemRead=0  MemWrite=0  Branch=0  ALUOp1=1  ALUOp0=0",
+   "slot": 14,
+   "pts": 8,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-rt-2",
+   "concept": "dp-rtype",
+   "type": "mc",
+   "prompt": "R-type에서 RegDst = 1인 이유는?",
+   "choices": [
+    "rt에 써야 해서",
+    "rd(세 번째 레지스터)에 써야 하고 p.3에서 rd가 1번 입력이라서",
+    "메모리에서 읽어서",
+    "분기라서"
+   ],
+   "answer": 1,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-rt-3",
+   "concept": "dp-rtype",
+   "type": "mc",
+   "prompt": "R-type에서 ALUSrc 값과 이유는?",
+   "choices": [
+    "0, 두 번째 피연산자도 레지스터라서",
+    "1, 상수를 쓰니까",
+    "X, 상관없어서",
+    "1, 메모리 주소라서"
+   ],
+   "answer": 0,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-rt-4",
+   "concept": "dp-rtype",
+   "type": "short",
+   "prompt": "p.3 데이터패스에서 `add $t0, $s1, $s2`가 실행될 때 데이터가 흐르는 경로를 순서대로 쓰시오. (영어로)",
+   "answer": "PC → instruction memory; opcode → Control. rs ($s1) → Read register 1, rt ($s2) → Read register 2; both read data go to the ALU (ALUSrc = 0), ALU control uses funct (add). The ALU result bypasses data memory through the MemtoReg MUX (0) back to Write data; rd ($t0) is selected by RegDst = 1 and written with RegWrite = 1. PC ← PC + 4.",
+   "keys": [
+    "두 레지스터 읽기",
+    "ALUSrc = 0",
+    "funct → ALU control",
+    "MemtoReg = 0 (data memory 우회)",
+    "RegDst = 1, RegWrite = 1",
+    "PC + 4"
+   ],
+   "slot": 16,
+   "pts": 9,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-rt-5",
+   "concept": "dp-rtype",
+   "type": "ox",
+   "prompt": "R-type 실행 중에는 data memory를 사용하지 않는다.",
+   "answer": true,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-rt-6",
+   "concept": "dp-rtype",
+   "type": "sig",
+   "prompt": "※ 이 문제의 데이터패스는 교안 p.3과 같지만 MUX 입력 번호가 아래처럼 표시돼 있다고 하자.\nRegDst MUX: 위(rt [20–16]) = 1, 아래(rd [15–11]) = 0\nALUSrc MUX: 위(Read data 2) = 1, 아래(sign-extended imm) = 0\nMemtoReg MUX: 위(Read data) = 0, 아래(ALU result) = 1\n\n이 그림에서 R-type 명령어의 제어 신호를 채우시오.",
+   "sig": {
+    "RegDst": "0",
+    "ALUSrc": "1",
+    "MemtoReg": "1",
+    "RegWrite": "1",
+    "MemRead": "0",
+    "MemWrite": "0",
+    "Branch": "0",
+    "ALUOp1": "1",
+    "ALUOp0": "0"
+   },
+   "answer": "RegDst=0  ALUSrc=1  MemtoReg=1  RegWrite=1  MemRead=0  MemWrite=0  Branch=0  ALUOp1=1  ALUOp0=0",
+   "explain": "RegDst: rd가 0번 → 0. ALUSrc: 레지스터가 1번 → 1. MemtoReg: ALU result가 1번 → 1. 나머지는 그대로.",
+   "slot": 14,
+   "pts": 8,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-lw-1",
+   "concept": "dp-lw",
+   "type": "sig",
+   "prompt": "p.3 데이터패스에서 lw 명령어의 제어 신호 값을 채우시오.",
+   "sig": {
+    "RegDst": "0",
+    "ALUSrc": "1",
+    "MemtoReg": "1",
+    "RegWrite": "1",
+    "MemRead": "1",
+    "MemWrite": "0",
+    "Branch": "0",
+    "ALUOp1": "0",
+    "ALUOp0": "0"
+   },
+   "answer": "RegDst=0  ALUSrc=1  MemtoReg=1  RegWrite=1  MemRead=1  MemWrite=0  Branch=0  ALUOp1=0  ALUOp0=0",
+   "slot": 14,
+   "pts": 8,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-lw-2",
+   "concept": "dp-lw",
+   "type": "mc",
+   "prompt": "lw에서 MemtoReg = 1인 이유는?",
+   "choices": [
+    "ALU 결과를 써야 해서",
+    "분기 때문에",
+    "data memory에서 읽은 값을 레지스터에 써야 하고 p.3에서 Read data가 1번 입력이라서",
+    "메모리에 써야 해서"
+   ],
+   "answer": 2,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-lw-3",
+   "concept": "dp-lw",
+   "type": "mc",
+   "prompt": "lw가 결과를 쓰는 레지스터 필드와 RegDst 값은?",
+   "choices": [
+    "rt, 0",
+    "rd, 1",
+    "rs, 0",
+    "rt, 1"
+   ],
+   "answer": 0,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-lw-4",
+   "concept": "dp-lw",
+   "type": "short",
+   "prompt": "lw에서 ALU가 하는 일과 그 결과가 어디로 가는지 쓰시오. (영어로)",
+   "answer": "The ALU adds the base address (rs) and the sign-extended 16-bit offset (ALUSrc = 1, ALUOp = 00 → add). The result is not the wanted value but the memory address; it goes to the data memory address input, and the data read (MemRead = 1) is written to rt via MemtoReg = 1.",
+   "keys": [
+    "base + sign-extended offset",
+    "ALU 결과 = 주소",
+    "data memory로",
+    "읽은 값을 rt에"
+   ],
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-lw-5",
+   "concept": "dp-lw",
+   "type": "sig",
+   "prompt": "※ 이 문제의 데이터패스는 교안 p.3과 같지만 MUX 입력 번호가 아래처럼 표시돼 있다고 하자.\nRegDst MUX: 위(rt [20–16]) = 1, 아래(rd [15–11]) = 0\nALUSrc MUX: 위(Read data 2) = 1, 아래(sign-extended imm) = 0\nMemtoReg MUX: 위(Read data) = 0, 아래(ALU result) = 1\n\n이 그림에서 lw의 제어 신호를 채우시오.",
+   "sig": {
+    "RegDst": "1",
+    "ALUSrc": "0",
+    "MemtoReg": "0",
+    "RegWrite": "1",
+    "MemRead": "1",
+    "MemWrite": "0",
+    "Branch": "0",
+    "ALUOp1": "0",
+    "ALUOp0": "0"
+   },
+   "answer": "RegDst=1  ALUSrc=0  MemtoReg=0  RegWrite=1  MemRead=1  MemWrite=0  Branch=0  ALUOp1=0  ALUOp0=0",
+   "explain": "rt가 1번 → RegDst 1, imm이 0번 → ALUSrc 0, Read data가 0번 → MemtoReg 0.",
+   "slot": 14,
+   "pts": 8,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-lw-6",
+   "concept": "dp-lw",
+   "type": "ox",
+   "prompt": "lw에서 ALU의 결과는 사용자가 원하는 최종 값이다.",
+   "answer": false,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-sw-1",
+   "concept": "dp-sw",
+   "type": "sig",
+   "prompt": "p.3 데이터패스에서 sw 명령어의 제어 신호 값을 채우시오.",
+   "sig": {
+    "RegDst": "X",
+    "ALUSrc": "1",
+    "MemtoReg": "X",
+    "RegWrite": "0",
+    "MemRead": "0",
+    "MemWrite": "1",
+    "Branch": "0",
+    "ALUOp1": "0",
+    "ALUOp0": "0"
+   },
+   "answer": "RegDst=X  ALUSrc=1  MemtoReg=X  RegWrite=0  MemRead=0  MemWrite=1  Branch=0  ALUOp1=0  ALUOp0=0",
+   "slot": 14,
+   "pts": 8,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-sw-2",
+   "concept": "dp-sw",
+   "type": "mc",
+   "prompt": "sw에서 RegDst와 MemtoReg가 X인 이유는?",
+   "choices": [
+    "메모리를 읽지 않아서",
+    "레지스터에 쓰지 않으므로(RegWrite = 0) 어떤 값이든 상관없어서",
+    "ALU를 안 써서",
+    "분기라서"
+   ],
+   "answer": 1,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-sw-3",
+   "concept": "dp-sw",
+   "type": "mc",
+   "prompt": "sw에서 data memory의 Write data로 들어가는 값은?",
+   "choices": [
+    "ALU result",
+    "sign-extended offset",
+    "rt의 값 (Read data 2)",
+    "PC + 4"
+   ],
+   "answer": 2,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-sw-4",
+   "concept": "dp-sw",
+   "type": "ox",
+   "prompt": "sw는 ALUSrc = 1, ALUOp = 00이다.",
+   "answer": true,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bq-1",
+   "concept": "dp-beq",
+   "type": "sig",
+   "prompt": "p.3 데이터패스에서 beq 명령어의 제어 신호 값을 채우시오.",
+   "sig": {
+    "RegDst": "X",
+    "ALUSrc": "0",
+    "MemtoReg": "X",
+    "RegWrite": "0",
+    "MemRead": "0",
+    "MemWrite": "0",
+    "Branch": "1",
+    "ALUOp1": "0",
+    "ALUOp0": "1"
+   },
+   "answer": "RegDst=X  ALUSrc=0  MemtoReg=X  RegWrite=0  MemRead=0  MemWrite=0  Branch=1  ALUOp1=0  ALUOp0=1",
+   "slot": 14,
+   "pts": 8,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bq-2",
+   "concept": "dp-beq",
+   "type": "mc",
+   "prompt": "beq에서 PC가 분기 대상으로 바뀌는 조건은?",
+   "choices": [
+    "Branch = 1",
+    "Zero = 1",
+    "Branch = 0이고 Zero = 1",
+    "Branch = 1이고 Zero = 1"
+   ],
+   "answer": 3,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bq-3",
+   "concept": "dp-beq",
+   "type": "short",
+   "prompt": "beq rs, rt, offset이 실행될 때 rs = rt인 경우와 아닌 경우의 PC 결정 과정을 쓰시오. (영어로)",
+   "answer": "Control sets Branch = 1 and ALUOp = 01 so the ALU subtracts rs − rt (ALUSrc = 0). If rs = rt the result is 0 and Zero = 1, so Branch AND Zero = 1 and the PC MUX selects the branch target (PC + 4) + (sign-extended offset << 2). Otherwise Zero = 0, the AND output is 0, and the PC MUX selects PC + 4.",
+   "keys": [
+    "Branch = 1",
+    "ALU 빼기 (ALUOp 01, ALUSrc 0)",
+    "같으면 Zero = 1 → AND = 1 → 분기 대상",
+    "다르면 PC + 4",
+    "대상 = PC+4 + offset×4"
+   ],
+   "slot": 16,
+   "pts": 9,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bq-4",
+   "concept": "dp-beq",
+   "type": "ox",
+   "prompt": "beq는 레지스터에 쓰지 않으므로 RegWrite = 0이다.",
+   "answer": true,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bq-5",
+   "concept": "dp-beq",
+   "type": "mc",
+   "prompt": "beq의 ALUOp는?",
+   "choices": [
+    "00",
+    "01",
+    "10",
+    "11"
+   ],
+   "answer": 1,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bq-6",
+   "concept": "dp-beq",
+   "type": "sig",
+   "prompt": "※ 이 문제의 데이터패스는 교안 p.3과 같지만 MUX 입력 번호가 아래처럼 표시돼 있다고 하자.\nRegDst MUX: 위(rt [20–16]) = 1, 아래(rd [15–11]) = 0\nALUSrc MUX: 위(Read data 2) = 1, 아래(sign-extended imm) = 0\nMemtoReg MUX: 위(Read data) = 0, 아래(ALU result) = 1\n\n이 그림에서 beq의 제어 신호를 채우시오.",
+   "sig": {
+    "RegDst": "X",
+    "ALUSrc": "1",
+    "MemtoReg": "X",
+    "RegWrite": "0",
+    "MemRead": "0",
+    "MemWrite": "0",
+    "Branch": "1",
+    "ALUOp1": "0",
+    "ALUOp0": "1"
+   },
+   "answer": "RegDst=X  ALUSrc=1  MemtoReg=X  RegWrite=0  MemRead=0  MemWrite=0  Branch=1  ALUOp1=0  ALUOp0=1",
+   "explain": "레지스터(Read data 2)가 1번 → ALUSrc 1. RegDst·MemtoReg는 여전히 X.",
+   "slot": 14,
+   "pts": 8,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-mt-1",
+   "concept": "mux-trap",
+   "type": "mc",
+   "prompt": "교안 p.3의 MemtoReg MUX에서 위쪽 입력의 번호는?",
+   "choices": [
+    "0 (ALU result)",
+    "1 (Read data)",
+    "0 (Read data)",
+    "표시 없음"
+   ],
+   "answer": 1,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-mt-2",
+   "concept": "mux-trap",
+   "type": "ox",
+   "prompt": "MUX 그림의 숫자가 뒤집혀 있으면 같은 명령어라도 선택 신호 값이 반대가 된다.",
+   "answer": true,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-mt-3",
+   "concept": "mux-trap",
+   "type": "mc",
+   "prompt": "※ 이 문제의 데이터패스는 교안 p.3과 같지만 MUX 입력 번호가 아래처럼 표시돼 있다고 하자.\nRegDst MUX: 위(rt [20–16]) = 1, 아래(rd [15–11]) = 0\nALUSrc MUX: 위(Read data 2) = 1, 아래(sign-extended imm) = 0\nMemtoReg MUX: 위(Read data) = 0, 아래(ALU result) = 1\n\n이 그림에서 sw의 ALUSrc 값은?",
+   "choices": [
+    "0",
+    "1",
+    "X",
+    "그림과 무관하게 1"
+   ],
+   "answer": 0,
+   "explain": "imm이 0번으로 표시됨.",
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-mt-4",
+   "concept": "mux-trap",
+   "type": "short",
+   "prompt": "교수님이 'be extremely careful on what is actually written on the multiplexer'라고 한 이유를 설명하시오. (영어로)",
+   "answer": "A MUX control value selects the input labeled with that number (0 or 1), not the top or bottom input. If the labels are flipped in the figure, the required control signal for the same instruction is the opposite (e.g., RegDst for R-type would become 0), so you must read the numbers on each MUX.",
+   "keys": [
+    "신호값 = 입력선에 적힌 번호",
+    "위/아래 아님",
+    "번호가 바뀌면 신호 반대"
+   ],
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-mt-5",
+   "concept": "mux-trap",
+   "type": "mc",
+   "prompt": "※ 이 문제의 데이터패스는 교안 p.3과 같지만 MUX 입력 번호가 아래처럼 표시돼 있다고 하자.\nRegDst MUX: 위(rt [20–16]) = 1, 아래(rd [15–11]) = 0\nALUSrc MUX: 위(Read data 2) = 1, 아래(sign-extended imm) = 0\nMemtoReg MUX: 위(Read data) = 0, 아래(ALU result) = 1\n\n이 그림에서 add의 MemtoReg 값은?",
+   "choices": [
+    "0",
+    "1",
+    "X",
+    "2"
+   ],
+   "answer": 1,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bc-1",
+   "concept": "branch-calc",
+   "type": "calc",
+   "prompt": "현재 PC = 108인 beq가 124번지로 분기하려 한다. offset 필드 값과 데이터패스가 대상 주소를 다시 계산하는 과정을 쓰시오.",
+   "answer": "PC + 4 = 112\noffset = (124 − 112) / 4 = 3\nDatapath: 3 → sign-extend → shift left 2 = 12 → 112 + 12 = 124",
+   "keys": [
+    "PC+4 = 112",
+    "offset 3",
+    "<<2 = 12",
+    "112 + 12 = 124"
+   ],
+   "slot": 15,
+   "pts": 6,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bc-2",
+   "concept": "branch-calc",
+   "type": "calc",
+   "prompt": "100번지의 beq가 180번지로 분기한다. beq에 쓸 상수는?",
+   "answer": "(180 − 104) / 4 = 76 / 4 = 19",
+   "keys": [
+    "next line 104",
+    "76",
+    "19"
+   ],
+   "slot": 15,
+   "pts": 6,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bc-3",
+   "concept": "branch-calc",
+   "type": "calc",
+   "prompt": "200번지의 beq가 180번지로 분기한다 (위쪽, 루프 시작). offset 값과 16-bit 이진 표현은?",
+   "answer": "offset = (180 − 204) / 4 = −24 / 4 = −6\n16-bit: 1111 1111 1111 1010",
+   "keys": [
+    "PC+4 = 204",
+    "−6",
+    "1111 1111 1111 1010"
+   ],
+   "slot": 15,
+   "pts": 6,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bc-4",
+   "concept": "branch-calc",
+   "type": "mc",
+   "prompt": "offset 필드가 5이고 beq가 400번지에 있으면 분기 대상은?",
+   "choices": [
+    "405",
+    "420",
+    "424",
+    "404"
+   ],
+   "answer": 2,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-bc-5",
+   "concept": "branch-calc",
+   "type": "ox",
+   "prompt": "분기 대상이 현재 코드보다 위(이전 주소)에 있으면 offset은 음수가 되고, sign extension으로 위 비트가 1로 채워진다.",
+   "answer": true,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "4-au-1",
+   "concept": "alu-uses",
+   "type": "mc",
+   "prompt": "ALU control 0110이 뜻하는 연산은?",
+   "choices": [
+    "add",
+    "subtract",
+    "AND",
+    "set-on-less-than"
+   ],
+   "answer": 1,
+   "lesson": "L4-5",
+   "unit": "U4"
+  },
+  {
+   "id": "4-au-2",
+   "concept": "alu-uses",
+   "type": "blank",
+   "prompt": "Load/Store: F = (a), Branch: F = (b), R-type: F는 funct에 따라",
+   "answer": "(a) add / (b) subtract",
+   "accept": [
+    [
+     "add",
+     "덧셈",
+     "더하기"
+    ],
+    [
+     "subtract",
+     "sub",
+     "뺄셈",
+     "빼기"
+    ]
+   ],
+   "lesson": "L4-5",
+   "unit": "U4"
+  },
+  {
+   "id": "4-au-3",
+   "concept": "alu-uses",
+   "type": "ox",
+   "prompt": "교수님은 ALU control 표를 시험에서 외워 쓰게 할 것이라고 했다.",
+   "answer": false,
+   "explain": "'This table will be given to you' — 표를 읽고 적용할 줄 알면 됨.",
+   "lesson": "L4-5",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ao-1",
+   "concept": "aluop",
+   "type": "mc",
+   "prompt": "lw/sw의 ALUOp와 ALU control은?",
+   "choices": [
+    "00, 0010",
+    "01, 0110",
+    "10, funct에 따라",
+    "00, 0110"
+   ],
+   "answer": 0,
+   "lesson": "L4-5",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ao-2",
+   "concept": "aluop",
+   "type": "mc",
+   "prompt": "R-type sub(funct 100010)의 ALU control은?",
+   "choices": [
+    "0010",
+    "0000",
+    "0110",
+    "0111"
+   ],
+   "answer": 2,
+   "lesson": "L4-5",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ao-3",
+   "concept": "aluop",
+   "type": "calc",
+   "prompt": "ALUOp와 funct가 다음과 같을 때 ALU control을 쓰시오: (1) ALUOp 10, funct 100101 (2) ALUOp 01, funct XXXXXX (3) ALUOp 10, funct 101010",
+   "answer": "(1) OR → 0001\n(2) beq → subtract → 0110\n(3) slt → 0111",
+   "keys": [
+    "0001",
+    "0110",
+    "0111"
+   ],
+   "lesson": "L4-5",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ao-4",
+   "concept": "aluop",
+   "type": "ox",
+   "prompt": "lw, sw, beq는 I-type이라 funct 필드가 없어서 ALU control이 ALUOp만으로 결정된다.",
+   "answer": true,
+   "lesson": "L4-5",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ao-5",
+   "concept": "aluop",
+   "type": "mc",
+   "prompt": "R-type funct들(100000, 100010, 100100, 100101, 101010)의 공통점으로 교수님이 짚은 것은?",
+   "choices": [
+    "모두 짝수",
+    "앞 두 비트가 모두 10으로 R-type ALUOp(10)와 같아 보임",
+    "마지막 비트가 0",
+    "모두 add로 동작"
+   ],
+   "answer": 1,
+   "lesson": "L4-5",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ao-6",
+   "concept": "aluop",
+   "type": "blank",
+   "prompt": "ALU control 입력은 Main control의 2-bit (a)와 명령어의 6-bit (b)이다.",
+   "answer": "(a) ALUOp / (b) funct",
+   "accept": [
+    [
+     "aluop"
+    ],
+    [
+     "funct",
+     "function",
+     "functioncode"
+    ]
+   ],
+   "lesson": "L4-5",
+   "unit": "U4"
+  },
+  {
+   "id": "4-km-1",
+   "concept": "kmap",
+   "type": "calc",
+   "prompt": "ALU control 표를 만족하는 Operation 비트 식을 쓰고, lw(ALUOp = 00)에서 Op1을 계산하시오.",
+   "answer": "Op3 = 0, Op2 = ALUOp0 + ALUOp1·F1, Op1 = ¬ALUOp1 + ¬F2, Op0 = ALUOp1·(F3 + F0)\nlw: ALUOp1 = 0 → Op1 = ¬0 + … = 1 → 0010 (add) ✓",
+   "keys": [
+    "Op1 = ¬ALUOp1 + ¬F2",
+    "lw에서 Op1 = 1"
+   ],
+   "lesson": "L4-5",
+   "unit": "U4"
+  },
+  {
+   "id": "4-km-2",
+   "concept": "kmap",
+   "type": "ox",
+   "prompt": "교안 p.30의 식 'Op1 = ALUOp1 + F2'를 그대로 쓰면 lw에서도 ALU control 0010이 나온다.",
+   "answer": false,
+   "explain": "NOT 표시가 빠진 식. 그대로면 Op1 = 0 → 0000(AND)이 되어 표와 안 맞음.",
+   "lesson": "L4-5",
+   "unit": "U4"
+  },
+  {
+   "id": "4-mc-1",
+   "concept": "main-control",
+   "type": "mc",
+   "prompt": "week6 p.31에서 'Always read'인 필드는?",
+   "choices": [
+    "rs",
+    "rt",
+    "rd",
+    "funct"
+   ],
+   "answer": 0,
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "4-mc-2",
+   "concept": "main-control",
+   "type": "mc",
+   "prompt": "'write for R-type and load'와 관련된 필드 설명으로 옳은 것은?",
+   "choices": [
+    "R-type과 load 모두 rd에 씀",
+    "R-type과 load 모두 rt에 씀",
+    "R-type은 rd, load는 rt에 씀 (그래서 RegDst MUX)",
+    "둘 다 쓰지 않음"
+   ],
+   "answer": 2,
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "4-mc-3",
+   "concept": "main-control",
+   "type": "blank",
+   "prompt": "lw의 opcode는 (a), sw는 (b), beq는 (c) (10진수)",
+   "answer": "(a) 35 / (b) 43 / (c) 4",
+   "accept": [
+    [
+     "35"
+    ],
+    [
+     "43"
+    ],
+    [
+     "4"
+    ]
+   ],
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ct-1",
+   "concept": "control-table",
+   "type": "mc",
+   "prompt": "sw의 RegWrite, MemRead, MemWrite는?",
+   "choices": [
+    "1, 0, 0",
+    "0, 1, 0",
+    "1, 1, 0",
+    "0, 0, 1"
+   ],
+   "answer": 3,
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ct-2",
+   "concept": "control-table",
+   "type": "mc",
+   "prompt": "제어 신호 표에서 X(don't care)가 나오는 명령어와 신호는?",
+   "choices": [
+    "R-type의 ALUSrc",
+    "sw·beq의 RegDst와 MemtoReg",
+    "lw의 RegDst",
+    "모든 명령어의 Branch"
+   ],
+   "answer": 1,
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ct-3",
+   "concept": "control-table",
+   "type": "ox",
+   "prompt": "ALUSrc = 1인 명령어는 lw와 sw다.",
+   "answer": true,
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ct-4",
+   "concept": "control-table",
+   "type": "short",
+   "prompt": "제어 신호 표에서 sw와 beq의 RegDst, MemtoReg가 X인 이유를 쓰시오. (영어로)",
+   "answer": "Neither sw nor beq writes a register (RegWrite = 0), so it does not matter which register number is selected (RegDst) or which data is selected for write-back (MemtoReg).",
+   "keys": [
+    "RegWrite = 0",
+    "레지스터에 쓰지 않음",
+    "어떤 값이든 결과에 영향 없음"
+   ],
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ct-5",
+   "concept": "control-table",
+   "type": "calc",
+   "prompt": "opcode Op5–Op0 = 100011이 들어왔다. 어떤 명령어이며 RegDst, ALUSrc, MemtoReg, RegWrite, MemRead, MemWrite, Branch, ALUOp1, ALUOp0는?",
+   "answer": "100011 = 35 = lw\nRegDst 0, ALUSrc 1, MemtoReg 1, RegWrite 1, MemRead 1, MemWrite 0, Branch 0, ALUOp1 0, ALUOp0 0",
+   "keys": [
+    "lw",
+    "0 1 1 1 1 0 0 0 0"
+   ],
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "4-ct-6",
+   "concept": "control-table",
+   "type": "mc",
+   "prompt": "Branch = 1인 명령어는?",
+   "choices": [
+    "R-type",
+    "lw",
+    "beq",
+    "sw"
+   ],
+   "answer": 2,
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "4-cg-1",
+   "concept": "control-logic",
+   "type": "mc",
+   "prompt": "p.33 제어 회로에서 ALUSrc를 만드는 OR 게이트의 입력은?",
+   "choices": [
+    "lw, sw",
+    "R-format, lw",
+    "sw, beq",
+    "R-format, beq"
+   ],
+   "answer": 0,
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "4-cg-2",
+   "concept": "control-logic",
+   "type": "mc",
+   "prompt": "p.33 제어 회로에서 RegWrite는?",
+   "choices": [
+    "lw OR sw",
+    "R-format OR lw",
+    "beq",
+    "sw"
+   ],
+   "answer": 1,
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "4-oc-1",
+   "concept": "offset-const",
+   "type": "ox",
+   "prompt": "`lw $t0, $t2($t1)` (offset이 레지스터 값)은 올바른 MIPS 명령어다.",
+   "answer": false,
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "4-oc-2",
+   "concept": "offset-const",
+   "type": "calc",
+   "prompt": "$t1 = base, $t2 = byte offset일 때 그 주소의 word를 $t0에 load하는 올바른 MIPS 코드를 쓰시오.",
+   "answer": "add $t3, $t1, $t2\nlw  $t0, 0($t3)",
+   "keys": [
+    "주소를 먼저 add",
+    "offset은 상수 0"
+   ],
+   "slot": 7,
+   "pts": 6,
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "4-oc-3",
+   "concept": "offset-const",
+   "type": "mc",
+   "prompt": "lw/sw의 offset이 반드시 상수여야 하는 이유는?",
+   "choices": [
+    "R-type이라서",
+    "I-type이라 offset이 명령어의 16-bit immediate 필드에 들어가서",
+    "ALU가 하나라서",
+    "레지스터가 32개라서"
+   ],
+   "answer": 1,
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "4-oc-4",
+   "concept": "offset-const",
+   "type": "ox",
+   "prompt": "lbu도 I-type이므로 offset 자리에 레지스터를 쓸 수 없다.",
+   "answer": true,
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "5-ex-1",
+   "concept": "encode-example",
+   "type": "calc",
+   "prompt": "C 코드 `A[10] = A[10] + 7;`을 MIPS로 쓰고 각 명령어의 필드를 10진수로 쓰시오. A의 base = $s0 (16). (lw 35, sw 43, addi 8, $t0 = 8)",
+   "answer": "lw   $t0, 40($s0)     → 35 | 16 | 8 | 40\naddi $t0, $t0, 7      → 8 | 8 | 8 | 7\nsw   $t0, 40($s0)     → 43 | 16 | 8 | 40",
+   "keys": [
+    "offset 40",
+    "lw 35 16 8 40",
+    "addi 8 8 8 7",
+    "sw 43 16 8 40"
+   ],
+   "slot": 8,
+   "pts": 6,
+   "lesson": "L2-4",
+   "unit": "U2"
+  },
+  {
+   "id": "5-ft-1",
+   "concept": "fact-trace",
+   "type": "calc",
+   "prompt": "fact(2)를 200번지의 jal로 호출, $sp 초기값 1000. 각 프레임의 $sp와 저장 값(a0, ra), 최종 $v0를 쓰시오.",
+   "answer": "fact(2): $sp 992, a0 = 2, ra = 204\nfact(1): $sp 984, a0 = 1, ra = L1+8\nfact(0): $sp 976, a0 = 0, ra = L1+8 → $v0 = 1\n복귀하며 $v0 = 1 → 1 → 2, $sp = 1000, jr → 204",
+   "keys": [
+    "992/984/976",
+    "첫 ra 204",
+    "$v0 = 2"
+   ],
+   "slot": 10,
+   "pts": 8,
+   "lesson": "L2-6",
+   "unit": "U2"
+  },
+  {
+   "id": "5-sw-1",
+   "concept": "dp-sw",
+   "type": "short",
+   "prompt": "sw $t0, 12($s1)이 p.3 데이터패스에서 실행될 때 rt($t0)의 값이 가는 경로와 켜지는 신호를 쓰시오. (영어로)",
+   "answer": "rs ($s1) is read and added to the sign-extended offset 12 in the ALU (ALUSrc = 1, ALUOp = 00) to form the address. rt ($t0) is read as Read data 2 and goes directly to the data memory's Write data input; MemWrite = 1 writes it. RegWrite = 0, MemRead = 0, RegDst and MemtoReg are X.",
+   "keys": [
+    "주소 = $s1 + 12 (ALUSrc 1)",
+    "rt 값 = Read data 2 → Write data",
+    "MemWrite = 1",
+    "RegWrite = 0, RegDst·MemtoReg X"
+   ],
+   "slot": 16,
+   "pts": 9,
+   "lesson": "L4-4",
+   "unit": "U4"
+  },
+  {
+   "id": "5-oc-1",
+   "concept": "offset-const",
+   "type": "calc",
+   "prompt": "`x = A[i];`(x: $s0, i: $s1, A base: $s2, int 배열)를 offset 규칙을 지켜 MIPS로 쓰고, `lw $s0, $s1($s2)`가 왜 틀렸는지 한 줄로 쓰시오.",
+   "answer": "sll $t0, $s1, 2\nadd $t0, $t0, $s2\nlw  $s0, 0($t0)\nlw는 I-type이라 offset이 16-bit 상수 필드에 들어가므로 레지스터를 쓸 수 없다.",
+   "keys": [
+    "sll ×4",
+    "add base",
+    "lw 0($t0)",
+    "offset은 상수(I-type)"
+   ],
+   "slot": 7,
+   "pts": 6,
+   "lesson": "L4-6",
+   "unit": "U4"
+  },
+  {
+   "id": "5-bd-1",
+   "concept": "branch-design",
+   "type": "mc",
+   "prompt": "beq/bne만 하드웨어로 두고 <, ≥ 분기를 slt 조합으로 만드는 선택은 어느 설계 원칙의 예인가?",
+   "choices": [
+    "Smaller is faster",
+    "Simplicity favors regularity",
+    "Make the common case fast",
+    "Good design demands good compromises"
+   ],
+   "answer": 3,
+   "lesson": "L2-5",
+   "unit": "U2"
+  },
+  {
+   "id": "5-rt-1",
+   "concept": "dp-rtype",
+   "type": "sig",
+   "prompt": "p.3 데이터패스에서 `slt $t0, $s1, $s2`의 제어 신호 값을 채우시오.",
+   "sig": {
+    "RegDst": "1",
+    "ALUSrc": "0",
+    "MemtoReg": "0",
+    "RegWrite": "1",
+    "MemRead": "0",
+    "MemWrite": "0",
+    "Branch": "0",
+    "ALUOp1": "1",
+    "ALUOp0": "0"
+   },
+   "answer": "RegDst=1  ALUSrc=0  MemtoReg=0  RegWrite=1  MemRead=0  MemWrite=0  Branch=0  ALUOp1=1  ALUOp0=0",
+   "explain": "slt도 R-type. 연산 종류는 funct(101010)로 ALU control이 정함.",
+   "lesson": "L4-4",
+   "unit": "U4"
+  }
+ ]
+}

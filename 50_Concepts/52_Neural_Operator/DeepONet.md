@@ -28,3 +28,6 @@ $$u(y)\approx\sum_{k=1}^p b_k(a)\,t_k(y)$$
 관련: [[HyperDeepONet]], [[FNO]], [[함수해석학 로드맵]]
 
 수업 노트: [[07_Neural Operator 3]] · 최적 trunk ↔ [[ICA vs PCA]]
+
+## 대각 결합의 일반화
+$b^\top I t$ → 행렬은 흡수돼서 의미 없음, **3차 텐서**부터 모드 결합 → [[Triadic Interaction Tensor]], [[TCO 아이디어 정리]]

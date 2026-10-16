@@ -1,0 +1,111 @@
+    Welcome to
+    Principles of Programming
+    Languages
+
+     Lecture 1
+     Course Overview
+     Jinsung Kim, Ph.D.
+     High-Performance Computing (HPC) Lab
+     Computer Science and Engineering
+     Chung-Ang University
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages
+Course Overview
+§ Instructor: Jinsung Kim
+    • Research areas: High-Performance Computing & Deep Learning
+    • Office: Room 505, Bldg. 208
+    • Office Hours: Tue & Thu 5PM-6PM
+    • Email: kimjsung@cau.ac.kr
+
+
+§ Course Title
+    • Principles of Programming Languages (프로그래밍 언어론)
+
+
+§ Hours and Location
+    • 01: Room 723, Bldg. 310, Tue 11:00-13:00, Thu 12:00-13:00 (729)
+    • 02: Room 723, Bldg. 310, Tue 13:00-15:00, Thu 13:00-14:00 (729)
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages     2
+Course Overview
+§ Textbook
+    • Sebesta, Robert W. Concepts of programming
+      languages. Pearson
+§ Prerequisites
+    • This course assume that each student is an expert
+      in one or more high-level programming languages
+      - e.g., C/C++, Java, Python
+
+§ Course Description
+    • The fundamental concepts of computer programming languages
+    • Formal methods used to describe the syntax and semantics of
+      programming languages, implementation techniques for various
+      language constructs, and implementation of subprogram linkage
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   3
+Course Overview
+§ Course Objectivies
+    • Understand core principles
+      - Syntax, semantics, types, scoping, control structures
+    • Compare major paradigms
+      - Imperative, functional, and logic programming
+    • Gain hands-on experience
+      - Implement a mini language (syntax and semantics)
+    • Reason about language design
+      - Trade-off in readability, writability, and etc.
+    • Connect to modern platform
+      - See how paradigms appear in GPU programming and frameworks like
+        PyTorch
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages       4
+Course Overview
+§ Syllabus
+    • Ch.1: Preliminaries
+    • Ch.3: Describing Syntax and Semantics
+    • Ch.4: Lexical and Syntax Analysis
+    • Ch.5: Names, Bindings, and Scopes
+    • Ch.6: Data Types
+    • Ch.7: Expressions and Assignment Statements
+    • Ch.8: Statement-Level Control Structures
+    • Ch.9: Subprograms
+    • Ch.10: Implementing Subprograms
+    • Ch.13: Concurrency
+    • Ch.15: Functional Programming Languages
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   5
+Course Overview
+§ Grading Policy
+                                        Assessment Items               %
+                                    Attendance / Participation        10%
+                                          Mid-term Exam               35%
+                                      Assignments / Projects          20%
+                                             Final Exam               35%
+                                                 Total                100%
+
+    • F Grade
+      - Any student who is absent for one or more of thw two scheduled exams
+        will receive an F grade
+      - Any student with 4 or more absences or 10 or more latenesses througout
+        the course will receive an F grade
+    • NO CLASS THIS THURSDAY (Sep. 3)!
+    • (TBD) Online Courses: Nov. 5, 10, 12
+
+Chung-Ang University CSE 22405: Principles of Programming Languages              6
+                                                  Q&A
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   7
+

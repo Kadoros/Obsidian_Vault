@@ -25,3 +25,5 @@ $$d_n(\mathcal{M}) = \inf_{\dim V_n = n}\ \sup_{u\in\mathcal{M}}\ \inf_{v\in V_n
 > 상태: 개념만 소개됨. 로드맵 6단계에서 제대로 공부 예정.
 
 관련: [[ICA vs PCA]] (PCA/KL), [[07_Neural Operator 3]]
+
+증명된 결과: 선형 디코더 오차 $\gtrsim1/p$ (Lanthaler et al. ICLR 2023) → [[TCO 관련 연구 지도]]

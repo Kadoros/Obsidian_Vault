@@ -1,0 +1,5 @@
+__pycache__/
+bank.json
+cpp/*
+!cpp/*.cpp
+test/node_modules/

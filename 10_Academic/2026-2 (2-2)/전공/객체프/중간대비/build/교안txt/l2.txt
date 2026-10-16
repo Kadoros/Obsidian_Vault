@@ -1,0 +1,157 @@
+Object Oriented Programming (OOP)
+        Lecture 1 : Course Overview
+
+
+           Bong-Soo Sohn
+             Associate Professor
+ School of Computer Science and Engineering
+            Chung-Ang University
+                  Course Overview
+n Course Topics
+  n   OOP Concepts
+       n Data Abstraction/Encapsulation
+       n Inheritance
+       n Polymorphism
+       n Generic Programming and STL (Standard Template Library)
+  n Advanced C++
+  n UML (Unified Modeling Language)
+       n   Modeling Object-Oriented Software Systems
+
+n Course Objectives
+  n Understand OOP concepts and apply it to real programming
+  n Improve the ability of using advanced OOP features of C++
+  n Conduct Team Projects (Large Software Development)
+       n   Design/Implementation/Documentation
+                 Course Format
+n This course consists of
+  n Lectures (in a classroom on campus)
+  n Programming Projects
+     n 2 individual projects + 2 team-based projects
+  n Presentation (in the case of team projects)
+                      Reference Books
+n   No Required Textbook.
+
+n   Reference Books
+     n “An Intro. To Object Oriented Programming” , T. A. Budd
+
+
+     n   “Thinking in C++, Volume One/Two: Introduction to Standard
+               nd
+         C++(2 Edition)”, Bruce Eckel, Prentice Hall, 2000/2004
+     n   Full text of “Thinking in C++” is available as pdf files
+          n   http://www.cs.ust.hk/~dekai/library/ECKEL_Bruce
+     n   “C++ : Effective Object-Oriented Software Construction :
+         Concepts, Practices, Industrial Strategies and Practices”,
+                               nd
+         Kayshav Dattari, 2         Edition, 1999 (Page 1 ~ Page 574)
+
+n   Some of online materials will be used.
+                          Evaluation
+
+n Midterm Exam: 35%
+n Final Exam: 35%
+n Projects/Assignments: 25%
+    n   4 programming projects
+
+n   Attendance : 5%
+
+n   You may get F grade if you miss ¼ or more of the whole
+    classes
+
+n   This evaluation policy may change depending on COVID-19
+    situation.
+             Instructor Information
+n   Name : Bong-Soo Sohn
+
+n   Office : 310-738
+
+n   Email : bongbong _at_ cau.ac.kr
+
+n   Tel : 820-5843
+
+n   Please feel free to contact me for any of class issues.
+                  Announcement
+n Class Website
+  n https://sohnbong.github.io/oop26
+  n Class information such as lecture notes is accessible
+     through this website
+  n We will also use e-Class for the submission of
+     homework and project results.
+
+n Individual Programming Assignments
+   n I encourage you to study and discuss together for
+     doing programming assignments.
+   n However, you must do programming YOURSELF.
+   n You must not share any of source code with other
+     students.
+   n Academic dishonesty (e.g. cheating, plagiarism, and etc.) is
+     seriously prohibited. Heavy penalty may be imposed for that.
+              Schedule
+1   Course Overview, OOP Introduction
+2   OOP Introduction, C++ Basics
+3   C++ Basics
+4   Object Oriented Design
+5   Data Encapsulation
+6   Data Encapsulation, Inheritance
+7   Polymorphism
+8   Midterm exam
+                Schedule
+9    Polymorphism, Template
+10   Template
+11   STL (Standard Template Library)
+12   STL
+13   UML, Modern C++ features
+14   Modern C++ features
+15   Term Project Presentation
+16   Final Exam
+                               Remarks
+n We will mainly use C++ in our lecture.
+
+
+n Project/Programming Based Course
+   n   Prerequisite: C/JAVA programming, Data Structures
+        n   This course assumes that students have basic knowledge of C and JAVA
+            grammars and programming ability. Basic knowledge of data structures such
+            as array and linked list are also required.
+   n   We will have significant amount of programming assignments
+       including team projects and presentation. If your programming
+       ability is not good enough, it may be difficult to follow the class.
+
+
+n English Lecture + English Student Presentation
+n You should use English for reports and exams.
+                         Projects Plan
+n   Make up a team
+     n   Deadline : 11:59pm on Sep. 10
+     n   Only the leader of each team needs to post an article
+         (name/email/phone#/student-id# of team members, mark the team
+         leader) in eClass (homework 0)
+     n   Expected Team Size : 4, 5, or 6
+         (If you want, team size 1, 2, 3 or 7 will be also allowed.
+          If your team size is large, I expect the quality of the team project
+         result will be also high.)
+n   There will be 4 programming projects during the semester.
+    (2 projects will be done individually, the other 2 projects will be
+    done in team.)
+n   Each team will present one of project 1 , 2 , and 3.
+                                                th
+n   All teams should conduct the final term (4 ) project and give
+    presentation.
+         If you have difficulty in making a team..
+
+n   team with a single member (team size = 1) is also possible, if
+    you want.
+     n In this case, you also need to post an article in eclass (homew
+
+       ork 0), stating that you are the only member in your team
+          n   If you don’t register your team in hw 0, I will assume you belong to “size 1 team”.
+     n   In this case, you also need to do project 1, 2, 3, 4 as follows.
+           n project 1, 2, and 3 as individual project.
+
+           n project 4 as team project
+
+               n you need to submit source code, executable code,
+
+                 project report, and video file for your proj presentation
+                  (there will be no class presentation in this case)
+

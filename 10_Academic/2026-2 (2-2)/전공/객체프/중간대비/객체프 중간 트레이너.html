@@ -1,0 +1,732 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0}[hidden]{display:none!important}</style></head><body>
+<script id="bank-data" type="application/json">{"version": 1, "questions": [{"id": "2025-1ab", "year": 2025, "no": "1(a)(b)", "pts": 4, "type": "blank", "topics": ["static"], "scope": "likely", "prompt": "In C++, static members are used to represent the properties of (a.        ). Unlike typical member variables, static member variables can be accessed even if there is no (b.        ).", "code": "", "answer": "(a) the class  (b) created object (instance)", "tip": "L04 보충 'Static Members': static members of a class can be used when handling property of the class / it can be accessed even if there is no created object.", "src": "L04 static"}, {"id": "2025-1c", "year": 2025, "no": "1(c)", "pts": 2, "type": "blank", "topics": ["quality"], "scope": "in", "prompt": "(c.        ) means the ability of the software to consistently perform its required functions without failure under specified conditions for a specified period of time.", "code": "", "answer": "(c) reliability", "tip": "dependability(믿고 쓸 수 있음)와 헷갈리기 쉬움. '고장 없이 지정된 기간 동안' = reliability.", "src": "L02, Handout1"}, {"id": "2025-1de", "year": 2025, "no": "1(d)(e)", "pts": 4, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "(d.        ) arose because as computer hardware power grew rapidly, (e.        ) of the software systems increased even faster – beyond what existing development methods could manage. Increasing (e) is the main cause of (d).", "code": "", "answer": "(d) software crisis  (e) complexity", "tip": "L02: Software Crisis — Cause : complexity", "src": "L02"}, {"id": "2025-1fg", "year": 2025, "no": "1(f)(g)", "pts": 4, "type": "blank", "topics": ["ctor"], "scope": "in", "prompt": "In C++, if we do not declare any constructor in a class, (f.        ) generates (g.        ).", "code": "", "answer": "(f) the compiler  (g) a default constructor", "tip": "L04: If we did not declare any constructor in class, the compiler would generate a default constructor.", "src": "L04"}, {"id": "2025-1h", "year": 2025, "no": "1(h)", "pts": 2, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "One of the main goals of software engineering is to minimize (h.        ) of software development and maintenance.", "code": "", "answer": "(h) the cost", "tip": "L02 Goals: minimize the cost of software development and maintenance", "src": "L02"}, {"id": "2025-1ijk", "year": 2025, "no": "1(i)(j)(k)", "pts": 6, "type": "blank", "topics": ["constfn"], "scope": "likely", "prompt": "In C++, (i.        ) member function does not (j.        ) any data members of the object on which it is called. This restriction is enforced by (k.        ). (i) member function assures its clients of its benign natures (i.e. safety and readability).", "code": "", "answer": "(i) const  (j) modify  (k) the compiler", "tip": "3년 연속 나온 문장. 통째로 외우기.", "src": "L04 const member functions"}, {"id": "2025-1lm", "year": 2025, "no": "1(l)(m)", "pts": 4, "type": "blank", "topics": ["encap"], "scope": "in", "prompt": "In the concept of information hiding, (l.        ) of an object can be modified only through (m.        ).", "code": "", "answer": "(l) internal data  (m) an interface", "tip": "L02: Internal data of an object can be modified only through an interface.", "src": "L02"}, {"id": "2025-2", "year": 2025, "no": "2", "pts": 9, "type": "short", "topics": ["encap"], "scope": "in", "prompt": "List three main benefits of data encapsulation and explain each benefit in sufficient detail. [(i) <10 words, (ii)(iii) <15 words]", "code": "", "answer": "(i) Protection of implementation (safety): clients cannot directly access encapsulated data.\n(ii) Readability (understandability): clients need not know how interface functions use encapsulated data.\n(iii) Implementation independence: a change in implementation should not affect the interface seen by clients.", "tip": "Handout 2 원문 그대로. 이름 + 한 줄 설명 세트로 외우기.", "src": "Handout 2"}, {"id": "2025-3", "year": 2025, "no": "3", "pts": 5, "type": "short", "topics": ["design"], "scope": "in", "prompt": "In the \"Integration of Components\" step, components are slowly integrated into a completed system, using stubs as yet unimplemented parts. What is the meaning of \"slowly integrated\"? (<15 words)", "code": "", "answer": "Components are added and tested one at a time (incrementally), not all at once.", "tip": "핵심: incrementally / one by one + test each step → 에러 위치를 좁힐 수 있음.", "src": "L03 8. Integration"}, {"id": "2025-4", "year": 2025, "no": "4", "pts": 6, "type": "short", "topics": ["memory"], "scope": "likely", "prompt": "(i) In C/C++, what is a dangling pointer? (<15 words)  (ii) Why can dangling pointers be a problem and dangerous? (<15 words)", "code": "", "answer": "(i) A pointer that points to memory that has already been deallocated (freed).\n(ii) Accessing it causes undefined behavior: crashes or corrupting memory reused by other data.", "tip": "", "src": "L04 Object Creation"}, {"id": "2025-5", "year": 2025, "no": "5", "pts": 9, "type": "short", "topics": ["assert"], "scope": "in", "prompt": "(i) What does the assert(e) function call do? (<15 words)  (ii) What is the main purpose of using assert()? (<7 words)  (iii) To achieve the purpose, e in assert(e) should be a condition that (<10 words).", "code": "", "answer": "(i) If e is true, execution continues; if false, the program stops with an error message.\n(ii) To make programs more reliable (detect bugs early).\n(iii) must always be true at that point (e.g. a class invariant).", "tip": "L04: class invariants and assertions — 'can be used to implement programs that are more reliable'.", "src": "L04"}, {"id": "2025-6", "year": 2025, "no": "6", "pts": 6, "type": "short", "topics": ["design"], "scope": "in", "prompt": "In project 1 (IIKH), what is the main difference between Recipe class and RecipeDB class? (i) Recipe class is supposed to (<10 words)  (ii) RecipeDB class is supposed to (<10 words)", "code": "", "answer": "(i) maintain one recipe's data (ingredients, steps) and edit/display/print itself.\n(ii) maintain the collection of recipes: browse, search, add, and edit recipes.", "tip": "단일 객체 vs 컬렉션 관리. Budd Ch3: Recipe Database = maintain/browse/edit/add; Recipe = ingredients + know how to edit/display/print itself.", "src": "L03 IIKH"}, {"id": "2025-7", "year": 2025, "no": "7", "pts": 6, "type": "short", "topics": ["encap"], "scope": "in", "prompt": "ADT (Abstract Data Type) is called abstract. Why? ADT is called abstract because (<12 words).", "code": "", "answer": "its data and operations are specified independently of any particular implementation.", "tip": "L02: A set of data variables and associated operations that are precisely specified independent of any particular implementation.", "src": "L02 ADT"}, {"id": "2025-8", "year": 2025, "no": "8", "pts": 15, "type": "code", "topics": ["fileio"], "scope": "in", "prompt": "Write a C++ program that performs file-copying from source binary file \"src.bin\" to destination file \"des.bin\". Do not use a file-copy function; read the entire data from src.bin and write it to des.bin.", "code": "#include <iostream>\n#include <fstream>\nusing namespace std;\nint main() {\n    // your code\n}", "answer": "#include <iostream>\n#include <fstream>\nusing namespace std;\nint main() {\n    ifstream in(\"src.bin\", ios::in | ios::binary | ios::ate);\n    if (!in.is_open()) return 1;\n    streampos size = in.tellg();          // ate: 끝에서 열었으니 tellg = 파일 크기\n    char* memblock = new char[size];\n    in.seekg(0, ios::beg);                // 처음으로 되감기\n    in.read(memblock, size);\n    in.close();\n\n    ofstream out(\"des.bin\", ios::out | ios::binary);\n    out.write(memblock, size);\n    out.close();\n    delete[] memblock;\n    return 0;\n}", "tip": "2024 5번과 거의 동일. ios::binary | ios::ate → tellg로 크기 → seekg(0, ios::beg) → read → write → delete[]. 실제로 컴파일해서 복사 확인함.", "src": "C++ in Summary 13"}, {"id": "2025-9", "year": 2025, "no": "9", "pts": 18, "type": "trace", "topics": ["trace", "copy"], "scope": "in", "prompt": "(1) The code has five errors. Which lines are wrong and how to correct them? Assume lines 16 and 17 are correct. (2) What is the screen output after the correction?", "code": " 1: #include <iostream>\n 2: using namespace std;\n 3: class Rect {\n 4: public:\n 5:     int w,h;\n 6:     Rect(int x, int y): w(x), h(y) { cout << \"c1\\n\"; }\n 7:     Rect(const Rect& x) { w=x.w; h=x.h; cout << \"c2\\n\"; }\n 8:     int area() { return w*h; }\n 9: };\n10:\n11: void func(Rect obj, int y) {\n12:     cout << \"f3\\n\";\n13:     obj.h = y;\n14: }\n15: int main() {\n16:     Rect a(5,6);\n17:     Rect *b, *c;\n18:     b = a;\n19:     c = new Rect(7,8);\n20:     func(a,9);\n21:     Rect d(a);\n22:     b.w = 9;\n23:     cout << \"=======\"<< endl;\n24:     cout << a.area() << endl;\n25:     cout << b.area() << endl;\n26:     cout << c.area() << endl;\n27:     cout << d.area() << endl;\n28:     delete b;\n29:     delete c;\n30:     return 0;\n31: }", "answer": "(1)\nline 18: b = &a;\nline 22: b->w = 9;\nline 25: cout << b->area() << endl;\nline 26: cout << c->area() << endl;\nline 28: delete b; 삭제 (b는 new로 만든 게 아니라 스택 객체 a를 가리킴)\n\n(2) 출력\nc1\nc1\nc2\nf3\nc2\n=======\n54\n54\n56\n30", "tip": "func(a,9)는 값 전달 → 복사생성자 c2가 f3보다 먼저 출력. obj.h=9는 복사본만 바뀌어서 a에 영향 없음. d는 b->w=9 하기 전에 복사돼서 5*6=30. g++로 실행해서 확인한 출력.", "src": "C++ in Summary 12, L04"}, {"id": "2024-1ab", "year": 2024, "no": "1(a)(b)", "pts": 3, "type": "blank", "topics": ["paradigm"], "scope": "in", "prompt": "(a.        ) is a programming paradigm based on the concept of (b.        ) which can contain data and code... computer programs are designed by making them out of (b) that interact with one another.", "code": "", "answer": "(a) Object-oriented programming (OOP)  (b) objects", "tip": "", "src": "L02"}, {"id": "2024-1c", "year": 2024, "no": "1(c)", "pts": 2, "type": "blank", "topics": ["paradigm"], "scope": "in", "prompt": "(c.        ) makes extensive use of GOTO statements... In (c), a program contains only a single code block.", "code": "", "answer": "(c) Unstructured programming", "tip": "L02: Unstructured Programming — only one main program, only global data, use goto.", "src": "L02"}, {"id": "2024-1de", "year": 2024, "no": "1(d)(e)", "pts": 3, "type": "blank", "topics": ["paradigm"], "scope": "in", "prompt": "Using (d.        ) variables is often unsafe because this makes all modules (e.        ) on one another.", "code": "", "answer": "(d) global  (e) dependent", "tip": "매년 나옴. 'dependent on one another'.", "src": "L02"}, {"id": "2024-1fg", "year": 2024, "no": "1(f)(g)", "pts": 3, "type": "blank", "topics": ["ctor"], "scope": "in", "prompt": "In C++, (f.        ) is a constructor that is automatically generated by (g.        ) if we do not define any constructor for a class.", "code": "", "answer": "(f) default constructor  (g) the compiler", "tip": "", "src": "L04"}, {"id": "2024-1h", "year": 2024, "no": "1(h)", "pts": 2, "type": "blank", "topics": ["memory"], "scope": "likely", "prompt": "A pointer pointing to a memory location that has been deallocated (or freed) is called a (h.        ) pointer.", "code": "", "answer": "(h) dangling", "tip": "", "src": "L04"}, {"id": "2024-1ij", "year": 2024, "no": "1(i)(j)", "pts": 3, "type": "blank", "topics": ["static"], "scope": "likely", "prompt": "We can define class members (i.        ) using (i) keyword... no matter how many (j.        ) of the class are created, there is only one copy of the (i) member. A (i) member is shared by all (j) of the class.", "code": "", "answer": "(i) static  (j) objects (instances)", "tip": "", "src": "L04"}, {"id": "2024-1klm", "year": 2024, "no": "1(k)(l)(m)", "pts": 4, "type": "blank", "topics": ["constfn"], "scope": "likely", "prompt": "In C++, (k.        ) member function does not (l.        ) any data members of the object on which it is called. This restriction is enforced by (m.        ).", "code": "", "answer": "(k) const  (l) modify  (m) the compiler", "tip": "", "src": "L04"}, {"id": "2024-1nopq", "year": 2024, "no": "1(n)~(q)", "pts": 6, "type": "blank", "topics": ["couple"], "scope": "in", "prompt": "(n.        ) and (o.        ) are two key concepts used to measure design quality. (n) refers to the degree of interdependence between modules. (p.        ) (n) means modules are closely connected... (q.        ) (n) means modules are independent... (o) refers to the degree to which elements within a module work together for a single purpose.", "code": "", "answer": "(n) Coupling  (o) Cohesion  (p) High (tight)  (q) Low (loose)", "tip": "", "src": "L03"}, {"id": "2024-1rst", "year": 2024, "no": "1(r)(s)(t)", "pts": 4, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "Fred Brooks stated that over 90% of (r.        ) of a typical system arise in (s.        ) phase, and that any successful piece of software will inevitably be (t.        ).", "code": "", "answer": "(r) the costs  (s) the maintenance  (t) maintained", "tip": "L02 원문 그대로.", "src": "L02"}, {"id": "2024-2", "year": 2024, "no": "2", "pts": 10, "type": "blank", "topics": ["encap"], "scope": "in", "prompt": "It is often desirable to avoid data members in the public area of class. List three advantageous properties: (i) (a.        ): accessing a data member will be done always through a method. (ii) precise (b.        ) over the (c.        ) of data members. (iii) functional (d.        ): you can later (e.        ) the data member with a computation.", "code": "", "answer": "(a) Consistency  (b) control  (c) accessibility  (d) abstraction  (e) replace", "tip": "L04 'Avoid data members in the public interface': Consistency / Precise control over the accessibility / Functional abstraction.", "src": "L04"}, {"id": "2024-3", "year": 2024, "no": "3", "pts": 10, "type": "short", "topics": ["encap"], "scope": "in", "prompt": "(a) What is the most serious problem if you make every member private in a class? Why? (<15 words)  (b) ... every member public? Why? (<15 words)", "code": "", "answer": "(a) No interface: clients cannot use the object at all, since nothing is accessible.\n(b) No encapsulation: clients can directly modify internal data, breaking safety and implementation independence.", "tip": "private only → 쓸모없는 클래스. public only → 캡슐화 장점 3개 다 잃음.", "src": "L04"}, {"id": "2024-4", "year": 2024, "no": "4", "pts": 12, "type": "code", "topics": ["fileio"], "scope": "in", "prompt": "Write a program that calculates the size of the file \"in.bin\" (a general binary file) and prints it. Fill in the blanks.", "code": "int main() {\n    streampos begin, end;\n    ________________________;\n    begin = ________________;\n    myfile.________________;\n    end = __________________;\n    myfile.close();\n    cout << \"size: \" << (end-begin) << \" bytes\\n\";\n    return 0;\n}", "answer": "ifstream myfile(\"in.bin\", ios::binary);\nbegin = myfile.tellg();\nmyfile.seekg(0, ios::end);\nend = myfile.tellg();", "tip": "cplusplus.com 'File Position Example' 그대로. tellg/seekg는 get 위치, tellp/seekp는 put 위치.", "src": "C++ in Summary 13"}, {"id": "2024-5", "year": 2024, "no": "5", "pts": 16, "type": "code", "topics": ["fileio"], "scope": "in", "prompt": "Write a C++ program that copies the binary file \"src.bin\" to \"des.bin\" without a file-copy function (read the entire data and write it).", "code": "", "answer": "#include <iostream>\n#include <fstream>\nusing namespace std;\nint main() {\n    ifstream in(\"src.bin\", ios::in | ios::binary | ios::ate);\n    if (!in.is_open()) return 1;\n    streampos size = in.tellg();          // ate: 끝에서 열었으니 tellg = 파일 크기\n    char* memblock = new char[size];\n    in.seekg(0, ios::beg);                // 처음으로 되감기\n    in.read(memblock, size);\n    in.close();\n\n    ofstream out(\"des.bin\", ios::out | ios::binary);\n    out.write(memblock, size);\n    out.close();\n    delete[] memblock;\n    return 0;\n}", "tip": "2025 8번과 동일.", "src": "C++ in Summary 13"}, {"id": "2024-6", "year": 2024, "no": "6", "pts": 22, "type": "trace", "topics": ["trace", "copy", "ctor"], "scope": "in", "prompt": "Two lines contain compile errors (lines 16-18 are correct). (a) Which two lines? (b) Correct them. (c) Screen output after correction?", "code": " 1: #include <iostream>\n 2: using namespace std;\n 3: class X {\n 4: public:\n 5:     int w,h;\n 6:     X() { w=0; h=0; cout << \"c1\\n\"; }\n 7:     X(int a,int b) { w=a; h=b; cout << \"c2\\n\"; }\n 8:     X(const X& x) { w=x.w; h=x.h; cout << \"c3\\n\"; }\n 9:     ~X() { cout << \"d\\n\"; }\n10: };\n11: void func(X obj, int a, int b) {\n12:     cout << \"f1 called!\\n\";\n13:     obj.w = a; obj.h = b;\n14: }\n15: int main() {\n16:     X a(5,6);\n17:     X* b;\n18:     b = &a;\n19:     a.w = 2;\n20:     func(a,7,8);\n21:     X c(a);\n22:     b.h = 9;\n23:     c.w = 1;\n24:     cout << \"==========\"<< endl;\n25:     cout << a.w <<\" \"<< a.h << endl;\n26:     cout << b.w <<\" \"<< b.h << endl;\n27:     cout << c.w <<\" \"<< c.h << endl;\n28:     return 0;\n29: }", "answer": "(a) line 22, line 26\n(b) line 22 → b->h = 9;\n    line 26 → cout << b->w << \" \" << b->h << endl;\n(c)\nc2\nc3\nf1 called!\nd\nc3\n==========\n2 9\n2 9\n1 6\nd\nd", "tip": "func 값 전달 → c3, 함수 끝날 때 obj 소멸 → d. b는 a를 가리켜서 b->h=9가 a.h를 바꿈. c는 그 전에 복사돼서 (2,6) 상태에서 c.w=1 → 1 6. main 끝에 c, a 순서로 소멸 → d d. g++로 확인.", "src": "L04"}, {"id": "2023-1ab", "year": 2023, "no": "1(a)(b)", "pts": 4, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "(a.        ) is a term used in the early days of computing science for the difficulty of writing correct, useful and efficient programs in the required time. (a) was due to the rapid increases in computer power and the (b.        ) of the problems...", "code": "", "answer": "(a) Software crisis  (b) complexity", "tip": "", "src": "L02"}, {"id": "2023-1c", "year": 2023, "no": "1(c)", "pts": 2, "type": "blank", "topics": ["fileio"], "scope": "in", "prompt": "In C++, the file open mode ios::app means that all output operations are performed at the (c.        ) of the file.", "code": "", "answer": "(c) end", "tip": "ios::app = append: 모든 출력이 파일 끝에 덧붙음.", "src": "C++ in Summary 13"}, {"id": "2023-1de", "year": 2023, "no": "1(d)(e)", "pts": 4, "type": "blank", "topics": ["fileio"], "scope": "in", "prompt": "In C++, the file open mode (d.        ) means that if the file is opened for output operations and the file is already (e.        ), its previous content is deleted and replaced by the new one.", "code": "", "answer": "(d) ios::trunc  (e) existing (it already existed)", "tip": "", "src": "C++ in Summary 13"}, {"id": "2023-1f", "year": 2023, "no": "1(f)", "pts": 2, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "(f.        ) is the process of changing, modifying, and updating software to keep up with customer needs. (f) is done after the product has launched...", "code": "", "answer": "(f) Software maintenance", "tip": "", "src": "L02, L03"}, {"id": "2023-1ghij", "year": 2023, "no": "1(g)~(j)", "pts": 8, "type": "blank", "topics": ["couple"], "scope": "in", "prompt": "Coupling is the degree to which each program module (g.        ) on each one of the other modules. (h.        ) is a measure of how strongly-related and focused the responsibilities of a module are. It is often desirable to (i.        ) coupling and (j.        ) (h).", "code": "", "answer": "(g) relies (depends)  (h) Cohesion  (i) minimize  (j) maximize", "tip": "", "src": "L03"}, {"id": "2023-1klm", "year": 2023, "no": "1(k)(l)(m)", "pts": 6, "type": "blank", "topics": ["encap"], "scope": "in", "prompt": "One of the main benefits of data encapsulation is (k.        ). (k) means (l.        ) in implementation should not affect (m.        ) seen by clients of a class.", "code": "", "answer": "(k) implementation independence  (l) a change  (m) the interface", "tip": "", "src": "Handout 2"}, {"id": "2023-1nop", "year": 2023, "no": "1(n)(o)(p)", "pts": 6, "type": "blank", "topics": ["constfn"], "scope": "likely", "prompt": "(n.        ) member function does not (o.        ) any data members of the object on which it is called. This restriction is enforced by (p.        ).", "code": "", "answer": "(n) const  (o) modify  (p) the compiler", "tip": "", "src": "L04"}, {"id": "2023-2", "year": 2023, "no": "2", "pts": 20, "type": "short", "topics": ["memory"], "scope": "in", "prompt": "Describe the main advantage and disadvantage of static memory allocation (int x[10];) and dynamic memory allocation (int* x = new int[10];) for using an array, and why. (advantage/disadvantage <10 words, why <15 words each)", "code": "", "answer": "Static\n advantage: simple and fast; memory is freed automatically.\n   why: size is fixed at compile time; allocated on the stack and released at scope exit.\n disadvantage: size cannot change at run time (waste or shortage).\n   why: array size must be decided at compile time.\nDynamic\n advantage: size can be decided at run time; memory used efficiently.\n   why: memory is allocated with new during execution as needed.\n disadvantage: programmer must free it; risk of memory leak, dangling pointers.\n   why: heap memory is not released automatically; needs delete[].", "tip": "토론 자료 'static vs dynamic memory allocation' 그대로 출제됨. dynamic = 'occurs at run-time'.", "src": "static vs dynamic 토론"}, {"id": "2023-3", "year": 2023, "no": "3", "pts": 20, "type": "code", "topics": ["trace"], "scope": "in", "prompt": "Fill in empty boxes so that output is: Area Calculation: obj:12, foo:12, bar:30, baz[0]:1", "code": " 3: class Rectangle {\n 4:     int width, height;\n 5:     [        ]\n 6:     Rectangle() { width=1; height=1; }\n 7:     Rectangle(int x, int y) [        ] {}\n 8:     int area() { return width*height; }\n 9: };\n10: int main() {\n11:     Rectangle obj(3,4);\n12:     Rectangle *foo, [        ];\n13:     foo = [        ];\n14:     bar = new Rectangle (5,6);\n15:     baz = new Rectangle[2];\n16:     cout << \"Area Calculation: \";\n17:     cout << \"obj:\" << obj[        ] << \", \";\n18:     cout << \"foo:\" << foo[        ] << \", \";\n19:     cout << \"bar:\" << bar[        ] << \", \";\n20:     cout << \"baz[0]:\" << baz[0][        ] << \"\\n\";\n21:     delete bar; delete[] baz; return 0;\n22: }", "answer": "line 5 : public:\nline 7 : Rectangle(int x, int y) : width(x), height(y) {}\nline 12: Rectangle *foo, *bar, *baz;\nline 13: foo = &obj;\nline 17: obj.area()\nline 18: foo->area()\nline 19: bar->area()\nline 20: baz[0].area()", "tip": "baz[0]은 기본생성자(1,1) → 1. 포인터는 ->, 배열 원소는 객체라서 '.'", "src": "C++ in Summary 12"}, {"id": "2023-4", "year": 2023, "no": "4", "pts": 8, "type": "code", "topics": ["fileio"], "scope": "in", "prompt": "Fill in the boxes to print the size of \"example.bin\": line 9 myfile.[  ]; line 10 end = [  ];", "code": " 7: ifstream myfile(\"example.bin\", ios::binary);\n 8: begin = myfile.tellg();\n 9: myfile.[        ];\n10: end = [        ];\n11: myfile.close();", "answer": "line 9 : myfile.seekg(0, ios::end);\nline 10: end = myfile.tellg();", "tip": "", "src": "C++ in Summary 13"}, {"id": "2023-5", "year": 2023, "no": "5", "pts": 20, "type": "trace", "topics": ["trace", "friend", "copy"], "scope": "likely", "prompt": "The code contains one compile error (lines 1-7 correct). (a) Which line? (b) Why wrong? (c) Insert one line at line 12 to fix. (d) Screen output after correction?", "code": " 4: class X {\n 5: private:\n 6:    int w,h;\n 7: public:\n 8:    X() { cout << \"c1 called\\n\"; }\n 9:    X(int a,int b) { w=a; h=b; cout << \"c3 called\\n\"; }\n10:    X(const X& x) { w=x.w; h=x.h; cout << \"c5 called\\n\"; }\n11:    ~X() { cout << \"d called\\n\"; }\n12:\n13: };\n15: int f1(X obj)\n16: {\n17:     cout << \"f1 called!\\n\";\n18:     return obj.w*obj.h;\n19: }\n20: int main()\n21: {\n22:     int z;\n23:     X a(5,6), b;\n24:     X c = a;\n25:     b = c;\n26:     z = f1(b);\n27:     cout << \"area: \" << z << \"\\n\";\n28:     return 0;\n29: }", "answer": "(a) line 18 (obj.w*obj.h)\n(b) w and h are private; f1 is a non-member function, so it cannot access them.\n(c) friend int f1(X obj);\n(d)\nc3 called\nc1 called\nc5 called\nc5 called\nf1 called!\nd called\narea: 30\nd called\nd called\nd called", "tip": "X c = a; → 복사생성자(c5). b = c; → 대입연산자라 출력 없음! f1(b) 값 전달 → c5, 리턴 후 obj 소멸 d. main 끝에 c,b,a 소멸 d×3. g++ 확인.", "src": "L04"}, {"id": "2022-1a-e", "year": 2022, "no": "1(a)~(e)", "pts": 10, "type": "blank", "topics": ["encap"], "scope": "in", "prompt": "The three main benefits of data encapsulation are (a.        ), (b.        ), (c.        ). (c) means (d.        ) in implementation should not affect (e.        ) seen by clients of a class.", "code": "", "answer": "(a) protection of implementation (safety)  (b) readability (understandability)  (c) implementation independence  (d) a change  (e) the interface", "tip": "", "src": "Handout 2"}, {"id": "2022-1fg", "year": 2022, "no": "1(f)(g)", "pts": 4, "type": "blank", "topics": ["couple"], "scope": "in", "prompt": "(f.        ) is the degree to which each program module relies on each one of the other modules. (g.        ) is a measure of how strongly-related and focused the responsibilities of a module are. It is desirable to minimize (f) and maximize (g).", "code": "", "answer": "(f) Coupling  (g) Cohesion", "tip": "", "src": "L03"}, {"id": "2022-1h", "year": 2022, "no": "1(h)", "pts": 2, "type": "blank", "topics": ["constfn"], "scope": "likely", "prompt": "(h.        ) member function does not modify any data members of the object on which it is called.", "code": "", "answer": "(h) const", "tip": "", "src": "L04"}, {"id": "2022-1ij", "year": 2022, "no": "1(i)(j)", "pts": 4, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "One of the formal definitions of (i.        ) is \"the establishment and use of sound engineering principles in order to (j.        ) obtain software that is reliable and works efficiently\".", "code": "", "answer": "(i) software engineering  (j) economically", "tip": "Fritz Bauer 정의. 'economically' 자주 나옴.", "src": "L02"}, {"id": "2022-1k", "year": 2022, "no": "1(k)", "pts": 2, "type": "blank", "topics": ["design"], "scope": "in", "prompt": "(k.        ) is a simple dummy routine with no behavior or with very limited behavior, and it can be a temporary substitute for yet-to-be-developed code.", "code": "", "answer": "(k) Stub", "tip": "", "src": "L03"}, {"id": "2022-1lm", "year": 2022, "no": "1(l)(m)", "pts": 4, "type": "blank", "topics": ["assert"], "scope": "in", "prompt": "(l.        ) contains a boolean expression that you believe will be true when (l) executes. If not true, the system will throw an error... writing (l) while programming is one of the quickest and most effective ways to detect (m.        ).", "code": "", "answer": "(l) An assertion (assert)  (m) bugs (errors)", "tip": "", "src": "L04"}, {"id": "2022-1n", "year": 2022, "no": "1(n)", "pts": 2, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "Software crisis is the term used to describe the impact of rapid increases in computer power and the (n.        ) of the problems. Software technology could not follow the (n).", "code": "", "answer": "(n) complexity", "tip": "", "src": "L02"}, {"id": "2022-1op", "year": 2022, "no": "1(o)(p)", "pts": 4, "type": "blank", "topics": ["paradigm"], "scope": "in", "prompt": "Using (o.        ) variables can be dangerous because it can make all modules (p.        ) on one another.", "code": "", "answer": "(o) global  (p) dependent", "tip": "", "src": "L02"}, {"id": "2022-1qr", "year": 2022, "no": "1(q)(r)", "pts": 4, "type": "blank", "topics": ["paradigm"], "scope": "in", "prompt": "structured programming ≒ (q.        ) ≒ (r.        ) ≒ functional decomposition", "code": "", "answer": "(q) top-down approach  (r) divide and conquer", "tip": "L02 Structured Programming: Top-down approach / Divide and conquer / Functional decomposition. (procedural/modular programming도 맥락상 인정될 수 있음)", "src": "L02"}, {"id": "2022-2", "year": 2022, "no": "2", "pts": 8, "type": "blank", "topics": ["encap"], "scope": "in", "prompt": "Avoid data members in the public interface. Three advantageous properties: (i) (a.        ), (ii) precise control over the (b.        ) of data members, (iii) functional (c.        ): you can later replace the data member with (d.        ).", "code": "", "answer": "(a) consistency  (b) accessibility  (c) abstraction  (d) a computation", "tip": "", "src": "L04"}, {"id": "2022-3", "year": 2022, "no": "3", "pts": 8, "type": "short", "topics": ["encap"], "scope": "in", "prompt": "(a) Most serious problem if every member is private? Why?  (b) ... if every member is public? Why?", "code": "", "answer": "(a) The class has no interface, so clients cannot use any of its functionality.\n(b) No encapsulation: clients can directly access/modify internal data, so safety and implementation independence are lost.", "tip": "", "src": "L04"}, {"id": "2022-4", "year": 2022, "no": "4", "pts": 14, "type": "short", "topics": ["inline"], "scope": "likely", "prompt": "(1) What is an inline function? (2) In which situations can we get benefits of using it? List two. (3) Main benefit and why? (4) Possible disadvantage, and especially when?", "code": "", "answer": "(1) A function whose call is replaced by its body (code expanded at the call site) by the compiler.\n(2) ① the function body is small (e.g. getters/setters)  ② the function is called very frequently (e.g. in a loop).\n(3) Faster execution — because function-call overhead (passing arguments, jump, stack frame, return) is removed.\n(4) Code size increases (code bloat) — especially when the function is large or called in many places.", "tip": "강의 슬라이드는 'What is inline function? / Why useful?' 질문만 있음 → 수업 설명으로 채워야 하는 부분.", "src": "L04 inline"}, {"id": "2022-5", "year": 2022, "no": "5", "pts": 9, "type": "short", "topics": ["static"], "scope": "likely", "prompt": "class File { static int open_files; ... File(...) { ++open_files; } ~File() { --open_files; } }; (1) Meaning of static in line 2 and the difference it makes? (2) Why is static necessary for open_files? (3) What problem occurs without static?", "code": "", "answer": "(1) open_files becomes one variable per class, shared by all File objects (exists even with no object). Without static, each object has its own copy.\n(2) It must count all File objects — a property of the class, not of one object — so it must be shared.\n(3) Each object gets its own open_files, incremented only in its own copy (always 1), so the total number of File objects cannot be counted.", "tip": "", "src": "L04 static example"}, {"id": "2022-6", "year": 2022, "no": "6", "pts": 9, "type": "trace", "topics": ["friend", "trace"], "scope": "likely", "prompt": "Code computes the area of a rectangle but has a compile error. (a) Which line? (b) Why wrong? (c) Insert one line at line 3 to fix.", "code": " 1: #include <iostream>\n 2: class Rectangle {\n 3:\n 4: public:\n 5:   Rectangle(int w, int h) { width=w; height=h; }\n 6: private:\n 7:   int width;\n 8:   int height;\n 9: };\n10: int get_area(Rectangle c) {\n11:       return c.width * c.height;\n12: }\n13: int main() {\n14:       Rectangle rect(5,6);\n15:       std::cout << get_area(rect) << \"\\n\";\n16:       return 0;\n17: }", "answer": "(a) line 11 (c.width * c.height)\n(b) width and height are private members; get_area is a non-member function, so it cannot access them.\n(c) friend int get_area(Rectangle c);", "tip": "", "src": "L04 friend"}, {"id": "2022-7", "year": 2022, "no": "7", "pts": 16, "type": "code", "topics": ["stack", "copy"], "scope": "likely", "prompt": "Write (1) the constructor TIntStack(unsigned int stackSize), (2) a deep-copy copy constructor, (3) the destructor, (4) bool Push(int thisValue).", "code": "#include <iostream>\nconst unsigned int DEFAULT_SIZE = 256;\nclass TIntStack {\npublic :\n    TIntStack(unsigned int stackSize = DEFAULT_SIZE);\n    TIntStack(const TIntStack& that);\n    ~TIntStack();\n    bool Push(int thisValue); // return true if successful, false if stack is full\n    unsigned int getCount() const { return _count; }\nprivate :\n    int* _sp;             // memory is dynamically allocated during constructor call\n    unsigned int _count;  // number of elements in stack\n    unsigned int _size;   // size (capacity) of stack\n};", "answer": "// (1)\nTIntStack::TIntStack(unsigned int stackSize) {\n    _size = stackSize;\n    _count = 0;\n    _sp = new int[_size];\n}\n// (2) deep copy\nTIntStack::TIntStack(const TIntStack& that) {\n    _size = that._size;\n    _count = that._count;\n    _sp = new int[_size];\n    for (unsigned int i = 0; i < _count; i++)\n        _sp[i] = that._sp[i];\n}\n// (3)\nTIntStack::~TIntStack() {\n    delete[] _sp;\n}\n// (4)\nbool TIntStack::Push(int thisValue) {\n    if (_count >= _size) return false;\n    _sp[_count++] = thisValue;\n    return true;\n}", "tip": "깊은 복사의 핵심: 새 배열 new + 원소 복사. 포인터만 복사(_sp = that._sp)하면 얕은 복사 → 감점. g++로 확인.", "src": "L04 TIntStack"}, {"id": "2019-1abc", "year": 2019, "no": "1(a)(b)(c)", "pts": 6, "type": "blank", "topics": ["couple"], "scope": "in", "prompt": "(a.        ) is the degree to which each module relies on each one of the other modules. (b.        ) is a measure of how strongly-related the responsibilities of a module are. It is often desirable to minimize (a) because (c.        ).", "code": "", "answer": "(a) Coupling  (b) Cohesion  (c) a change in one module can affect other modules (making the system hard to maintain/reuse)", "tip": "", "src": "L03"}, {"id": "2019-1d", "year": 2019, "no": "1(d)", "pts": 2, "type": "blank", "topics": ["memory"], "scope": "in", "prompt": "Dynamic memory allocation means memory allocation occurs at (d.        ).", "code": "", "answer": "(d) run-time (execution time)", "tip": "C++ in Summary 11: 'dynamic' means '… occurs at run-time (execution-time)'", "src": "C++ in Summary 11"}, {"id": "2019-1ef", "year": 2019, "no": "1(e)(f)", "pts": 4, "type": "blank", "topics": ["fileio"], "scope": "in", "prompt": "ios::app means all output operations are performed at (e.        ) of the file, (f.        ) the content to the current content of the file.", "code": "", "answer": "(e) the end  (f) appending", "tip": "", "src": "C++ in Summary 13"}, {"id": "2019-1gh", "year": 2019, "no": "1(g)(h)", "pts": 4, "type": "blank", "topics": ["fileio"], "scope": "in", "prompt": "File stream classes: ofstream: write on files / (g.        ): read from files / (h.        ): read and write from/to files.", "code": "", "answer": "(g) ifstream  (h) fstream", "tip": "", "src": "C++ in Summary 13"}, {"id": "2019-1ij", "year": 2019, "no": "1(i)(j)", "pts": 4, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "One of the formal definitions of (i.        ) is \"the establishment and use of sound engineering principles in order to (j.        ) obtain software that is reliable and works efficiently\".", "code": "", "answer": "(i) software engineering  (j) economically", "tip": "", "src": "L02"}, {"id": "2019-1k", "year": 2019, "no": "1(k)", "pts": 2, "type": "blank", "topics": ["paradigm"], "scope": "in", "prompt": "Using (k.        ) variables can be dangerous because it can make all modules dependent on one another.", "code": "", "answer": "(k) global", "tip": "", "src": "L02"}, {"id": "2019-1lmn", "year": 2019, "no": "1(l)(m)(n)", "pts": 6, "type": "blank", "topics": ["encap"], "scope": "in", "prompt": "(l.        ) is a technique that relies on the separation of interface and implementation. Interface is the outside or service view, describing (m.        ) an object does. Implementation is the inside view, describing (n.        ) an object does.", "code": "", "answer": "(l) Data abstraction  (m) what  (n) how", "tip": "L04 첫 슬라이드.", "src": "L04"}, {"id": "2019-2", "year": 2019, "no": "2", "pts": 6, "type": "short", "topics": ["encap"], "scope": "in", "prompt": "Explain each benefit: (1) protection of implementation (safety): Clients cannot (    ). (2) readability: Clients of interface does not need to (    ). (3) implementation independence: A change in implementation should not (    ).", "code": "", "answer": "(1) directly access encapsulated data.\n(2) know how the interface functions use the encapsulated information.\n(3) affect the interface seen by the clients of a class.", "tip": "", "src": "Handout 2"}, {"id": "2019-3", "year": 2019, "no": "3", "pts": 8, "type": "short", "topics": ["se", "quality"], "scope": "in", "prompt": "(1) Definition of maintenance? (2) A program with high maintainability is easy to (read/understand), easy to (a.  ), easy to (b.  ), easy to (c.  ).", "code": "", "answer": "(1) Activities after delivery of the initial working version: correcting errors, adapting to changed requirements/hardware, and improving the software.\n(2) (a) modify  (b) extend  (c) reuse  (debug/test, port도 인정)", "tip": "Handout 1 maintainability 하위항목: readability, modifiability, extensibility, reusability, testability, modularity, portability.", "src": "L03 9, Handout 1"}, {"id": "2019-4", "year": 2019, "no": "4", "pts": 8, "type": "blank", "topics": ["ctor"], "scope": "in", "prompt": "Properties of a constructor: (2) automatically called when (    ). (3) should always have the same (    ) as the class. (4) does not have (    ) type. (5) If you do not make any constructor, the compiler would generate (    ).", "code": "", "answer": "(2) an object is created  (3) name  (4) return  (5) a default constructor", "tip": "", "src": "L04"}, {"id": "2019-5", "year": 2019, "no": "5", "pts": 29, "type": "code", "topics": ["opover"], "scope": "low", "prompt": "Write (1) operator- and (2) operator<< for class Complex.", "code": "class Complex {\nprivate:\n    double re, im;\npublic :\n    Complex( double r, double i ) : re(r), im(i) {}\n    friend Complex operator-(Complex&, Complex&);\n    friend ostream& operator<<(ostream &o, Complex &x);\n    // prints \"a+bi\": re=3.2,im=2.3 → 3.2+2.3i ; im=-2.3 → 3.2-2.3i ; im=0 → 3.2\n};", "answer": "Complex operator-(Complex& x, Complex& y) {\n    return Complex(x.re - y.re, x.im - y.im);\n}\nostream& operator<<(ostream &o, Complex& x) {\n    o << x.re;\n    if (x.im > 0)      o << \"+\" << x.im << \"i\";\n    else if (x.im < 0) o << x.im << \"i\";   // 음수는 '-'가 자동으로 붙음\n    return o;\n}", "tip": "friend라서 private re, im에 접근 가능. return o; 빠뜨리면 감점. g++ 확인.", "src": "Operator Overloading"}, {"id": "2019-6", "year": 2019, "no": "6", "pts": 12, "type": "code", "topics": ["trace"], "scope": "in", "prompt": "Fill in the boxes so that output is: obj:12, foo:12, bar:30, baz[0]:10", "code": "10: Rectangle obj(3,4);\n11: Rectangle *foo, *bar, *baz;\n12: foo = &obj;\n13: bar = new Rectangle (5,6);\n14: baz = new Rectangle[2] { {2,5}, {3,6} };\n15: cout << \"Area Calculation Output\\n\";\n16: cout << \"obj:\" << [        ] << \", \";\n17: cout << \"foo:\" << [        ] << \", \";\n18: cout << \"bar:\" << [        ] << \", \";\n19: cout << \"baz[0]:\" << [        ] << \"\\n\";", "answer": "line 16: obj.area()\nline 17: foo->area()\nline 18: bar->area()\nline 19: baz[0].area()", "tip": "", "src": "C++ in Summary 12"}, {"id": "2019-7", "year": 2019, "no": "7", "pts": 9, "type": "code", "topics": ["fileio"], "scope": "in", "prompt": "Fill in the boxes to print the size of example.bin: line 8 begin = [ ]; line 9 myfile.[ ](0,ios::end); line 10 end = [ ];", "code": "", "answer": "line 8 : begin = myfile.tellg();\nline 9 : myfile.seekg(0, ios::end);\nline 10: end = myfile.tellg();", "tip": "", "src": "C++ in Summary 13"}, {"id": "2017-1ab", "year": 2017, "no": "1(a)(b)", "pts": 4, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "Fred Brooks stated that over 90% of (a.        ) of a typical system arise in (b.        ) phase.", "code": "", "answer": "(a) the costs  (b) the maintenance", "tip": "", "src": "L02"}, {"id": "2017-1c", "year": 2017, "no": "1(c)", "pts": 2, "type": "blank", "topics": ["quality"], "scope": "in", "prompt": "(c.        ) means the ability to rely on the software to function properly when needed.", "code": "", "answer": "(c) Dependability", "tip": "L02 Goals of SE: Dependability 정의 그대로.", "src": "L02"}, {"id": "2017-1d", "year": 2017, "no": "1(d)", "pts": 2, "type": "blank", "topics": ["paradigm"], "scope": "in", "prompt": "Using global variables is dangerous mainly because this makes all modules (d.        ) one another.", "code": "", "answer": "(d) dependent on", "tip": "", "src": "L02"}, {"id": "2017-1efgh", "year": 2017, "no": "1(e)~(h)", "pts": 8, "type": "blank", "topics": ["ctor"], "scope": "in", "prompt": "Constructor is a special member function that is automatically called when (e.        ) is (f.        ). The name of a constructor is the same as the name of (g.        ). Normally, you should put code in a constructor to (h.        ) member variables.", "code": "", "answer": "(e) an object  (f) created  (g) the class  (h) initialize", "tip": "", "src": "L04"}, {"id": "2017-2", "year": 2017, "no": "2", "pts": 15, "type": "short", "topics": ["encap"], "scope": "in", "prompt": "List three main benefits of data encapsulation and explain each with sufficient details.", "code": "", "answer": "(i) Protection of implementation (safety): clients cannot directly access encapsulated data.\n(ii) Readability (understandability): clients need not know how interface functions use encapsulated information.\n(iii) Implementation independence: a change in implementation should not affect the interface seen by clients.", "tip": "", "src": "Handout 2"}, {"id": "2017-3", "year": 2017, "no": "3", "pts": 12, "type": "short", "topics": ["passing"], "scope": "likely", "prompt": "(a) Why does high overhead occur when passing large objects by value? (b) Why is the overhead very small with call-by-reference?", "code": "", "answer": "(a) The whole object is copied into the parameter (copy constructor called, memory allocated, then destructor at return), which costs time and memory.\n(b) Only a reference (an alias, implemented like an address) is passed; no copy of the object is made.", "tip": "", "src": "L04 Argument passing"}, {"id": "2017-4", "year": 2017, "no": "4", "pts": 12, "type": "trace", "topics": ["trace"], "scope": "in", "prompt": "The code has four wrong parts (lines 10, 11 correct). Mark each, explain why wrong, and correct it.", "code": " 3: class Rectangle {\n 4:     int width, height;\n 5: public :\n 6:     Rectangle(int x,int y) : width(x),height(y){}\n 7:     int area() { return width*height; }\n 8: };\n 9: int main() {\n10:     Rectangle a(3,4);\n11:     Rectangle *b, *c;\n12:     b = a;\n13:     c = new Rectangle (5,6);\n14:     cout << \"area:\" << a.area() << \"\\n\";\n15:     cout << \"area:\" << b.area() << \"\\n\";\n16:     cout << \"area:\" << c.area() << \"\\n\";\n17:     delete b;\n18:     delete c;\n19:     return 0;\n20: }", "answer": "line 12: b = a; → b = &a;   (b is a pointer; must store the address of a)\nline 15: b.area() → b->area()   (b is a pointer; use ->)\nline 16: c.area() → c->area()   (c is a pointer)\nline 17: delete b; → remove it   (b points to a stack object not created by new)", "tip": "2025 9번의 원형.", "src": "C++ in Summary 12"}, {"id": "2017-5", "year": 2017, "no": "5", "pts": 33, "type": "code", "topics": ["stack", "copy"], "scope": "likely", "prompt": "TIntStack (with void Push, int Pop, operator=). Write (1) copy constructor, (2) destructor, (3) void Push(int). (4) What problems occur if the copy constructor is not provided? What happens, and why is it a problem?", "code": "", "answer": "// (1)\nTIntStack::TIntStack(const TIntStack& that) {\n    _size = that._size;  _count = that._count;\n    _sp = new int[_size];\n    for (unsigned int i = 0; i < _count; i++) _sp[i] = that._sp[i];\n}\n// (2)\nTIntStack::~TIntStack() { delete[] _sp; }\n// (3)\nvoid TIntStack::Push(int thisValue) {\n    assert(_count < _size);      // 또는 if (_count >= _size) return;\n    _sp[_count++] = thisValue;\n}\n(4) what happens: the compiler's default copy constructor does a shallow copy — only the pointer _sp is copied, so both stacks share the same array.\nwhy a problem: changing one stack changes the other, and when both are destroyed delete[] is called twice on the same memory (double free / dangling pointer).", "tip": "", "src": "L04"}, {"id": "2017-6", "year": 2017, "no": "6", "pts": 12, "type": "short", "topics": ["copy"], "scope": "likely", "prompt": "(a) Copy constructor is automatically called when (    ). (b) Write an example for each of the three cases where a copy constructor is called.", "code": "", "answer": "(a) a new object is created from an existing object of the same type.\n(b) case 1: Person r(p);\n    case 2: Person p = q;   (initialization in declaration)\n    case 3: f(p);            (passing an object by value)", "tip": "주의: p = q; (이미 있는 객체에 대입)는 operator=라서 복사생성자 아님.", "src": "L04 Copy Constructor (1)"}, {"id": "2016-1ab", "year": 2016, "no": "1(a)(b)", "pts": 4, "type": "blank", "topics": ["couple"], "scope": "in", "prompt": "Coupling means the degree to which the ability to fulfill a certain responsibility (a.        ) the actions of another component. It is desirable to (b.        ) coupling.", "code": "", "answer": "(a) depends upon  (b) minimize", "tip": "L03 원문.", "src": "L03"}, {"id": "2016-1c", "year": 2016, "no": "1(c)", "pts": 2, "type": "blank", "topics": ["encap"], "scope": "in", "prompt": "(c.        ) is an instance of a class.", "code": "", "answer": "(c) An object", "tip": "", "src": "L02"}, {"id": "2016-1d", "year": 2016, "no": "1(d)", "pts": 2, "type": "blank", "topics": ["paradigm"], "scope": "in", "prompt": "Using global variables can be dangerous because it can make all modules (d.        ) on one another.", "code": "", "answer": "(d) dependent", "tip": "", "src": "L02"}, {"id": "2016-1ef", "year": 2016, "no": "1(e)(f)", "pts": 4, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "Goals of software engineering are (i) (e.        ), (ii) (f.        )", "code": "", "answer": "(e) produce correct, efficient, and reliable software  (f) minimize the cost of software development and maintenance", "tip": "", "src": "L02"}, {"id": "2016-1ghi", "year": 2016, "no": "1(g)(h)(i)", "pts": 6, "type": "blank", "topics": ["encap"], "scope": "in", "prompt": "(g.        ) relies on the separation of interface and implementation. Interface describes (h.        ) an object does. Implementation describes (i.        ) an object does.", "code": "", "answer": "(g) Data abstraction  (h) what  (i) how", "tip": "", "src": "L04"}, {"id": "2016-2a", "year": 2016, "no": "2(1)~(3)", "pts": 13, "type": "short", "topics": ["se", "quality"], "scope": "in", "prompt": "(1) Definition of maintenance? (2) High maintainability = easy to (read/understand), (a), (b), (c). (3) Why is maintenance so important?", "code": "", "answer": "(1) Activities after delivery of the initial working version: fixing bugs, adapting to changed requirements/hardware, improving the software.\n(2) (a) modify  (b) extend  (c) reuse\n(3) Over 90% of the costs of a typical system arise in maintenance (Brooks), and any successful software will inevitably be changed.", "tip": "", "src": "L02, L03"}, {"id": "2016-2b", "year": 2016, "no": "2(4)~(6)", "pts": 13, "type": "short", "topics": ["encap"], "scope": "in", "prompt": "(4) What is data encapsulation? (5) Why does it make a program more understandable? (6) Why does it make a program safer?", "code": "", "answer": "(4) Implementation is encapsulated by the interface, and the only legal way to get to the implementation is through the interface (internal data is hidden).\n(5) Clients only need to know the interface (what it does), not how it is implemented.\n(6) Clients cannot directly access/modify the internal data, so they cannot accidentally corrupt it.", "tip": "", "src": "L04, Handout 2"}, {"id": "2016-3", "year": 2016, "no": "3", "pts": 10, "type": "short", "topics": ["design"], "scope": "in", "prompt": "For integration, components are slowly integrated into a completed system using stubs. (1) Meaning of 'slowly integrated'? (2) Meaning of 'stubs'?", "code": "", "answer": "(1) Components are added and tested one (a few) at a time, incrementally, so errors can be located easily.\n(2) Simple dummy routines with no or very limited behavior, used temporarily for yet-unimplemented parts.", "tip": "", "src": "L03 8"}, {"id": "2016-4", "year": 2016, "no": "4", "pts": 6, "type": "short", "topics": ["design"], "scope": "in", "prompt": "Names should be evocative in the context of a problem. What does 'evocative' mean?", "code": "", "answer": "The name should call to mind (suggest) the meaning/role of the thing in the problem domain.", "tip": "L03 'The selection of names' 첫 항목.", "src": "L03"}, {"id": "2016-5code", "year": 2016, "no": "5(1)~(3)", "pts": 30, "type": "code", "topics": ["opover", "copy"], "scope": "low", "prompt": "inf_int: write (1) operator>, (2) copy constructor, (3) constructor inf_int(int n). Don't call other member functions.", "code": "class inf_int {\nprivate:\n    char* digits;         // string of digits, dynamically allocated\n    unsigned int length;  // number of actual digits\n    bool thesign;         // false if negative, true otherwise\n    // digits stored in reverse order\n    // ex) 15311111111111111 : digits -> \"11111111111111351\", length=17, thesign=true\npublic:\n    inf_int(int n);\n    inf_int(const inf_int& x);\n    friend bool operator>(const inf_int&, const inf_int&);\n};", "answer": "bool operator>(const inf_int& x, const inf_int& y) {\n    if (x.thesign != y.thesign) return x.thesign;     // 양수 > 음수\n    bool absGreater;\n    if (x.length != y.length) absGreater = x.length > y.length;\n    else {\n        int i = x.length - 1;                          // 최상위 자리부터 비교\n        while (i >= 0 && x.digits[i] == y.digits[i]) i--;\n        if (i < 0) return false;                       // 같음\n        absGreater = x.digits[i] > y.digits[i];\n    }\n    return x.thesign ? absGreater : !absGreater;       // 음수면 절댓값 큰 쪽이 작음\n}\ninf_int::inf_int(const inf_int& x) {\n    length = x.length;\n    thesign = x.thesign;\n    digits = new char[length + 1];   // deep copy\n    strcpy(digits, x.digits);\n}\ninf_int::inf_int(int n) {\n    char buf[100]; int i = 0;\n    long long m = n;               // INT_MIN 대비\n    thesign = (m >= 0);\n    if (m < 0) m = -m;\n    do { buf[i++] = '0' + m % 10; m /= 10; } while (m > 0);   // 역순 저장\n    buf[i] = '\\0';\n    length = i;\n    digits = new char[length + 1];\n    strcpy(digits, buf);\n}", "tip": "Project 2 범위(마감 11/1)라 올해 중간엔 가능성 낮음. g++ 확인.", "src": "Project 2"}, {"id": "2016-5why", "year": 2016, "no": "5(4)(5)", "pts": 10, "type": "short", "topics": ["copy"], "scope": "likely", "prompt": "(4) Why do we generally need to write a copy constructor in class inf_int? (5) What happens if we don't?", "code": "", "answer": "(4) inf_int holds a pointer to dynamically allocated memory (digits), so a deep copy is needed.\n(5) The default copy constructor does a shallow copy: both objects share the same digits array, so changing one changes the other, and the destructors delete[] the same memory twice (crash / dangling pointer).", "tip": "", "src": "L04"}, {"id": "2015-1a", "year": 2015, "no": "1(a)", "pts": 2, "type": "blank", "topics": ["ctor"], "scope": "in", "prompt": "In C++, if we do not (a.        ) in a class, the compiler would generate a default constructor.", "code": "", "answer": "(a) declare any constructor", "tip": "", "src": "L04"}, {"id": "2015-1bc", "year": 2015, "no": "1(b)(c)", "pts": 4, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "Software engineering: ...sound engineering principles in order to (b.        ) obtain software... One of the main goals is to minimize (c.        ) of software development and maintenance.", "code": "", "answer": "(b) economically  (c) the cost", "tip": "", "src": "L02"}, {"id": "2015-1de", "year": 2015, "no": "1(d)(e)", "pts": 4, "type": "blank", "topics": ["encap"], "scope": "in", "prompt": "In the concept of information hiding, (d.        ) of an object can be modified only through (e.        ).", "code": "", "answer": "(d) internal data  (e) an interface", "tip": "2025 1(l)(m)과 동일.", "src": "L02"}, {"id": "2015-1f", "year": 2015, "no": "1(f)", "pts": 2, "type": "blank", "topics": ["design"], "scope": "in", "prompt": "Good SW design recognizes the inevitability of (f.        ) and plans an accommodation for them from the very beginning.", "code": "", "answer": "(f) changes", "tip": "L03 9. Maintenance and Evolution", "src": "L03"}, {"id": "2015-1g", "year": 2015, "no": "1(g)", "pts": 2, "type": "blank", "topics": ["couple"], "scope": "in", "prompt": "Coupling is the degree to which the ability to fulfill a certain responsibility (g.        ) upon the actions of another component.", "code": "", "answer": "(g) depends", "tip": "", "src": "L03"}, {"id": "2015-1h", "year": 2015, "no": "1(h)", "pts": 2, "type": "blank", "topics": ["friend"], "scope": "likely", "prompt": "friend function of a class has the right to access (h.        ) of the class while a typical function does not.", "code": "", "answer": "(h) the non-public (private) members", "tip": "", "src": "L04 friend"}, {"id": "2015-1i", "year": 2015, "no": "1(i)", "pts": 2, "type": "blank", "topics": ["copy"], "scope": "likely", "prompt": "(i.        ) is called when a new object is created and copied from an existing object with the same type.", "code": "", "answer": "(i) Copy constructor", "tip": "", "src": "L04"}, {"id": "2015-2", "year": 2015, "no": "2", "pts": 18, "type": "short", "topics": ["encap"], "scope": "in", "prompt": "List three main benefits of data encapsulation and explain each.", "code": "", "answer": "(i) Protection of implementation (safety): clients cannot directly access encapsulated data.\n(ii) Readability (understandability): clients need not know how interface functions use encapsulated information.\n(iii) Implementation independence: a change in implementation should not affect the interface seen by clients.", "tip": "", "src": "Handout 2"}, {"id": "2015-3", "year": 2015, "no": "3", "pts": 12, "type": "short", "topics": ["assert"], "scope": "in", "prompt": "For assert(e): (1) If e is true, (    ). (2) If e is false, (    ). (3) Goal of using assert(e)?", "code": "", "answer": "(1) the program just continues.\n(2) the program is stopped with an error message indicating the failure of the assertion.\n(3) To check that conditions (class invariants) always hold, making programs more reliable.", "tip": "L04 원문.", "src": "L04"}, {"id": "2015-4", "year": 2015, "no": "4", "pts": 12, "type": "short", "topics": ["static"], "scope": "likely", "prompt": "class File { static int open_files; int var; ... }. (1) Meaning of static in line 2? (2) Lifetime of open_files: creation/deletion time? (3) Lifetime of var?", "code": "", "answer": "(1) open_files is one variable per class, shared by all File objects.\n(2) Created when the program starts (before main, independent of objects); deleted when the program ends.\n(3) Created when a File object is created; deleted when that object is destroyed.", "tip": "", "src": "L04"}, {"id": "2015-5", "year": 2015, "no": "5", "pts": 40, "type": "code", "topics": ["opover", "copy"], "scope": "low", "prompt": "inf_int: write (1) operator==, (2) copy constructor, (3) constructor inf_int(int n).", "code": "", "answer": "bool operator==(const inf_int& x, const inf_int& y) {\n    return x.thesign == y.thesign && x.length == y.length\n        && strcmp(x.digits, y.digits) == 0;\n}\ninf_int::inf_int(const inf_int& x) {\n    length = x.length;\n    thesign = x.thesign;\n    digits = new char[length + 1];   // deep copy\n    strcpy(digits, x.digits);\n}\ninf_int::inf_int(int n) {\n    char buf[100]; int i = 0;\n    long long m = n;               // INT_MIN 대비\n    thesign = (m >= 0);\n    if (m < 0) m = -m;\n    do { buf[i++] = '0' + m % 10; m /= 10; } while (m > 0);   // 역순 저장\n    buf[i] = '\\0';\n    length = i;\n    digits = new char[length + 1];\n    strcpy(digits, buf);\n}", "tip": "", "src": "Project 2"}, {"id": "2014-1a", "year": 2014, "no": "1(a)", "pts": 2, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "Fred Brooks states that over 90% of the costs of a typical system arise in the (a.        ) phase.", "code": "", "answer": "(a) maintenance", "tip": "", "src": "L02"}, {"id": "2014-1b", "year": 2014, "no": "1(b)", "pts": 2, "type": "blank", "topics": ["ctor"], "scope": "in", "prompt": "If we did not declare any constructor in class, the compiler would generate (b.        ).", "code": "", "answer": "(b) a default constructor", "tip": "", "src": "L04"}, {"id": "2014-1c", "year": 2014, "no": "1(c)", "pts": 2, "type": "blank", "topics": ["design"], "scope": "in", "prompt": "(c.        ) is a simple dummy routine with no behavior or very limited behavior, used when components are slowly integrated into completed system.", "code": "", "answer": "(c) Stub", "tip": "", "src": "L03"}, {"id": "2014-1d", "year": 2014, "no": "1(d)", "pts": 2, "type": "blank", "topics": ["constfn"], "scope": "likely", "prompt": "const member function does not (d.        ) any data members of the object on which it is called.", "code": "", "answer": "(d) modify", "tip": "", "src": "L04"}, {"id": "2014-1ef", "year": 2014, "no": "1(e)(f)", "pts": 4, "type": "blank", "topics": ["encap"], "scope": "in", "prompt": "One of the main benefits of data encapsulation is (e.        ) which means a change in (f.        ) should not affect interface seen by clients.", "code": "", "answer": "(e) implementation independence  (f) implementation", "tip": "", "src": "Handout 2"}, {"id": "2014-1g", "year": 2014, "no": "1(g)", "pts": 2, "type": "blank", "topics": ["couple"], "scope": "in", "prompt": "(g.        ) is the degree to which the tasks assigned to a component seem to form a meaningful unit.", "code": "", "answer": "(g) Cohesion", "tip": "", "src": "L03"}, {"id": "2014-1h", "year": 2014, "no": "1(h)", "pts": 2, "type": "blank", "topics": ["couple"], "scope": "in", "prompt": "Coupling is the degree to which the ability to fulfill a certain responsibility (h.        ) upon the actions of another component.", "code": "", "answer": "(h) depends", "tip": "", "src": "L03"}, {"id": "2014-1i", "year": 2014, "no": "1(i)", "pts": 2, "type": "blank", "topics": ["friend"], "scope": "likely", "prompt": "friend function of a class has the right to access (i.        ) members of the class.", "code": "", "answer": "(i) non-public (private)", "tip": "", "src": "L04"}, {"id": "2014-1j", "year": 2014, "no": "1(j)", "pts": 2, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "One of the main goals of software engineering is to minimize (j.        ) of software development and maintenance.", "code": "", "answer": "(j) the cost", "tip": "", "src": "L02"}, {"id": "2014-2", "year": 2014, "no": "2", "pts": 18, "type": "short", "topics": ["inline"], "scope": "likely", "prompt": "(1) What is inline function? (2) In what situations can we benefit? List two. (3) What benefit and why?", "code": "", "answer": "(1) A function whose body the compiler inserts at each call site instead of performing a normal function call.\n(2) ① small functions (a few lines, e.g. getters)  ② functions called very frequently (e.g. inside loops)\n(3) Faster execution, because function-call overhead (argument passing, jump, stack frame, return) is eliminated.", "tip": "", "src": "L04"}, {"id": "2014-3", "year": 2014, "no": "3", "pts": 12, "type": "short", "topics": ["copy"], "scope": "likely", "prompt": "(1) What is shallow copy? (2) You don't need to write a copy constructor if shallow copies are OK. Why?", "code": "", "answer": "(1) Copying data members value by value (memberwise); for pointer members only the address is copied, so both objects point to the same memory.\n(2) The compiler automatically generates a default copy constructor that performs a shallow copy.", "tip": "L04: Compiler automatically generates default copy construct, default operator assignment and default destructor if we don't provide them.", "src": "L04"}, {"id": "2014-4", "year": 2014, "no": "4", "pts": 18, "type": "code", "topics": ["stack", "copy"], "scope": "likely", "prompt": "TIntStack: write the copy constructor TIntStack::TIntStack(const TIntStack& that).", "code": "#include <iostream>\nconst unsigned int DEFAULT_SIZE = 256;\nclass TIntStack {\npublic :\n    TIntStack(unsigned int stackSize = DEFAULT_SIZE);\n    TIntStack(const TIntStack& that);\n    ~TIntStack();\n    bool Push(int thisValue); // return true if successful, false if stack is full\n    unsigned int getCount() const { return _count; }\nprivate :\n    int* _sp;             // memory is dynamically allocated during constructor call\n    unsigned int _count;  // number of elements in stack\n    unsigned int _size;   // size (capacity) of stack\n};", "answer": "TIntStack::TIntStack(const TIntStack& that) {\n    _size = that._size;\n    _count = that._count;\n    _sp = new int[_size];\n    for (unsigned int i = 0; i < _count; i++)\n        _sp[i] = that._sp[i];\n}", "tip": "", "src": "L04"}, {"id": "2014-5", "year": 2014, "no": "5", "pts": 32, "type": "code", "topics": ["opover"], "scope": "low", "prompt": "Complex: write (1) friend Complex operator+(Complex&, Complex&) and (2) ostream& operator<<(ostream&, const Complex&) printing a+bi format.", "code": "", "answer": "Complex operator+(Complex& x, Complex& y) {\n    return Complex(x.re + y.re, x.im + y.im);\n}\nostream& operator<<(ostream &o, const Complex& x) {\n    o << x.re;\n    if (x.im > 0)      o << \"+\" << x.im << \"i\";\n    else if (x.im < 0) o << x.im << \"i\";   // 음수는 '-'가 자동으로 붙음\n    return o;\n}", "tip": "", "src": "Operator Overloading"}, {"id": "2013-1ab", "year": 2013, "no": "1(a)(b)", "pts": 4, "type": "blank", "topics": ["encap"], "scope": "in", "prompt": "One of the main benefits of data encapsulation is (a.        ) which means a change in implementation should not affect (b.        ) seen by clients of a class.", "code": "", "answer": "(a) implementation independence  (b) the interface", "tip": "", "src": "Handout 2"}, {"id": "2013-1c", "year": 2013, "no": "1(c)", "pts": 4, "type": "blank", "topics": ["design"], "scope": "in", "prompt": "(c.        ) is a simple dummy routine with no or very limited behavior, a temporary substitute for yet-to-be-developed code.", "code": "", "answer": "(c) Stub", "tip": "", "src": "L03"}, {"id": "2013-1d", "year": 2013, "no": "1(d)", "pts": 4, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "(d.        ) is the modification of a software product after delivery to correct faults, to improve performance or other attributes.", "code": "", "answer": "(d) Maintenance", "tip": "", "src": "L03"}, {"id": "2013-1e", "year": 2013, "no": "1(e)", "pts": 4, "type": "blank", "topics": ["copy"], "scope": "likely", "prompt": "Don't write a copy constructor if (e.        ) are OK.", "code": "", "answer": "(e) shallow copies", "tip": "", "src": "L04"}, {"id": "2013-1f", "year": 2013, "no": "1(f)", "pts": 4, "type": "blank", "topics": ["copy"], "scope": "likely", "prompt": "If you need copy constructor, you also need (f.        ) and operator= function.", "code": "", "answer": "(f) a destructor", "tip": "", "src": "L04"}, {"id": "2013-2", "year": 2013, "no": "2", "pts": 14, "type": "short", "topics": ["passing"], "scope": "likely", "prompt": "Possible advantage and disadvantage of call-by-value (pass-by-value).", "code": "", "answer": "(1) advantage: safer — the function works on a copy, so the caller's original argument cannot be modified.\n(2) disadvantage: copying overhead — for large objects, copying (copy constructor/destructor calls, memory) costs time and space.", "tip": "L04: pass-by-value is safer / Avoid passing large objects by value.", "src": "L04"}, {"id": "2013-3", "year": 2013, "no": "3", "pts": 14, "type": "short", "topics": ["couple"], "scope": "in", "prompt": "(1) What is coupling? (2) Why is it desirable to minimize coupling?", "code": "", "answer": "(1) The degree to which the ability to fulfill a responsibility depends upon the actions of another component.\n(2) With low coupling, components are independent: a change in one component has little effect on others, so the system is easier to understand, modify, test and reuse.", "tip": "", "src": "L03"}, {"id": "2013-4", "year": 2013, "no": "4", "pts": 14, "type": "short", "topics": ["static"], "scope": "likely", "prompt": "(1) Meaning of static member variable open_files? (2) Meaning of static member function existing()?", "code": "", "answer": "(1) One variable per class shared by all File objects; it exists even if no object has been created.\n(2) A function of the class, callable without any object (File::existing()); it cannot access non-static members.", "tip": "", "src": "L04"}, {"id": "2013-5", "year": 2013, "no": "5", "pts": 34, "type": "code", "topics": ["opover", "copy"], "scope": "low", "prompt": "inf_int: write (1) operator==, (2) constructor inf_int(const char* str) (e.g. \"-12345\").", "code": "", "answer": "bool operator==(const inf_int& x, const inf_int& y) {\n    return x.thesign == y.thesign && x.length == y.length\n        && strcmp(x.digits, y.digits) == 0;\n}\ninf_int::inf_int(const char* str) {\n    thesign = true;\n    if (str[0] == '-') { thesign = false; str++; }\n    length = strlen(str);\n    digits = new char[length + 1];\n    for (unsigned int i = 0; i < length; i++)\n        digits[i] = str[length - 1 - i];   // 역순 저장\n    digits[length] = '\\0';\n}", "tip": "", "src": "Project 2"}, {"id": "2012-1abc", "year": 2012, "no": "1(a)(b)(c)", "pts": 12, "type": "blank", "topics": ["encap", "se"], "scope": "in", "prompt": "Implementation independence means (a.        ) in implementation should not affect (b.        ) seen by clients. Software engineering: ...in order to (c.        ) obtain software that is reliable...", "code": "", "answer": "(a) a change  (b) the interface  (c) economically", "tip": "", "src": "Handout 2, L02"}, {"id": "2012-1d", "year": 2012, "no": "1(d)", "pts": 4, "type": "blank", "topics": ["inherit"], "scope": "out", "prompt": "Abstract class is a class that contains at least one (d.        ).", "code": "", "answer": "(d) pure virtual function", "tip": "상속 파트 — 올해 중간 범위 밖일 가능성 큼.", "src": ""}, {"id": "2012-2a", "year": 2012, "no": "2(1)", "pts": 6, "type": "short", "topics": ["passing"], "scope": "likely", "prompt": "It is often desirable to avoid passing large objects by value. Why?", "code": "", "answer": "The whole object is copied (copy constructor, memory allocation, destructor), which wastes time and memory.", "tip": "", "src": "L04"}, {"id": "2012-2b", "year": 2012, "no": "2(2)", "pts": 6, "type": "short", "topics": ["quality"], "scope": "in", "prompt": "What is dependability?", "code": "", "answer": "The ability to rely on the software to function properly when needed.", "tip": "", "src": "L02"}, {"id": "2012-3a", "year": 2012, "no": "3(1)", "pts": 5, "type": "short", "topics": ["encap"], "scope": "in", "prompt": "Main difference between 'class' and 'object' in C++.", "code": "", "answer": "A class is a type (blueprint) defining attributes and behaviors; an object is an instance of a class created in memory with its own state.", "tip": "", "src": "L02"}, {"id": "2012-3b", "year": 2012, "no": "3(2)(3)", "pts": 10, "type": "short", "topics": ["constfn"], "scope": "likely", "prompt": "(2) Difference between const member function and a general member function? (3) Main benefits of const member function?", "code": "", "answer": "(2) A const member function cannot modify any data members of the object (read-only), enforced by the compiler; a general member function can.\n(3) It assures clients of its benign nature: safety (no accidental modification) and readability.", "tip": "", "src": "L04"}, {"id": "2012-4", "year": 2012, "no": "4", "pts": 12, "type": "short", "topics": ["copy"], "scope": "likely", "prompt": "(1) If you need to write a copy constructor, you also need a destructor. Why? (2) If shallow copies are OK, you don't need a copy constructor. Why?", "code": "", "answer": "(1) A copy constructor is needed when the class owns dynamically allocated memory; that memory must be released by a destructor (otherwise a memory leak).\n(2) The compiler-generated default copy constructor already does a shallow (memberwise) copy.", "tip": "", "src": "L04"}, {"id": "2012-5", "year": 2012, "no": "5", "pts": 15, "type": "short", "topics": ["assert"], "scope": "in", "prompt": "assert(x): (1) What should be put into x? (2) What does it do? (3) Why useful?", "code": "", "answer": "(1) A condition (boolean expression) that must always be true at that point, e.g. a class invariant.\n(2) If x is true, continue; if false, stop the program with an error message showing the failed assertion.\n(3) It detects bugs early and makes programs more reliable.", "tip": "", "src": "L04"}, {"id": "2012-6", "year": 2012, "no": "6", "pts": 30, "type": "code", "topics": ["opover", "copy"], "scope": "low", "prompt": "inf_int: write (1) default constructor (value 0), (2) copy constructor, (3) inf_int(int n).", "code": "", "answer": "inf_int::inf_int() {\n    digits = new char[2];\n    digits[0] = '0'; digits[1] = '\\0';\n    length = 1; thesign = true;\n}\ninf_int::inf_int(const inf_int& x) {\n    length = x.length;\n    thesign = x.thesign;\n    digits = new char[length + 1];   // deep copy\n    strcpy(digits, x.digits);\n}\ninf_int::inf_int(int n) {\n    char buf[100]; int i = 0;\n    long long m = n;               // INT_MIN 대비\n    thesign = (m >= 0);\n    if (m < 0) m = -m;\n    do { buf[i++] = '0' + m % 10; m /= 10; } while (m > 0);   // 역순 저장\n    buf[i] = '\\0';\n    length = i;\n    digits = new char[length + 1];\n    strcpy(digits, buf);\n}", "tip": "", "src": "Project 2"}, {"id": "2011-1ac", "year": 2011, "no": "1(a)(c)", "pts": 6, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "Software crisis... rapid increases in computer power and the (a.        ) of the problems. / Fred Brooks: over 90% of costs arise in the (c.        ) phase.", "code": "", "answer": "(a) complexity  (c) maintenance", "tip": "", "src": "L02"}, {"id": "2011-1bd", "year": 2011, "no": "1(b)(d)", "pts": 6, "type": "blank", "topics": ["inherit"], "scope": "out", "prompt": "(b.        ) is a function whose behavior can be overridden within an inheriting class. / Dynamic binding means that binding occurs at (d.        ).", "code": "", "answer": "(b) virtual function  (d) run time", "tip": "범위 밖일 가능성 큼.", "src": ""}, {"id": "2011-2", "year": 2011, "no": "2", "pts": 12, "type": "short", "topics": ["quality"], "scope": "in", "prompt": "(1) What is portability? (2) What is dependability?", "code": "", "answer": "(1) The ability to run (reuse) the software on a different platform (HW, OS) with little or no modification.\n(2) The ability to rely on the software to function properly when needed.", "tip": "", "src": "Handout 1, L02"}, {"id": "2011-3", "year": 2011, "no": "3", "pts": 14, "type": "short", "topics": ["encap"], "scope": "in", "prompt": "(1) What is data encapsulation? (2) Two important benefits and why.", "code": "", "answer": "(1) Hiding the implementation behind the interface: the only legal way to access the implementation (internal data) is through the interface.\n(2) ① Safety: clients cannot directly access/corrupt internal data.  ② Implementation independence: the implementation can change without affecting clients that use the interface.", "tip": "", "src": "L04, Handout 2"}, {"id": "2011-4", "year": 2011, "no": "4", "pts": 12, "type": "short", "topics": ["inherit"], "scope": "out", "prompt": "(1) Meaning of 'protected'? (2) Why use protected only where really necessary?", "code": "", "answer": "(1) Members accessible within the class and its derived classes, but not by other clients.\n(2) It weakens encapsulation: derived classes depend on the implementation, so changes break them.", "tip": "상속 파트.", "src": ""}, {"id": "2011-5", "year": 2011, "no": "5", "pts": 15, "type": "short", "topics": ["inline"], "scope": "likely", "prompt": "(1) What is inline function? (2) Two situations where it helps. (3) What benefit and why?", "code": "", "answer": "(1) A function whose body is expanded at the call site by the compiler instead of a normal call.\n(2) ① small function body  ② frequently called (e.g. in loops)\n(3) Faster execution — function-call overhead is removed.", "tip": "", "src": "L04"}, {"id": "2011-6code", "year": 2011, "no": "6(1)(2)", "pts": 20, "type": "code", "topics": ["opover"], "scope": "low", "prompt": "Complex: write (1) member Complex Complex::operator+(const Complex& x), (2) friend operator<<.", "code": "", "answer": "Complex Complex::operator+(const Complex& x) {\n    return Complex(re + x.re, im + x.im);\n}\nostream& operator<<(ostream &o, const Complex& x) {\n    o << x.re;\n    if (x.im > 0)      o << \"+\" << x.im << \"i\";\n    else if (x.im < 0) o << x.im << \"i\";   // 음수는 '-'가 자동으로 붙음\n    return o;\n}", "tip": "", "src": "Operator Overloading"}, {"id": "2011-6theory", "year": 2011, "no": "6(3)(4)(5)", "pts": 15, "type": "short", "topics": ["friend", "copy", "passing"], "scope": "likely", "prompt": "(3) Why should operator<< be a friend of Complex? (4) Do we need a copy constructor for Complex? Why? (5) Benefits of parameter type const Complex& (two).", "code": "", "answer": "(3) Its left operand is an ostream, so it cannot be a member of Complex, yet it must access the private re and im.\n(4) No. Complex has no pointer/dynamic memory, so the default shallow copy is enough.\n(5) ① No copy of the object is made (efficient).  ② The argument cannot be modified (safe); temporaries/const objects can be passed.", "tip": "", "src": "L04"}, {"id": "2010-1ab", "year": 2010, "no": "1(a)(b)", "pts": 4, "type": "blank", "topics": ["se"], "scope": "in", "prompt": "(a.        ) is defined as modification of a software product after delivery... (a) is considered to be the most (b.        ) part of the software life cycle.", "code": "", "answer": "(a) Maintenance  (b) expensive (costly)", "tip": "", "src": "L02"}, {"id": "2010-1c", "year": 2010, "no": "1(c)", "pts": 2, "type": "blank", "topics": ["quality"], "scope": "in", "prompt": "(c.        ) is the software feature to be able to reuse existing code when moving software from one environment (platform) to another.", "code": "", "answer": "(c) Portability", "tip": "", "src": "Handout 1"}, {"id": "2010-1d", "year": 2010, "no": "1(d)", "pts": 2, "type": "blank", "topics": ["paradigm"], "scope": "in", "prompt": "(d.        ) involves splitting complex program tasks into smaller pieces with clear flow-control and interfaces between components.", "code": "", "answer": "(d) Structured (modular) programming", "tip": "", "src": "L02"}, {"id": "2010-1ef", "year": 2010, "no": "1(e)(f)", "pts": 4, "type": "blank", "topics": ["encap"], "scope": "in", "prompt": "The advantage of using data encapsulation comes when (e.        ) of the class changes but (f.        ) remains the same.", "code": "", "answer": "(e) the implementation  (f) the interface", "tip": "", "src": "Handout 2"}, {"id": "2010-1gh", "year": 2010, "no": "1(g)(h)", "pts": 4, "type": "blank", "topics": ["assert"], "scope": "in", "prompt": "(g.        ) contains a boolean expression that you believe will be true... writing (g) while programming is one of the quickest and most effective ways to detect (h.        ).", "code": "", "answer": "(g) An assertion  (h) bugs", "tip": "2022 1(l)(m)과 동일.", "src": "L04"}, {"id": "2010-1i", "year": 2010, "no": "1(i)", "pts": 2, "type": "blank", "topics": ["design"], "scope": "in", "prompt": "A good software design recognizes the inevitability of (i.        ) and plans an accommodation for them from the very beginning.", "code": "", "answer": "(i) changes", "tip": "", "src": "L03"}, {"id": "2010-1jkl", "year": 2010, "no": "1(j)(k)(l)", "pts": 8, "type": "short", "topics": ["copy"], "scope": "likely", "prompt": "If you need to write a copy constructor, you also need to write (j.        ) and (k.        ). Why? (l)", "code": "", "answer": "(j) a destructor  (k) operator= (assignment operator)\n(l) A copy constructor is needed when the class owns dynamically allocated memory (deep copy). The destructor must free that memory, and operator= must also deep-copy, since the default one does a shallow copy (sharing memory, double delete, leak).", "tip": "", "src": "L04"}, {"id": "2010-2", "year": 2010, "no": "2", "pts": 10, "type": "short", "topics": ["paradigm"], "scope": "in", "prompt": "(1) Why is overusing global variables not desirable? (2) Main advantage of OOP compared to structured programming?", "code": "", "answer": "(1) Any module can change a global variable, so all modules become dependent on one another: side effects are hard to track, and code is hard to debug, modify and reuse.\n(2) OOP combines data and operations into objects (encapsulation), so large software is easier to maintain, extend and reuse.", "tip": "", "src": "L02"}, {"id": "2010-4a", "year": 2010, "no": "4(1)(2)", "pts": 4, "type": "short", "topics": ["couple"], "scope": "in", "prompt": "Explain (1) Cohesion (2) Coupling.", "code": "", "answer": "(1) The degree to which the tasks assigned to a component form a meaningful unit (maximize).\n(2) The degree to which a component's ability to fulfill a responsibility depends on other components (minimize).", "tip": "", "src": "L03"}, {"id": "2010-4b", "year": 2010, "no": "4(3)(4)", "pts": 4, "type": "short", "topics": ["copy"], "scope": "likely", "prompt": "Explain (3) shallow copy (4) deep copy.", "code": "", "answer": "(3) Copying member values only; pointers are copied so both objects share the same memory.\n(4) Allocating new memory and copying the pointed-to data, so each object has its own copy.", "tip": "", "src": "L04"}, {"id": "2010-5", "year": 2010, "no": "5", "pts": 10, "type": "short", "topics": ["passing"], "scope": "likely", "prompt": "(1) Why is it inefficient to pass large objects by value? (2) One beneficial effect of pass-by-value and why.", "code": "", "answer": "(1) The whole object is copied (copy constructor, memory, destructor) on every call.\n(2) Safety: the function works on a copy, so the caller's original data cannot be modified accidentally.", "tip": "", "src": "L04"}, {"id": "2010-6", "year": 2010, "no": "6", "pts": 28, "type": "code", "topics": ["opover", "copy"], "scope": "low", "prompt": "inf_int: (1) copy constructor, (2) friend bool operator<, (3) maximum number it can represent and justification.", "code": "", "answer": "// (1) 2016 해설의 copy constructor와 동일 (digit 이름만 다름)\n// (2)\nbool operator<(const inf_int& l, const inf_int& r) {\n    return r > l;   // 시험에선 operator> 로직을 직접 써야 함 (다른 멤버 호출 금지)\n}\n(3) length is unsigned int, so up to 2^32 − 1 (4294967295) digits: max ≈ 10^4294967295 − 1 (all digits 9). In practice limited by available memory.", "tip": "", "src": "Project 2"}, {"id": "2010-7", "year": 2010, "no": "7", "pts": 7, "type": "short", "topics": ["friend"], "scope": "likely", "prompt": "Why should the use of friend function/class be minimized?", "code": "", "answer": "Friends can access private members, which breaks encapsulation and increases coupling: a change in the implementation can break friend code.", "tip": "", "src": "L04"}, {"id": "2010-8", "year": 2010, "no": "8", "pts": 9, "type": "short", "topics": ["quality"], "scope": "in", "prompt": "List at least six properties of good software.", "code": "", "answer": "correctness, efficiency, maintainability (readability, modifiability, extensibility, reusability), reliability (robustness), usability, portability  (+ security, completeness, consistency...)", "tip": "Handout 1 목록.", "src": "Handout 1"}, {"id": "2009-1-12", "year": 2009, "no": "1(1)(2)", "pts": 4, "type": "blank", "topics": ["se", "paradigm"], "scope": "in", "prompt": "(1) One goal of SE is to minimize the (c        ) of software development and maintenance. (2) OOP increases (programmer productivity), (    ), (    ), and (    ).", "code": "", "answer": "(1) cost  (2) quality, understandability, scalability (extensibility, reusability), lifetime (maintainability) of software", "tip": "L02 'Why Object Oriented?' 목록.", "src": "L02"}, {"id": "2009-1-345", "year": 2009, "no": "1(3)(4)(5)", "pts": 4, "type": "blank", "topics": ["couple", "constfn", "friend"], "scope": "likely", "prompt": "(3) (    ) is the degree to which each module relies on others. (    ) measures how strongly-related a module's responsibilities are. Maximize (    ) and minimize (    ). (4) (    ) member function does not modify any data members. (5) (    ) function of a class has the right to access the non-public members.", "code": "", "answer": "(3) Coupling, Cohesion, cohesion, coupling  (4) const  (5) friend", "tip": "", "src": "L03, L04"}, {"id": "2009-1-67", "year": 2009, "no": "1(6)(7)", "pts": 2, "type": "blank", "topics": ["inherit"], "scope": "out", "prompt": "(6) An abstract class should contain at least one (    ). (7) (    ) can check whether two classes have inheritance relationship.", "code": "", "answer": "(6) pure virtual function  (7) dynamic_cast", "tip": "", "src": ""}, {"id": "2009-2", "year": 2009, "no": "2", "pts": 6, "type": "short", "topics": ["encap"], "scope": "in", "prompt": "(1) What is encapsulation? (2) Two important benefits and why.", "code": "", "answer": "(1) Concealing the implementation (internal data) of a class so it can be accessed only through its interface.\n(2) ① Safety — clients cannot corrupt internal data directly. ② Implementation independence — implementation can change without affecting clients.", "tip": "", "src": "L02, Handout 2"}, {"id": "2009-3", "year": 2009, "no": "3", "pts": 6, "type": "short", "topics": ["passing"], "scope": "likely", "prompt": "(a) void X::f(T arg) (b) void X::f(T* argp) (c) void X::f(const T* argp). (1) Two purposes of using * in (b) vs (a)? (2) Purpose of const in (c) vs (b)?", "code": "", "answer": "(1) purpose1: avoid copying a large object (only an address is passed → efficient).\n    purpose2: allow the function to modify the caller's object.\n(2) Prevent the function from modifying the pointed-to object (read-only) while keeping the efficiency.", "tip": "2022 기말 4번과 같은 유형 (T& 버전).", "src": "L04 Argument Passing"}, {"id": "2009-4", "year": 2009, "no": "4", "pts": 6, "type": "trace", "topics": ["inherit"], "scope": "out", "prompt": "What is the output? (B with virtual get_val and non-virtual gv2; D1 overrides get_val; D2 declares virtual gv2; called via B* array)", "code": "", "answer": "0 : -1\n1 : -2\n2 : 2\n3 : -4", "tip": "gv2는 B에서 non-virtual이라 B*로 부르면 B::gv2. D2(4)는 B() 기본생성자 → z=-2 → -4. g++ 확인.", "src": ""}, {"id": "2009-5", "year": 2009, "no": "5", "pts": 2, "type": "short", "topics": ["se"], "scope": "in", "prompt": "What is software crisis?", "code": "", "answer": "The difficulty of writing correct, understandable, verifiable programs on time and budget, caused by rapid increases in computer power and the complexity of problems that software technology could not follow.", "tip": "", "src": "L02"}, {"id": "2022F-2", "year": 2022, "no": "기말 2", "pts": 18, "type": "trace", "topics": ["trace", "passing"], "scope": "likely", "prompt": "(1) Meaning of '*' in line 2? (2) '&' in line 3? (3) '&' in line 4? (4) first and second '*' in '*y*x' in line 7? (5) Output of line 9?", "code": "1: int x=5;\n2: int* y;\n3: int& z=x;\n4: y=&x;\n5: int w=*y;\n6: x=9;\n7: z=*y*x;\n8: x++;\n9: cout << x << \" \" << *y << \" \" << z << \" \" << w << endl;", "answer": "(1) pointer type declaration (y is a pointer to int)\n(2) reference type declaration (z is an alias of x)\n(3) address-of operator\n(4) first: the value-of (dereference) operator / second: multiplication\n(5) 82 82 82 5", "tip": "L04 ref.cpp와 거의 같은 코드! x=9 → z=*y*x=81 (z가 x라서 x=81) → x++ → 82. w는 5에서 고정.", "src": "L04 ref.cpp, C++ in Summary 10"}, {"id": "2022F-4", "year": 2022, "no": "기말 4", "pts": 12, "type": "short", "topics": ["passing"], "scope": "likely", "prompt": "(a) void X::f(T arg) (b) void X::f(T& argp) (c) void X::f(const T& argp). (1) Two purposes of '&' in (b) vs (a)? (2) Purpose of const in (c) vs (b)?", "code": "", "answer": "(1) purpose 1: avoid copying the argument (no copy constructor call) → efficient for large objects.\n    purpose 2: the function can modify the caller's original object.\n(2) The function cannot modify the argument (read-only) while still avoiding the copy → safe and efficient.", "tip": "L04: Do not ever use pass by reference (without const) for read-only parameters.", "src": "L04"}]}</script>
+<title>객체프 중간 트레이너</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Nanum+Pen+Script&display=swap">
+<style>
+/* Layout: exam-sheet on faint graph paper; red-pen marks for grading. Top bar + tabs, two-pane practice view that stacks on phones. */
+:root{
+  --paper:#f3f5fa; --sheet:#ffffff; --ink:#1a2132; --muted:#5b6478; --line:#dde2ec;
+  --grid:rgba(52,84,196,.07); --accent:#2d52cf; --accent-weak:#e7edfd; --accent-ink:#ffffff;
+  --pen:#d1372b; --ok:#1d8656; --ok-weak:#e3f4ec; --warn:#a96d12; --warn-weak:#fbf0dc; --bad:#c3352b; --bad-weak:#fbe6e4;
+  --code-bg:#f2f4f9;
+  --f-body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --f-pen:"Nanum Pen Script","Apple SD Gothic Neo",cursive;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0e121a; --sheet:#151b26; --ink:#e5e9f2; --muted:#97a0b4; --line:#262e3f;
+  --grid:rgba(125,155,255,.05); --accent:#7b98ff; --accent-weak:#1c2643; --accent-ink:#0e121a;
+  --pen:#ff6d5f; --ok:#4cc28d; --ok-weak:#143024; --warn:#e2a84b; --warn-weak:#33270f; --bad:#ff6d5f; --bad-weak:#3a1a18;
+  --code-bg:#10151f; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#0e121a; --sheet:#151b26; --ink:#e5e9f2; --muted:#97a0b4; --line:#262e3f;
+  --grid:rgba(125,155,255,.05); --accent:#7b98ff; --accent-weak:#1c2643; --accent-ink:#0e121a;
+  --pen:#ff6d5f; --ok:#4cc28d; --ok-weak:#143024; --warn:#e2a84b; --warn-weak:#33270f; --bad:#ff6d5f; --bad-weak:#3a1a18;
+  --code-bg:#10151f; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1180px;margin:0 auto;padding:12px 16px 0;display:flex;flex-direction:column;gap:10px}
+.brand{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 16px}
+.brand h1{margin:0;font-size:20px;font-weight:700;letter-spacing:-.01em}
+.brand .course{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.chip{font-family:var(--f-mono);font-size:11.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:var(--sheet);color:var(--muted);white-space:nowrap}
+.chip.dday{color:var(--pen);border-color:color-mix(in srgb,var(--pen) 40%,var(--line));font-weight:600}
+.chip.live{color:var(--ok)} .chip.local{color:var(--warn)}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs button{font:inherit;font-size:14px;font-weight:500;background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);padding:8px 12px 9px;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+nav.tabs button:focus-visible,button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.view{padding-top:22px}
+h2{font-size:16px;margin:0 0 10px;font-weight:700;text-wrap:balance}
+h3{font-size:14px;margin:0 0 8px;font-weight:600}
+.label{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:22px}
+.stat{padding:12px 14px}
+.stat .v{font-family:var(--f-mono);font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat .s{font-size:12px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px}
+@media (max-width:880px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.tbl-wrap{overflow-x:auto}
+table.topics{width:100%;border-collapse:collapse;font-size:13.5px}
+table.topics th{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:500;text-align:left;padding:10px 10px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.topics td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.topics tr:last-child td{border-bottom:0}
+table.topics tr.dim td{opacity:.55}
+.tname{font-weight:500}
+.tscope{font-size:11.5px;color:var(--muted)}
+.dots{display:inline-flex;gap:2px}
+.dots i{width:6px;height:12px;border-radius:2px;background:var(--line);display:inline-block}
+.dots i.on{background:var(--accent)}
+.dots i.on.recent{background:var(--pen)}
+.bar{height:8px;border-radius:4px;background:var(--line);overflow:hidden;min-width:70px}
+.bar>b{display:block;height:100%;background:var(--accent);border-radius:4px}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:12.5px}
+.st{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap;display:inline-block}
+.st.none{background:var(--line);color:var(--muted)}
+.st.weak{background:var(--bad-weak);color:var(--bad)}
+.st.mid{background:var(--warn-weak);color:var(--warn)}
+.st.good{background:var(--ok-weak);color:var(--ok)}
+.btn{font:inherit;font-size:13.5px;font-weight:500;border-radius:8px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);padding:7px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:none;border-color:transparent;color:var(--accent);padding-inline:6px}
+.btn.sm{font-size:12.5px;padding:4px 9px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.recs{display:flex;flex-direction:column}
+.rec{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;font:inherit;color:inherit;text-align:left}
+.rec:last-child{border-bottom:0}
+.rec:hover{background:var(--accent-weak)}
+.rec .q{font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.yr{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);white-space:nowrap}
+.why{font-size:11.5px;color:var(--muted)}
+/* practice */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+select,input[type=text]{font:inherit;font-size:13.5px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);max-width:100%}
+label.tog{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--muted);cursor:pointer}
+.practice{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:880px){.practice{grid-template-columns:minmax(0,1fr)}}
+.qlist{max-height:calc(100vh - 230px);overflow:auto;position:sticky;top:120px}
+@media (max-width:880px){.qlist{max-height:260px;position:static}}
+.qrow{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:8px;align-items:center;width:100%;padding:8px 12px;border:0;border-bottom:1px solid var(--line);background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.qrow:hover{background:var(--accent-weak)} .qrow.cur{background:var(--accent-weak);box-shadow:inset 3px 0 0 var(--accent)}
+.qrow .t{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.sd.good{background:var(--ok)} .sd.mid{background:var(--warn)} .sd.weak{background:var(--bad)}
+.qcard{padding:18px 20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.qmeta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tag{font-size:11.5px;padding:2px 8px;border-radius:6px;background:var(--accent-weak);color:var(--accent);font-weight:500}
+.tag.scope-likely{background:var(--warn-weak);color:var(--warn)}
+.tag.scope-low,.tag.scope-out{background:var(--line);color:var(--muted)}
+.prompt{font-size:15px;white-space:pre-wrap;max-width:75ch}
+pre.code{margin:0;font-family:var(--f-mono);font-size:12.5px;line-height:1.55;background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;white-space:pre}
+textarea{width:100%;min-height:150px;font-family:var(--f-mono);font-size:13px;line-height:1.55;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--sheet);color:var(--ink);resize:vertical}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.result{border-top:1px dashed var(--line);padding-top:14px;display:flex;flex-direction:column;gap:12px}
+.mark{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.pen{font-family:var(--f-pen);color:var(--pen);font-size:44px;line-height:1;transform:rotate(-4deg);display:inline-block;min-width:70px}
+.pen small{font-size:26px}
+.fb{font-size:14px;max-width:70ch}
+.missed{margin:0;padding-left:18px;font-size:13.5px;color:var(--bad)}
+.tip{font-size:13.5px;background:var(--warn-weak);color:var(--ink);border-radius:8px;padding:9px 12px;max-width:75ch}
+.tip b{color:var(--warn)}
+.selfgrade{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.empty{padding:28px 20px;text-align:center;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted)}
+.err{font-size:13px;color:var(--bad)}
+/* mock */
+.mockhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px 16px;margin-bottom:14px;position:sticky;top:112px;z-index:3}
+.timer{font-family:var(--f-mono);font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}
+.timer.low{color:var(--pen)}
+.mockq{padding:16px 18px;margin-bottom:12px;display:flex;flex-direction:column;gap:10px}
+.years{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.yearcard{padding:12px 14px;text-align:left;font:inherit;color:inherit;cursor:pointer;display:flex;flex-direction:column;gap:4px}
+.yearcard:hover{border-color:var(--accent)}
+.yearcard .y{font-family:var(--f-mono);font-size:18px;font-weight:600}
+/* history */
+.chart{width:100%;height:auto;display:block}
+.hist{width:100%;border-collapse:collapse;font-size:13px}
+.hist td,.hist th{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left}
+.hist th{font-family:var(--f-mono);font-size:10.5px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+.wrong{padding:16px 18px;margin-bottom:12px;display:flex;flex-direction:column;gap:10px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+@media (max-width:700px){.cols{grid-template-columns:minmax(0,1fr)}}
+.cols pre{white-space:pre-wrap}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <h1>객체프 중간 트레이너</h1>
+      <span class="course">49156 · 손봉수 · 기출 2009–2025</span>
+      <div class="chips">
+        <span class="chip dday" id="dday">중간고사 주간 10/20–10/26</span>
+        <span class="chip" id="store">저장소 연결 중…</span>
+        <span class="chip" id="grader">채점: 확인 중…</span>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-v="dash" aria-selected="true">대시보드</button>
+      <button role="tab" data-v="practice" aria-selected="false">문제 풀기</button>
+      <button role="tab" data-v="mock" aria-selected="false">모의고사</button>
+      <button role="tab" data-v="wrong" aria-selected="false">오답노트</button>
+      <button role="tab" data-v="hist" aria-selected="false">기록</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="view" id="v-dash"></section>
+  <section class="view" id="v-practice" hidden></section>
+  <section class="view" id="v-mock" hidden></section>
+  <section class="view" id="v-wrong" hidden></section>
+  <section class="view" id="v-hist" hidden></section>
+</main>
+
+<script>
+(() => {
+const TOPICS = {
+  encap:["캡슐화·추상화·ADT"], se:["SW 공학 기초"], copy:["복사 생성자·얕은/깊은 복사"], couple:["결합도·응집도"],
+  paradigm:["프로그래밍 패러다임"], fileio:["파일 입출력"], design:["OO 설계·IIKH·stub"], trace:["코드 오류·출력 추적"],
+  quality:["좋은 SW의 요소"], ctor:["생성자"], constfn:["const 멤버함수"], passing:["인자 전달 방식"], friend:["friend"],
+  static:["static 멤버"], assert:["assert·불변식"], memory:["메모리·포인터"], inline:["inline 함수"], stack:["TIntStack 구현"],
+  opover:["연산자 오버로딩 (Proj2)"], inherit:["상속·virtual"]
+};
+const SCOPE = { in:"배운 범위", likely:"L04 후반", low:"Proj2 코딩", out:"범위 밖" };
+const SCOPE_W = { in:1, likely:.9, low:.3, out:0 };
+const TYPE = { blank:"빈칸", short:"서술", code:"코드 작성", trace:"오류·출력" };
+const MID_YEARS = [2009,2010,2011,2012,2013,2014,2015,2016,2017,2019,2022,2023,2024,2025];
+const RECENT = new Set([2022,2023,2024,2025]);
+const EXAM_DAY = new Date(2026, 9, 20);
+
+const $ = (s, el=document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ls = {
+  get(k, d){ try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+
+let bank = [], extra = [], attempts = [];
+let db = null, sample = null;
+let filters = ls.get("oop-filters", { topic:"", year:"", type:"", status:"", hideOut:true });
+let curId = ls.get("oop-cur", null);
+let view = ls.get("oop-view", "dash");
+let mock = ls.get("oop-mock", null);           // {year, start, answers:{}, done:false, results:{}}
+const results = {};                             // qid -> last grading result shown in this visit
+
+/* ── derived ───────────────────────── */
+const allQ = () => bank.concat(extra);
+const qById = id => allQ().find(q => q.id === id);
+function latestByQ(){
+  const m = {};
+  for (const a of attempts) if (!m[a.qid] || a.at > m[a.qid].at) m[a.qid] = a;
+  return m;
+}
+function level(score){ if (score == null) return "none"; return score >= .85 ? "good" : score >= .6 ? "mid" : "weak"; }
+const LV = { none:"미시도", weak:"약점", mid:"보통", good:"숙달" };
+
+function topicStats(){
+  const latest = latestByQ();
+  const out = {};
+  for (const t of Object.keys(TOPICS)){
+    const qs = bank.filter(q => q.topics.includes(t));
+    const years = new Set(qs.filter(q => !String(q.id).includes("F")).map(q => q.year));
+    const tried = qs.filter(q => latest[q.id]);
+    const mastery = tried.length ? tried.reduce((s,q)=>s+latest[q.id].score,0)/tried.length : null;
+    const scope = qs.some(q=>q.scope==="in") ? "in" : qs.some(q=>q.scope==="likely") ? "likely" : qs.some(q=>q.scope==="low") ? "low" : "out";
+    out[t] = { qs, years, recent:[...years].filter(y=>RECENT.has(y)).length, total:qs.length, tried:tried.length, mastery, scope };
+  }
+  return out;
+}
+function recommendations(n=6){
+  const latest = latestByQ(), ts = topicStats();
+  const scored = allQ().filter(q => SCOPE_W[q.scope] > 0).map(q => {
+    const l = latest[q.id];
+    const need = l ? 1 - l.score : 1.15;
+    const freq = Math.max(...q.topics.map(t => (ts[t]?.years.size||0) + 2*(ts[t]?.recent||0)));
+    const recency = q.year >= 2022 ? 1.3 : q.year >= 2015 ? 1 : .8;
+    return { q, s: need * (4 + freq) * recency * SCOPE_W[q.scope] * (l && l.score >= .85 ? .1 : 1) };
+  }).sort((a,b) => b.s - a.s);
+  return scored.slice(0,n).map(x => x.q);
+}
+
+/* ── storage ───────────────────────── */
+function setStoreChip(){
+  const el = $("#store");
+  if (db){ el.textContent = "기록 저장: 클라우드"; el.className = "chip live"; }
+  else { el.textContent = "기록 저장: 이 브라우저만"; el.className = "chip local"; }
+}
+function setGraderChip(){
+  const el = $("#grader");
+  el.textContent = sample ? "채점: Claude + 자가채점" : "채점: 자가채점";
+}
+async function saveAttempt(a){
+  a.at = Date.now();
+  a.answer = String(a.answer || "").slice(0, 8000);
+  const id = a.at + "-" + Math.random().toString(36).slice(2,8);
+  if (db){
+    try { await db.collection("attempts").doc(id).set(a); return id; }
+    catch(e){ toastErr("기록을 저장하지 못했어 (" + (e.code||"error") + "). 이번 기록은 이 브라우저에만 남겨둘게."); }
+  }
+  const loc = ls.get("oop-attempts", []); loc.push({ ...a, _id:id }); ls.set("oop-attempts", loc);
+  attempts.push({ ...a, _id:id }); renderAll(); return id;
+}
+async function updateAttempt(id, patch){
+  if (db && !String(id).startsWith("local")){
+    try { await db.collection("attempts").doc(id).update(patch); return; } catch(e){}
+  }
+  const loc = ls.get("oop-attempts", []);
+  const i = loc.findIndex(x => x._id === id); if (i >= 0){ Object.assign(loc[i], patch); ls.set("oop-attempts", loc); }
+  const j = attempts.findIndex(x => x._id === id); if (j >= 0){ Object.assign(attempts[j], patch); renderAll(); }
+}
+function toastErr(msg){ const el = document.createElement("div"); el.className = "err"; el.textContent = msg; $("main").prepend(el); setTimeout(()=>el.remove(), 6000); }
+
+/* ── grading ───────────────────────── */
+function gradingPrompt(q, ans){
+  return `You grade one answer from a C++ Object-Oriented Programming midterm (Prof. Bong-Soo Sohn, Chung-Ang University). The real exam requires answers in English and penalizes otherwise.
+
+Grade the student's answer against the model answer.
+- Accept synonyms and equivalent meaning; the model answer follows the lecture slides' wording, which is preferred but not required.
+- Fill-in-blank: grade each blank separately and give partial credit proportionally.
+- Short answer: credit each key idea in the model answer; respect any word limit loosely.
+- Code: judge correctness of logic and C++ syntax; ignore trivial typos; deduct for memory errors (shallow copy, missing delete[], wrong pointer syntax).
+- Output trace: every output line must match in order; partial credit per correct section.
+- If the answer is written in Korean instead of English, still grade the content but cap the score at 0.8 and mention it.
+- An empty or "모르겠다"-style answer scores 0.
+
+Question type: ${q.type} | points: ${q.pts}
+Question: ${q.prompt}
+${q.code ? "Code given in the question:\n" + q.code + "\n" : ""}
+Model answer:
+${q.answer}
+${q.tip ? "Grading note (Korean): " + q.tip + "\n" : ""}
+Student answer:
+<<<
+${ans}
+>>>
+
+Reply with only this JSON:
+{"score": <number 0..1>, "verdict": "correct" | "partial" | "wrong", "feedback": "<Korean, casual 반말, 1-3 sentences, concrete: what was right/wrong>", "missed": ["<short Korean item the student missed>", ...], "english": "<Korean note if the English wording would likely lose points, else empty string>"}`;
+}
+async function claudeGrade(q, ans){
+  const tier = (q.type === "code" || q.type === "trace") ? "default" : "quick";
+  const r = await sample.json(gradingPrompt(q, ans), { modelTier: tier });
+  let score = Number(r?.score); if (!isFinite(score)) score = 0; score = Math.max(0, Math.min(1, score));
+  return { score, verdict: r.verdict || (score >= .85 ? "correct" : score > 0 ? "partial" : "wrong"),
+           feedback: String(r.feedback || ""), missed: Array.isArray(r.missed) ? r.missed.map(String).slice(0,6) : [],
+           english: String(r.english || "") };
+}
+function sampleErrMsg(e){
+  const c = e?.code;
+  if (c === "not_granted") return "Claude 채점이 허용되지 않았어. 답 보기로 자가채점해줘.";
+  if (c === "rate_limited") return "채점 요청이 몰렸어. 잠깐 뒤에 다시 눌러줘.";
+  if (c === "invalid_json") return "채점 결과를 읽지 못했어. 한 번 더 눌러보거나 자가채점해줘.";
+  return "채점에 실패했어 (" + (c || "error") + "). 자가채점으로 기록할 수 있어.";
+}
+
+/* ── render: dashboard ───────────────────────── */
+function renderDash(){
+  const latest = latestByQ(), ts = topicStats();
+  const inScope = allQ().filter(q => q.scope !== "out");
+  const solved = inScope.filter(q => latest[q.id]);
+  const avg = solved.length ? solved.reduce((s,q)=>s+latest[q.id].score,0)/solved.length : null;
+  const wrongN = solved.filter(q => latest[q.id].score < .7).length;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const todayN = attempts.filter(a => a.at >= today.getTime()).length;
+  const ptsTot = inScope.reduce((s,q)=>s+q.pts,0), ptsGot = solved.reduce((s,q)=>s+q.pts*latest[q.id].score,0);
+
+  const rows = Object.entries(ts).sort((a,b) => (b[1].years.size + 2*b[1].recent) - (a[1].years.size + 2*a[1].recent)).map(([t,s]) => {
+    const lv = level(s.mastery);
+    const dots = MID_YEARS.map(y => `<i class="${s.years.has(y) ? "on" + (RECENT.has(y) ? " recent" : "") : ""}" title="${y}"></i>`).join("");
+    return `<tr class="${s.scope === "out" ? "dim" : ""}">
+      <td><div class="tname">${esc(TOPICS[t][0])}</div><div class="tscope">${SCOPE[s.scope]}</div></td>
+      <td><span class="dots" aria-label="${s.years.size}개 연도 출제">${dots}</span> <span class="num">${s.years.size}</span></td>
+      <td><div class="bar" title="${s.tried}/${s.total} 문항 시도"><b style="width:${Math.round((s.mastery ?? 0)*100)}%"></b></div>
+          <span class="num muted">${s.tried}/${s.total}</span></td>
+      <td><span class="st ${lv}">${LV[lv]}</span></td>
+      <td><button class="btn sm ghost" data-topic="${t}">풀기 →</button></td></tr>`;
+  }).join("");
+
+  const recs = recommendations(7).map(q => {
+    const l = latest[q.id];
+    const why = l ? `지난번 ${Math.round(l.score*100)}점` : (q.year >= 2022 ? "최근 기출 · 미시도" : "미시도");
+    return `<button class="rec" data-go="${esc(q.id)}"><span class="yr">${q.year}${String(q.id).includes("F")?" 기말":""} ${esc(q.no)}</span>
+      <span class="q">${esc(q.prompt)}</span><span class="why">${why}</span></button>`;
+  }).join("");
+
+  $("#v-dash").innerHTML = `
+    <div class="stats">
+      <div class="sheet stat"><div class="label">푼 문항</div><div class="v">${solved.length}<span class="muted" style="font-size:15px"> / ${inScope.length}</span></div><div class="s">범위 밖 문항 제외</div></div>
+      <div class="sheet stat"><div class="label">평균 점수</div><div class="v">${avg == null ? "—" : Math.round(avg*100)}</div><div class="s">문항별 최근 채점 기준</div></div>
+      <div class="sheet stat"><div class="label">배점 환산</div><div class="v">${Math.round(ptsGot)}<span class="muted" style="font-size:15px"> / ${ptsTot}</span></div><div class="s">전 기출 배점 합</div></div>
+      <div class="sheet stat"><div class="label">오답 대기</div><div class="v" style="color:var(--bad)">${wrongN}</div><div class="s">최근 70점 미만</div></div>
+      <div class="sheet stat"><div class="label">오늘</div><div class="v">${todayN}</div><div class="s">채점한 횟수</div></div>
+    </div>
+    <div class="grid2">
+      <div>
+        <h2>주제별 출제 빈도와 숙달도</h2>
+        <p class="note" style="margin:-4px 0 10px">막대 하나가 중간고사 한 해(2009→2025)야. 빨간 칸은 최근 4년(2022–2025). 위에서부터 자주 나온 순서.</p>
+        <div class="sheet tbl-wrap"><table class="topics">
+          <thead><tr><th>주제</th><th>출제 연도</th><th>숙달도</th><th>상태</th><th></th></tr></thead>
+          <tbody>${rows}</tbody></table></div>
+      </div>
+      <div>
+        <h2>다음에 풀 문제</h2>
+        <p class="note" style="margin:-4px 0 10px">출제 빈도 높고, 최근에 나왔고, 아직 못 맞힌 순서.</p>
+        <div class="sheet recs">${recs || `<div class="empty">추천할 문제가 없어. 다 숙달!</div>`}</div>
+        <h2 style="margin-top:22px">범위 표시</h2>
+        <div class="sheet" style="padding:12px 14px;font-size:13px;display:flex;flex-direction:column;gap:6px">
+          <div><span class="tag">배운 범위</span> L01–L04 앞부분, C++ in Summary (10/7 수업까지)</div>
+          <div><span class="tag scope-likely">L04 후반</span> 복사 생성자·static·const·inline·friend·참조. 10/14 수업에서 나갈 것으로 예상</div>
+          <div><span class="tag scope-low">Proj2 코딩</span> Complex/inf_int 구현. 프로젝트 마감이 시험 뒤라 가능성 낮음</div>
+          <div><span class="tag scope-out">범위 밖</span> 상속·virtual. 예전 시험에만 나옴</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ── render: practice ───────────────────────── */
+function filteredQs(){
+  const latest = latestByQ();
+  return allQ().filter(q => {
+    if (filters.hideOut && q.scope === "out") return false;
+    if (filters.topic && !q.topics.includes(filters.topic)) return false;
+    if (filters.year && String(q.year) + (String(q.id).includes("F") ? "F" : "") !== filters.year && !(filters.year === "extra" && q.source === "claude")) return false;
+    if (filters.type && q.type !== filters.type) return false;
+    const l = latest[q.id];
+    if (filters.status === "new" && l) return false;
+    if (filters.status === "wrong" && !(l && l.score < .7)) return false;
+    if (filters.status === "notgood" && l && l.score >= .85) return false;
+    return true;
+  }).sort((a,b) => b.year - a.year || a.id.localeCompare(b.id, undefined, {numeric:true}));
+}
+function renderPractice(keepFocus){
+  const qs = filteredQs(), latest = latestByQ();
+  if (!qs.find(q => q.id === curId)) curId = qs[0]?.id ?? null;
+  const yearOpts = MID_YEARS.slice().reverse().map(y => `<option value="${y}" ${filters.year==String(y)?"selected":""}>${y} 중간</option>`).join("")
+    + `<option value="2022F" ${filters.year==="2022F"?"selected":""}>2022 기말(일부)</option>`
+    + (extra.length ? `<option value="extra" ${filters.year==="extra"?"selected":""}>Claude 변형 문제</option>` : "");
+  const topicOpts = Object.keys(TOPICS).map(t => `<option value="${t}" ${filters.topic===t?"selected":""}>${esc(TOPICS[t][0])}</option>`).join("");
+  const list = qs.map(q => {
+    const l = latest[q.id];
+    return `<button class="qrow ${q.id===curId?"cur":""}" data-q="${esc(q.id)}"><span class="sd ${l?level(l.score):""}"></span>
+      <span class="t">${esc(q.prompt)}</span><span class="yr">${q.source==="claude"?"변형":q.year} ${esc(q.no)}</span></button>`;
+  }).join("");
+  $("#v-practice").innerHTML = `
+    <div class="filters">
+      <select id="f-topic" aria-label="주제"><option value="">모든 주제</option>${topicOpts}</select>
+      <select id="f-year" aria-label="연도"><option value="">모든 연도</option>${yearOpts}</select>
+      <select id="f-type" aria-label="유형"><option value="">모든 유형</option>${Object.entries(TYPE).map(([k,v])=>`<option value="${k}" ${filters.type===k?"selected":""}>${v}</option>`).join("")}</select>
+      <select id="f-status" aria-label="상태">
+        <option value="" ${!filters.status?"selected":""}>전체</option>
+        <option value="new" ${filters.status==="new"?"selected":""}>안 푼 것</option>
+        <option value="notgood" ${filters.status==="notgood"?"selected":""}>숙달 전</option>
+        <option value="wrong" ${filters.status==="wrong"?"selected":""}>틀린 것</option></select>
+      <label class="tog"><input type="checkbox" id="f-out" ${filters.hideOut?"checked":""}> 범위 밖 숨기기</label>
+      <span class="note">${qs.length}문항</span>
+    </div>
+    <div class="practice">
+      <div class="sheet qlist">${list || `<div class="empty">조건에 맞는 문제가 없어.</div>`}</div>
+      <div id="qpane">${curId ? questionCard(qById(curId), qs) : `<div class="sheet empty">왼쪽에서 문제를 골라줘.</div>`}</div>
+    </div>`;
+  const cur = $(".qrow.cur"); if (cur && !keepFocus) cur.scrollIntoView({ block:"nearest" });
+}
+function questionCard(q, qs){
+  const latest = latestByQ()[q.id];
+  const draft = ls.get("oop-draft-" + q.id, "");
+  const idx = qs ? qs.findIndex(x => x.id === q.id) : -1;
+  const res = results[q.id];
+  return `<div class="sheet qcard">
+    <div class="qmeta">
+      <span class="label">${q.source==="claude" ? "Claude 변형" : q.year + (String(q.id).includes("F") ? " 기말" : " 중간")} · ${esc(q.no)} · ${q.pts}점 · ${TYPE[q.type]}</span>
+      ${q.topics.map(t => `<span class="tag">${esc(TOPICS[t]?.[0] || t)}</span>`).join("")}
+      <span class="tag scope-${q.scope}">${SCOPE[q.scope]}</span>
+      ${latest ? `<span class="st ${level(latest.score)}">최근 ${Math.round(latest.score*100)}점 · ${attempts.filter(a=>a.qid===q.id).length}회</span>` : ""}
+    </div>
+    <div class="prompt">${esc(q.prompt)}</div>
+    ${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
+    <label class="label" for="ans">내 답 (실전처럼 영어로)</label>
+    <textarea id="ans" data-q="${esc(q.id)}" spellcheck="false" placeholder="${q.type==="blank" ? "(a) ...  (b) ..." : q.type==="trace" ? "(a) line ...\n출력:\n..." : "Answer in English"}">${esc(draft)}</textarea>
+    <div class="actions">
+      ${sample ? `<button class="btn primary" id="b-grade">Claude 채점</button>` : ""}
+      <button class="btn" id="b-reveal">답 보고 자가채점</button>
+      <span style="flex:1"></span>
+      ${idx > 0 ? `<button class="btn ghost" data-q="${esc(qs[idx-1].id)}">← 이전</button>` : ""}
+      ${idx >= 0 && idx < qs.length-1 ? `<button class="btn ghost" data-q="${esc(qs[idx+1].id)}">다음 →</button>` : ""}
+    </div>
+    <div id="res">${res ? resultBlock(q, res) : ""}</div>
+  </div>`;
+}
+function resultBlock(q, r){
+  if (r.state === "loading") return `<div class="result"><div class="note">${q.type==="code"||q.type==="trace" ? "Claude가 코드를 읽고 채점하는 중… (보통 10–40초)" : "Claude가 채점하는 중…"}</div></div>`;
+  const mark = r.score == null ? "" : `<span class="pen">${Math.round(r.score*q.pts*10)/10}<small>/${q.pts}</small></span>`;
+  return `<div class="result">
+    ${r.error ? `<div class="err">${esc(r.error)}</div>` : ""}
+    ${r.score != null ? `<div class="mark">${mark}<div class="fb">${esc(r.feedback || "")}</div></div>` : ""}
+    ${r.missed?.length ? `<ul class="missed">${r.missed.map(m=>`<li>${esc(m)}</li>`).join("")}</ul>` : ""}
+    ${r.english ? `<div class="tip"><b>영어 표현</b> ${esc(r.english)}</div>` : ""}
+    <div><div class="label" style="margin-bottom:6px">모범답안</div><pre class="code" style="white-space:pre-wrap">${esc(q.answer)}</pre></div>
+    ${q.tip ? `<div class="tip"><b>포인트</b> ${esc(q.tip)}${q.src ? ` <span class="muted">· ${esc(q.src)}</span>` : ""}</div>` : (q.src ? `<div class="note">출처: ${esc(q.src)}</div>` : "")}
+    <div class="selfgrade"><span class="note">${r.attemptId ? (r.grader === "claude" ? "채점이 이상하면 직접 고쳐:" : "기록됨. 다시 매기려면:") : "스스로 매겨서 기록:"}</span>
+      <button class="btn sm" data-self="1">맞음</button><button class="btn sm" data-self="0.5">절반</button><button class="btn sm" data-self="0">틀림</button></div>
+  </div>`;
+}
+function refreshCard(){
+  const q = qById(curId); if (!q) return;
+  const box = $("#res"); if (box) box.innerHTML = results[q.id] ? resultBlock(q, results[q.id]) : "";
+}
+
+/* ── render: mock ───────────────────────── */
+function mockQs(year){
+  return bank.filter(q => q.year === year && !String(q.id).includes("F") && q.scope !== "out");
+}
+function renderMock(){
+  const el = $("#v-mock");
+  if (!mock){
+    const mocks = ls.get("oop-mock-history", []);
+    el.innerHTML = `<h2>모의고사</h2>
+      <p class="note" style="margin:-4px 0 14px">실제 시험처럼 80분 타이머를 켜고 한 해 시험지를 통째로 풀어. 제출하면 문항별로 채점해서 100점 만점으로 환산해줘. 범위 밖 문항은 빠져 있어.</p>
+      <div class="years">${MID_YEARS.slice().reverse().map(y => {
+        const qs = mockQs(y), pts = qs.reduce((s,q)=>s+q.pts,0);
+        const last = mocks.filter(m => m.year === y).sort((a,b)=>b.at-a.at)[0];
+        return `<button class="sheet yearcard" data-mock="${y}"><span class="y">${y}</span>
+          <span class="note">${qs.length}문항 · ${pts}점</span>
+          <span class="note">${last ? `지난 기록 <b style="color:var(--pen)">${last.score}</b>점` : "아직 안 봄"}</span></button>`;
+      }).join("")}</div>`;
+    return;
+  }
+  const qs = mockQs(mock.year);
+  const graded = mock.done;
+  let body = qs.map((q,i) => {
+    const r = mock.results?.[q.id];
+    return `<div class="sheet mockq">
+      <div class="qmeta"><span class="label">${esc(q.no)} · ${q.pts}점 · ${TYPE[q.type]}</span></div>
+      <div class="prompt">${esc(q.prompt)}</div>
+      ${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
+      <textarea id="m-${i}" data-mq="${esc(q.id)}" spellcheck="false" ${graded?"readonly":""}>${esc(mock.answers?.[q.id] || "")}</textarea>
+      ${r ? resultBlockMock(q, r) : ""}
+    </div>`;
+  }).join("");
+  const total = qs.reduce((s,q)=>s+q.pts,0);
+  const got = graded ? qs.reduce((s,q)=>s+q.pts*(mock.results?.[q.id]?.score||0),0) : 0;
+  el.innerHTML = `<div class="sheet mockhead">
+      <div><div class="label">${mock.year} 중간 모의고사</div>
+        ${graded ? `<span class="pen">${Math.round(got/total*100)}<small>/100</small></span>` : `<div class="timer" id="timer">80:00</div>`}</div>
+      <div class="actions">
+        ${graded ? `<button class="btn" id="mock-exit">목록으로</button>` :
+          `<span class="note" id="mock-prog"></span><button class="btn" id="mock-quit">그만두기</button><button class="btn primary" id="mock-submit">제출하고 채점</button>`}
+      </div></div>${body}`;
+  tickTimer();
+}
+function resultBlockMock(q, r){
+  if (r.state === "loading") return `<div class="note">채점 중…</div>`;
+  return `<div class="result">
+    ${r.error ? `<div class="err">${esc(r.error)}</div>` : ""}
+    <div class="mark"><span class="pen">${r.score==null?"?":Math.round(r.score*q.pts*10)/10}<small>/${q.pts}</small></span><div class="fb">${esc(r.feedback||"")}</div></div>
+    ${r.missed?.length ? `<ul class="missed">${r.missed.map(m=>`<li>${esc(m)}</li>`).join("")}</ul>` : ""}
+    <details><summary class="note" style="cursor:pointer">모범답안 보기</summary><pre class="code" style="white-space:pre-wrap;margin-top:8px">${esc(q.answer)}</pre>${q.tip?`<div class="tip" style="margin-top:8px"><b>포인트</b> ${esc(q.tip)}</div>`:""}</details>
+  </div>`;
+}
+let timerHandle = null;
+function tickTimer(){
+  clearInterval(timerHandle);
+  if (!mock || mock.done) return;
+  const upd = () => {
+    const el = $("#timer"); if (!el) return;
+    const left = Math.max(0, 80*60 - Math.floor((Date.now() - mock.start)/1000));
+    el.textContent = String(Math.floor(left/60)).padStart(2,"0") + ":" + String(left%60).padStart(2,"0");
+    el.classList.toggle("low", left < 600);
+    if (left === 0) el.textContent = "시간 끝";
+  };
+  upd(); timerHandle = setInterval(upd, 1000);
+}
+async function submitMock(){
+  const qs = mockQs(mock.year);
+  mock.results = {};
+  const btn = $("#mock-submit"); if (btn) btn.disabled = true;
+  const prog = $("#mock-prog");
+  let i = 0;
+  const one = async q => {
+    const ans = (mock.answers?.[q.id] || "").trim();
+    let r;
+    if (!ans) r = { score:0, feedback:"빈칸으로 냈어.", missed:[] };
+    else if (!sample) r = { score:null, feedback:"Claude 채점을 쓸 수 없어서 모범답안만 보여줄게. 문제 풀기 탭에서 자가채점할 수 있어.", missed:[] };
+    else { try { r = await claudeGrade(q, ans); } catch(e){ r = { score:null, error: sampleErrMsg(e), missed:[] }; } }
+    mock.results[q.id] = r;
+    if (r.score != null) await saveAttempt({ qid:q.id, score:r.score, verdict:r.verdict||"", grader: ans ? "claude" : "blank", answer:ans, feedback:r.feedback||"", missed:r.missed||[], mode:"mock" });
+    i++; if (prog) prog.textContent = `채점 ${i}/${qs.length}`;
+  };
+  const queue = qs.slice();
+  await Promise.all([0,1].map(async () => { while (queue.length) await one(queue.shift()); }));
+  mock.done = true;
+  const total = qs.reduce((s,q)=>s+q.pts,0);
+  const got = qs.reduce((s,q)=>s+q.pts*(mock.results[q.id]?.score||0),0);
+  const hist = ls.get("oop-mock-history", []); hist.push({ year:mock.year, score:Math.round(got/total*100), at:Date.now(), mins: Math.round((Date.now()-mock.start)/60000) }); ls.set("oop-mock-history", hist);
+  if (db){ try { await db.collection("mocks").doc(String(Date.now())).set({ year:mock.year, score:Math.round(got/total*100), at:Date.now(), mins: Math.round((Date.now()-mock.start)/60000) }); } catch {} }
+  ls.set("oop-mock", mock);
+  renderMock(); window.scrollTo({ top:0 });
+}
+
+/* ── render: wrong notes ───────────────────────── */
+function renderWrong(){
+  const latest = latestByQ();
+  const wrong = allQ().filter(q => latest[q.id] && latest[q.id].score < .7).sort((a,b)=>latest[a.id].score - latest[b.id].score);
+  $("#v-wrong").innerHTML = `<h2>오답노트</h2>
+    <p class="note" style="margin:-4px 0 14px">가장 최근 채점이 70점 미만인 문항. 다시 풀어서 맞히면 여기서 빠져.</p>
+    ${wrong.length ? wrong.map(q => { const l = latest[q.id]; return `<div class="sheet wrong">
+      <div class="qmeta"><span class="label">${q.source==="claude"?"변형":q.year} · ${esc(q.no)} · ${q.pts}점</span>${q.topics.map(t=>`<span class="tag">${esc(TOPICS[t]?.[0]||t)}</span>`).join("")}
+        <span class="pen" style="font-size:30px;margin-left:auto">${Math.round(l.score*100)}</span></div>
+      <div class="prompt">${esc(q.prompt)}</div>
+      ${l.feedback ? `<div class="fb">${esc(l.feedback)}</div>` : ""}
+      <div class="cols"><div><div class="label">내 답</div><pre class="code">${esc(l.answer || "(기록 없음)")}</pre></div>
+        <div><div class="label">모범답안</div><pre class="code">${esc(q.answer)}</pre></div></div>
+      <div><button class="btn sm" data-go="${esc(q.id)}">다시 풀기 →</button></div></div>`; }).join("")
+    : `<div class="sheet empty">아직 틀린 문제가 없어. 문제를 풀고 채점하면 여기 모여.</div>`}`;
+}
+
+/* ── render: history ───────────────────────── */
+function renderHist(){
+  const days = [];
+  const d0 = new Date(); d0.setHours(0,0,0,0);
+  for (let i = 13; i >= 0; i--){
+    const s = d0.getTime() - i*86400000, e = s + 86400000;
+    const as = attempts.filter(a => a.at >= s && a.at < e);
+    days.push({ s, n: as.length, avg: as.length ? as.reduce((x,a)=>x+a.score,0)/as.length : null });
+  }
+  const W = 640, H = 170, pad = 28, bw = (W - pad*2) / 14;
+  const maxN = Math.max(5, ...days.map(d=>d.n));
+  const bars = days.map((d,i) => {
+    const h = (H - 50) * d.n / maxN, x = pad + i*bw + 4, y = H - 24 - h;
+    const dt = new Date(d.s);
+    return `<rect x="${x}" y="${y}" width="${bw-8}" height="${Math.max(h, d.n?2:0)}" rx="3" fill="var(--accent)" opacity="${d.n?0.85:0}"/>
+      ${d.avg != null ? `<circle cx="${x+(bw-8)/2}" cy="${H-24-(H-50)*d.avg}" r="3.5" fill="var(--pen)"/>` : ""}
+      ${d.n ? `<text x="${x+(bw-8)/2}" y="${y-5}" font-size="10" text-anchor="middle" fill="var(--muted)" font-family="JetBrains Mono, monospace">${d.n}</text>` : ""}
+      <text x="${x+(bw-8)/2}" y="${H-8}" font-size="10" text-anchor="middle" fill="var(--muted)" font-family="JetBrains Mono, monospace">${dt.getMonth()+1}/${dt.getDate()}</text>`;
+  }).join("");
+  const rows = attempts.slice().sort((a,b)=>b.at-a.at).slice(0,60).map(a => {
+    const q = qById(a.qid); const dt = new Date(a.at);
+    return `<tr><td class="num">${dt.getMonth()+1}/${dt.getDate()} ${String(dt.getHours()).padStart(2,"0")}:${String(dt.getMinutes()).padStart(2,"0")}</td>
+      <td><button class="btn ghost sm" data-go="${esc(a.qid)}">${q ? (q.source==="claude"?"변형":q.year) + " " + esc(q.no) : esc(a.qid)}</button></td>
+      <td>${q ? esc(TOPICS[q.topics[0]]?.[0] || "") : ""}</td>
+      <td><span class="st ${level(a.score)}">${Math.round(a.score*100)}</span></td>
+      <td class="note">${a.grader === "claude" ? "Claude" : a.grader === "blank" ? "빈칸" : "자가"}${a.mode==="mock"?" · 모의":""}</td></tr>`;
+  }).join("");
+  const mocks = ls.get("oop-mock-history", []).slice().sort((a,b)=>b.at-a.at);
+  $("#v-hist").innerHTML = `<h2>최근 2주</h2>
+    <div class="sheet" style="padding:12px 14px;margin-bottom:22px;overflow-x:auto">
+      <svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="일별 채점 횟수와 평균 점수">
+        <line x1="${pad}" x2="${W-pad}" y1="${H-24}" y2="${H-24}" stroke="var(--line)"/>
+        <line x1="${pad}" x2="${W-pad}" y1="26" y2="26" stroke="var(--line)" stroke-dasharray="3 4"/>
+        <text x="${W-pad}" y="20" font-size="10" text-anchor="end" fill="var(--muted)" font-family="JetBrains Mono, monospace">● 평균 점수 (점선 = 100)</text>
+        ${bars}
+      </svg>
+      <div class="note">막대: 그날 채점한 횟수 · 빨간 점: 그날 평균 점수</div>
+    </div>
+    ${mocks.length ? `<h2>모의고사</h2><div class="sheet tbl-wrap" style="margin-bottom:22px"><table class="hist"><thead><tr><th>날짜</th><th>시험지</th><th>점수</th><th>걸린 시간</th></tr></thead><tbody>
+      ${mocks.map(m => { const dt = new Date(m.at); return `<tr><td class="num">${dt.getMonth()+1}/${dt.getDate()}</td><td>${m.year} 중간</td><td><span class="pen" style="font-size:26px">${m.score}</span></td><td class="num">${m.mins}분</td></tr>`; }).join("")}
+      </tbody></table></div>` : ""}
+    <h2>채점 기록</h2>
+    <div class="sheet tbl-wrap">${rows ? `<table class="hist"><thead><tr><th>시각</th><th>문항</th><th>주제</th><th>점수</th><th>방식</th></tr></thead><tbody>${rows}</tbody></table>` : `<div class="empty">아직 기록이 없어. 문제 풀기 탭에서 첫 문제를 채점하면 여기 쌓여.</div>`}</div>`;
+}
+
+/* ── shell ───────────────────────── */
+function renderAll(){
+  const d = Math.ceil((EXAM_DAY - new Date(new Date().toDateString()))/86400000);
+  $("#dday").textContent = d > 0 ? `중간고사 주간까지 D-${d}` : d > -7 ? "중간고사 주간" : "중간고사 끝";
+  if (view === "dash") renderDash();
+  else if (view === "practice"){
+    const ta = $("#ans"); const focused = document.activeElement === ta;
+    if (focused) { refreshList(); return; }
+    renderPractice();
+  }
+  else if (view === "mock"){ if (!mock || mock.done) renderMock(); }
+  else if (view === "wrong") renderWrong();
+  else if (view === "hist") renderHist();
+}
+function refreshList(){
+  const latest = latestByQ();
+  document.querySelectorAll(".qrow").forEach(b => { const l = latest[b.dataset.q]; const sd = b.querySelector(".sd"); sd.className = "sd " + (l ? level(l.score) : ""); });
+}
+function show(v){
+  view = v; ls.set("oop-view", v);
+  document.querySelectorAll("nav.tabs button").forEach(b => b.setAttribute("aria-selected", String(b.dataset.v === v)));
+  document.querySelectorAll("section.view").forEach(s => s.hidden = s.id !== "v-" + v);
+  if (v === "mock") renderMock(); else renderAll();
+  window.scrollTo({ top:0 });
+}
+function goQuestion(id){
+  const q = qById(id); if (!q) return;
+  if (!filteredQs().find(x => x.id === id)) filters = { topic:"", year:"", type:"", status:"", hideOut: q.scope !== "out" };
+  ls.set("oop-filters", filters);
+  curId = id; ls.set("oop-cur", id); show("practice");
+}
+
+document.addEventListener("click", async e => {
+  const t = e.target.closest("button, [data-go]"); if (!t) return;
+  if (t.matches("nav.tabs button")) return show(t.dataset.v);
+  if (t.dataset.go) return goQuestion(t.dataset.go);
+  if (t.dataset.topic){ filters = { ...filters, topic:t.dataset.topic, year:"", status:"" }; ls.set("oop-filters", filters); curId = null; return show("practice"); }
+  if (t.dataset.q && (t.classList.contains("qrow") || t.classList.contains("ghost"))){ curId = t.dataset.q; ls.set("oop-cur", curId); renderPractice(); $("#qpane")?.scrollIntoView({ block:"nearest" }); return; }
+  if (t.id === "b-reveal"){
+    const q = qById(curId); results[q.id] = results[q.id]?.score != null ? results[q.id] : { score:null }; refreshCard(); return;
+  }
+  if (t.id === "b-grade"){
+    const q = qById(curId); const ans = ($("#ans")?.value || "").trim();
+    if (!ans){ results[q.id] = { score:null, error:"답을 먼저 써줘. 모르면 '답 보고 자가채점'을 눌러." }; return refreshCard(); }
+    t.disabled = true; results[q.id] = { state:"loading" }; refreshCard();
+    try {
+      const r = await claudeGrade(q, ans);
+      const attemptId = await saveAttempt({ qid:q.id, score:r.score, verdict:r.verdict, grader:"claude", answer:ans, feedback:r.feedback, missed:r.missed, mode:"practice" });
+      results[q.id] = { ...r, grader:"claude", attemptId };
+    } catch(err){ results[q.id] = { score:null, error: sampleErrMsg(err) }; }
+    if (curId === q.id) { refreshCard(); const b = $("#b-grade"); if (b) b.disabled = false; }
+    return;
+  }
+  if (t.dataset.self != null){
+    const q = qById(curId); const score = Number(t.dataset.self); const r = results[q.id] || {};
+    if (r.attemptId){ await updateAttempt(r.attemptId, { score, grader: r.grader === "claude" ? "claude+self" : "self" }); results[q.id] = { ...r, score, feedback: r.feedback }; }
+    else {
+      const ans = ($("#ans")?.value || "").trim();
+      const attemptId = await saveAttempt({ qid:q.id, score, verdict: score>=1?"correct":score>0?"partial":"wrong", grader:"self", answer:ans, feedback:"", missed:[], mode:"practice" });
+      results[q.id] = { ...r, score, grader:"self", attemptId, feedback: score>=1?"맞음으로 기록했어.":score>0?"절반으로 기록했어.":"틀림으로 기록했어. 오답노트에 들어가." };
+    }
+    refreshCard(); refreshList(); return;
+  }
+  if (t.dataset.mock){ mock = { year:Number(t.dataset.mock), start:Date.now(), answers:{}, done:false }; ls.set("oop-mock", mock); return renderMock(); }
+  if (t.id === "mock-submit") return submitMock();
+  if (t.id === "mock-quit" || t.id === "mock-exit"){ mock = null; ls.set("oop-mock", null); clearInterval(timerHandle); return renderMock(); }
+});
+document.addEventListener("input", e => {
+  const t = e.target;
+  if (t.id === "ans") ls.set("oop-draft-" + t.dataset.q, t.value);
+  if (t.dataset.mq && mock){ mock.answers = mock.answers || {}; mock.answers[t.dataset.mq] = t.value; ls.set("oop-mock", mock); }
+});
+document.addEventListener("change", e => {
+  const t = e.target; const map = { "f-topic":"topic", "f-year":"year", "f-type":"type", "f-status":"status" };
+  if (map[t.id]){ filters[map[t.id]] = t.value; }
+  else if (t.id === "f-out"){ filters.hideOut = t.checked; }
+  else return;
+  ls.set("oop-filters", filters); curId = null; renderPractice();
+});
+
+/* ── boot ───────────────────────── */
+async function boot(){
+  attempts = ls.get("oop-attempts", []).map(a => ({ ...a, _id: a._id || "local" }));
+  show(view);
+  try { const emb = document.getElementById("bank-data"); bank = emb ? JSON.parse(emb.textContent).questions : (await (await fetch("bank.json")).json()).questions; }
+  catch { $("main").innerHTML = `<div class="sheet empty">문제은행(bank.json)을 불러오지 못했어. 새로고침해줘.</div>`; return; }
+  renderAll(); setStoreChip(); setGraderChip();
+  if (window.claude?.use){
+    claude.use("sample").then(s => { sample = s; setGraderChip(); if (view === "practice") renderPractice(true); }).catch(()=>{});
+    const d = await claude.use("db").catch(() => null);
+    if (d){
+      db = d; setStoreChip();
+      db.collection("attempts").orderBy("at","desc").limit(1000).onSnapshot(snap => {
+        const remote = snap.docs.map(x => ({ ...x.data(), _id: x.id }));
+        const local = ls.get("oop-attempts", []).map(a => ({ ...a, _id: a._id || "local" }));
+        attempts = remote.concat(local.filter(l => !remote.find(r => r._id === l._id)));
+        renderAll();
+      }, () => { db = null; setStoreChip(); });
+      db.collection("extra_questions").onSnapshot(snap => {
+        extra = snap.docs.map(x => ({ id:x.id, source:"claude", year:0, no:"", pts:5, type:"short", topics:[], scope:"in", code:"", tip:"", src:"", ...x.data() }));
+        renderAll();
+      }, () => {});
+    }
+  }
+}
+boot();
+})();
+</script>
+
+</body></html>

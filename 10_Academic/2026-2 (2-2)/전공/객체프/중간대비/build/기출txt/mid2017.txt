@@ -1,0 +1,139 @@
+                                                  2017.2 Object-Oriented Programming                          supervisor
+                                                 Midterm Exam (Oct. 18th 7pm-8:20pm)
+                                                                                                              signature
+
+                     StudentID# : (                                       ) , Name : (                                         )
+
+*You may answer in either Korean or English for problems 2~5. However, you should insert only English words in problem 1 and 6.
+
+
+1. (16 points) Fill out the blanks (a)~(h) with the most appropriate English words.
+l Fred Brooks stated that over 90% of (a.                               ) of a typical system arise in (b.                           ) phase.
+
+
+l (c.                                     ) means the ability to rely on the software to function properly when needed.
+
+
+l Using global variables is dangerous mainly because this makes all modules (d.                                               ) one another.
+
+
+l Constructor is a special member function that is automatically called when (e.                              ) is (f.                     ).
+     The name of a constructor is the same as the name of (g.                                        ).
+     Normally, you should put code in a constructor to (h.                                   ) member variables of a class.
+
+
+2. (15points) List three main benefits of data encapsulation and explain for each benefit with sufficient details.
+
+    benefits                          explanation for each benefit with sufficient details
+
+    (i)
+
+    (ii)
+
+    (iii)
+
+
+3. (12 points) (a) It is desirable to avoid passing large objects into a function when using call-by-value mechanism because of high
+overhead (i.e. additional cost). Explain with sufficient details why high overhead often occurs in such a case.
+(                                                                                                                                              )
+
+
+(b) The amount of overheads is very small (i.e. almost negligible) when using call-by-reference mechanism for passing large objects
+into a function. Explain why? (                                                                                                                )
+
+
+4. (12 points) Following C++ code has four wrong parts. Mark the four wrong parts with circles and modify them for correction.
+You also have to explain why they are wrong for each case. For answering above questions, fill out empty blanks below.
+                                                                           Assume line 10 and line 11 are correct.
+1: #include <iostream>
+2: using namespace std;
+                                                                           (i) mark wrong part - 1 : ( use arrow and circle for marking )
+3: class Rectangle {
+                                                                              why is it wrong? : (                                              )
+4:          int width, height;
+                                                                              modify it for correction. : (                                     )
+5: public :
+6:          Rectangle(int x,int y) : width(x),height(y){}
+                                                                           (ii) mark wrong part - 2 : ( use arrow and circle for marking )
+7:          int area() { return width*height; }
+                                                                              why is it wrong? : (                                              )
+8: };
+                                                                              modify it for correction. : (                                     )
+9: int main() {
+10:         Rectangle a(3,4);
+                                                                           (iii) mark wrong part - 3 : ( use arrow and circle for marking )
+11:         Rectangle *b, *c;
+                                                                              why is it wrong? : (                                              )
+12:         b = a;
+                                                                              modify it for correction. : (                                     )
+13:         c = new Rectangle (5,6);
+14:         cout << “area:” << a.area() << “\n”;
+                                                                           (iv) mark wrong part - 4 : ( use arrow and circle for marking )
+15:         cout << “area:” << b.area() << “\n”;
+                                                                              why is it wrong? : (                                              )
+16:         cout << “area:” << c.area() << “\n”;
+                                                                              modify it for correction. : (                                     )
+17:         delete b;
+18:         delete c;
+19:         return 0;
+20:}
+5. (33points) Consider an integer stack class TIntStack (posted on our class webpage) that is defined as follows.
+--------------------------------------------------
+#include <iostream>                                                    (1) Write appropriate C++ code for following copy constructor.
+const unsigned int DEFAULT_SIZE = 256;                                       TIntStack::TIntStack(const TIntStack& that)
+                                                                             {
+class TIntStack {
+public :
+     TIntStack(unsigned int stackSize = DEFAULT_SIZE);
+     TIntStack(const TIntStack& that);
+     TIntStack& operator=(const TIntStack& assign);
+     ~TIntStack();
+     void Push(int thisValue);
+     int Pop();
+     unsigned int HowMany() const;
+
+
+private :
+     int* _sp; // memory is dynamically allocated
+                // during constructor function call
+     unsigned int _count; // number of elements in stack
+     unsigned int _size; // size (capacity) of stack
+};
+---------------------------------------------------                          }
+
+
+(2) Write an appropriate C++ code for destructor.                      (3) Write an appropriate C++ code for member function Push
+TIntStack::~TIntStack()                                                 void TIntStack::Push(int thisValue)
+{                                                                       {
+
+
+
+
+}                                                                        }
+
+
+(4) What problems occur if the copy constructor TIntStack(const TIntStack& that) is not provided (i.e. is not written) by class
+developers in the above source code of the class TIntStack? Write down your answers with sufficient details. (i.e. you have to first
+explain what happens and then explain why that is a problem.)
+     Ÿ   what happens? (                                                                                                      )
+
+
+     Ÿ   why that is a problem? (                                                                                             )
+
+
+
+6. (12 points) Fill out empty blanks with appropriate English words.
+
+
+(a) Copy constructor is automatically called when (                                                                           ).
+
+
+(b) There are mainly three different cases where a copy constructor of an object is called. Write an example for each case.
+     Ÿ   case 1 example: (                                                                                   )
+
+
+     Ÿ   case 2 example: (                                                                                   )
+
+
+     Ÿ   case 3 example: (                                                                                   )
+

@@ -1,0 +1,11 @@
+benefits of data encapsulation
+  ●   protection of implementation (safety) : clients cannot directly access encapsulated
+      data
+  ●   readability (understandability) : clients of interface does not need to know any
+      knowledge as to how the functions that describe the interface use encapsulated
+      information
+  ●   implementation independence : A change in implementation should not affect the
+      interface seen by the clients of a class. An encapsulated implementation provides the
+      implementor freedom to change it without affecting the interface. i.e. how the clients use
+      the interface is independent of the implementation
+

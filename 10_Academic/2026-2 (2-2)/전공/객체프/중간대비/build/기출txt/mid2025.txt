@@ -1,0 +1,140 @@
+                                              2025.2 Object-Oriented Programming
+                                            Midterm Exam (October 20, 8pm-9:20pm)
+                                                                                                        supervisor
+                                                                                                        signature
+
+                StudentID# : (                                            ) , Name : (                                    )
+* You must write your answer in English. Otherwise, penalty may be applied.
+* Write in block (printed) letters only. That is, do not use cursive handwriting. (영어 정자체/인쇄체를 사용하세요. 즉, 필기체 사용 금지)
+1. (26 points) Fill in the blanks (a)~(m) with the most appropriate English word(s).
+l In C++, static members are used to represent the properties of (a.                                       ).
+   Unlike typical member variables, static member variables can be accessed even if there is no (b.                                          ).
+
+
+l (c.                            ) means the ability of the software to consistently perform its required functions without failure under
+   specified conditions for a specified period of time.
+
+
+l (d.                                 ) arose because as computer hardware power grew rapidly, (e.                               ) of the
+   software systems increased even faster – beyond what existing development methods could manage. Increasing ( same as (e) ) is
+   the main cause of ( same as (d) ).
+
+
+l In C++, if we do not declare any constructor in a class, (f.                           ) generates (g.                             ).
+
+
+l One of the main goals of software engineering is to minimize (h.                            ) of software development and maintenance.
+
+
+l In C++, (i.                             ) member function does not (j.                             ) any data members of the object on
+   which it is called. This restriction is enforced by (k.                               ).   ( same as (i) ) member function assures its
+   clients of its benign natures (i.e. safety and readability).
+
+
+l In the concept of information hiding, (l.                         ) of an object can be modified only through (m.                      ).
+
+
+2. (9 points) List three main benefits of data encapsulation and explain each benefit in sufficient detail.
+
+  benefits                   explain each benefit in sufficient detail.
+  (i)
+                             [use less than 10 English words]
+
+  (ii)
+                             [use less than 15 English words]
+
+  (iii)
+                             [use less than 15 English words]
+
+
+3. (5 points) In the “Integration of Components” step of software development, it is desirable that components are slowly integrated
+into a completed system, using stubs as yet unimplemented parts. The phrase “slowly integrated” does not mean “physically slow”.
+What is the meaning of the phrase "slowly integrated" ? Explain in sufficient detail.
+ ([Use less than 15 English words.]                                                                                                          )
+
+
+4. (6 points) (i) In C/C++, what is a dangling pointer? Explain.
+ ([Use less than 15 English words.]                                                                                                          )
+
+
+ (ii) In C/C++, dangling pointers can be a problem and dangerous. Why? Explain.
+ ([Use less than 15 English words.]                                                                                                          )
+
+
+5. (9 points) (i) In C/C++, what does the assert(e) function call do? Explain.
+ ([use less than 15 English words]                                                                                                       )
+
+
+ (ii) What is the main purpose of using the assert() function?
+ ([use less than 7 English words]                                                                                                        )
+
+
+ (iii) Fill in the empty blank with appropriate English words in the following sentence. Your answer should contain sufficient detail.
+     In order to achieve the purpose, e in the assert(e) function call should be
+     a condition that ([use less than 10 English words]                                                                                       )
+6. (6 points) In project 1, we designed an IIKH (Interactive Intelligent Kitchen Helper) program. IIKH is supposed to contain Recipe
+class and RecipeDB (i.e. Recipe database) class. What is the main difference between Recipe class and RecipeDB class? Explain.
+(i) Recipe class is supposed to (                                                                   ) ← use less than 10 English words
+(ii) RecipeDB class is supposed to (                                                                ) ← use less than 10 English words
+
+
+7. (6 points) ADT (Abstract Data Type) is called abstract. Why? Answer by filling in the empty blank of the following sentence.
+    ADT is called abstract because ([use less than 12 English words]                                                                 ).
+
+
+8. (15 points) Write a C++ program that performs file-copying from source binary file “src.bin” to destination file “des.bin”.
+Do not use a function (or a command) that performs file-copying operation directly. Instead, you are supposed to read the entire
+data from the file “src.bin” and write the data to the file “des.bin” for file-copying. Insert your code in the following empty box.
+#include <iostream>
+#include <fstream>
+using namespace std;
+int main() {
+
+
+
+
+}
+
+
+9. (18 points) (1) Following C++ code has five errors. Which lines are wrong? How can you modify the code to correct them?
+    Assume that line 16 and line 17 are correct. ‘line#’ means line number.
+(i) line#: (     ) , corrected code: (                           )     (ii) line#: (    ), corrected code: (                          )
+(iii) line#: (   ), corrected code: (                         ),       (iv) line#: (    ), corrected code: (                          )
+(v) line#: (     ), corrected code: (                        )
+
+
+(2) What will be the screen output (i.e. the result generated by cout) of the program after you make the correction in (1)?
+     Write your answer in the [screen output] empty box below.
+
+                                                                           15: int main() {                        [screen output]
+                                                                           16:     Rect a(5,6);                   Write your answer
+ 1 : #include <iostream>
+                                                                           17:     Rect *b, *c;                     for (2) here.
+ 2 : using namespace std;
+                                                                           18:     b = a;
+ 3 : class Rect {
+                                                                           19:     c = new Rect(7,8);
+ 4 : public:
+                                                                           20:     func(a,9);
+ 5 :      int w,h;
+                                                                           21:     Rect d(a);
+ 6 :      Rect(int x, int y): w(x), h(y) { cout << "c1\n"; }
+                                                                           22:     b.w = 9;
+ 7 :      Rect(const Rect& x) { w=x.w; h=x.h; cout << “c2\n"; }
+                                                                           23:     cout << "======="<< endl;
+ 8 :      int area() { return w*h; }
+                                                                           24:     cout << a.area() << endl;
+ 9 : };
+                                                                           25:     cout << b.area() << endl;
+ 10:
+                                                                           26:     cout << c.area() << endl;
+ 11: void func(Rect obj, int y) {
+                                                                           27:     cout << d.area() << endl;
+ 12:      cout << "f3\n";
+                                                                           28:     delete b;
+ 13:      obj.h = y;
+                                                                           29:     delete c;
+ 14: }
+                                                                           30:     return 0;
+                                                                           31: }
+

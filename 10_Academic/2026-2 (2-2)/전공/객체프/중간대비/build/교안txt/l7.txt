@@ -1,0 +1,43 @@
+                     ​OOP Handout 1 : Factors of Software Quality​
+
+
+​●​ ​What is a good program? (Factors of Good Software)​
+
+      ​○​ ​correct (correctness)​
+                          ​■​ ​satisfy user requirement/specification without error​
+       ​○​ ​efficient (efficiency)​
+                           ​■​ ​optimizes resource usage to deliver fast response times​
+                            ​■​ ​space / time , HW utilization​
+        ​○​ ​easy to maintain (maintainability)​
+                             ​■​ ​easy to read (readability)​
+                              ​■​ ​easy to modify (modifiability)​
+                               ​■​ ​easy to extend(extensibility) , scalability​
+                                                         ​●​ ​scalability: handles growing volumes of users, data, or concurrent​
+                                                              ​tasks smoothly by adding infrastructure resources.​
+                                ​■​ ​easy to reuse (reusability)​
+                                 ​■​ ​easy to debug , easy to test (testability)​
+                                  ​■​ ​modular (modularity)​
+                                   ​■​ ​easy to port (portability) , platform-independent (HW, OS, …)​
+         ​○​ ​stable (stability), reliable (reliability) , robust (robustness)​
+          ​○​ ​easy to use (usability) , easy to run​
+           ​○​ ​secure (security) , integrity (accurate & unaltered data, protection)​
+                                    ​■​ ​Protects data against unauthorized access, corruption, or malicious​
+                                              ​exploits.​
+            ​○​ ​Interoperability​
+                                     ​■​ ​Easily exchanges data and integrates with other software systems via​
+                                               ​standardized protocols and interfaces.​
+             ​○​ ​concise (conciseness)​
+                                      ​■​ ​writing code, designing architectures, and crafting interfaces that achieve​
+                                                ​maximum result with the minimum necessary complexity or syntax without​
+                                                 ​sacrificing readability or correctness. (ex) minimized redundancy.​
+                                                  ​simplified branch decisions​
+              ​○​ ​complete (completeness)​
+                                       ​■​ i​mplements all required functionality​
+               ​○​ ​consistent (consistency)​
+                                        ​■​ ​Uniformity of design, behavior, coding standards, and user interfaces​
+                                                   ​across an entire system.​
+                                         ​■​ ​ex) uniform naming conventions (e.g., camelCase vs snake_case),​
+                                                    ​formatting​
+                ​○​ ​well-documented (documentation)​
+                 ​○​ ​well structured​
+

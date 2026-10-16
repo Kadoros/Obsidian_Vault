@@ -1,0 +1,156 @@
+                                                     2023.2 Object-Oriented Programming                     supervisor
+                                                    Midterm Exam (Oct. 20 7pm-8:20pm)
+                                                                                                            signature
+
+                     StudentID# : (                                      ) , Name : (                                         )
+
+* You should write your answer in English. Otherwise, penalty may be applied.
+
+
+1. (32 points) Fill in the blanks (a)~(p) with the most appropriate English word(s).
+! (a.                                  ) is a term used in the early days of computing science for the difficulty of writing correct, useful
+    and efficient computer programs in the required time. The ( same as (a) ) was due to the rapid increases in computer power and
+    the (b.                                 ) of the problems that could not be tackled. With the increase in the ( same as (b) ) of the
+    software, many software problems arose because existing methods were inadequate.
+
+
+! In C++, the file open mode ios::app means that all output operations are performed at the (c.                                   ) of the file.
+
+
+! In C++, the file open mode (d.                                        ) means that if the file is opened for output operations and the file
+    is already (e.                             ), its previous content is deleted and replaced by the new one.
+
+
+! (f.                                           ) is the process of changing, modifying, and updating software to keep up with customer
+    needs. ( same as (f) ) is done after the product has launched for several reasons including improving the software overall,
+    correcting issues or bugs, to boost performance, and more.
+
+
+!    Coupling is the degree to which each program module (g.                                 ) on each one of the other modules.
+     (h.                      ) is a measure of how strongly-related and focused the various responsibilities of a software module are.
+     It is often desirable to (i.                           ) coupling and (j.                         ) ( same as (h) ).
+
+
+! One of the main benefits of data encapsulation is (k.                                    ). ( same as (k) ) means (l.                         )
+    in implementation should not affect (m.                          ) seen by clients of a class.
+
+
+! (n.                               ) member function does not (o.                           ) any data members of the object on which
+    it is called. This restriction is enforced by (p.                                 ). ( same as (n) ) member function assures its clients
+    of its benign natures (i.e. safety and readability).
+
+
+2. (20 points) In C++, there are two main ways for making an array, static memory allocation and dynamic memory allocation.
+
+
+ ● example of static memory allocation for using an array                    ● example of dynamic memory allocation for using an array
+        int x[10];                                                                   int* x = new int[10];
+        x[2]=7;                                                                      x[2]=7;
+
+
+ Describe the main advantage and disadvantage of static memory allocation and dynamic memory allocation for using an array by
+ filling in the blanks in the following table. You also have to explain why static memory allocation and dynamic memory allocation
+ can get such advantage and disadvantage in the following table.
+
+                                            main advantage and                                       main disadvantage and
+                                why such advantage can be obtained?                        why such disadvantage can be obtained?
+                          advantage:( use less than 10 English words             )   disadvantage:( use less than 10 English words          )
+
+     static memory
+                          why?: ( use less than 15 English words                 )   why?: ( use less than 15 English words                 )
+        allocation
+    for using array
+
+
+                          advantage:( use less than 10 English words             )   disadvantage:( use less than 10 English words          )
+
+    dynamic memory
+                          why?: ( use less than 15 English words                 )   why?: ( use less than 15 English words             )
+        allocation
+    for using array
+3.(20 points) Consider following C++ code and its area calculation   4.(8 points) Consider following C++ code and its screen output
+ screen output. Fill in empty boxes with appropriate C++ code.         showing the size of input file “example.bin”. Fill in empty
+ 1: #include <iostream>                                                boxes with appropriate C++ code.
+ 2: using namespace std;
+                                                                      1: #include <iostream>
+ 3: class Rectangle {
+                                                                      2: #include <fstream>
+ 4:      int width, height;
+                                                                      3: using namespace std;
+ 5:
+                                                                      4:
+ 6:      Rectangle() { width=1; height=1; }
+                                                                      5: int main() {
+ 7:      Rectangle(int x, int y)                             {}
+                                                                      6:     streampos begin, end;
+ 8:      int area() { return width*height; }
+                                                                      7:     ifstream myfile(“example.bin”, ios::binary);
+ 9: };
+                                                                      8:     begin = myfile.tellg();
+ 10: int main() {
+                                                                      9:     myfile.                                        ;
+ 11:     Rectangle obj(3,4);
+                                                                      10: end =                                             ;
+ 12:     Rectangle *foo,                          ;
+                                                                      11: myfile.close();
+ 13:     foo =                        ;
+                                                                      12: cout << “size is: ” << (end-begin) <<“ bytes\n”;
+ 14:     bar = new Rectangle (5,6);
+                                                                      13: return 0;
+ 15:     baz = new Rectangle[2];
+                                                                      14:}
+ 16:     cout << “Area Calculation: ”;
+                                                                      ================== screen output ===================
+ 17:     cout << “obj:” << obj                  <<“, ”;
+                                                                      size is: 40 bytes
+ 18:     cout << “foo:” << foo                  <<“, ”;
+ 19:     cout << “bar:” << bar                  <<“, ”;
+ 20:     cout << “baz[0]:”<< baz[0]                   <<“\n”;
+ 21:     delete bar; delete[] baz; return 0;
+ 22:}
+ ================= screen output ====================
+ Area Calculation: obj:12, foo:12, bar:30, baz[0]:1
+
+
+5. (20 points) Following C++ code contains one wrong part that will generate a compilation error.
+   Assume that the code from line 1 to line 7 is correct.
+(a) Which line in the code is wrong? Mark the wrong part, where compilation error will occur, using an arrow and a circle.
+(b) What is wrong with the part of code you marked? (Why is it wrong?) Explain. (                                                    )
+
+
+(c) Insert one line code in line 12 to make the code correct. (                                                                      )
+(d) What will be the screen output (i.e. execution result generated by cout) of the program after the correction you made?
+( screen output (execution result):                                                                                                      )
+
+
+
+
+                                                                           15: int f1(X obj)
+  1 : #include <iostream>
+                                                                           16: {
+  2 : using namespace std;
+                                                                           17:     cout << "f1 called!\n";
+  3 :
+                                                                           18:     return obj.w*obj.h;
+  4 : class X {
+                                                                           19: }
+  5 : private:
+                                                                           20: int main()
+  6 :    int w,h;
+                                                                           21: {
+  7 : public:
+                                                                           22:     int z;
+  8 :    X() { cout << "c1 called\n"; }
+                                                                           23:     X a(5,6), b;
+  9 :    X(int a,int b) { w=a; h=b; cout << "c3 called\n"; }
+                                                                           24:     X c = a;
+  10:    X(const X& x) { w=x.w; h=x.h; cout << "c5 called\n"; }
+                                                                           25:     b = c;
+  11:    ~X() { cout << "d called\n"; }
+                                                                           26:     z = f1(b);
+  12:
+                                                                           27:     cout << "area: " << z << "\n";
+  13: };
+                                                                           28:     return 0;
+                                                                           29: }
+

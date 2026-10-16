@@ -1,0 +1,98 @@
+    Operator Overloading (Operator Functions)
+
+n Operator functions
+    n Redefine operators (+,-,*,/,[],<<,>>,…) as functions
+
+
+
+    n Member function method
+       n Use this keyword to implicitly get argument
+
+       n Gets left operand for binary operators (like +)
+
+       n Leftmost object must be of same class as operator
+
+
+
+    n Non-member function method
+       n Need parameters for both operands
+
+       n Can have object of different class than operator
+       n Must be a friend to access private or protected data
+
+1
+                                                                                            2
+
+        C++ : Operator overloading example (non-member function using friend)
+
+// operator_overloading.cpp                                        int main() {
+#include <iostream>                                                   Complex a = Complex( 1.2, 3.4 );
+using namespace std;                                                  Complex b = Complex( 5.6, 7.8 );
+                                                                      Complex c = Complex( 0.0, 0.0 );
+class Complex {
+private:                                                               a.Display();
+   double re, im;                                                      b.Display();
+                                                                            cout << endl;
+public :
+   Complex( double r, double i ) : re(r), im(i) {}                     c = a + b; // c = operator+(a,b);
+   friend Complex operator+(Complex&, Complex&);                       c.Display();
+   friend Complex operator-(Complex&, Complex&);                       c = a - b; // c = operator-(a,b);
+   friend Complex operator*(Complex&, Complex&);                       c.Display();
+   void Display( ) {                                                   c = a * b; // c = operator*(a,b);
+                if (im>0) cout << re << "+" << im <<"i" << endl;       c.Display();
+                else if (im<0) cout << re << im <<"i" << endl;     }
+                else if (im==0) cout << re << endl;
+   }
+};                                                                 결과:
+                                                                   1.2+3.4i
+// Operator overloaded using a non-member function                 5.6+7.8i
+Complex operator+( Complex& i , Complex& other ) {
+   return Complex( i.re + other.re, i.im + other.im );             6.8+11.2i
+}                                                                  -4.4-4.4i
+                                                                   -19.8+28.4i
+Complex operator-( Complex& i , Complex& other ) {
+   return Complex( i.re - other.re, i.im - other.im );
+}
+
+Complex operator*( Complex& i , Complex& other ) {
+   return Complex( i.re * other.re - i.im * other.im
+                   , i.re*other.im + i.im*other.re );
+}
+                                                                                          3
+
+            C++ : Operator overloading example (member function)
+// operator_overloading.cpp                                      int main() {
+#include <iostream>                                                 Complex a = Complex( 1.2, 3.4 );
+using namespace std;                                                Complex b = Complex( 5.6, 7.8 );
+                                                                    Complex c = Complex( 0.0, 0.0 );
+class Complex {
+private:                                                             a.Display();
+   double re, im;                                                    b.Display();
+                                                                          cout << endl;
+public :
+   Complex( double r, double i ) : re(r), im(i) {}                   c = a + b; // c=a.operator+(b);
+   Complex operator+( Complex &other );                              c.Display();
+   Complex operator-( Complex &other );                              c = a - b; // c=a.operator-(b);
+   Complex operator*( Complex &other );                              c.Display();
+   void Display( ) {                                                 c = a * b; // c=a.operator*(b);
+                if (im>0) cout << re << "+" << im <<"i"              c.Display();
+<< endl;                                                         }
+                else if (im<0) cout << re << im <<"i" << endl;
+                else if (im==0) cout << re << endl;
+   }
+};                                                               결과:
+                                                                 1.2+3.4i
+// Operator overloaded using a member function                   5.6+7.8i
+Complex Complex::operator+( Complex &other ) {
+   return Complex( re + other.re, im + other.im );               6.8+11.2i
+}                                                                -4.4-4.4i
+                                                                 -19.8+28.4i
+Complex Complex::operator-( Complex &other ) {
+   return Complex( re - other.re, im - other.im );
+}
+
+Complex Complex::operator*( Complex &other ) {
+   return Complex( re * other.re - im * other.im
+                       , re*other.im + im*other.re );
+}
+

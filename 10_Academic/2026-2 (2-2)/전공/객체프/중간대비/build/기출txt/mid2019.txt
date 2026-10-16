@@ -1,0 +1,135 @@
+                                                     2019.2 O bject-Oriented Programming                     supervisor
+                                                    Midterm Exam (Oct. 23th 5pm-6:20p m)
+                                                                                                             signature
+
+                   StudentID# : (                                        ) ,   Name : (                                           )
+
+* You should write your answer in English. Otherwise, small amount of penalty may be applied.
+
+
+1. (28 points) Fill out the blanks (a)~(n) with the mos t appropriate English word(s) .
+l    (a.            ) is the degree to which each program module relies on each one of the other modules. (b.                          ) is a
+    measure of how strongly-related and focused the various responsibilities of a software module are.
+    It is often desirable to minimize ( same as (a) ) because (c.                                                                             ).
+
+
+l Dynamic memory allocation means memory allocation occurs at (d.                                               ).
+
+
+l In C++, file open mode ios::app means all output operations are performed at (e.                           ) of the file, (f.               )
+    the content to the current content of the file.
+
+
+l file stream classes : C++ provides following classes to perform file processing:
+          - ofstream             : stream class to write on files
+          - (g.                ) : stream class to read from files
+          - (h.                ) : stream class to read and write from/to f iles
+
+
+l One of the form al definitions of (i.                           ) is "the establishment and use of sound engineering principles in order to
+    (j.                             ) obtain software that is reliable and works efficiently"
+
+
+l Using (k.                            ) variables can be dangerous because it can make all modules dependent on one another.
+
+
+l (l.                            ) is a programming and des ign technique that relies on the separation of interface and implementation.
+    Interface is the outside or service view, describing (m.                            ) an object does .
+    Implementation is the inside vie w, des cribing (n.                         ) an object does.
+
+
+2. (6 points) There are three main benef its of data encapsulation as follows . Explain each of the benefits in detail.
+    (1) protection of implementation (safety) : Clients cannot (                                                                             ).
+
+
+    (2) readability (understandability): Clients of interface does not need to (                                                          )
+
+
+    (3) implementation independence: A change in implementat ion should not (                                                            )
+
+
+3. (8 points) Answer to the following questions that are related to maintenance and maintainability.
+(1) What is the definition of maintenance? Explain with sufficient details . (                                                                )
+
+
+(2) Fill out following blanks ( a), (b), and ( c) with appropriate words.
+    A program with high maint ainability means that it is
+          - easy to ( read/understand ),
+          - easy to ( a.                       ),
+          - easy to (b.                         ),
+          - easy to ( c.                        )
+
+
+4. (8 points) Following sentences explain properties of a constructor. Fill out empty blanks with appropriate English words.
+(1) Constructor usually initializes data members of an object.
+(2) Constructor is automatically called when (                                              )
+(3) Constructor should always have the same (                             ) as the class.
+(4) Constructor does not have (                         ) type.
+(5) If you do not make any constructor in class , the compiler would generate (                                      ).
+5. (29points) The clas s for "complex number" (복소수) can be often defined using operator overloading. Write your implementation of
+member functions (1) operator- and (2) operator<<.
+In (1) and (2), you may use s tandard library in your code. Your code should be grammatically and logically correct.
+--------------------------------------------------------------------------
+class Complex {
+private:
+   double re, im;
+public :
+     Complex( double r, double i ) : re(r), im(i) {}
+     friend Complex operator-(Complex&, Complex&);
+     // other member functions for operator overloading are defined.
+     friend ostream& operator<<(ostream &o, Complex &x);
+           // prints x in "a+bi" format. for example, if re=3.2 and im=2.3, then this fucntion should print 3.2+2.3i
+           // if re=3.2 and im=-2.3, then this function should print 3.2-2.3i
+           // if re=3.2 and im=0, then this function should print 3.2
+};
+---------------------------------------------------------------------------
+ (1) Write C++ code for the operator+ function          (2) Write C++ code for the operator<< function.
+Complex operator-(Complex& x, Complex& y)                            ostream& operator<<(ostream &o , Complex& x)
+{                                                                    {
+
+
+
+
+}                                                                    }
+
+
+6. (12 points) Consider following C++ code and its output for        7. (9 points) Cons ider following C++ code and its output showing
+ area calculation. Fill out empty boxes with appropriate C++ code.        the size of input file “example.bin”. Fill out empty boxes with
+1: #include <iostream>                                                   appropriate C++ code.
+2: using namespace std;
+                                                                         1: #include <iostream>
+3: class Rectangle {
+4:   int width, height;                                                  2: #include <fstream>
+                                                                         3: using namespace std;
+5: public :
+                                                                         4:
+6:      Rectangle(int x,int y) : width(x),height(y){}
+                                                                         5: int main() {
+7:      int area() { return width*height; }
+                                                                         6:     streampos begin, end;
+8: };
+9: int main() {                                                          7:     ifstream myfile(“example.bin”, ios::binary);
+                                                                         8:     begin =                       ;
+10:     Rectangle obj(3,4);
+                                                                         9:     myfile.                         (0,ios::end);
+11:     Rectangle *foo, *bar, *baz;
+                                                                         10: end=                                ;
+12:     foo = &obj;
+                                                                         11: myfile.close();
+13:     bar = new Rectangle (5,6);
+14:     baz = new Rectangle[2] { {2,5}, {3,6} };                         12: cout << “size is: ” << (end-begin) << “ bytes\n”;
+                                                                         13: return 0;
+15:     cout << “Area Calculation Output\n”;
+                                                                         14:}
+16:     cout << “obj:” <<                      <<“, ”;
+17:     cout << “foo:” <<                         <<“, ”;
+                                                                         Output: size is: 40 bytes
+18:     cout << “bar:” <<                         <<“, ”;
+19:     cout << “baz[0]:”<<                        <<“\n”;
+20:     delete bar; delete[] baz;     return 0;
+21:}
+
+
+Area Calculation Output
+obj:12, foo:12, bar:30, baz[0]:10
+

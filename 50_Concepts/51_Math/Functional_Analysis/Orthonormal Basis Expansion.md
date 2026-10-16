@@ -57,3 +57,5 @@ $$c_k = \frac{\langle f,\varphi_k\rangle}{\lambda_k}$$
 - [[XNO expriment]] — 기저 변환(change of basis)
 - [[Spectral Bias]] — 계수 감쇠와 주파수
 - [[ICA vs PCA]] — PCA = 데이터에 최적인 정규직교기저 (Karhunen–Loève)
+
+다음: [[Completeness and Hilbert Space]] (완비성, 파세발)

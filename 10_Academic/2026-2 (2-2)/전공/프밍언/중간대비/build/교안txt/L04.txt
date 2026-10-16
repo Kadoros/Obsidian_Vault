@@ -1,0 +1,1090 @@
+    Principles of Programming
+    Languages
+
+     Lecture 4
+     Lexical and Syntax Analysis
+     (어휘 분석과 구문 분석)
+     Jinsung Kim, Ph.D.
+     High-Performance Computing (HPC) Lab
+     Computer Science and Engineering
+     Chung-Ang University
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages
+Topics
+§ Introduction
+§ Lexical Analysis
+§ The Parsing Problem
+§ Recursive-Descent Parsing
+§ Bottom-Up Parsing
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   2
+Introduction
+§ Language implementation systems must analyze source
+  code, regardless of the specific implementation approach
+§ Nearly all syntax analysis is based on a formal description of
+  the syntax of the source language (BNF)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   3
+The Compliation Process (Recap)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   4
+Introduction
+§ Advantages of Using BNF to Describe Syntax
+    • Provides a clear and concise syntax description
+    • The parser can be based directly on the BNF
+    • Parsers based on BNF are easy to maintain (modularity)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   5
+Introduction
+§ Syntax Analysis
+    • The syntax analysis portion of a language processor nearly always consists
+      of two parts:
+      - A low-level part called a lexical analyzer (mathematically, a finite automaton
+        based on a regular grammar)
+      - A high-level part called a syntax analyzer, or parser (mathematically, a push-down
+        automaton based on a context-free grammar, or BNF)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                          6
+Introduction
+§ Reasons to Separate Lexical and Syntax Analysis
+    • Simplicity (단순성)
+      - Less complex approaches can be used for lexical analysis; separating them
+        simplifies the parser
+    • Efficiency (효율성)
+      - Separation allows optimization of the lexical analyzer
+    • Portability (이식성)
+      - Parts of the lexical analyzer may not be portable, but the parser always is portable
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                        7
+Lexical Analysis
+§ A lexical analyzer is a “pattern matcher” for character strings
+§ A lexical analyzer is a “front-end” for the parser
+§ Identifies substrings of the source program that belong
+  together - lexemes
+    • Lexemes match a character pattern, which is associated with a lexical
+      category called a token
+    • sum is a lexeme; its token may be IDENT
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages           8
+Lexical Analysis
+§ Example
+      result = oldsum – value / 100;
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   9
+Lexical Analysis (어휘분석)
+§ The lexical analyzer is usually a function that is called by the
+  parser when it needs the next token
+§ Three approaches to building a lexical analyzer:
+    • Write a formal description of the tokens and use a software tool that
+      constructs a table-driven lexical analyzer from such a description
+    • Design a state diagram that describes the tokens and write a program that
+      implements the state diagram
+    • Design a state diagram that describes the tokens and hand-construct a
+      table-driven implementation of the state diagram
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages               10
+Lexical Analysis
+§ The lexical analyzer is usually a function that is called by the
+  parser when it needs the next token
+§ Three approaches to building a lexical analyzer:
+    • Write a formal description of the tokens and use a software tool that
+      constructs a table-driven lexical analyzer from such a description
+    • Design a state diagram that describes the tokens and write a program that
+      implements the state diagram
+    • Design a state diagram that describes the tokens and hand-construct a
+      table-driven implementation of the state diagram
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages           11
+Lexical Analysis
+§ State Diagram Design
+    • A naïve state diagram would have a transition from every state on every
+      character in the source language - such a diagram would be very large!
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages             12
+Lexical Analysis
+§ In many cases, transitions can be combined to simplify the
+  state diagram
+    • When recognizing an identifier, all uppercase and lowercase letters are
+      equivalent- LETTER
+§ Use a character class that includes all letters
+    • When recognizing an integer literal, all digits are equivalent - use a DIGIT
+      class
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                  13
+Lexical Analysis
+§ Reserved words and identiﬁers can be recognized together
+  (rather than having a part of the diagram for each reserved
+  word)
+    • Use a table lookup to determine whether a possible identiﬁer is in fact a
+      reserved word
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages               14
+Lexical Analysis
+§ Convenient utility subprograms:
+    • getChar: gets the next character of input, puts it in nextChar,
+      determines its class and puts the class in charClass
+    • addChar: puts the character from nextChar into the place the lexeme is
+      being accumulated, lexeme
+    • lookup: determines whether the string in lexeme is a reserved word
+      (returns a code)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages            15
+Lexical Analysis
+§ State Diagram
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   16
+Lexical Analysis
+§ front.c (pp. 190-194)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   17
+Lexical Analysis
+§ front.c (pp. 190-194)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   18
+Lexical Analysis
+§ front.c (pp. 190-194)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   19
+Lexical Analysis
+§ front.c (pp. 190-194)
+
+
+
+
+                      else      charClass = UNKNOWN;
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   20
+Lexical Analysis
+§ front.c (pp. 190-194)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   21
+Lexical Analysis
+§ front.c (pp. 190-194)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   22
+Lexical Analysis
+§ front.c (pp. 190-194)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   23
+Lexical Analysis
+§ front.c (pp. 190-194)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   24
+Lexical Analysis
+§ front.c (pp. 190-194)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   25
+Lexical Analysis
+§ front.c (pp. 190-194)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   26
+Lexical Analysis
+§ front.c (pp. 190-194)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   27
+Lexical Analysis
+§ Implementation:
+  : front.c (pp. 190-194)
+§ Following is the output of the lexical analyzer of front.c
+  when used on (sum + 47)/total
+
+
+      Next token is: 25 Next lexeme is (
+      Next token is: 11 Next lexeme is sum
+      Next token is: 21 Next lexeme is +
+      Next token is: 10 Next lexeme is 47
+      Next token is: 26 Next lexeme is )
+      Next token is: 24 Next lexeme is /
+      Next token is: 11 Next lexeme is total
+      Next token is: -1 Next lexeme is EOF
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   28
+Lexical Analysis
+§ Example                       front.in
+    (sum + 47) / total
+                                                                main(int argc, char** argv)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                           29
+Lexical Analysis                                        charClass = LETTER
+                                                                    UNKHOWN
+                                                        lexeme[100] = “(”
+                                                                      “(\0”
+§ Example                       front.in                nextChar = ‘(‘
+                                                                   ‘s’
+                                                                 1
+                                                        lexLen = 0
+    (sum + 47) / total
+                                                        token =
+                                                        nextToken = LEFT_PAREN
+
+ getChar()                                                  lookup(char ch)
+   - nextChar = ‘(’                                           - switch(ch) // ‘(’
+   - isalpha(nextChar) // F                                     - addChar()
+   - isdigit(nextChar) // F                                     - nextToken = LEFT_PAREN
+   - charClass = UNKNOWN
+                                                            addChar()
+                                                              - lexeme[lexLen++] = nextChar
+ lex()                                                        - lexeme[lexLen] = 0 // NULL
+   - lexLen = 0
+   - getNonBlank()
+   - switch(charClass) // UNKNOWN                           getChar()
+     - lookup(nextChar)                                       - nextChar = ‘s’
+     - getChar()                                              - isalpha(nextChar) // T
+   - printf(nextToken, lexeme)                                - charClass = LETTER
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                           30
+Lexical Analysis                                        charClass = LETTER
+                                                        lexeme[100] = “s\0”
+                                                                      “sum\0”
+                                                                      “su\0”
+§ Example                       front.in                nextChar = ‘u’
+                                                                   ‘m’
+                                                                   ‘s’
+                                                                 1
+                                                        lexLen = 0
+    (sum + 47) / total
+                                                        token =
+                                                        nextToken = LEFT_PAREN
+
+ lex()                               addChar()
+   - lexLen = 0                        - lexeme[lexLen++] = nextChar
+   - getNonBlank()                     - lexeme[lexLen] = 0; // NULL
+   - switch(charClass) // LETTER     getChar()
+     - addChar()                       - nextChar = ‘u’
+     - getChar()                       - isalpha(nextChar) // F T
+     - while (charClass == LETTER ||
+                                       - isdigit(nextChar)
+                                          charClass = LETTER// F
+              charClass == DIGIT)      - charClass = UNKNOWN
+         - addChar()
+         - getChar()                 getNonBlank()
+                                     getChar()
+   - printf(nextToken, lexeme)         -- isspace(nextChar)
+                                           nextChar = ‘+’
+                                        - -isalpha(nextChar)
+                                             getChar()       // F
+                                        - isdigit(nextChar) // F
+                                        - charClass = UNKNOWN
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages              31
+The Parsing Problem (파싱 문제)
+§ Parsing (파싱)
+    • The process of analyzing a sequence of tokens to determine whether it
+      conforms to the syntax (grammar) of a programming language
+
+
+§ Goals of the parser, given an input program:
+    • Find all syntax errors;
+      - For each, produce an appropriate diagnostic message and recover quickly
+    • Produce the parse tree, or at least a trace of the parse tree, for the program
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                32
+The Parsing Problem
+§ Two categories of parsers
+    • Top down (하향식): produce the parse tree, beginning at the root
+      - Order is that of a leftmost derivation
+      - Traces or builds the parse tree in preorder (전위순회)
+    • Bottom up (상향식): produce the parse tree, beginning at the leaves
+      - Order is that of the reverse of a rightmost derivation
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages      33
+Tree Traversals (Recap)
+
+
+
+
+§ Depth First Traversals (or Searches):
+    • In-order (Left, Root, Right): 4 2 5 1 3
+    • Pre-order (Root, Left, Right): 1 2 4 5 3
+    • Post-order (Left, Right, Root): 4 5 2 3 1
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   34
+The Parsing Problem
+§ Notational conventions
+    • Terminal symbols: lowercase letters at the beginning of the alphabet (a, b,
+      …)
+    • Nonterminal symbols: uppercase letters at the beginning of the alphabet
+      (A, B, …)
+    • Terminals and non-terminals: uppercase letters at the end of the
+      alphabet (W, X, Y, Z)
+    • Strings of terminals: lowercase letters at the end of alphabet (w, x, y, z)
+    • Mixed strings (terminals and/or non-terminals): lowercase Greek letters
+      (𝛼, 𝛽, 𝛾, 𝛿)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages             35
+The Parsing Problem
+§ Top-down Parsers
+    • Given a sentential form(문장형태), xA⍺, the parser must choose the correct
+      A-rule to get the next sentential form in the leftmost derivation, using only
+      the first token produced by A
+    • Example: xA⍺
+      - A → bB, A → cBb, A → a
+
+
+§ The most common top-down parsing algorithms:
+    • Recursive descent: a coded implementation
+    • LL parsers: table driven implementation
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages               36
+The Parsing Problem
+§ Example: Leftmost Derivation
+    <assign> → <id> = <expr>                     Example: A = B + C * A
+    <id> → A | B | C
+    <expr> → <expr> + <term>
+           | <term>                              <assign> ⇒ <id> = <expr>
+    <term> → <term> * <factor>                            ⇒ A = <expr>
+           | <factor>                                     ⇒ A = <expr> + <term>
+    <factor> → ( <expr> )                                 ⇒ A = <term> + <term>
+             | <id>                                       ⇒ A = <factor> + <term>
+                                                          ⇒ A = <id> + <term>
+                                                          ⇒ A = B + <term>
+                                                          ⇒ A = B + <term> * <factor>
+                                                          ⇒ A = B + <factor> * <factor>
+                                                          ⇒ A = B + <id> * <factor>
+                                                          ⇒ A = B + C * <factor>
+                                                          ⇒ A = B + C * <id>
+                                                          ⇒ A = B + C * A
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                       37
+The Parsing Problem
+§ Top-down Parsers
+    • Given a sentential form, xA⍺, the parser must choose the correct A-rule to
+      get the next sentential form in the leftmost derivation, using only the first
+      token produced by A
+    • Example: xA⍺
+      - A → bB, A → cBb, A → a
+
+
+§ The most common top-down parsing algorithms:
+    • Recursive descent: a coded implementation
+    • LL parsers: table-driven implementation
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                   38
+The Parsing Problem
+§ Bottom-up parsers
+    • Given a right sentential form, 𝛼, determine what substring of 𝛼 is the right-
+      hand side of the rule in the grammar that must be reduced to produce the
+      previous sentential form in the right derivation
+    • The most common bottom-up parsing algorithms are in the LR family
+    • Example: 𝑆 → 𝑎𝐴𝑐, 𝐴 → 𝑎𝐴 | 𝑏
+
+                                     𝑆 ⇒ 𝑎𝐴𝑐 ⇒ 𝑎𝑎𝐴𝑐 ⇒ 𝒂𝒂𝒃𝒄
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                   39
+The Parsing Problem
+§ Example: Rightmost Derivation
+    <assign> → <id> = <expr>       Example: A = B + C * A
+    <id> → A | B | C
+    <expr> → <expr> + <term>
+           | <term>
+    <term> → <term> * <factor>
+           | <factor>
+    <factor> → ( <expr> )     <assign> ⇒ <id> = <expr>
+             | <id>
+                                                        ⇒ <id> = <expr> + <term>
+                                                        ⇒ <id> = <expr> + <term> * <factror>
+                                                        ⇒ <id> = <expr> + <term> * <id>
+                                                        ⇒ <id> = <expr> + <term> * A
+                                                        ⇒ <id> = <expr> + <factor> * A
+                                                        ⇒ <id> = <expr> + <id> * A
+                                                        ⇒ <id> = <expr> + C * A
+                                                        ⇒ <id> = <term> + C * A
+                                                        ⇒ <id> = <factor> + C * A
+                                                        ⇒ <id> = <id> + C * A
+                                                        ⇒ <id> = B + C * A
+                                                        ⇒ A = B + C * A
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                        40
+The Parsing Problem
+§ Bottom-up parsers
+    • Given a right sentential form, 𝛼, determine what substring of 𝛼 is the right-
+      hand side of the rule in the grammar that must be reduced to produce the
+      previous sentential form in the right derivation (Handle)
+    • The most common bottom-up parsing algorithms are in the LR family
+    • Example: 𝑆 → 𝑎𝐴𝑐, 𝐴 → 𝑎𝐴 | 𝑏
+
+                                     𝑆 ⇒ 𝑎𝐴𝑐 ⇒ 𝑎𝑎𝐴𝑐 ⇒ 𝒂𝒂𝒃𝒄
+
+   LHS → RHS                                                A???
+                                                               → b
+     S → aAc
+     A → aA
+     A → b
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                   41
+The Parsing Problem
+§ The Complexity of Parsing
+    • Parsers that work for any unambiguous grammar are complex and
+      inefficient (O(𝑛! ), where n is the length of the input )
+    • Compilers use parsers that only work for a subset of all unambiguous
+      grammars, but do it in linear time (O(𝑛), where n is the length of the input )
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                    42
+Recursive-Descent Parsing
+§ A collection of subprograms
+    • Recursive
+    • Produces a parse tree in top-down order
+§ This recursion is a reflection of the nature of programming
+  languages, which include several different kinds of nested
+  structures.
+§ There is a subprogram for each nonterminal in the grammar,
+  which can parse sentences that can be generated by that
+  nonterminal
+§ EBNF is ideally suited for being the basis for a recursive-
+  descent parser, because EBNF minimizes the number of
+  nonterminals
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   43
+Recursive-Descent Parsing
+§ A grammar for simple expressions:
+      <expr> → <term> {(+|-) <term>}
+      <term> → <factor> {(*|/) <factor>}
+      <factor> → id | int_constant | ( <expr> )
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   44
+Recursive-Descent Parsing
+§ Assume we have a lexical analyzer named lex, which puts
+  the next token code in nextToken
+
+§ The coding process when there is only one RHS:
+    • For each terminal symbol in the RHS, compare it with the next input token;
+      if they match, continue, else there is an error
+    • For each nonterminal symbol in the RHS, call its associated parsing
+      subprogram
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                45
+Recursive-Descent Parsing
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   46
+Recursive-Descent Parsing
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   47
+Recursive-Descent Parsing
+§ This particular routine does not detect errors
+§ Convention: Every parsing routine leaves the next token in
+  nextToken
+
+    • Example: sum + 37
+
+                             <expr> => <term> + <term>
+                                    => <factor> + <term>
+                                    => id + <term>
+      expr()
+        - term()
+          - factor()
+             - id
+             - nextToken = ’+’
+          - nextToken ?= ‘*’ or ‘/’ // F
+          - factor() // F
+        - nextToken ?= ‘+’ or ‘-'
+Chung-Ang University CSE 22405: Principles of Programming Languages   48
+Recursive-Descent Parsing
+§ A nonterminal that has more than one RHS requires an initial
+  process to determine which RHS it is to parse
+    • The correct RHS is chosen on the basis of the next token of input (the
+      lookahead)
+    • The next token is compared with the first token that can be generated by
+      each RHS until a match is found
+    • If no match is found, it is a syntax error
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages              49
+Recursive-Descent Parsing
+
+
+                                                                            >)
+                                                                      nextToken = ?
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                   50
+Recursive-Descent Parsing
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   51
+Recursive-Descent Parsing
+§ Example (pp. 184-185): (sum + 47) / total
+      Next token is: 25 Next lexeme is (
+                                                             <expr> => <term> // (1)
+      Enter <expr>
+      Enter <term> // (1)
+                                                                    => <factor> / <factor> // (2)
+      Enter <factor> // (2)                                         => (<expr>) / <factor> // (3)
+      Next token is: 11 Next lexeme is sum                          => (<term> + <term>) / <factor>
+      Enter <expr> // (3)                                           => (<factor> + <term>) / <factor>
+      Enter <term>                                                  => (id + <term>) / <factor>
+      Enter <factor>                                                => (id + <factor>) / <factor>
+      Next token is: 21 Next lexeme is +                            => (id + int_const.) / <factor>
+      Exit <factor>; Exit <term>                                    => (id + int_const.) / id
+      Next token is: 10 Next lexeme is 47                           => (sum + 47) / total
+      Enter <term>
+      Enter <factor>
+      Next token is: 26 Next lexeme is )
+      Exit <factor>; Exit <term>; Exit <expr>
+      Next token is: 24 Next lexeme is /
+      Exit <factor>
+      Next token is: 11 Next lexeme is total
+      Enter <factor>
+      Next token is: -1 Next lexeme is EOF
+      Exit <factor> Exit <term> Exit <expr>
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                               53
+Recursive-Descent Parsing
+§ Example (pp. 184-185): (sum + 47) / total
+      Next token is: 25 Next lexeme is (
+                                                 <expr> => <term> // (1)
+      Enter <expr>
+      Enter <term> // (1)
+                                                        => <factor> / <factor> // (2)
+      Enter <factor> // (2)                             => (<expr>) / <factor> // (3)
+      Next token is: 11 Next lexeme is sum              => (<term> + <term>) / <factor>
+      Enter <expr> // (3)                               => (<factor> + <term>) / <factor>
+      Enter <term>                                      => (id + <term>) / <factor>
+      Enter <factor>                                    => (id + <factor>) / <factor>
+      Next token is: 21 Next lexeme is +                => (id + int_const.) / <factor>
+      Exit <factor>; Exit <term>                        => (id + int_const.) / id
+      Next token is: 10 Next lexeme is 47               => (sum + 47) / total
+      Enter <term>
+      Enter <factor>
+      Next token is: 26 Next lexeme is )
+      Exit <factor>; Exit <term>; Exit <expr>
+      Next token is: 24 Next lexeme is /
+      Exit <factor>
+      Next token is: 11 Next lexeme is total expr()
+      Enter <factor>                          ...
+      Next token is: -1 Next lexeme is EOF
+      Exit <factor> Exit <term> Exit <expr>
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                   54
+Recursive-Descent Parsing
+§ Example (pp. 184-185): (sum + 47) / total
+      Next token is: 25 Next lexeme is (      factor()
+      Enter <expr>                             ...
+      Enter <term> // (1)
+      Enter <factor> // (2)
+      Next token is: 11 Next lexeme is sum
+      Enter <expr> // (3)
+      Enter <term>
+      Enter <factor>
+      Next token is: 21 Next lexeme is +
+      Exit <factor>; Exit <term>
+      Next token is: 10 Next lexeme is 47
+      Enter <term>
+      Enter <factor>
+      Next token is: 26 Next lexeme is )
+      Exit <factor>; Exit <term>; Exit <expr> // go to <factor> // (2)
+      Next token is: 24 Next lexeme is /
+                                              term()
+      Exit <factor> // go to <term> // (1)
+                                               ...
+      Next token is: 11 Next lexeme is total
+      Enter <factor>
+      Next token is: -1 Next lexeme is EOF
+      Exit <factor> Exit <term> Exit <expr>
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages      55
+Recursive-Descent Parsing
+§ Example (pp. 184-185)
+      (sum + 47) / total
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   56
+Recursive-Descent Parsing
+§ LL parsing
+    • A top-down parsing technique that scans the input from Left to right and
+      constructs a Leftmost derivation, choosing productions based on
+      lookahead tokens.
+    • LL Grammar
+      - A context-free grammar that can be parsed from left to right while constructing a
+        leftmost derivation.
+
+    • Example (LL(1) Parser)
+                                                   𝑆 → 𝑎𝐴𝐵
+                                                  𝐴 → 𝑏𝐴 | 𝜖
+                                                    𝐵→𝑐
+          Nonterminal                        a                          b       c
+                  𝑆                    𝑆 → 𝑎𝐴𝐵                         error   error
+                  𝐴                       error                       𝐴 → 𝑏𝐴   𝐴→ϵ
+                  𝐵                       error                        error   𝐵→𝑐
+Chung-Ang University CSE 22405: Principles of Programming Languages                         57
+Recursive-Descent Parsing
+§ The LL Grammar Class (LL문법 유형)
+    • The Left Recursion Problem (좌-순환 문제)
+      - If a grammar has left recursion, either direct or indirect, it cannot be the basis for
+        a top-down parser
+         • A grammar can be modified to remove direct left recursion as follows:
+
+
+      - For each nonterminal, A,
+         • Group the A-rules as
+                   A → Aα1 | ... | Aαm | β1 |β2 | ... | βn, where none of the β‘s begins with A
+         • Replace the original A-rules with
+                     A → β1A’ | β2A’ | ... | βnA’
+                     A’→ α1A’ | α2A’ | ... | αmA’ | ε
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                               58
+Recursive-Descent Parsing
+§ The LL Grammar Class (LL문법 유형)
+    • The Left Recursion Problem (좌-순환 문제)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   59
+Recursive-Descent Parsing
+§ The LL Grammar Class (LL문법 유형)
+    • The Left Recursion Problem (좌-순환 문제)
+      - If a grammar has left recursion, either direct or indirect, it cannot be the basis for
+        a top-down parser
+         • A grammar can be modified to remove direct left recursion as follows:
+
+
+      - For each nonterminal, A,
+         • Group the A-rules as
+                   A → Aα1 | ... | Aαm | β1 |β2 | ... | βn, where none of the β‘s begins with A
+         • Replace the original A-rules with
+                     A → β1A’ | β2A’ | ... | βnA’
+                     A’→ α1A’ | α2A’ | ... | αmA’ | ε
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                               60
+Recursive-Descent Parsing
+§ The LL Grammar Class
+    • The other characteristic of grammars that disallows top-down parsing is
+      the lack of pairwise disjointness (집합쌍 공통)
+      - The inability to determine the correct RHS on the basis of one token of lookahead
+      - Def: FIRST(α) = {a | α =>* aβ}
+        (If α =>* ε, ε is in FIRST(α))
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                     61
+Recursive-Descent Parsing
+§ The LL Grammar Class
+    • Pairwise Disjointness Test (집합쌍 공통 테스트):
+      - For each nonterminal, A, in the grammar that has more than one RHS, for each
+        pair of rules, A → α! and A → α" , it must be true that
+              FIRST(α! ) ⋂ FIRST(α" ) = ∅
+
+
+    • Example:
+         A → a | bB | cAb
+         A → a | aB
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                    62
+Recursive-Descent Parsing
+§ The LL Grammar Class
+    • Left factoring (좌추출) can resolve the problem
+
+         Replace
+           <variable> → identifier | identifier [<expression>]
+          with
+           <variable> → identifier <new>
+           <new> → ϵ | [<expression>]
+          or
+            <variable> → identifier [[<expression>]]
+
+         (the outer brackets are meta-symbols of EBNF)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   63
+Bottom-Up Parsing
+§ The parsing problem is finding the correct RHS in a right-
+  sentential form to reduce to get the previous right-sentential
+  form in the derivation
+
+§ Example
+    • E→E+T|T                                                         E => E + T
+                                                                        => E + T * F
+    • T→T ∗F|F
+                                                                        => E + T * id
+    • F → E | id                                                        => E + F * id
+                                                                        => E + id * id
+                                                                        => T + id * id
+      input: id + id * id
+                                                                        => F + id * id
+                                                                        => id + id * id
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                       64
+Bottom-Up Parsing
+§ The parsing problem is finding the correct RHS in a right-
+  sentential form to reduce to get the previous right-sentential
+  form in the derivation
+
+§ Example                                                             E => E + T
+    • E→E+T|T                                                           => E + T * F
+    • T→T ∗F|F                                                          => E + T * id
+                                                                        => E + F * id
+    • F → E | id                                                        => E + id * id
+                                                                        => T + id * id
+      input: id + id * id                                               => F + id * id
+                                                                        => id + id * id
+
+
+         => E + T * F                        => E * id                       => E + E * id
+         => E + T * id                       => E + T * id                   => E + T * id
+                    handle!
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                          65
+Bottom-Up Parsing
+§ Intuition about handles:
+    • Def: β is the handle (핸들) of the right sentential form γ = αβw iff
+             S=>*rm αAw =>rm α𝛃w
+
+    • Def: β is a phrase (어구) of the right sentential form γ iff
+             S =>* γ = α" Aα# =>+ α" 𝛃α#
+
+    • Def: β is a simple phrase (단순어구) of the right sentential form γ iff
+             S =>* γ = α" Aα# => α" 𝛃α#
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages         66
+Bottom-Up Parsing
+§ Example
+    • E + T * id
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   67
+Bottom-Up Parsing
+§ Intuition about handles (cont.):
+    • The handle of a right sentential form is its leftmost simple phrase
+    • Given a parse tree, it is now easy to find the handle
+    • Parsing can be thought of as handle pruning
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages         68
+Bottom-Up Parsing
+§ Shift-Reduce Algorithms
+    • Shift is the action of moving the next token to the top of the parse stack
+    • Reduce is the action of replacing the handle on the top of the parse stack
+      with its corresponding LHS
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                69
+Bottom-Up Parsing
+§ Advantages of LR parsers:
+    • They will work for nearly all grammars that describe programming
+      languages.
+    • They work on a larger class of grammars than other bottom-up algorithms
+      but are as efficient as any other bottom-up parser.
+    • They can detect syntax errors as soon as it is possible.
+    • The LR class of grammars is a superset of the class parsable by LL parsers.
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages             70
+Bottom-Up Parsing
+§ Advantages of LR parsers:
+    • They will work for nearly all grammars that describe programming
+      languages.
+    • They work on a larger class of grammars than other bottom-up algorithms
+      but are as ebicient as any other bottom-up parser.
+    • They can detect syntax errors as soon as it is possible.
+    • The LR class of grammars is a superset of the class parsable by LL parsers.
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages             71
+Bottom-Up Parsing
+§ LR parsers must be constructed with a tool
+    • A parser table can be generated from a given grammar with a tool, e.g.,
+      yacc or bison
+
+
+§ Knuth’s insight: A bottom-up parser could use the entire
+  history of the parse, up to the current point, to make parsing
+  decisions
+    • There are only a finite and relatively small number of different parse
+      situations that could have occurred, so the history could be stored in a
+      parser state, on the parse stack
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages              72
+Bottom-Up Parsing
+§ Structure of an LR Parser
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   73
+Bottom-Up Parsing
+§ An LR configuration stores the state of an LR parser
+
+                            (S! X" S" X # S# … X $ S$ , a% a%&" … a' $)
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages       74
+Bottom-Up Parsing
+§ LR parsers are table driven, where the table has two
+  components, an ACTION table and a GOTO table
+    • The ACTION table speciﬁes the action of the parser, given the parser state
+      and the next token
+      - Rows are state names; columns are terminals
+    • The GOTO table speciﬁes which state to put on top of the parse stack after
+      a reduction action is done
+      - Rows are state names; columns are nonterminals
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                75
+Bottom-Up Parsing
+§ Initial configuration: (S! , a" … , a' $)
+§ Parser actions:
+    • For a Shift, the next symbol of input is pushed onto the stack, along with
+      the state symbol that is part of the Shift specification in the Action table
+    • For a Reduce, remove the handle from the stack, along with its state
+      symbols. Push the LHS of the rule. Push the state symbol from the GOTO
+      table, using the state symbol just below the new LHS in the stack and the
+      LHS of the new rule as the row and column into the GOTO table
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                  76
+Bottom-Up Parsing
+§ Parser actions (continued):
+    • For an Accept, the parse is complete, and no errors were found.
+    • For an Error, the parser calls an error-handling routine.
+
+
+
+
+                                           1.E → E + T
+                                           2.E → T
+                                           3.T → T ∗ F
+                                           4.T → F
+                                           5.F → E
+                                           6.F → id
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages     77
+Bottom-Up Parsing
+§ LR Parsing Table
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   78
+Bottom-Up Parsing                                                     1. E → E + T
+                                                                      2. E → T
+§ Example: id + id * id                                               3. T → T ∗ F
+                                                                      4. T → F
+                                                                      5. F → E
+                                                                      6. F → id
+   Stack                    Input
+
+   0                        id + id * id $
+   0id5                     + id * id $
+   0F3                      + id * id $
+   0T2                      + id * id $
+   0E1                      + id * id $
+   0E1+6                    id * id $
+   0E1+6id5                 * id $
+   0E1+6F3                  * id $
+   0E1+6T9                  * id $
+   0E1+6T9*7                id $
+   0E1+6T9*7id5             $
+   0E1+6T9*7F10             $
+   0E1+6T9                  $
+   0E1                      $
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages                  79
+Summary
+§ Syntax analysis is a common part of language
+  implementation
+§ A lexical analyzer is a pattern matcher that isolates small-
+  scale parts of a program
+    • Detects syntax errors
+    • Produces a parse tree
+§ A recursive-descent parser is an LL parser
+    • EBNF
+§ Parsing problem for bottom-up parsers: ﬁnd the substring of
+  current sentential form
+§ The LR family of shift-reduce parsers is the most common
+  bottom-up parsing approach
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   80
+                                                  Q&A
+
+
+
+
+Chung-Ang University CSE 22405: Principles of Programming Languages   81
+

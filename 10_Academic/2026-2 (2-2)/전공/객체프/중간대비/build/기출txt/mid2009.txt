@@ -1,0 +1,138 @@
+                                             2009.2 Object-Oriented Programming and Design
+                                                   Midterm Exam (Oct. 26th 7pm-8pm)
+
+                         StudentID# : (                                   ) , Name : (                                   )
+
+* You may answer in either Korean or English
+
+
+1. (10points) Complete following sentences by filling out the blanks with English words.
+(1) One of the important goals of software engineering is to minimize the (                c                 ) of software development and
+maintenance.
+
+
+(2) Generally, object oriented programming increases
+(programmer productivity), (                                       ), (                               ), and (                                ).
+
+
+(3) (                              ) is the degree to which each program module relies on each one of the other modules.
+    (                           ) is a measure of how strongly-related and focused the various responsibilities of a software module are.
+        It is desirable to maximize (                               ) and minimize (                              ).
+
+
+(4) (                                   ) member function does not modify any data members of the object on which it is called.
+
+
+(5) (                                   ) function of a class has the right to access the non-public members of the class
+
+
+(6) An abstract class should contain at least one (                                              ).
+
+
+(7) (                                                  ) can check whether two classes have inheritance relationship.
+
+
+2. (6points)
+(1) What is encapsulation? Explain.
+(                                                                                                                                     )
+
+
+
+(2) List at least two important benefits of encapsulation. You also need to explain why you think so.
+(1:                                              ) ,     (Why? :                                                                      )
+
+
+
+(2:                                              ) ,     (Why? :                                                                      )
+
+
+
+
+3. (6points) There are differences among following three function parameter types (a), (b), and (c). X is a class name and T is a
+data type.
+    (a) void X::f(T arg)
+    (b) void X::f(T* argp)
+    (c) void X::f(const T* argp)
+
+
+(1) What are the purposes of using * (passing address) in (b) compared to using parameter type (a)?                    There are two important
+purposes. Explain.
+(purpose1 :                                                                                                                               )
+
+
+
+(purpose2 :                                                                                                                               )
+
+
+
+(2) what is the purpose of using const in (c) compared to using parameter type (b)? Explain.
+(                                                                                                                                         )
+4. (6points) What is the output of the following C++ program ?
+    #include <iostream>
+    using namespace std;
+
+
+    class B {
+    public:
+        B() { z=-2; }
+        B(int z_val) : z(z_val) {}
+        virtual int get_val() { return (z-1); };
+        int gv2() { return (z-2); }
+    private :
+        int z;
+    };
+
+
+    class D1 : public B {
+    public:
+        D1() { x=0; }
+        D1(int x_val): x(x_val) {}
+        int get_val() { return x; };
+    private:
+        int x;
+    };
+
+
+    class D2 : public B {
+    public:
+        D2() { y=0; }
+        D2(int y_val): y(y_val) {}
+        virtual int gv2() { return y*y; };
+    private:
+        int y;
+    };
+
+
+    int main()
+    {
+        B Zero(0);
+        D1 Two(2);
+        D2 Four(4);
+
+
+        B* B_Array[3];
+        B_Array[0] = &Zero;
+        B_Array[1] = &Two;
+        B_Array[2] = &Four;
+
+
+        cout << "0 : " << B_Array[0]->get_val() << endl;
+        cout << "1 : " << B_Array[0]->gv2() << endl;
+        cout << "2 : " << B_Array[1]->get_val() << endl;
+        cout << "3 : " << B_Array[2]->gv2() << endl;
+
+
+        return 0;
+    }
+
+
+
+
+Output :
+
+
+
+
+5. (2points) What is software crisis? Explain in detail.
+(                                                                )
+
