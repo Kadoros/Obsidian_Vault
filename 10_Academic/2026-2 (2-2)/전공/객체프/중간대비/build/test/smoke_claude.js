@@ -118,6 +118,20 @@ async function boot(mode, seed = {}){
   ok(Object.values(t.fake.store.progress || {}).filter(p => p.done).length === L.units.reduce((s,u)=>s+u.lessons.length,0), "전 레슨 progress done");
   ok(t.errs.length === 0, "JS 에러 없음 " + JSON.stringify(t.errs));
 
+  // 5) 노트 한/영 토글
+  t = await boot("ok");
+  t.click(t.$('nav.tabs [data-v="learn"]')); await sleep(10);
+  t.click(t.$('#v-learn [data-lesson="L3-3"]')); await sleep(10);
+  const koH = t.$("#s-coupling-cohesion h3").textContent;
+  t.click(t.$('#v-learn [data-lang="en"]')); await sleep(10);
+  const enH = t.$("#s-coupling-cohesion h3").textContent;
+  ok(koH !== enH && !/[가-힣]/.test(t.$("#v-learn .body").textContent) && t.$("#v-learn .body").lang === "en", "English 토글 → 본문 영어 (" + enH + ")");
+  ok(!/[가-힣]/.test(t.$("#v-learn .reader h2").textContent), "레슨 제목도 영어");
+  ok(JSON.parse(t.w.localStorage.getItem("oop-lang")) === "en", "언어 선택 저장");
+  t.click(t.$('#v-learn [data-lang="ko"]')); await sleep(10);
+  ok(t.$("#s-coupling-cohesion h3").textContent === koH, "한국어로 복귀");
+  ok(t.errs.length === 0, "JS 에러 없음 " + JSON.stringify(t.errs));
+
   console.log(fails ? `\n${fails}개 실패` : "\n전부 통과");
   process.exit(fails ? 1 : 0);
 })();
