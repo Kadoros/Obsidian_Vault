@@ -15,7 +15,15 @@
    "answer": 1,
    "explain": "모든 수업·시험이 영어, 답도 영어로 (01주-1).",
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "In which language must midterm and final exam answers be written in this course?",
+   "explain_en": "All lectures and exams are in English, and answers must be in English too (Week 1-1).",
+   "choices_en": [
+    "Korean only",
+    "English only",
+    "Either Korean or English",
+    "Depends on the exam paper"
+   ]
   },
   {
    "id": "1-ci-2",
@@ -25,7 +33,9 @@
    "answer": false,
    "explain": "중간 = 단순(single-cycle) 버전까지. 파이프라인은 기말.",
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "The midterm scope includes the pipelined implementation.",
+   "explain_en": "Midterm = up to the simplified (single-cycle) version. Pipelining is on the final."
   },
   {
    "id": "1-ci-3",
@@ -42,7 +52,8 @@
     ]
    ],
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Grading: attendance (a)%, midterm (b)%, final 45%"
   },
   {
    "id": "1-cl-1",
@@ -58,7 +69,8 @@
    "answer": 2,
    "explain": "FLOPS(floating-point operations per second) > MIPS.",
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Which performance metric does the slide give for supercomputers?"
   },
   {
    "id": "1-cl-2",
@@ -73,7 +85,8 @@
    ],
    "answer": 3,
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Which class of computer has the strictest power, performance and cost constraints?"
   },
   {
    "id": "1-cl-3",
@@ -89,7 +102,9 @@
    "answer": 2,
    "explain": "'Smaller is faster'는 MIPS 설계 원칙 2. 8가지 아이디어엔 없음.",
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Which of the following is NOT one of the Eight Great Ideas?",
+   "explain_en": "'Smaller is faster' is MIPS Design Principle 2. It is not one of the eight great ideas."
   },
   {
    "id": "1-bp-1",
@@ -104,7 +119,14 @@
    ],
    "answer": 1,
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Which two belong to system software?",
+   "choices_en": [
+    "Web browser and Compiler",
+    "Compiler and Operating System",
+    "OS and Processor",
+    "Assembler and Memory"
+   ]
   },
   {
    "id": "1-bp-2",
@@ -113,7 +135,8 @@
    "prompt": "Assembly language는 사람이 읽을 수 있으면서 기계어와 거의 일대일로 대응하는 언어다.",
    "answer": true,
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Assembly language is human-readable and corresponds almost one-to-one with machine language."
   },
   {
    "id": "1-co-1",
@@ -128,7 +151,14 @@
    ],
    "answer": 0,
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "What are the two components of a processor?",
+   "choices_en": [
+    "Datapath and Control unit",
+    "ALU and Memory",
+    "Register and Cache",
+    "Bus and I/O"
+   ]
   },
   {
    "id": "1-co-2",
@@ -138,7 +168,9 @@
    "answer": true,
    "explain": "교수님: 많이 헷갈리는 부분.",
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Network adapters such as LAN and Wi-Fi are I/O devices.",
+   "explain_en": "The professor said this is a commonly confused point."
   },
   {
    "id": "1-co-3",
@@ -152,7 +184,8 @@
     "generates control signals for the datapath"
    ],
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Name the two components of a processor and explain the role of each in one line. (Answer in English.)"
   },
   {
    "id": "1-co-4",
@@ -168,7 +201,15 @@
    "answer": 2,
    "explain": "캐시는 보통 SRAM.",
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Which statement about RAM and ROM is correct?",
+   "explain_en": "Cache is usually SRAM.",
+   "choices_en": [
+    "RAM is non-volatile, ROM is volatile",
+    "Both are volatile",
+    "RAM is volatile; ROM is non-volatile and stores boot firmware",
+    "Cache is usually made of DRAM"
+   ]
   },
   {
    "id": "1-isa-1",
@@ -183,7 +224,8 @@
     "portability"
    ],
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "What is an ISA (Instruction Set Architecture), and what is its most important benefit? (Answer in English.)"
   },
   {
    "id": "1-isa-2",
@@ -192,7 +234,8 @@
    "prompt": "ISA 덕분에 하드웨어가 바뀌어도 소프트웨어를 고치지 않고 실행할 수 있다(portability).",
    "answer": true,
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Thanks to the ISA, software can run without modification even when the hardware changes (portability)."
   },
   {
    "id": "1-isa-3",
@@ -207,7 +250,8 @@
    ],
    "answer": 1,
    "lesson": "L1-1",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "What is the fastest memory in a computer system, located inside the processor?"
   },
   {
    "id": "1-pf-1",
@@ -223,7 +267,15 @@
    "answer": 3,
    "explain": "알고리즘은 연산 수를 결정. 연산당 명령어 수는 언어·컴파일러·아키텍처.",
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Which of the following does NOT determine the number of machine instructions executed per operation?",
+   "explain_en": "The algorithm determines the number of operations. The number of instructions per operation is determined by the language, compiler and architecture.",
+   "choices_en": [
+    "Programming language",
+    "Compiler",
+    "Architecture (ISA)",
+    "The algorithm's number of operations"
+   ]
   },
   {
    "id": "1-pf-2",
@@ -233,7 +285,9 @@
    "answer": false,
    "explain": "전력 제약(power wall) 때문에 막힘.",
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "According to Moore's Law, IC capacity doubles every 18–24 months, so single-processor performance will keep rising without limit.",
+   "explain_en": "It is stalled by power constraints (the power wall)."
   },
   {
    "id": "1-pf-3",
@@ -248,7 +302,14 @@
    ],
    "answer": 0,
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "For the same sorting task, what is mainly reduced by using merge sort (n log n) instead of bubble sort (n²)?",
+   "choices_en": [
+    "The number of operations executed",
+    "CPI",
+    "Clock rate",
+    "Clock period"
+   ]
   },
   {
    "id": "1-rt-1",
@@ -263,7 +324,14 @@
    ],
    "answer": 1,
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "What is the definition of throughput?",
+   "choices_en": [
+    "The time it takes to complete one task",
+    "Total work done per unit time",
+    "The duration of one clock cycle",
+    "Cycles per instruction"
+   ]
   },
   {
    "id": "1-rt-2",
@@ -279,7 +347,8 @@
     ]
    ],
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Response time is also called (a) or execution time."
   },
   {
    "id": "1-rt-3",
@@ -292,7 +361,8 @@
     "throughput = work per unit time"
    ],
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Define response time and throughput. (Answer in English.)"
   },
   {
    "id": "1-pr-1",
@@ -308,7 +378,13 @@
    "slot": 3,
    "pts": 6,
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "The same program takes 12 s on system A and 30 s on system B. How many times faster is A than B? Show your work.",
+   "keys_en": [
+    "Performance ratio = inverse of the time ratio",
+    "30/12",
+    "2.5"
+   ]
   },
   {
    "id": "1-pr-2",
@@ -323,7 +399,8 @@
    ],
    "answer": 2,
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "If Performance_X / Performance_Y = n, which of the following equals n?"
   },
   {
    "id": "1-pr-3",
@@ -333,7 +410,9 @@
    "answer": false,
    "explain": "실행 시간이 길면 느림. Y가 2배 빠름.",
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "If X's execution time is twice Y's execution time, then X is 2 times faster than Y.",
+   "explain_en": "Longer execution time means slower. Y is 2 times faster."
   },
   {
    "id": "1-pr-4",
@@ -348,7 +427,8 @@
    "slot": 3,
    "pts": 6,
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Computer P runs a program in 8 s, and Q runs the same program in 10 s. What is n in 'P is n times faster than Q'?"
   },
   {
    "id": "1-pr-5",
@@ -379,7 +459,8 @@
     "5 s"
    ],
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "System A is 4 times faster than B. If B's execution time is 20 s, what is A's execution time?"
   },
   {
    "id": "1-ctd-1",
@@ -394,7 +475,8 @@
    ],
    "answer": 2,
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "In this course, what does 'execution time' refer to?"
   },
   {
    "id": "1-ctd-2",
@@ -428,7 +510,12 @@
     "400 ps (0.4 ns)"
    ],
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "If the clock rate is 2.5 GHz, what is the clock period?",
+   "keys_en": [
+    "Reciprocal",
+    "400 ps (0.4 ns)"
+   ]
   },
   {
    "id": "1-ctd-4",
@@ -437,7 +524,8 @@
    "prompt": "Elapsed time은 I/O·OS 오버헤드까지 포함하므로 CPU 성능만 비교하기에는 부정확하다.",
    "answer": true,
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Elapsed time includes I/O and OS overhead, so it is inaccurate for comparing CPU performance alone."
   },
   {
    "id": "1-ctd-5",
@@ -452,7 +540,8 @@
    ],
    "answer": 1,
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "If the clock period is 250 ps, what is the clock rate?"
   },
   {
    "id": "1-ct-1",
@@ -469,7 +558,8 @@
    "slot": 3,
    "pts": 6,
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Computer A runs a program in 10 s at 2 GHz. We want to design Computer B that runs it in 6 s; B can increase the clock rate, but at the cost of needing 1.2 times as many clock cycles as A. What is B's clock rate?"
   },
   {
    "id": "1-ct-2",
@@ -485,7 +575,8 @@
    "slot": 3,
    "pts": 6,
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Computer A takes 15 s at 3 GHz. We want Computer B to run the same program in 10 s, but B needs 1.5 times as many clock cycles as A. What is B's clock rate?"
   },
   {
    "id": "1-ct-3",
@@ -500,7 +591,8 @@
    ],
    "answer": 3,
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Which expression is NOT equal to CPU Time?"
   },
   {
    "id": "1-ct-4",
@@ -509,7 +601,8 @@
    "prompt": "Clock rate를 높이면 CPU clock cycle 수가 늘어나는 trade-off가 흔히 있다.",
    "answer": true,
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "There is often a trade-off in which increasing the clock rate increases the number of CPU clock cycles."
   },
   {
    "id": "1-ct-5",
@@ -522,7 +615,8 @@
     "2 s"
    ],
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "A program uses 4×10⁹ clock cycles and the clock rate is 2 GHz. What is the CPU time?"
   },
   {
    "id": "1-ct-6",
@@ -537,18 +631,26 @@
      "감소",
      "decrease",
      "reduce",
-     "줄여"
+     "줄여",
+     "lower",
+     "decreasing",
+     "reducing"
     ],
     [
      "높이",
      "높여",
      "올려",
      "증가",
-     "increase"
+     "increase",
+     "raise",
+     "increasing",
+     "raising"
     ]
    ],
    "lesson": "L1-2",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "To improve performance, (a) the number of clock cycles or (b) the clock rate.",
+   "answer_en": "(a) reduce / (b) increase"
   },
   {
    "id": "1-cpi-1",
@@ -565,7 +667,14 @@
    "slot": 4,
    "pts": 6,
    "lesson": "L1-3",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Computer A: cycle time 250 ps, CPI 2.0. Computer B: cycle time 500 ps, CPI 1.2. Same ISA and same program. Which is faster, and by how much?",
+   "keys_en": [
+    "Let IC = I",
+    "A = 500I ps",
+    "B = 600I ps",
+    "A is 1.2 times faster"
+   ]
   },
   {
    "id": "1-cpi-2",
@@ -581,7 +690,13 @@
    "slot": 4,
    "pts": 6,
    "lesson": "L1-3",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Computer A: clock 2 GHz, CPI 1.5. Computer B: clock 3 GHz, CPI 2.4. For the same program, which is faster, and by how much?",
+   "keys_en": [
+    "IC×CPI/rate",
+    "A 0.75I ns, B 0.8I ns",
+    "A is about 1.07 times faster"
+   ]
   },
   {
    "id": "1-cpi-3",
@@ -597,7 +712,15 @@
    "answer": 1,
    "explain": "슬라이드: CPI는 CPU hardware가 결정. 요약표에선 program·language·compiler·ISA·organization 모두 영향.",
    "lesson": "L1-3",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "What mainly determines CPI?",
+   "explain_en": "Slide: CPI is determined by the CPU hardware. In the summary table, program, language, compiler, ISA and organization all affect it.",
+   "choices_en": [
+    "The program only",
+    "CPU hardware (organization)",
+    "Technology only",
+    "Clock rate"
+   ]
   },
   {
    "id": "1-cpi-4",
@@ -609,7 +732,8 @@
     [
      "instructioncount",
      "ic",
-     "명령어수"
+     "명령어수",
+     "instructions"
     ],
     [
      "cpi",
@@ -630,7 +754,8 @@
     "1 s"
    ],
    "lesson": "L1-3",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "What is the CPU time of a program with IC = 2×10⁹, CPI = 1.5 and clock rate = 3 GHz?"
   },
   {
    "id": "1-cpi-6",
@@ -640,7 +765,9 @@
    "answer": true,
    "explain": "같은 IC는 비율에서 약분 (교수님 풀이 방식).",
    "lesson": "L1-3",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "When comparing two computers on the same program, the performance ratio can be found even without knowing the IC.",
+   "explain_en": "The same IC cancels out in the ratio (the method the professor used)."
   },
   {
    "id": "1-wc-1",
@@ -658,7 +785,15 @@
    "slot": 4,
    "pts": 6,
    "lesson": "L1-3",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Classes A, B and C have CPIs of 1, 2 and 3. Sequence 1 executes 2 of A, 1 of B and 2 of C; Sequence 2 executes 4 of A, 1 of B and 1 of C. What is the average CPI of each sequence, and which is faster?",
+   "keys_en": [
+    "seq1 10 cycles / 5",
+    "CPI 2.0",
+    "seq2 9 cycles / 6",
+    "CPI 1.5",
+    "seq2 is faster (fewer cycles)"
+   ]
   },
   {
    "id": "1-wc-2",
@@ -673,7 +808,12 @@
    "slot": 4,
    "pts": 6,
    "lesson": "L1-3",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "With instruction classes of CPI A=1, B=3, C=4, a program consists of 50% A, 30% B and 20% C. What is the average CPI?",
+   "keys_en": [
+    "Weighted by relative frequency",
+    "2.2"
+   ]
   },
   {
    "id": "1-wc-3",
@@ -683,7 +823,9 @@
    "answer": false,
    "explain": "예제에서 Seq 2가 명령어는 6개로 많지만 사이클 9로 더 빠름.",
    "lesson": "L1-3",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "A code sequence with more instructions is always slower.",
+   "explain_en": "In the example, Sequence 2 has more instructions (6) but only 9 cycles, so it is faster."
   },
   {
    "id": "1-wc-4",
@@ -699,7 +841,8 @@
     ]
    ],
    "lesson": "L1-3",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "In the weighted average CPI = Σ CPI_i × (IC_i / IC), IC_i / IC is called the (a)."
   },
   {
    "id": "1-wc-5",
@@ -712,7 +855,8 @@
     "Y 1000 cycles, CPI 3.33"
    ],
    "lesson": "L1-3",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "CPI: A=2, B=4. Program X has 300 A and 100 B instructions; program Y has 100 A and 200 B instructions. What are the total cycles and average CPI of each?"
   },
   {
    "id": "1-ps-1",
@@ -727,7 +871,8 @@
    ],
    "answer": 2,
    "lesson": "L1-3",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Which choice lists only factors that affect the clock rate?"
   },
   {
    "id": "1-ps-2",
@@ -736,7 +881,8 @@
    "prompt": "Compiler는 instruction count와 CPI 모두에 영향을 준다.",
    "answer": true,
    "lesson": "L1-3",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "The compiler affects both the instruction count and the CPI."
   },
   {
    "id": "1-ps-3",
@@ -773,7 +919,8 @@
    "slot": 5,
    "pts": 5,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "A new CPU has 85% of the capacitive load of the old CPU, and its voltage and frequency are each 15% lower. What is the power ratio P_new / P_old?"
   },
   {
    "id": "1-pw-2",
@@ -788,7 +935,14 @@
    ],
    "answer": 0,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Which is a correct cause of the power wall?",
+   "choices_en": [
+    "We cannot reduce the voltage further or remove more heat",
+    "The number of transistors decreases",
+    "The clock is too slow",
+    "There is not enough memory"
+   ]
   },
   {
    "id": "1-pw-3",
@@ -797,7 +951,8 @@
    "prompt": "Power wall 때문에 업계는 multicore로 방향을 바꿨고, 이는 programmer의 명시적 병렬 프로그래밍을 요구한다.",
    "answer": true,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Because of the power wall, the industry shifted to multicore, which requires explicit parallel programming by the programmer."
   },
   {
    "id": "1-am-1",
@@ -813,7 +968,14 @@
    "slot": 5,
    "pts": 5,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Of a 100 s program, multiplication takes 80 s. How much must multiplication be improved to make the whole program 5 times faster?",
+   "answer_en": "T_improved = 80/n + 20, target 20 s (100/5)\n20 = 80/n + 20 → 80/n = 0 → impossible. Even with infinitely fast multiplication, the speedup is at most 5×.",
+   "keys_en": [
+    "T = 80/n + 20",
+    "Target 20 s",
+    "Impossible (n → ∞)"
+   ]
   },
   {
    "id": "1-am-2",
@@ -829,7 +991,14 @@
    "slot": 5,
    "pts": 5,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Of a 100 s program, multiplication takes 80 s. How much must multiplication be improved to make the whole program 4 times faster?",
+   "answer_en": "Target 100/4 = 25 s\n25 = 80/n + 20 → 80/n = 5 → n = 16",
+   "keys_en": [
+    "Target 25 s",
+    "80/n = 5",
+    "16 times"
+   ]
   },
   {
    "id": "1-am-3",
@@ -842,7 +1011,8 @@
      "improvementfactor",
      "개선배수",
      "speedup",
-     "개선율"
+     "개선율",
+     "improvement"
     ],
     [
      "unaffected",
@@ -859,7 +1029,8 @@
    "prompt": "Amdahl's Law의 pitfall: 한 부분을 n배 개선하면 전체 성능도 n배 좋아진다고 기대하는 것.",
    "answer": true,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "The pitfall of Amdahl's Law: expecting that improving one part n times will improve overall performance n times."
   },
   {
    "id": "1-am-5",
@@ -873,7 +1044,13 @@
     "약 1.67배"
    ],
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Of an execution time of 50 s, memory access takes 30 s. If memory access is made 3 times faster, what are the new execution time and the speedup?",
+   "keys_en": [
+    "30/3 + 20",
+    "30 s",
+    "About 1.67 times"
+   ]
   },
   {
    "id": "1-am-6",
@@ -888,7 +1065,8 @@
    ],
    "answer": 1,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Which design lesson is closest to what Amdahl's Law teaches?"
   },
   {
    "id": "1-mi-1",
@@ -906,7 +1084,15 @@
    "slot": 5,
    "pts": 5,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "A and B both run at 4 GHz. IC: A 10 billion, B 8 billion; CPI: A 1.0, B 1.1. Calculate the MIPS and CPU time of each, and state which one is actually faster.",
+   "keys_en": [
+    "MIPS_A 4000",
+    "MIPS_B ≈ 3636",
+    "time A 2.5 s",
+    "time B 2.2 s",
+    "B is actually faster"
+   ]
   },
   {
    "id": "1-mi-2",
@@ -923,7 +1109,14 @@
    "slot": 2,
    "pts": 3,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Explain why MIPS is a poor performance metric. (Answer in English.)",
+   "keys_en": [
+    "Instruction count drops out (cancels)",
+    "Does not account for ISA differences",
+    "Does not account for differences in instruction complexity",
+    "CPI varies between programs"
+   ]
   },
   {
    "id": "1-mi-3",
@@ -932,7 +1125,8 @@
    "prompt": "MIPS 값이 높은 컴퓨터가 항상 같은 프로그램을 더 빨리 실행한다.",
    "answer": false,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "A computer with a higher MIPS value always runs the same program faster."
   },
   {
    "id": "1-mi-4",
@@ -959,7 +1153,8 @@
     "2000"
    ],
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "What is the MIPS rating of a computer at 3 GHz with CPI 1.5?"
   },
   {
    "id": "1-sp-1",
@@ -974,7 +1169,14 @@
    ],
    "answer": 0,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Which statement about the SPEC CPU benchmark is correct?",
+   "choices_en": [
+    "It measures CPU performance by the elapsed time of programs with negligible I/O",
+    "It measures only server power",
+    "It compares MIPS values",
+    "It measures only CPI"
+   ]
   },
   {
    "id": "1-sp-2",
@@ -983,7 +1185,8 @@
    "prompt": "슬라이드의 i7은 10% 부하에서도 최대 전력의 약 절반(47%)을 쓴다 → 저부하에서도 전력이 많이 든다.",
    "answer": true,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "The i7 on the slide uses about half (47%) of its peak power even at 10% load → power consumption stays high even at low load."
   },
   {
    "id": "1-rc-1",
@@ -1002,7 +1205,16 @@
    "slot": 2,
    "pts": 3,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Compare RISC and CISC (example architectures, advantages, disadvantages). (Answer in English.)",
+   "keys_en": [
+    "RISC examples: MIPS/ARM",
+    "CISC example: x86",
+    "RISC advantages: fast, power-efficient, scalable",
+    "RISC disadvantage: more instructions needed",
+    "CISC advantages: smaller programs, compatibility",
+    "CISC disadvantages: slower, higher power"
+   ]
   },
   {
    "id": "1-rc-2",
@@ -1017,7 +1229,14 @@
    ],
    "answer": 1,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "Which category does x86-64 belong to?",
+   "choices_en": [
+    "RISC",
+    "CISC",
+    "VLIW",
+    "Neither"
+   ]
   },
   {
    "id": "1-rc-3",
@@ -1026,7 +1245,8 @@
    "prompt": "RISC의 단점은 복잡한 작업에 더 많은 명령어가 필요해 프로그램 크기가 커질 수 있다는 것이다.",
    "answer": true,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "A disadvantage of RISC is that complex tasks need more instructions, which can make programs larger."
   },
   {
    "id": "1-rc-4",
@@ -1041,7 +1261,8 @@
    ],
    "answer": 2,
    "lesson": "L1-4",
-   "unit": "U1"
+   "unit": "U1",
+   "prompt_en": "What does 'MIPS' stand for in the MIPS architecture?"
   },
   {
    "id": "2-mc-1",
@@ -1056,7 +1277,8 @@
    ],
    "answer": 3,
    "lesson": "L2-1",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Which of the following is NOT a MIPS instruction format (classification by format)?"
   },
   {
    "id": "2-mc-2",
@@ -1065,7 +1287,8 @@
    "prompt": "MIPS는 RISC ISA의 전형적인 예다.",
    "answer": true,
    "lesson": "L2-1",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "MIPS is a typical example of a RISC ISA."
   },
   {
    "id": "2-af-1",
@@ -1079,7 +1302,13 @@
     "add a, a, d"
    ],
    "lesson": "L2-1",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write the C code `a = b + c + d;` using MIPS arithmetic instructions (you may use the variable names directly as operands).",
+   "keys_en": [
+    "Split into two lines",
+    "add a, b, c",
+    "add a, a, d"
+   ]
   },
   {
    "id": "2-af-2",
@@ -1094,7 +1323,8 @@
    ],
    "answer": 1,
    "lesson": "L2-1",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What does `add a, b, c` mean?"
   },
   {
    "id": "2-af-3",
@@ -1122,7 +1352,8 @@
    "prompt": "MIPS 산술 명령어는 모두 destination 1개와 source 2개의 형식을 따른다.",
    "answer": true,
    "lesson": "L2-1",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "All MIPS arithmetic instructions have the form of one destination and two sources."
   },
   {
    "id": "2-rg-1",
@@ -1138,7 +1369,13 @@
    "slot": 7,
    "pts": 6,
    "lesson": "L2-1",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `f = (g + h) - (i + j);` in MIPS. f, g, h, i and j are in $s0, $s1, $s2, $s3 and $s4, respectively.",
+   "keys_en": [
+    "add $t0, $s1, $s2",
+    "add $t1, $s3, $s4",
+    "sub $s0, $t0, $t1 (result in $s0)"
+   ]
   },
   {
    "id": "2-rg-2",
@@ -1153,7 +1390,14 @@
    ],
    "answer": 2,
    "lesson": "L2-1",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What are the number and size of MIPS registers?",
+   "choices_en": [
+    "16 × 32-bit",
+    "32 × 64-bit",
+    "32 × 32-bit",
+    "64 × 32-bit"
+   ]
   },
   {
    "id": "2-rg-3",
@@ -1179,7 +1423,9 @@
    "answer": false,
    "explain": "레지스터 피연산자만. 메모리는 lw/sw로.",
    "lesson": "L2-1",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "MIPS arithmetic instructions can operate directly on operands in memory.",
+   "explain_en": "Register operands only. Memory is accessed with lw/sw."
   },
   {
    "id": "2-rg-5",
@@ -1192,7 +1438,12 @@
     "sub $s0, $s1, $t0"
    ],
    "lesson": "L2-1",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `x = y - (z + 5);` in MIPS. x, y and z are in $s0, $s1 and $s2.",
+   "keys_en": [
+    "z+5 with addi",
+    "sub $s0, $s1, $t0"
+   ]
   },
   {
    "id": "2-mb-1",
@@ -1207,7 +1458,14 @@
    ],
    "answer": 1,
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Which statement about MIPS memory addresses is correct?",
+   "choices_en": [
+    "Memory is addressed in words",
+    "Memory is byte addressed, and word addresses are multiples of 4",
+    "Addresses are always odd",
+    "Memory shares the same address space as the registers"
+   ]
   },
   {
    "id": "2-mb-2",
@@ -1220,7 +1478,8 @@
     "0x1014"
    ],
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "The base address of int array A is 0x1000. What is the address of A[5]?"
   },
   {
    "id": "2-mb-3",
@@ -1229,7 +1488,8 @@
    "prompt": "레지스터가 32개뿐이라 배열·구조체 같은 composite data는 메모리에 둔다.",
    "answer": true,
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Because there are only 32 registers, composite data such as arrays and structures is kept in memory."
   },
   {
    "id": "2-en-1",
@@ -1245,7 +1505,13 @@
    "slot": 6,
    "pts": 5,
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "The 32-bit value 0x12345678 is stored at addresses 0–3. Write the value at each address in big endian and in little endian.",
+   "keys_en": [
+    "big: MSB (12) at address 0",
+    "little: LSB (78) at address 0",
+    "Digit order within a byte is preserved"
+   ]
   },
   {
    "id": "2-en-2",
@@ -1260,7 +1526,8 @@
    "slot": 6,
    "pts": 5,
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "The 32-bit value 0x34125678 is stored at addresses 0–3. What is the value at each address in big endian and in little endian?"
   },
   {
    "id": "2-en-3",
@@ -1276,7 +1543,9 @@
    "answer": 3,
    "explain": "LSB byte = D4. 두 자리 순서는 뒤집지 않음.",
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "When 0xA1B2C3D4 is stored in little endian, what is the value at address 0?",
+   "explain_en": "The LSB byte = D4. Do not reverse the two digits."
   },
   {
    "id": "2-en-4",
@@ -1286,7 +1555,9 @@
    "answer": false,
    "explain": "byte 안의 두 자리 순서는 바꾸지 않는다 → 78.",
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "In little endian, the last byte 78 of 0x12345678 is stored at address 0 as 87.",
+   "explain_en": "The order of the two digits within a byte is not changed → 78."
   },
   {
    "id": "2-en-5",
@@ -1307,7 +1578,8 @@
     ]
    ],
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Big endian stores the (a) at the lowest address; little endian stores the (b) at the lowest address."
   },
   {
    "id": "2-en-6",
@@ -1320,7 +1592,8 @@
     "little 12 00 FE CA"
    ],
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "When 0xCAFE0012 is stored at addresses 100–103 in big endian and in little endian, what is the value at each address?"
   },
   {
    "id": "2-lw-1",
@@ -1336,7 +1609,8 @@
    "slot": 7,
    "pts": 6,
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `g = h + A[8];` in MIPS. g is in $s1, h is in $s2, and the base address of A is in $s3."
   },
   {
    "id": "2-lw-2",
@@ -1352,7 +1626,8 @@
    "slot": 7,
    "pts": 6,
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `A[12] = h + A[8];` in MIPS. h is in $s2, and the base address of A is in $s3."
   },
   {
    "id": "2-lw-3",
@@ -1367,7 +1642,14 @@
    ],
    "answer": 0,
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "In `sw $t0, 8($s1)`, what is the role of $t0?",
+   "choices_en": [
+    "The value to write to memory (source)",
+    "The destination that receives the loaded value",
+    "The base address",
+    "The offset"
+   ]
   },
   {
    "id": "2-lw-4",
@@ -1377,7 +1659,9 @@
    "answer": false,
    "explain": "offset은 상수만. 시험 OX에서 무조건 False, 코드에 쓰면 0점.",
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "A register can be used in the offset position, as in `lw $t0, $t1($s3)`.",
+   "explain_en": "The offset must be a constant. In a True/False question this is always False; writing it in code gets zero points."
   },
   {
    "id": "2-lw-5",
@@ -1393,7 +1677,8 @@
    "slot": 7,
    "pts": 6,
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `B[3] = B[1] + B[2];` in MIPS. The base address of B is in $s4 (int array)."
   },
   {
    "id": "2-lw-6",
@@ -1406,18 +1691,23 @@
      "offset",
      "상수offset",
      "오프셋",
-     "상수"
+     "상수",
+     "constant offset",
+     "immediate"
     ],
     [
      "baseaddress",
      "base",
      "베이스주소",
      "기준주소",
-     "레지스터"
+     "레지스터",
+     "base register",
+     "register"
     ]
    ],
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "`lw dest, (a)(base)` — the (a) goes before the parentheses, and the (b) goes inside the parentheses."
   },
   {
    "id": "2-lw-7",
@@ -1433,7 +1723,13 @@
    "slot": 7,
    "pts": 6,
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `x = A[i];` in MIPS. x is in $s0, i is in $s1, and the base of A is in $s2. (Do not use a register as the offset.)",
+   "keys_en": [
+    "×4 with sll",
+    "add to the base",
+    "lw $s0, 0($t1)"
+   ]
   },
   {
    "id": "2-rm-1",
@@ -1448,7 +1744,14 @@
    ],
    "answer": 2,
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What happens if variables are kept in memory instead of registers?",
+   "choices_en": [
+    "CPI becomes 0",
+    "The instruction count decreases",
+    "Loads/stores are needed, so more instructions are executed",
+    "The clock gets faster"
+   ]
   },
   {
    "id": "2-rm-2",
@@ -1464,7 +1767,8 @@
     ]
    ],
    "lesson": "L2-2",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Moving only the less frequently used variables out to memory is called (a)."
   },
   {
    "id": "2-im-1",
@@ -1478,7 +1782,13 @@
     "$zero와 더함"
    ],
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write a MIPS instruction that copies the value of register $s1 into $s2 (as the professor requires).",
+   "explain_en": "Using addi with $zero gets zero points (the professor, Week 4-2).",
+   "keys_en": [
+    "Uses add",
+    "Adds $zero"
+   ]
   },
   {
    "id": "2-im-2",
@@ -1494,7 +1804,9 @@
    "answer": 2,
    "explain": "subtract immediate는 없다.",
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Which is the correct MIPS instruction for `$s2 = $s1 - 1`?",
+   "explain_en": "There is no subtract immediate."
   },
   {
    "id": "2-im-3",
@@ -1503,7 +1815,8 @@
    "prompt": "$zero 레지스터에 값을 쓰면 그 값으로 바뀐다.",
    "answer": false,
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Writing a value to the $zero register changes it to that value."
   },
   {
    "id": "2-im-4",
@@ -1529,7 +1842,9 @@
    "answer": false,
    "explain": "$zero는 레지스터라 immediate 자리에 못 씀 → add $v0, $s0, $zero.",
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "According to the professor, `addi $v0, $s0, $zero` is a correct way to copy a register.",
+   "explain_en": "$zero is a register, so it cannot go in the immediate position → add $v0, $s0, $zero."
   },
   {
    "id": "2-tw-1",
@@ -1544,7 +1859,8 @@
    ],
    "answer": 1,
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What is the range that can be represented in 32-bit two's complement?"
   },
   {
    "id": "2-tw-2",
@@ -1559,7 +1875,13 @@
    "slot": 6,
    "pts": 5,
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What is the decimal value of the 8-bit two's complement number `11111010`?",
+   "answer_en": "−1×2⁷ + 1×2⁶ + 1×2⁵ + 1×2⁴ + 1×2³ + 0 + 1×2¹ + 0 = −128 + 122 = −6\n(Or invert + 1 → 00000110 = 6 → −6)",
+   "keys_en": [
+    "Sign bit 1 → negative",
+    "−6"
+   ]
   },
   {
    "id": "2-tw-3",
@@ -1574,7 +1896,8 @@
    ],
    "answer": 0,
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What is the two's complement value of 32-bit `1111 … 1111` (all ones)?"
   },
   {
    "id": "2-tw-4",
@@ -1583,7 +1906,8 @@
    "prompt": "음이 아닌 수는 unsigned와 2의 보수에서 표현이 같다.",
    "answer": true,
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Non-negative numbers have the same representation in unsigned and in two's complement."
   },
   {
    "id": "2-tw-5",
@@ -1606,7 +1930,8 @@
     ]
    ],
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "The n-bit unsigned range is 0 to (a); the two's complement range is (b) to 2^(n−1) − 1"
   },
   {
    "id": "2-tw-6",
@@ -1619,7 +1944,9 @@
     "01111111 = 127"
    ],
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write the minimum and maximum values representable in 8-bit two's complement, in binary and decimal.",
+   "answer_en": "Minimum: 1000 0000 = −128\nMaximum: 0111 1111 = +127"
   },
   {
    "id": "2-ng-1",
@@ -1636,7 +1963,14 @@
    "slot": 6,
    "pts": 5,
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write −10 in 32-bit two's complement (show your work).",
+   "keys_en": [
+    "+10 in binary",
+    "Invert the bits",
+    "+1",
+    "…1111 0110"
+   ]
   },
   {
    "id": "2-ng-2",
@@ -1649,7 +1983,13 @@
     "0xFFFFFFFB"
    ],
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write −5 in 32-bit two's complement (hexadecimal).",
+   "answer_en": "+5 = 0…0101 → invert 1…1010 → +1 = 1…1011 = 0xFFFFFFFB",
+   "keys_en": [
+    "Invert + 1",
+    "0xFFFFFFFB"
+   ]
   },
   {
    "id": "2-ng-3",
@@ -1663,7 +2003,11 @@
      "invert",
      "반전",
      "비트반전",
-     "보수"
+     "보수",
+     "inversion",
+     "complementing",
+     "negate",
+     "flip"
     ]
    ],
    "lesson": "L2-3",
@@ -1676,7 +2020,8 @@
    "prompt": "x + x̄ (x의 모든 비트를 반전한 값) = −1 이므로 −x = x̄ + 1 이다.",
    "answer": true,
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Since x + x̄ (x with all bits inverted) = −1, −x = x̄ + 1."
   },
   {
    "id": "2-se-1",
@@ -1693,7 +2038,14 @@
    "slot": 6,
    "pts": 5,
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Sign-extend the 8-bit values +2 (`0000 0010`) and −2 (`1111 1110`) to 16 bits.",
+   "explain_en": "The '1111 1111 1000 0010' on slide p.21 is a typo.",
+   "keys_en": [
+    "+2: fill the upper bits with 0",
+    "−2: fill the upper bits with 1",
+    "1111 1111 1111 1110"
+   ]
   },
   {
    "id": "2-se-2",
@@ -1709,7 +2061,15 @@
    "answer": 3,
    "explain": "lbu·lhu는 zero extension.",
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "In which case does sign extension NOT occur in MIPS?",
+   "explain_en": "lbu and lhu use zero extension.",
+   "choices_en": [
+    "The immediate of addi",
+    "A byte loaded with lb",
+    "The displacement (offset) of beq",
+    "A byte loaded with lbu"
+   ]
   },
   {
    "id": "2-se-3",
@@ -1722,7 +2082,12 @@
     "0xFFFFFFFD"
    ],
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What is 16-bit −3 (`1111 1111 1111 1101`) extended to 32 bits? Also write it in hexadecimal.",
+   "keys_en": [
+    "Upper 16 bits filled with 1",
+    "0xFFFFFFFD"
+   ]
   },
   {
    "id": "2-se-4",
@@ -1731,7 +2096,8 @@
    "prompt": "Sign extension은 값을 보존하기 위해 sign bit를 왼쪽으로 복제한다.",
    "answer": true,
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Sign extension replicates the sign bit to the left to preserve the value."
   },
   {
    "id": "2-se-5",
@@ -1741,7 +2107,9 @@
    "answer": false,
    "explain": "오타. 1111 1111 1111 1110이 맞음.",
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "The example on slide p.21, '−2 = 1111 1110 → 1111 1111 1000 0010', is a correct sign extension.",
+   "explain_en": "It is a typo. The correct value is 1111 1111 1111 1110."
   },
   {
    "id": "2-se-6",
@@ -1754,7 +2122,12 @@
     "1111 1111 1111 1010"
    ],
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What is 8-bit −6 (`1111 1010`) sign-extended to 16 bits?",
+   "keys_en": [
+    "Upper 8 bits filled with 1",
+    "1111 1111 1111 1010"
+   ]
   },
   {
    "id": "2-hx-1",
@@ -1767,7 +2140,12 @@
     "1110 1100 1010 1000 0110 0100 0010 0000"
    ],
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Convert the hexadecimal `eca8 6420` to binary.",
+   "keys_en": [
+    "4 bits per digit",
+    "1110 1100 1010 1000 0110 0100 0010 0000"
+   ]
   },
   {
    "id": "2-hx-2",
@@ -1782,7 +2160,8 @@
    ],
    "answer": 1,
    "lesson": "L2-3",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What is binary `0011 1100` in hexadecimal?"
   },
   {
    "id": "2-eb-1",
@@ -1797,7 +2176,8 @@
    ],
    "answer": 2,
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What are the register numbers of $t0, $s0 and $sp?"
   },
   {
    "id": "2-eb-2",
@@ -1814,7 +2194,8 @@
     ]
    ],
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "MIPS instructions are encoded in (a) bits, and the first (b) bits are the opcode."
   },
   {
    "id": "2-eb-3",
@@ -1829,7 +2210,8 @@
    ],
    "answer": 3,
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What are the register numbers of $t8 and $t9?"
   },
   {
    "id": "2-rf-1",
@@ -1846,7 +2228,14 @@
    "slot": 8,
    "pts": 6,
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `add $t0, $s1, $s2` as R-format fields (decimal), in binary, and in hexadecimal. ($s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2, funct of add = 32)",
+   "keys_en": [
+    "rs=$s1(17), rt=$s2(18), rd=$t0(8)",
+    "Order: rs rt rd",
+    "funct 32",
+    "0x02324020"
+   ]
   },
   {
    "id": "2-rf-2",
@@ -1863,7 +2252,8 @@
    "slot": 8,
    "pts": 6,
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write the machine code of `sub $s0, $t0, $t1` in binary and hexadecimal. ($s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2, funct of sub = 34)"
   },
   {
    "id": "2-rf-3",
@@ -1878,7 +2268,8 @@
    ],
    "answer": 2,
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Which is the correct order of the R-format fields?"
   },
   {
    "id": "2-rf-4",
@@ -1887,7 +2278,8 @@
    "prompt": "R-format 명령어의 opcode는 항상 0이고 연산 종류는 funct가 정한다.",
    "answer": true,
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "The opcode of an R-format instruction is always 0, and the funct field determines the operation."
   },
   {
    "id": "2-rf-5",
@@ -1900,18 +2292,25 @@
      "앞",
      "처음",
      "첫번째",
-     "first"
+     "first",
+     "front",
+     "beginning",
+     "at the front"
     ],
     [
      "뒤",
      "다음",
      "나중",
      "after",
-     "뒤에"
+     "뒤에",
+     "behind",
+     "later"
     ]
    ],
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "In assembly `add rd, rs, rt`, the destination comes (a), but in machine code rd comes (b) rs and rt.",
+   "answer_en": "(a) first / (b) after"
   },
   {
    "id": "2-rf-6",
@@ -1928,7 +2327,8 @@
    "slot": 8,
    "pts": 6,
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Convert the machine code `000000 10001 10010 01000 00000 101010` to assembly. (funct 42 = slt, $s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2)"
   },
   {
    "id": "2-rf-7",
@@ -1942,7 +2342,8 @@
     "0x012A4024"
    ],
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write the machine code of `and $t0, $t1, $t2` in hexadecimal. (funct of and = 36, $s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2)"
   },
   {
    "id": "2-if-1",
@@ -1957,7 +2358,8 @@
    ],
    "answer": 1,
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What are the fields of the I-format?"
   },
   {
    "id": "2-if-2",
@@ -1972,7 +2374,14 @@
    ],
    "answer": 0,
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "In `lw $t0, 32($s3)`, which register goes in the rt field?",
+   "choices_en": [
+    "$t0 (destination)",
+    "$s3 (base)",
+    "32",
+    "The rt field is not used"
+   ]
   },
   {
    "id": "2-if-3",
@@ -1989,7 +2398,8 @@
    "slot": 8,
    "pts": 6,
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write the machine code of `lw $t0, 32($s3)` in binary and hexadecimal. (lw opcode = 35, $s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2)"
   },
   {
    "id": "2-if-4",
@@ -2015,7 +2425,8 @@
    "prompt": "I-format의 상수 필드는 16 bit라서 −2¹⁵ ~ 2¹⁵ − 1 범위를 표현한다.",
    "answer": true,
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "The constant field of the I-format is 16 bits, so it represents the range −2¹⁵ to 2¹⁵ − 1."
   },
   {
    "id": "2-if-6",
@@ -2029,7 +2440,8 @@
     "0x2273FFFF"
    ],
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write the machine code of `addi $s3, $s3, -1` in hexadecimal. (addi opcode = 8, $s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2)"
   },
   {
    "id": "2-ex-1",
@@ -2046,7 +2458,8 @@
    "slot": 8,
    "pts": 6,
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write the C code `A[300] = h + A[300];` in MIPS, and write the fields of each instruction in decimal. $t1 = base address of A, $s2 = h. (lw = 35, sw = 43, add funct = 32)"
   },
   {
    "id": "2-ex-2",
@@ -2061,7 +2474,8 @@
    ],
    "answer": 2,
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What is the byte offset of A[300]? (int array)"
   },
   {
    "id": "2-ex-3",
@@ -2076,7 +2490,8 @@
     "1200 = 0000 0100 1011 0000"
    ],
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write the binary representation of `lw $t0, 1200($t1)`. ($t0 = 8, $t1 = 9)"
   },
   {
    "id": "2-ex-4",
@@ -2091,7 +2506,8 @@
     "0xAE680030"
    ],
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What is the hexadecimal machine code of `sw $t0, 48($s3)`? (sw = 43, $t0 = 8, $s3 = 19)"
   },
   {
    "id": "2-sh-1",
@@ -2106,7 +2522,8 @@
    ],
    "answer": 2,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What is the effect of `sll $t2, $s0, 4`?"
   },
   {
    "id": "2-sh-2",
@@ -2115,7 +2532,8 @@
    "prompt": "srl은 왼쪽을 0으로 채우므로 음수(2의 보수)를 2^i로 나누는 데 그대로 쓸 수 있다.",
    "answer": false,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "srl fills the left with 0s, so it can be used as-is to divide a negative (two's complement) number by 2^i."
   },
   {
    "id": "2-sh-3",
@@ -2130,7 +2548,8 @@
     ]
    ],
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "In R-format, the number of positions to shift goes in the (a) field."
   },
   {
    "id": "2-sh-4",
@@ -2143,7 +2562,12 @@
     "144"
    ],
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "If $s0 = 0000 … 0000 1001 (9), write the result of `sll $t2, $s0, 4` in binary and decimal.",
+   "keys_en": [
+    "Shift left 4, fill the right with 0",
+    "144"
+   ]
   },
   {
    "id": "2-ao-1",
@@ -2156,7 +2580,12 @@
     "or 결과"
    ],
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "If $t1 = 0000 0000 0000 0000 0011 1100 0000 0000 and $t2 = 0000 0000 0000 0000 0000 1101 1100 0000, what are the results of `and $t0, $t1, $t2` and `or $t0, $t1, $t2`?",
+   "keys_en": [
+    "and result",
+    "or result"
+   ]
   },
   {
    "id": "2-ao-2",
@@ -2171,7 +2600,8 @@
    ],
    "answer": 1,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "How do you invert all bits of $t1 (NOT) in MIPS?"
   },
   {
    "id": "2-ao-3",
@@ -2180,7 +2610,8 @@
    "prompt": "AND는 원하는 비트만 남기고 나머지를 0으로 만드는 마스킹에 쓴다.",
    "answer": true,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "AND is used for masking: keeping only the selected bits and clearing the rest to 0."
   },
   {
    "id": "2-bi-1",
@@ -2195,7 +2626,14 @@
    ],
    "answer": 1,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What does `bne rs, rt, L1` do?",
+   "choices_en": [
+    "Branch to L1 if rs == rt",
+    "Branch to L1 if rs != rt",
+    "Always branch to L1",
+    "Branch to L1 if rs < rt"
+   ]
   },
   {
    "id": "2-bi-2",
@@ -2204,7 +2642,8 @@
    "prompt": "`j L1`은 조건 없이 L1로 점프한다.",
    "answer": true,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "`j L1` jumps to L1 unconditionally."
   },
   {
    "id": "2-ie-1",
@@ -2222,7 +2661,15 @@
    "slot": 9,
    "pts": 8,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `if (i == j) f = g + h; else f = g - h;` in MIPS. f, g, h, i, j = $s0, $s1, $s2, $s3, $s4.",
+   "keys_en": [
+    "Test the opposite condition with bne",
+    "add $s0, $s1, $s2",
+    "j Exit",
+    "Else: sub",
+    "Exit label"
+   ]
   },
   {
    "id": "2-ie-2",
@@ -2238,7 +2685,13 @@
    "slot": 9,
    "pts": 8,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `if (a != b) x = x + 1;` in MIPS. a, b, x = $s0, $s1, $s2.",
+   "keys_en": [
+    "Opposite condition with beq",
+    "addi $s2, $s2, 1",
+    "Skip label"
+   ]
   },
   {
    "id": "2-ie-3",
@@ -2253,7 +2706,14 @@
    ],
    "answer": 0,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "When compiling if-else, why is `j Exit` needed at the end of the if-block?",
+   "choices_en": [
+    "To skip the else-block",
+    "To repeat the loop",
+    "To save registers",
+    "To return from the function"
+   ]
   },
   {
    "id": "2-ie-4",
@@ -2266,7 +2726,12 @@
     "rs = i, rt = j"
    ],
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `if (i < j) f = 1; else f = 0;` in MIPS using slt (without a branch if possible). i, j, f = $s3, $s4, $s0.",
+   "keys_en": [
+    "Done in one slt instruction",
+    "rs = i, rt = j"
+   ]
   },
   {
    "id": "2-ie-5",
@@ -2283,7 +2748,14 @@
    "slot": 9,
    "pts": 8,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `if (x == 0) y = y - 5; else y = y + 5;` in MIPS. x, y = $s0, $s1.",
+   "keys_en": [
+    "bne $s0, $zero",
+    "addi -5 (there is no subi)",
+    "j Exit",
+    "Else: addi 5"
+   ]
   },
   {
    "id": "2-wl-1",
@@ -2302,7 +2774,16 @@
    "slot": 9,
    "pts": 8,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `while (save[i] == k) i += 1;` in MIPS. i = $s3, k = $s5, base of save = $s6.",
+   "keys_en": [
+    "sll ×4",
+    "add base",
+    "lw offset 0",
+    "Exit with bne",
+    "addi i+1",
+    "j Loop"
+   ]
   },
   {
    "id": "2-wl-2",
@@ -2311,7 +2792,8 @@
    "prompt": "while 루프에서 `lw $t0, $s3($s6)`처럼 인덱스 레지스터를 offset에 바로 쓸 수 있다.",
    "answer": false,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "In a while loop, the index register can be used directly as the offset, as in `lw $t0, $s3($s6)`."
   },
   {
    "id": "2-wl-3",
@@ -2328,7 +2810,14 @@
    "slot": 9,
    "pts": 8,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `while (A[i] != 0) i++;` in MIPS. i = $s0, base of A = $s1 (int array).",
+   "keys_en": [
+    "Address calculation",
+    "lw 0($t1)",
+    "beq $t0, $zero, Exit",
+    "j Loop"
+   ]
   },
   {
    "id": "2-wl-4",
@@ -2343,7 +2832,14 @@
    ],
    "answer": 1,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Why is `sll $t1, $s3, 2` used?",
+   "choices_en": [
+    "To double i",
+    "Because int array elements are 4 bytes, so index × 4",
+    "To sign-extend",
+    "To end the loop"
+   ]
   },
   {
    "id": "2-wl-5",
@@ -2360,7 +2856,16 @@
     "j Loop"
    ],
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `sum = 0; for (i = 0; i < 10; i++) sum += i;` in MIPS. sum = $s0, i = $s1.",
+   "keys_en": [
+    "Initialization",
+    "i<10 with slti",
+    "Exit with beq",
+    "sum += i",
+    "i++",
+    "j Loop"
+   ]
   },
   {
    "id": "2-sl-1",
@@ -2374,7 +2879,13 @@
     "signed/unsigned 해석"
    ],
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "If $s0 = 1111 … 1111 and $s1 = 0000 … 0001, what are the results of `slt $t0, $s0, $s1` and `sltu $t0, $s0, $s1`?",
+   "keys_en": [
+    "slt → 1",
+    "sltu → 0",
+    "Signed vs unsigned interpretation"
+   ]
   },
   {
    "id": "2-sl-2",
@@ -2390,7 +2901,15 @@
    "answer": 0,
    "explain": "1 < 1은 거짓.",
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "In `slti $t0, $a0, 1`, if $a0 = 1, what is $t0?",
+   "explain_en": "1 < 1 is false.",
+   "choices_en": [
+    "0",
+    "1",
+    "−1",
+    "Unchanged"
+   ]
   },
   {
    "id": "2-sl-3",
@@ -2403,7 +2922,8 @@
     "bne $t0, $zero"
    ],
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `if ($s1 < $s2) goto L;` in two lines of MIPS."
   },
   {
    "id": "2-sl-4",
@@ -2412,7 +2932,8 @@
    "prompt": "`blt`는 MIPS의 진짜 명령어가 아니라 slt + bne로 바뀌는 pseudo-instruction이다.",
    "answer": true,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "`blt` is not a real MIPS instruction but a pseudo-instruction that becomes slt + bne."
   },
   {
    "id": "2-bd-1",
@@ -2429,7 +2950,14 @@
    "slot": 2,
    "pts": 3,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Why does MIPS use beq, bne + slt instead of instructions such as blt and bge? (Answer in English.)",
+   "keys_en": [
+    "Hardware for <, > comparison is slower",
+    "More work per instruction → slower clock",
+    "All instructions are penalized",
+    "beq/bne = a good compromise"
+   ]
   },
   {
    "id": "2-bd-2",
@@ -2438,7 +2966,8 @@
    "prompt": "blt를 하드웨어 명령어로 넣으면 그 명령어만 느려지고 다른 명령어는 영향이 없다.",
    "answer": false,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "If blt were added as a hardware instruction, only that instruction would become slower and other instructions would not be affected."
   },
   {
    "id": "2-jj-1",
@@ -2453,7 +2982,8 @@
    ],
    "answer": 2,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Immediately after executing `jal Proc` at address 100 (Proc is at address 388), what are $ra and PC?"
   },
   {
    "id": "2-jj-2",
@@ -2468,7 +2998,8 @@
     ]
    ],
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "The instruction that returns from a procedure is (a) $ra."
   },
   {
    "id": "2-jj-3",
@@ -2477,7 +3008,8 @@
    "prompt": "jal은 다음 명령어의 주소(PC + 4)를 $ra에 저장한다.",
    "answer": true,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "jal stores the address of the next instruction (PC + 4) in $ra."
   },
   {
    "id": "2-ru-1",
@@ -2492,7 +3024,8 @@
    ],
    "answer": 1,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Which registers must the callee save and restore if it uses them?"
   },
   {
    "id": "2-ru-2",
@@ -2507,7 +3040,8 @@
    ],
    "answer": 0,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Which instruction allocates 4 bytes of space on the MIPS stack?"
   },
   {
    "id": "2-ru-3",
@@ -2521,7 +3055,9 @@
      "argument",
      "arguments",
      "인수",
-     "매개변수"
+     "매개변수",
+     "parameters",
+     "parameter"
     ],
     [
      "결과값",
@@ -2529,11 +3065,16 @@
      "result",
      "results",
      "returnvalue",
-     "반환값"
+     "반환값",
+     "result values",
+     "return values",
+     "result value"
     ]
    ],
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "$a0–$a3 are registers for (a), and $v0–$v1 are registers for (b).",
+   "answer_en": "(a) arguments / (b) result values"
   },
   {
    "id": "2-ru-4",
@@ -2542,7 +3083,8 @@
    "prompt": "스택은 높은 주소에서 낮은 주소 방향으로 자란다.",
    "answer": true,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "The stack grows from high addresses toward low addresses."
   },
   {
    "id": "2-lf-1",
@@ -2562,7 +3104,17 @@
    "slot": 10,
    "pts": 8,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `int leaf_example(int g, h, i, j) { int f; f = (g + h) - (i + j); return f; }` in MIPS. Arguments are in $a0–$a3, f is in $s0, and the result goes in $v0.",
+   "keys_en": [
+    "$sp −4, sw $s0",
+    "g+h, i+j",
+    "sub $s0",
+    "add $v0, $s0, $zero",
+    "Restore $s0 with lw",
+    "$sp +4",
+    "jr $ra"
+   ]
   },
   {
    "id": "2-lf-2",
@@ -2577,7 +3129,14 @@
    ],
    "answer": 2,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Why is $s0 saved on the stack in leaf_example?",
+   "choices_en": [
+    "Because $s0 is an argument",
+    "Because $s0 is $ra",
+    "Because $s0 is a saved register, so the callee must preserve its original value",
+    "Because it is the stack pointer"
+   ]
   },
   {
    "id": "2-lf-3",
@@ -2586,7 +3145,8 @@
    "prompt": "Leaf procedure는 다른 프로시저를 호출하지 않는 프로시저다.",
    "answer": true,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "A leaf procedure is a procedure that does not call other procedures."
   },
   {
    "id": "2-lf-4",
@@ -2600,7 +3160,13 @@
     "jr $ra"
    ],
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `int sum3(int a, int b, int c) { return a + b + c; }` in MIPS (without using saved registers). Arguments in $a0–$a2, result in $v0.",
+   "keys_en": [
+    "Only temporary registers used → no stack needed",
+    "Two adds",
+    "jr $ra"
+   ]
   },
   {
    "id": "2-lf-5",
@@ -2614,7 +3180,14 @@
     "복원 offset 일치"
    ],
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "If leaf_example used two saved registers, $s0 and $s1, for f, how would the prologue (saving to the stack) change?",
+   "answer_en": "addi $sp, $sp, -8\nsw   $s1, 4($sp)\nsw   $s0, 0($sp)\n(The epilogue does lw from the same offsets, then addi $sp, $sp, 8)",
+   "keys_en": [
+    "Allocate −8",
+    "sw each to a different offset",
+    "Restore offsets match"
+   ]
   },
   {
    "id": "2-nl-1",
@@ -2634,7 +3207,17 @@
    "slot": 10,
    "pts": 8,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write the recursive `int fact(int n) { if (n < 1) return 1; else return n * fact(n - 1); }` in MIPS. Argument in $a0, result in $v0.",
+   "keys_en": [
+    "$sp −8, save $ra and $a0",
+    "slti + beq",
+    "Base case $v0 = 1",
+    "n−1, jal fact",
+    "Restore from the same offsets",
+    "mul",
+    "jr $ra"
+   ]
   },
   {
    "id": "2-nl-2",
@@ -2649,7 +3232,14 @@
    ],
    "answer": 3,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What must a non-leaf procedure save on the stack before a call?",
+   "choices_en": [
+    "$zero",
+    "All $t registers",
+    "$sp",
+    "$ra and any arguments/temporaries needed after the call"
+   ]
   },
   {
    "id": "2-nl-3",
@@ -2659,7 +3249,9 @@
    "answer": false,
    "explain": "반대로 복원하면 0점 (교수님 4주-1).",
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "In fact, if $a0 was saved at 0($sp) and $ra at 4($sp), it is fine to restore $a0 from 4($sp).",
+   "explain_en": "Restoring them in the opposite order gets zero points (the professor, Week 4-1)."
   },
   {
    "id": "2-nl-4",
@@ -2672,7 +3264,12 @@
     "원래 복귀 주소를 잃음"
    ],
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Explain why a non-leaf procedure must save $ra on the stack. (Answer in English.)",
+   "keys_en": [
+    "jal overwrites $ra",
+    "The original return address would be lost"
+   ]
   },
   {
    "id": "2-nl-5",
@@ -2686,7 +3283,8 @@
     ]
    ],
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "In fact, the n < 1 test is done with `slti $t0, $a0, 1` followed by `(a) $t0, $zero, L1`."
   },
   {
    "id": "2-ft-1",
@@ -2703,7 +3301,15 @@
    "slot": 10,
    "pts": 8,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "fact(3) is called with `jal fact` at address 100. The initial value of $sp is 500. Up to the deepest point of the recursion, write $sp and the values (a0, ra) saved on the stack at each step.",
+   "answer_en": "fact(3): $sp 492, 0($sp) = 3, 4($sp) = 104\nfact(2): $sp 484, 0($sp) = 2, 4($sp) = L1+8\nfact(1): $sp 476, 0($sp) = 1, 4($sp) = L1+8\nfact(0): $sp 468, 0($sp) = 0, 4($sp) = L1+8\n(In fact(0), slti → $t0 = 1 → returns $v0 = 1)",
+   "keys_en": [
+    "492/484/476/468",
+    "First ra = 104",
+    "Subsequent ra = L1+8",
+    "a0 = 3,2,1,0"
+   ]
   },
   {
    "id": "2-ft-2",
@@ -2718,7 +3324,14 @@
    ],
    "answer": 1,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "While executing fact(1), what is the result of `slti $t0, $a0, 1`, and what happens next?",
+   "choices_en": [
+    "$t0 = 1, returns 1 as the base case",
+    "$t0 = 0, beq branches to L1 and calls fact(0)",
+    "$t0 = 1, branches to L1",
+    "$t0 = 0, immediately jr $ra"
+   ]
   },
   {
    "id": "2-ft-3",
@@ -2732,7 +3345,14 @@
     "104로 복귀"
    ],
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "When fact(3) is completely finished, what are $v0, $sp, and the address the last jr goes to?",
+   "answer_en": "$v0 = 6 (1 → 1×1 → 2×1 → 3×2), $sp = 500 (restored), jr $ra → 104",
+   "keys_en": [
+    "$v0 = 6",
+    "$sp = 500",
+    "Returns to 104"
+   ]
   },
   {
    "id": "2-ft-4",
@@ -2742,7 +3362,8 @@
    "answer": true,
    "explain": "fact(3), (2), (1), (0) — 500 → 468.",
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "When fact(3) is called, a total of 4 frames (8 bytes each) are pushed onto the stack and then all released."
   },
   {
    "id": "2-ss-1",
@@ -2758,7 +3379,8 @@
    "answer": 1,
    "explain": "$ra 4 + char 1 + char 1 = 6.",
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "According to the professor, what stack size does a recursive function with two char arguments need to save $ra and its arguments?"
   },
   {
    "id": "2-ss-2",
@@ -2773,7 +3395,8 @@
    ],
    "answer": 2,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What stack size does a recursive function with one int argument need to save $ra and its argument?"
   },
   {
    "id": "2-ss-3",
@@ -2782,7 +3405,8 @@
    "prompt": "strcpy처럼 char 배열을 다뤄도 스택에 저장하는 값이 int(i)라면 $sp는 4만큼 움직인다.",
    "answer": true,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Even when handling a char array, as in strcpy, if the value saved on the stack is an int (i), $sp moves by 4."
   },
   {
    "id": "2-by-1",
@@ -2802,7 +3426,17 @@
    "slot": 10,
    "pts": 8,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write `void strcpy(char x[], char y[]) { int i = 0; while ((x[i] = y[i]) != '\\0') i += 1; }` in MIPS. x and y are in $a0 and $a1, and i is in $s0.",
+   "keys_en": [
+    "Save $s0",
+    "i = 0",
+    "Address = i + base (no ×4)",
+    "lbu / sb",
+    "Test for '\\0' with beq",
+    "i++, j L1",
+    "Restore, jr"
+   ]
   },
   {
    "id": "2-by-2",
@@ -2817,7 +3451,14 @@
    ],
    "answer": 0,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "How does the address calculation for char array x[i] differ from that of an int array?",
+   "choices_en": [
+    "Elements are 1 byte, so the index is not multiplied by 4",
+    "The index is multiplied by 8",
+    "No base address is needed",
+    "A register can be used as the offset"
+   ]
   },
   {
    "id": "2-by-3",
@@ -2832,7 +3473,8 @@
    ],
    "answer": 2,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Which instruction loads 1 byte and zero-extends it to 32 bits?"
   },
   {
    "id": "2-lu-1",
@@ -2845,7 +3487,12 @@
     "ori로 아래 16 bit"
    ],
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write MIPS code that puts the 32-bit constant 0x007D0900 into $s0 (0x007D = 125, 0x0900 = 2304).",
+   "keys_en": [
+    "Upper 16 bits with lui",
+    "Lower 16 bits with ori"
+   ]
   },
   {
    "id": "2-lu-2",
@@ -2854,7 +3501,8 @@
    "prompt": "아래 16 bit를 채울 때 addi 대신 ori를 쓰는 이유는 addi가 immediate를 sign extend하기 때문이다.",
    "answer": true,
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "The reason ori is used instead of addi to fill the lower 16 bits is that addi sign-extends its immediate."
   },
   {
    "id": "2-ba-1",
@@ -2887,7 +3535,8 @@
    "slot": 15,
    "pts": 6,
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "A beq is at address 108 and the branch target is at address 124. What is the value of the beq's offset field?"
   },
   {
    "id": "2-ba-3",
@@ -2903,7 +3552,8 @@
    "slot": 15,
    "pts": 6,
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "A beq is at address 1000 and its offset field is −3. What is the branch target address?"
   },
   {
    "id": "2-ba-4",
@@ -2918,7 +3568,14 @@
    ],
    "answer": 1,
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "What range can a PC-relative branch reach?",
+   "choices_en": [
+    "±2¹⁵ bytes",
+    "±2¹⁵ words (instructions)",
+    "±2²⁶ words",
+    "All of memory"
+   ]
   },
   {
    "id": "2-ba-5",
@@ -2932,7 +3589,13 @@
     "L2 레이블"
    ],
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "When the branch target is too far to be represented by a 16-bit offset, how does the assembler rewrite `beq $s0, $s1, L1`?",
+   "keys_en": [
+    "Inverted condition with bne",
+    "j L1",
+    "L2 label"
+   ]
   },
   {
    "id": "2-ba-6",
@@ -2942,7 +3605,9 @@
    "answer": false,
    "explain": "명령어(word) 개수 차이. ×4는 하드웨어(shift left 2)가 함.",
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "The offset field of beq holds the byte-address difference to the branch target as-is.",
+   "explain_en": "It is the difference in number of instructions (words). The ×4 is done by the hardware (shift left 2)."
   },
   {
    "id": "2-ja-1",
@@ -2957,7 +3622,8 @@
    ],
    "answer": 2,
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "How many bits is the address field in the J-format?"
   },
   {
    "id": "2-ja-2",
@@ -2970,7 +3636,8 @@
     "20000"
    ],
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Loop is at address 80000. What is the value of the address field of `j Loop`?"
   },
   {
    "id": "2-ja-3",
@@ -2984,7 +3651,8 @@
     "80024"
    ],
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "In `bne $t0, $s5, Exit` at address 80012, the offset field is 2. What is the address of Exit?"
   },
   {
    "id": "2-ja-4",
@@ -2999,7 +3667,8 @@
    ],
    "answer": 0,
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Which format is jr?"
   },
   {
    "id": "2-am-1",
@@ -3014,7 +3683,8 @@
    ],
    "answer": 2,
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Which addressing mode do lw and sw use?"
   },
   {
    "id": "2-am-2",
@@ -3029,7 +3699,8 @@
    ],
    "answer": 0,
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Which addressing mode do beq and bne use?"
   },
   {
    "id": "2-tr-1",
@@ -3045,7 +3716,15 @@
    "answer": 3,
    "explain": "마지막은 loader.",
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Which of the following is NOT done by the linker?",
+   "explain_en": "The last one is done by the loader.",
+   "choices_en": [
+    "Merging segments",
+    "Resolving label addresses",
+    "Patching location-dependent and external references",
+    "Creating the virtual address space and copying the program into memory"
+   ]
   },
   {
    "id": "2-tr-2",
@@ -3059,7 +3738,8 @@
     "bne $at, $zero, L"
    ],
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Convert the pseudo-instructions `move $t0, $t1` and `blt $t0, $t1, L` into real MIPS instructions."
   },
   {
    "id": "2-tr-3",
@@ -3068,7 +3748,8 @@
    "prompt": "Dynamic linking은 라이브러리 프로시저가 호출될 때만 링크·로드한다.",
    "answer": true,
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Dynamic linking links and loads a library procedure only when it is called."
   },
   {
    "id": "2-fa-1",
@@ -3077,7 +3758,8 @@
    "prompt": "강력한(복잡한) 명령어를 쓰면 항상 성능이 높아진다.",
    "answer": false,
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Using powerful (complex) instructions always increases performance."
   },
   {
    "id": "2-fa-2",
@@ -3092,7 +3774,8 @@
    ],
    "answer": 2,
    "lesson": "L2-7",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Which is NOT one of the four MIPS design principles?"
   },
   {
    "id": "3-ad-1",
@@ -3106,7 +3789,14 @@
     "결과 0001"
    ],
    "lesson": "L3-1",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Calculate 7 + 6 and 7 − 6 in 4 bits (do the subtraction as two's complement addition).",
+   "answer_en": "7 + 6: 0111 + 0110 = 1101 (13, unsigned)\n7 − 6 = 7 + (−6): −6 = 1010 → 0111 + 1010 = 1 0001 → discard the carry → 0001 = 1",
+   "keys_en": [
+    "0111+0110",
+    "−6 = 1010",
+    "Result 0001"
+   ]
   },
   {
    "id": "3-ad-2",
@@ -3115,7 +3805,8 @@
    "prompt": "뺄셈은 빼는 수의 2의 보수를 더하는 것으로 처리할 수 있다.",
    "answer": true,
    "lesson": "L3-1",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Subtraction can be done by adding the two's complement of the subtrahend."
   },
   {
    "id": "3-of-1",
@@ -3130,7 +3821,14 @@
    ],
    "answer": 2,
    "lesson": "L3-1",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In which case can overflow NEVER occur?",
+   "choices_en": [
+    "Positive + positive",
+    "Negative + negative",
+    "Positive + negative",
+    "Negative − positive"
+   ]
   },
   {
    "id": "3-of-2",
@@ -3146,7 +3844,14 @@
    "slot": 6,
    "pts": 5,
    "lesson": "L3-1",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In 4-bit two's complement, calculate 0110 (6) + 0101 (5) and determine whether overflow occurs.",
+   "answer_en": "0110 + 0101 = 1011 → sign bit 1 (negative). Positive + positive gave a negative → overflow.",
+   "keys_en": [
+    "1011",
+    "Positive + positive but sign 1",
+    "overflow"
+   ]
   },
   {
    "id": "3-of-3",
@@ -3160,7 +3865,14 @@
     "overflow"
    ],
    "lesson": "L3-1",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In 4-bit two's complement, calculate 1100 (−4) + 1011 (−5) and determine whether overflow occurs.",
+   "answer_en": "1100 + 1011 = 1 0111 → 4 bits = 0111 → sign 0 (positive). Negative + negative gave a positive → overflow.",
+   "keys_en": [
+    "0111",
+    "Negative + negative but sign 0",
+    "overflow"
+   ]
   },
   {
    "id": "3-of-4",
@@ -3177,7 +3889,8 @@
     ]
    ],
    "lesson": "L3-1",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "For positive − negative, overflow occurs if the result sign bit is (a); for negative − positive, overflow occurs if the result sign bit is (b)."
   },
   {
    "id": "3-of-5",
@@ -3187,7 +3900,9 @@
    "answer": false,
    "explain": "양수+음수는 오버플로 없음. carry out ≠ overflow.",
    "lesson": "L3-1",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In 4 bits, 0011 + 1110 (3 + (−2)) overflows because a carry comes out of the result.",
+   "explain_en": "Positive + negative never overflows. Carry out ≠ overflow."
   },
   {
    "id": "3-of-6",
@@ -3202,7 +3917,14 @@
    ],
    "answer": 1,
    "lesson": "L3-1",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "According to the lecture, how do modern CPUs handle integer overflow?",
+   "choices_en": [
+    "Ignore it",
+    "Handle it as an exception",
+    "Always set the result to 0",
+    "Extend the result to 64 bits"
+   ]
   },
   {
    "id": "3-mb-1",
@@ -3217,7 +3939,8 @@
    ],
    "answer": 2,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "At most how many bits long is the product of an n-bit × n-bit multiplication?"
   },
   {
    "id": "3-mb-2",
@@ -3231,7 +3954,14 @@
     "72"
    ],
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Calculate 1000 × 1001 by long multiplication on paper, and check the result in decimal.",
+   "answer_en": "1000 + 0000 (shifted) + 0000 (shifted) + 1000 (shifted 3 places) = 1001000 = 72 (8 × 9)",
+   "keys_en": [
+    "Partial products",
+    "1001000",
+    "72"
+   ]
   },
   {
    "id": "3-m1-1",
@@ -3248,7 +3978,14 @@
    "slot": 11,
    "pts": 8,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Using the original multiplier (Multiplicand 8-bit shift left, Multiplier 4-bit shift right, Product 8-bit), calculate 0110 × 0011. Write the Multiplier, Multiplicand and Product at each iteration.",
+   "keys_en": [
+    "Test the LSB every iteration",
+    "Add only when LSB=1",
+    "Two shifts every iteration",
+    "Result 0001 0010 = 18"
+   ]
   },
   {
    "id": "3-m1-2",
@@ -3264,7 +4001,8 @@
    "slot": 11,
    "pts": 8,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Using the original multiplier, calculate 0111 × 0101 (Product value at each iteration)."
   },
   {
    "id": "3-m1-3",
@@ -3279,7 +4017,14 @@
    ],
    "answer": 0,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In the original multiplier, how are the Multiplicand and Multiplier shifted every iteration?",
+   "choices_en": [
+    "Multiplicand left, Multiplier right",
+    "Both left",
+    "Multiplicand right, Multiplier left",
+    "Shifted only when the LSB is 1"
+   ]
   },
   {
    "id": "3-m1-4",
@@ -3288,7 +4033,8 @@
    "prompt": "원래 곱셈기에서 Product 레지스터는 처음에 0으로 초기화한다.",
    "answer": true,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In the original multiplier, the Product register is initialized to 0."
   },
   {
    "id": "3-m1-5",
@@ -3303,7 +4049,8 @@
    ],
    "answer": 3,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In the original (32-bit) multiplier, what are the sizes of the Multiplicand register and the ALU?"
   },
   {
    "id": "3-m1-6",
@@ -3313,7 +4060,9 @@
    "answer": false,
    "explain": "LSB와 상관없이 매 반복 shift.",
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In the original multiplier, if the LSB of the Multiplier is 0, no shift is done in that iteration either.",
+   "explain_en": "Shift every iteration, regardless of the LSB."
   },
   {
    "id": "3-m2-1",
@@ -3330,7 +4079,15 @@
    "slot": 11,
    "pts": 8,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Using the refined multiplier (Multiplicand 4-bit, Product 8-bit shift right), calculate 0011 × 0101. Write the Product at each iteration.",
+   "answer_en": "0: Product = 0000 0101 (lower half = multiplier)\n1: LSB=1 → upper += 0011 → 0011 0101 → >>1 → 0001 1010\n2: LSB=0 → >>1 → 0000 1101\n3: LSB=1 → upper += 0011 → 0011 1101 → >>1 → 0001 1110\n4: LSB=0 → >>1 → 0000 1111\n= 15",
+   "keys_en": [
+    "Initial: lower half = multiplier",
+    "If LSB=1, add to the upper half",
+    ">>1 every iteration",
+    "0000 1111 = 15"
+   ]
   },
   {
    "id": "3-m2-2",
@@ -3346,7 +4103,8 @@
    "slot": 11,
    "pts": 8,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Using the refined multiplier, calculate 1001 × 0110 (Product at each iteration)."
   },
   {
    "id": "3-m2-3",
@@ -3361,7 +4119,14 @@
    ],
    "answer": 1,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "What is the termination condition of the refined multiplier?",
+   "choices_en": [
+    "Product is 0",
+    "Number of shifts = number of bits in the multiplier",
+    "Number of shifts = number of bits in the multiplicand",
+    "Multiplicand is 0"
+   ]
   },
   {
    "id": "3-m2-4",
@@ -3370,7 +4135,8 @@
    "prompt": "개선된 곱셈기에는 별도의 Multiplier 레지스터가 없고, multiplier는 Product 레지스터의 아래 절반에 들어간다.",
    "answer": true,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "The refined multiplier has no separate Multiplier register; the multiplier is placed in the lower half of the Product register."
   },
   {
    "id": "3-m2-5",
@@ -3384,7 +4150,13 @@
     "Product만 shift right"
    ],
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Explain how the refined multiplier improves on the original multiplier in terms of hardware size. (Answer in English.)",
+   "keys_en": [
+    "Multiplicand and ALU are 32-bit",
+    "The multiplier shares the lower half of Product",
+    "Only Product shifts right"
+   ]
   },
   {
    "id": "3-m2-6",
@@ -3397,7 +4169,11 @@
      "위",
      "upper",
      "상위",
-     "왼쪽"
+     "왼쪽",
+     "top",
+     "high",
+     "higher",
+     "left"
     ],
     [
      "오른",
@@ -3407,7 +4183,9 @@
     ]
    ],
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In the refined multiplier, if the LSB is 1, the multiplicand is added to the (a) half of Product, and every iteration Product is shifted to the (b).",
+   "answer_en": "(a) upper / (b) right"
   },
   {
    "id": "3-me-1",
@@ -3423,7 +4201,13 @@
    "slot": 11,
    "pts": 8,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Week 5 Example 1: Show the process of 1010 × 0010 using the original multiplier.",
+   "keys_en": [
+    "No add in iteration 1",
+    "Iteration 2: Prod = 0001 0100",
+    "Result 20"
+   ]
   },
   {
    "id": "3-me-2",
@@ -3439,7 +4223,8 @@
    "slot": 11,
    "pts": 8,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Week 5 Example 2: Show the process of 1010 × 1100 using the refined multiplier."
   },
   {
    "id": "3-me-3",
@@ -3454,7 +4239,8 @@
    ],
    "answer": 2,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In iteration 3 of Example 2, Product is 0000 0011 just before 1010 is added to the upper half. What is the value right after the add?"
   },
   {
    "id": "3-mi-1",
@@ -3469,7 +4255,8 @@
    ],
    "answer": 0,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Which register holds the upper 32 bits of a 64-bit product?"
   },
   {
    "id": "3-mi-2",
@@ -3478,7 +4265,8 @@
    "prompt": "`mul rd, rs, rt`는 64-bit 곱의 아래 32 bit만 rd에 넣는다.",
    "answer": true,
    "lesson": "L3-2",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "`mul rd, rs, rt` puts only the lower 32 bits of the 64-bit product into rd."
   },
   {
    "id": "3-db-1",
@@ -3512,7 +4300,14 @@
    ],
    "answer": 1,
    "lesson": "L3-3",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In restoring division, what is done when the result of the subtraction is negative?",
+   "choices_en": [
+    "Put 1 in the quotient",
+    "Add the divisor back to restore the original value, and put 0 in the quotient",
+    "Stop the division",
+    "Double the divisor"
+   ]
   },
   {
    "id": "3-db-3",
@@ -3521,7 +4316,8 @@
    "prompt": "Signed division에서 나머지(remainder)는 dividend와 같은 부호를 가진다.",
    "answer": true,
    "lesson": "L3-3",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In signed division, the remainder has the same sign as the dividend (Dividend = Quotient × Divisor + Remainder)."
   },
   {
    "id": "3-db-4",
@@ -3535,7 +4331,14 @@
     "74 = 9×8 + 2"
    ],
    "lesson": "L3-3",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Write the quotient and remainder of 1001010 ÷ 1000 in binary and decimal.",
+   "answer_en": "Quotient 1001 (9), remainder 10 (2) — 74 = 9 × 8 + 2",
+   "keys_en": [
+    "Quotient 1001",
+    "Remainder 10",
+    "74 = 9×8 + 2"
+   ]
   },
   {
    "id": "3-d1-1",
@@ -3553,7 +4356,16 @@
    "slot": 12,
    "pts": 7,
    "lesson": "L3-3",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Using the divider (Divisor 8-bit shift right, initially in the left half / Remainder 8-bit / Quotient 4-bit shift left), calculate 0000 0111 ÷ 0010. Write the decision, Quotient and Remainder at each iteration.",
+   "answer_en": "Initial Divisor 0010 0000, Rem 0000 0111\n1: Rem−Div < 0 → restore, Q 0000, Div → 0001 0000\n2: < 0 → restore, Q 0000, Div → 0000 1000\n3: 0000 0111 − 0000 1000 < 0 → restore, Q 0000, Div → 0000 0100\n4: 0000 0111 − 0000 0100 = 0000 0011 ≥ 0 → Q 0001, Div → 0000 0010\n5: 0000 0011 − 0000 0010 = 0000 0001 ≥ 0 → Q 0011\nQuotient = 0011 (3), Remainder = 0000 0001 (1)",
+   "keys_en": [
+    "Initial Divisor 0010 0000",
+    "n+1 = 5 iterations",
+    "If negative, add back + 0",
+    "Q = 0011 (3)",
+    "R = 1"
+   ]
   },
   {
    "id": "3-d1-2",
@@ -3569,7 +4381,14 @@
    "slot": 12,
    "pts": 7,
    "lesson": "L3-3",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Using the same divider, calculate 0000 1101 ÷ 0011 (quotient, remainder, and the iteration where the result became ≥ 0).",
+   "answer_en": "Start with Divisor 0011 0000.\nIterations 1, 2: negative → restore\nIteration 3: 0000 1101 − 0000 1100 = 0000 0001 ≥ 0 → Q 0001\nIteration 4: 0000 0001 − 0000 0110 < 0 → Q 0010\nIteration 5: 0000 0001 − 0000 0011 < 0 → Q 0100\nQ = 0100 (4), R = 1",
+   "keys_en": [
+    "Only iteration 3 is ≥ 0",
+    "Q = 0100 = 4",
+    "R = 1"
+   ]
   },
   {
    "id": "3-d1-3",
@@ -3585,7 +4404,9 @@
    "answer": 2,
    "explain": "n + 1 = 5 (32-bit면 33번).",
    "lesson": "L3-3",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "How many iterations does a 4-bit divider take?",
+   "explain_en": "n + 1 = 5 (33 for 32 bits)."
   },
   {
    "id": "3-d1-4",
@@ -3594,7 +4415,8 @@
    "prompt": "나눗셈기에서 Divisor는 처음에 Divisor 레지스터의 왼쪽(위) 절반에 놓인다.",
    "answer": true,
    "lesson": "L3-3",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In the divider, the Divisor is initially placed in the left (upper) half of the Divisor register."
   },
   {
    "id": "3-d1-5",
@@ -3609,7 +4431,14 @@
    ],
    "answer": 0,
    "lesson": "L3-3",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "How do you decide whether Rem − Div is negative?",
+   "choices_en": [
+    "Whether the first bit (sign bit) of the result is 1",
+    "Whether the result is even",
+    "The LSB of the Quotient",
+    "The MSB of the Divisor"
+   ]
   },
   {
    "id": "3-d1-6",
@@ -3628,11 +4457,17 @@
      "addback",
      "add",
      "plusback",
-     "더함"
+     "더함",
+     "adding back",
+     "adding",
+     "added back",
+     "adding the divisor back"
     ]
    ],
    "lesson": "L3-3",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "If Rem ≥ 0, shift the Quotient left and set the new LSB to (a); if Rem < 0, restore by (b) the Divisor and set the LSB to 0.",
+   "answer_en": "(a) 1 / (b) adding back"
   },
   {
    "id": "3-dx-1",
@@ -3649,7 +4484,15 @@
    "slot": 12,
    "pts": 7,
    "lesson": "L3-3",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Week 5 Example 3: Calculate 0001 0100 ÷ 0010 using the divider.",
+   "answer_en": "Div 0010 0000, Rem 0001 0100\n1: 1111 0100 <0 → restore, Q 0000, Div 0001 0000\n2: 0000 0100 ≥0 → Q 0001, Div 0000 1000\n3: 1111 1100 <0 → restore, Q 0010, Div 0000 0100\n4: 0000 0000 ≥0 → Q 0101, Div 0000 0010\n5: 1111 1110 <0 → restore, Q 1010\nQuotient 1010 (10), Remainder 0",
+   "keys_en": [
+    "Iteration 2 ≥0",
+    "Iteration 4 ≥0",
+    "Q = 1010 = 10",
+    "R = 0"
+   ]
   },
   {
    "id": "3-dx-2",
@@ -3664,7 +4507,8 @@
    ],
    "answer": 1,
    "lesson": "L3-3",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In iteration 1 of Example 3, what is the result of 0001 0100 − 0010 0000?"
   },
   {
    "id": "3-d2-1",
@@ -3679,7 +4523,14 @@
    ],
    "answer": 0,
    "lesson": "L3-3",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "What is a characteristic of the refined divider?",
+   "choices_en": [
+    "The Divisor and ALU are reduced to 32 bits, and the quotient is kept in the Remainder register as well",
+    "The Divisor is increased to 64 bits",
+    "It uses two Quotient registers",
+    "It uses the same circuit as the multiplier"
+   ]
   },
   {
    "id": "3-d2-2",
@@ -3688,7 +4539,8 @@
    "prompt": "0으로 나누는지(divisor = 0) 먼저 검사해야 한다.",
    "answer": true,
    "lesson": "L3-3",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "You must first check for division by 0 (divisor = 0)."
   },
   {
    "id": "3-if-1",
@@ -3703,7 +4555,8 @@
    ],
    "answer": 1,
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "How many bits are the sign, exponent and fraction in IEEE 754 single precision?"
   },
   {
    "id": "3-if-2",
@@ -3718,7 +4571,8 @@
    ],
    "answer": 3,
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "What is the bias in double precision?"
   },
   {
    "id": "3-if-3",
@@ -3746,7 +4600,8 @@
    "prompt": "정규화된 수의 맨 앞 '1.'은 항상 1이라 저장하지 않는다 (hidden bit).",
    "answer": true,
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "The leading '1.' of a normalized number is always 1, so it is not stored (hidden bit)."
   },
   {
    "id": "3-if-5",
@@ -3760,7 +4615,13 @@
     "single bias 127"
    ],
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Explain why IEEE 754 stores the exponent in biased (excess) representation, and give the bias value for single precision. (Answer in English.)",
+   "keys_en": [
+    "stored = actual + bias",
+    "The exponent is unsigned",
+    "Single bias 127"
+   ]
   },
   {
    "id": "3-if-6",
@@ -3774,7 +4635,8 @@
     "3"
    ],
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In single precision, if the exponent field is 1000 0010, what is the actual exponent?"
   },
   {
    "id": "3-ie-1",
@@ -3792,7 +4654,8 @@
    "slot": 13,
    "pts": 6,
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Represent −0.75 in IEEE 754 single precision (S, Exponent, Fraction, hexadecimal)."
   },
   {
    "id": "3-ie-2",
@@ -3809,7 +4672,8 @@
    "slot": 13,
    "pts": 6,
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Represent 0.625 in IEEE 754 single precision."
   },
   {
    "id": "3-ie-3",
@@ -3826,7 +4690,8 @@
    "slot": 13,
    "pts": 6,
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Represent −3.75 in IEEE 754 single precision."
   },
   {
    "id": "3-ie-4",
@@ -3843,7 +4708,8 @@
    "slot": 13,
    "pts": 6,
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Represent −12.5 in IEEE 754 single precision."
   },
   {
    "id": "3-ie-5",
@@ -3857,7 +4723,8 @@
     "0xBFE8000000000000"
    ],
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Represent −0.75 in IEEE 754 double precision (watch the number of exponent and fraction bits)."
   },
   {
    "id": "3-ie-6",
@@ -3871,7 +4738,8 @@
     "1.5"
    ],
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "What is the decimal value of the single-precision `0 01111111 10000000000000000000000`?"
   },
   {
    "id": "3-ie-7",
@@ -3885,7 +4753,8 @@
     "0xC0100000"
    ],
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Write −2.25 in IEEE 754 single precision, in hexadecimal."
   },
   {
    "id": "3-ir-1",
@@ -3900,7 +4769,8 @@
    ],
    "answer": 3,
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In single precision, what does exponent = 255 with fraction ≠ 0 mean?"
   },
   {
    "id": "3-ir-2",
@@ -3915,7 +4785,14 @@
    ],
    "answer": 0,
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "What is the approximate decimal precision of single precision?",
+   "choices_en": [
+    "6 digits",
+    "16 digits",
+    "23 digits",
+    "3 digits"
+   ]
   },
   {
    "id": "3-ir-3",
@@ -3924,7 +4801,8 @@
    "prompt": "Exponent = 0이고 fraction ≠ 0이면 denormal number이며 hidden bit는 0이다.",
    "answer": true,
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "If exponent = 0 and fraction ≠ 0, the number is a denormal and the hidden bit is 0."
   },
   {
    "id": "3-ir-4",
@@ -3938,7 +4816,14 @@
     "00000000·11111111은 예약"
    ],
    "lesson": "L3-4",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In single precision, what are the exponent field values and actual exponents of the smallest normalized positive number and the largest number?",
+   "answer_en": "Smallest: exponent 0000 0001 → 1 − 127 = −126 (1.0 × 2⁻¹²⁶)\nLargest: exponent 1111 1110 → 254 − 127 = +127 (≈ 2.0 × 2¹²⁷)",
+   "keys_en": [
+    "00000001 → −126",
+    "11111110 → +127",
+    "00000000 and 11111111 are reserved"
+   ]
   },
   {
    "id": "3-fa-1",
@@ -3955,7 +4840,14 @@
    "slot": 13,
    "pts": 6,
    "lesson": "L3-5",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Using 4-digit binary FP, calculate 0.5 + (−0.4375) in 4 steps.",
+   "keys_en": [
+    "Align the smaller exponent to the larger",
+    "0.001 × 2⁻¹",
+    "1.000 × 2⁻⁴",
+    "0.0625"
+   ]
   },
   {
    "id": "3-fa-2",
@@ -3970,7 +4862,14 @@
    ],
    "answer": 0,
    "lesson": "L3-5",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "What is the first step of FP addition?",
+   "choices_en": [
+    "Shift the significand of the number with the smaller exponent to align the exponents",
+    "Multiply the significands",
+    "Add the exponents",
+    "Determine the sign"
+   ]
   },
   {
    "id": "3-fa-3",
@@ -3985,7 +4884,8 @@
     "1.002×10²"
    ],
    "lesson": "L3-5",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Using 4-digit decimal FP, calculate 9.999×10¹ + 1.610×10⁻¹."
   },
   {
    "id": "3-fm-1",
@@ -4003,7 +4903,15 @@
    "slot": 13,
    "pts": 6,
    "lesson": "L3-5",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Using 4-digit binary FP, calculate 0.5 × (−0.4375) in 5 steps (also write the biased exponents).",
+   "keys_en": [
+    "Exponent −3",
+    "Subtract the bias once",
+    "1.110 × 2⁻³",
+    "Sign −",
+    "−0.21875"
+   ]
   },
   {
    "id": "3-fm-2",
@@ -4012,7 +4920,8 @@
    "prompt": "biased exponent 두 개를 더하면 bias가 두 번 들어가므로 bias를 한 번 빼야 한다.",
    "answer": true,
    "lesson": "L3-5",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Adding two biased exponents counts the bias twice, so the bias must be subtracted once."
   },
   {
    "id": "3-fm-3",
@@ -4027,7 +4936,14 @@
    ],
    "answer": 3,
    "lesson": "L3-5",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "In FP multiplication, when is the sign of the result determined (in the slide's order)?",
+   "choices_en": [
+    "Step 1",
+    "Step 2",
+    "Step 3",
+    "Step 5 (last)"
+   ]
   },
   {
    "id": "3-fi-1",
@@ -4042,7 +4958,8 @@
    ],
    "answer": 1,
    "lesson": "L3-5",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "What are the MIPS single-precision FP registers?"
   },
   {
    "id": "3-fi-2",
@@ -4051,7 +4968,8 @@
    "prompt": "Double precision은 FP 레지스터 두 개($f0/$f1)를 짝지어 쓴다.",
    "answer": true,
    "lesson": "L3-5",
-   "unit": "U3"
+   "unit": "U3",
+   "prompt_en": "Double precision uses a pair of FP registers ($f0/$f1)."
   },
   {
    "id": "4-pi-1",
@@ -4066,7 +4984,14 @@
    ],
    "answer": 0,
    "lesson": "L4-1",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Which processor implementation is in the midterm scope?",
+   "choices_en": [
+    "The simplified (single-cycle) version",
+    "The pipelined version",
+    "The multicycle version",
+    "Superscalar"
+   ]
   },
   {
    "id": "4-pi-2",
@@ -4075,7 +5000,8 @@
    "prompt": "중간고사 답안에 수업에서 정한 명령어 집합 밖의 명령어를 쓰면 0점 처리된다고 공지됐다.",
    "answer": true,
    "lesson": "L4-1",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "It was announced that using any instruction outside the instruction set specified in class on the midterm gets zero points."
   },
   {
    "id": "4-pi-3",
@@ -4090,7 +5016,8 @@
    ],
    "answer": 3,
    "lesson": "L4-1",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Which is NOT in the 'Simple subset of instructions' on week6 p.2?"
   },
   {
    "id": "4-es-1",
@@ -4105,7 +5032,14 @@
    ],
    "answer": 2,
    "lesson": "L4-1",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "In instruction execution, which of the following is NOT calculated by the ALU?",
+   "choices_en": [
+    "The arithmetic result",
+    "The memory address for load/store",
+    "The instruction read from instruction memory",
+    "The branch target address"
+   ]
   },
   {
    "id": "4-es-2",
@@ -4122,7 +5056,8 @@
     ]
    ],
    "lesson": "L4-1",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "If there is no branch, PC ← PC + (a). One instruction is (b) bits."
   },
   {
    "id": "4-es-3",
@@ -4132,7 +5067,9 @@
    "answer": false,
    "explain": "32 bit = 4 byte. 녹음의 '32 bytes'는 말실수.",
    "lesson": "L4-1",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "One instruction (1 word) is 32 bytes.",
+   "explain_en": "32 bits = 4 bytes. The '32 bytes' in the recording was a slip of the tongue."
   },
   {
    "id": "4-co-1",
@@ -4148,7 +5085,13 @@
    "slot": 16,
    "pts": 9,
    "lesson": "L4-1",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "For week6 p.6 'Can't just join wires together', name the three places where a MUX is needed and the two inputs each MUX selects between. (Answer in English.)",
+   "keys_en": [
+    "PC: PC+4 vs branch target",
+    "ALU input: register vs immediate",
+    "Write data: ALU vs memory"
+   ]
   },
   {
    "id": "4-co-2",
@@ -4163,7 +5106,14 @@
    ],
    "answer": 1,
    "lesson": "L4-1",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "In lw, what is the ALU result?",
+   "choices_en": [
+    "The final value to write to the register",
+    "The address used to access data memory",
+    "The next PC",
+    "The branch offset"
+   ]
   },
   {
    "id": "4-co-3",
@@ -4172,7 +5122,8 @@
    "prompt": "서로 다른 출처의 선은 그냥 하나로 연결(join)하면 된다.",
    "answer": false,
    "lesson": "L4-1",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Wires from different sources can simply be joined together into one (no selector needed)."
   },
   {
    "id": "4-ce-1",
@@ -4187,7 +5138,14 @@
    ],
    "answer": 0,
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "What is a characteristic of a combinational element (combinational logic)?",
+   "choices_en": [
+    "The output is a function of the current input only",
+    "It stores a value",
+    "It changes only on a clock edge",
+    "It needs a write signal"
+   ]
   },
   {
    "id": "4-ce-2",
@@ -4202,7 +5160,8 @@
    ],
    "answer": 3,
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Which of the following is a state (sequential) element?"
   },
   {
    "id": "4-ce-3",
@@ -4216,11 +5175,13 @@
      "function",
      "functioncode",
      "펑션코드",
-     "funct필드"
+     "funct필드",
+     "funct field"
     ]
    ],
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "The ALU computes Y = F(A, B); for R-format, F is determined by the lowest 6 bits of the instruction, the (a) field."
   },
   {
    "id": "4-ce-4",
@@ -4229,7 +5190,8 @@
    "prompt": "32-bit 데이터는 데이터패스에서 선 32개(bus)로 전달된다.",
    "answer": true,
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "32-bit data is carried in the datapath on 32 wires (a bus)."
   },
   {
    "id": "4-mx-1",
@@ -4261,7 +5223,14 @@
    ],
    "answer": 0,
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "If a MUX's select line S = 0, what happens?",
+   "choices_en": [
+    "The input marked 0 (I0) is the output",
+    "Input 1 is the output",
+    "The AND of the two inputs",
+    "No output"
+   ]
   },
   {
    "id": "4-mx-3",
@@ -4270,7 +5239,8 @@
    "prompt": "MUX 신호값은 입력선의 위·아래 위치가 아니라 그림에 표시된 번호(0/1)로 정해진다.",
    "answer": true,
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "A MUX signal value is determined by the number (0/1) marked in the figure, not by whether the input wire is on top or bottom."
   },
   {
    "id": "4-mx-4",
@@ -4285,7 +5255,14 @@
    ],
    "answer": 1,
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "In a MUX figure on the exam, a '1' is written next to the input wire you want. What is the select signal?",
+   "choices_en": [
+    "0",
+    "1",
+    "X",
+    "Depends on the position"
+   ]
   },
   {
    "id": "4-mx-5",
@@ -4301,7 +5278,13 @@
    "slot": 1,
    "pts": 3,
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Explain the role of a MUX and why the datapath needs MUXes. (Answer in English.)",
+   "keys_en": [
+    "Selects one input by the select signal",
+    "Different sources for different instructions",
+    "Wires cannot simply be joined"
+   ]
   },
   {
    "id": "4-mx-6",
@@ -4310,7 +5293,8 @@
    "prompt": "MUX는 조합 소자(combinational element)다.",
    "answer": true,
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "A MUX is a combinational element (not a state element)."
   },
   {
    "id": "4-se-1",
@@ -4325,7 +5309,14 @@
    ],
    "answer": 1,
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "When does an edge-triggered register update its value (according to the slide)?",
+   "choices_en": [
+    "Continuously while Clk is 1",
+    "When Clk changes from 0 → 1",
+    "Only when Clk changes from 1 → 0",
+    "When Write is 0"
+   ]
   },
   {
    "id": "4-se-2",
@@ -4334,7 +5325,8 @@
    "prompt": "Write control이 있는 레지스터는 clock edge이면서 write 입력이 1일 때만 값을 바꾼다.",
    "answer": true,
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "A register with write control changes its value only on a clock edge when the write input is 1."
   },
   {
    "id": "4-se-3",
@@ -4344,11 +5336,13 @@
    "answer": "(a) RegWrite",
    "accept": [
     [
-     "regwrite"
+     "regwrite",
+     "register write"
     ]
    ],
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "The name of the register file's write control signal is (a)."
   },
   {
    "id": "4-se-4",
@@ -4365,7 +5359,14 @@
    "slot": 1,
    "pts": 3,
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Compare combinational elements and state (sequential) elements. (Answer in English.)",
+   "keys_en": [
+    "combinational: output = f(input)",
+    "state: store information",
+    "Updated on a clock edge",
+    "Examples"
+   ]
   },
   {
    "id": "4-cl-1",
@@ -4380,7 +5381,14 @@
    ],
    "answer": 2,
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "What determines the clock period?",
+   "choices_en": [
+    "The shortest delay",
+    "The number of registers",
+    "The longest combinational logic delay",
+    "The number of instructions"
+   ]
   },
   {
    "id": "4-cl-2",
@@ -4389,7 +5397,8 @@
    "prompt": "조합 회로는 state element에서 입력을 받아 클럭 edge 사이에 데이터를 변환하고 state element로 출력한다.",
    "answer": true,
    "lesson": "L4-2",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Combinational logic takes its input from state elements, transforms the data between clock edges, and outputs to a state element."
   },
   {
    "id": "4-fe-1",
@@ -4404,7 +5413,14 @@
    ],
    "answer": 0,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "In instruction fetch, what are the two places the PC is connected to?",
+   "choices_en": [
+    "The read address of instruction memory and the +4 adder",
+    "Data memory and the ALU",
+    "The register file and sign-extend",
+    "Control and ALU control"
+   ]
   },
   {
    "id": "4-fe-2",
@@ -4413,7 +5429,8 @@
    "prompt": "PC는 32-bit register다.",
    "answer": true,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "The PC is a 32-bit register."
   },
   {
    "id": "4-fe-3",
@@ -4432,7 +5449,8 @@
     ]
    ],
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Instruction fetch: PC → (a) memory, and at the same time PC + (b) is calculated"
   },
   {
    "id": "4-rd-1",
@@ -4447,7 +5465,14 @@
    ],
    "answer": 1,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Which is the correct sequence of R-format execution steps?",
+   "choices_en": [
+    "Read memory → ALU → write register",
+    "Read two registers → ALU operation → write register",
+    "Read one register → sign-extend → write memory",
+    "PC + offset → branch"
+   ]
   },
   {
    "id": "4-rd-2",
@@ -4456,7 +5481,8 @@
    "prompt": "R-format 명령어는 레지스터에 결과를 쓰므로 RegWrite = 1이다.",
    "answer": true,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "R-format instructions write their result to a register, so RegWrite = 1."
   },
   {
    "id": "4-rd-3",
@@ -4470,7 +5496,8 @@
     ]
    ],
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "The Read register 1, Read register 2 and Write register inputs of the register file are each (a) bits."
   },
   {
    "id": "4-ls-1",
@@ -4485,7 +5512,14 @@
    ],
    "answer": 2,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Which combination of signals does lw turn on?",
+   "choices_en": [
+    "MemWrite, RegWrite",
+    "MemRead, MemWrite",
+    "MemRead, RegWrite",
+    "MemWrite only"
+   ]
   },
   {
    "id": "4-ls-2",
@@ -4500,7 +5534,8 @@
    ],
    "answer": 1,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Which memory signal does sw turn on?"
   },
   {
    "id": "4-ls-3",
@@ -4509,7 +5544,8 @@
    "prompt": "load/store의 16-bit offset은 ALU에 들어가기 전에 32-bit로 sign extend된다.",
    "answer": true,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "The 16-bit offset of a load/store is sign-extended to 32 bits before it enters the ALU."
   },
   {
    "id": "4-ls-4",
@@ -4519,7 +5555,9 @@
    "answer": false,
    "explain": "lw는 MemRead. 6주-1 23:18의 말실수에 주의.",
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "When executing lw, MemWrite is set to 1.",
+   "explain_en": "lw uses MemRead. Watch out for the slip of the tongue at 23:18 in Week 6-1."
   },
   {
    "id": "4-bd-1",
@@ -4534,7 +5572,14 @@
    ],
    "answer": 2,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "In beq, how is it checked whether the two registers are equal?",
+   "choices_en": [
+    "With an AND gate",
+    "By adding the two values",
+    "By subtracting with the ALU and checking the Zero output",
+    "With sign extension"
+   ]
   },
   {
    "id": "4-bd-2",
@@ -4548,7 +5593,13 @@
     "PC + 4에 더함"
    ],
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Describe the datapath steps that calculate the branch target address of beq. (Answer in English.)",
+   "keys_en": [
+    "sign-extend",
+    "shift left 2 (×4)",
+    "Add to PC + 4"
+   ]
   },
   {
    "id": "4-bd-3",
@@ -4557,7 +5608,8 @@
    "prompt": "Shift left 2는 offset에 4를 곱하는 것과 같다.",
    "answer": true,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Shift left 2 is the same as multiplying the offset by 4."
   },
   {
    "id": "4-bd-4",
@@ -4572,7 +5624,14 @@
    ],
    "answer": 0,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "What reason did the professor give for specifying the branch constant as a number of lines (instructions) rather than a byte address?",
+   "choices_en": [
+    "Because a value not divisible by 4 would cause a serious error",
+    "To save bits",
+    "Because the ALU can only subtract",
+    "To distinguish it from jump"
+   ]
   },
   {
    "id": "4-cp-1",
@@ -4589,7 +5648,8 @@
    "slot": 16,
    "pts": 9,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Name the four places where a MUX is placed in the simplified datapath, and the signal that controls each MUX. (Answer in English.)"
   },
   {
    "id": "4-cp-2",
@@ -4604,7 +5664,14 @@
    ],
    "answer": 1,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Why does the simplified datapath separate instruction memory and data memory?",
+   "choices_en": [
+    "Because memory is cheap",
+    "Because it executes one instruction in one clock cycle and each element can do only one function at a time",
+    "Because of the cache",
+    "Because of pipelining"
+   ]
   },
   {
    "id": "4-cp-3",
@@ -4619,7 +5686,8 @@
    ],
    "answer": 3,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Which signal controls the MUX that selects the write register number between rt and rd?"
   },
   {
    "id": "4-cp-4",
@@ -4628,7 +5696,8 @@
    "prompt": "단순(single-cycle) 데이터패스는 모든 명령어를 한 클럭 사이클에 실행한다.",
    "answer": true,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "The simplified (single-cycle) datapath executes every instruction in one clock cycle."
   },
   {
    "id": "4-cp-5",
@@ -4643,7 +5712,8 @@
    ],
    "answer": 2,
    "lesson": "L4-3",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Which signal selects the register write data between the ALU result and the memory value?"
   },
   {
    "id": "4-df-1",
@@ -4658,7 +5728,8 @@
    ],
    "answer": 0,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "In the p.3 datapath, where does Instruction [31–26] go?"
   },
   {
    "id": "4-df-2",
@@ -4673,7 +5744,8 @@
    ],
    "answer": 1,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Where does Instruction [5–0] go?"
   },
   {
    "id": "4-df-3",
@@ -4690,7 +5762,8 @@
     ]
    ],
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "rs [25–21] → Read register (a); rt [20–16] → Read register 2 and input (b) of the RegDst MUX"
   },
   {
    "id": "4-df-4",
@@ -4705,7 +5778,8 @@
    ],
    "answer": 2,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Where does Instruction [15–0] go?"
   },
   {
    "id": "4-rt-1",
@@ -4727,7 +5801,8 @@
    "slot": 14,
    "pts": 8,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Fill in the control signal values for an R-type instruction (add $t0, $s1, $s2) in the p.3 datapath."
   },
   {
    "id": "4-rt-2",
@@ -4742,7 +5817,14 @@
    ],
    "answer": 1,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Why is RegDst = 1 for R-type?",
+   "choices_en": [
+    "Because it must write to rt",
+    "Because it must write to rd (the third register), and on p.3 rd is input 1",
+    "Because it reads from memory",
+    "Because it is a branch"
+   ]
   },
   {
    "id": "4-rt-3",
@@ -4757,7 +5839,14 @@
    ],
    "answer": 0,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "What is the value of ALUSrc for R-type, and why?",
+   "choices_en": [
+    "0, because the second operand is also a register",
+    "1, because it uses a constant",
+    "X, because it does not matter",
+    "1, because it is a memory address"
+   ]
   },
   {
    "id": "4-rt-4",
@@ -4776,7 +5865,16 @@
    "slot": 16,
    "pts": 9,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "In order, describe the path the data takes when `add $t0, $s1, $s2` executes in the p.3 datapath. (Answer in English.)",
+   "keys_en": [
+    "Read two registers",
+    "ALUSrc = 0",
+    "funct → ALU control",
+    "MemtoReg = 0 (bypasses data memory)",
+    "RegDst = 1, RegWrite = 1",
+    "PC + 4"
+   ]
   },
   {
    "id": "4-rt-5",
@@ -4785,7 +5883,8 @@
    "prompt": "R-type 실행 중에는 data memory를 사용하지 않는다.",
    "answer": true,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Data memory is not used while an R-type instruction executes."
   },
   {
    "id": "4-rt-6",
@@ -4808,7 +5907,9 @@
    "slot": 14,
    "pts": 8,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "※ Assume the datapath in this question is the same as slide p.3, but the MUX inputs are numbered as follows.\nRegDst MUX: top (rt [20–16]) = 1, bottom (rd [15–11]) = 0\nALUSrc MUX: top (Read data 2) = 1, bottom (sign-extended imm) = 0\nMemtoReg MUX: top (Read data) = 0, bottom (ALU result) = 1\n\nFill in the control signals for an R-type instruction in this figure.",
+   "explain_en": "RegDst: rd is input 0 → 0. ALUSrc: the register is input 1 → 1. MemtoReg: the ALU result is input 1 → 1. The rest are unchanged."
   },
   {
    "id": "4-lw-1",
@@ -4830,7 +5931,8 @@
    "slot": 14,
    "pts": 8,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Fill in the control signal values for the lw instruction in the p.3 datapath."
   },
   {
    "id": "4-lw-2",
@@ -4845,7 +5947,14 @@
    ],
    "answer": 2,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Why is MemtoReg = 1 for lw?",
+   "choices_en": [
+    "Because the ALU result must be written",
+    "Because of the branch",
+    "Because the value read from data memory must be written to the register, and on p.3 Read data is input 1",
+    "Because it must write to memory"
+   ]
   },
   {
    "id": "4-lw-3",
@@ -4860,7 +5969,8 @@
    ],
    "answer": 0,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Which register field does lw write its result to, and what is RegDst?"
   },
   {
    "id": "4-lw-4",
@@ -4875,7 +5985,14 @@
     "읽은 값을 rt에"
    ],
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Explain what the ALU does in lw and where its result goes. (Answer in English.)",
+   "keys_en": [
+    "base + sign-extended offset",
+    "ALU result = address",
+    "Goes to data memory",
+    "The read value is written to rt"
+   ]
   },
   {
    "id": "4-lw-5",
@@ -4898,7 +6015,9 @@
    "slot": 14,
    "pts": 8,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "※ Assume the datapath in this question is the same as slide p.3, but the MUX inputs are numbered as follows.\nRegDst MUX: top (rt [20–16]) = 1, bottom (rd [15–11]) = 0\nALUSrc MUX: top (Read data 2) = 1, bottom (sign-extended imm) = 0\nMemtoReg MUX: top (Read data) = 0, bottom (ALU result) = 1\n\nFill in the control signals for lw in this figure.",
+   "explain_en": "rt is input 1 → RegDst 1; imm is input 0 → ALUSrc 0; Read data is input 0 → MemtoReg 0."
   },
   {
    "id": "4-lw-6",
@@ -4907,7 +6026,8 @@
    "prompt": "lw에서 ALU의 결과는 사용자가 원하는 최종 값이다.",
    "answer": false,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "In lw, the ALU result is the final value the user wants."
   },
   {
    "id": "4-sw-1",
@@ -4929,7 +6049,8 @@
    "slot": 14,
    "pts": 8,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Fill in the control signal values for the sw instruction in the p.3 datapath."
   },
   {
    "id": "4-sw-2",
@@ -4944,7 +6065,14 @@
    ],
    "answer": 1,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Why are RegDst and MemtoReg X for sw?",
+   "choices_en": [
+    "Because it does not read memory",
+    "Because it does not write a register (RegWrite = 0), so any value is fine",
+    "Because it does not use the ALU",
+    "Because it is a branch"
+   ]
   },
   {
    "id": "4-sw-3",
@@ -4959,7 +6087,14 @@
    ],
    "answer": 2,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "In sw, what value goes into the Write data input of data memory?",
+   "choices_en": [
+    "ALU result",
+    "sign-extended offset",
+    "The value of rt (Read data 2)",
+    "PC + 4"
+   ]
   },
   {
    "id": "4-sw-4",
@@ -4968,7 +6103,8 @@
    "prompt": "sw는 ALUSrc = 1, ALUOp = 00이다.",
    "answer": true,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "sw has ALUSrc = 1 and ALUOp = 00."
   },
   {
    "id": "4-bq-1",
@@ -4990,7 +6126,8 @@
    "slot": 14,
    "pts": 8,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Fill in the control signal values for the beq instruction in the p.3 datapath."
   },
   {
    "id": "4-bq-2",
@@ -5005,7 +6142,14 @@
    ],
    "answer": 3,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "In beq, under what condition does the PC change to the branch target?",
+   "choices_en": [
+    "Branch = 1",
+    "Zero = 1",
+    "Branch = 0 and Zero = 1",
+    "Branch = 1 and Zero = 1"
+   ]
   },
   {
    "id": "4-bq-3",
@@ -5023,7 +6167,15 @@
    "slot": 16,
    "pts": 9,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "When beq rs, rt, offset executes, describe how the PC is determined when rs = rt and when it is not. (Answer in English.)",
+   "keys_en": [
+    "Branch = 1",
+    "ALU subtracts (ALUOp 01, ALUSrc 0)",
+    "If equal, Zero = 1 → AND = 1 → branch target",
+    "If not equal, PC + 4",
+    "Target = PC+4 + offset×4"
+   ]
   },
   {
    "id": "4-bq-4",
@@ -5032,7 +6184,8 @@
    "prompt": "beq는 레지스터에 쓰지 않으므로 RegWrite = 0이다.",
    "answer": true,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "beq does not write a register, so RegWrite = 0."
   },
   {
    "id": "4-bq-5",
@@ -5047,7 +6200,8 @@
    ],
    "answer": 1,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "What is the ALUOp for beq?"
   },
   {
    "id": "4-bq-6",
@@ -5070,7 +6224,9 @@
    "slot": 14,
    "pts": 8,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "※ Assume the datapath in this question is the same as slide p.3, but the MUX inputs are numbered as follows.\nRegDst MUX: top (rt [20–16]) = 1, bottom (rd [15–11]) = 0\nALUSrc MUX: top (Read data 2) = 1, bottom (sign-extended imm) = 0\nMemtoReg MUX: top (Read data) = 0, bottom (ALU result) = 1\n\nFill in the control signals for beq in this figure.",
+   "explain_en": "The register (Read data 2) is input 1 → ALUSrc 1. RegDst and MemtoReg are still X."
   },
   {
    "id": "4-mt-1",
@@ -5085,7 +6241,14 @@
    ],
    "answer": 1,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "In the MemtoReg MUX on slide p.3, what is the number of the top input?",
+   "choices_en": [
+    "0 (ALU result)",
+    "1 (Read data)",
+    "0 (Read data)",
+    "Not marked"
+   ]
   },
   {
    "id": "4-mt-2",
@@ -5094,7 +6257,8 @@
    "prompt": "MUX 그림의 숫자가 뒤집혀 있으면 같은 명령어라도 선택 신호 값이 반대가 된다.",
    "answer": true,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "If the numbers in the MUX figure are flipped, the select signal value is reversed even for the same instruction."
   },
   {
    "id": "4-mt-3",
@@ -5110,7 +6274,15 @@
    "answer": 0,
    "explain": "imm이 0번으로 표시됨.",
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "※ Assume the datapath in this question is the same as slide p.3, but the MUX inputs are numbered as follows.\nRegDst MUX: top (rt [20–16]) = 1, bottom (rd [15–11]) = 0\nALUSrc MUX: top (Read data 2) = 1, bottom (sign-extended imm) = 0\nMemtoReg MUX: top (Read data) = 0, bottom (ALU result) = 1\n\nWhat is the ALUSrc value for sw in this figure?",
+   "explain_en": "imm is marked as input 0.",
+   "choices_en": [
+    "0",
+    "1",
+    "X",
+    "1 regardless of the figure"
+   ]
   },
   {
    "id": "4-mt-4",
@@ -5124,7 +6296,13 @@
     "번호가 바뀌면 신호 반대"
    ],
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Explain why the professor said 'be extremely careful on what is actually written on the multiplexer'. (Answer in English.)",
+   "keys_en": [
+    "Signal value = the number written on the input wire",
+    "Not top/bottom",
+    "If the numbers change, the signal is reversed"
+   ]
   },
   {
    "id": "4-mt-5",
@@ -5139,7 +6317,8 @@
    ],
    "answer": 1,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "※ Assume the datapath in this question is the same as slide p.3, but the MUX inputs are numbered as follows.\nRegDst MUX: top (rt [20–16]) = 1, bottom (rd [15–11]) = 0\nALUSrc MUX: top (Read data 2) = 1, bottom (sign-extended imm) = 0\nMemtoReg MUX: top (Read data) = 0, bottom (ALU result) = 1\n\nWhat is the MemtoReg value for add in this figure?"
   },
   {
    "id": "4-bc-1",
@@ -5156,7 +6335,8 @@
    "slot": 15,
    "pts": 6,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "A beq at current PC = 108 is to branch to address 124. Write the value of the offset field and how the datapath recomputes the target address."
   },
   {
    "id": "4-bc-2",
@@ -5172,7 +6352,8 @@
    "slot": 15,
    "pts": 6,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "A beq at address 100 branches to address 180. What constant should be written in the beq?"
   },
   {
    "id": "4-bc-3",
@@ -5188,7 +6369,8 @@
    "slot": 15,
    "pts": 6,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "A beq at address 200 branches to address 180 (upward, to the start of a loop). What is the offset value and its 16-bit binary representation?"
   },
   {
    "id": "4-bc-4",
@@ -5203,7 +6385,8 @@
    ],
    "answer": 2,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "If the offset field is 5 and the beq is at address 400, what is the branch target?"
   },
   {
    "id": "4-bc-5",
@@ -5212,7 +6395,8 @@
    "prompt": "분기 대상이 현재 코드보다 위(이전 주소)에 있으면 offset은 음수가 되고, sign extension으로 위 비트가 1로 채워진다.",
    "answer": true,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "If the branch target is above the current code (an earlier address), the offset is negative, and sign extension fills the upper bits with 1s."
   },
   {
    "id": "4-au-1",
@@ -5227,7 +6411,8 @@
    ],
    "answer": 1,
    "lesson": "L4-5",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Which operation does ALU control 0110 mean?"
   },
   {
    "id": "4-au-2",
@@ -5239,17 +6424,20 @@
     [
      "add",
      "덧셈",
-     "더하기"
+     "더하기",
+     "addition"
     ],
     [
      "subtract",
      "sub",
      "뺄셈",
-     "빼기"
+     "빼기",
+     "subtraction"
     ]
    ],
    "lesson": "L4-5",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Load/Store: F = (a), Branch: F = (b), R-type: F depends on funct"
   },
   {
    "id": "4-au-3",
@@ -5259,7 +6447,9 @@
    "answer": false,
    "explain": "'This table will be given to you' — 표를 읽고 적용할 줄 알면 됨.",
    "lesson": "L4-5",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "The professor said you will have to write the ALU control table from memory on the exam.",
+   "explain_en": "'This table will be given to you' — you just need to be able to read it and apply it."
   },
   {
    "id": "4-ao-1",
@@ -5274,7 +6464,14 @@
    ],
    "answer": 0,
    "lesson": "L4-5",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "What are the ALUOp and ALU control for lw/sw?",
+   "choices_en": [
+    "00, 0010",
+    "01, 0110",
+    "10, depends on funct",
+    "00, 0110"
+   ]
   },
   {
    "id": "4-ao-2",
@@ -5289,7 +6486,8 @@
    ],
    "answer": 2,
    "lesson": "L4-5",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "What is the ALU control for R-type sub (funct 100010)?"
   },
   {
    "id": "4-ao-3",
@@ -5303,7 +6501,8 @@
     "0111"
    ],
    "lesson": "L4-5",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Write the ALU control for the following ALUOp and funct: (1) ALUOp 10, funct 100101 (2) ALUOp 01, funct XXXXXX (3) ALUOp 10, funct 101010"
   },
   {
    "id": "4-ao-4",
@@ -5312,7 +6511,8 @@
    "prompt": "lw, sw, beq는 I-type이라 funct 필드가 없어서 ALU control이 ALUOp만으로 결정된다.",
    "answer": true,
    "lesson": "L4-5",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "lw, sw and beq are I-type and have no funct field, so the ALU control is determined by ALUOp alone."
   },
   {
    "id": "4-ao-5",
@@ -5327,7 +6527,14 @@
    ],
    "answer": 1,
    "lesson": "L4-5",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "What did the professor point out as common to the R-type funct codes (100000, 100010, 100100, 100101, 101010)?",
+   "choices_en": [
+    "They are all even",
+    "Their first two bits are all 10, which looks the same as the R-type ALUOp (10)",
+    "The last bit is 0",
+    "They all act as add"
+   ]
   },
   {
    "id": "4-ao-6",
@@ -5346,7 +6553,8 @@
     ]
    ],
    "lesson": "L4-5",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "The inputs to ALU control are the 2-bit (a) from the Main control and the 6-bit (b) of the instruction."
   },
   {
    "id": "4-km-1",
@@ -5359,7 +6567,12 @@
     "lw에서 Op1 = 1"
    ],
    "lesson": "L4-5",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Write the Operation bit equations that satisfy the ALU control table, and calculate Op1 for lw (ALUOp = 00).",
+   "keys_en": [
+    "Op1 = ¬ALUOp1 + ¬F2",
+    "Op1 = 1 for lw"
+   ]
   },
   {
    "id": "4-km-2",
@@ -5369,7 +6582,9 @@
    "answer": false,
    "explain": "NOT 표시가 빠진 식. 그대로면 Op1 = 0 → 0000(AND)이 되어 표와 안 맞음.",
    "lesson": "L4-5",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Using the equation 'Op1 = ALUOp1 + F2' on slide p.30 as written still gives ALU control 0010 for lw.",
+   "explain_en": "The equation is missing the NOT bars. As written, Op1 = 0 → 0000 (AND), which does not match the table."
   },
   {
    "id": "4-mc-1",
@@ -5384,7 +6599,8 @@
    ],
    "answer": 0,
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Which field is 'Always read' on week6 p.31?"
   },
   {
    "id": "4-mc-2",
@@ -5399,7 +6615,14 @@
    ],
    "answer": 2,
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Which is the correct description of the fields related to 'write for R-type and load'?",
+   "choices_en": [
+    "Both R-type and load write to rd",
+    "Both R-type and load write to rt",
+    "R-type writes to rd and load writes to rt (hence the RegDst MUX)",
+    "Neither writes"
+   ]
   },
   {
    "id": "4-mc-3",
@@ -5419,7 +6642,8 @@
     ]
    ],
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "The opcode of lw is (a), sw is (b), and beq is (c) (decimal)"
   },
   {
    "id": "4-ct-1",
@@ -5434,7 +6658,8 @@
    ],
    "answer": 3,
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "What are RegWrite, MemRead and MemWrite for sw?"
   },
   {
    "id": "4-ct-2",
@@ -5449,7 +6674,14 @@
    ],
    "answer": 1,
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "In the control signal table, which instructions and signals have X (don't care)?",
+   "choices_en": [
+    "ALUSrc of R-type",
+    "RegDst and MemtoReg of sw and beq",
+    "RegDst of lw",
+    "Branch of every instruction"
+   ]
   },
   {
    "id": "4-ct-3",
@@ -5458,7 +6690,8 @@
    "prompt": "ALUSrc = 1인 명령어는 lw와 sw다.",
    "answer": true,
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "The instructions with ALUSrc = 1 are lw and sw."
   },
   {
    "id": "4-ct-4",
@@ -5472,7 +6705,13 @@
     "어떤 값이든 결과에 영향 없음"
    ],
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Explain why RegDst and MemtoReg are X for sw and beq in the control signal table. (Answer in English.)",
+   "keys_en": [
+    "RegWrite = 0",
+    "No register is written",
+    "Any value has no effect on the result"
+   ]
   },
   {
    "id": "4-ct-5",
@@ -5485,7 +6724,8 @@
     "0 1 1 1 1 0 0 0 0"
    ],
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "The opcode Op5–Op0 = 100011 comes in. Which instruction is it, and what are RegDst, ALUSrc, MemtoReg, RegWrite, MemRead, MemWrite, Branch, ALUOp1 and ALUOp0?"
   },
   {
    "id": "4-ct-6",
@@ -5500,7 +6740,8 @@
    ],
    "answer": 2,
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Which instruction has Branch = 1?"
   },
   {
    "id": "4-cg-1",
@@ -5515,7 +6756,8 @@
    ],
    "answer": 0,
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "In the p.33 control circuit, what are the inputs to the OR gate that produces ALUSrc?"
   },
   {
    "id": "4-cg-2",
@@ -5530,7 +6772,8 @@
    ],
    "answer": 1,
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "In the p.33 control circuit, what is RegWrite?"
   },
   {
    "id": "4-oc-1",
@@ -5539,7 +6782,8 @@
    "prompt": "`lw $t0, $t2($t1)` (offset이 레지스터 값)은 올바른 MIPS 명령어다.",
    "answer": false,
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "`lw $t0, $t2($t1)` (offset given as a register value) is a valid MIPS instruction."
   },
   {
    "id": "4-oc-2",
@@ -5554,7 +6798,12 @@
    "slot": 7,
    "pts": 6,
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "With $t1 = base and $t2 = byte offset, write correct MIPS code that loads the word at that address into $t0.",
+   "keys_en": [
+    "Compute the address with add first",
+    "The offset is the constant 0"
+   ]
   },
   {
    "id": "4-oc-3",
@@ -5569,7 +6818,14 @@
    ],
    "answer": 1,
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Why must the offset of lw/sw be a constant?",
+   "choices_en": [
+    "Because they are R-type",
+    "Because they are I-type, so the offset goes in the instruction's 16-bit immediate field",
+    "Because there is only one ALU",
+    "Because there are 32 registers"
+   ]
   },
   {
    "id": "4-oc-4",
@@ -5578,7 +6834,8 @@
    "prompt": "lbu도 I-type이므로 offset 자리에 레지스터를 쓸 수 없다.",
    "answer": true,
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "lbu is also I-type, so a register cannot be used in the offset position."
   },
   {
    "id": "5-ex-1",
@@ -5595,7 +6852,8 @@
    "slot": 8,
    "pts": 6,
    "lesson": "L2-4",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Write the C code `A[10] = A[10] + 7;` in MIPS, and write the fields of each instruction in decimal. Base of A = $s0 (16). (lw 35, sw 43, addi 8, $t0 = 8)"
   },
   {
    "id": "5-ft-1",
@@ -5611,7 +6869,14 @@
    "slot": 10,
    "pts": 8,
    "lesson": "L2-6",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "fact(2) is called with jal at address 200; the initial value of $sp is 1000. Write $sp and the saved values (a0, ra) for each frame, and the final $v0.",
+   "answer_en": "fact(2): $sp 992, a0 = 2, ra = 204\nfact(1): $sp 984, a0 = 1, ra = L1+8\nfact(0): $sp 976, a0 = 0, ra = L1+8 → $v0 = 1\nOn the way back, $v0 = 1 → 1 → 2, $sp = 1000, jr → 204",
+   "keys_en": [
+    "992/984/976",
+    "First ra 204",
+    "$v0 = 2"
+   ]
   },
   {
    "id": "5-sw-1",
@@ -5628,7 +6893,14 @@
    "slot": 16,
    "pts": 9,
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "When sw $t0, 12($s1) executes in the p.3 datapath, describe the path the value of rt ($t0) takes and the signals that are turned on. (Answer in English.)",
+   "keys_en": [
+    "Address = $s1 + 12 (ALUSrc 1)",
+    "rt value = Read data 2 → Write data",
+    "MemWrite = 1",
+    "RegWrite = 0, RegDst and MemtoReg X"
+   ]
   },
   {
    "id": "5-oc-1",
@@ -5645,7 +6917,15 @@
    "slot": 7,
    "pts": 6,
    "lesson": "L4-6",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Write `x = A[i];` (x: $s0, i: $s1, A base: $s2, int array) in MIPS following the offset rule, and explain in one line why `lw $s0, $s1($s2)` is wrong.",
+   "answer_en": "sll $t0, $s1, 2\nadd $t0, $t0, $s2\nlw  $s0, 0($t0)\nlw is I-type, so the offset goes in a 16-bit constant field; a register cannot be used there.",
+   "keys_en": [
+    "sll ×4",
+    "add base",
+    "lw 0($t0)",
+    "The offset is a constant (I-type)"
+   ]
   },
   {
    "id": "5-bd-1",
@@ -5660,7 +6940,8 @@
    ],
    "answer": 3,
    "lesson": "L2-5",
-   "unit": "U2"
+   "unit": "U2",
+   "prompt_en": "Keeping only beq/bne in hardware and building <, ≥ branches from slt combinations is an example of which design principle?"
   },
   {
    "id": "5-rt-1",
@@ -5681,7 +6962,9 @@
    "answer": "RegDst=1  ALUSrc=0  MemtoReg=0  RegWrite=1  MemRead=0  MemWrite=0  Branch=0  ALUOp1=1  ALUOp0=0",
    "explain": "slt도 R-type. 연산 종류는 funct(101010)로 ALU control이 정함.",
    "lesson": "L4-4",
-   "unit": "U4"
+   "unit": "U4",
+   "prompt_en": "Fill in the control signal values for `slt $t0, $s1, $s2` in the p.3 datapath.",
+   "explain_en": "slt is also R-type. The operation is determined by the ALU control from funct (101010)."
   }
  ]
 }

@@ -1,0 +1,2171 @@
+{
+ "1-ci-1": {
+  "prompt": "In which language must midterm and final exam answers be written in this course?",
+  "choices": [
+   "Korean only",
+   "English only",
+   "Either Korean or English",
+   "Depends on the exam paper"
+  ],
+  "explain": "All lectures and exams are in English, and answers must be in English too (Week 1-1)."
+ },
+ "1-ci-2": {
+  "prompt": "The midterm scope includes the pipelined implementation.",
+  "explain": "Midterm = up to the simplified (single-cycle) version. Pipelining is on the final."
+ },
+ "1-ci-3": {
+  "prompt": "Grading: attendance (a)%, midterm (b)%, final 45%",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "1-cl-1": {
+  "prompt": "Which performance metric does the slide give for supercomputers?"
+ },
+ "1-cl-2": {
+  "prompt": "Which class of computer has the strictest power, performance and cost constraints?"
+ },
+ "1-cl-3": {
+  "prompt": "Which of the following is NOT one of the Eight Great Ideas?",
+  "explain": "'Smaller is faster' is MIPS Design Principle 2. It is not one of the eight great ideas."
+ },
+ "1-bp-1": {
+  "prompt": "Which two belong to system software?",
+  "choices": [
+   "Web browser and Compiler",
+   "Compiler and Operating System",
+   "OS and Processor",
+   "Assembler and Memory"
+  ]
+ },
+ "1-bp-2": {
+  "prompt": "Assembly language is human-readable and corresponds almost one-to-one with machine language."
+ },
+ "1-co-1": {
+  "prompt": "What are the two components of a processor?",
+  "choices": [
+   "Datapath and Control unit",
+   "ALU and Memory",
+   "Register and Cache",
+   "Bus and I/O"
+  ]
+ },
+ "1-co-2": {
+  "prompt": "Network adapters such as LAN and Wi-Fi are I/O devices.",
+  "explain": "The professor said this is a commonly confused point."
+ },
+ "1-co-3": {
+  "prompt": "Name the two components of a processor and explain the role of each in one line. (Answer in English.)"
+ },
+ "1-co-4": {
+  "prompt": "Which statement about RAM and ROM is correct?",
+  "choices": [
+   "RAM is non-volatile, ROM is volatile",
+   "Both are volatile",
+   "RAM is volatile; ROM is non-volatile and stores boot firmware",
+   "Cache is usually made of DRAM"
+  ],
+  "explain": "Cache is usually SRAM."
+ },
+ "1-isa-1": {
+  "prompt": "What is an ISA (Instruction Set Architecture), and what is its most important benefit? (Answer in English.)"
+ },
+ "1-isa-2": {
+  "prompt": "Thanks to the ISA, software can run without modification even when the hardware changes (portability)."
+ },
+ "1-isa-3": {
+  "prompt": "What is the fastest memory in a computer system, located inside the processor?"
+ },
+ "1-pf-1": {
+  "prompt": "Which of the following does NOT determine the number of machine instructions executed per operation?",
+  "choices": [
+   "Programming language",
+   "Compiler",
+   "Architecture (ISA)",
+   "The algorithm's number of operations"
+  ],
+  "explain": "The algorithm determines the number of operations. The number of instructions per operation is determined by the language, compiler and architecture."
+ },
+ "1-pf-2": {
+  "prompt": "According to Moore's Law, IC capacity doubles every 18–24 months, so single-processor performance will keep rising without limit.",
+  "explain": "It is stalled by power constraints (the power wall)."
+ },
+ "1-pf-3": {
+  "prompt": "For the same sorting task, what is mainly reduced by using merge sort (n log n) instead of bubble sort (n²)?",
+  "choices": [
+   "The number of operations executed",
+   "CPI",
+   "Clock rate",
+   "Clock period"
+  ]
+ },
+ "1-rt-1": {
+  "prompt": "What is the definition of throughput?",
+  "choices": [
+   "The time it takes to complete one task",
+   "Total work done per unit time",
+   "The duration of one clock cycle",
+   "Cycles per instruction"
+  ]
+ },
+ "1-rt-2": {
+  "prompt": "Response time is also called (a) or execution time.",
+  "accept_add": [
+   []
+  ]
+ },
+ "1-rt-3": {
+  "prompt": "Define response time and throughput. (Answer in English.)"
+ },
+ "1-pr-1": {
+  "prompt": "The same program takes 12 s on system A and 30 s on system B. How many times faster is A than B? Show your work.",
+  "keys": [
+   "Performance ratio = inverse of the time ratio",
+   "30/12",
+   "2.5"
+  ]
+ },
+ "1-pr-2": {
+  "prompt": "If Performance_X / Performance_Y = n, which of the following equals n?"
+ },
+ "1-pr-3": {
+  "prompt": "If X's execution time is twice Y's execution time, then X is 2 times faster than Y.",
+  "explain": "Longer execution time means slower. Y is 2 times faster."
+ },
+ "1-pr-4": {
+  "prompt": "Computer P runs a program in 8 s, and Q runs the same program in 10 s. What is n in 'P is n times faster than Q'?"
+ },
+ "1-pr-6": {
+  "prompt": "System A is 4 times faster than B. If B's execution time is 20 s, what is A's execution time?"
+ },
+ "1-ctd-1": {
+  "prompt": "In this course, what does 'execution time' refer to?"
+ },
+ "1-ctd-3": {
+  "prompt": "If the clock rate is 2.5 GHz, what is the clock period?",
+  "keys": [
+   "Reciprocal",
+   "400 ps (0.4 ns)"
+  ]
+ },
+ "1-ctd-4": {
+  "prompt": "Elapsed time includes I/O and OS overhead, so it is inaccurate for comparing CPU performance alone."
+ },
+ "1-ctd-5": {
+  "prompt": "If the clock period is 250 ps, what is the clock rate?"
+ },
+ "1-ct-1": {
+  "prompt": "Computer A runs a program in 10 s at 2 GHz. We want to design Computer B that runs it in 6 s; B can increase the clock rate, but at the cost of needing 1.2 times as many clock cycles as A. What is B's clock rate?"
+ },
+ "1-ct-2": {
+  "prompt": "Computer A takes 15 s at 3 GHz. We want Computer B to run the same program in 10 s, but B needs 1.5 times as many clock cycles as A. What is B's clock rate?"
+ },
+ "1-ct-3": {
+  "prompt": "Which expression is NOT equal to CPU Time?"
+ },
+ "1-ct-4": {
+  "prompt": "There is often a trade-off in which increasing the clock rate increases the number of CPU clock cycles."
+ },
+ "1-ct-5": {
+  "prompt": "A program uses 4×10⁹ clock cycles and the clock rate is 2 GHz. What is the CPU time?"
+ },
+ "1-ct-6": {
+  "prompt": "To improve performance, (a) the number of clock cycles or (b) the clock rate.",
+  "answer": "(a) reduce / (b) increase",
+  "accept_add": [
+   [
+    "lower",
+    "decreasing",
+    "reducing"
+   ],
+   [
+    "raise",
+    "increasing",
+    "raising"
+   ]
+  ]
+ },
+ "1-cpi-1": {
+  "prompt": "Computer A: cycle time 250 ps, CPI 2.0. Computer B: cycle time 500 ps, CPI 1.2. Same ISA and same program. Which is faster, and by how much?",
+  "keys": [
+   "Let IC = I",
+   "A = 500I ps",
+   "B = 600I ps",
+   "A is 1.2 times faster"
+  ]
+ },
+ "1-cpi-2": {
+  "prompt": "Computer A: clock 2 GHz, CPI 1.5. Computer B: clock 3 GHz, CPI 2.4. For the same program, which is faster, and by how much?",
+  "keys": [
+   "IC×CPI/rate",
+   "A 0.75I ns, B 0.8I ns",
+   "A is about 1.07 times faster"
+  ]
+ },
+ "1-cpi-3": {
+  "prompt": "What mainly determines CPI?",
+  "choices": [
+   "The program only",
+   "CPU hardware (organization)",
+   "Technology only",
+   "Clock rate"
+  ],
+  "explain": "Slide: CPI is determined by the CPU hardware. In the summary table, program, language, compiler, ISA and organization all affect it."
+ },
+ "1-cpi-4": {
+  "accept_add": [
+   [
+    "instructions"
+   ],
+   []
+  ]
+ },
+ "1-cpi-5": {
+  "prompt": "What is the CPU time of a program with IC = 2×10⁹, CPI = 1.5 and clock rate = 3 GHz?"
+ },
+ "1-cpi-6": {
+  "prompt": "When comparing two computers on the same program, the performance ratio can be found even without knowing the IC.",
+  "explain": "The same IC cancels out in the ratio (the method the professor used)."
+ },
+ "1-wc-1": {
+  "prompt": "Classes A, B and C have CPIs of 1, 2 and 3. Sequence 1 executes 2 of A, 1 of B and 2 of C; Sequence 2 executes 4 of A, 1 of B and 1 of C. What is the average CPI of each sequence, and which is faster?",
+  "keys": [
+   "seq1 10 cycles / 5",
+   "CPI 2.0",
+   "seq2 9 cycles / 6",
+   "CPI 1.5",
+   "seq2 is faster (fewer cycles)"
+  ]
+ },
+ "1-wc-2": {
+  "prompt": "With instruction classes of CPI A=1, B=3, C=4, a program consists of 50% A, 30% B and 20% C. What is the average CPI?",
+  "keys": [
+   "Weighted by relative frequency",
+   "2.2"
+  ]
+ },
+ "1-wc-3": {
+  "prompt": "A code sequence with more instructions is always slower.",
+  "explain": "In the example, Sequence 2 has more instructions (6) but only 9 cycles, so it is faster."
+ },
+ "1-wc-4": {
+  "prompt": "In the weighted average CPI = Σ CPI_i × (IC_i / IC), IC_i / IC is called the (a).",
+  "accept_add": [
+   []
+  ]
+ },
+ "1-wc-5": {
+  "prompt": "CPI: A=2, B=4. Program X has 300 A and 100 B instructions; program Y has 100 A and 200 B instructions. What are the total cycles and average CPI of each?"
+ },
+ "1-ps-1": {
+  "prompt": "Which choice lists only factors that affect the clock rate?"
+ },
+ "1-ps-2": {
+  "prompt": "The compiler affects both the instruction count and the CPI."
+ },
+ "1-pw-1": {
+  "prompt": "A new CPU has 85% of the capacitive load of the old CPU, and its voltage and frequency are each 15% lower. What is the power ratio P_new / P_old?"
+ },
+ "1-pw-2": {
+  "prompt": "Which is a correct cause of the power wall?",
+  "choices": [
+   "We cannot reduce the voltage further or remove more heat",
+   "The number of transistors decreases",
+   "The clock is too slow",
+   "There is not enough memory"
+  ]
+ },
+ "1-pw-3": {
+  "prompt": "Because of the power wall, the industry shifted to multicore, which requires explicit parallel programming by the programmer."
+ },
+ "1-am-1": {
+  "prompt": "Of a 100 s program, multiplication takes 80 s. How much must multiplication be improved to make the whole program 5 times faster?",
+  "answer": "T_improved = 80/n + 20, target 20 s (100/5)\n20 = 80/n + 20 → 80/n = 0 → impossible. Even with infinitely fast multiplication, the speedup is at most 5×.",
+  "keys": [
+   "T = 80/n + 20",
+   "Target 20 s",
+   "Impossible (n → ∞)"
+  ]
+ },
+ "1-am-2": {
+  "prompt": "Of a 100 s program, multiplication takes 80 s. How much must multiplication be improved to make the whole program 4 times faster?",
+  "answer": "Target 100/4 = 25 s\n25 = 80/n + 20 → 80/n = 5 → n = 16",
+  "keys": [
+   "Target 25 s",
+   "80/n = 5",
+   "16 times"
+  ]
+ },
+ "1-am-3": {
+  "accept_add": [
+   [
+    "improvement"
+   ],
+   []
+  ]
+ },
+ "1-am-4": {
+  "prompt": "The pitfall of Amdahl's Law: expecting that improving one part n times will improve overall performance n times."
+ },
+ "1-am-5": {
+  "prompt": "Of an execution time of 50 s, memory access takes 30 s. If memory access is made 3 times faster, what are the new execution time and the speedup?",
+  "keys": [
+   "30/3 + 20",
+   "30 s",
+   "About 1.67 times"
+  ]
+ },
+ "1-am-6": {
+  "prompt": "Which design lesson is closest to what Amdahl's Law teaches?"
+ },
+ "1-mi-1": {
+  "prompt": "A and B both run at 4 GHz. IC: A 10 billion, B 8 billion; CPI: A 1.0, B 1.1. Calculate the MIPS and CPU time of each, and state which one is actually faster.",
+  "keys": [
+   "MIPS_A 4000",
+   "MIPS_B ≈ 3636",
+   "time A 2.5 s",
+   "time B 2.2 s",
+   "B is actually faster"
+  ]
+ },
+ "1-mi-2": {
+  "prompt": "Explain why MIPS is a poor performance metric. (Answer in English.)",
+  "keys": [
+   "Instruction count drops out (cancels)",
+   "Does not account for ISA differences",
+   "Does not account for differences in instruction complexity",
+   "CPI varies between programs"
+  ]
+ },
+ "1-mi-3": {
+  "prompt": "A computer with a higher MIPS value always runs the same program faster."
+ },
+ "1-mi-5": {
+  "prompt": "What is the MIPS rating of a computer at 3 GHz with CPI 1.5?"
+ },
+ "1-sp-1": {
+  "prompt": "Which statement about the SPEC CPU benchmark is correct?",
+  "choices": [
+   "It measures CPU performance by the elapsed time of programs with negligible I/O",
+   "It measures only server power",
+   "It compares MIPS values",
+   "It measures only CPI"
+  ]
+ },
+ "1-sp-2": {
+  "prompt": "The i7 on the slide uses about half (47%) of its peak power even at 10% load → power consumption stays high even at low load."
+ },
+ "1-rc-1": {
+  "prompt": "Compare RISC and CISC (example architectures, advantages, disadvantages). (Answer in English.)",
+  "keys": [
+   "RISC examples: MIPS/ARM",
+   "CISC example: x86",
+   "RISC advantages: fast, power-efficient, scalable",
+   "RISC disadvantage: more instructions needed",
+   "CISC advantages: smaller programs, compatibility",
+   "CISC disadvantages: slower, higher power"
+  ]
+ },
+ "1-rc-2": {
+  "prompt": "Which category does x86-64 belong to?",
+  "choices": [
+   "RISC",
+   "CISC",
+   "VLIW",
+   "Neither"
+  ]
+ },
+ "1-rc-3": {
+  "prompt": "A disadvantage of RISC is that complex tasks need more instructions, which can make programs larger."
+ },
+ "1-rc-4": {
+  "prompt": "What does 'MIPS' stand for in the MIPS architecture?"
+ },
+ "2-mc-1": {
+  "prompt": "Which of the following is NOT a MIPS instruction format (classification by format)?"
+ },
+ "2-mc-2": {
+  "prompt": "MIPS is a typical example of a RISC ISA."
+ },
+ "2-af-1": {
+  "prompt": "Write the C code `a = b + c + d;` using MIPS arithmetic instructions (you may use the variable names directly as operands).",
+  "keys": [
+   "Split into two lines",
+   "add a, b, c",
+   "add a, a, d"
+  ]
+ },
+ "2-af-2": {
+  "prompt": "What does `add a, b, c` mean?"
+ },
+ "2-af-4": {
+  "prompt": "All MIPS arithmetic instructions have the form of one destination and two sources."
+ },
+ "2-rg-1": {
+  "prompt": "Write `f = (g + h) - (i + j);` in MIPS. f, g, h, i and j are in $s0, $s1, $s2, $s3 and $s4, respectively.",
+  "keys": [
+   "add $t0, $s1, $s2",
+   "add $t1, $s3, $s4",
+   "sub $s0, $t0, $t1 (result in $s0)"
+  ]
+ },
+ "2-rg-2": {
+  "prompt": "What are the number and size of MIPS registers?",
+  "choices": [
+   "16 × 32-bit",
+   "32 × 64-bit",
+   "32 × 32-bit",
+   "64 × 32-bit"
+  ]
+ },
+ "2-rg-4": {
+  "prompt": "MIPS arithmetic instructions can operate directly on operands in memory.",
+  "explain": "Register operands only. Memory is accessed with lw/sw."
+ },
+ "2-rg-5": {
+  "prompt": "Write `x = y - (z + 5);` in MIPS. x, y and z are in $s0, $s1 and $s2.",
+  "keys": [
+   "z+5 with addi",
+   "sub $s0, $s1, $t0"
+  ]
+ },
+ "2-mb-1": {
+  "prompt": "Which statement about MIPS memory addresses is correct?",
+  "choices": [
+   "Memory is addressed in words",
+   "Memory is byte addressed, and word addresses are multiples of 4",
+   "Addresses are always odd",
+   "Memory shares the same address space as the registers"
+  ]
+ },
+ "2-mb-2": {
+  "prompt": "The base address of int array A is 0x1000. What is the address of A[5]?"
+ },
+ "2-mb-3": {
+  "prompt": "Because there are only 32 registers, composite data such as arrays and structures is kept in memory."
+ },
+ "2-en-1": {
+  "prompt": "The 32-bit value 0x12345678 is stored at addresses 0–3. Write the value at each address in big endian and in little endian.",
+  "keys": [
+   "big: MSB (12) at address 0",
+   "little: LSB (78) at address 0",
+   "Digit order within a byte is preserved"
+  ]
+ },
+ "2-en-2": {
+  "prompt": "The 32-bit value 0x34125678 is stored at addresses 0–3. What is the value at each address in big endian and in little endian?"
+ },
+ "2-en-3": {
+  "prompt": "When 0xA1B2C3D4 is stored in little endian, what is the value at address 0?",
+  "explain": "The LSB byte = D4. Do not reverse the two digits."
+ },
+ "2-en-4": {
+  "prompt": "In little endian, the last byte 78 of 0x12345678 is stored at address 0 as 87.",
+  "explain": "The order of the two digits within a byte is not changed → 78."
+ },
+ "2-en-5": {
+  "prompt": "Big endian stores the (a) at the lowest address; little endian stores the (b) at the lowest address.",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "2-en-6": {
+  "prompt": "When 0xCAFE0012 is stored at addresses 100–103 in big endian and in little endian, what is the value at each address?"
+ },
+ "2-lw-1": {
+  "prompt": "Write `g = h + A[8];` in MIPS. g is in $s1, h is in $s2, and the base address of A is in $s3."
+ },
+ "2-lw-2": {
+  "prompt": "Write `A[12] = h + A[8];` in MIPS. h is in $s2, and the base address of A is in $s3."
+ },
+ "2-lw-3": {
+  "prompt": "In `sw $t0, 8($s1)`, what is the role of $t0?",
+  "choices": [
+   "The value to write to memory (source)",
+   "The destination that receives the loaded value",
+   "The base address",
+   "The offset"
+  ]
+ },
+ "2-lw-4": {
+  "prompt": "A register can be used in the offset position, as in `lw $t0, $t1($s3)`.",
+  "explain": "The offset must be a constant. In a True/False question this is always False; writing it in code gets zero points."
+ },
+ "2-lw-5": {
+  "prompt": "Write `B[3] = B[1] + B[2];` in MIPS. The base address of B is in $s4 (int array)."
+ },
+ "2-lw-6": {
+  "prompt": "`lw dest, (a)(base)` — the (a) goes before the parentheses, and the (b) goes inside the parentheses.",
+  "accept_add": [
+   [
+    "constant offset",
+    "immediate"
+   ],
+   [
+    "base register",
+    "register"
+   ]
+  ]
+ },
+ "2-lw-7": {
+  "prompt": "Write `x = A[i];` in MIPS. x is in $s0, i is in $s1, and the base of A is in $s2. (Do not use a register as the offset.)",
+  "keys": [
+   "×4 with sll",
+   "add to the base",
+   "lw $s0, 0($t1)"
+  ]
+ },
+ "2-rm-1": {
+  "prompt": "What happens if variables are kept in memory instead of registers?",
+  "choices": [
+   "CPI becomes 0",
+   "The instruction count decreases",
+   "Loads/stores are needed, so more instructions are executed",
+   "The clock gets faster"
+  ]
+ },
+ "2-rm-2": {
+  "prompt": "Moving only the less frequently used variables out to memory is called (a).",
+  "accept_add": [
+   []
+  ]
+ },
+ "2-im-1": {
+  "prompt": "Write a MIPS instruction that copies the value of register $s1 into $s2 (as the professor requires).",
+  "explain": "Using addi with $zero gets zero points (the professor, Week 4-2).",
+  "keys": [
+   "Uses add",
+   "Adds $zero"
+  ]
+ },
+ "2-im-2": {
+  "prompt": "Which is the correct MIPS instruction for `$s2 = $s1 - 1`?",
+  "explain": "There is no subtract immediate."
+ },
+ "2-im-3": {
+  "prompt": "Writing a value to the $zero register changes it to that value."
+ },
+ "2-im-5": {
+  "prompt": "According to the professor, `addi $v0, $s0, $zero` is a correct way to copy a register.",
+  "explain": "$zero is a register, so it cannot go in the immediate position → add $v0, $s0, $zero."
+ },
+ "2-tw-1": {
+  "prompt": "What is the range that can be represented in 32-bit two's complement?"
+ },
+ "2-tw-2": {
+  "prompt": "What is the decimal value of the 8-bit two's complement number `11111010`?",
+  "answer": "−1×2⁷ + 1×2⁶ + 1×2⁵ + 1×2⁴ + 1×2³ + 0 + 1×2¹ + 0 = −128 + 122 = −6\n(Or invert + 1 → 00000110 = 6 → −6)",
+  "keys": [
+   "Sign bit 1 → negative",
+   "−6"
+  ]
+ },
+ "2-tw-3": {
+  "prompt": "What is the two's complement value of 32-bit `1111 … 1111` (all ones)?"
+ },
+ "2-tw-4": {
+  "prompt": "Non-negative numbers have the same representation in unsigned and in two's complement."
+ },
+ "2-tw-5": {
+  "prompt": "The n-bit unsigned range is 0 to (a); the two's complement range is (b) to 2^(n−1) − 1",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "2-tw-6": {
+  "prompt": "Write the minimum and maximum values representable in 8-bit two's complement, in binary and decimal.",
+  "answer": "Minimum: 1000 0000 = −128\nMaximum: 0111 1111 = +127"
+ },
+ "2-ng-1": {
+  "prompt": "Write −10 in 32-bit two's complement (show your work).",
+  "keys": [
+   "+10 in binary",
+   "Invert the bits",
+   "+1",
+   "…1111 0110"
+  ]
+ },
+ "2-ng-2": {
+  "prompt": "Write −5 in 32-bit two's complement (hexadecimal).",
+  "answer": "+5 = 0…0101 → invert 1…1010 → +1 = 1…1011 = 0xFFFFFFFB",
+  "keys": [
+   "Invert + 1",
+   "0xFFFFFFFB"
+  ]
+ },
+ "2-ng-3": {
+  "accept_add": [
+   [
+    "inversion",
+    "complementing",
+    "negate",
+    "flip"
+   ]
+  ]
+ },
+ "2-ng-4": {
+  "prompt": "Since x + x̄ (x with all bits inverted) = −1, −x = x̄ + 1."
+ },
+ "2-se-1": {
+  "prompt": "Sign-extend the 8-bit values +2 (`0000 0010`) and −2 (`1111 1110`) to 16 bits.",
+  "explain": "The '1111 1111 1000 0010' on slide p.21 is a typo.",
+  "keys": [
+   "+2: fill the upper bits with 0",
+   "−2: fill the upper bits with 1",
+   "1111 1111 1111 1110"
+  ]
+ },
+ "2-se-2": {
+  "prompt": "In which case does sign extension NOT occur in MIPS?",
+  "choices": [
+   "The immediate of addi",
+   "A byte loaded with lb",
+   "The displacement (offset) of beq",
+   "A byte loaded with lbu"
+  ],
+  "explain": "lbu and lhu use zero extension."
+ },
+ "2-se-3": {
+  "prompt": "What is 16-bit −3 (`1111 1111 1111 1101`) extended to 32 bits? Also write it in hexadecimal.",
+  "keys": [
+   "Upper 16 bits filled with 1",
+   "0xFFFFFFFD"
+  ]
+ },
+ "2-se-4": {
+  "prompt": "Sign extension replicates the sign bit to the left to preserve the value."
+ },
+ "2-se-5": {
+  "prompt": "The example on slide p.21, '−2 = 1111 1110 → 1111 1111 1000 0010', is a correct sign extension.",
+  "explain": "It is a typo. The correct value is 1111 1111 1111 1110."
+ },
+ "2-se-6": {
+  "prompt": "What is 8-bit −6 (`1111 1010`) sign-extended to 16 bits?",
+  "keys": [
+   "Upper 8 bits filled with 1",
+   "1111 1111 1111 1010"
+  ]
+ },
+ "2-hx-1": {
+  "prompt": "Convert the hexadecimal `eca8 6420` to binary.",
+  "keys": [
+   "4 bits per digit",
+   "1110 1100 1010 1000 0110 0100 0010 0000"
+  ]
+ },
+ "2-hx-2": {
+  "prompt": "What is binary `0011 1100` in hexadecimal?"
+ },
+ "2-eb-1": {
+  "prompt": "What are the register numbers of $t0, $s0 and $sp?"
+ },
+ "2-eb-2": {
+  "prompt": "MIPS instructions are encoded in (a) bits, and the first (b) bits are the opcode.",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "2-eb-3": {
+  "prompt": "What are the register numbers of $t8 and $t9?"
+ },
+ "2-rf-1": {
+  "prompt": "Write `add $t0, $s1, $s2` as R-format fields (decimal), in binary, and in hexadecimal. ($s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2, funct of add = 32)",
+  "keys": [
+   "rs=$s1(17), rt=$s2(18), rd=$t0(8)",
+   "Order: rs rt rd",
+   "funct 32",
+   "0x02324020"
+  ]
+ },
+ "2-rf-2": {
+  "prompt": "Write the machine code of `sub $s0, $t0, $t1` in binary and hexadecimal. ($s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2, funct of sub = 34)"
+ },
+ "2-rf-3": {
+  "prompt": "Which is the correct order of the R-format fields?"
+ },
+ "2-rf-4": {
+  "prompt": "The opcode of an R-format instruction is always 0, and the funct field determines the operation."
+ },
+ "2-rf-5": {
+  "prompt": "In assembly `add rd, rs, rt`, the destination comes (a), but in machine code rd comes (b) rs and rt.",
+  "answer": "(a) first / (b) after",
+  "accept_add": [
+   [
+    "front",
+    "beginning",
+    "at the front"
+   ],
+   [
+    "behind",
+    "later"
+   ]
+  ]
+ },
+ "2-rf-6": {
+  "prompt": "Convert the machine code `000000 10001 10010 01000 00000 101010` to assembly. (funct 42 = slt, $s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2)"
+ },
+ "2-rf-7": {
+  "prompt": "Write the machine code of `and $t0, $t1, $t2` in hexadecimal. (funct of and = 36, $s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2)"
+ },
+ "2-if-1": {
+  "prompt": "What are the fields of the I-format?"
+ },
+ "2-if-2": {
+  "prompt": "In `lw $t0, 32($s3)`, which register goes in the rt field?",
+  "choices": [
+   "$t0 (destination)",
+   "$s3 (base)",
+   "32",
+   "The rt field is not used"
+  ]
+ },
+ "2-if-3": {
+  "prompt": "Write the machine code of `lw $t0, 32($s3)` in binary and hexadecimal. (lw opcode = 35, $s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2)"
+ },
+ "2-if-5": {
+  "prompt": "The constant field of the I-format is 16 bits, so it represents the range −2¹⁵ to 2¹⁵ − 1."
+ },
+ "2-if-6": {
+  "prompt": "Write the machine code of `addi $s3, $s3, -1` in hexadecimal. (addi opcode = 8, $s0–$s7 = 16–23, $t0–$t7 = 8–15, $zero = 0, $sp = 29, $ra = 31, $a0–$a3 = 4–7, $v0 = 2)"
+ },
+ "2-ex-1": {
+  "prompt": "Write the C code `A[300] = h + A[300];` in MIPS, and write the fields of each instruction in decimal. $t1 = base address of A, $s2 = h. (lw = 35, sw = 43, add funct = 32)"
+ },
+ "2-ex-2": {
+  "prompt": "What is the byte offset of A[300]? (int array)"
+ },
+ "2-ex-3": {
+  "prompt": "Write the binary representation of `lw $t0, 1200($t1)`. ($t0 = 8, $t1 = 9)"
+ },
+ "2-ex-4": {
+  "prompt": "What is the hexadecimal machine code of `sw $t0, 48($s3)`? (sw = 43, $t0 = 8, $s3 = 19)"
+ },
+ "2-sh-1": {
+  "prompt": "What is the effect of `sll $t2, $s0, 4`?"
+ },
+ "2-sh-2": {
+  "prompt": "srl fills the left with 0s, so it can be used as-is to divide a negative (two's complement) number by 2^i."
+ },
+ "2-sh-3": {
+  "prompt": "In R-format, the number of positions to shift goes in the (a) field.",
+  "accept_add": [
+   []
+  ]
+ },
+ "2-sh-4": {
+  "prompt": "If $s0 = 0000 … 0000 1001 (9), write the result of `sll $t2, $s0, 4` in binary and decimal.",
+  "keys": [
+   "Shift left 4, fill the right with 0",
+   "144"
+  ]
+ },
+ "2-ao-1": {
+  "prompt": "If $t1 = 0000 0000 0000 0000 0011 1100 0000 0000 and $t2 = 0000 0000 0000 0000 0000 1101 1100 0000, what are the results of `and $t0, $t1, $t2` and `or $t0, $t1, $t2`?",
+  "keys": [
+   "and result",
+   "or result"
+  ]
+ },
+ "2-ao-2": {
+  "prompt": "How do you invert all bits of $t1 (NOT) in MIPS?"
+ },
+ "2-ao-3": {
+  "prompt": "AND is used for masking: keeping only the selected bits and clearing the rest to 0."
+ },
+ "2-bi-1": {
+  "prompt": "What does `bne rs, rt, L1` do?",
+  "choices": [
+   "Branch to L1 if rs == rt",
+   "Branch to L1 if rs != rt",
+   "Always branch to L1",
+   "Branch to L1 if rs < rt"
+  ]
+ },
+ "2-bi-2": {
+  "prompt": "`j L1` jumps to L1 unconditionally."
+ },
+ "2-ie-1": {
+  "prompt": "Write `if (i == j) f = g + h; else f = g - h;` in MIPS. f, g, h, i, j = $s0, $s1, $s2, $s3, $s4.",
+  "keys": [
+   "Test the opposite condition with bne",
+   "add $s0, $s1, $s2",
+   "j Exit",
+   "Else: sub",
+   "Exit label"
+  ]
+ },
+ "2-ie-2": {
+  "prompt": "Write `if (a != b) x = x + 1;` in MIPS. a, b, x = $s0, $s1, $s2.",
+  "keys": [
+   "Opposite condition with beq",
+   "addi $s2, $s2, 1",
+   "Skip label"
+  ]
+ },
+ "2-ie-3": {
+  "prompt": "When compiling if-else, why is `j Exit` needed at the end of the if-block?",
+  "choices": [
+   "To skip the else-block",
+   "To repeat the loop",
+   "To save registers",
+   "To return from the function"
+  ]
+ },
+ "2-ie-4": {
+  "prompt": "Write `if (i < j) f = 1; else f = 0;` in MIPS using slt (without a branch if possible). i, j, f = $s3, $s4, $s0.",
+  "keys": [
+   "Done in one slt instruction",
+   "rs = i, rt = j"
+  ]
+ },
+ "2-ie-5": {
+  "prompt": "Write `if (x == 0) y = y - 5; else y = y + 5;` in MIPS. x, y = $s0, $s1.",
+  "keys": [
+   "bne $s0, $zero",
+   "addi -5 (there is no subi)",
+   "j Exit",
+   "Else: addi 5"
+  ]
+ },
+ "2-wl-1": {
+  "prompt": "Write `while (save[i] == k) i += 1;` in MIPS. i = $s3, k = $s5, base of save = $s6.",
+  "keys": [
+   "sll ×4",
+   "add base",
+   "lw offset 0",
+   "Exit with bne",
+   "addi i+1",
+   "j Loop"
+  ]
+ },
+ "2-wl-2": {
+  "prompt": "In a while loop, the index register can be used directly as the offset, as in `lw $t0, $s3($s6)`."
+ },
+ "2-wl-3": {
+  "prompt": "Write `while (A[i] != 0) i++;` in MIPS. i = $s0, base of A = $s1 (int array).",
+  "keys": [
+   "Address calculation",
+   "lw 0($t1)",
+   "beq $t0, $zero, Exit",
+   "j Loop"
+  ]
+ },
+ "2-wl-4": {
+  "prompt": "Why is `sll $t1, $s3, 2` used?",
+  "choices": [
+   "To double i",
+   "Because int array elements are 4 bytes, so index × 4",
+   "To sign-extend",
+   "To end the loop"
+  ]
+ },
+ "2-wl-5": {
+  "prompt": "Write `sum = 0; for (i = 0; i < 10; i++) sum += i;` in MIPS. sum = $s0, i = $s1.",
+  "keys": [
+   "Initialization",
+   "i<10 with slti",
+   "Exit with beq",
+   "sum += i",
+   "i++",
+   "j Loop"
+  ]
+ },
+ "2-sl-1": {
+  "prompt": "If $s0 = 1111 … 1111 and $s1 = 0000 … 0001, what are the results of `slt $t0, $s0, $s1` and `sltu $t0, $s0, $s1`?",
+  "keys": [
+   "slt → 1",
+   "sltu → 0",
+   "Signed vs unsigned interpretation"
+  ]
+ },
+ "2-sl-2": {
+  "prompt": "In `slti $t0, $a0, 1`, if $a0 = 1, what is $t0?",
+  "choices": [
+   "0",
+   "1",
+   "−1",
+   "Unchanged"
+  ],
+  "explain": "1 < 1 is false."
+ },
+ "2-sl-3": {
+  "prompt": "Write `if ($s1 < $s2) goto L;` in two lines of MIPS."
+ },
+ "2-sl-4": {
+  "prompt": "`blt` is not a real MIPS instruction but a pseudo-instruction that becomes slt + bne."
+ },
+ "2-bd-1": {
+  "prompt": "Why does MIPS use beq, bne + slt instead of instructions such as blt and bge? (Answer in English.)",
+  "keys": [
+   "Hardware for <, > comparison is slower",
+   "More work per instruction → slower clock",
+   "All instructions are penalized",
+   "beq/bne = a good compromise"
+  ]
+ },
+ "2-bd-2": {
+  "prompt": "If blt were added as a hardware instruction, only that instruction would become slower and other instructions would not be affected."
+ },
+ "2-jj-1": {
+  "prompt": "Immediately after executing `jal Proc` at address 100 (Proc is at address 388), what are $ra and PC?"
+ },
+ "2-jj-2": {
+  "prompt": "The instruction that returns from a procedure is (a) $ra.",
+  "accept_add": [
+   []
+  ]
+ },
+ "2-jj-3": {
+  "prompt": "jal stores the address of the next instruction (PC + 4) in $ra."
+ },
+ "2-ru-1": {
+  "prompt": "Which registers must the callee save and restore if it uses them?"
+ },
+ "2-ru-2": {
+  "prompt": "Which instruction allocates 4 bytes of space on the MIPS stack?"
+ },
+ "2-ru-3": {
+  "prompt": "$a0–$a3 are registers for (a), and $v0–$v1 are registers for (b).",
+  "answer": "(a) arguments / (b) result values",
+  "accept_add": [
+   [
+    "parameters",
+    "parameter"
+   ],
+   [
+    "result values",
+    "return values",
+    "result value"
+   ]
+  ]
+ },
+ "2-ru-4": {
+  "prompt": "The stack grows from high addresses toward low addresses."
+ },
+ "2-lf-1": {
+  "prompt": "Write `int leaf_example(int g, h, i, j) { int f; f = (g + h) - (i + j); return f; }` in MIPS. Arguments are in $a0–$a3, f is in $s0, and the result goes in $v0.",
+  "keys": [
+   "$sp −4, sw $s0",
+   "g+h, i+j",
+   "sub $s0",
+   "add $v0, $s0, $zero",
+   "Restore $s0 with lw",
+   "$sp +4",
+   "jr $ra"
+  ]
+ },
+ "2-lf-2": {
+  "prompt": "Why is $s0 saved on the stack in leaf_example?",
+  "choices": [
+   "Because $s0 is an argument",
+   "Because $s0 is $ra",
+   "Because $s0 is a saved register, so the callee must preserve its original value",
+   "Because it is the stack pointer"
+  ]
+ },
+ "2-lf-3": {
+  "prompt": "A leaf procedure is a procedure that does not call other procedures."
+ },
+ "2-lf-4": {
+  "prompt": "Write `int sum3(int a, int b, int c) { return a + b + c; }` in MIPS (without using saved registers). Arguments in $a0–$a2, result in $v0.",
+  "keys": [
+   "Only temporary registers used → no stack needed",
+   "Two adds",
+   "jr $ra"
+  ]
+ },
+ "2-lf-5": {
+  "prompt": "If leaf_example used two saved registers, $s0 and $s1, for f, how would the prologue (saving to the stack) change?",
+  "answer": "addi $sp, $sp, -8\nsw   $s1, 4($sp)\nsw   $s0, 0($sp)\n(The epilogue does lw from the same offsets, then addi $sp, $sp, 8)",
+  "keys": [
+   "Allocate −8",
+   "sw each to a different offset",
+   "Restore offsets match"
+  ]
+ },
+ "2-nl-1": {
+  "prompt": "Write the recursive `int fact(int n) { if (n < 1) return 1; else return n * fact(n - 1); }` in MIPS. Argument in $a0, result in $v0.",
+  "keys": [
+   "$sp −8, save $ra and $a0",
+   "slti + beq",
+   "Base case $v0 = 1",
+   "n−1, jal fact",
+   "Restore from the same offsets",
+   "mul",
+   "jr $ra"
+  ]
+ },
+ "2-nl-2": {
+  "prompt": "What must a non-leaf procedure save on the stack before a call?",
+  "choices": [
+   "$zero",
+   "All $t registers",
+   "$sp",
+   "$ra and any arguments/temporaries needed after the call"
+  ]
+ },
+ "2-nl-3": {
+  "prompt": "In fact, if $a0 was saved at 0($sp) and $ra at 4($sp), it is fine to restore $a0 from 4($sp).",
+  "explain": "Restoring them in the opposite order gets zero points (the professor, Week 4-1)."
+ },
+ "2-nl-4": {
+  "prompt": "Explain why a non-leaf procedure must save $ra on the stack. (Answer in English.)",
+  "keys": [
+   "jal overwrites $ra",
+   "The original return address would be lost"
+  ]
+ },
+ "2-nl-5": {
+  "prompt": "In fact, the n < 1 test is done with `slti $t0, $a0, 1` followed by `(a) $t0, $zero, L1`.",
+  "accept_add": [
+   []
+  ]
+ },
+ "2-ft-1": {
+  "prompt": "fact(3) is called with `jal fact` at address 100. The initial value of $sp is 500. Up to the deepest point of the recursion, write $sp and the values (a0, ra) saved on the stack at each step.",
+  "answer": "fact(3): $sp 492, 0($sp) = 3, 4($sp) = 104\nfact(2): $sp 484, 0($sp) = 2, 4($sp) = L1+8\nfact(1): $sp 476, 0($sp) = 1, 4($sp) = L1+8\nfact(0): $sp 468, 0($sp) = 0, 4($sp) = L1+8\n(In fact(0), slti → $t0 = 1 → returns $v0 = 1)",
+  "keys": [
+   "492/484/476/468",
+   "First ra = 104",
+   "Subsequent ra = L1+8",
+   "a0 = 3,2,1,0"
+  ]
+ },
+ "2-ft-2": {
+  "prompt": "While executing fact(1), what is the result of `slti $t0, $a0, 1`, and what happens next?",
+  "choices": [
+   "$t0 = 1, returns 1 as the base case",
+   "$t0 = 0, beq branches to L1 and calls fact(0)",
+   "$t0 = 1, branches to L1",
+   "$t0 = 0, immediately jr $ra"
+  ]
+ },
+ "2-ft-3": {
+  "prompt": "When fact(3) is completely finished, what are $v0, $sp, and the address the last jr goes to?",
+  "answer": "$v0 = 6 (1 → 1×1 → 2×1 → 3×2), $sp = 500 (restored), jr $ra → 104",
+  "keys": [
+   "$v0 = 6",
+   "$sp = 500",
+   "Returns to 104"
+  ]
+ },
+ "2-ft-4": {
+  "prompt": "When fact(3) is called, a total of 4 frames (8 bytes each) are pushed onto the stack and then all released."
+ },
+ "2-ss-1": {
+  "prompt": "According to the professor, what stack size does a recursive function with two char arguments need to save $ra and its arguments?"
+ },
+ "2-ss-2": {
+  "prompt": "What stack size does a recursive function with one int argument need to save $ra and its argument?"
+ },
+ "2-ss-3": {
+  "prompt": "Even when handling a char array, as in strcpy, if the value saved on the stack is an int (i), $sp moves by 4."
+ },
+ "2-by-1": {
+  "prompt": "Write `void strcpy(char x[], char y[]) { int i = 0; while ((x[i] = y[i]) != '\\0') i += 1; }` in MIPS. x and y are in $a0 and $a1, and i is in $s0.",
+  "keys": [
+   "Save $s0",
+   "i = 0",
+   "Address = i + base (no ×4)",
+   "lbu / sb",
+   "Test for '\\0' with beq",
+   "i++, j L1",
+   "Restore, jr"
+  ]
+ },
+ "2-by-2": {
+  "prompt": "How does the address calculation for char array x[i] differ from that of an int array?",
+  "choices": [
+   "Elements are 1 byte, so the index is not multiplied by 4",
+   "The index is multiplied by 8",
+   "No base address is needed",
+   "A register can be used as the offset"
+  ]
+ },
+ "2-by-3": {
+  "prompt": "Which instruction loads 1 byte and zero-extends it to 32 bits?"
+ },
+ "2-lu-1": {
+  "prompt": "Write MIPS code that puts the 32-bit constant 0x007D0900 into $s0 (0x007D = 125, 0x0900 = 2304).",
+  "keys": [
+   "Upper 16 bits with lui",
+   "Lower 16 bits with ori"
+  ]
+ },
+ "2-lu-2": {
+  "prompt": "The reason ori is used instead of addi to fill the lower 16 bits is that addi sign-extends its immediate."
+ },
+ "2-ba-2": {
+  "prompt": "A beq is at address 108 and the branch target is at address 124. What is the value of the beq's offset field?"
+ },
+ "2-ba-3": {
+  "prompt": "A beq is at address 1000 and its offset field is −3. What is the branch target address?"
+ },
+ "2-ba-4": {
+  "prompt": "What range can a PC-relative branch reach?",
+  "choices": [
+   "±2¹⁵ bytes",
+   "±2¹⁵ words (instructions)",
+   "±2²⁶ words",
+   "All of memory"
+  ]
+ },
+ "2-ba-5": {
+  "prompt": "When the branch target is too far to be represented by a 16-bit offset, how does the assembler rewrite `beq $s0, $s1, L1`?",
+  "keys": [
+   "Inverted condition with bne",
+   "j L1",
+   "L2 label"
+  ]
+ },
+ "2-ba-6": {
+  "prompt": "The offset field of beq holds the byte-address difference to the branch target as-is.",
+  "explain": "It is the difference in number of instructions (words). The ×4 is done by the hardware (shift left 2)."
+ },
+ "2-ja-1": {
+  "prompt": "How many bits is the address field in the J-format?"
+ },
+ "2-ja-2": {
+  "prompt": "Loop is at address 80000. What is the value of the address field of `j Loop`?"
+ },
+ "2-ja-3": {
+  "prompt": "In `bne $t0, $s5, Exit` at address 80012, the offset field is 2. What is the address of Exit?"
+ },
+ "2-ja-4": {
+  "prompt": "Which format is jr?"
+ },
+ "2-am-1": {
+  "prompt": "Which addressing mode do lw and sw use?"
+ },
+ "2-am-2": {
+  "prompt": "Which addressing mode do beq and bne use?"
+ },
+ "2-tr-1": {
+  "prompt": "Which of the following is NOT done by the linker?",
+  "choices": [
+   "Merging segments",
+   "Resolving label addresses",
+   "Patching location-dependent and external references",
+   "Creating the virtual address space and copying the program into memory"
+  ],
+  "explain": "The last one is done by the loader."
+ },
+ "2-tr-2": {
+  "prompt": "Convert the pseudo-instructions `move $t0, $t1` and `blt $t0, $t1, L` into real MIPS instructions."
+ },
+ "2-tr-3": {
+  "prompt": "Dynamic linking links and loads a library procedure only when it is called."
+ },
+ "2-fa-1": {
+  "prompt": "Using powerful (complex) instructions always increases performance."
+ },
+ "2-fa-2": {
+  "prompt": "Which is NOT one of the four MIPS design principles?"
+ },
+ "3-ad-1": {
+  "prompt": "Calculate 7 + 6 and 7 − 6 in 4 bits (do the subtraction as two's complement addition).",
+  "answer": "7 + 6: 0111 + 0110 = 1101 (13, unsigned)\n7 − 6 = 7 + (−6): −6 = 1010 → 0111 + 1010 = 1 0001 → discard the carry → 0001 = 1",
+  "keys": [
+   "0111+0110",
+   "−6 = 1010",
+   "Result 0001"
+  ]
+ },
+ "3-ad-2": {
+  "prompt": "Subtraction can be done by adding the two's complement of the subtrahend."
+ },
+ "3-of-1": {
+  "prompt": "In which case can overflow NEVER occur?",
+  "choices": [
+   "Positive + positive",
+   "Negative + negative",
+   "Positive + negative",
+   "Negative − positive"
+  ]
+ },
+ "3-of-2": {
+  "prompt": "In 4-bit two's complement, calculate 0110 (6) + 0101 (5) and determine whether overflow occurs.",
+  "answer": "0110 + 0101 = 1011 → sign bit 1 (negative). Positive + positive gave a negative → overflow.",
+  "keys": [
+   "1011",
+   "Positive + positive but sign 1",
+   "overflow"
+  ]
+ },
+ "3-of-3": {
+  "prompt": "In 4-bit two's complement, calculate 1100 (−4) + 1011 (−5) and determine whether overflow occurs.",
+  "answer": "1100 + 1011 = 1 0111 → 4 bits = 0111 → sign 0 (positive). Negative + negative gave a positive → overflow.",
+  "keys": [
+   "0111",
+   "Negative + negative but sign 0",
+   "overflow"
+  ]
+ },
+ "3-of-4": {
+  "prompt": "For positive − negative, overflow occurs if the result sign bit is (a); for negative − positive, overflow occurs if the result sign bit is (b).",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "3-of-5": {
+  "prompt": "In 4 bits, 0011 + 1110 (3 + (−2)) overflows because a carry comes out of the result.",
+  "explain": "Positive + negative never overflows. Carry out ≠ overflow."
+ },
+ "3-of-6": {
+  "prompt": "According to the lecture, how do modern CPUs handle integer overflow?",
+  "choices": [
+   "Ignore it",
+   "Handle it as an exception",
+   "Always set the result to 0",
+   "Extend the result to 64 bits"
+  ]
+ },
+ "3-mb-1": {
+  "prompt": "At most how many bits long is the product of an n-bit × n-bit multiplication?"
+ },
+ "3-mb-2": {
+  "prompt": "Calculate 1000 × 1001 by long multiplication on paper, and check the result in decimal.",
+  "answer": "1000 + 0000 (shifted) + 0000 (shifted) + 1000 (shifted 3 places) = 1001000 = 72 (8 × 9)",
+  "keys": [
+   "Partial products",
+   "1001000",
+   "72"
+  ]
+ },
+ "3-m1-1": {
+  "prompt": "Using the original multiplier (Multiplicand 8-bit shift left, Multiplier 4-bit shift right, Product 8-bit), calculate 0110 × 0011. Write the Multiplier, Multiplicand and Product at each iteration.",
+  "keys": [
+   "Test the LSB every iteration",
+   "Add only when LSB=1",
+   "Two shifts every iteration",
+   "Result 0001 0010 = 18"
+  ]
+ },
+ "3-m1-2": {
+  "prompt": "Using the original multiplier, calculate 0111 × 0101 (Product value at each iteration)."
+ },
+ "3-m1-3": {
+  "prompt": "In the original multiplier, how are the Multiplicand and Multiplier shifted every iteration?",
+  "choices": [
+   "Multiplicand left, Multiplier right",
+   "Both left",
+   "Multiplicand right, Multiplier left",
+   "Shifted only when the LSB is 1"
+  ]
+ },
+ "3-m1-4": {
+  "prompt": "In the original multiplier, the Product register is initialized to 0."
+ },
+ "3-m1-5": {
+  "prompt": "In the original (32-bit) multiplier, what are the sizes of the Multiplicand register and the ALU?"
+ },
+ "3-m1-6": {
+  "prompt": "In the original multiplier, if the LSB of the Multiplier is 0, no shift is done in that iteration either.",
+  "explain": "Shift every iteration, regardless of the LSB."
+ },
+ "3-m2-1": {
+  "prompt": "Using the refined multiplier (Multiplicand 4-bit, Product 8-bit shift right), calculate 0011 × 0101. Write the Product at each iteration.",
+  "answer": "0: Product = 0000 0101 (lower half = multiplier)\n1: LSB=1 → upper += 0011 → 0011 0101 → >>1 → 0001 1010\n2: LSB=0 → >>1 → 0000 1101\n3: LSB=1 → upper += 0011 → 0011 1101 → >>1 → 0001 1110\n4: LSB=0 → >>1 → 0000 1111\n= 15",
+  "keys": [
+   "Initial: lower half = multiplier",
+   "If LSB=1, add to the upper half",
+   ">>1 every iteration",
+   "0000 1111 = 15"
+  ]
+ },
+ "3-m2-2": {
+  "prompt": "Using the refined multiplier, calculate 1001 × 0110 (Product at each iteration)."
+ },
+ "3-m2-3": {
+  "prompt": "What is the termination condition of the refined multiplier?",
+  "choices": [
+   "Product is 0",
+   "Number of shifts = number of bits in the multiplier",
+   "Number of shifts = number of bits in the multiplicand",
+   "Multiplicand is 0"
+  ]
+ },
+ "3-m2-4": {
+  "prompt": "The refined multiplier has no separate Multiplier register; the multiplier is placed in the lower half of the Product register."
+ },
+ "3-m2-5": {
+  "prompt": "Explain how the refined multiplier improves on the original multiplier in terms of hardware size. (Answer in English.)",
+  "keys": [
+   "Multiplicand and ALU are 32-bit",
+   "The multiplier shares the lower half of Product",
+   "Only Product shifts right"
+  ]
+ },
+ "3-m2-6": {
+  "prompt": "In the refined multiplier, if the LSB is 1, the multiplicand is added to the (a) half of Product, and every iteration Product is shifted to the (b).",
+  "answer": "(a) upper / (b) right",
+  "accept_add": [
+   [
+    "top",
+    "high",
+    "higher",
+    "left"
+   ],
+   []
+  ]
+ },
+ "3-me-1": {
+  "prompt": "Week 5 Example 1: Show the process of 1010 × 0010 using the original multiplier.",
+  "keys": [
+   "No add in iteration 1",
+   "Iteration 2: Prod = 0001 0100",
+   "Result 20"
+  ]
+ },
+ "3-me-2": {
+  "prompt": "Week 5 Example 2: Show the process of 1010 × 1100 using the refined multiplier."
+ },
+ "3-me-3": {
+  "prompt": "In iteration 3 of Example 2, Product is 0000 0011 just before 1010 is added to the upper half. What is the value right after the add?"
+ },
+ "3-mi-1": {
+  "prompt": "Which register holds the upper 32 bits of a 64-bit product?"
+ },
+ "3-mi-2": {
+  "prompt": "`mul rd, rs, rt` puts only the lower 32 bits of the 64-bit product into rd."
+ },
+ "3-db-2": {
+  "prompt": "In restoring division, what is done when the result of the subtraction is negative?",
+  "choices": [
+   "Put 1 in the quotient",
+   "Add the divisor back to restore the original value, and put 0 in the quotient",
+   "Stop the division",
+   "Double the divisor"
+  ]
+ },
+ "3-db-3": {
+  "prompt": "In signed division, the remainder has the same sign as the dividend (Dividend = Quotient × Divisor + Remainder)."
+ },
+ "3-db-4": {
+  "prompt": "Write the quotient and remainder of 1001010 ÷ 1000 in binary and decimal.",
+  "answer": "Quotient 1001 (9), remainder 10 (2) — 74 = 9 × 8 + 2",
+  "keys": [
+   "Quotient 1001",
+   "Remainder 10",
+   "74 = 9×8 + 2"
+  ]
+ },
+ "3-d1-1": {
+  "prompt": "Using the divider (Divisor 8-bit shift right, initially in the left half / Remainder 8-bit / Quotient 4-bit shift left), calculate 0000 0111 ÷ 0010. Write the decision, Quotient and Remainder at each iteration.",
+  "answer": "Initial Divisor 0010 0000, Rem 0000 0111\n1: Rem−Div < 0 → restore, Q 0000, Div → 0001 0000\n2: < 0 → restore, Q 0000, Div → 0000 1000\n3: 0000 0111 − 0000 1000 < 0 → restore, Q 0000, Div → 0000 0100\n4: 0000 0111 − 0000 0100 = 0000 0011 ≥ 0 → Q 0001, Div → 0000 0010\n5: 0000 0011 − 0000 0010 = 0000 0001 ≥ 0 → Q 0011\nQuotient = 0011 (3), Remainder = 0000 0001 (1)",
+  "keys": [
+   "Initial Divisor 0010 0000",
+   "n+1 = 5 iterations",
+   "If negative, add back + 0",
+   "Q = 0011 (3)",
+   "R = 1"
+  ]
+ },
+ "3-d1-2": {
+  "prompt": "Using the same divider, calculate 0000 1101 ÷ 0011 (quotient, remainder, and the iteration where the result became ≥ 0).",
+  "answer": "Start with Divisor 0011 0000.\nIterations 1, 2: negative → restore\nIteration 3: 0000 1101 − 0000 1100 = 0000 0001 ≥ 0 → Q 0001\nIteration 4: 0000 0001 − 0000 0110 < 0 → Q 0010\nIteration 5: 0000 0001 − 0000 0011 < 0 → Q 0100\nQ = 0100 (4), R = 1",
+  "keys": [
+   "Only iteration 3 is ≥ 0",
+   "Q = 0100 = 4",
+   "R = 1"
+  ]
+ },
+ "3-d1-3": {
+  "prompt": "How many iterations does a 4-bit divider take?",
+  "explain": "n + 1 = 5 (33 for 32 bits)."
+ },
+ "3-d1-4": {
+  "prompt": "In the divider, the Divisor is initially placed in the left (upper) half of the Divisor register."
+ },
+ "3-d1-5": {
+  "prompt": "How do you decide whether Rem − Div is negative?",
+  "choices": [
+   "Whether the first bit (sign bit) of the result is 1",
+   "Whether the result is even",
+   "The LSB of the Quotient",
+   "The MSB of the Divisor"
+  ]
+ },
+ "3-d1-6": {
+  "prompt": "If Rem ≥ 0, shift the Quotient left and set the new LSB to (a); if Rem < 0, restore by (b) the Divisor and set the LSB to 0.",
+  "answer": "(a) 1 / (b) adding back",
+  "accept_add": [
+   [],
+   [
+    "adding back",
+    "adding",
+    "added back",
+    "adding the divisor back"
+   ]
+  ]
+ },
+ "3-dx-1": {
+  "prompt": "Week 5 Example 3: Calculate 0001 0100 ÷ 0010 using the divider.",
+  "answer": "Div 0010 0000, Rem 0001 0100\n1: 1111 0100 <0 → restore, Q 0000, Div 0001 0000\n2: 0000 0100 ≥0 → Q 0001, Div 0000 1000\n3: 1111 1100 <0 → restore, Q 0010, Div 0000 0100\n4: 0000 0000 ≥0 → Q 0101, Div 0000 0010\n5: 1111 1110 <0 → restore, Q 1010\nQuotient 1010 (10), Remainder 0",
+  "keys": [
+   "Iteration 2 ≥0",
+   "Iteration 4 ≥0",
+   "Q = 1010 = 10",
+   "R = 0"
+  ]
+ },
+ "3-dx-2": {
+  "prompt": "In iteration 1 of Example 3, what is the result of 0001 0100 − 0010 0000?"
+ },
+ "3-d2-1": {
+  "prompt": "What is a characteristic of the refined divider?",
+  "choices": [
+   "The Divisor and ALU are reduced to 32 bits, and the quotient is kept in the Remainder register as well",
+   "The Divisor is increased to 64 bits",
+   "It uses two Quotient registers",
+   "It uses the same circuit as the multiplier"
+  ]
+ },
+ "3-d2-2": {
+  "prompt": "You must first check for division by 0 (divisor = 0)."
+ },
+ "3-if-1": {
+  "prompt": "How many bits are the sign, exponent and fraction in IEEE 754 single precision?"
+ },
+ "3-if-2": {
+  "prompt": "What is the bias in double precision?"
+ },
+ "3-if-4": {
+  "prompt": "The leading '1.' of a normalized number is always 1, so it is not stored (hidden bit)."
+ },
+ "3-if-5": {
+  "prompt": "Explain why IEEE 754 stores the exponent in biased (excess) representation, and give the bias value for single precision. (Answer in English.)",
+  "keys": [
+   "stored = actual + bias",
+   "The exponent is unsigned",
+   "Single bias 127"
+  ]
+ },
+ "3-if-6": {
+  "prompt": "In single precision, if the exponent field is 1000 0010, what is the actual exponent?"
+ },
+ "3-ie-1": {
+  "prompt": "Represent −0.75 in IEEE 754 single precision (S, Exponent, Fraction, hexadecimal)."
+ },
+ "3-ie-2": {
+  "prompt": "Represent 0.625 in IEEE 754 single precision."
+ },
+ "3-ie-3": {
+  "prompt": "Represent −3.75 in IEEE 754 single precision."
+ },
+ "3-ie-4": {
+  "prompt": "Represent −12.5 in IEEE 754 single precision."
+ },
+ "3-ie-5": {
+  "prompt": "Represent −0.75 in IEEE 754 double precision (watch the number of exponent and fraction bits)."
+ },
+ "3-ie-6": {
+  "prompt": "What is the decimal value of the single-precision `0 01111111 10000000000000000000000`?"
+ },
+ "3-ie-7": {
+  "prompt": "Write −2.25 in IEEE 754 single precision, in hexadecimal."
+ },
+ "3-ir-1": {
+  "prompt": "In single precision, what does exponent = 255 with fraction ≠ 0 mean?"
+ },
+ "3-ir-2": {
+  "prompt": "What is the approximate decimal precision of single precision?",
+  "choices": [
+   "6 digits",
+   "16 digits",
+   "23 digits",
+   "3 digits"
+  ]
+ },
+ "3-ir-3": {
+  "prompt": "If exponent = 0 and fraction ≠ 0, the number is a denormal and the hidden bit is 0."
+ },
+ "3-ir-4": {
+  "prompt": "In single precision, what are the exponent field values and actual exponents of the smallest normalized positive number and the largest number?",
+  "answer": "Smallest: exponent 0000 0001 → 1 − 127 = −126 (1.0 × 2⁻¹²⁶)\nLargest: exponent 1111 1110 → 254 − 127 = +127 (≈ 2.0 × 2¹²⁷)",
+  "keys": [
+   "00000001 → −126",
+   "11111110 → +127",
+   "00000000 and 11111111 are reserved"
+  ]
+ },
+ "3-fa-1": {
+  "prompt": "Using 4-digit binary FP, calculate 0.5 + (−0.4375) in 4 steps.",
+  "keys": [
+   "Align the smaller exponent to the larger",
+   "0.001 × 2⁻¹",
+   "1.000 × 2⁻⁴",
+   "0.0625"
+  ]
+ },
+ "3-fa-2": {
+  "prompt": "What is the first step of FP addition?",
+  "choices": [
+   "Shift the significand of the number with the smaller exponent to align the exponents",
+   "Multiply the significands",
+   "Add the exponents",
+   "Determine the sign"
+  ]
+ },
+ "3-fa-3": {
+  "prompt": "Using 4-digit decimal FP, calculate 9.999×10¹ + 1.610×10⁻¹."
+ },
+ "3-fm-1": {
+  "prompt": "Using 4-digit binary FP, calculate 0.5 × (−0.4375) in 5 steps (also write the biased exponents).",
+  "keys": [
+   "Exponent −3",
+   "Subtract the bias once",
+   "1.110 × 2⁻³",
+   "Sign −",
+   "−0.21875"
+  ]
+ },
+ "3-fm-2": {
+  "prompt": "Adding two biased exponents counts the bias twice, so the bias must be subtracted once."
+ },
+ "3-fm-3": {
+  "prompt": "In FP multiplication, when is the sign of the result determined (in the slide's order)?",
+  "choices": [
+   "Step 1",
+   "Step 2",
+   "Step 3",
+   "Step 5 (last)"
+  ]
+ },
+ "3-fi-1": {
+  "prompt": "What are the MIPS single-precision FP registers?"
+ },
+ "3-fi-2": {
+  "prompt": "Double precision uses a pair of FP registers ($f0/$f1)."
+ },
+ "4-pi-1": {
+  "prompt": "Which processor implementation is in the midterm scope?",
+  "choices": [
+   "The simplified (single-cycle) version",
+   "The pipelined version",
+   "The multicycle version",
+   "Superscalar"
+  ]
+ },
+ "4-pi-2": {
+  "prompt": "It was announced that using any instruction outside the instruction set specified in class on the midterm gets zero points."
+ },
+ "4-pi-3": {
+  "prompt": "Which is NOT in the 'Simple subset of instructions' on week6 p.2?"
+ },
+ "4-es-1": {
+  "prompt": "In instruction execution, which of the following is NOT calculated by the ALU?",
+  "choices": [
+   "The arithmetic result",
+   "The memory address for load/store",
+   "The instruction read from instruction memory",
+   "The branch target address"
+  ]
+ },
+ "4-es-2": {
+  "prompt": "If there is no branch, PC ← PC + (a). One instruction is (b) bits.",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "4-es-3": {
+  "prompt": "One instruction (1 word) is 32 bytes.",
+  "explain": "32 bits = 4 bytes. The '32 bytes' in the recording was a slip of the tongue."
+ },
+ "4-co-1": {
+  "prompt": "For week6 p.6 'Can't just join wires together', name the three places where a MUX is needed and the two inputs each MUX selects between. (Answer in English.)",
+  "keys": [
+   "PC: PC+4 vs branch target",
+   "ALU input: register vs immediate",
+   "Write data: ALU vs memory"
+  ]
+ },
+ "4-co-2": {
+  "prompt": "In lw, what is the ALU result?",
+  "choices": [
+   "The final value to write to the register",
+   "The address used to access data memory",
+   "The next PC",
+   "The branch offset"
+  ]
+ },
+ "4-co-3": {
+  "prompt": "Wires from different sources can simply be joined together into one (no selector needed)."
+ },
+ "4-ce-1": {
+  "prompt": "What is a characteristic of a combinational element (combinational logic)?",
+  "choices": [
+   "The output is a function of the current input only",
+   "It stores a value",
+   "It changes only on a clock edge",
+   "It needs a write signal"
+  ]
+ },
+ "4-ce-2": {
+  "prompt": "Which of the following is a state (sequential) element?"
+ },
+ "4-ce-3": {
+  "prompt": "The ALU computes Y = F(A, B); for R-format, F is determined by the lowest 6 bits of the instruction, the (a) field.",
+  "accept_add": [
+   [
+    "funct field"
+   ]
+  ]
+ },
+ "4-ce-4": {
+  "prompt": "32-bit data is carried in the datapath on 32 wires (a bus)."
+ },
+ "4-mx-2": {
+  "prompt": "If a MUX's select line S = 0, what happens?",
+  "choices": [
+   "The input marked 0 (I0) is the output",
+   "Input 1 is the output",
+   "The AND of the two inputs",
+   "No output"
+  ]
+ },
+ "4-mx-3": {
+  "prompt": "A MUX signal value is determined by the number (0/1) marked in the figure, not by whether the input wire is on top or bottom."
+ },
+ "4-mx-4": {
+  "prompt": "In a MUX figure on the exam, a '1' is written next to the input wire you want. What is the select signal?",
+  "choices": [
+   "0",
+   "1",
+   "X",
+   "Depends on the position"
+  ]
+ },
+ "4-mx-5": {
+  "prompt": "Explain the role of a MUX and why the datapath needs MUXes. (Answer in English.)",
+  "keys": [
+   "Selects one input by the select signal",
+   "Different sources for different instructions",
+   "Wires cannot simply be joined"
+  ]
+ },
+ "4-mx-6": {
+  "prompt": "A MUX is a combinational element (not a state element)."
+ },
+ "4-se-1": {
+  "prompt": "When does an edge-triggered register update its value (according to the slide)?",
+  "choices": [
+   "Continuously while Clk is 1",
+   "When Clk changes from 0 → 1",
+   "Only when Clk changes from 1 → 0",
+   "When Write is 0"
+  ]
+ },
+ "4-se-2": {
+  "prompt": "A register with write control changes its value only on a clock edge when the write input is 1."
+ },
+ "4-se-3": {
+  "prompt": "The name of the register file's write control signal is (a).",
+  "accept_add": [
+   [
+    "register write"
+   ]
+  ]
+ },
+ "4-se-4": {
+  "prompt": "Compare combinational elements and state (sequential) elements. (Answer in English.)",
+  "keys": [
+   "combinational: output = f(input)",
+   "state: store information",
+   "Updated on a clock edge",
+   "Examples"
+  ]
+ },
+ "4-cl-1": {
+  "prompt": "What determines the clock period?",
+  "choices": [
+   "The shortest delay",
+   "The number of registers",
+   "The longest combinational logic delay",
+   "The number of instructions"
+  ]
+ },
+ "4-cl-2": {
+  "prompt": "Combinational logic takes its input from state elements, transforms the data between clock edges, and outputs to a state element."
+ },
+ "4-fe-1": {
+  "prompt": "In instruction fetch, what are the two places the PC is connected to?",
+  "choices": [
+   "The read address of instruction memory and the +4 adder",
+   "Data memory and the ALU",
+   "The register file and sign-extend",
+   "Control and ALU control"
+  ]
+ },
+ "4-fe-2": {
+  "prompt": "The PC is a 32-bit register."
+ },
+ "4-fe-3": {
+  "prompt": "Instruction fetch: PC → (a) memory, and at the same time PC + (b) is calculated",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "4-rd-1": {
+  "prompt": "Which is the correct sequence of R-format execution steps?",
+  "choices": [
+   "Read memory → ALU → write register",
+   "Read two registers → ALU operation → write register",
+   "Read one register → sign-extend → write memory",
+   "PC + offset → branch"
+  ]
+ },
+ "4-rd-2": {
+  "prompt": "R-format instructions write their result to a register, so RegWrite = 1."
+ },
+ "4-rd-3": {
+  "prompt": "The Read register 1, Read register 2 and Write register inputs of the register file are each (a) bits.",
+  "accept_add": [
+   []
+  ]
+ },
+ "4-ls-1": {
+  "prompt": "Which combination of signals does lw turn on?",
+  "choices": [
+   "MemWrite, RegWrite",
+   "MemRead, MemWrite",
+   "MemRead, RegWrite",
+   "MemWrite only"
+  ]
+ },
+ "4-ls-2": {
+  "prompt": "Which memory signal does sw turn on?"
+ },
+ "4-ls-3": {
+  "prompt": "The 16-bit offset of a load/store is sign-extended to 32 bits before it enters the ALU."
+ },
+ "4-ls-4": {
+  "prompt": "When executing lw, MemWrite is set to 1.",
+  "explain": "lw uses MemRead. Watch out for the slip of the tongue at 23:18 in Week 6-1."
+ },
+ "4-bd-1": {
+  "prompt": "In beq, how is it checked whether the two registers are equal?",
+  "choices": [
+   "With an AND gate",
+   "By adding the two values",
+   "By subtracting with the ALU and checking the Zero output",
+   "With sign extension"
+  ]
+ },
+ "4-bd-2": {
+  "prompt": "Describe the datapath steps that calculate the branch target address of beq. (Answer in English.)",
+  "keys": [
+   "sign-extend",
+   "shift left 2 (×4)",
+   "Add to PC + 4"
+  ]
+ },
+ "4-bd-3": {
+  "prompt": "Shift left 2 is the same as multiplying the offset by 4."
+ },
+ "4-bd-4": {
+  "prompt": "What reason did the professor give for specifying the branch constant as a number of lines (instructions) rather than a byte address?",
+  "choices": [
+   "Because a value not divisible by 4 would cause a serious error",
+   "To save bits",
+   "Because the ALU can only subtract",
+   "To distinguish it from jump"
+  ]
+ },
+ "4-cp-1": {
+  "prompt": "Name the four places where a MUX is placed in the simplified datapath, and the signal that controls each MUX. (Answer in English.)"
+ },
+ "4-cp-2": {
+  "prompt": "Why does the simplified datapath separate instruction memory and data memory?",
+  "choices": [
+   "Because memory is cheap",
+   "Because it executes one instruction in one clock cycle and each element can do only one function at a time",
+   "Because of the cache",
+   "Because of pipelining"
+  ]
+ },
+ "4-cp-3": {
+  "prompt": "Which signal controls the MUX that selects the write register number between rt and rd?"
+ },
+ "4-cp-4": {
+  "prompt": "The simplified (single-cycle) datapath executes every instruction in one clock cycle."
+ },
+ "4-cp-5": {
+  "prompt": "Which signal selects the register write data between the ALU result and the memory value?"
+ },
+ "4-df-1": {
+  "prompt": "In the p.3 datapath, where does Instruction [31–26] go?"
+ },
+ "4-df-2": {
+  "prompt": "Where does Instruction [5–0] go?"
+ },
+ "4-df-3": {
+  "prompt": "rs [25–21] → Read register (a); rt [20–16] → Read register 2 and input (b) of the RegDst MUX",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "4-df-4": {
+  "prompt": "Where does Instruction [15–0] go?"
+ },
+ "4-rt-1": {
+  "prompt": "Fill in the control signal values for an R-type instruction (add $t0, $s1, $s2) in the p.3 datapath."
+ },
+ "4-rt-2": {
+  "prompt": "Why is RegDst = 1 for R-type?",
+  "choices": [
+   "Because it must write to rt",
+   "Because it must write to rd (the third register), and on p.3 rd is input 1",
+   "Because it reads from memory",
+   "Because it is a branch"
+  ]
+ },
+ "4-rt-3": {
+  "prompt": "What is the value of ALUSrc for R-type, and why?",
+  "choices": [
+   "0, because the second operand is also a register",
+   "1, because it uses a constant",
+   "X, because it does not matter",
+   "1, because it is a memory address"
+  ]
+ },
+ "4-rt-4": {
+  "prompt": "In order, describe the path the data takes when `add $t0, $s1, $s2` executes in the p.3 datapath. (Answer in English.)",
+  "keys": [
+   "Read two registers",
+   "ALUSrc = 0",
+   "funct → ALU control",
+   "MemtoReg = 0 (bypasses data memory)",
+   "RegDst = 1, RegWrite = 1",
+   "PC + 4"
+  ]
+ },
+ "4-rt-5": {
+  "prompt": "Data memory is not used while an R-type instruction executes."
+ },
+ "4-rt-6": {
+  "prompt": "※ Assume the datapath in this question is the same as slide p.3, but the MUX inputs are numbered as follows.\nRegDst MUX: top (rt [20–16]) = 1, bottom (rd [15–11]) = 0\nALUSrc MUX: top (Read data 2) = 1, bottom (sign-extended imm) = 0\nMemtoReg MUX: top (Read data) = 0, bottom (ALU result) = 1\n\nFill in the control signals for an R-type instruction in this figure.",
+  "explain": "RegDst: rd is input 0 → 0. ALUSrc: the register is input 1 → 1. MemtoReg: the ALU result is input 1 → 1. The rest are unchanged."
+ },
+ "4-lw-1": {
+  "prompt": "Fill in the control signal values for the lw instruction in the p.3 datapath."
+ },
+ "4-lw-2": {
+  "prompt": "Why is MemtoReg = 1 for lw?",
+  "choices": [
+   "Because the ALU result must be written",
+   "Because of the branch",
+   "Because the value read from data memory must be written to the register, and on p.3 Read data is input 1",
+   "Because it must write to memory"
+  ]
+ },
+ "4-lw-3": {
+  "prompt": "Which register field does lw write its result to, and what is RegDst?"
+ },
+ "4-lw-4": {
+  "prompt": "Explain what the ALU does in lw and where its result goes. (Answer in English.)",
+  "keys": [
+   "base + sign-extended offset",
+   "ALU result = address",
+   "Goes to data memory",
+   "The read value is written to rt"
+  ]
+ },
+ "4-lw-5": {
+  "prompt": "※ Assume the datapath in this question is the same as slide p.3, but the MUX inputs are numbered as follows.\nRegDst MUX: top (rt [20–16]) = 1, bottom (rd [15–11]) = 0\nALUSrc MUX: top (Read data 2) = 1, bottom (sign-extended imm) = 0\nMemtoReg MUX: top (Read data) = 0, bottom (ALU result) = 1\n\nFill in the control signals for lw in this figure.",
+  "explain": "rt is input 1 → RegDst 1; imm is input 0 → ALUSrc 0; Read data is input 0 → MemtoReg 0."
+ },
+ "4-lw-6": {
+  "prompt": "In lw, the ALU result is the final value the user wants."
+ },
+ "4-sw-1": {
+  "prompt": "Fill in the control signal values for the sw instruction in the p.3 datapath."
+ },
+ "4-sw-2": {
+  "prompt": "Why are RegDst and MemtoReg X for sw?",
+  "choices": [
+   "Because it does not read memory",
+   "Because it does not write a register (RegWrite = 0), so any value is fine",
+   "Because it does not use the ALU",
+   "Because it is a branch"
+  ]
+ },
+ "4-sw-3": {
+  "prompt": "In sw, what value goes into the Write data input of data memory?",
+  "choices": [
+   "ALU result",
+   "sign-extended offset",
+   "The value of rt (Read data 2)",
+   "PC + 4"
+  ]
+ },
+ "4-sw-4": {
+  "prompt": "sw has ALUSrc = 1 and ALUOp = 00."
+ },
+ "4-bq-1": {
+  "prompt": "Fill in the control signal values for the beq instruction in the p.3 datapath."
+ },
+ "4-bq-2": {
+  "prompt": "In beq, under what condition does the PC change to the branch target?",
+  "choices": [
+   "Branch = 1",
+   "Zero = 1",
+   "Branch = 0 and Zero = 1",
+   "Branch = 1 and Zero = 1"
+  ]
+ },
+ "4-bq-3": {
+  "prompt": "When beq rs, rt, offset executes, describe how the PC is determined when rs = rt and when it is not. (Answer in English.)",
+  "keys": [
+   "Branch = 1",
+   "ALU subtracts (ALUOp 01, ALUSrc 0)",
+   "If equal, Zero = 1 → AND = 1 → branch target",
+   "If not equal, PC + 4",
+   "Target = PC+4 + offset×4"
+  ]
+ },
+ "4-bq-4": {
+  "prompt": "beq does not write a register, so RegWrite = 0."
+ },
+ "4-bq-5": {
+  "prompt": "What is the ALUOp for beq?"
+ },
+ "4-bq-6": {
+  "prompt": "※ Assume the datapath in this question is the same as slide p.3, but the MUX inputs are numbered as follows.\nRegDst MUX: top (rt [20–16]) = 1, bottom (rd [15–11]) = 0\nALUSrc MUX: top (Read data 2) = 1, bottom (sign-extended imm) = 0\nMemtoReg MUX: top (Read data) = 0, bottom (ALU result) = 1\n\nFill in the control signals for beq in this figure.",
+  "explain": "The register (Read data 2) is input 1 → ALUSrc 1. RegDst and MemtoReg are still X."
+ },
+ "4-mt-1": {
+  "prompt": "In the MemtoReg MUX on slide p.3, what is the number of the top input?",
+  "choices": [
+   "0 (ALU result)",
+   "1 (Read data)",
+   "0 (Read data)",
+   "Not marked"
+  ]
+ },
+ "4-mt-2": {
+  "prompt": "If the numbers in the MUX figure are flipped, the select signal value is reversed even for the same instruction."
+ },
+ "4-mt-3": {
+  "prompt": "※ Assume the datapath in this question is the same as slide p.3, but the MUX inputs are numbered as follows.\nRegDst MUX: top (rt [20–16]) = 1, bottom (rd [15–11]) = 0\nALUSrc MUX: top (Read data 2) = 1, bottom (sign-extended imm) = 0\nMemtoReg MUX: top (Read data) = 0, bottom (ALU result) = 1\n\nWhat is the ALUSrc value for sw in this figure?",
+  "choices": [
+   "0",
+   "1",
+   "X",
+   "1 regardless of the figure"
+  ],
+  "explain": "imm is marked as input 0."
+ },
+ "4-mt-4": {
+  "prompt": "Explain why the professor said 'be extremely careful on what is actually written on the multiplexer'. (Answer in English.)",
+  "keys": [
+   "Signal value = the number written on the input wire",
+   "Not top/bottom",
+   "If the numbers change, the signal is reversed"
+  ]
+ },
+ "4-mt-5": {
+  "prompt": "※ Assume the datapath in this question is the same as slide p.3, but the MUX inputs are numbered as follows.\nRegDst MUX: top (rt [20–16]) = 1, bottom (rd [15–11]) = 0\nALUSrc MUX: top (Read data 2) = 1, bottom (sign-extended imm) = 0\nMemtoReg MUX: top (Read data) = 0, bottom (ALU result) = 1\n\nWhat is the MemtoReg value for add in this figure?"
+ },
+ "4-bc-1": {
+  "prompt": "A beq at current PC = 108 is to branch to address 124. Write the value of the offset field and how the datapath recomputes the target address."
+ },
+ "4-bc-2": {
+  "prompt": "A beq at address 100 branches to address 180. What constant should be written in the beq?"
+ },
+ "4-bc-3": {
+  "prompt": "A beq at address 200 branches to address 180 (upward, to the start of a loop). What is the offset value and its 16-bit binary representation?"
+ },
+ "4-bc-4": {
+  "prompt": "If the offset field is 5 and the beq is at address 400, what is the branch target?"
+ },
+ "4-bc-5": {
+  "prompt": "If the branch target is above the current code (an earlier address), the offset is negative, and sign extension fills the upper bits with 1s."
+ },
+ "4-au-1": {
+  "prompt": "Which operation does ALU control 0110 mean?"
+ },
+ "4-au-2": {
+  "prompt": "Load/Store: F = (a), Branch: F = (b), R-type: F depends on funct",
+  "accept_add": [
+   [
+    "addition"
+   ],
+   [
+    "subtraction"
+   ]
+  ]
+ },
+ "4-au-3": {
+  "prompt": "The professor said you will have to write the ALU control table from memory on the exam.",
+  "explain": "'This table will be given to you' — you just need to be able to read it and apply it."
+ },
+ "4-ao-1": {
+  "prompt": "What are the ALUOp and ALU control for lw/sw?",
+  "choices": [
+   "00, 0010",
+   "01, 0110",
+   "10, depends on funct",
+   "00, 0110"
+  ]
+ },
+ "4-ao-2": {
+  "prompt": "What is the ALU control for R-type sub (funct 100010)?"
+ },
+ "4-ao-3": {
+  "prompt": "Write the ALU control for the following ALUOp and funct: (1) ALUOp 10, funct 100101 (2) ALUOp 01, funct XXXXXX (3) ALUOp 10, funct 101010"
+ },
+ "4-ao-4": {
+  "prompt": "lw, sw and beq are I-type and have no funct field, so the ALU control is determined by ALUOp alone."
+ },
+ "4-ao-5": {
+  "prompt": "What did the professor point out as common to the R-type funct codes (100000, 100010, 100100, 100101, 101010)?",
+  "choices": [
+   "They are all even",
+   "Their first two bits are all 10, which looks the same as the R-type ALUOp (10)",
+   "The last bit is 0",
+   "They all act as add"
+  ]
+ },
+ "4-ao-6": {
+  "prompt": "The inputs to ALU control are the 2-bit (a) from the Main control and the 6-bit (b) of the instruction.",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "4-km-1": {
+  "prompt": "Write the Operation bit equations that satisfy the ALU control table, and calculate Op1 for lw (ALUOp = 00).",
+  "keys": [
+   "Op1 = ¬ALUOp1 + ¬F2",
+   "Op1 = 1 for lw"
+  ]
+ },
+ "4-km-2": {
+  "prompt": "Using the equation 'Op1 = ALUOp1 + F2' on slide p.30 as written still gives ALU control 0010 for lw.",
+  "explain": "The equation is missing the NOT bars. As written, Op1 = 0 → 0000 (AND), which does not match the table."
+ },
+ "4-mc-1": {
+  "prompt": "Which field is 'Always read' on week6 p.31?"
+ },
+ "4-mc-2": {
+  "prompt": "Which is the correct description of the fields related to 'write for R-type and load'?",
+  "choices": [
+   "Both R-type and load write to rd",
+   "Both R-type and load write to rt",
+   "R-type writes to rd and load writes to rt (hence the RegDst MUX)",
+   "Neither writes"
+  ]
+ },
+ "4-mc-3": {
+  "prompt": "The opcode of lw is (a), sw is (b), and beq is (c) (decimal)",
+  "accept_add": [
+   [],
+   [],
+   []
+  ]
+ },
+ "4-ct-1": {
+  "prompt": "What are RegWrite, MemRead and MemWrite for sw?"
+ },
+ "4-ct-2": {
+  "prompt": "In the control signal table, which instructions and signals have X (don't care)?",
+  "choices": [
+   "ALUSrc of R-type",
+   "RegDst and MemtoReg of sw and beq",
+   "RegDst of lw",
+   "Branch of every instruction"
+  ]
+ },
+ "4-ct-3": {
+  "prompt": "The instructions with ALUSrc = 1 are lw and sw."
+ },
+ "4-ct-4": {
+  "prompt": "Explain why RegDst and MemtoReg are X for sw and beq in the control signal table. (Answer in English.)",
+  "keys": [
+   "RegWrite = 0",
+   "No register is written",
+   "Any value has no effect on the result"
+  ]
+ },
+ "4-ct-5": {
+  "prompt": "The opcode Op5–Op0 = 100011 comes in. Which instruction is it, and what are RegDst, ALUSrc, MemtoReg, RegWrite, MemRead, MemWrite, Branch, ALUOp1 and ALUOp0?"
+ },
+ "4-ct-6": {
+  "prompt": "Which instruction has Branch = 1?"
+ },
+ "4-cg-1": {
+  "prompt": "In the p.33 control circuit, what are the inputs to the OR gate that produces ALUSrc?"
+ },
+ "4-cg-2": {
+  "prompt": "In the p.33 control circuit, what is RegWrite?"
+ },
+ "4-oc-1": {
+  "prompt": "`lw $t0, $t2($t1)` (offset given as a register value) is a valid MIPS instruction."
+ },
+ "4-oc-2": {
+  "prompt": "With $t1 = base and $t2 = byte offset, write correct MIPS code that loads the word at that address into $t0.",
+  "keys": [
+   "Compute the address with add first",
+   "The offset is the constant 0"
+  ]
+ },
+ "4-oc-3": {
+  "prompt": "Why must the offset of lw/sw be a constant?",
+  "choices": [
+   "Because they are R-type",
+   "Because they are I-type, so the offset goes in the instruction's 16-bit immediate field",
+   "Because there is only one ALU",
+   "Because there are 32 registers"
+  ]
+ },
+ "4-oc-4": {
+  "prompt": "lbu is also I-type, so a register cannot be used in the offset position."
+ },
+ "5-ex-1": {
+  "prompt": "Write the C code `A[10] = A[10] + 7;` in MIPS, and write the fields of each instruction in decimal. Base of A = $s0 (16). (lw 35, sw 43, addi 8, $t0 = 8)"
+ },
+ "5-ft-1": {
+  "prompt": "fact(2) is called with jal at address 200; the initial value of $sp is 1000. Write $sp and the saved values (a0, ra) for each frame, and the final $v0.",
+  "answer": "fact(2): $sp 992, a0 = 2, ra = 204\nfact(1): $sp 984, a0 = 1, ra = L1+8\nfact(0): $sp 976, a0 = 0, ra = L1+8 → $v0 = 1\nOn the way back, $v0 = 1 → 1 → 2, $sp = 1000, jr → 204",
+  "keys": [
+   "992/984/976",
+   "First ra 204",
+   "$v0 = 2"
+  ]
+ },
+ "5-sw-1": {
+  "prompt": "When sw $t0, 12($s1) executes in the p.3 datapath, describe the path the value of rt ($t0) takes and the signals that are turned on. (Answer in English.)",
+  "keys": [
+   "Address = $s1 + 12 (ALUSrc 1)",
+   "rt value = Read data 2 → Write data",
+   "MemWrite = 1",
+   "RegWrite = 0, RegDst and MemtoReg X"
+  ]
+ },
+ "5-oc-1": {
+  "prompt": "Write `x = A[i];` (x: $s0, i: $s1, A base: $s2, int array) in MIPS following the offset rule, and explain in one line why `lw $s0, $s1($s2)` is wrong.",
+  "answer": "sll $t0, $s1, 2\nadd $t0, $t0, $s2\nlw  $s0, 0($t0)\nlw is I-type, so the offset goes in a 16-bit constant field; a register cannot be used there.",
+  "keys": [
+   "sll ×4",
+   "add base",
+   "lw 0($t0)",
+   "The offset is a constant (I-type)"
+  ]
+ },
+ "5-bd-1": {
+  "prompt": "Keeping only beq/bne in hardware and building <, ≥ branches from slt combinations is an example of which design principle?"
+ },
+ "5-rt-1": {
+  "prompt": "Fill in the control signal values for `slt $t0, $s1, $s2` in the p.3 datapath.",
+  "explain": "slt is also R-type. The operation is determined by the ALU control from funct (101010)."
+ }
+}

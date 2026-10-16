@@ -1,0 +1,2009 @@
+{
+ "4-int-1": {
+  "prompt": "Which statement about SQL is correct?",
+  "choices": [
+   "It is a procedural language that describes how to retrieve the data",
+   "It is a declarative language, originally called SEQUEL",
+   "It was first created by Oracle, not IBM",
+   "It provides only DDL"
+  ]
+ },
+ "4-int-2": {
+  "prompt": "Which of the following is NOT a DML command?"
+ },
+ "4-int-3": {
+  "prompt": "Explain what NL2SQL is, and give at least two of its challenges.",
+  "keys": [
+   "Natural language → SQL translation",
+   "Ambiguity",
+   "Schema understanding and linking",
+   "Generalization / complex queries"
+  ],
+  "answer": "A technology that translates natural-language queries into SQL queries to retrieve the desired data from a database. Challenges: ambiguity of natural language, schema understanding and linking (schema linking), generalization to unseen databases, generating complex queries. (So even LLM-based methods are not perfect, and understanding SQL properly matters.)"
+ },
+ "4-int-4": {
+  "prompt": "In SQL, (a) provides commands on databases and tables (CREATE, ALTER, DROP), and (b) provides commands on tuples (SELECT, INSERT, DELETE, UPDATE).",
+  "accept_add": [
+   [
+    "Data Definition Language"
+   ],
+   [
+    "Data Manipulation Language"
+   ]
+  ]
+ },
+ "4-ct-1": {
+  "prompt": "In CREATE SCHEMA COMPANY AUTHORIZATION 'Jsmith'; what is 'Jsmith'?",
+  "choices": [
+   "The user who owns the schema (authorization identifier)",
+   "The schema name",
+   "The database name",
+   "A password"
+  ]
+ },
+ "4-ct-2": {
+  "prompt": "A table name can be prefixed with the schema name, as in CREATE TABLE COMPANY.EMPLOYEE."
+ },
+ "4-ct-3": {
+  "prompt": "Define the following relation with CREATE TABLE. Specify the PK, FK and NOT NULL.\nPROJECT(Pname VARCHAR(15) required and unique, Pnumber INT primary key, Plocation VARCHAR(15), Dnum INT required, references DEPARTMENT(Dnumber))"
+ },
+ "4-ct-4": {
+  "prompt": "Define WORKS_ON(Essn CHAR(9), Pno INT, Hours DECIMAL(3,1)) with CREATE TABLE. The PK is (Essn, Pno); Essn references EMPLOYEE(Ssn) and Pno references PROJECT(Pnumber).",
+  "keys": [
+   "Composite PK (Essn, Pno)",
+   "Two FKs",
+   "PK attributes NOT NULL (implicit even if omitted)"
+  ]
+ },
+ "4-ac-1": {
+  "prompt": "Which statement about PK attributes is correct?",
+  "choices": [
+   "They allow NULL",
+   "NOT NULL is applied implicitly",
+   "A DEFAULT is always required",
+   "UNIQUE must be written separately"
+  ]
+ },
+ "4-ac-2": {
+  "prompt": "A DEFAULT value is placed in a new tuple when the INSERT does not specify a value for that attribute."
+ },
+ "4-ac-3": {
+  "prompt": "To make a new employee's default department 1, write Dno INT NOT NULL (a) 1. (b) is implicitly applied to PK attributes.",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "4-ac-4": {
+  "prompt": "Explain the NOT NULL and DEFAULT constraints, and how the two together affect INSERT.",
+  "keys": [
+   "Definition of NOT NULL",
+   "Definition of DEFAULT",
+   "NOT NULL + no DEFAULT → must be included in INSERT"
+  ],
+  "answer": "NOT NULL: the attribute's value cannot be NULL (implicit for the PK). DEFAULT <value>: if no value is given, the default value is used. In an INSERT that lists attribute names, an attribute that is NOT NULL and has no DEFAULT must be given a value (it may be omitted if it has a DEFAULT)."
+ },
+ "4-kc-1": {
+  "prompt": "Which clause in CREATE TABLE specifies a candidate key (alternate key)?"
+ },
+ "4-kc-2": {
+  "prompt": "When a referenced PK is deleted or updated and referential integrity would be violated, what is SQL's default action?",
+  "choices": [
+   "Reject the operation",
+   "Set the FK to NULL",
+   "Delete the referencing tuples too",
+   "Set the FK to its default value"
+  ]
+ },
+ "4-kc-3": {
+  "prompt": "If a constraint is given a name, as in CONSTRAINT DEPTPK PRIMARY KEY (Dnumber), it can later be dropped with ALTER TABLE ... DROP CONSTRAINT."
+ },
+ "4-kc-4": {
+  "prompt": "Define DEPARTMENT with CREATE TABLE: Dname VARCHAR(15) required and unique, Dnumber INT primary key, Mgr_ssn CHAR(9) required, references EMPLOYEE(Ssn), Mgr_start_date DATE. Give each constraint a name (DEPTPK, DEPTSK, DEPTMGRFK).",
+  "keys": [
+   "CONSTRAINT name PRIMARY KEY",
+   "UNIQUE (Dname)",
+   "FOREIGN KEY ... REFERENCES EMPLOYEE(Ssn)"
+  ]
+ },
+ "4-ra-1": {
+  "prompt": "Given EMPSUPERFK FOREIGN KEY (Super_ssn) REFERENCES EMPLOYEE(Ssn) ON DELETE SET NULL, what happens when the supervisor Wong is deleted?",
+  "choices": [
+   "Wong's subordinates are deleted too",
+   "The Super_ssn of Wong's subordinates is set to NULL",
+   "The deletion is rejected",
+   "Super_ssn is set to its default value"
+  ]
+ },
+ "4-ra-2": {
+  "prompt": "What does ON UPDATE CASCADE do?",
+  "choices": [
+   "Deletes the referencing tuples",
+   "Sets the referencing FK to NULL",
+   "Changes the referencing FK to the new PK value",
+   "Rejects the update"
+  ]
+ },
+ "4-ra-3": {
+  "prompt": "ON DELETE CASCADE deletes the referencing tuples when the referenced tuple is deleted."
+ },
+ "4-ra-4": {
+  "prompt": "Suppose EMPSUPERFK is changed to ON DELETE CASCADE (ignore the other FKs). On the COMPANY state, if\nDELETE FROM EMPLOYEE WHERE Lname = 'Borg';\nis executed, which EMPLOYEE tuples are deleted, and in what order?",
+  "explain": "In the real COMPANY database, if WORKS_ON.Essn and the other FKs use the default action (reject), this DELETE itself is rejected.",
+  "keys": [
+   "Borg → Wong, Wallace",
+   "→ Smith, Narayan, English, Zelaya, Jabbar",
+   "In the end all 8 (recursive propagation)"
+  ],
+  "answer": "1) Borg (888665555) is deleted\n2) Wong (333445555) and Wallace (987654321), whose Super_ssn = 888665555, are deleted in a chain\n3) Smith, Narayan, English (Super_ssn = 333445555) and Zelaya, Jabbar (Super_ssn = 987654321) are deleted in a chain\n→ All 8 EMPLOYEE tuples are deleted (CASCADE propagates recursively)"
+ },
+ "4-ra-5": {
+  "prompt": "In the LIBRARY database, choose the ON DELETE and ON UPDATE actions for BOOK_LOANS.Card_no → BORROWER.Card_no and give your reasons.",
+  "keys": [
+   "ON DELETE REJECT + reason",
+   "ON UPDATE CASCADE + reason"
+  ],
+  "answer": "ON DELETE REJECT: a library usually does not let a borrower leave until all borrowed books are returned (or paid for), so deleting a borrower who still has loan records is rejected. ON UPDATE CASCADE: if a borrower's card number changes, the loan records must follow it so we can still trace who borrowed each book."
+ },
+ "4-ra-6": {
+  "prompt": "In the LIBRARY database, explain why ON DELETE CASCADE is appropriate for BOOK_COPIES.Branch_id → LIBRARY_BRANCH.Branch_id.",
+  "keys": [
+   "Deleting a branch = the branch closes",
+   "No need to track its copies → delete them too"
+  ],
+  "answer": "Deleting a LIBRARY_BRANCH tuple actually means that the branch closes, so its book copies no longer need to be tracked. Therefore CASCADE, which also deletes the referencing BOOK_COPIES tuples, is appropriate."
+ },
+ "4-ra-7": {
+  "prompt": "In referential triggered actions, the triggers are ON DELETE and ON (a), and the actions are SET NULL, (b) and SET DEFAULT.",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "4-ra-8": {
+  "prompt": "Given EMPDEPTFK FOREIGN KEY (Dno) REFERENCES DEPARTMENT(Dnumber) ON DELETE SET DEFAULT, and the DEFAULT of Dno is 1, what happens when department 4 is deleted?",
+  "choices": [
+   "The employees of department 4 are deleted too",
+   "The Dno of the employees of department 4 becomes NULL",
+   "The deletion is rejected",
+   "The Dno of the employees of department 4 becomes 1"
+  ]
+ },
+ "4-dr-1": {
+  "prompt": "What does DROP SCHEMA COMPANY RESTRICT; do?",
+  "choices": [
+   "Drops the schema together with all its elements",
+   "Drops the schema only if it has no elements",
+   "Drops only the tables",
+   "Always rejects"
+  ]
+ },
+ "4-dr-2": {
+  "prompt": "Explain the difference between DROP TABLE EMPLOYEE and DELETE FROM EMPLOYEE.",
+  "keys": [
+   "DROP TABLE = removes tuples + definition",
+   "DELETE = tuples only; the definition remains"
+  ],
+  "answer": "DROP TABLE removes all tuples and also the table definition from the catalog (the table no longer exists). DELETE FROM removes only the tuples and keeps the table definition."
+ },
+ "4-dr-3": {
+  "prompt": "DROP TABLE ... CASCADE also automatically drops the constraints and elements that reference the table."
+ },
+ "4-alt-1": {
+  "prompt": "Which command adds a new column Job to EMPLOYEE?"
+ },
+ "4-alt-2": {
+  "prompt": "What does ALTER TABLE COMPANY.EMPLOYEE DROP COLUMN Address RESTRICT; do?",
+  "choices": [
+   "Also drops the constraints that reference Address",
+   "Always drops it",
+   "Drops it only if no schema element references Address",
+   "Sets the Address values to NULL"
+  ]
+ },
+ "4-alt-3": {
+  "prompt": "A named constraint can be dropped with ALTER TABLE ... DROP CONSTRAINT EMPSUPERFK CASCADE;."
+ },
+ "4-alt-4": {
+  "prompt": "Give three things that can be done with ALTER TABLE.",
+  "keys": [
+   "Add/drop columns",
+   "Add/drop constraints",
+   "Change a column definition"
+  ],
+  "answer": "Adding or dropping attributes (columns), adding or dropping constraints, and changing a column definition (data type or constraints)."
+ },
+ "4-ins-1": {
+  "prompt": "Why is INSERT INTO EMPLOYEE (Fname, Lname, Dno) VALUES ('Robert', 'Hatcher', 5); rejected?",
+  "choices": [
+   "Because department 5 does not exist",
+   "Because there is no value for Ssn (PK, NOT NULL)",
+   "Because Fname is a duplicate",
+   "Because the attribute order is wrong"
+  ]
+ },
+ "4-ins-2": {
+  "prompt": "Why is INSERT INTO EMPLOYEE (Fname, Lname, Ssn, Dno) VALUES ('Robert', 'Hatcher', '980760540', 2); rejected? (COMPANY state)",
+  "choices": [
+   "Key constraint",
+   "NOT NULL",
+   "Referential integrity (no department 2)",
+   "No violation"
+  ]
+ },
+ "4-ins-3": {
+  "prompt": "In an INSERT that does not list attribute names, values must be given for all attributes in the order of the attributes in the table definition."
+ },
+ "4-ins-4": {
+  "prompt": "Write SQL that adds a new project 'ProductW' (number 40, location 'Houston', controlled by department 5) to COMPANY, and adds the fact that Smith (123456789) works 5 hours per week on this project.",
+  "keys": [
+   "PROJECT INSERT",
+   "WORKS_ON INSERT",
+   "PROJECT first (referential integrity)"
+  ],
+  "answer": "INSERT INTO PROJECT VALUES ('ProductW', 40, 'Houston', 5);\nINSERT INTO WORKS_ON (Essn, Pno, Hours) VALUES ('123456789', 40, 5.0);\n(The order matters: PROJECT 40 must exist first for WORKS_ON to satisfy referential integrity)"
+ },
+ "4-ins-5": {
+  "prompt": "In an INSERT that lists attribute names, values must be included for attributes that are (a) and have no (b).",
+  "accept_add": [
+   [],
+   [
+    "default value"
+   ]
+  ]
+ },
+ "4-del-1": {
+  "prompt": "On the COMPANY state, how many tuples are deleted by DELETE FROM EMPLOYEE WHERE Dno = 5;? (Ignore referential constraints.)"
+ },
+ "4-del-2": {
+  "prompt": "DELETE FROM EMPLOYEE; also removes the EMPLOYEE table definition.",
+  "explain": "Only all the tuples are deleted; the definition remains. Removing the definition too is DROP TABLE."
+ },
+ "4-del-3": {
+  "prompt": "Which statement about the DELETE command is correct?",
+  "choices": [
+   "One command can explicitly delete from several tables",
+   "It explicitly deletes from only one table at a time, but can propagate to other tables via CASCADE",
+   "Without WHERE, it deletes nothing",
+   "It can delete only by PK value"
+  ]
+ },
+ "4-del-4": {
+  "prompt": "Write SQL that gives all employees in department 5 a 10% raise, and list the employees affected on the COMPANY state with their new salaries.",
+  "keys": [
+   "UPDATE ... SET Salary = Salary * 1.1",
+   "WHERE Dno = 5",
+   "The 4 employees and their new salaries"
+  ],
+  "answer": "UPDATE EMPLOYEE\nSET    Salary = Salary * 1.1\nWHERE  Dno = 5;\n\nSmith 30000 → 33000, Wong 40000 → 44000, Narayan 38000 → 41800, English 25000 → 27500 (4 tuples)"
+ },
+ "4-del-5": {
+  "prompt": "Write SQL that changes the location of project 10 to 'Bellaire' and its controlling department to 5.",
+  "keys": [
+   "UPDATE PROJECT",
+   "SET two attributes (separated by a comma)",
+   "WHERE Pnumber = 10"
+  ]
+ },
+ "4-del-6": {
+  "prompt": "Explain the roles of WHERE and SET in an UPDATE statement, and when an UPDATE can affect other tables.",
+  "keys": [
+   "WHERE = selects tuples",
+   "SET = attributes and new values",
+   "Propagation via ON UPDATE CASCADE"
+  ],
+  "answer": "WHERE: selects the tuples to modify in one relation. SET: specifies the attributes to change and their new values. When a PK value is changed and the FK has ON UPDATE CASCADE, the referencing tuples in other tables are changed too."
+ },
+ "4-sfw-1": {
+  "prompt": "In SELECT Fname, Lname, Address FROM EMPLOYEE, DEPARTMENT WHERE Dname = 'Research' AND Dnumber = Dno; what is Dnumber = Dno?",
+  "choices": [
+   "Selection condition",
+   "Join condition",
+   "Projection attribute",
+   "Sort condition"
+  ]
+ },
+ "4-sfw-2": {
+  "prompt": "The attributes in the SELECT clause are (a) attributes, and the WHERE clause contains selection conditions and (b) conditions.",
+  "answer": "(a) projection / (b) join",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "4-sfw-3": {
+  "prompt": "Retrieve the birth date and address of 'John B. Smith'.",
+  "keys": [
+   "SELECT Bdate, Address",
+   "Three name conditions with AND"
+  ],
+  "answer": "SELECT Bdate, Address\nFROM   EMPLOYEE\nWHERE  Fname = 'John' AND Minit = 'B' AND Lname = 'Smith';\n\n-- Result on the textbook COMPANY state (1 row)\nBdate | Address\n1965-01-09 | 731 Fondren, Houston, TX"
+ },
+ "4-sfw-4": {
+  "prompt": "Retrieve the name (Fname, Lname) and address of all employees who work for the 'Research' department.",
+  "keys": [
+   "EMPLOYEE, DEPARTMENT",
+   "Selection condition Dname = 'Research'",
+   "Join condition Dnumber = Dno"
+  ],
+  "answer": "SELECT Fname, Lname, Address\nFROM   EMPLOYEE, DEPARTMENT\nWHERE  Dname = 'Research' AND Dnumber = Dno;\n\n-- Result on the textbook COMPANY state (4 rows)\nFname | Lname | Address\nJohn | Smith | 731 Fondren, Houston, TX\nFranklin | Wong | 638 Voss, Houston, TX\nRamesh | Narayan | 975 Fire Oak, Humble, TX\nJoyce | English | 5631 Rice, Houston, TX"
+ },
+ "4-sfw-5": {
+  "prompt": "Retrieve the names of employees in department 5 who work more than 10 hours per week on the 'ProductX' project. (Slide exercise 2)",
+  "keys": [
+   "Three tables",
+   "3 selection conditions (Dno=5, Pname, Hours>10)",
+   "2 join conditions (Ssn=Essn, Pno=Pnumber)"
+  ],
+  "answer": "SELECT E.Fname, E.Minit, E.Lname\nFROM   EMPLOYEE AS E, PROJECT AS P, WORKS_ON AS W\nWHERE  E.Dno = 5 AND P.Pname = 'ProductX' AND W.Hours > 10\n  AND  E.Ssn = W.Essn AND W.Pno = P.Pnumber;\n\n-- Result on the textbook COMPANY state (2 rows)\nFname | Minit | Lname\nJohn | B | Smith\nJoyce | A | English\n\nThe slide solution writes the last join condition as E.Dno = P.Dnum, but the condition that links an employee to the project they work on is W.Pno = P.Pnumber."
+ },
+ "4-sfw-6": {
+  "prompt": "For every project located in 'Stafford', retrieve the project number, the controlling department number, and the department manager's last name, address and birth date.",
+  "keys": [
+   "Join P.Dnum = D.Dnumber",
+   "Join D.Mgr_ssn = E.Ssn",
+   "Selection Plocation = 'Stafford'"
+  ],
+  "answer": "SELECT P.Pnumber, P.Dnum, E.Lname, E.Address, E.Bdate\nFROM   PROJECT AS P, DEPARTMENT AS D, EMPLOYEE AS E\nWHERE  P.Dnum = D.Dnumber AND D.Mgr_ssn = E.Ssn\n  AND  P.Plocation = 'Stafford';\n\n-- Result on the textbook COMPANY state (2 rows)\nPnumber | Dnum | Lname | Address | Bdate\n10 | 4 | Wallace | 291 Berry, Bellaire, TX | 1941-06-20\n30 | 4 | Wallace | 291 Berry, Bellaire, TX | 1941-06-20"
+ },
+ "4-sfw-7": {
+  "prompt": "Retrieve the names and salaries of employees who live in Houston and whose salary is 30000 or more. (Consider an employee to live in Houston if Address contains 'Houston'.)",
+  "answer": "SELECT Fname, Lname, Salary\nFROM   EMPLOYEE\nWHERE  Address LIKE '%Houston%' AND Salary >= 30000;\n\n-- Result on the textbook COMPANY state (3 rows)\nFname | Lname | Salary\nJohn | Smith | 30000\nFranklin | Wong | 40000\nJames | Borg | 55000"
+ },
+ "4-sfw-8": {
+  "prompt": "Retrieve the names and locations of the projects controlled by the 'Administration' department.",
+  "keys": [
+   "Join Dnum = Dnumber",
+   "Selection Dname = 'Administration'"
+  ],
+  "answer": "SELECT P.Pname, P.Plocation\nFROM   PROJECT AS P, DEPARTMENT AS D\nWHERE  P.Dnum = D.Dnumber AND D.Dname = 'Administration';\n\n-- Result on the textbook COMPANY state (2 rows)\nPname | Plocation\nComputerization | Stafford\nNewbenefits | Stafford"
+ },
+ "4-qa-1": {
+  "prompt": "How do you refer to the same relation in two roles (employee and supervisor) in one query?",
+  "choices": [
+   "Use DISTINCT",
+   "Create the table twice",
+   "Use two aliases (tuple variables)",
+   "Use UNION"
+  ]
+ },
+ "4-qa-2": {
+  "prompt": "SELECT E.Fname, E.Lname, E.Fname, E.Lname FROM EMPLOYEE AS E WHERE E.Super_ssn = E.Ssn; retrieves the names of employees and their supervisors.",
+  "explain": "With only one alias, it becomes a query for employees who are their own supervisor (0 rows). A separate alias S for the supervisor is needed."
+ },
+ "4-qa-3": {
+  "prompt": "For each employee, retrieve the employee's name (Fname, Lname) and the name (Fname, Lname) of his or her immediate supervisor.",
+  "keys": [
+   "Two aliases of EMPLOYEE (E, S)",
+   "E.Super_ssn = S.Ssn",
+   "E's name, S's name"
+  ],
+  "answer": "SELECT E.Fname, E.Lname, S.Fname, S.Lname\nFROM   EMPLOYEE AS E, EMPLOYEE AS S\nWHERE  E.Super_ssn = S.Ssn;\n\n-- Result on the textbook COMPANY state (7 rows)\nFname | Lname | Fname | Lname\nJohn | Smith | Franklin | Wong\nFranklin | Wong | James | Borg\nAlicia | Zelaya | Jennifer | Wallace\nJennifer | Wallace | James | Borg\nRamesh | Narayan | Franklin | Wong\nJoyce | English | Franklin | Wong\nAhmad | Jabbar | Jennifer | Wallace\n\nBorg, who has no supervisor (Super_ssn NULL), is not in the result."
+ },
+ "4-qa-4": {
+  "prompt": "Give the two cases in which an attribute name must be prefixed with the relation name (qualified) in SQL.",
+  "keys": [
+   "Same-named attributes in different relations",
+   "Referring to the same relation twice (aliases)"
+  ],
+  "answer": "1) When attributes in different relations have the same name (e.g., EMPLOYEE.Name and DEPARTMENT.Name). 2) When the same relation is referenced more than once in a query → distinguish them with aliases (EMPLOYEE AS E, EMPLOYEE AS S)."
+ },
+ "4-qa-5": {
+  "prompt": "Retrieve the last name and department number of each employee who works in a different department from his or her immediate supervisor, together with the supervisor's last name and department number.",
+  "keys": [
+   "Aliases E, S",
+   "E.Super_ssn = S.Ssn",
+   "E.Dno <> S.Dno"
+  ],
+  "answer": "SELECT E.Lname, E.Dno, S.Lname, S.Dno\nFROM   EMPLOYEE AS E, EMPLOYEE AS S\nWHERE  E.Super_ssn = S.Ssn AND E.Dno <> S.Dno;\n\n-- Result on the textbook COMPANY state (2 rows)\nLname | Dno | Lname | Dno\nWong | 5 | Borg | 1\nWallace | 4 | Borg | 1"
+ },
+ "4-mw-1": {
+  "prompt": "How many rows does SELECT Ssn, Dname FROM EMPLOYEE, DEPARTMENT; return? (COMPANY state)"
+ },
+ "4-mw-2": {
+  "prompt": "If FROM has two or more tables and the join condition is left out, the result is a Cartesian product, which is wrong and very large."
+ },
+ "4-mw-3": {
+  "prompt": "Retrieve all attributes of the employees who work in department 5.",
+  "answer": "SELECT *\nFROM   EMPLOYEE\nWHERE  Dno = 5;\n\n-- Result on the textbook COMPANY state (4 rows)\nFname | Minit | Lname | Ssn | Bdate | Address | Sex | Salary | Super_ssn | Dno\nJohn | B | Smith | 123456789 | 1965-01-09 | 731 Fondren, Houston, TX | M | 30000 | 333445555 | 5\nFranklin | T | Wong | 333445555 | 1955-12-08 | 638 Voss, Houston, TX | M | 40000 | 888665555 | 5\nRamesh | K | Narayan | 666884444 | 1962-09-15 | 975 Fire Oak, Humble, TX | M | 38000 | 333445555 | 5\nJoyce | A | English | 453453453 | 1972-07-31 | 5631 Rice, Houston, TX | F | 25000 | 333445555 | 5"
+ },
+ "4-mw-4": {
+  "prompt": "Explain what happens when the WHERE clause is omitted from a SELECT query, separately for one table and for two tables in FROM.",
+  "keys": [
+   "No condition → all tuples",
+   "Two or more → Cartesian product"
+  ],
+  "answer": "There is no tuple selection condition, so all tuples of the relations in FROM are retrieved. With one table, all tuples of that table; with two or more, all possible tuple combinations (the Cartesian product, e.g., 8 × 3 = 24 rows)."
+ },
+ "4-ms-1": {
+  "prompt": "Which is NOT a reason why SQL does not automatically eliminate duplicate tuples from query results?",
+  "choices": [
+   "Because duplicate elimination is an expensive operation",
+   "Because the user may want to see duplicates",
+   "Because duplicates are needed for aggregate functions",
+   "Because SQL tables are sets, so there are no duplicates in the first place"
+  ]
+ },
+ "4-ms-2": {
+  "prompt": "On the COMPANY state, how many rows does SELECT DISTINCT Salary FROM EMPLOYEE; return?"
+ },
+ "4-ms-3": {
+  "prompt": "SQL treats a table not as a set but as a multiset."
+ },
+ "4-ms-4": {
+  "prompt": "Give three reasons why SQL treats tables as multisets.",
+  "keys": [
+   "Cost of duplicate elimination",
+   "The user may want duplicates",
+   "Aggregate functions"
+  ],
+  "answer": "1) Duplicate elimination is an expensive operation (the tuples must be sorted first and then the duplicates removed). 2) The user may want to see duplicate tuples in the result. 3) Duplicates are needed when applying aggregate functions (e.g., sum or average of salaries)."
+ },
+ "4-ms-5": {
+  "prompt": "Retrieve the project numbers that employees work on, without duplicates.",
+  "answer": "SELECT DISTINCT Pno\nFROM   WORKS_ON;\n\n-- Result on the textbook COMPANY state (6 rows)\nPno\n1\n2\n3\n10\n20\n30"
+ },
+ "4-ms-6": {
+  "prompt": "SELECT (a) Salary keeps duplicates (the default), and SELECT (b) Salary eliminates duplicates.",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "4-so-1": {
+  "prompt": "Which statement about the results of UNION, EXCEPT and INTERSECT is correct?",
+  "choices": [
+   "A set with duplicates eliminated",
+   "Always a multiset that keeps duplicates",
+   "A sorted list",
+   "The relations need not be type compatible"
+  ]
+ },
+ "4-so-2": {
+  "prompt": "Given R(A) = {a1, a2, a2, a3} and S(A) = {a1, a2, a4, a5}, give the following results.\n(1) R UNION ALL S  (2) R EXCEPT ALL S  (3) R INTERSECT ALL S  (4) R UNION S  (5) R EXCEPT S",
+  "keys": [
+   "(1) multiset of 8 elements",
+   "(2) {a2, a3}",
+   "(3) {a1, a2}",
+   "(4) union with duplicates eliminated",
+   "(5) {a3}"
+  ]
+ },
+ "4-so-3": {
+  "prompt": "Using UNION, retrieve the numbers of projects that involve an employee whose last name is 'Smith', either as a worker or as a manager of the department that controls the project.",
+  "keys": [
+   "Manager block (PROJECT–DEPARTMENT–EMPLOYEE)",
+   "Worker block (PROJECT–WORKS_ON–EMPLOYEE)",
+   "UNION"
+  ],
+  "answer": "( SELECT DISTINCT Pnumber\n  FROM   PROJECT, DEPARTMENT, EMPLOYEE\n  WHERE  Dnum = Dnumber AND Mgr_ssn = Ssn AND Lname = 'Smith' )\nUNION\n( SELECT DISTINCT Pnumber\n  FROM   PROJECT, WORKS_ON, EMPLOYEE\n  WHERE  Pnumber = Pno AND Essn = Ssn AND Lname = 'Smith' );\n\n-- Result on the textbook COMPANY state (2 rows)\nPnumber\n1\n2"
+ },
+ "4-so-4": {
+  "prompt": "Using EXCEPT, retrieve the Ssn of employees who work on a project but have no dependents.",
+  "answer": "( SELECT Essn FROM WORKS_ON )\nEXCEPT\n( SELECT Essn FROM DEPENDENT );\n\n-- Result on the textbook COMPANY state (5 rows)\nEssn\n453453453\n666884444\n888665555\n987987987\n999887777"
+ },
+ "4-so-5": {
+  "prompt": "SELECT Ssn FROM EMPLOYEE UNION SELECT Dname FROM DEPARTMENT; is semantically wrong because the relations are not type compatible.",
+  "explain": "The corresponding attributes have different domains (employee number vs department name)."
+ },
+ "4-ob-1": {
+  "prompt": "Retrieve a list of employees and the projects they work on, ordered by department name and, within each department, by last name and then first name (department name, last name, first name, project name).",
+  "keys": [
+   "3 join conditions for the four tables",
+   "ORDER BY D.Dname, E.Lname, E.Fname"
+  ],
+  "answer": "SELECT   D.Dname, E.Lname, E.Fname, P.Pname\nFROM     DEPARTMENT AS D, EMPLOYEE AS E, WORKS_ON AS W, PROJECT AS P\nWHERE    D.Dnumber = E.Dno AND E.Ssn = W.Essn AND W.Pno = P.Pnumber\nORDER BY D.Dname, E.Lname, E.Fname;\n\n-- Result on the textbook COMPANY state (16 rows)\nDname | Lname | Fname | Pname\nAdministration | Jabbar | Ahmad | Computerization\nAdministration | Jabbar | Ahmad | Newbenefits\nAdministration | Wallace | Jennifer | Reorganization\nAdministration | Wallace | Jennifer | Newbenefits\nAdministration | Zelaya | Alicia | Computerization\nAdministration | Zelaya | Alicia | Newbenefits\nHeadquarters | Borg | James | Reorganization\nResearch | English | Joyce | ProductX\nResearch | English | Joyce | ProductY\nResearch | Narayan | Ramesh | ProductZ\nResearch | Smith | John | ProductX\nResearch | Smith | John | ProductY\nResearch | Wong | Franklin | ProductY\nResearch | Wong | Franklin | ProductZ\nResearch | Wong | Franklin | Computerization\nResearch | Wong | Franklin | Reorganization"
+ },
+ "4-ob-2": {
+  "prompt": "Show the resulting salaries, with names, if every employee who works on 'ProductX' is given a 10% raise (do not change the relation).",
+  "keys": [
+   "1.1 * Salary (AS alias)",
+   "2 join conditions + Pname condition",
+   "SELECT, not UPDATE"
+  ],
+  "answer": "SELECT E.Fname, E.Lname, 1.1 * E.Salary AS Increased_sal\nFROM   EMPLOYEE AS E, WORKS_ON AS W, PROJECT AS P\nWHERE  E.Ssn = W.Essn AND W.Pno = P.Pnumber AND P.Pname = 'ProductX';\n\n-- Result on the textbook COMPANY state (2 rows)\nFname | Lname | Increased_sal\nJohn | Smith | 33000\nJoyce | English | 27500"
+ },
+ "4-ob-3": {
+  "prompt": "Using BETWEEN, retrieve the employees in department 5 whose salary is between 30000 and 40000 inclusive.",
+  "keys": [
+   "BETWEEN 30000 AND 40000 (both ends inclusive)",
+   "AND Dno = 5"
+  ],
+  "answer": "SELECT *\nFROM   EMPLOYEE\nWHERE  (Salary BETWEEN 30000 AND 40000) AND Dno = 5;\n\n-- Result on the textbook COMPANY state (3 rows)\nFname | Minit | Lname | Ssn | Bdate | Address | Sex | Salary | Super_ssn | Dno\nJohn | B | Smith | 123456789 | 1965-01-09 | 731 Fondren, Houston, TX | M | 30000 | 333445555 | 5\nFranklin | T | Wong | 333445555 | 1955-12-08 | 638 Voss, Houston, TX | M | 40000 | 888665555 | 5\nRamesh | K | Narayan | 666884444 | 1962-09-15 | 975 Fire Oak, Humble, TX | M | 38000 | 333445555 | 5"
+ },
+ "4-ob-4": {
+  "prompt": "What is the default sort order of ORDER BY?",
+  "choices": [
+   "Ascending (ASC)",
+   "Descending (DESC)",
+   "Insertion order",
+   "PK order"
+  ]
+ },
+ "4-ob-5": {
+  "prompt": "Writing 1.1 * Salary in the SELECT clause also changes the Salary values in the EMPLOYEE relation.",
+  "explain": "It is reflected only in the result; the relation state stays the same. To change it, use UPDATE."
+ },
+ "4-ob-6": {
+  "prompt": "Retrieve the names and salaries of employees, from the highest salary down. If salaries are equal, order by last name alphabetically.",
+  "keys": [
+   "ORDER BY Salary DESC",
+   "Second key Lname ASC"
+  ],
+  "answer": "SELECT   Fname, Lname, Salary\nFROM     EMPLOYEE\nORDER BY Salary DESC, Lname ASC;\n\n-- Result on the textbook COMPANY state (8 rows)\nFname | Lname | Salary\nJames | Borg | 55000\nJennifer | Wallace | 43000\nFranklin | Wong | 40000\nRamesh | Narayan | 38000\nJohn | Smith | 30000\nJoyce | English | 25000\nAhmad | Jabbar | 25000\nAlicia | Zelaya | 25000"
+ },
+ "5-in-1": {
+  "prompt": "Which statement about a nested query (a query inside another query) is correct?",
+  "choices": [
+   "They can appear only in the FROM clause",
+   "A nested query is a complete SELECT-FROM-WHERE block within the WHERE clause of another query",
+   "The result is always a single value",
+   "SQL does not support them"
+  ]
+ },
+ "5-in-2": {
+  "prompt": "When is v IN V TRUE?",
+  "choices": [
+   "When v is one of the elements in V",
+   "When v equals every element in V",
+   "When V is empty",
+   "When v is greater than the maximum of V"
+  ]
+ },
+ "5-in-3": {
+  "prompt": "= ANY means the same as IN."
+ },
+ "5-in-4": {
+  "prompt": "Using a nested query (IN), retrieve the names of employees who work for the 'Research' department.",
+  "keys": [
+   "Outer EMPLOYEE",
+   "Dno IN (inner query)",
+   "Inner: Dnumber where Dname = 'Research'"
+  ],
+  "answer": "SELECT Fname, Lname\nFROM   EMPLOYEE\nWHERE  Dno IN ( SELECT Dnumber\n               FROM   DEPARTMENT\n               WHERE  Dname = 'Research' );\n\n-- Result on the textbook COMPANY state (4 rows)\nFname | Lname\nJohn | Smith\nFranklin | Wong\nRamesh | Narayan\nJoyce | English"
+ },
+ "5-in-5": {
+  "prompt": "Using two INs and OR, retrieve the numbers of projects that involve an employee whose last name is 'Smith', either as a worker or as a manager of the department that controls the project.",
+  "keys": [
+   "IN (manager block)",
+   "OR",
+   "IN (worker block)"
+  ],
+  "answer": "SELECT DISTINCT Pnumber\nFROM   PROJECT\nWHERE  Pnumber IN ( SELECT Pnumber\n                    FROM   PROJECT, DEPARTMENT, EMPLOYEE\n                    WHERE  Dnum = Dnumber AND Mgr_ssn = Ssn AND Lname = 'Smith' )\n   OR  Pnumber IN ( SELECT Pno\n                    FROM   WORKS_ON, EMPLOYEE\n                    WHERE  Essn = Ssn AND Lname = 'Smith' );\n\n-- Result on the textbook COMPANY state (2 rows)\nPnumber\n1\n2"
+ },
+ "5-in-6": {
+  "prompt": "Using a nested query, retrieve the Ssn and name of employees who work on at least one project located in 'Houston'.",
+  "keys": [
+   "Ssn IN (inner)",
+   "Inner: WORKS_ON–PROJECT join",
+   "Plocation = 'Houston'"
+  ],
+  "answer": "SELECT Ssn, Fname, Lname\nFROM   EMPLOYEE\nWHERE  Ssn IN ( SELECT W.Essn\n                FROM   WORKS_ON AS W, PROJECT AS P\n                WHERE  W.Pno = P.Pnumber AND P.Plocation = 'Houston' );\n\n-- Result on the textbook COMPANY state (4 rows)\nSsn | Fname | Lname\n333445555 | Franklin | Wong\n666884444 | Ramesh | Narayan\n888665555 | James | Borg\n987654321 | Jennifer | Wallace"
+ },
+ "5-in-7": {
+  "prompt": "Retrieve the names of all employees in the department of the employee with the highest salary. (db-exercises Q1)",
+  "keys": [
+   "Innermost: MAX(Salary)",
+   "Dno of the employee who earns that salary",
+   "The employees in that Dno"
+  ],
+  "answer": "SELECT Fname, Minit, Lname\nFROM   EMPLOYEE\nWHERE  Dno = ( SELECT Dno\n               FROM   EMPLOYEE\n               WHERE  Salary = ( SELECT MAX(Salary)\n                                 FROM   EMPLOYEE ) );\n\n-- Result on the textbook COMPANY state (1 row)\nFname | Minit | Lname\nJames | E | Borg"
+ },
+ "5-in-8": {
+  "prompt": "Retrieve the names of employees whose supervisor's supervisor has Ssn '888665555'. (db-exercises Q2)",
+  "keys": [
+   "Inner: employees with Super_ssn = '888665555' (Wong, Wallace)",
+   "Outer: employees whose supervisor is one of them"
+  ],
+  "answer": "SELECT Fname, Minit, Lname\nFROM   EMPLOYEE\nWHERE  Super_ssn IN ( SELECT Ssn\n                      FROM   EMPLOYEE\n                      WHERE  Super_ssn = '888665555' );\n\n-- Result on the textbook COMPANY state (5 rows)\nFname | Minit | Lname\nJohn | B | Smith\nAlicia | J | Zelaya\nRamesh | K | Narayan\nJoyce | A | English\nAhmad | V | Jabbar\n\nThe slide solution uses =, but the inner result has two employees (Wong, Wallace), so IN is correct."
+ },
+ "5-aa-1": {
+  "prompt": "Which condition means the same as Salary > ALL (SELECT Salary FROM EMPLOYEE WHERE Dno = 5)?"
+ },
+ "5-aa-2": {
+  "prompt": "When is Salary > ANY (SELECT Salary FROM EMPLOYEE WHERE Dno = 5) true? (Department 5 salaries = 30000, 40000, 38000, 25000)"
+ },
+ "5-aa-3": {
+  "prompt": "Using ALL, retrieve the names of employees whose salary is greater than the salary of all employees in department 5.",
+  "keys": [
+   "Salary > ALL",
+   "Inner: salaries where Dno = 5"
+  ],
+  "answer": "SELECT Lname, Fname\nFROM   EMPLOYEE\nWHERE  Salary > ALL ( SELECT Salary\n                      FROM   EMPLOYEE\n                      WHERE  Dno = 5 );\n\n-- Result on the textbook COMPANY state (2 rows)\nLname | Fname\nWallace | Jennifer\nBorg | James\n\nSQLite has no ALL, so the check was run with > (SELECT MAX(...))."
+ },
+ "5-aa-4": {
+  "prompt": "The lab's SQLite does not support ALL and ANY."
+ },
+ "5-aa-5": {
+  "prompt": "Using ANY, retrieve the names and salaries of employees in department 5 whose salary is greater than that of at least one employee in department 4.",
+  "keys": [
+   "Dno = 5",
+   "Salary > ANY (department 4 salaries)"
+  ],
+  "answer": "SELECT Fname, Lname, Salary\nFROM   EMPLOYEE\nWHERE  Dno = 5\n  AND  Salary > ANY ( SELECT Salary FROM EMPLOYEE WHERE Dno = 4 );\n\n-- Result on the textbook COMPANY state (3 rows)\nFname | Lname | Salary\nJohn | Smith | 30000\nFranklin | Wong | 40000\nRamesh | Narayan | 38000\n\n> ANY = true if greater than the minimum (25000). The SQLite check uses > (SELECT MIN(...))."
+ },
+ "5-aa-6": {
+  "prompt": "v > ALL V is true when v is greater than the (a) of V, and v > ANY V is true when v is greater than the (b) of V.",
+  "answer": "(a) maximum / (b) minimum",
+  "accept_add": [
+   [
+    "maximum",
+    "MAX(V)"
+   ],
+   [
+    "minimum",
+    "MIN(V)"
+   ]
+  ]
+ },
+ "5-co-1": {
+  "prompt": "What is a correlated nested query (correlated query)?",
+  "choices": [
+   "A query whose inner query is evaluated only once, independently of the outer query",
+   "A query whose inner query references an attribute (alias) of the outer query",
+   "A query in the FROM clause",
+   "Queries connected by UNION"
+  ]
+ },
+ "5-co-2": {
+  "prompt": "In a nested query, an unqualified attribute name used in the inner query refers to the attribute of the table in the nearest (innermost) FROM."
+ },
+ "5-co-3": {
+  "prompt": "Explain when ambiguity arises in nested queries and how to resolve it.",
+  "keys": [
+   "Same-named attributes in the outer and inner queries",
+   "Qualify with aliases",
+   "Aliases recommended for all tables"
+  ],
+  "answer": "If the outer query's FROM and the inner query's FROM have attributes with the same name, it is ambiguous which table's attribute is meant. Solution: give each table an alias (tuple variable) and qualify attributes, as in E.Sex and D.Sex. It is advisable to create aliases for all the tables referenced in a query."
+ },
+ "5-co-4": {
+  "prompt": "Retrieve the name of each employee who has a dependent with the same name (first name) and the same sex as the employee. (Query 16)",
+  "keys": [
+   "Inner query references the outer E (correlated)",
+   "E.Fname = D.Dependent_name",
+   "E.Sex = D.Sex"
+  ],
+  "answer": "SELECT E.Fname, E.Lname\nFROM   EMPLOYEE AS E\nWHERE  E.Ssn IN ( SELECT D.Essn\n                  FROM   DEPENDENT AS D\n                  WHERE  E.Fname = D.Dependent_name\n                    AND  E.Sex = D.Sex );\n\n-- Result on the textbook COMPANY state (0 rows)\nFname | Lname\n\nThere is no such dependent in the COMPANY state, so the result is empty."
+ },
+ "5-co-5": {
+  "prompt": "Using a correlated nested query, retrieve the name, department number and salary of employees whose salary is greater than the average salary of their own department.",
+  "keys": [
+   "Two aliases (E, E2)",
+   "Inner E2.Dno = E.Dno (correlated)",
+   "Compare with AVG"
+  ],
+  "answer": "SELECT E.Fname, E.Lname, E.Dno, E.Salary\nFROM   EMPLOYEE AS E\nWHERE  E.Salary > ( SELECT AVG(E2.Salary)\n                    FROM   EMPLOYEE AS E2\n                    WHERE  E2.Dno = E.Dno );\n\n-- Result on the textbook COMPANY state (3 rows)\nFname | Lname | Dno | Salary\nFranklin | Wong | 5 | 40000\nJennifer | Wallace | 4 | 43000\nRamesh | Narayan | 5 | 38000"
+ },
+ "5-ex-1": {
+  "prompt": "When is NOT EXISTS (Q) TRUE?",
+  "choices": [
+   "When the result of Q has at least one tuple",
+   "When the result of Q contains NULL",
+   "When the result of Q is empty",
+   "When Q uses an aggregate function"
+  ]
+ },
+ "5-ex-2": {
+  "prompt": "EXISTS checks only whether the result of the inner query is empty, not what values it contains."
+ },
+ "5-ex-3": {
+  "prompt": "Using NOT EXISTS, retrieve the names of employees who have no dependents. (Query 6)",
+  "keys": [
+   "NOT EXISTS",
+   "Inner: DEPENDENT WHERE Ssn = Essn (correlated)"
+  ],
+  "answer": "SELECT Fname, Lname\nFROM   EMPLOYEE\nWHERE  NOT EXISTS ( SELECT *\n                    FROM   DEPENDENT\n                    WHERE  Ssn = Essn );\n\n-- Result on the textbook COMPANY state (5 rows)\nFname | Lname\nAlicia | Zelaya\nRamesh | Narayan\nJoyce | English\nAhmad | Jabbar\nJames | Borg"
+ },
+ "5-ex-4": {
+  "prompt": "Using EXISTS, retrieve the names of managers who have at least one dependent.",
+  "keys": [
+   "EXISTS (dependents)",
+   "AND",
+   "EXISTS (managed department)"
+  ],
+  "answer": "SELECT Fname, Lname\nFROM   EMPLOYEE\nWHERE  EXISTS ( SELECT * FROM DEPENDENT  WHERE Ssn = Essn )\n  AND  EXISTS ( SELECT * FROM DEPARTMENT WHERE Ssn = Mgr_ssn );\n\n-- Result on the textbook COMPANY state (2 rows)\nFname | Lname\nFranklin | Wong\nJennifer | Wallace"
+ },
+ "5-ex-5": {
+  "prompt": "Retrieve the names of department managers who do not work on any project, if there are any.",
+  "keys": [
+   "EXISTS (manager)",
+   "NOT EXISTS (WORKS_ON)"
+  ],
+  "answer": "SELECT E.Fname, E.Lname\nFROM   EMPLOYEE AS E\nWHERE  EXISTS ( SELECT * FROM DEPARTMENT AS D WHERE D.Mgr_ssn = E.Ssn )\n  AND  NOT EXISTS ( SELECT * FROM WORKS_ON AS W WHERE W.Essn = E.Ssn );\n\n-- Result on the textbook COMPANY state (0 rows)\nFname | Lname\n\nAll three managers (Wong, Wallace, Borg) appear in WORKS_ON (Borg's tuple has Hours = NULL). Result: 0 rows."
+ },
+ "5-ex-6": {
+  "prompt": "Using EXISTS, retrieve the names of employees who directly supervise at least one employee.",
+  "keys": [
+   "EXISTS",
+   "E.Super_ssn = S.Ssn (two aliases)"
+  ],
+  "answer": "SELECT S.Fname, S.Lname\nFROM   EMPLOYEE AS S\nWHERE  EXISTS ( SELECT *\n                FROM   EMPLOYEE AS E\n                WHERE  E.Super_ssn = S.Ssn );\n\n-- Result on the textbook COMPANY state (3 rows)\nFname | Lname\nFranklin | Wong\nJennifer | Wallace\nJames | Borg"
+ },
+ "5-ex-7": {
+  "prompt": "Retrieve the names and majors of students who do not have any grade of A. (UNIVERSITY, db-exercises Q2-2)",
+  "answer": "SELECT S.Name, S.Major\nFROM   STUDENT AS S\nWHERE  NOT EXISTS ( SELECT *\n                    FROM   GRADE_REPORT AS G\n                    WHERE  G.Student_number = S.Student_number\n                      AND  G.Grade = 'A' );\n\n-- Result on the textbook UNIVERSITY state (1 row)\nName | Major\nSmith | CS"
+ },
+ "5-ex-8": {
+  "prompt": "Retrieve the names and majors of students who got an A in every course (who have no grade other than A). (UNIVERSITY, db-exercises Q2-1)",
+  "answer": "SELECT S.Name, S.Major\nFROM   STUDENT AS S\nWHERE  NOT EXISTS ( SELECT *\n                    FROM   GRADE_REPORT AS G\n                    WHERE  G.Student_number = S.Student_number\n                      AND  G.Grade <> 'A' );\n\n-- Result on the textbook UNIVERSITY state (0 rows)\nName | Major\n\nBrown also has one B, so the result is empty. (Note that a student with no grades at all would also appear.)"
+ },
+ "5-div-1": {
+  "prompt": "Which SQL pattern finds 'employees who work on all projects controlled by department 5'?",
+  "choices": [
+   "IN",
+   "= ANY",
+   "A single EXISTS",
+   "NOT EXISTS ((dept-5 projects) EXCEPT (that employee's projects))"
+  ]
+ },
+ "5-div-2": {
+  "prompt": "Explain what NOT EXISTS ((SELECT Pnumber FROM PROJECT WHERE Dnum = 5) EXCEPT (SELECT Pno FROM WORKS_ON WHERE Ssn = Essn)) checks.",
+  "keys": [
+   "First set = all dept-5 projects",
+   "Second = that employee's projects",
+   "Empty difference → works on all of them"
+  ],
+  "answer": "The first set is all projects controlled by department 5; the second is the projects the current employee works on. The difference is the dept-5 projects this employee does not work on. If it is empty (NOT EXISTS is true), the employee works on all dept-5 projects."
+ },
+ "5-div-3": {
+  "prompt": "The dept-5 projects are {1, 2, 3}. Employee A works on {1, 2, 4}, B on {1, 2, 3, 4}, and C on {3}. Which employees are in the result of the NOT EXISTS + EXCEPT division query, and why?",
+  "keys": [
+   "A out ({3})",
+   "B selected (∅)",
+   "C out ({1,2})"
+  ],
+  "answer": "A: {1,2,3} − {1,2,4} = {3} ≠ ∅ → out\nB: {1,2,3} − {1,2,3,4} = ∅ → selected\nC: {1,2,3} − {3} = {1,2} ≠ ∅ → out\nResult: B only"
+ },
+ "5-div-4": {
+  "prompt": "Retrieve the names of employees who work on all the projects controlled by department 5. (Slide exercise 1)",
+  "keys": [
+   "NOT EXISTS",
+   "(dept-5 projects) EXCEPT (that employee's projects)",
+   "Inner Ssn = Essn (correlated)"
+  ],
+  "answer": "SELECT Fname, Lname\nFROM   EMPLOYEE\nWHERE  NOT EXISTS ( ( SELECT Pnumber FROM PROJECT WHERE Dnum = 5 )\n                    EXCEPT\n                    ( SELECT Pno FROM WORKS_ON WHERE Ssn = Essn ) );\n\n-- Result on the textbook COMPANY state (0 rows)\nFname | Lname\n\nOn the COMPANY state no employee works on all of 1, 2 and 3, so the result is empty. The double NOT EXISTS version gives the same result."
+ },
+ "5-div-5": {
+  "prompt": "Retrieve the names of employees who work on all the projects that 'John Smith' works on (including Smith himself).",
+  "keys": [
+   "Outer NOT EXISTS: among Smith's projects",
+   "Inner NOT EXISTS: those the employee does not work on",
+   "Correlated W2.Essn = E.Ssn, W2.Pno = W1.Pno"
+  ],
+  "answer": "SELECT E.Fname, E.Lname\nFROM   EMPLOYEE AS E\nWHERE  NOT EXISTS ( SELECT W1.Pno\n                    FROM   WORKS_ON AS W1, EMPLOYEE AS S\n                    WHERE  W1.Essn = S.Ssn AND S.Fname = 'John' AND S.Lname = 'Smith'\n                      AND  NOT EXISTS ( SELECT *\n                                        FROM   WORKS_ON AS W2\n                                        WHERE  W2.Essn = E.Ssn AND W2.Pno = W1.Pno ) );\n\n-- Result on the textbook COMPANY state (2 rows)\nFname | Lname\nJohn | Smith\nJoyce | English"
+ },
+ "5-div-6": {
+  "prompt": "Retrieve the names of employees who work on all the projects located in Stafford.",
+  "keys": [
+   "Double NOT EXISTS",
+   "Plocation = 'Stafford'",
+   "W.Essn = E.Ssn AND W.Pno = P.Pnumber"
+  ],
+  "answer": "SELECT E.Fname, E.Lname\nFROM   EMPLOYEE AS E\nWHERE  NOT EXISTS ( SELECT *\n                    FROM   PROJECT AS P\n                    WHERE  P.Plocation = 'Stafford'\n                      AND  NOT EXISTS ( SELECT *\n                                        FROM   WORKS_ON AS W\n                                        WHERE  W.Essn = E.Ssn AND W.Pno = P.Pnumber ) );\n\n-- Result on the textbook COMPANY state (2 rows)\nFname | Lname\nAlicia | Zelaya\nAhmad | Jabbar\n\nStafford projects = {10, 30}. Employees who work on both = Zelaya, Jabbar."
+ },
+ "5-jt-1": {
+  "prompt": "Where (in which clause) is a joined table used?",
+  "choices": [
+   "SELECT clause",
+   "FROM clause",
+   "WHERE clause",
+   "GROUP BY clause"
+  ]
+ },
+ "5-jt-2": {
+  "prompt": "FROM (EMPLOYEE JOIN DEPARTMENT ON Dno = Dnumber) WHERE Dname = 'Research' gives the same result as FROM EMPLOYEE, DEPARTMENT WHERE Dname = 'Research' AND Dnumber = Dno."
+ },
+ "5-jt-3": {
+  "prompt": "Using JOIN ... ON, retrieve each project name and the name of the department that controls it.",
+  "answer": "SELECT P.Pname, D.Dname\nFROM   (PROJECT AS P JOIN DEPARTMENT AS D ON P.Dnum = D.Dnumber);\n\n-- Result on the textbook COMPANY state (6 rows)\nPname | Dname\nProductX | Research\nProductY | Research\nProductZ | Research\nComputerization | Administration\nReorganization | Headquarters\nNewbenefits | Administration"
+ },
+ "5-jt-4": {
+  "prompt": "Using JOIN, retrieve the names of employees who work in a department that has a location in 'Houston', together with the department name.",
+  "keys": [
+   "Two JOINs (nested)",
+   "E.Dno = D.Dnumber, D.Dnumber = L.Dnumber",
+   "WHERE Dlocation = 'Houston'"
+  ],
+  "answer": "SELECT E.Fname, E.Lname, D.Dname\nFROM   ((EMPLOYEE AS E JOIN DEPARTMENT AS D ON E.Dno = D.Dnumber)\n        JOIN DEPT_LOCATIONS AS L ON D.Dnumber = L.Dnumber)\nWHERE  L.Dlocation = 'Houston';\n\n-- Result on the textbook COMPANY state (5 rows)\nFname | Lname | Dname\nJohn | Smith | Research\nFranklin | Wong | Research\nRamesh | Narayan | Research\nJoyce | English | Research\nJames | Borg | Headquarters"
+ },
+ "5-jt-5": {
+  "prompt": "What are the advantages of using a joined table?",
+  "keys": [
+   "Join condition specified in FROM",
+   "Selection and join conditions are not mixed in WHERE"
+  ],
+  "answer": "The join condition is specified in the FROM clause, which avoids mixing selection conditions and join conditions in the WHERE clause. The structure of the query becomes easier to understand, and mistakes such as leaving out a join condition are less likely."
+ },
+ "5-nj-1": {
+  "prompt": "What is the join condition of a NATURAL JOIN?",
+  "choices": [
+   "It must be written explicitly with ON",
+   "PK–FK pairs",
+   "An implicit equality condition for each pair of attributes with the same name",
+   "No condition; a Cartesian product"
+  ]
+ },
+ "5-nj-2": {
+  "prompt": "Explain why Dno and Dnumber are not joined if you simply write EMPLOYEE NATURAL JOIN DEPARTMENT, and how to fix it.",
+  "keys": [
+   "Different names, so they are not matched",
+   "Rename the attribute with an alias (Dnumber → Dno)"
+  ],
+  "answer": "NATURAL JOIN joins only attributes with the same name, but the names differ: Dno in EMPLOYEE and Dnumber in DEPARTMENT. So rename the attributes, as in DEPARTMENT AS DEPT (Dname, Dno, Mssn, Msdate), to match Dno, and then apply NATURAL JOIN."
+ },
+ "5-nj-3": {
+  "prompt": "In the result of a NATURAL JOIN, the join attribute appears only once."
+ },
+ "5-nj-4": {
+  "prompt": "Using NATURAL JOIN, retrieve each department name and its locations.",
+  "keys": [
+   "DEPARTMENT NATURAL JOIN DEPT_LOCATIONS",
+   "Joined on the common attribute Dnumber"
+  ],
+  "answer": "SELECT Dname, Dlocation\nFROM   (DEPARTMENT NATURAL JOIN DEPT_LOCATIONS);\n\n-- Result on the textbook COMPANY state (5 rows)\nDname | Dlocation\nHeadquarters | Houston\nAdministration | Stafford\nResearch | Bellaire\nResearch | Sugarland\nResearch | Houston"
+ },
+ "5-io-1": {
+  "prompt": "Which employee is missing from the result of SELECT E.Lname, S.Lname FROM EMPLOYEE AS E, EMPLOYEE AS S WHERE E.Super_ssn = S.Ssn;? (COMPANY state)",
+  "choices": [
+   "Wong",
+   "Wallace",
+   "Smith",
+   "Borg (Super_ssn is NULL)"
+  ]
+ },
+ "5-io-2": {
+  "prompt": "What is always included in the result of a LEFT OUTER JOIN?",
+  "choices": [
+   "Every tuple of the left table",
+   "Every tuple of the right table",
+   "Every tuple of both tables",
+   "Only pairs that satisfy the condition"
+  ]
+ },
+ "5-io-3": {
+  "prompt": "Retrieve the last name of every employee and, if the employee has a supervisor, the supervisor's last name (NULL if there is no supervisor).",
+  "keys": [
+   "LEFT OUTER JOIN",
+   "ON E.Super_ssn = S.Ssn",
+   "Borg's supervisor is NULL"
+  ],
+  "answer": "SELECT E.Lname AS Employee_name, S.Lname AS Supervisor_name\nFROM   (EMPLOYEE AS E LEFT OUTER JOIN EMPLOYEE AS S\n        ON E.Super_ssn = S.Ssn);\n\n-- Result on the textbook COMPANY state (8 rows)\nEmployee_name | Supervisor_name\nSmith | Wong\nWong | Borg\nZelaya | Wallace\nWallace | Borg\nNarayan | Wong\nEnglish | Wong\nJabbar | Wallace\nBorg | NULL"
+ },
+ "5-io-4": {
+  "prompt": "Retrieve the names of all employees and, if an employee manages a department, the name of that department.",
+  "answer": "SELECT E.Fname, E.Lname, D.Dname\nFROM   (EMPLOYEE AS E LEFT OUTER JOIN DEPARTMENT AS D\n        ON E.Ssn = D.Mgr_ssn);\n\n-- Result on the textbook COMPANY state (8 rows)\nFname | Lname | Dname\nJohn | Smith | NULL\nFranklin | Wong | Research\nAlicia | Zelaya | NULL\nJennifer | Wallace | Administration\nRamesh | Narayan | NULL\nJoyce | English | NULL\nAhmad | Jabbar | NULL\nJames | Borg | Headquarters"
+ },
+ "5-io-5": {
+  "prompt": "Retrieve the name of every project and the number of employees who work on it. Projects with no employees must also appear, with 0.",
+  "keys": [
+   "LEFT OUTER JOIN",
+   "COUNT(W.Essn) (NULLs are not counted → 0)",
+   "GROUP BY"
+  ],
+  "answer": "SELECT   P.Pname, COUNT(W.Essn)\nFROM     (PROJECT AS P LEFT OUTER JOIN WORKS_ON AS W ON P.Pnumber = W.Pno)\nGROUP BY P.Pnumber, P.Pname;\n\n-- Result on the textbook COMPANY state (6 rows)\nPname | COUNT(W.Essn)\nProductX | 2\nProductY | 3\nProductZ | 2\nComputerization | 3\nReorganization | 3\nNewbenefits | 3\n\nWith COUNT(*), a project without a match would be counted as 1. On the COMPANY state every project has employees, so the difference does not show."
+ },
+ "5-io-6": {
+  "prompt": "In an outer join, the other relation's attributes of an unmatched tuple are padded with (a). To select only the unmatched ones, write WHERE B.KEY (b).",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "5-io-7": {
+  "prompt": "Explain the difference between an inner join and outer joins (LEFT, RIGHT, FULL).",
+  "keys": [
+   "Inner = only matched tuples",
+   "Outer = unmatched tuples included, padded with NULL",
+   "LEFT/RIGHT/FULL distinction"
+  ],
+  "answer": "Inner join: only tuple pairs that satisfy the join condition (that have a match) are in the result. Outer join: tuples without a match are also included, with the other relation's attributes padded with NULL. LEFT keeps every tuple of the left table, RIGHT every tuple of the right table, and FULL every tuple of both tables."
+ },
+ "5-ag-1": {
+  "prompt": "On the COMPANY state, what is the result of SELECT AVG(Salary) FROM EMPLOYEE;?"
+ },
+ "5-ag-2": {
+  "prompt": "Retrieve the sum, maximum, minimum and average salary of all employees. (Query 19)",
+  "answer": "SELECT SUM(Salary), MAX(Salary), MIN(Salary), AVG(Salary)\nFROM   EMPLOYEE;\n\n-- Result on the textbook COMPANY state (1 row)\nSUM(Salary) | MAX(Salary) | MIN(Salary) | AVG(Salary)\n281000 | 55000 | 25000 | 35125"
+ },
+ "5-ag-3": {
+  "prompt": "Retrieve the sum, maximum, minimum and average salary of the employees of the 'Research' department. (Query 20)",
+  "keys": [
+   "Four aggregate functions",
+   "EMPLOYEE–DEPARTMENT join",
+   "Dname = 'Research'"
+  ],
+  "answer": "SELECT SUM(Salary), MAX(Salary), MIN(Salary), AVG(Salary)\nFROM   (EMPLOYEE JOIN DEPARTMENT ON Dno = Dnumber)\nWHERE  Dname = 'Research';\n\n-- Result on the textbook COMPANY state (1 row)\nSUM(Salary) | MAX(Salary) | MIN(Salary) | AVG(Salary)\n133000 | 40000 | 25000 | 33250"
+ },
+ "5-ag-4": {
+  "prompt": "Aggregate functions are mostly used in the SELECT clause or the HAVING clause."
+ },
+ "5-ag-5": {
+  "prompt": "Retrieve the total and average of the hours recorded in WORKS_ON.",
+  "answer": "SELECT SUM(Hours), AVG(Hours)\nFROM   WORKS_ON;\n\n-- Result on the textbook COMPANY state (1 row)\nSUM(Hours) | AVG(Hours)\n275 | 18.33\n\nBorg's Hours is NULL, so AVG divides by the 15 non-NULL values (275 / 15 ≈ 18.33)."
+ },
+ "5-cn-1": {
+  "prompt": "On the COMPANY state, what is the result of SELECT COUNT(Super_ssn) FROM EMPLOYEE;?"
+ },
+ "5-cn-2": {
+  "prompt": "On the COMPANY state, what is the result of SELECT COUNT(DISTINCT Salary) FROM EMPLOYEE;?"
+ },
+ "5-cn-3": {
+  "prompt": "COUNT(*) counts rows, and COUNT(attribute) counts non-NULL values."
+ },
+ "5-cn-4": {
+  "prompt": "Retrieve the names of employees who have two or more dependents.",
+  "keys": [
+   "Inner COUNT(*) (number of dependents per employee)",
+   "Ssn = Essn (correlated)",
+   ">= 2"
+  ],
+  "answer": "SELECT Lname, Fname\nFROM   EMPLOYEE\nWHERE  ( SELECT COUNT(*)\n         FROM   DEPENDENT\n         WHERE  Ssn = Essn ) >= 2;\n\n-- Result on the textbook COMPANY state (2 rows)\nLname | Fname\nSmith | John\nWong | Franklin"
+ },
+ "5-cn-5": {
+  "prompt": "Retrieve the number of employees in the 'Research' department. (Query 22)",
+  "keys": [
+   "COUNT(*)",
+   "Join + Dname condition"
+  ],
+  "answer": "SELECT COUNT(*)\nFROM   EMPLOYEE, DEPARTMENT\nWHERE  Dno = Dnumber AND Dname = 'Research';\n\n-- Result on the textbook COMPANY state (1 row)\nCOUNT(*)\n4"
+ },
+ "5-cn-6": {
+  "prompt": "Explain the difference between COUNT(*), COUNT(A) and COUNT(DISTINCT A), using EMPLOYEE.Super_ssn in COMPANY as an example.",
+  "keys": [
+   "COUNT(*) = 8 (number of rows)",
+   "COUNT(Super_ssn) = 7 (NULL excluded)",
+   "COUNT(DISTINCT) = 3"
+  ],
+  "answer": "COUNT(*): number of rows → 8. COUNT(Super_ssn): number of non-NULL values → 7 (Borg's is NULL). COUNT(DISTINCT Super_ssn): number of distinct values → 3 (333445555, 888665555, 987654321)."
+ },
+ "5-gb-1": {
+  "prompt": "In a query with GROUP BY Dno, what may appear in the SELECT clause?",
+  "choices": [
+   "Dno and aggregate functions",
+   "Any attribute",
+   "Lname",
+   "Ssn"
+  ]
+ },
+ "5-gb-2": {
+  "prompt": "For each department, retrieve the department number, the number of employees and the average salary. (Query 24)",
+  "answer": "SELECT   Dno, COUNT(*), AVG(Salary)\nFROM     EMPLOYEE\nGROUP BY Dno;\n\n-- Result on the textbook COMPANY state (3 rows)\nDno | COUNT(*) | AVG(Salary)\n1 | 1 | 55000\n4 | 3 | 31000\n5 | 4 | 33250"
+ },
+ "5-gb-3": {
+  "prompt": "For each project, retrieve the project number, the project name and the number of employees who work on it. (Query 25)",
+  "keys": [
+   "PROJECT–WORKS_ON join",
+   "GROUP BY Pnumber, Pname",
+   "COUNT(*)"
+  ],
+  "answer": "SELECT   Pnumber, Pname, COUNT(*)\nFROM     PROJECT, WORKS_ON\nWHERE    Pnumber = Pno\nGROUP BY Pnumber, Pname;\n\n-- Result on the textbook COMPANY state (6 rows)\nPnumber | Pname | COUNT(*)\n1 | ProductX | 2\n2 | ProductY | 3\n3 | ProductZ | 2\n10 | Computerization | 3\n20 | Reorganization | 3\n30 | Newbenefits | 3"
+ },
+ "5-gb-4": {
+  "prompt": "For each department, retrieve the department name and the number of projects it controls.",
+  "keys": [
+   "DEPARTMENT–PROJECT join",
+   "GROUP BY department",
+   "COUNT(*)"
+  ],
+  "answer": "SELECT   D.Dname, COUNT(*)\nFROM     DEPARTMENT AS D, PROJECT AS P\nWHERE    D.Dnumber = P.Dnum\nGROUP BY D.Dnumber, D.Dname;\n\n-- Result on the textbook COMPANY state (3 rows)\nDname | COUNT(*)\nHeadquarters | 1\nAdministration | 2\nResearch | 3"
+ },
+ "5-gb-5": {
+  "prompt": "For each employee, retrieve the Ssn, last name, number of projects worked on and total hours.",
+  "keys": [
+   "EMPLOYEE–WORKS_ON join",
+   "GROUP BY E.Ssn, E.Lname",
+   "COUNT(*), SUM(Hours)"
+  ],
+  "answer": "SELECT   E.Ssn, E.Lname, COUNT(*), SUM(W.Hours)\nFROM     EMPLOYEE AS E, WORKS_ON AS W\nWHERE    E.Ssn = W.Essn\nGROUP BY E.Ssn, E.Lname;\n\n-- Result on the textbook COMPANY state (8 rows)\nSsn | Lname | COUNT(*) | SUM(W.Hours)\n123456789 | Smith | 2 | 40\n333445555 | Wong | 4 | 40\n453453453 | English | 2 | 40\n666884444 | Narayan | 1 | 40\n888665555 | Borg | 1 | NULL\n987654321 | Wallace | 2 | 35\n987987987 | Jabbar | 2 | 40\n999887777 | Zelaya | 2 | 40"
+ },
+ "5-gb-6": {
+  "prompt": "SELECT Dno, Lname, COUNT(*) FROM EMPLOYEE GROUP BY Dno; is a valid query in standard SQL.",
+  "explain": "Lname does not have a single value per group. With GROUP BY, SELECT may contain only grouping attributes and aggregates."
+ },
+ "5-gb-7": {
+  "prompt": "Explain GROUP BY and grouping attributes.",
+  "keys": [
+   "Partition into nonoverlapping groups",
+   "Aggregate per group",
+   "Tuples with the same grouping attribute value form one group"
+  ],
+  "answer": "GROUP BY partitions the tuples of a relation into nonoverlapping subsets (groups) so that aggregate functions are applied to each group. The grouping attributes are the basis for forming the groups; tuples in the same group have the same values of the grouping attributes."
+ },
+ "5-hv-1": {
+  "prompt": "Where is the condition 'departments whose average salary exceeds 30000' written?",
+  "choices": [
+   "WHERE AVG(Salary) > 30000",
+   "SELECT clause",
+   "HAVING AVG(Salary) > 30000",
+   "ORDER BY"
+  ]
+ },
+ "5-hv-2": {
+  "prompt": "For each project on which more than two employees work, retrieve the project number, the project name and the number of employees. (Query 26)",
+  "answer": "SELECT   Pnumber, Pname, COUNT(*)\nFROM     PROJECT, WORKS_ON\nWHERE    Pnumber = Pno\nGROUP BY Pnumber, Pname\nHAVING   COUNT(*) > 2;\n\n-- Result on the textbook COMPANY state (4 rows)\nPnumber | Pname | COUNT(*)\n2 | ProductY | 3\n10 | Computerization | 3\n20 | Reorganization | 3\n30 | Newbenefits | 3"
+ },
+ "5-hv-3": {
+  "prompt": "For each department whose average salary is greater than $30,000, retrieve the department name and the number of employees in that department. (Slide exercise 2)",
+  "keys": [
+   "EMPLOYEE–DEPARTMENT join (for the department name)",
+   "GROUP BY department",
+   "HAVING AVG(Salary) > 30000"
+  ],
+  "answer": "SELECT   D.Dname, COUNT(*)\nFROM     EMPLOYEE AS E, DEPARTMENT AS D\nWHERE    E.Dno = D.Dnumber\nGROUP BY D.Dname\nHAVING   AVG(E.Salary) > 30000;\n\n-- Result on the textbook COMPANY state (3 rows)\nDname | COUNT(*)\nAdministration | 3\nHeadquarters | 1\nResearch | 4"
+ },
+ "5-hv-4": {
+  "prompt": "For each department that has five or more employees, retrieve the department number and the number of its employees who earn more than 40000. (Watch the difference between WHERE and HAVING.)",
+  "keys": [
+   "The five-or-more-employees condition is on the whole group → HAVING in a nested query",
+   "Salary > 40000 goes in WHERE",
+   "Outer GROUP BY Dno"
+  ],
+  "answer": "SELECT   Dno, COUNT(*)\nFROM     EMPLOYEE\nWHERE    Salary > 40000\n  AND    Dno IN ( SELECT   Dno\n                  FROM     EMPLOYEE\n                  GROUP BY Dno\n                  HAVING   COUNT(*) >= 5 )\nGROUP BY Dno;\n\n-- Result on the textbook COMPANY state (0 rows)\nDno | COUNT(*)\n\nWriting WHERE Salary > 40000 ... GROUP BY Dno HAVING COUNT(*) >= 5 would mean 'five or more employees earning more than 40000', which is different (the trap in textbook Query 28). On the COMPANY state no department has five or more employees, so the result is empty."
+ },
+ "5-hv-5": {
+  "prompt": "Retrieve the names of projects whose total hours are 50 or more, together with the total hours.",
+  "keys": [
+   "GROUP BY project",
+   "HAVING SUM(Hours) >= 50"
+  ],
+  "answer": "SELECT   P.Pname, SUM(W.Hours)\nFROM     PROJECT AS P, WORKS_ON AS W\nWHERE    P.Pnumber = W.Pno\nGROUP BY P.Pnumber, P.Pname\nHAVING   SUM(W.Hours) >= 50;\n\n-- Result on the textbook COMPANY state (4 rows)\nPname | SUM(W.Hours)\nProductX | 52.5\nProductZ | 50\nComputerization | 55\nNewbenefits | 55"
+ },
+ "5-hv-6": {
+  "prompt": "Order of execution of an SQL query: FROM → (a) → GROUP BY → (b) → SELECT → ORDER BY",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "5-hv-7": {
+  "prompt": "Explain the difference between the WHERE clause and the HAVING clause.",
+  "keys": [
+   "WHERE = tuple condition (before grouping)",
+   "HAVING = group condition (after aggregation)",
+   "Aggregate conditions go in HAVING"
+  ],
+  "answer": "WHERE filters tuples with conditions on individual tuples, before groups are formed. HAVING filters groups with conditions on the summary information (aggregates) of the groups formed by GROUP BY. A condition on an aggregate function cannot be written in WHERE; it goes in HAVING."
+ },
+ "5-hv-8": {
+  "prompt": "HAVING is used with GROUP BY and keeps only the groups that satisfy the condition in the result."
+ },
+ "5-as-1": {
+  "prompt": "When is CREATE ASSERTION needed?",
+  "choices": [
+   "To specify a PK",
+   "To specify general constraints that cannot be expressed by key, entity integrity or referential integrity constraints",
+   "To create a view",
+   "To create an index"
+  ]
+ },
+ "5-as-2": {
+  "prompt": "Explain why the condition in CREATE ASSERTION is usually written with NOT EXISTS.",
+  "keys": [
+   "A query that finds violating tuples",
+   "NOT EXISTS → true (satisfied) if empty",
+   "CHECK must hold in every state"
+  ],
+  "answer": "If you write a query that selects the tuples violating the desired condition and wrap it in NOT EXISTS, it is true when there are no violating tuples (the result is empty), so the constraint is satisfied; if there is even one, it is false, i.e., a violation. The CHECK condition must be true in every database state."
+ },
+ "5-as-3": {
+  "prompt": "Write 'the salary of an employee must not be greater than the salary of the manager of the department that the employee works for' as a CREATE ASSERTION.",
+  "keys": [
+   "CREATE ASSERTION ... CHECK",
+   "NOT EXISTS (violation query)",
+   "E.Salary > M.Salary, E.Dno = D.Dnumber, D.Mgr_ssn = M.Ssn"
+  ]
+ },
+ "5-as-4": {
+  "prompt": "Write 'every department must have at least one employee' as a CREATE ASSERTION.",
+  "keys": [
+   "CHECK ( NOT EXISTS (violation = a department with no employees) )",
+   "Inner NOT EXISTS (employees of that department)"
+  ]
+ },
+ "5-as-5": {
+  "prompt": "The CHECK condition of an assertion must be true in every database state."
+ },
+ "5-tr-1": {
+  "prompt": "What does ECA stand for in triggers?"
+ },
+ "5-tr-2": {
+  "prompt": "Which clause specifies the C (Condition) of a trigger?"
+ },
+ "5-tr-3": {
+  "prompt": "Explain the three components of a trigger using the SALARY_VIOLATION example.",
+  "keys": [
+   "Event = update operations (BEFORE/AFTER)",
+   "Condition = WHEN clause",
+   "Action = SQL / transaction / external program"
+  ],
+  "answer": "Event: the update operations that could violate the condition — inserting an employee, changing a salary, changing a supervisor (BEFORE INSERT OR UPDATE OF SALARY, SUPERVISOR_SSN ON EMPLOYEE). Condition: the WHEN clause — is the new salary greater than the immediate supervisor's salary? Action: executed if the condition is true — notify the supervisor via the external procedure INFORM_SUPERVISOR."
+ },
+ "5-tr-4": {
+  "prompt": "The Condition of a trigger is optional, and the Action is executed only when it is true."
+ },
+ "5-tr-5": {
+  "prompt": "Explain the difference between an assertion and a trigger.",
+  "keys": [
+   "Assertion = constraint (blocks violations)",
+   "Trigger = event–condition–action (executed automatically)"
+  ],
+  "answer": "An assertion declares a general constraint that must always hold, and blocks updates that violate it. A trigger specifies actions (SQL statements, a transaction, an external program) to be executed automatically when a certain event occurs and a condition is met (e.g., notification, updating derived data)."
+ },
+ "5-tr-6": {
+  "prompt": "Which is NOT a use of triggers given in the slides?",
+  "choices": [
+   "Maintaining database consistency",
+   "Monitoring database updates",
+   "Updating derived data automatically",
+   "Query optimization"
+  ]
+ },
+ "5-tr-7": {
+  "prompt": "The Event of a trigger uses the keyword (a) or AFTER to specify execution before/after the update operation, and FOR EACH (b) means it is executed for each affected tuple.",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "5-vd-1": {
+  "prompt": "Which statement about a view (VIEW) is correct?",
+  "choices": [
+   "A table that is always stored physically",
+   "A virtual table derived from base tables",
+   "A copy of the database",
+   "A kind of index"
+  ]
+ },
+ "5-vd-2": {
+  "prompt": "Dropping a view with DROP VIEW also deletes the tuples of its defining tables (base tables)."
+ },
+ "5-vd-3": {
+  "prompt": "Define a view WORKS_ON1 consisting of the employee name (Fname, Lname), project name and hours, and use the view to retrieve the names of employees who work on 'ProductX'.",
+  "keys": [
+   "CREATE VIEW ... AS SELECT",
+   "Join of three tables",
+   "Query the view like a single table"
+  ]
+ },
+ "5-vd-4": {
+  "prompt": "Define a view DEPT_INFO(Dept_name, No_of_emps, Total_sal) consisting of the department name, number of employees and total salary.",
+  "keys": [
+   "Attribute names given explicitly",
+   "COUNT(*), SUM(Salary)",
+   "GROUP BY Dname"
+  ]
+ },
+ "5-vd-5": {
+  "prompt": "Why are views used?",
+  "keys": [
+   "Simplifies complex queries (like a single table)",
+   "Authorization (security)"
+  ],
+  "answer": "When a frequently used query involves complex conditions such as multi-table joins or aggregation, defining it as a view lets you use it simply, like a single-table query (simplifying complex queries). Views are also used for authorization, showing only certain attributes or tuples."
+ },
+ "5-vd-6": {
+  "prompt": "Define a view with each department's name and its manager's name and salary, and explain what it is useful for. (Slide exercise 3)",
+  "keys": [
+   "Join D.Mgr_ssn = E.Ssn",
+   "Attribute names given explicitly",
+   "Use: manager information per department"
+  ],
+  "answer": "CREATE VIEW DEPT_INFO (DeptName, MgrFname, MgrLname, MgrSalary)\nAS SELECT D.Dname, E.Fname, E.Lname, E.Salary\n   FROM   DEPARTMENT AS D, EMPLOYEE AS E\n   WHERE  D.Mgr_ssn = E.Ssn;\nUse: see each department together with its manager's information at once (Research–Franklin Wong 40000, …)"
+ },
+ "5-vi-1": {
+  "prompt": "Which approach processes a view query by transforming it into a query on the base tables, without keeping the view physically?",
+  "choices": [
+   "Query modification",
+   "View materialization",
+   "Immediate update",
+   "Lazy update"
+  ]
+ },
+ "5-vi-2": {
+  "prompt": "Which strategy updates a materialized view 'when a view query needs it'?",
+  "choices": [
+   "Immediate update",
+   "Periodic update",
+   "Lazy update",
+   "Incremental deletion"
+  ]
+ },
+ "5-vi-3": {
+  "prompt": "Compare the two approaches to implementing views (query modification and view materialization).",
+  "keys": [
+   "Query modification = transformed, not stored, recomputed every time",
+   "Materialization = physical table kept, storage space, incremental update"
+  ],
+  "answer": "Query modification: the view query is transformed into a query on the base tables; the view is not kept physically. Convenient for users, but inefficient because complex views are recomputed every time. View materialization: a physical view table is created when the view is first queried and kept for a while (assuming more queries on the view will follow). It needs extra storage space, and when the base tables change, the changes must be applied with incremental update."
+ },
+ "5-vi-4": {
+  "prompt": "Give the three times at which a materialized view can be updated (immediate, periodic, lazy), with their advantages and disadvantages.",
+  "keys": [
+   "Immediate = always up to date, inefficient",
+   "Periodic = may not be up to date",
+   "Lazy = when needed"
+  ],
+  "answer": "Immediate update: updated as soon as the base tables change. Always up to date, but may be unnecessary and inefficient. Periodic update: updated periodically. A view query may get a result that is not up to date. Lazy update: updated when a view query needs it. Not up to date until a query arrives."
+ },
+ "5-vi-5": {
+  "prompt": "The DBMS is responsible for keeping a view up to date by reflecting changes in its defining tables."
+ },
+ "5-vu-1": {
+  "prompt": "Which view allows updates?",
+  "choices": [
+   "A view that joins several tables",
+   "A view defined on a single table without aggregates, including the PK and all NOT NULL attributes without a DEFAULT",
+   "A view that uses GROUP BY and SUM",
+   "Every view"
+  ]
+ },
+ "5-vu-2": {
+  "prompt": "Explain why UPDATE DEPT_INFO SET Total_sal = 100000 WHERE Dname = 'Research'; is impossible.",
+  "keys": [
+   "Computed by an aggregate, not stored",
+   "No way to achieve it by updating the base tables (meaningless)"
+  ],
+  "answer": "Total_sal is an aggregate value computed by SUM(Salary) and is not physically stored. To change it to 100000 there is no way to decide how the salaries of the Research employees should change, so the update does not make sense."
+ },
+ "5-vu-3": {
+  "prompt": "Explain the problem that arises when UPDATE WORKS_ON1 SET Pname = 'ProductY' WHERE Lname = 'Smith' AND Fname = 'John' AND Pname = 'ProductX'; is applied to the view WORKS_ON1 (a join of EMPLOYEE, PROJECT and WORKS_ON).",
+  "keys": [
+   "Interpretation a: change Pno in WORKS_ON",
+   "Interpretation b: change Pname in PROJECT (side effect)",
+   "Multiple interpretations → not updatable"
+  ],
+  "answer": "This update can be mapped to base-table updates in several ways. (a) Change Pno in Smith's WORKS_ON tuple to the number of ProductY (changes the project Smith works on, as intended). (b) Rename 'ProductX' to 'ProductY' in PROJECT (the view result looks the same, but with a side effect: every other tuple that worked on ProductX changes too). Since we cannot decide which is correct, join views are generally not updatable."
+ },
+ "5-vu-4": {
+  "prompt": "A view update is possible when there is exactly one update on the base relations that accomplishes it."
+ },
+ "5-vu-5": {
+  "prompt": "For a single-table view to be updatable, what must the view's attributes include?",
+  "choices": [
+   "All attributes",
+   "The FK attributes",
+   "Aggregate attributes",
+   "The primary key and all NOT NULL attributes without a DEFAULT"
+  ]
+ },
+ "5-vu-6": {
+  "prompt": "Explain why a single-table view must include the primary key and all NOT NULL attributes without a DEFAULT in order to be updatable.",
+  "keys": [
+   "Attributes not in the view are inserted as NULL",
+   "Prevents PK / NOT NULL violations",
+   "The PK identifies the corresponding tuple uniquely"
+  ],
+  "answer": "When a tuple is inserted through the view, the attributes not in the view become NULL (or the DEFAULT) in the base table. If the PK is missing, entity integrity is violated; if a NOT NULL attribute without a DEFAULT is missing, the NOT NULL constraint is violated. Also, the PK is needed to identify uniquely which base-table tuple a view tuple corresponds to."
+ },
+ "5-vu-7": {
+  "prompt": "Which view is NOT one that is generally non-updatable?",
+  "choices": [
+   "A view that joins two tables",
+   "A view that uses AVG",
+   "A view defined as SELECT Ssn, Fname, Lname, Dno FROM EMPLOYEE WHERE Dno = 5 (Ssn is the PK; includes the other NOT NULL attributes)",
+   "A view that uses GROUP BY"
+  ]
+ },
+ "5-va-1": {
+  "prompt": "How can the manager of department 5 be allowed to see only the information of department 5 employees?",
+  "choices": [
+   "Create the DEPT5EMP view and grant query privileges only on that view",
+   "Delete the tuples of other departments from EMPLOYEE",
+   "Make a copy of EMPLOYEE",
+   "Send a notification with a trigger"
+  ]
+ },
+ "5-va-2": {
+  "prompt": "Define a view BASIC_EMP_DATA that lets general employees see only the names and addresses of other employees.",
+  "keys": [
+   "CREATE VIEW",
+   "Names and addresses only (restricts attributes)"
+  ],
+  "answer": "CREATE VIEW BASIC_EMP_DATA AS\nSELECT Fname, Lname, Address\nFROM   EMPLOYEE;\n(Users are granted query privileges only on this view, not on EMPLOYEE)"
+ },
+ "5-va-3": {
+  "prompt": "Views can be used to hide certain attributes or certain tuples from unauthorized users."
+ },
+ "6-in-1": {
+  "prompt": "Which statement about the difference between relational algebra and SQL is correct?",
+  "choices": [
+   "Relational algebra is declarative, SQL is procedural",
+   "Relational algebra is procedural (how), SQL is declarative (what)",
+   "Both are procedural",
+   "Both are declarative"
+  ]
+ },
+ "6-in-2": {
+  "prompt": "Give two reasons why relational algebra is important.",
+  "keys": [
+   "Formal foundation of relational model operations (set-based)",
+   "Basis for query processing and optimization (order of operations)"
+  ],
+  "answer": "1) It is the formal foundation for relational model operations (select, project, rename, join, Cartesian product, etc.) and is rigorously based on mathematical concepts of sets. 2) It specifies the sequence of operations that produces the result, so it is the basis for query processing and optimization."
+ },
+ "6-in-3": {
+  "prompt": "The result of a relational algebra operation is always a relation (a closed system)."
+ },
+ "6-qt-1": {
+  "prompt": "In a query tree, what are the leaf nodes and the internal nodes, respectively?",
+  "choices": [
+   "Operations, relations",
+   "SQL clauses, attributes",
+   "Input relations, relational algebra operations",
+   "Conditions, results"
+  ]
+ },
+ "6-qt-2": {
+  "prompt": "A query tree is executed starting at the root and ending at the leaves.",
+  "explain": "It starts at the leaves (input relations) and ends at the root."
+ },
+ "6-qt-3": {
+  "prompt": "Explain what query processing (in a DBMS) is and how it relates to query trees.",
+  "keys": [
+   "Choosing among several execution strategies",
+   "Several query trees for one SQL query",
+   "Choosing the best = optimization"
+  ],
+  "answer": "Query processing is the process of choosing a suitable strategy among the possible strategies (query trees, execution plans) for executing an SQL query. One SQL query can have several query trees, and choosing the best one is query optimization."
+ },
+ "6-qt-4": {
+  "prompt": "Write the following SQL as relational algebra steps (intermediate relations) in the execution order of its query tree.\nSELECT P.Pnumber, P.Dnum, E.Lname, E.Address, E.Bdate\nFROM   PROJECT P, DEPARTMENT D, EMPLOYEE E\nWHERE  P.Dnum = D.Dnumber AND D.Mgr_ssn = E.Ssn AND P.Plocation = 'Stafford';",
+  "keys": [
+   "σ Plocation first (at the leaf side)",
+   "⋈ Dnum=Dnumber",
+   "⋈ Mgr_ssn=Ssn",
+   "π at the root"
+  ],
+  "answer": "STAFFORD_PROJS ← σ Plocation='Stafford' (PROJECT)\nCONTR_DEPTS    ← STAFFORD_PROJS ⋈ Dnum=Dnumber DEPARTMENT\nPROJ_DEPT_MGRS ← CONTR_DEPTS ⋈ Mgr_ssn=Ssn EMPLOYEE\nRESULT         ← π Pnumber, Dnum, Lname, Address, Bdate (PROJ_DEPT_MGRS)\n(Leaves: PROJECT, DEPARTMENT, EMPLOYEE / root: π)"
+ },
+ "6-sel-1": {
+  "prompt": "What is the degree (number of attributes) of the result of σ Dno=4 (EMPLOYEE)?",
+  "choices": [
+   "1",
+   "4",
+   "The same as EMPLOYEE (10)",
+   "The number of tuples that satisfy the condition"
+  ]
+ },
+ "6-sel-2": {
+  "prompt": "Which part of SQL corresponds to σ in relational algebra?",
+  "choices": [
+   "SELECT clause",
+   "WHERE clause",
+   "FROM clause",
+   "GROUP BY clause"
+  ]
+ },
+ "6-sel-3": {
+  "prompt": "σ c1(σ c2(R)) = σ c2(σ c1(R)) holds (commutative property)."
+ },
+ "6-sel-4": {
+  "prompt": "σ is (a) filtering, which selects the tuples of a relation that satisfy a condition, and π is (b) filtering, which keeps only the desired columns.",
+  "answer": "(a) horizontal / (b) vertical",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "6-sel-5": {
+  "prompt": "In relational algebra, write the employee tuples who either work in department 4 and earn more than 25000, or work in department 5 and earn more than 30000.",
+  "keys": [
+   "AND/OR conditions in a single σ",
+   "(Dno=4 AND Salary>25000) OR (Dno=5 AND Salary>30000)"
+  ],
+  "answer": "σ (Dno=4 AND Salary>25000) OR (Dno=5 AND Salary>30000) (EMPLOYEE)\n\n-- Result on the COMPANY state (3 rows)\nFname | Lname | Dno | Salary\nFranklin | Wong | 5 | 40000\nJennifer | Wallace | 4 | 43000\nRamesh | Narayan | 5 | 38000"
+ },
+ "6-sel-6": {
+  "prompt": "Give the form of the clauses and the comparison operators that can be used in the condition of σ (selection condition), and explain the case of unordered values.",
+  "keys": [
+   "<attribute> op <constant/attribute>",
+   "Connected by AND, OR",
+   "Only =, ≠ for unordered values"
+  ],
+  "answer": "Clause form: <attribute> <comparison op> <constant> or <attribute> <comparison op> <attribute>; clauses are connected by AND, OR. Comparison operators: =, <, ≤, >, ≥, ≠. All of them can be used for ordered values (numbers, dates), but only =, ≠ for unordered values (e.g., colors)."
+ },
+ "6-sel-7": {
+  "prompt": "Write SQL that gives the same result as σ Dno=5 AND Salary>=30000 (EMPLOYEE), and split this σ into two σ operations.",
+  "keys": [
+   "SELECT * ... WHERE (σ = WHERE)",
+   "Split σ by nesting (commutative)"
+  ],
+  "answer": "SQL: SELECT * FROM EMPLOYEE WHERE Dno = 5 AND Salary >= 30000;\nAs two: σ Dno=5 (σ Salary>=30000 (EMPLOYEE))  (the same in the other order)\nResult: Smith, Wong, Narayan"
+ },
+ "6-pro-1": {
+  "prompt": "On the COMPANY state, how many tuples are in the result of π Sex, Salary (EMPLOYEE)?"
+ },
+ "6-pro-2": {
+  "prompt": "Which SQL gives exactly the same result as π Sex, Salary (EMPLOYEE)?"
+ },
+ "6-pro-3": {
+  "prompt": "If the attribute list of π includes a key attribute, the result has no duplicate tuples."
+ },
+ "6-pro-4": {
+  "prompt": "Explain why the π operation eliminates duplicates and when duplicates arise.",
+  "keys": [
+   "The result is a set (duplicates eliminated)",
+   "Projecting only nonkey attributes produces duplicates"
+  ],
+  "answer": "Relational algebra is based on sets, so the result of π must also be a set of distinct tuples. If the attribute list contains only nonkey attributes, different tuples may have the same combination of values, producing duplicates, which π removes."
+ },
+ "6-pro-5": {
+  "prompt": "In relational algebra, write the last name, first name and salary of all employees.",
+  "answer": "π Lname, Fname, Salary (EMPLOYEE)\n\n-- Result on the COMPANY state (8 rows)\nLname | Fname | Salary\nSmith | John | 30000\nWong | Franklin | 40000\nZelaya | Alicia | 25000\nWallace | Jennifer | 43000\nNarayan | Ramesh | 38000\nEnglish | Joyce | 25000\nJabbar | Ahmad | 25000\nBorg | James | 55000"
+ },
+ "6-pro-6": {
+  "prompt": "In relational algebra, write the salary values earned by department 5 employees, without duplicates.",
+  "keys": [
+   "σ Dno=5 first",
+   "π Salary (duplicates eliminated automatically)"
+  ],
+  "answer": "π Salary (σ Dno=5 (EMPLOYEE))\n\n-- Result on the COMPANY state (4 rows)\nSalary\n30000\n40000\n38000\n25000"
+ },
+ "6-pro-7": {
+  "prompt": "The degree of the result of π equals the number of attributes in the (a), and the degree of the result of σ equals the degree of (b).",
+  "answer": "(a) attribute list / (b) R",
+  "accept_add": [
+   [
+    "list"
+   ],
+   [
+    "the original relation",
+    "the input relation",
+    "relation"
+   ]
+  ]
+ },
+ "6-ren-1": {
+  "prompt": "What does ρ S(B₁, …, Bₙ)(R) mean?",
+  "choices": [
+   "Renames the relation to S and the attributes to B₁…Bₙ",
+   "Joins S and R",
+   "Projects only B₁…Bₙ from R",
+   "Changes S to R"
+  ]
+ },
+ "6-ren-2": {
+  "prompt": "In SQL, renaming is done with AS (aliasing)."
+ },
+ "6-ren-3": {
+  "prompt": "Write relational algebra that retrieves the first name, last name and salary of department 5 employees and renames the result attributes to First_name, Last_name, Salary, and write the equivalent SQL.",
+  "keys": [
+   "σ Dno=5",
+   "π then ρ (or R(attributes) ←)",
+   "AS in SQL"
+  ],
+  "answer": "TEMP ← σ Dno=5 (EMPLOYEE)\nR(First_name, Last_name, Salary) ← π Fname, Lname, Salary (TEMP)\n(or ρ (First_name, Last_name, Salary) (π Fname, Lname, Salary (TEMP)))\n\nSQL: SELECT E.Fname AS First_name, E.Lname AS Last_name, E.Salary AS Salary\n     FROM EMPLOYEE AS E WHERE E.Dno = 5;"
+ },
+ "6-ren-4": {
+  "prompt": "Give two cases in which RENAME is needed in relational algebra.",
+  "keys": [
+   "Matching attribute names for a natural join",
+   "Matching names for set operations / results; self-join"
+  ],
+  "answer": "1) In a natural join, to make the names of the join attributes match when they differ (e.g., Dnumber → Dnum). 2) To give the desired attribute names to the result of a set operation such as union, or to an intermediate result (e.g., renaming π Super_ssn to Ssn). It is also used to distinguish the same relation when it is used twice."
+ },
+ "6-seq-1": {
+  "prompt": "Which splits π Fname, Lname, Salary (σ Dno=5 (EMPLOYEE)) into intermediate relations?",
+  "choices": [
+   "DEP5 ← π Fname (EMPLOYEE); RESULT ← σ Dno=5 (DEP5)",
+   "DEP5_EMPS ← σ Dno=5 (EMPLOYEE); RESULT ← π Fname, Lname, Salary (DEP5_EMPS)",
+   "RESULT ← EMPLOYEE × DEPARTMENT",
+   "It cannot be split"
+  ]
+ },
+ "6-seq-2": {
+  "prompt": "For complex queries, it is usually easier to write them step by step with named intermediate result relations than as a single expression."
+ },
+ "6-seq-3": {
+  "prompt": "Write the last name and salary of employees whose salary is 30000 or more (1) as a single nested expression and (2) split into intermediate relations.",
+  "keys": [
+   "Nested expression",
+   "Two lines with an intermediate relation"
+  ],
+  "answer": "(1) π Lname, Salary (σ Salary>=30000 (EMPLOYEE))\n(2) RICH ← σ Salary>=30000 (EMPLOYEE)\n    RESULT ← π Lname, Salary (RICH)\n\n-- Result on the COMPANY state (5 rows)\nLname | Salary\nSmith | 30000\nWong | 40000\nWallace | 43000\nNarayan | 38000\nBorg | 55000"
+ },
+ "6-seq-4": {
+  "prompt": "Give the two ways of writing a relational algebra expression with several operations.",
+  "keys": [
+   "Naming intermediate relations",
+   "Nesting into a single expression"
+  ],
+  "answer": "Method 1: name the intermediate relations to make the sequence of operations explicit (DEP5_EMPS ← σ…; RESULT ← π…). Method 2: nest the operations into a single relational algebra expression (π…(σ…(EMPLOYEE)))."
+ },
+ "6-set-1": {
+  "prompt": "When are two relations 'type compatible'?",
+  "choices": [
+   "They have the same number of tuples",
+   "They have the same attribute names",
+   "They have the same number of attributes and the corresponding attributes have the same domain",
+   "They have the same PK"
+  ]
+ },
+ "6-set-2": {
+  "prompt": "R − S = S − R.",
+  "explain": "Set difference is not commutative."
+ },
+ "6-set-3": {
+  "prompt": "R ∪ S = S ∪ R and R ∩ S = S ∩ R."
+ },
+ "6-set-4": {
+  "prompt": "In relational algebra, write the SSNs of all employees who either work in department 5 or directly supervise an employee who works in department 5.",
+  "keys": [
+   "σ Dno=5",
+   "π Ssn and π Super_ssn",
+   "Matching names RESULT2(Ssn)",
+   "∪"
+  ],
+  "answer": "DEP5_EMPS    ← σ Dno=5 (EMPLOYEE)\nRESULT1      ← π Ssn (DEP5_EMPS)\nRESULT2(Ssn) ← π Super_ssn (DEP5_EMPS)\nRESULT       ← RESULT1 ∪ RESULT2\n\n-- Result on the COMPANY state (5 rows)\nSsn\n123456789\n333445555\n453453453\n666884444\n888665555"
+ },
+ "6-set-5": {
+  "prompt": "Using intersection, write the Ssn of employees who work on a project and also have dependents.",
+  "answer": "WORKERS(Ssn)  ← π Essn (WORKS_ON)\nWITH_DEPS(Ssn) ← π Essn (DEPENDENT)\nRESULT        ← WORKERS ∩ WITH_DEPS\n\n-- Result on the COMPANY state (3 rows)\nEssn\n123456789\n333445555\n987654321"
+ },
+ "6-set-6": {
+  "prompt": "Given STUDENT(Fn, Ln) = {(Susan, Yao), (Ramesh, Shah), (Johnny, Kohler), (Barbara, Jones), (Amy, Ford), (Jimmy, Wang), (Ernest, Gilbert)} and INSTRUCTOR(Fname, Lname) = {(John, Smith), (Ricardo, Browne), (Susan, Yao), (Francis, Johnson), (Ramesh, Shah)}, give the number of tuples in each result.\n(1) STUDENT ∪ INSTRUCTOR  (2) STUDENT ∩ INSTRUCTOR  (3) STUDENT − INSTRUCTOR  (4) INSTRUCTOR − STUDENT",
+  "answer": "(1) 10 (7 + 5 − 2 in common)\n(2) 2 (Susan Yao, Ramesh Shah)\n(3) 5 (Johnny Kohler, Barbara Jones, Amy Ford, Jimmy Wang, Ernest Gilbert)\n(4) 3 (John Smith, Ricardo Browne, Francis Johnson)"
+ },
+ "6-set-7": {
+  "prompt": "By convention, the attribute names of the result of union, intersection and difference are those of the (a) relation, and (b) are eliminated from the result.",
+  "answer": "(a) first / (b) duplicates",
+  "accept_add": [
+   [
+    "first",
+    "left"
+   ],
+   [
+    "duplicate tuples"
+   ]
+  ]
+ },
+ "6-cp-1": {
+  "prompt": "What is the result of R (3 attributes, 4 tuples) × S (2 attributes, 5 tuples)?",
+  "choices": [
+   "5 attributes, 9 tuples",
+   "6 attributes, 20 tuples",
+   "3 attributes, 4 tuples",
+   "5 attributes, 20 tuples"
+  ]
+ },
+ "6-cp-2": {
+  "prompt": "The Cartesian product can be applied even to relations that are not type compatible."
+ },
+ "6-cp-3": {
+  "prompt": "Explain why the Cartesian product is usually meaningless by itself, and how it is used usefully.",
+  "keys": [
+   "Every combination → includes unrelated tuples",
+   "Followed by σ to select related tuples = JOIN"
+  ],
+  "answer": "It produces every combination of tuples, so unrelated tuples are concatenated too (e.g., 3 female employees × 7 dependents = 21 rows, mostly unrelated). It becomes useful when followed by a SELECT that keeps only related tuples (Ssn = Essn) → this is JOIN."
+ },
+ "6-cp-4": {
+  "prompt": "Using the Cartesian product and σ, write in relational algebra the names of the dependents of female employees, together with the employees' names.",
+  "keys": [
+   "σ Sex='F'",
+   "π only the needed attributes",
+   "×",
+   "σ Ssn=Essn",
+   "π result"
+  ],
+  "answer": "FEMALE_EMPS       ← σ Sex='F' (EMPLOYEE)\nEMPNAMES          ← π Fname, Lname, Ssn (FEMALE_EMPS)\nEMP_DEPENDENTS    ← EMPNAMES × DEPENDENT\nACTUAL_DEPENDENTS ← σ Ssn=Essn (EMP_DEPENDENTS)\nRESULT            ← π Fname, Lname, Dependent_name (ACTUAL_DEPENDENTS)\n\n-- Result on the COMPANY state (1 row)\nFname | Lname | Dependent_name\nJennifer | Wallace | Abner"
+ },
+ "6-cp-5": {
+  "prompt": "On the COMPANY state, how many tuples and attributes does EMPLOYEE × DEPARTMENT have?",
+  "choices": [
+   "11, 14",
+   "24, 14",
+   "24, 10",
+   "8, 4"
+  ]
+ },
+ "6-jn-1": {
+  "prompt": "Which expression is equivalent to R ⋈<condition> S?",
+  "choices": [
+   "σ<condition>(R × S)",
+   "π<condition>(R × S)",
+   "R ∪ S",
+   "R − S"
+  ]
+ },
+ "6-jn-2": {
+  "prompt": "In relational algebra, write the name of each department and the last and first name of its manager.",
+  "answer": "DEPT_MGR ← DEPARTMENT ⋈ Mgr_ssn=Ssn EMPLOYEE\nRESULT   ← π Dname, Lname, Fname (DEPT_MGR)\n\n-- Result on the COMPANY state (3 rows)\nDname | Lname | Fname\nResearch | Wong | Franklin\nAdministration | Wallace | Jennifer\nHeadquarters | Borg | James"
+ },
+ "6-jn-3": {
+  "prompt": "In relational algebra, write the names and hours of employees who work on the 'ProductX' project.",
+  "answer": "PX     ← σ Pname='ProductX' (PROJECT)\nPX_W   ← PX ⋈ Pnumber=Pno WORKS_ON\nPX_E   ← PX_W ⋈ Essn=Ssn EMPLOYEE\nRESULT ← π Fname, Lname, Hours (PX_E)\n\n-- Result on the COMPANY state (2 rows)\nFname | Lname | Hours\nJohn | Smith | 32.5\nJoyce | English | 20"
+ },
+ "6-jn-4": {
+  "prompt": "In relational algebra, write the names of the projects that employees living in 'Houston' work on.",
+  "keys": [
+   "σ (Houston employees)",
+   "⋈ Ssn=Essn",
+   "⋈ Pno=Pnumber",
+   "π Pname (duplicates eliminated)"
+  ],
+  "answer": "HOU    ← σ Address LIKE '%Houston%' (EMPLOYEE)      (textbook style: employees whose Address contains Houston)\nHOU_W  ← HOU ⋈ Ssn=Essn WORKS_ON\nHOU_P  ← HOU_W ⋈ Pno=Pnumber PROJECT\nRESULT ← π Pname (HOU_P)\n\n-- Result on the COMPANY state (6 rows)\nPname\nProductX\nProductY\nProductZ\nComputerization\nReorganization\nNewbenefits"
+ },
+ "6-jn-5": {
+  "prompt": "Explain the relationship between JOIN and the Cartesian product.",
+  "keys": [
+   "R ⋈ S = σ(R × S)",
+   "Only combinations that satisfy the condition"
+  ],
+  "answer": "JOIN is equivalent to a Cartesian product followed by a SELECT: R ⋈<condition> S = σ<condition>(R × S). The two operations (×, σ) can be replaced by a single JOIN, and the JOIN result contains only the tuple combinations that satisfy the condition."
+ },
+ "6-jn-6": {
+  "prompt": "The attributes of a JOIN result are the attributes of R followed by the attributes of S (Q(A₁…Aₙ, B₁…Bₘ))."
+ },
+ "6-jn-7": {
+  "prompt": "In relational algebra, write the name and address of all employees who work for the 'Research' department. (Exercise 1)",
+  "answer": "RESEARCH_DEPT ← σ Dname='Research' (DEPARTMENT)\nRESEARCH_EMPS ← RESEARCH_DEPT ⋈ Dnumber=Dno EMPLOYEE\nRESULT        ← π Fname, Lname, Address (RESEARCH_EMPS)\n\n-- Result on the COMPANY state (4 rows)\nFname | Lname | Address\nJohn | Smith | 731 Fondren, Houston, TX\nFranklin | Wong | 638 Voss, Houston, TX\nRamesh | Narayan | 975 Fire Oak, Humble, TX\nJoyce | English | 5631 Rice, Houston, TX"
+ },
+ "6-jv-1": {
+  "prompt": "Which join uses only = as the comparison operator?",
+  "choices": [
+   "Theta join",
+   "EQUIJOIN",
+   "Outer join",
+   "Cartesian product"
+  ]
+ },
+ "6-jv-2": {
+  "prompt": "Which statement about the natural join (*) is correct?",
+  "choices": [
+   "The join condition must be written explicitly",
+   "It also uses operators other than =",
+   "It is an equijoin on the attributes with the same name, with one of each pair of duplicate attributes removed",
+   "It also keeps unmatched tuples"
+  ]
+ },
+ "6-jv-3": {
+  "prompt": "An equijoin result has pairs of attributes with identical values, and one of each pair is superfluous."
+ },
+ "6-jv-4": {
+  "prompt": "In relational algebra, show how to natural join PROJECT(Pname, Pnumber, Plocation, Dnum) and DEPARTMENT(Dname, Dnumber, Mgr_ssn, Mgr_start_date).",
+  "keys": [
+   "ρ: Dnumber → Dnum",
+   "PROJECT * DEPT"
+  ],
+  "answer": "DEPT      ← ρ (Dname, Dnum, Mgr_ssn, Mgr_start_date) (DEPARTMENT)\nPROJ_DEPT ← PROJECT * DEPT\n(The join attribute names differ, Dnum and Dnumber, so they are first matched with RENAME)"
+ },
+ "6-jv-5": {
+  "prompt": "Explain and distinguish theta join, equijoin and natural join.",
+  "keys": [
+   "Theta = general comparison operators",
+   "Equi = only =",
+   "Natural = same names + duplicate removed"
+  ],
+  "answer": "Theta join: general join conditions Aᵢ θ Bⱼ (θ ∈ {=, <, ≤, >, ≥, ≠}) connected by AND. Equijoin: a theta join that uses only = as the comparison operator; the result has pairs of attributes with identical values. Natural join (*): an equijoin on the attributes with the same name with one of each duplicate pair removed; if the names differ, RENAME first."
+ },
+ "6-jv-6": {
+  "prompt": "What is the join attribute of DEPARTMENT * DEPT_LOCATIONS?",
+  "choices": [
+   "Dnumber (same name in both relations)",
+   "Dname",
+   "Dlocation",
+   "No join attribute → Cartesian product"
+  ]
+ },
+ "6-js-1": {
+  "prompt": "If |R| = 8 and |S| = 3, what is the range of the number of tuples in R ⋈ S?",
+  "choices": [
+   "Exactly 8",
+   "Between 3 and 8",
+   "Between 0 and 24",
+   "Between 8 and 24"
+  ]
+ },
+ "6-js-2": {
+  "prompt": "Define join selectivity (for R ⋈ S) and explain what it is used for.",
+  "keys": [
+   "Expected result size / (|R| × |S|)",
+   "Estimating the cost of query plans"
+  ],
+  "answer": "Join selectivity = expected size of the join result / (|R| × |S|). It is used in query optimization to estimate the cost of query plans."
+ },
+ "6-js-3": {
+  "prompt": "If there is no join condition, the join result is the same as the Cartesian product."
+ },
+ "6-div-1": {
+  "prompt": "In R(Z) ÷ S(X) = T(Y), what is Y?"
+ },
+ "6-div-2": {
+  "prompt": "Given R(A, B) = {(a1,b1), (a2,b1), (a3,b1), (a4,b1), (a1,b2), (a3,b2), (a2,b3), (a3,b3), (a4,b3), (a1,b4), (a2,b4), (a3,b4)} and S(A) = {a1, a2, a3}, compute T ← R ÷ S.",
+  "keys": [
+   "Attribute of T = B",
+   "b1 included",
+   "b4 included",
+   "b2, b3 excluded"
+  ],
+  "answer": "T(B) = {b1, b4}\nb1: paired with all of a1, a2, a3 → included\nb2: only a1, a3 → excluded\nb3: only a2, a3 (no a1) → excluded\nb4: a1, a2, a3 → included"
+ },
+ "6-div-3": {
+  "prompt": "Using DIVISION, write the names of employees who work on all the projects that 'John Smith' works on.",
+  "keys": [
+   "SMITH_PNOS (denominator)",
+   "SSN_PNOS(Essn, Pno) (numerator)",
+   "÷",
+   "Rename to SSNS(Ssn) and natural join with EMPLOYEE"
+  ],
+  "answer": "SMITH      ← σ Fname='John' AND Lname='Smith' (EMPLOYEE)\nSMITH_PNOS ← π Pno (WORKS_ON ⋈ Essn=Ssn SMITH)\nSSN_PNOS   ← π Essn, Pno (WORKS_ON)\nSSNS(Ssn)  ← SSN_PNOS ÷ SMITH_PNOS\nRESULT     ← π Fname, Lname (SSNS * EMPLOYEE)\n\n-- Result on the COMPANY state (2 rows)\nFname | Lname\nJohn | Smith\nJoyce | English"
+ },
+ "6-div-4": {
+  "prompt": "Using DIVISION, write the Ssn of employees who work on all the projects located in Stafford.",
+  "keys": [
+   "Denominator: Stafford project numbers (renamed Pno)",
+   "Numerator: π Essn, Pno (WORKS_ON)",
+   "÷"
+  ],
+  "answer": "STAFF_P(Pno) ← π Pnumber (σ Plocation='Stafford' (PROJECT))\nSSN_PNOS     ← π Essn, Pno (WORKS_ON)\nRESULT       ← SSN_PNOS ÷ STAFF_P\n\n-- Result on the COMPANY state (2 rows)\nSsn\n987987987\n999887777"
+ },
+ "6-div-5": {
+  "prompt": "Describe the kind of query that needs the DIVISION operation and the corresponding pattern in SQL.",
+  "keys": [
+   "'All' condition",
+   "SQL: NOT EXISTS + EXCEPT or double NOT EXISTS"
+  ],
+  "answer": "Queries with a 'for all …' (all) condition (e.g., employees who work on 'all' the projects that some employee works on). SQL has no ÷, so it is written as NOT EXISTS ((denominator set) EXCEPT (that tuple's set)) or with a double NOT EXISTS."
+ },
+ "6-div-6": {
+  "prompt": "In R(Z) ÷ S(X), the attributes X of S must be a subset of the attributes Z of R."
+ },
+ "6-cs-1": {
+  "prompt": "Which is the complete set of relational algebra operations?"
+ },
+ "6-cs-2": {
+  "prompt": "Intersection can be expressed as R ∩ S ≡ (R ∪ S) − ((R − S) ∪ (S − R)), and join as R ⋈<condition> S ≡ (a)<condition>(R (b) S).",
+  "accept_add": [
+   [],
+   [
+    "Cartesian product",
+    "cross product"
+   ]
+  ]
+ },
+ "6-cs-3": {
+  "prompt": "Explain why ∩ and ⋈ are kept as separate operations even though they are not in the complete set.",
+  "keys": [
+   "Expressible with other operations",
+   "Kept for convenience because they are used so often"
+  ],
+  "answer": "Strictly, both ∩ and ⋈ can be expressed as combinations of the complete set {σ, π, ∪, ρ, −, ×}, so they are not needed, but they are used so often in database applications that they are kept as separate operations for convenience."
+ },
+ "6-cs-4": {
+  "prompt": "A natural join can be expressed as a combination of RENAME, Cartesian product, SELECT and PROJECT."
+ },
+ "6-agg-1": {
+  "prompt": "What are the attribute names of the result of Dno ℑ COUNT Ssn, AVERAGE Salary (EMPLOYEE)? (No renaming)"
+ },
+ "6-agg-2": {
+  "prompt": "What is the result of ℑ COUNT Ssn, AVERAGE Salary (EMPLOYEE) (no grouping attributes)? (COMPANY state)",
+  "choices": [
+   "One tuple (8, 35125)",
+   "Three tuples",
+   "Two scalar numbers",
+   "8 tuples"
+  ]
+ },
+ "6-agg-3": {
+  "prompt": "Write relational algebra that retrieves, for each department, the department number, number of employees and average salary, and renames the result attributes to Dno, No_of_employees, Average_sal.",
+  "keys": [
+   "Grouping attribute Dno (left of ℑ)",
+   "Function list COUNT Ssn, AVERAGE Salary",
+   "Renaming with ρ"
+  ],
+  "answer": "ρ R(Dno, No_of_employees, Average_sal) ( Dno ℑ COUNT Ssn, AVERAGE Salary (EMPLOYEE) )\n\n-- Result on the COMPANY state (3 rows)\nDno | COUNT(Ssn) | AVG(Salary)\n1 | 1 | 55000\n4 | 3 | 31000\n5 | 4 | 33250"
+ },
+ "6-agg-4": {
+  "prompt": "In relational algebra, write the project number and total hours for each project.",
+  "keys": [
+   "Grouping attribute Pno",
+   "SUM Hours"
+  ],
+  "answer": "Pno ℑ SUM Hours (WORKS_ON)\n\n-- Result on the COMPANY state (6 rows)\nPno | SUM(Hours)\n1 | 52.5\n2 | 37.5\n3 | 50\n10 | 55\n20 | 25\n30 | 55"
+ },
+ "6-agg-5": {
+  "prompt": "Give three kinds of requests that cannot be expressed with the basic relational algebra operations alone.",
+  "keys": [
+   "Aggregation",
+   "Aggregation per group",
+   "Outer joins"
+  ],
+  "answer": "1) Requests that use aggregate functions (SUM, AVERAGE, MAXIMUM, MINIMUM, COUNT). 2) Requests that group tuples by attribute values and apply aggregates to each group. 3) Outer join requests."
+ },
+ "6-agg-6": {
+  "prompt": "The result of <grouping attributes> ℑ <function list> (R) consists of the (a) attributes plus one attribute for each element of the function list. Without grouping attributes, the result has (b) tuple(s).",
+  "answer": "(a) grouping / (b) 1",
+  "accept_add": [
+   [
+    "grouping attributes",
+    "group"
+   ],
+   [
+    "a single"
+   ]
+  ]
+ },
+ "6-ap-1": {
+  "prompt": "Aggregate functions in relational algebra eliminate duplicates when applied.",
+  "explain": "They do not eliminate duplicates (so that sums and averages of salaries come out right)."
+ },
+ "6-ap-2": {
+  "prompt": "In relational algebra aggregation, what happens to NULL values?",
+  "choices": [
+   "Treated as 0",
+   "Not considered",
+   "Cause an error",
+   "Treated as the smallest value"
+  ]
+ },
+ "6-ap-3": {
+  "prompt": "Explain what the statement 'relational algebra is a closed mathematical system' means for aggregate functions.",
+  "keys": [
+   "The result is also a relation (not a scalar)",
+   "Even with one value in one tuple"
+  ],
+  "answer": "The result of an aggregation is also a relation, not a scalar number. Even if it has only one value in one tuple, it is a relation and can be used as the input of other relational algebra operations."
+ },
+ "6-oj-1": {
+  "prompt": "Which statement about the result of EMPLOYEE ⟕ Ssn=Mgr_ssn DEPARTMENT is correct? (COMPANY state)",
+  "choices": [
+   "Only the 3 managers appear",
+   "Only the 3 departments appear",
+   "All 8 employees appear, and the department attributes of employees who do not manage a department are NULL",
+   "The result is empty"
+  ]
+ },
+ "6-oj-2": {
+  "prompt": "⟕ is the (a) outer join, ⟖ is the (b) outer join, and ⟗ is the (c) outer join.",
+  "accept_add": [
+   [],
+   [],
+   []
+  ]
+ },
+ "6-oj-3": {
+  "prompt": "In relational algebra, write the names of all employees and, if an employee manages a department, the name of that department (NULL if not).",
+  "answer": "TEMP   ← EMPLOYEE ⟕ Ssn=Mgr_ssn DEPARTMENT\nRESULT ← π Fname, Minit, Lname, Dname (TEMP)\n\n-- Result on the COMPANY state (8 rows)\nFname | Minit | Lname | Dname\nJohn | B | Smith | NULL\nFranklin | T | Wong | Research\nAlicia | J | Zelaya | NULL\nJennifer | S | Wallace | Administration\nRamesh | K | Narayan | NULL\nJoyce | A | English | NULL\nAhmad | V | Jabbar | NULL\nJames | E | Borg | Headquarters"
+ },
+ "6-oj-4": {
+  "prompt": "Describe, with an example, a situation that needs an outer join rather than an inner join (EQUIJOIN, NATURAL JOIN).",
+  "keys": [
+   "Inner joins drop unmatched tuples",
+   "Outer joins keep them all, padded with NULL",
+   "Example"
+  ],
+  "answer": "An inner join keeps only the tuples that satisfy the condition, so unmatched tuples are dropped from the result. An outer join is used when we want to keep all tuples of one relation even without a match. Example: a list of all employees with the name of the department each one manages, including employees who manage none, with NULL."
+ },
+ "6-oj-5": {
+  "prompt": "In relational algebra, write the name of every department and, if it controls projects, the project names (including departments with no projects).",
+  "answer": "TEMP   ← DEPARTMENT ⟕ Dnumber=Dnum PROJECT\nRESULT ← π Dname, Pname (TEMP)\n\n-- Result on the COMPANY state (6 rows)\nDname | Pname\nResearch | ProductX\nResearch | ProductY\nResearch | ProductZ\nAdministration | Computerization\nAdministration | Newbenefits\nHeadquarters | Reorganization\n\nOn the COMPANY state every department controls a project, so there are no NULL rows."
+ },
+ "6-pj-1": {
+  "prompt": "In relational algebra, for every project located in 'Stafford', write the project number, the controlling department number, and the department manager's last name, address and birth date. (Exercise 2)",
+  "keys": [
+   "σ Plocation='Stafford'",
+   "⋈ Dnum=Dnumber",
+   "⋈ Mgr_ssn=Ssn",
+   "π of 5 attributes"
+  ],
+  "answer": "STAFFORD_PROJS ← σ Plocation='Stafford' (PROJECT)\nCONTR_DEPTS    ← STAFFORD_PROJS ⋈ Dnum=Dnumber DEPARTMENT\nPROJ_DEPT_MGRS ← CONTR_DEPTS ⋈ Mgr_ssn=Ssn EMPLOYEE\nRESULT         ← π Pnumber, Dnum, Lname, Address, Bdate (PROJ_DEPT_MGRS)\n\n-- Result on the COMPANY state (2 rows)\nPnumber | Dnum | Lname | Address | Bdate\n10 | 4 | Wallace | 291 Berry, Bellaire, TX | 1941-06-20\n30 | 4 | Wallace | 291 Berry, Bellaire, TX | 1941-06-20"
+ },
+ "6-pj-2": {
+  "prompt": "In relational algebra, write the names of the projects that employees of the 'Administration' department work on, together with the employees' last names.",
+  "answer": "ADMIN    ← σ Dname='Administration' (DEPARTMENT)\nADMIN_E  ← ADMIN ⋈ Dnumber=Dno EMPLOYEE\nADMIN_W  ← ADMIN_E ⋈ Ssn=Essn WORKS_ON\nADMIN_P  ← ADMIN_W ⋈ Pno=Pnumber PROJECT\nRESULT   ← π Lname, Pname (ADMIN_P)\n\n-- Result on the COMPANY state (6 rows)\nLname | Pname\nWallace | Reorganization\nWallace | Newbenefits\nJabbar | Computerization\nJabbar | Newbenefits\nZelaya | Computerization\nZelaya | Newbenefits"
+ },
+ "6-pj-3": {
+  "prompt": "In relational algebra, write the names of employees who have a spouse among their dependents (Relationship='Spouse'), together with the spouse's name.",
+  "answer": "SPOUSES ← σ Relationship='Spouse' (DEPENDENT)\nES      ← EMPLOYEE ⋈ Ssn=Essn SPOUSES\nRESULT  ← π Fname, Lname, Dependent_name (ES)\n\n-- Result on the COMPANY state (3 rows)\nFname | Lname | Dependent_name\nFranklin | Wong | Joy\nJennifer | Wallace | Abner\nJohn | Smith | Elizabeth"
+ },
+ "6-pj-4": {
+  "prompt": "In relational algebra, write the names of departments that have a location (DEPT_LOCATIONS) in Houston, together with the last name of each department's manager.",
+  "answer": "HLOC   ← σ Dlocation='Houston' (DEPT_LOCATIONS)\nHDEPT  ← HLOC * DEPARTMENT                    (natural join on the common attribute Dnumber)\nHMGR   ← HDEPT ⋈ Mgr_ssn=Ssn EMPLOYEE\nRESULT ← π Dname, Lname (HMGR)\n\n-- Result on the COMPANY state (2 rows)\nDname | Lname\nHeadquarters | Borg\nResearch | Wong"
+ },
+ "6-pj-5": {
+  "prompt": "Describe the general order (tips) for writing a relational algebra query.",
+  "keys": [
+   "σ first",
+   "⋈ following FK–PK links",
+   "π last",
+   "Split into intermediate relations"
+  ],
+  "answer": "First apply σ to the relations that have conditions to reduce the number of tuples, then follow the FK–PK links with ⋈ to connect the needed relations, and finally keep only the desired attributes with π. Write each step as a named intermediate relation."
+ },
+ "6-pj-6": {
+  "prompt": "In relational algebra, applying σ before a join is more efficient because the intermediate results become smaller."
+ },
+ "6-pu-1": {
+  "prompt": "In relational algebra, write the project numbers of projects that involve an employee whose last name is 'Smith', either as a worker or as a manager of the department that controls the project. (Exercise 3)",
+  "keys": [
+   "Worker side: SMITHS(Essn) * WORKS_ON",
+   "Manager side: join on Mgr_ssn → Dnum → PROJECT",
+   "Attribute names made Pno",
+   "∪"
+  ],
+  "answer": "SMITHS(Essn)             ← π Ssn (σ Lname='Smith' (EMPLOYEE))\nSMITH_WORKER_PROJS       ← π Pno (WORKS_ON * SMITHS)\nMGRS                     ← π Lname, Dnumber (EMPLOYEE ⋈ Ssn=Mgr_ssn DEPARTMENT)\nSMITH_MANAGED_DEPTS(Dnum) ← π Dnumber (σ Lname='Smith' (MGRS))\nSMITH_MGR_PROJS(Pno)     ← π Pnumber (SMITH_MANAGED_DEPTS * PROJECT)\nRESULT                   ← SMITH_WORKER_PROJS ∪ SMITH_MGR_PROJS\n\n-- Result on the COMPANY state (2 rows)\nPno\n1\n2"
+ },
+ "6-pu-2": {
+  "prompt": "In relational algebra, write the numbers of projects that are controlled by department 4 or that 'Wong' works on.",
+  "keys": [
+   "σ Dnum=4 → π (renamed Pno)",
+   "Wong's projects",
+   "∪ (type compatible)"
+  ],
+  "answer": "D4_PROJS(Pno) ← π Pnumber (σ Dnum=4 (PROJECT))\nWONG(Essn)    ← π Ssn (σ Lname='Wong' (EMPLOYEE))\nWONG_PROJS    ← π Pno (WORKS_ON * WONG)\nRESULT        ← D4_PROJS ∪ WONG_PROJS\n\n-- Result on the COMPANY state (5 rows)\nPnumber\n2\n3\n10\n20\n30"
+ },
+ "6-pu-3": {
+  "prompt": "In Exercise 3, explain why attributes are renamed, as in SMITHS(Essn) and SMITH_MGR_PROJS(Pno).",
+  "keys": [
+   "Matching attributes for the natural join",
+   "Matching names for ∪"
+  ],
+  "answer": "SMITHS(Essn) is renamed so that the natural join with WORKS_ON matches on Essn, and SMITH_MGR_PROJS(Pno) is renamed so that the attribute names of the two results match when applying ∪ with SMITH_WORKER_PROJS(Pno) (type compatibility, uniform result attribute names)."
+ },
+ "6-pu-4": {
+  "prompt": "In relational algebra, write the Ssn of employees who live in Houston or work on a project located in Houston.",
+  "keys": [
+   "σ on where they live → π Ssn",
+   "Houston projects → WORKS_ON → π Essn (renamed Ssn)",
+   "∪"
+  ],
+  "answer": "LIVE(Ssn)  ← π Ssn (σ Address LIKE '%Houston%' (EMPLOYEE))\nHP(Pno)    ← π Pnumber (σ Plocation='Houston' (PROJECT))\nWORK(Ssn)  ← π Essn (WORKS_ON * HP)\nRESULT     ← LIVE ∪ WORK\n\n-- Result on the COMPANY state (7 rows)\nSsn\n123456789\n333445555\n453453453\n666884444\n888665555\n987654321\n987987987"
+ },
+ "6-pd-1": {
+  "prompt": "In relational algebra, write the names of employees who have no dependents. (Exercise 4)",
+  "keys": [
+   "π Ssn (EMPLOYEE)",
+   "π Essn (DEPENDENT), renamed Ssn",
+   "−",
+   "Natural join with EMPLOYEE, then π"
+  ],
+  "answer": "ALL_EMPS            ← π Ssn (EMPLOYEE)\nEMPS_WITH_DEPS(Ssn) ← π Essn (DEPENDENT)\nEMPS_WITHOUT_DEPS   ← ALL_EMPS − EMPS_WITH_DEPS\nRESULT              ← π Lname, Fname (EMPS_WITHOUT_DEPS * EMPLOYEE)\n\n-- Result on the COMPANY state (5 rows)\nLname | Fname\nZelaya | Alicia\nNarayan | Ramesh\nEnglish | Joyce\nJabbar | Ahmad\nBorg | James"
+ },
+ "6-pd-2": {
+  "prompt": "In relational algebra, write the names of managers who have at least one dependent. (Exercise 5)",
+  "keys": [
+   "π Mgr_ssn → Ssn",
+   "π Essn → Ssn",
+   "∩",
+   "Natural join, then π"
+  ],
+  "answer": "MGRS(Ssn)           ← π Mgr_ssn (DEPARTMENT)\nEMPS_WITH_DEPS(Ssn) ← π Essn (DEPENDENT)\nMGRS_WITH_DEPS      ← MGRS ∩ EMPS_WITH_DEPS\nRESULT              ← π Lname, Fname (MGRS_WITH_DEPS * EMPLOYEE)\n\n-- Result on the COMPANY state (2 rows)\nLname | Fname\nWong | Franklin\nWallace | Jennifer"
+ },
+ "6-pd-3": {
+  "prompt": "In relational algebra, write the names of employees who do not work on any project.",
+  "answer": "ALL_EMPS     ← π Ssn (EMPLOYEE)\nWORKERS(Ssn) ← π Essn (WORKS_ON)\nIDLE         ← ALL_EMPS − WORKERS\nRESULT       ← π Fname, Lname (IDLE * EMPLOYEE)\n\n-- Result on the COMPANY state (0 rows)\nFname | Lname\n\nOn the COMPANY state every employee appears in WORKS_ON, so the result is empty."
+ },
+ "6-pd-4": {
+  "prompt": "In relational algebra, write the names of employees who have no subordinates (who supervise no one).",
+  "keys": [
+   "Rename π Super_ssn to Ssn",
+   "ALL_EMPS − SUPS",
+   "Natural join, then π"
+  ],
+  "answer": "ALL_EMPS   ← π Ssn (EMPLOYEE)\nSUPS(Ssn)  ← π Super_ssn (EMPLOYEE)\nNON_SUPS   ← ALL_EMPS − SUPS\nRESULT     ← π Fname, Lname (NON_SUPS * EMPLOYEE)\n\n-- Result on the COMPANY state (5 rows)\nFname | Lname\nJohn | Smith\nAlicia | Zelaya\nRamesh | Narayan\nJoyce | English\nAhmad | Jabbar"
+ },
+ "6-pd-5": {
+  "prompt": "Using intersection, write the Ssn of employees who are in department 4 and work on a project located in Stafford.",
+  "keys": [
+   "Ssn of department 4",
+   "Stafford projects → Essn of those who work on them (renamed Ssn)",
+   "∩"
+  ],
+  "answer": "D4(Ssn)     ← π Ssn (σ Dno=4 (EMPLOYEE))\nSP(Pno)     ← π Pnumber (σ Plocation='Stafford' (PROJECT))\nSW(Ssn)     ← π Essn (WORKS_ON * SP)\nRESULT      ← D4 ∩ SW\n\n-- Result on the COMPANY state (3 rows)\nSsn\n987654321\n987987987\n999887777"
+ },
+ "6-pd-6": {
+  "prompt": "Which operation is mainly used to write a 'has no …' query in relational algebra?"
+ },
+ "6-pd-7": {
+  "prompt": "Explain which relational algebra operations correspond to SQL's NOT EXISTS, EXISTS AND EXISTS, UNION and NOT EXISTS (EXCEPT).",
+  "keys": [
+   "Has no = −",
+   "And also = ∩",
+   "Or = ∪",
+   "All = ÷"
+  ],
+  "answer": "'Has no …' (NOT EXISTS / NOT IN) → difference −. 'A and also B' (EXISTS AND EXISTS / INTERSECT) → intersection ∩. 'A or B' (UNION) → union ∪. 'All …' (NOT EXISTS + EXCEPT) → division ÷."
+ }
+}
