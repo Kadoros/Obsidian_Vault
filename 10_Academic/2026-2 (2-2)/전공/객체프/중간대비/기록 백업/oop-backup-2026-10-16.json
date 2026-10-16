@@ -1,0 +1,1228 @@
+{
+ "app": "oop-",
+ "name": "객체프",
+ "at": 1792147836109,
+ "attempts": [
+  {
+   "answer": "(a) sharing, (b) class",
+   "at": 1791670408373,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2025-1ab",
+   "score": 0,
+   "verdict": "wrong",
+   "_id": "1791670408373-3j0szq"
+  },
+  {
+   "answer": "stablibility",
+   "at": 1791670445694,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2025-1c",
+   "score": 0,
+   "verdict": "wrong",
+   "_id": "1791670445694-0l4aqt"
+  },
+  {
+   "answer": "software crisis, complexity",
+   "at": 1791670531733,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2025-1de",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791670531733-98jt3z"
+  },
+  {
+   "answer": "cost",
+   "at": 1791670604782,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2025-1h",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791670604782-uxee8h"
+  },
+  {
+   "answer": "public, access, oop",
+   "at": 1791670682322,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2025-1ijk",
+   "score": 0,
+   "verdict": "wrong",
+   "_id": "1791670682322-sh0dfp"
+  },
+  {
+   "answer": "variable, public interface",
+   "at": 1791670732079,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2025-1lm",
+   "score": 0,
+   "verdict": "partial",
+   "_id": "1791670732079-nuis9v"
+  },
+  {
+   "answer": "1. it provides the safety of the data integrity via giving the access thoughs only the public fuctions that has some validation or processing procedure\n2.",
+   "at": 1791671084230,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2025-2",
+   "score": 0,
+   "verdict": "wrong",
+   "_id": "1791671084230-m9iemi"
+  },
+  {
+   "answer": "do not change all the component at once but one components one by one thourgh time",
+   "at": 1791671290961,
+   "feedback": "핵심인 '한 번에 다 바꾸지 않고 컴포넌트를 하나씩 순차적으로 통합한다'는 의미를 제대로 짚었어. 다만 model answer의 'incrementally'나 'test each step' 같은 표현, 즉 매 단계마다 테스트해서 에러 위치를 좁힌다는 점은 빠졌어.",
+   "grader": "claude",
+   "missed": [
+    "각 단계마다 테스트해서 에러 위치를 좁힐 수 있다는 점"
+   ],
+   "mode": "practice",
+   "qid": "2025-3",
+   "score": 0.9,
+   "verdict": "correct",
+   "_id": "1791671290961-p917a1"
+  },
+  {
+   "answer": "pointer that is pointing memory block that has not supposed one it may already returned to os in past.\n\nit can change abgnious data from other progame, it may cause change in the important info for example the kunel access level",
+   "at": 1791671585376,
+   "feedback": "(i)는 이미 해제된 메모리를 가리키는 포인터라는 핵심을 잡았어, 문장이 어색하긴 해도 의미는 맞아. (ii)는 다른 데이터가 쓰는 메모리를 망가뜨릴 수 있다는 점은 맞혔는데, 정의되지 않은 동작(undefined behavior)이나 크래시 가능성은 빠졌어.",
+   "grader": "claude",
+   "missed": [
+    "정의되지 않은 동작(undefined behavior) 발생",
+    "프로그램 크래시 가능성"
+   ],
+   "mode": "practice",
+   "qid": "2025-4",
+   "score": 0.65,
+   "verdict": "partial",
+   "_id": "1791671585376-051g1v"
+  },
+  {
+   "answer": "it stop the program then the e is ture, that allow programer to know what goes wrong\ndebug and check crash reason\nture that makes error",
+   "at": 1791671817749,
+   "feedback": "(ii)는 디버깅과 크래시 원인 파악을 말해서 대체로 맞아. 하지만 (i)은 조건이 거꾸로야. e가 true면 계속 실행되고 false면 프로그램이 멈춰야 하는데, 너는 true일 때 멈춘다고 썼어. (iii)도 'ture that makes error'라서 e가 항상 참이어야 한다는 핵심이 분명하지 않아.",
+   "grader": "claude",
+   "missed": [
+    "e가 false일 때 프로그램이 중단되고 에러 메시지가 출력됨",
+    "e는 그 시점에 항상 참이어야 함 (예: class invariant)",
+    "(ii)는 '신뢰성 높은 프로그램' 또는 '버그 조기 발견'으로 더 명확히 쓰면 좋음"
+   ],
+   "mode": "practice",
+   "qid": "2025-5",
+   "score": 0.35,
+   "verdict": "partial",
+   "_id": "1791671817749-pbwiw4"
+  },
+  {
+   "answer": "i recipe class make object to store data and recipeDb is the object to manage control to DB \nii handle connection with db, provide function for cuda",
+   "at": 1791672058223,
+   "feedback": "Recipe를 데이터 저장용 객체로 본 건 맞아. 근데 자기 자신을 편집/출력하는 역할은 빠졌고, RecipeDB를 DB 연결 담당으로 잡은 건 컬렉션 관리(검색, 추가, 편집, 탐색)라는 핵심을 놓친 거야. (ii)의 'cuda'는 CRUD 오타로 보이는데 그대로면 의미가 전달이 안 돼.",
+   "grader": "claude",
+   "missed": [
+    "Recipe가 자기 재료/조리 단계를 편집·출력(display/print)한다는 점",
+    "RecipeDB가 여러 레시피를 검색(search)·탐색(browse)·추가/편집한다는 컬렉션 관리 역할",
+    "CRUD 기능을 제공한다는 내용을 정확한 단어로 쓰지 않음"
+   ],
+   "mode": "practice",
+   "qid": "2025-6",
+   "score": 0.4,
+   "verdict": "partial",
+   "_id": "1791672058223-4dbhdu"
+  },
+  {
+   "answer": "it hides the complexity of implemenatation and provides an interface to clients",
+   "at": 1791672186375,
+   "feedback": "구현을 숨기고 클라이언트에게 인터페이스를 제공한다는 점은 추상화의 핵심을 잘 짚었어. 다만 모델 답안의 '데이터와 연산이 구현과 무관하게 명세된다'는 핵심 중 데이터 명세에 대한 내용이 빠져 있어.",
+   "grader": "claude",
+   "missed": [
+    "데이터(자료 변수)도 구현과 독립적으로 명세된다는 점",
+    "ADT가 데이터와 연산의 집합이라는 정의 자체"
+   ],
+   "mode": "practice",
+   "qid": "2025-7",
+   "score": 0.6,
+   "verdict": "partial",
+   "_id": "1791672186375-8c55pz"
+  },
+  {
+   "answer": "ifsteam file (\"src.bin\", ios::binary);\n\nwhile(getline(file, line)){\n\n}",
+   "at": 1791672378874,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2025-8",
+   "score": 0,
+   "verdict": "wrong",
+   "_id": "1791672378874-zw83g0"
+  },
+  {
+   "answer": "OOP, object",
+   "at": 1791676030831,
+   "feedback": "(a)는 OOP, (b)는 object로 둘 다 맞았어. 모범답안의 'Object-oriented programming (OOP)'와 'objects'와 같은 의미고, 영어로 답해서 감점 요인도 없어.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2024-1ab",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791676030831-3blwfb"
+  },
+  {
+   "answer": "procudeual programming",
+   "at": 1791676093212,
+   "feedback": "답이 틀렸어. 문제의 (c)는 goto를 많이 쓰고 코드 블록이 하나뿐인 'Unstructured programming'인데, 'procedural programming'은 함수 단위로 나누는 다음 단계라서 다른 개념이야. 'procedural'도 철자가 틀렸어.",
+   "grader": "claude",
+   "missed": [
+    "Unstructured programming (비구조적 프로그래밍)",
+    "goto 사용, 단일 메인 프로그램, 전역 데이터 중심이라는 특징"
+   ],
+   "mode": "practice",
+   "qid": "2024-1c",
+   "score": 0,
+   "verdict": "wrong",
+   "_id": "1791676093212-kwxkvi"
+  },
+  {
+   "answer": "global, access",
+   "at": 1791676119097,
+   "feedback": "(d) 'global'은 맞았어. 전역 변수를 쓰면 안전하지 않다는 건 잘 알고 있네. (e)는 'access'라고 썼는데 틀렸어. 여기 들어갈 말은 모듈들이 서로에게 'dependent'(의존)한다는 거야. 'access'는 의미가 달라서 점수를 못 받아.",
+   "grader": "claude",
+   "missed": [
+    "(e) dependent: 모듈들이 서로 '의존(dependent on one another)'하게 된다는 핵심 표현"
+   ],
+   "mode": "practice",
+   "qid": "2024-1de",
+   "score": 0.5,
+   "verdict": "partial",
+   "_id": "1791676119097-furz9f"
+  },
+  {
+   "answer": "the default constructor , the complier",
+   "at": 1791676163117,
+   "feedback": "(f)는 default constructor, (g)는 the compiler로 둘 다 맞았어. 'complier'는 compiler의 오타인데 무시해도 되는 수준이라 감점 없어.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2024-1fg",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791676163117-9sjyzb"
+  },
+  {
+   "answer": "dangling pointer",
+   "at": 1791676185580,
+   "feedback": "빈칸 (h)에 들어갈 dangling을 정확히 썼어. 뒤에 pointer를 더 붙였는데 문제 문장에 이미 pointer가 있으니 빈칸만 보면 중복일 뿐이라 감점은 없어.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2024-1h",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791676185580-i3zucc"
+  },
+  {
+   "answer": "static, instance",
+   "at": 1791676250837,
+   "feedback": "(i) static, (j) instance 둘 다 맞아. 'instance'는 모범답안의 'objects (instances)'와 같은 의미라 감점 없어.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2024-1ij",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791676250837-xumxzl"
+  },
+  {
+   "answer": "cost, maintaining",
+   "at": 1791676369551,
+   "feedback": "(r)는 'cost'가 'the costs'와 같은 뜻이라 인정돼. (s)는 'maintaining'이 동명사/분사 형태라서 'maintenance' 명사 자리에는 맞지 않아, 부분 점수만 줄게. (t) 빈칸은 아예 답이 없어서 0점이야.",
+   "grader": "claude",
+   "missed": [
+    "(s) 명사 'maintenance' 필요 (maintaining은 형태가 틀림)",
+    "(t) 'maintained' 빈칸 누락"
+   ],
+   "mode": "practice",
+   "qid": "2024-1rst",
+   "score": 0.5,
+   "verdict": "partial",
+   "_id": "1791676369551-tu7ncg"
+  },
+  {
+   "answer": "safety, access, direct access, implimenttion, change",
+   "at": 1791676485472,
+   "feedback": "(e) 'change'는 'replace'와 같은 뜻이라 맞아. 근데 (a) 'safety'는 'consistency'가 아니고, (b) 'access'는 'control'이 아니고, (d) 'implimenttion'은 'abstraction'과 다른 개념이야. (c) 'direct access'는 accessibility와 조금 비슷하지만 정확한 답은 아니라서 부분 점수만 줄게.",
+   "grader": "claude",
+   "missed": [
+    "(a) 일관성(consistency): 멤버 접근을 항상 메서드로 통일한다는 개념",
+    "(b) 제어(control): 정밀한 제어가 핵심",
+    "(c) 접근성(accessibility): 데이터 멤버의 접근 가능성",
+    "(d) 추상화(abstraction): 기능적 추상화 개념"
+   ],
+   "mode": "practice",
+   "qid": "2024-2",
+   "score": 0.3,
+   "verdict": "partial",
+   "_id": "1791676485472-qpzjf7"
+  },
+  {
+   "answer": "a) they need setter and getter that is not neccesary when the variable does not need the protection.\n\nb) it give full direct access from the outside of the class that can cuase the break the data integrity",
+   "at": 1791676665172,
+   "feedback": "(a)는 틀렸어. getter/setter가 불필요하다는 얘기는 핵심이 아니고, 모든 멤버가 private이면 외부에서 객체를 아예 쓸 수 없다(인터페이스가 없다)는 게 진짜 문제야. (b)는 외부에서 데이터에 직접 접근해서 무결성이 깨진다는 점을 잘 짚었어.",
+   "grader": "claude",
+   "missed": [
+    "(a) 외부에서 사용할 인터페이스가 없어서 객체를 전혀 쓸 수 없다는 점",
+    "(b) 캡슐화 부재로 구현 독립성(implementation independence)이 깨진다는 점"
+   ],
+   "mode": "practice",
+   "qid": "2024-3",
+   "score": 0.5,
+   "verdict": "partial",
+   "_id": "1791676665172-o4ojio"
+  },
+  {
+   "answer": "",
+   "at": 1791676854929,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2023-1ab",
+   "score": 0.5,
+   "verdict": "partial",
+   "_id": "1791676854929-8gaf9k"
+  },
+  {
+   "answer": "update",
+   "at": 1791676885970,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2023-1f",
+   "score": 0,
+   "verdict": "wrong",
+   "_id": "1791676885970-bof8tv"
+  },
+  {
+   "answer": "change,",
+   "at": 1791676937067,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2023-1klm",
+   "score": 0.5,
+   "verdict": "partial",
+   "_id": "1791676937067-yc680f"
+  },
+  {
+   "answer": "information hiding, abstraction, implamentation indepenance, a change",
+   "at": 1791676982624,
+   "feedback": "(c) implementation independence와 (d) a change는 맞았어. (a)의 information hiding도 캡슐화의 핵심이라 인정할 만하지만, 모범답안은 'protection of implementation'이라 표현이 조금 달라. (b)는 abstraction이 아니라 readability(가독성)고, (e)는 비어 있어서 클라이언트가 보는 건 the interface야.",
+   "grader": "claude",
+   "missed": [
+    "(b) 가독성 readability (abstraction은 오답)",
+    "(e) 인터페이스 the interface (빈칸 누락)"
+   ],
+   "mode": "practice",
+   "qid": "2022-1a-e",
+   "score": 0.6,
+   "verdict": "partial",
+   "_id": "1791676982624-9tbkdl"
+  },
+  {
+   "answer": "software engnieering",
+   "at": 1791677086124,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2022-1ij",
+   "score": 0.5,
+   "verdict": "partial",
+   "_id": "1791677086124-i2q8ur"
+  },
+  {
+   "answer": "complexity",
+   "at": 1791677124377,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2022-1n",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791677124377-msot65"
+  },
+  {
+   "answer": "the protection of implimentation, accesability, independance, others",
+   "at": 1791677184260,
+   "feedback": "(b) accessibility는 맞혔어. 철자 오류(accesability)는 무시할 수준이야. (a)는 implementation protection이라고 썼는데 정답은 consistency이고, (c)는 independence라고 썼는데 정답은 abstraction이야. (d)는 답이 없어서 0점이야.",
+   "grader": "claude",
+   "missed": [
+    "(a) 일관성(consistency)",
+    "(c) 추상화(abstraction)",
+    "(d) 계산(a computation)으로 교체 가능하다는 점"
+   ],
+   "mode": "practice",
+   "qid": "2022-2",
+   "score": 0.25,
+   "verdict": "partial",
+   "_id": "1791677184260-k2nerj"
+  },
+  {
+   "answer": "a) clients cannot use object due to there is not any interface\nb) it can break the data integraity and it has no protection of the information hiding",
+   "at": 1791677301297,
+   "feedback": "(a)는 인터페이스가 없어서 클라이언트가 객체를 쓸 수 없다는 핵심을 맞췄어. (b)도 데이터 무결성 훼손과 정보 은닉(캡슐화) 상실을 짚어서 대부분 맞아. 다만 모범답안의 '구현 독립성(implementation independence)' 상실은 빠졌어.",
+   "grader": "claude",
+   "missed": [
+    "구현 독립성(implementation independence) 상실"
+   ],
+   "mode": "practice",
+   "qid": "2022-3",
+   "score": 0.9,
+   "verdict": "correct",
+   "_id": "1791677301297-3bnij8"
+  },
+  {
+   "answer": "5:     int w,h; this must be in private\n 7:     Rect(const Rect& x) { w=x.w; h=x.h; cout << \"c2\\n\"; } w,h is private it need propel getter and setter\n13:     obj.h = y; h is private it need propel getter and setter or need to be decleared in class\n22:     b.w = 9; need getter\n28:     delete b; it is not deleting object, but pointer",
+   "at": 1791677568402,
+   "feedback": "에러 찾기가 거의 다 틀렸어. int w,h를 private으로 바꾸자는 건 오히려 코드를 깨뜨리는 방향이고, 진짜 에러인 18번(b = &a), 22번(b->w), 25~26번(->)은 못 짚었어. 28번 delete b를 문제 삼은 건 맞는데, 이유가 b는 new가 아니라 스택 객체 a를 가리켜서 지워야 한다는 거야. 그리고 (2) 출력 결과는 아예 안 썼어.",
+   "grader": "claude",
+   "missed": [
+    "18번: b = &a; (주소 대입)",
+    "22번: b->w = 9; (포인터는 -> 사용)",
+    "25번: b->area() 로 수정",
+    "26번: c->area() 로 수정",
+    "28번: delete b 삭제 (스택 객체를 가리킴)",
+    "(2) 출력: c1 c1 c2 f3 c2 ======= 54 54 56 30"
+   ],
+   "mode": "practice",
+   "qid": "2025-9",
+   "score": 0.05,
+   "verdict": "wrong",
+   "_id": "1791677568402-v100jj"
+  },
+  {
+   "answer": "",
+   "at": 1791705178511,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2024-6",
+   "score": 0,
+   "verdict": "wrong",
+   "_id": "1791705178511-di0x49"
+  },
+  {
+   "answer": "attribute, public method",
+   "at": 1791705233012,
+   "feedback": "(l)에 'attribute', (m)에 'public method'를 썼는데, 둘 다 모범답안과 같은 뜻이야. attribute는 internal data(멤버 변수)이고, public method는 객체와 상호작용하는 interface에 해당해. 두 빈칸 모두 맞았어.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2025-1lm",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791705233012-aznqvf"
+  },
+  {
+   "answer": "the protection of implimentation: it protect the attributes from breaking data integrity via give access thoaugh only public method\nimplementation indepnedance: if the internal implementation is chagned, the clients would not need to change the way using interfaces",
+   "at": 1791705550431,
+   "feedback": "1번(보호)은 public 메서드를 통해서만 접근하게 해서 데이터 무결성을 지킨다는 핵심을 잡았고, 3번(구현 독립성)도 내부 구현이 바뀌어도 클라이언트가 인터페이스 사용법을 바꿀 필요가 없다는 식으로 맞게 썼어. 2번 가독성(이해 용이성)은 아예 빠졌어.",
+   "grader": "claude",
+   "missed": [
+    "가독성(readability/understandability): 클라이언트가 인터페이스 함수가 캡슐화된 데이터를 어떻게 쓰는지 알 필요가 없음"
+   ],
+   "mode": "practice",
+   "qid": "2025-2",
+   "score": 0.67,
+   "verdict": "partial",
+   "_id": "1791705550431-bpw4hk"
+  },
+  {
+   "answer": "software maintainance",
+   "at": 1791705604852,
+   "feedback": "정답 개념인 Software maintenance를 제대로 썼어. 다만 'maintainance'는 철자가 틀려서 'maintenance'가 맞아. 시험에서 철자 감점이 있을 수 있으니 주의해.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2023-1f",
+   "score": 0.9,
+   "verdict": "correct",
+   "_id": "1791705604852-5bqxob"
+  },
+  {
+   "answer": "10:    X(const X& x) { w=x.w; h=x.h; cout << \"c5 called\\n\"; }\nthe attributes w,h is private and x is the other object. so it can not access directly\n??",
+   "at": 1791705799806,
+   "feedback": "(a)는 10번 줄이라고 했는데 틀렸어, 정답은 18번 줄(obj.w*obj.h)이야. 같은 클래스의 멤버인 복사생성자는 x.w, x.h에 접근해도 문제없고, 문제는 비멤버 함수 f1이 private 멤버에 접근하는 거야. (c)는 답을 안 썼고 (d)도 '??'라서 점수를 줄 수 없어.",
+   "grader": "claude",
+   "missed": [
+    "(a) 오류 줄은 18번 줄",
+    "(b) f1은 멤버가 아니라서 private인 w, h에 접근 불가",
+    "(c) friend int f1(X obj); 추가",
+    "(d) 출력 결과: c3, c1, c5, c5, f1 called!, d, area: 30, d, d, d",
+    "b = c; 는 대입연산자라 출력이 없다는 점"
+   ],
+   "mode": "practice",
+   "qid": "2023-5",
+   "score": 0,
+   "verdict": "wrong",
+   "_id": "1791705799806-so03j3"
+  },
+  {
+   "answer": "void TIntStack(unsigned int stackSize) {\n    _size = stackSize;\n}\nvoid TIntStack(const TIntStack& that){\n    _sp = that->_sp;\n    _count = that->_count;\n    _size = that->_size;\n}\nvoid ~TIntStack() {\n    delete[] _sp;\n}\n\nbool Push(int thisValue) {\n    ???\n}",
+   "at": 1791706380731,
+   "feedback": "생성자랑 소멸자에 void를 붙였고 클래스 범위(TIntStack::)도 빠졌어. 생성자에서 _count 초기화랑 new int[_size] 할당이 없고, 복사 생성자는 _sp = that._sp라서 얕은 복사야. that->_sp도 틀린 문법이라 that._sp로 써야 해. 소멸자의 delete[] _sp만 맞고, Push는 ???로 비워뒀어.",
+   "grader": "claude",
+   "missed": [
+    "생성자에서 _count = 0 초기화",
+    "생성자에서 _sp = new int[_size] 동적 할당",
+    "복사 생성자에서 새 배열 할당 후 원소 복사 (깊은 복사)",
+    "that->가 아니라 that. 사용 (참조이므로)",
+    "생성자/소멸자에 반환형 void 쓰면 안 됨",
+    "멤버 함수 정의에 TIntStack:: 범위 지정 필요"
+   ],
+   "mode": "practice",
+   "qid": "2022-7",
+   "score": 0.1,
+   "verdict": "wrong",
+   "_id": "1791706380731-lgdq4v"
+  },
+  {
+   "answer": "coupling, cohesion,",
+   "at": 1791707083239,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2024-1nopq",
+   "score": 0,
+   "verdict": "wrong",
+   "_id": "1791707083239-hx1ql5"
+  },
+  {
+   "answer": "22:     b.h = 9; b->h=9\n26:     cout << b.w <<\" \"<< b.h << endl; b->w, b->h\n\nc2\nf1 called\nc3\n==========\n7 9\n7 9\n1 8",
+   "at": 1791707822569,
+   "feedback": "(a), (b)는 22번, 26번 줄이랑 b->h, b->w, b->h 수정까지 다 맞았어. 근데 (c)는 틀렸어. func(a,7,8)은 값 전달이라 복사 생성자 c3가 먼저 찍히고, 함수가 끝나면 obj가 소멸돼서 d가 나와야 해. 그래서 원본 a는 안 바뀌고 a.w=2, a.h=9가 되고, c는 (2,6)에서 w만 1로 바뀌어서 1 6이야. 마지막에 d d도 빠졌어.",
+   "grader": "claude",
+   "missed": [
+    "출력 순서 오류: c2 다음 c3 → f1 called! → d 순서여야 함",
+    "값 전달된 obj는 복사본이라 원본 a가 7,8로 바뀌지 않음 (a는 2 9)",
+    "X c(a) 복사 생성자 호출로 c3 한 번 더 출력",
+    "main 종료 시 소멸자 d d 두 번 출력",
+    "출력 결과 1 8이 아니라 1 6이어야 함",
+    "f1 called! 느낌표 누락"
+   ],
+   "mode": "practice",
+   "qid": "2024-6",
+   "score": 0.4,
+   "verdict": "partial",
+   "_id": "1791707822569-asnr47"
+  },
+  {
+   "answer": "sharing, objects",
+   "at": 1791708579331,
+   "feedback": "(a)는 틀렸어. 정답은 'the class'(클래스)인데 'sharing'은 맞는 표현이 아니야. (b)는 'objects'가 'created object(생성된 객체)'와 같은 의미라 인정돼. 블랭크별로 나눠서 2점 중 2점, 2점 중 0점이라 총 2/4점이야.",
+   "grader": "claude",
+   "missed": [
+    "(a) 클래스(the class)의 속성을 나타낸다는 점"
+   ],
+   "mode": "practice",
+   "qid": "2025-1ab",
+   "score": 0.5,
+   "verdict": "partial",
+   "_id": "1791708579331-z813q1"
+  },
+  {
+   "answer": "depends, cohesion, low, high cohesion",
+   "at": 1791708646578,
+   "feedback": "g(depends)와 h(cohesion)는 정답이고, i의 'low'도 minimize와 같은 뜻이라 인정돼. j는 'high cohesion'이라 의미는 맞지만 빈칸 형식상 'maximize'라는 동사 자리에 형용사구를 쓴 거라 약간 감점했어.",
+   "grader": "claude",
+   "missed": [
+    "(j) 'maximize'(동사) 표현 사용"
+   ],
+   "mode": "practice",
+   "qid": "2023-1ghij",
+   "score": 0.9,
+   "verdict": "correct",
+   "_id": "1791708646578-u115lg"
+  },
+  {
+   "answer": "coupling, cohesion, coupling, cohesion",
+   "at": 1791708689966,
+   "feedback": "(f)는 coupling, (g)는 cohesion으로 둘 다 맞아. 근데 뒤에 똑같은 단어 두 개를 또 써서 답이 헷갈리게 됐으니까 blank 두 개에 맞는 답만 깔끔하게 적는 게 좋아.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2022-1fg",
+   "score": 0.9,
+   "verdict": "correct",
+   "_id": "1791708689966-yq846p"
+  },
+  {
+   "answer": "software engineering, reduce the cost of",
+   "at": 1791708860705,
+   "feedback": "(i) software engineering은 정답이야. (j)는 'economically'(경제적으로)가 정답인데, 'reduce the cost of'는 의미가 비슷하게 맞닿아 있어도 빈칸에 들어가는 문법 형태가 달라서 부분 점수만 줄게.",
+   "grader": "claude",
+   "missed": [
+    "(j) economically (경제적으로, 부사 형태)"
+   ],
+   "mode": "practice",
+   "qid": "2019-1ij",
+   "score": 0.75,
+   "verdict": "partial",
+   "_id": "1791708860705-akyp7j"
+  },
+  {
+   "answer": "abstraction, what,",
+   "at": 1791709283603,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2019-1lmn",
+   "score": 0.5,
+   "verdict": "partial",
+   "_id": "1791709283603-t4i3wf"
+  },
+  {
+   "answer": "abstraction, what,",
+   "at": 1791709289447,
+   "feedback": "l번은 'abstraction'만 썼는데 핵심 용어라 대체로 맞아. m번 'what'도 정확해. 다만 n번(구현 쪽에서 객체가 '어떻게' 동작하는지)은 비어 있어서 거기서 점수를 잃었어.",
+   "grader": "claude",
+   "missed": [
+    "n번 빈칸: how (객체가 어떻게 동작하는지, 구현 관점)"
+   ],
+   "mode": "practice",
+   "qid": "2019-1lmn",
+   "score": 0.67,
+   "verdict": "partial",
+   "_id": "1791709289447-spo182"
+  },
+  {
+   "answer": "access private attribute directly, it allows to acceess only via interface, know how object handle priate attributs, affect how to use interface",
+   "at": 1791709573643,
+   "feedback": "(1) private 속성에 직접 접근 못 한다는 점, (2) 객체가 private 속성을 어떻게 다루는지 클라이언트가 알 필요 없다는 점을 모범답안 의미대로 잘 썼어. (3)은 'affect how to use interface'로 인터페이스에 영향 없다는 뜻은 맞지만, 'should not'의 부정 의미가 살짝 흐려서 감점 가능성이 있어.",
+   "grader": "claude",
+   "missed": [
+    "(3) 'should not affect the interface'처럼 인터페이스 사용법에 영향을 주면 안 된다는 점을 더 명확히 쓰기"
+   ],
+   "mode": "practice",
+   "qid": "2019-2",
+   "score": 0.9,
+   "verdict": "correct",
+   "_id": "1791709573643-d5ql50"
+  },
+  {
+   "answer": "class, object",
+   "at": 1791710008259,
+   "feedback": "(a)에 'class', (b)에 'object' 둘 다 맞아. static 멤버는 클래스의 속성을 나타내고, 객체를 생성하지 않아도 접근할 수 있다는 핵심을 정확히 짚었어. (b)는 model answer의 'created object'보다 짧지만 의미는 같으니 감점 없어.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2025-1ab",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791710008259-kc7lgc"
+  },
+  {
+   "answer": "after finishing developing a program , in case of some library is changed and some error arise or add more feature, eding code for it.\n\ncooporate with other programers, edit,",
+   "at": 1791710127081,
+   "feedback": "(1)은 라이브러리 변경이나 오류 수정, 기능 추가로 대략 맞게 적었어. 다만 '배포 후 활동'이라는 핵심 틀이 빠졌고 적응(adapting)과 개선의 의미도 약해. (2)는 'edit'이 modify와 통하지만 extend, reuse에 해당하는 내용은 거의 없고 'cooperate with other programmers'는 빈칸과 맞지 않아.",
+   "grader": "claude",
+   "missed": [
+    "배포 후 활동이라는 정의의 기준 (after delivery of the initial working version)",
+    "빈칸 (b) extend (기능 확장)",
+    "빈칸 (c) reuse (재사용)",
+    "빈칸 (a) modify는 'edit'으로 대략 인정 가능"
+   ],
+   "mode": "practice",
+   "qid": "2019-3",
+   "score": 0.4,
+   "verdict": "partial",
+   "_id": "1791710127081-kux343"
+  },
+  {
+   "answer": "cost, maintance",
+   "at": 1791710369701,
+   "feedback": "(a)는 'cost'로 'the costs'와 같은 의미라 맞아. (b)는 'maintance'로 철자가 틀렸지만 'maintenance' 단계를 가리키는 게 분명해서 내용은 맞아. 단수/복수 차이와 관사 생략은 감점 대상이 아니야.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2017-1ab",
+   "score": 0.9,
+   "verdict": "correct",
+   "_id": "1791710369701-c130q8"
+  },
+  {
+   "answer": "the protection of implementation: it allows to access privates attribues thoaugh the interface. \nreadbility: it gives claer interface to clinet and clinets do not need to know how object ecapsulate private attributes\nimplementation indepandance: the change of the implementation in the class do not affect how the interface works and seen by clinets",
+   "at": 1791710830304,
+   "feedback": "readability와 implementation independence는 모델 답안과 같은 뜻으로 잘 썼어. protection 설명은 '인터페이스를 통해 private 속성에 접근한다'고 해서 핵심이 헷갈려. 모델 답안은 클라이언트가 encapsulated 데이터에 직접 접근할 수 없다는 게 포인트라서, 직접 접근 불가 쪽으로 써야 해.",
+   "grader": "claude",
+   "missed": [
+    "클라이언트가 private 데이터에 직접 접근할 수 없다는 점(안전성 보호)을 명확히 서술"
+   ],
+   "mode": "practice",
+   "qid": "2017-2",
+   "score": 0.8,
+   "verdict": "partial",
+   "_id": "1791710830304-dpm4ui"
+  },
+  {
+   "answer": "object",
+   "at": 1791710939658,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2016-1c",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791710939658-eolm1f"
+  },
+  {
+   "answer": "",
+   "at": 1791710987390,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2016-1ef",
+   "score": 0,
+   "verdict": "wrong",
+   "_id": "1791710987390-khnwh2"
+  },
+  {
+   "answer": "abstraction, what, how",
+   "at": 1791711022976,
+   "feedback": "h(what)와 i(how)는 정확히 맞혔어. (g)는 'abstraction'만 썼는데 정답은 'Data abstraction'이라서 'Data'가 빠진 만큼 감점됐어. 세 칸을 따로 채점해서 g만 절반 정도 준 거야.",
+   "grader": "claude",
+   "missed": [
+    "(g) 'Data' 누락 (정답: Data abstraction)"
+   ],
+   "mode": "practice",
+   "qid": "2016-1ghi",
+   "score": 0.83,
+   "verdict": "partial",
+   "_id": "1791711022976-0991on"
+  },
+  {
+   "answer": "the activity after the delivering a program , in perpuse of the fixing bug, handeling update of depencancy and updating and adding feature of the future needs,\n\n????\nit handles new needs, error and bug to give full use of the program in all cases for clinet",
+   "at": 1791711613464,
+   "feedback": "(1) 정의는 꽤 잘 썼어. 배포 후 버그 수정, 의존성 업데이트, 기능 추가라는 핵심은 맞아. 하지만 (2)번 maintainability 빈칸(read/understand, modify, extend, reuse)은 아예 안 채웠고, (3)번은 유지보수 비용이 전체의 90% 이상이라는 근거나 변경이 불가피하다는 핵심 설명이 빠져 있어.",
+   "grader": "claude",
+   "missed": [
+    "maintainability 정의: 읽고 이해하기 쉬움(read/understand)",
+    "빈칸 (a) modify",
+    "빈칸 (b) extend",
+    "빈칸 (c) reuse",
+    "유지보수 비용이 전체의 90% 이상(Brooks)",
+    "성공한 소프트웨어는 반드시 변경된다는 점"
+   ],
+   "mode": "practice",
+   "qid": "2016-2a",
+   "score": 0.4,
+   "verdict": "partial",
+   "_id": "1791711613464-8b7pn9"
+  },
+  {
+   "answer": "it hides private attributes and provides interfaces to clients,clients do not need to know how the information hiding and intreface works so it just need to know how to use interface.  it give high cohesion and low coupling, it reduce risk of the breaking of data integrity because it does not allow to the invalid access to private access",
+   "at": 1791712272037,
+   "feedback": "(4) 구현은 숨기고 인터페이스로만 접근하게 한다는 핵심을 잘 썼어. (5) 클라이언트는 사용법만 알면 된다는 점도 맞아. (6) private 데이터에 대한 잘못된 접근을 막아 무결성을 지킨다는 설명도 정답이야. 다만 인터페이스가 구현에 접근하는 유일한 통로라는 표현은 빠졌어.",
+   "grader": "claude",
+   "missed": [
+    "인터페이스가 구현에 접근하는 유일한 합법적 경로라는 점"
+   ],
+   "mode": "practice",
+   "qid": "2016-2b",
+   "score": 0.9,
+   "verdict": "correct",
+   "_id": "1791712272037-vtaiek"
+  },
+  {
+   "answer": "economically, cost",
+   "at": 1791712328427,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2015-1bc",
+   "score": 0.5,
+   "verdict": "partial",
+   "_id": "1791712328427-imw07r"
+  },
+  {
+   "answer": "private attributs, interface",
+   "at": 1791712353131,
+   "feedback": "(d)는 'private attributs'로 적었는데 private 멤버 변수가 곧 internal data라서 의미상 맞아. (e)는 'interface' 그대로 정답이야. 다만 'attributs'는 철자가 틀렸으니 다음엔 'attributes'로 정확히 써.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2015-1de",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791712353131-7v13bp"
+  },
+  {
+   "answer": "the protection of implmentation: it allows to access private attributes via the interface not directly\nreadability: the clients do not need to know about how the class handling the data ecapsulation\nthe implmentation independance: how the interfece work and seem by clients does not change when the implementaion inside of class change",
+   "at": 1791712657924,
+   "feedback": "세 가지 이점을 모두 맞게 썼어. private 속성에 직접 접근 못 하고 인터페이스로만 접근한다는 점, 클라이언트가 내부 구현을 몰라도 된다는 점, 내부 구현이 바뀌어도 인터페이스는 그대로라는 점이 모델 답안과 같은 뜻이야. 감점은 철자 오류 때문에 약간만 될 수 있어.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2015-2",
+   "score": 0.95,
+   "verdict": "correct",
+   "_id": "1791712657924-h4fgqg"
+  },
+  {
+   "answer": "Rect(int x, int y): w(x), h(y) { cout << \"c1\\n\"; }  w = x, h = y\nvoid func(Rect obj, int y) { Rect& obj \n\n20:     func(a,9); *a\n\n22:     b.w = 9; b->w = 9;\n28:     delete *b;\n\na 99 (stack)\nb -> a\nc 78 (heap)\nd 59 (stack)\nc1\nc1\nf3\nc2\n=======\n81\n81\n56\n45",
+   "at": 1791716060506,
+   "feedback": "(1)에서는 line 22의 b->w = 9만 맞았어. line 18(b = &a), 25, 26(->로 수정), 28(delete b 삭제)은 못 찾았고, 오히려 멀쩡한 line 6, 11, 20을 틀렸다고 골랐고 delete *b도 틀려. (2)는 c1, c1, c2, f3, c2 순서인데 네 답은 c2가 빠졌고 f3 뒤에 c2가 와서 순서도 틀렸어. 숫자도 54, 54, 56, 30이어야 하는데 81, 81, 56, 45라서 56만 맞았어.",
+   "grader": "claude",
+   "missed": [
+    "line 18: b = &a; 로 수정",
+    "line 25: b->area() 로 수정",
+    "line 26: c->area() 로 수정",
+    "line 28: delete b 삭제 (b는 스택 객체 a를 가리킴)",
+    "값 전달 시 복사생성자 c2가 f3보다 먼저 출력됨",
+    "d(a)에서 c2 출력이 한 번 더 나옴"
+   ],
+   "mode": "practice",
+   "qid": "2025-9",
+   "score": 0.1,
+   "verdict": "wrong",
+   "_id": "1791716060506-241e2w"
+  },
+  {
+   "answer": "",
+   "at": 1791716361482,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2023-5",
+   "score": 0,
+   "verdict": "wrong",
+   "_id": "1791716361482-1yknfh"
+  },
+  {
+   "answer": "coupling, cohesion, high, low",
+   "at": 1791716482260,
+   "feedback": "n, o, p, q 빈칸 네 개 모두 맞았어. coupling, cohesion, high, low 전부 모범답안과 의미가 같고 영어로 잘 썼어.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2024-1nopq",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791716482260-7xppma"
+  },
+  {
+   "answer": "deliver correct efficnent program and minimize the cost of developing and maintance",
+   "at": 1791716537052,
+   "feedback": "(f)는 'minimize the cost of developing and maintance'로 model answer와 같은 뜻이고 철자 오류만 있어서 满점이야. (e)는 correct와 efficient는 맞았는데 reliable이 빠졌어. 'program'도 software 대신 쓴 거라 감점은 없을 것 같아.",
+   "grader": "claude",
+   "missed": [
+    "reliable (신뢰성 있는 소프트웨어)"
+   ],
+   "mode": "practice",
+   "qid": "2016-1ef",
+   "score": 0.83,
+   "verdict": "partial",
+   "_id": "1791716537052-r499dw"
+  },
+  {
+   "answer": "18:     b = &a;\n22:     b->w = 9;\n25:     cout << b->area() << endl;\n26:     cout << c->area() << endl;\n28:     delete b; deleting this line\na 56 stack\nb -> a\nc => 78 heap\nd 56 stack\nc1\nc1\nc2 func(Rect obj, 여기서 만들어지니까 스택에 !!\nf3\nc2",
+   "at": 1791716989965,
+   "feedback": "(1)은 다섯 군데 다 맞게 고쳤어, 잘했어! 그런데 (2)에서 c1 c1 c2 f3 c2까지만 맞고 '=======' 줄과 54, 54, 56, 30 출력이 빠졌어. 게다가 a 56, c 78, d 56처럼 쓴 값은 area()가 아니라 틀린 값이야 (a=5*6=30이 아니라 54가 나오는 건 b->w=9 때문이고, c는 7*8=56, d는 30).",
+   "grader": "claude",
+   "missed": [
+    "======= 출력 줄",
+    "a.area() = 54 출력",
+    "b->area() = 54 출력",
+    "c->area() = 56 출력",
+    "d.area() = 30 출력 (d는 b->w=9 이전에 복사됨)"
+   ],
+   "mode": "practice",
+   "qid": "2025-9",
+   "score": 0.6,
+   "verdict": "partial",
+   "_id": "1791716989965-ml57sn"
+  },
+  {
+   "answer": "18:     b = &a;\n22:     b->w = 9;\n25:     cout << b->area() << endl;\n26:     cout << c->area() << endl;\n28:     delete b; deleting this line\na 96 stack\nb -> a\nc => 78 heap\nd 56 stack\nc1\nc1\nc2 func(Rect obj, 여기서 만들어지니까 스택에 !!\nf3\nc2\n=======\n54\n54\n56\n30",
+   "at": 1791717046497,
+   "feedback": "(1)에서 다섯 군데 오류(18, 22, 25, 26, 28번 줄)를 전부 정확하게 고쳤고, (2) 출력도 순서까지 모범답안과 똑같아. 메모리 그림(a 96, c 78, d 56)도 맞는데, 문제에서 요구한 건 아니었어.",
+   "grader": "claude",
+   "missed": [
+    "28번 줄을 지우는 이유 설명 (b는 new로 만든 게 아니라 스택 객체 a를 가리키니까 delete하면 안 됨)",
+    "func(a,9)가 값 전달이라 obj.h=9가 a에 영향 없다는 설명"
+   ],
+   "mode": "practice",
+   "qid": "2025-9",
+   "score": 0.95,
+   "verdict": "correct",
+   "_id": "1791717046497-2d08tp"
+  },
+  {
+   "answer": "18:     return obj.w*obj.h;\nit cannot directly access to private attributes",
+   "at": 1791717738980,
+   "feedback": "(a) 18번 줄 맞췄고, (b) private 멤버에 직접 접근 못 한다는 것도 맞아. 근데 f1이 멤버 함수가 아닌 non-member 함수라는 점은 빠졌어. (c) friend 선언 삽입이랑 (d) 출력 결과는 아예 안 썼으니까 이 부분이 0점이야.",
+   "grader": "claude",
+   "missed": [
+    "(b) f1이 non-member 함수라는 점 언급",
+    "(c) friend int f1(X obj); 를 12번 줄에 삽입",
+    "(d) 수정 후 출력 결과 전체 (c3, c1, c5, c5, f1 called!, d, area: 30, d, d, d)"
+   ],
+   "mode": "practice",
+   "qid": "2023-5",
+   "score": 0.4,
+   "verdict": "partial",
+   "_id": "1791717738980-g8fe8e"
+  },
+  {
+   "answer": "",
+   "at": 1791717795518,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2023-3",
+   "score": 0,
+   "verdict": "wrong",
+   "_id": "1791717795518-jduy55"
+  },
+  {
+   "answer": "const, modify, the compiler",
+   "at": 1791718004359,
+   "feedback": "세 빈칸 모두 정답이야. k는 const, l은 modify, m은 the compiler로 모델 답안과 의미가 같아. 각 빈칸을 따로 채점해도 만점이야.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2024-1klm",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791718004359-9ecqxl"
+  },
+  {
+   "answer": "const, modify, the compiler",
+   "at": 1791718032533,
+   "feedback": "세 빈칸 모두 맞았어. n은 const, o는 modify, p는 the compiler라서 모델 답안과 같은 의미야. 영어로 정확히 써서 감점 없어.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2023-1nop",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791718032533-yc7pft"
+  },
+  {
+   "answer": "const",
+   "at": 1791718052270,
+   "feedback": "",
+   "grader": "self",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2022-1h",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791718052270-xpxvus"
+  },
+  {
+   "answer": "the protection of implementation, accessability, modification, parametor",
+   "at": 1791718187017,
+   "feedback": "(b) accessability는 철자만 살짝 틀렸고 뜻은 맞아서 인정이야. 나머지는 (a) 'protection of implementation', (c) 'modification', (d) 'parametor'가 모범답안과 의미가 달라서 틀렸어. 특히 (d)는 데이터 멤버를 나중에 바꿀 대상이 '계산'이라는 점을 놓쳤어.",
+   "grader": "claude",
+   "missed": [
+    "(a) consistency (일관성)",
+    "(c) abstraction (추상화)",
+    "(d) a computation (계산/연산)"
+   ],
+   "mode": "practice",
+   "qid": "2022-2",
+   "score": 0.25,
+   "verdict": "partial",
+   "_id": "1791718187017-tv364s"
+  },
+  {
+   "answer": "consistancy, accesability, abstraction, the computation",
+   "at": 1791718257273,
+   "feedback": "네 답의 의미는 (a)부터 (d)까지 모두 맞아. 다만 (a) consistancy와 (b) accesability는 철자가 틀렸어. 정답은 consistency, accessibility야. (d)는 the computation이라고 썼는데 a computation으로 써도 의미가 같아서 감점은 없어.",
+   "grader": "claude",
+   "missed": [
+    "(a) 철자: consistency (consistancy 아님)",
+    "(b) 철자: accessibility (accesability 아님)"
+   ],
+   "mode": "practice",
+   "qid": "2022-2",
+   "score": 0.75,
+   "verdict": "partial",
+   "_id": "1791718257273-wqjdo8"
+  },
+  {
+   "answer": "TIntStack::TIntStack(unsigned int stackSize) {\n    _size = stackSize; \n    _count = 0;\n    _sp = new int[_size];\n}\nTIntStack::TIntStack(const TIntStack& that) {\n    _size = that._size; \n    _count = that._count;\n    _sp = that._sp;\n}\n\nTIntStack::~TIntStack(){\n    delete[] _sp;\n}\nTIntStack::bool Push(int thisValue) {\n    _count++;\n    _size++;\n    _sp\n}",
+   "at": 1791719589260,
+   "feedback": "(1) 생성자와 (3) 소멸자는 모범답안이랑 똑같이 잘 썼어. 근데 (2) 복사 생성자는 _sp = that._sp 로 포인터만 복사한 얕은 복사라서 소멸자에서 double delete 위험이 있고, (4) Push는 반환 타입 문법(TIntStack::bool Push)부터 틀렸고 꽉 찼는지 검사도 없고 _sp에 값 저장도 안 했고 _size++도 잘못됐고 return도 없고 문장도 미완성이야.",
+   "grader": "claude",
+   "missed": [
+    "복사 생성자에서 new int[_size]로 새 배열 할당 (깊은 복사)",
+    "복사 생성자에서 원소를 반복문으로 복사",
+    "Push 정의 문법: bool TIntStack::Push(int thisValue)",
+    "Push에서 _count >= _size 이면 false 반환",
+    "Push에서 _sp[_count++] = thisValue 로 값 저장",
+    "Push 성공 시 true 반환 (_size는 증가시키면 안 됨)"
+   ],
+   "mode": "practice",
+   "qid": "2022-7",
+   "score": 0.4,
+   "verdict": "partial",
+   "_id": "1791719589260-6iyhop"
+  },
+  {
+   "answer": "TIntStack::TIntStack(TIntStack& T){\n   _size = T._size;\n   _count= T._count;\n   _sp = new int[_size];\n\n   for(int i = 0; i < _count; i++){\n      _sp[i] = T._sp[i];\n   }\n}\n\nTIntStack::~TIntStack(){\n    delete _sp;\n}\n\nvoid TIntStack::Push(int a){\n    _count++;\n    _size++;\n    _sp[\n}",
+   "at": 1791720909890,
+   "feedback": "복사 생성자는 깊은 복사로 거의 맞게 썼어(const 참조가 아닌 건 아쉬워). 소멸자는 new[]로 할당했으니 delete[]를 써야 하는데 delete라서 메모리 오류야. Push는 미완성이고 _size를 증가시키는 로직도 틀렸어. (4)번은 아예 답을 안 썼어.",
+   "grader": "claude",
+   "missed": [
+    "복사 생성자 매개변수를 const TIntStack&로 받기",
+    "소멸자에서 delete[] _sp 사용",
+    "Push에서 _sp[_count++] = value 로 값 저장 (완성되지 않음)",
+    "Push에서 _size를 증가시키면 안 되고 용량 초과 체크(assert 또는 if) 필요",
+    "(4) 기본 복사 생성자는 얕은 복사라 포인터 _sp만 복사되어 두 스택이 같은 배열을 공유함",
+    "(4) 한쪽 변경이 다른 쪽에 영향을 주고 소멸 시 delete[]가 두 번 호출되어 double free/dangling pointer 발생"
+   ],
+   "mode": "practice",
+   "qid": "2017-5",
+   "score": 0.3,
+   "verdict": "partial",
+   "_id": "1791720909890-wpsqk1"
+  },
+  {
+   "answer": "object is create, ???",
+   "at": 1791729031261,
+   "feedback": "(a)에서 'object is create'라고 객체가 만들어진다는 방향은 잡았는데, '이미 존재하는 같은 타입의 객체로부터 새 객체를 만들 때'라는 핵심 조건이 빠졌어. (b)의 세 가지 경우 예시는 아예 없고 '???'로 끝나서 사실상 답이 안 된 거나 마찬가지야.",
+   "grader": "claude",
+   "missed": [
+    "(a) 기존 같은 타입 객체로부터 새 객체를 생성할 때 호출된다는 조건",
+    "(b) case 1: 직접 초기화 예시 (Person r(p);)",
+    "(b) case 2: 선언 시 초기화 예시 (Person p = q;)",
+    "(b) case 3: 값에 의한 전달 예시 (f(p);)",
+    "(b) 대입 연산자(p = q;)는 복사생성자가 아니라는 점"
+   ],
+   "mode": "practice",
+   "qid": "2017-6",
+   "score": 0.1,
+   "verdict": "partial",
+   "_id": "1791729031261-96tq3l"
+  },
+  {
+   "answer": "consistancy",
+   "at": 1791729149626,
+   "feedback": "consistancy는 '일관성'이라는 뜻이라 문제가 묻는 개념과 달라. 문제는 고장 없이 지정된 기간 동안 기능을 수행하는 능력을 말하니까 정답은 reliability(신뢰성)야. dependability랑 헷갈리지 않게 reliability를 외워둬.",
+   "grader": "claude",
+   "missed": [
+    "신뢰성(reliability) 개념",
+    "고장 없이 지정된 기간 동안 기능을 수행하는 능력"
+   ],
+   "mode": "practice",
+   "qid": "2025-1c",
+   "score": 0,
+   "verdict": "wrong",
+   "_id": "1791729149626-60tp7i"
+  },
+  {
+   "answer": "const, modify, the compiler",
+   "at": 1791729198699,
+   "feedback": "(i) const, (j) modify, (k) the compiler 모두 정답이야. 빈칸 세 개를 각각 채점했을 때 전부 맞아서 만점이야.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2025-1ijk",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791729198699-s46mdd"
+  },
+  {
+   "answer": "unstructural program",
+   "at": 1791743734725,
+   "feedback": "정답 맞아. 'unstructured programming'의 의미를 제대로 답했어. 다만 'unstructural'은 철자가 살짝 틀렸으니 다음엔 'unstructured'로 정확히 써.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2024-1c",
+   "score": 0.9,
+   "verdict": "correct",
+   "_id": "1791743734725-0lhx5x"
+  },
+  {
+   "answer": "consistancy, control, accessaibility,abstraction, replace",
+   "at": 1791743867202,
+   "feedback": "5개 빈칸 모두 맞혔어. consistancy, accessaibility는 철자만 틀렸고 의미는 정확해서 감점 없이 인정돼. control, abstraction, replace도 모범답안과 같아.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2024-2",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791743867202-1bh4c6"
+  },
+  {
+   "answer": "abstraction, what, how",
+   "at": 1791743892438,
+   "feedback": "빈칸 m(what)과 n(how)은 정확해. 빈칸 l은 'abstraction'이라고만 썼는데 모범답안은 'Data abstraction'이야. 핵심 용어는 맞아서 일부 감점만 한 거고, 'Data'를 붙였으면 만점이었어.",
+   "grader": "claude",
+   "missed": [
+    "빈칸 l의 'Data' 수식어 누락"
+   ],
+   "mode": "practice",
+   "qid": "2019-1lmn",
+   "score": 0.83,
+   "verdict": "partial",
+   "_id": "1791743892438-98sbkp"
+  },
+  {
+   "answer": "data abstraction, what, how",
+   "at": 1791743900692,
+   "feedback": "세 빈칸 모두 맞았어. (l) data abstraction, (m) what, (n) how 전부 모범답안과 같은 의미고, 영어로 썼으니 감점도 없어.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2019-1lmn",
+   "score": 1,
+   "verdict": "correct",
+   "_id": "1791743900692-0spcdq"
+  },
+  {
+   "answer": "pointer points the deallowcated memory. it can cuase undefined behaver",
+   "at": 1791744053761,
+   "feedback": "(i)는 댕글링 포인터를 해제된 메모리를 가리키는 포인터라고 제대로 썼어. (ii)는 undefined behavior라고만 쓰고 끝나서, 왜 위험한지 구체적인 결과(크래시나 재사용된 메모리 훼손)가 빠졌어.",
+   "grader": "claude",
+   "missed": [
+    "크래시(프로그램 비정상 종료) 가능성",
+    "해제된 메모리를 다른 데이터가 재사용해 그 메모리가 손상될 수 있음"
+   ],
+   "mode": "practice",
+   "qid": "2025-4",
+   "score": 0.7,
+   "verdict": "partial",
+   "_id": "1791744053761-3z8v3u"
+  },
+  {
+   "answer": "pointer points the deallowcated memory. it can cuase undefined behaver : crashed or corrupting memorty reused by other data",
+   "at": 1791744113086,
+   "feedback": "(i)는 '할당 해제된 메모리를 가리키는 포인터'라는 핵심을 맞혔고, (ii)도 undefined behavior, 크래시, 재사용 메모리 훼손을 모두 언급했어. 내용은 모범답안과 거의 같아.",
+   "grader": "claude",
+   "missed": [],
+   "mode": "practice",
+   "qid": "2025-4",
+   "score": 0.95,
+   "verdict": "correct",
+   "_id": "1791744113086-q3etzc"
+  },
+  {
+   "answer": "c\nc\nv 100 \nr 200 \n1 200",
+   "at": 1791768797876,
+   "feedback": "마지막 줄 '1 200'이랑 v, r 출력이 나온다는 건 맞았어. 그런데 'c'만 쓰고 숫자(c1, c2)를 빼먹었고, v100/r200도 공백이 들어가서 형식이 틀렸어. 그리고 복사생성자 copy1, 소멸자 d100, d200, d1이 전부 빠졌어.",
+   "grader": "claude",
+   "missed": [
+    "c1, c2에서 숫자 x 값 출력 누락",
+    "copy1 (값 전달 시 복사생성자 호출) 누락",
+    "v100 / r200 형식 (공백 없이 붙여 출력)",
+    "d100 (byVal 끝에서 복사본 소멸) 누락",
+    "d200, d1 (main 끝에서 b, a 순서로 소멸) 누락"
+   ],
+   "mode": "practice",
+   "qid": "v02-byval-byref",
+   "score": 0.2,
+   "verdict": "wrong",
+   "_id": "1791768797876-9wnfrn"
+  },
+  {
+   "answer": "c1\nc2\nc1\nv100 \nd100\nr200 \n1 200\nd 200\nd 1",
+   "at": 1791768923545,
+   "feedback": "전체 흐름이랑 소멸 순서(d200, d1)는 잘 짚었어. 근데 복사생성자 출력이 틀렸어. 값 전달에서는 복사생성자가 호출돼서 'c1'이 아니라 'copy1'이 나와야 해. 'd 200', 'd 1'처럼 공백이 들어간 것도 실제 출력과 달라서 주의해.",
+   "grader": "claude",
+   "missed": [
+    "세 번째 줄은 'c1'이 아니라 'copy1' (복사생성자의 출력)",
+    "'d200', 'd1'은 d와 숫자 사이에 공백이 없어야 함"
+   ],
+   "mode": "practice",
+   "qid": "v02-byval-byref",
+   "score": 0.85,
+   "verdict": "partial",
+   "_id": "1791768923545-9y41zb"
+  },
+  {
+   "answer": "c1\nc2\ncapy1\nv100 \nd100\nr200 \n1 200\nd200\nd1",
+   "at": 1791768947538,
+   "feedback": "출력 순서랑 내용은 전부 맞았어, 값 전달은 복사본만 바뀌고 참조 전달은 원본이 바뀌는 것도 잘 이해했네. 다만 'copy1'을 'capy1'로 잘못 써서 철자 오타가 하나 있어.",
+   "grader": "claude",
+   "missed": [
+    "'capy1' → 'copy1' 철자 오타"
+   ],
+   "mode": "practice",
+   "qid": "v02-byval-byref",
+   "score": 0.95,
+   "verdict": "correct",
+   "_id": "1791768947538-7rvlfj"
+  },
+  {
+   "answer": "c2\nc1 \nf10\nd10\n999\nd9",
+   "at": 1791769294274,
+   "feedback": "처음 c2, c1 두 줄만 맞았어. X c = a; 는 복사생성자라 c3가 나와야 하고, f(c)도 값 전달이라 c3가 또 나와. f 안의 o.v는 c의 복사본(4)이라 f5, d5가 맞고 f10은 틀렸어. 마지막 줄은 494여야 하고, main 끝에서 d4, d9, d4 순서로 소멸자가 3번 나와야 해.",
+   "grader": "claude",
+   "missed": [
+    "X c = a; 에서 복사생성자 c3 출력",
+    "f(c) 값 전달 시 복사생성자 c3 출력",
+    "f 안에서 복사본 o.v가 5가 되어 f5 출력",
+    "함수 종료 시 복사본 소멸자 d5 출력",
+    "cout 출력 494 (a.v=4, b.v=9, c.v=4)",
+    "main 종료 시 역순 소멸 d4, d9, d4 (c, b, a)"
+   ],
+   "mode": "practice",
+   "qid": "v07-copy-vs-assign",
+   "score": 0.15,
+   "verdict": "wrong",
+   "_id": "1791769294274-a5ivkg"
+  },
+  {
+   "answer": "consistancy, control, accessiablity, , replace",
+   "at": 1791876852250,
+   "feedback": "(a) consistancy, (b) control, (c) accessiablity, (e) replace는 맞았어. (a)와 (c)는 철자만 틀렸고 뜻은 맞아. (d) 빈칸은 비어 있어서 0점이야.",
+   "grader": "claude",
+   "missed": [
+    "(d) functional abstraction 빈칸 누락"
+   ],
+   "mode": "practice",
+   "qid": "2024-2",
+   "score": 0.8,
+   "verdict": "partial",
+   "_id": "1791876852250-y802n0"
+  }
+ ],
+ "progress": {},
+ "checks": []
+}

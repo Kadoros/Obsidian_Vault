@@ -27,4 +27,5 @@ node test/smoke_claude.js page.html ../bank.json ../learn.json   # 전부 통과
 - 점검 문제 id·개념 id도 바꾸지 말 것 (checks/progress가 연결됨).
 - `capabilities`는 넘기지 않기 → db/sample 권한 유지.
 - 문제 id를 바꾸거나 지우지 말 것 (attempts가 qid로 연결됨).
-- `../객체프 중간 트레이너.html`은 bank를 내장한 오프라인용 옛 사본이고, 코스 기능이 없음.
+- `../객체프 중간 트레이너.html`: 오프라인 사본. `python3 -B offline.py`가 page.html에 bank·learn을 내장해서 만듦 (배포 후 같이 돌릴 것). 그림은 `../img/`.
+- 기록 백업: 기록 탭 맨 위 '기록 내보내기/가져오기' (`../../../_shared/backup.js`, `patch_backup.py`로 4개 트레이너에 넣음). 배포 capabilities에 `downloads: true` 포함.
