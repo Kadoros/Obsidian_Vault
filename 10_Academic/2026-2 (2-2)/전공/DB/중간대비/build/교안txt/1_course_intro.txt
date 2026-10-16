@@ -1,0 +1,413 @@
+        Databases
+ Lecture 1: Course Introduction
+
+               Yunyong Ko
+School of Computer Science and Engineering
+           Chung-Ang University
+Outline
+q Course Overview
+  ■ Course and Instructor information
+  ■ Lecture materials and grading policy
+  ■ Course goals: What we will learn
+
+
+q Introduction to Database Systems
+  ■ Definition and applications
+  ■ Characteristics and advantages
+
+
+
+
+                                           2
+Course Overview
+q Course Title: Databases (59190)
+
+q Lecture Hours
+  ■ #1: Tuesday 11:00 am - 12:50 pm and Friday 11:00 am - 11:50 am (310-B210)
+  ■ #2: Tuesday 1:00 pm - 2:50 pm (310-729) and Friday 1:00 pm - 1:50 pm (310-728)
+
+q Course Homepage: e-class
+  ■ All materials will be uploaded on the e-class before every class
+
+q Language: English
+  ■ I can give a supplementary explanation in Korean
+
+
+
+                                                                                     3
+Instructor and Teaching Assistants
+q Instructor: Yunyong Ko (고윤용), Assistant Professor @ CAU
+  ■ Research interests: Machine Learning (ML) and Data Science (DS)
+    q   Lab: Machine INtelligence and Data Science (MINDS) Lab.
+  ■ E-mail: yyko@cau.ac.kr
+  ■ Office: Building 310, Room 744
+  ■ Homepage: https://yy-ko.github.io (Lab: https://www.minds.cau.ac.kr/)
+
+q TA Information
+  ■ Joohee Cho (조주희), joohee2008@cau.ac.kr
+  ■ Sooho Moon (문수호), moonwalk725@cau.ac.kr
+  ■ Office: Building 208, Room 516
+  ■ Office Hours: 3:00 pm – 3:50 pm (Tuesday)
+
+                                                                            4
+Lecture Materials
+q Textbook
+  ■ “Fundamentals of Database Systems” (7th edition)
+    q   Authors: Ramez Elmasri and Shamkant B. Navathe
+
+
+q Slides + Hands-on Practices
+  ■ Lecture slides (pdf) per each week and additional materials (hands-on practices)
+  ■ All materials will be uploaded on the e-class before every class
+
+q Prerequisites: Data Structure, Basic Programming
+  ■ This is NOT a programming class
+  ■ This course includes some programming assignments
+
+
+
+                                                                                       5
+Grading Policy
+q Exams: Midterm (40%) + Final (40%)
+  ■ Closed-book test (Textbook and lecture slides)                                       A+ or A0 <= 45%
+                                                                                         B+ or B0 <= 80%
+  ■ NO tolerance on cheating (Cheating will result in F grade)                           C+ or C0 > 80%
+
+                                                                                   This cut-off can be adjusted slightly
+q Assignments (15%): 2 Assignments
+  ■ Submission due: 11:59 PM on the due date
+  ■ Late submission: +1 days (-25%), +2 days (-50%), +3 days (No score)
+    q   Contact the TA if you have any difficulties in submitting the assignment
+  ■ Plagiarism: NO score if plagiarism is detected
+    q   Plagiarism detection tools will be used to check your code
+  ■ Programming Languages: Python
+q Attendance (5%)
+  ■ No grade if you are absent for more than 30% of all the classes
+
+                                                                                                                       6
+Things to Keep in Mind
+q Frequently Check the e-class
+  ■ All announcements and lecture materials will be uploaded on the e-class
+    q   Assignments, examinations, class cancellation and makeup class, etc.
+
+q Q&A
+  ■ Contact me and TA if you have any questions
+q Academic Integrity Policy
+  ■ NO tolerance on any violation (cheating, plagiarism, …)
+    q   Feel free to discuss with other members, but write down your own solution independently
+
+q Etiquette
+  ■ Non-hostile environment: be respectful to one another
+  ■ Mobile device: put your phone/tablet on silent/vibrate mode
+  ■ Email: write emails properly (to TAs or to Professor)
+                                                                                                  7
+What We Will Learn
+q Let’s Learn How Database Systems Work
+  ■ Part 1: How to “Use” Database Systems
+    q   We learn the basic concepts and key functions of DBMS with hands-on practices
+  ■ Part 2: How to “Implement” Database Systems
+    q   We learn the internal architecture of DBMS
+         § When something gets wrong, we need a DBA (DB administrator)
+         § AI will not be able to fully replace DBAs in the near future
+
+
+
+
+                                    Knowing How It Works == Using + Fixing
+
+
+                                                                                        8
+What We Will Learn: Part 1
+q Part 1: How to “Use” Databases (Weeks 1 - 10)
+  ■ Introduction to Database Systems
+
+  ■ Conceptual Data Modeling: ER model
+
+  ■ Relational Database
+
+  ■ Basic / Advanced SQL
+
+  ■ Relational Algebra
+
+  ■ Functional Dependencies and Normalization
+
+  ■ AI for Database Systems: NL2SQL
+                                                  9
+What We Will Learn: Part 2
+q Part 2: How to “Implement” Databases (Week 11-16)
+  ■ File Structures and Storage Management
+
+  ■ Indexing and Physical Database Design
+
+  ■ Query Processing and Optimization
+
+  ■ Transaction and Concurrency Control
+
+  ■ Database Recovery Techniques
+
+
+
+
+                                                      10
+What We Will Learn (Cont.)
+q Textbook View
+
+
+
+
+      Part 1      Part 2
+
+    13 chapters 7 chapters
+
+
+
+                             11
+Course Goals
+q By the End of This Course, You Will be Equipped with:
+  ■ The knowledge to comprehend the principles of databases and DBMS
+  ■ The ability to fluently use basic/advanced SQL with AI
+  ■ The skills to implement database systems for real-world applications
+
+
+
+
+                                                                           12
+Course Schedule (Tentative)
+ Week                         Topic                              Week                       Topic
+        2026.09.01            Course Introduction                       2026.10.27        AI for Databases: NL2SQL
+  1                                                               9
+        2026.09.04                    No class                          2026.10.30            Hands-on Practice
+
+        2026.09.08           ER Model (Video Lecture)                   2026.11.03        AI for Databases: NL2SQL
+  2                                                               10
+        2026.09.11              Hands-on Practice                       2026.11.06            Hands-on Practice
+        2026.09.15      Relational Database (Video Lecture)             2026.11.10      Disk Storage and File Structure
+  3                                                               11
+        2026.09.18       Hands-on Practice (Video Lecture)              2026.11.13         Parallelizing Disk Access
+                                                                                     Indexing for Physical Database Design
+        2026.09.22           Basic SQL (Video Lecture)                  2026.11.17
+  4                                                               12                            (Assignment #2)
+        2026.09.25             No class (추석 연휴)                         2026.11.20      Advanced Indexing Techniques
+        2026.09.29        Advanced SQL (Assignment #1)                  2026.11.24            Query Processing
+  5                                                               13
+        2026.10.02              Hands-on Practice                       2026.11.27            Query Optimization
+        2026.10.06              Relational Algebra                      2026.12.01          Transaction Processing
+  6                                                               14
+        2026.10.09   Hands-on Practice (Video Lecture, 한글날)             2026.12.04    Concurrency Control and Recovery
+
+        2026.10.13   Functional Dependencies and Normalization          2026.12.08           Advanced Topic: TBD
+  7                                                               15
+        2026.10.16              Hands-on Practice                       2026.12.11              No class (Q&A)
+  8     2026.10.23                Midterm Exam                    16    2026.12.18               Final Exam
+
+                                                                                                                             13
+Outline
+q Course Overview
+  ■ Course and Instructor information
+  ■ Lecture materials and grading policy
+  ■ Course goals: What we will learn
+
+
+q Introduction to Database Systems
+  ■ Definition and applications
+  ■ Characteristics of DB systems
+
+
+
+
+                                           14
+What is a Database System?
+q Database (DB)
+  ■ A logically coherent collection of inter-related data
+     q   Managed by a Database Management System
+
+
+q Database Management System (DBMS)
+  ■ A software that is designed to efficiently “manage”
+    data in a structured way
+     q Defining, constructing, manipulating, and sharing databases
+     q e.g., IBM DB2, Oracle, MS SQL Server, MySQL, SQLite, …
+
+
+
+q Database System
+  ■ Databases + DBMS software
+
+
+                                                                     15
+Why Use Database Systems?
+q Simple Real-world Example: Message App
+  ■ We want to manage data for a simple message application
+  ■ Necessary data
+    q Information of Friends: Name, Phone number, isAdvertisement, …
+    q Information of Messages: Message texts, sender information, date, …
+
+q Using Simple Text Files
+  ■ Store each line in the file
+  ■ Separate each attribute by a comma
+
+
+
+
+                                                                            16
+Why Use Database Systems? (Cont.)
+q A Number of Real-world Applications/Services
+  ■ E-Commerce websites
+    q   Customers, items, transactions, shipping, …
+  ■ Banking and finance sector
+    q   Users, account details, financial transactions, …
+  ■ Social media sites
+    q   Users, contents, social information, messages, …
+  ■ University/Library management systems
+    q   Students, courses, books, authors, …
+  ■ Airline/railway reservation systems
+    q   Customers, ticket appointments, rail routes, …
+  ■…
+
+
+                                                            17
+Why Use Database Systems? (Cont’d)
+q Data Integrity
+  ■ How can we manage the total length of message?
+  ■ What if a user adds duplicate friend information by mistake?
+  ■ What if there are friends with the same name?
+q Data Management
+  ■ How can we find a particular message quickly?
+  ■ What if multiple users try to read/write at the same time?
+q Data Durability
+  ■ What if the machine crashes while the app is writing new entries?
+  ■ How to restore files after crash?
+               There are a number of technical issues to be addressed😭
+                                  Let’s use DBMS!
+                                                                         18
+Characteristics of Database Systems
+1) Self-Describing Nature
+
+
+2) Data Abstraction
+
+
+3) Support of Multiple Views of the Data
+
+4) Sharing of Data and Multiuser Transaction Processing
+
+
+
+
+                                                          19
+1) Self-Describing Nature
+q A Database System Contains the DB Itself and Meta-Data
+  ■ Meta-data: a definition of the database structure and constraints
+    q Meta-data is stored in the DBMS catalog      Q. How can we define them? à SQL in Weeks 4-5
+    q It is necessary to maintain the DB
+
+
+
+                                                                             An example of
+                                                                           a database catalog
+
+
+
+
+                                                                                                   20
+2) Data Abstraction
+q Insulation between Programs and Data
+  ■ A database system provides a conceptual representation (logical level) of data
+    q   e.g., objects, their properties, and their interrelationship
+  ■ It does not include the complex structures of a database (physical level)
+    q   e.g., how the data is stored or how the operations are implemented
+  ■ A change of data structure does not affect programs (program-data independence)
+
+
+
+
+                                                                File storage format for a STUDENT record
+
+
+
+
+                                                                                                           21
+3) Support of Multiple Views
+q Different Users May Require Different Views of the Data
+  ■ View: virtual data derived from the database, but not explicitly stored
+     q   i.e., some users may not need to be aware of whether the data is stored or derived
+
+
+
+
+                                                                 View 1: accessing/printing the transcript of each student
+
+
+
+
+                                                                   View 2: checking the prerequisites of each course
+  University Database
+
+                                                                                                                         22
+4) Sharing of Data & Multiuser Processing
+q Multiple Users to Access the Database Simultaneously
+  ■ Data for multiple Apps can be integrated/maintained in a single database
+    q   e.g., several reservation agents try to assign a seat on an airline flight
+  ■ Concurrency control is needed to ensure multiuser transactions
+    q   Transaction: a collection of operations that perform a single logical function
+
+
+
+
+             Agent 1
+
+
+
+
+             Agent 2
+                              There is only one seat available
+                                                                   Transactions should hold the ACID properties
+                                                                     Atomicity, Consistency, Isolation, Durability
+                                                                        à Concurrency control in Week 14
+
+             Agent 3
+                                                                                                                     23
+When Not to Use a DBMS?
+q Overheads of DBMS
+  ■ High initial investment in hardware, software, and training
+  ■ The generality that a DBMS provides for defining and processing data
+  ■ Security, concurrency control, recovery, and integrity functions                    Too heavy..😭
+
+q More Desirable to Use Customized Databases
+  ■ Simple and well-defined applications that are not expected to change at all
+  ■ Strict real-time requirements that may not be met
+  ■ Embedded systems with limited storage capacity (no need general-purpose DBMS)
+  ■ No multiple-user access to data
+
+  No Addition
+  No Deletion
+  No Update
+
+                         Real-time Requirements   Limited Capacity   No Multiple-user Access
+                                                                                                       24
+Takeaways: Database System Concepts
+q Introduction to Database
+  ■ Database, DBMS, and Database System
+
+q Characteristics of DB Systems
+  ■ Self-describing nature
+  ■ Data abstraction
+  ■ Support of multiple views of the data
+  ■ Sharing of data and multiuser transaction processing
+
+
+
+
+                                                     View 2
+
+                                 View 1
+
+                                                              25
+       Q&A:
+Course Introduction
+
+
+
+
+                      26
+

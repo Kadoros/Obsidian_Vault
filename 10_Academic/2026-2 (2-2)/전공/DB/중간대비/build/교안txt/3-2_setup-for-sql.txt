@@ -1,0 +1,95 @@
+Prerequisite1 : Download VSCode
+□ Click the Link Below
+  ■ https://code.visualstudio.com/
+
+
+
+
+                                     1
+Prerequisite2 : Download Python
+□ Click the Link Below
+  ■ https://www.python.org/downloads/
+  ■ Around 3.11 is recommended
+
+
+
+
+                                        2
+Prerequisite3 : Environmental Settings
+□ Write the Commands into Your Terminal
+  ■ pip install pandas ← Enables csv manipulation
+  ■ pip install sqlglot ← Enables SQL syntax validation
+         Open terminal                  Example terminal output when sqlglot is activated
+
+
+
+
+                                                                                            3
+Step1 : Download Skeleton Code
+□ Download Folder from Eclass
+  ■ Un-zip it and open it in your editor
+
+
+
+
+                                           4
+Step2 : test.py
+□ Replace “change me” to Your “Student ID”
+   ■ Do not modify test.py elsewhere
+   ■ Further modification may lead to inconsistent output and affect grading
+
+
+
+
+                                                                               5
+Step3 : university.sqlite
+□ Directly See How the DB is Structured with SQLite Viewer
+   ■ This is optional for your conveniency
+
+
+
+
+                                                             6
+Step4 : NL_queries.txt & mysql.py
+□ Write Your SQL to mysql.py based on NL_queries.txt
+   ■ We already wrote golden answers corresponding to NL_queries.txt
+   ■ Nothing more to do here
+   ■ mysql.py will be empty for upcoming assignments
+
+
+
+
+                      NL_queries.txt
+
+
+
+                                                               mysql.py
+
+                                                                          7
+Step5 : test.py
+□ Check the SQL Outputs
+   ■ Run test.py to see the results
+
+                      Output 1        Output 2
+
+
+
+
+                                                 8
+Submission Guideline
+□ Submission
+   ■ What: A Compressed results folder
+       □ Compress your {student_id} folder with the queried answers in it
+       □ Compressed folder name should be just {student_id}
+   ■ Where: Assignment board on e-class
+   ■ Deadline: End of class (tentative)
+□ Q&A
+   ■ Joohee Cho (조주희): joohee2008@cau.ac.kr
+   ■ Sooyong Jung (정수용): wjdtndyd2001@cau.ac.kr
+   ■ Sooho Moon (문수호): moonwalk725@cau.ac.kr
+□ (Bonus) Usage of Skeleton Code
+   ■ Future assignments will operate under the same code format and submission system
+   ■ Students can practice SQL for future exams/assignments
+
+                                                                                        9
+

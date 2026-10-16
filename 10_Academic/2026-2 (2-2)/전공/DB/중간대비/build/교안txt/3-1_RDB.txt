@@ -1,0 +1,821 @@
+        Databases
+Lecture 3: Relational Data Model
+
+               Yunyong Ko
+School of Computer Science and Engineering
+           Chung-Ang University
+Outline
+q Relational Model Concepts
+  ■ Basic Concepts and Characteristics
+  ■ Relational Model Constraints
+
+q Operations and Constraint Violations
+  ■ Basic Operations: Insert, Update, Delete
+  ■ Constraint Violations
+
+q ER-to-Relational Mapping
+  ■ Mapping of Entity Types and Multivalued Attributes
+  ■ Mapping of Relationship Types
+
+
+
+                                                         2
+Recap: Database Design Process
+q Phase 1: Requirements Collection and Analysis
+  ■ Characterize the data needs of the prospective DB users
+  ■ Collect and analyze data requirements for the database
+    q   Output: a set of users’ detailed requirements
+
+
+q Phase 2: Conceptual Design
+  ■ Choosing a data model
+  ■ Translating the requirements into a conceptual schema
+
+q Phase 3: Implementation
+  ■ Implementing the DB based on the conceptual DB schema
+    q Logical design: the database schema
+    q Physical design: the physical layout of the DB
+
+
+                                                              3
+Relational Data Model
+q What is a Relational Data Model?
+  ■ Database design simplifies data representation, making data management efficient
+     q   Developed by Ted Codd of IBM in 1970
+  ■ Using relations (i.e., tables) to represent data, where each relation consists of
+    tuples (i.e., rows) and attributes (i.e., column headers)
+
+
+
+
+                  Example of Relational Databases     Ted Codd of IBM Research in 1970
+
+                                                                                         4
+Advantages of Relational Model
+q Simplicity
+  ■ Using a flat table structure, making it easy to understand and manage
+
+q Data Integrity
+  ■ Ensuring the data in the database is valid, consistent, and accurate
+
+q Easy Data Manipulation
+  ■ Supporting powerful, high-level data manipulation languages (i.e., SQL)
+    q   Users can flexibly manipulate data along with complex conditions
+
+
+q Security
+  ■ Offering robust security features,
+    q   e.g., user authentication, authorization mechanisms, data encryption, and so on
+
+                                                                                          5
+How To Represent a Database?
+q Represent a Database as a Collection of Relations (i.e., Tables)
+  ■ A relation consists of a set of tuples (i.e., rows)
+     q   Each row in the table represents a collection of related data values
+  ■ A column header represents an attribute defining a property of each object
+
+
+
+
+                                                                                   Each row represents facts
+                                                                                about a particular entity (student)
+
+
+
+
+                                         Attributes specify how to interpret
+                                            the data values in each row.
+
+
+
+
+                                                                                                                      6
+How To Represent a Database? (Cont.)
+q Example: Company Database
+
+
+
+
+        Relational Database Schema
+
+
+
+                                     Relational Database State
+                                                                 7
+Domain of Attributes
+q Domain D
+ ■ A set of allowed atomic values for each attribute
+   q   each value in the domain is indivisible
+ ■ Domain = data type + constraints
+q Domain Examples
+
+
+
+   A Data type can be specified for each domain:
+
+   The data type for the domain ‘Usa_phone_numbers’:
+   (ddd)ddd-dddd, where d is a numeric digit, and the first
+   three digits form a valid area code
+
+   The data type for the domain ‘Employee_ages’:
+   An integer number between 15 and 80
+                                                              8
+Relation Schema and Instance (State)
+q Relation Schema: ! = ($! , … , $" )
+  ■ Made up of a relation name and a list of attributes #! , #" , … , ##
+     q   e.g., STUDENT = (Name, Ssn, … , Gpa)
+  ■ The degree of a relation: the number of attributes n of its relation schema
+q Relation Instance (State): ((!)
+  ■ A set of n-tuples (i.e., rows) & ' = {*! , … , *$ }
+  ■ Tuple t of Relation R: Ordered list of n values * =< -! , … , -# >
+     q   Each value /! (1 ≤ 2 ≤ 3) is an element of dom(4! ) or a special NULL value
+
+
+                                                                                       Degree of this relation is 7
+
+
+
+
+                                                                                                                      9
+Characteristics of Relations
+q Values in Tuples
+  ■ Each value in a tuple should be an atomic value
+    q   i.e., it is not divisible into components
+  ■ Composite and multivalued attributes are NOT allowed
+    q Multivalued attributes must be represented by separate relations
+    q Composite attributes are represented only by their simple component attributes
+
+q NULLs in Tuples
+  ■ NULL values are used to represent the values of attributes that may be unknown or
+    may not apply to a tuple
+    q   Several meanings for NULL values: unknown, unavailable, undefined values, …
+
+
+
+
+                                                                                       10
+Relational Database Schema
+q What is a Relational Database Schema?
+  ■ A set of relation schemas / = {'! , … , '$ } and a set of integrity constraints IC
+     q   e.g., COMPANY={EMPLOYEE, DEPARTMENT, DEPT_LOCATIONS, PROJECT, WORKS_ON, DEPEDENT}
+
+
+
+
+                                                                                    Key Constraint:
+                                                                    The underlined attribute represents the primary key
+
+
+
+
+                                                                           Referential Integrity Constraint:
+                                                                      Each arrow represents the referential relation
+                                                                                between two relations
+
+
+
+                             Relational Database Schema for the COMPANY Database
+
+                                                                                                                       11
+Relational Database State
+q What is a Relational Database State?
+  ■ A set of relation states DB = {&! , … , &$ }, &% is a state of '%
+     q 5! satisfies the integrity constraints specified in IC
+     q A valid DB state should satisfy all the integrity constraints (otherwise, it is invalid)
+
+
+
+
+                                 One Possible DB State for the COMPANY Database
+                                                                                                  12
+Relational Model Constraints
+q What are the Relational Model Constraints?
+  ■ Specific constraints that must hold for the data
+     q There exit many relations, and their tuples are related in various way
+     q For data integrity, every relation database state should follow all the constraints (i.e., valid state)
+
+  ■ DBMS should provide capabilities for defining and enforcing these constraints
+
+
+q Three Crucial Constraints
+  ■ Key Constraints
+  ■ Entity integrity Constraints
+  ■ Referential integrity Constraints
+
+
+
+
+                                                                                                                 13
+Key Constraints
+q What is a Key Constraint?
+  ■ “Two distinct tuples cannot have the identical values for the attributes in SK”
+     q   For any two distinct tuples 6" and 6# in a relation state r: 6" SK ≠ 6# SK
+  ■ Superkey (SK) of Relational Schema R
+     q A subset of attributes in R that can uniquely identifies each tuple
+     q Every relation has at least one default superkey
+
+q Why Key Constraints Required?
+  ■ In a relation, tuples must be distinct by the definition
+  ■ How can we identify each tuple uniquely?
+
+
+
+
+                                                                                      14
+Key Constraints (Cont.)
+q Key of Relational Schema R
+  ■ A superkey of R with the following additional property
+    q   Removing any attribute A from K leaves a set of attributes K’ that is not a superkey of R any more
+  ■ It is a minimal superkey
+    q We cannot remove any attributes, the uniqueness constraint holds
+    q This minimality property is required for a key but optional for a superkey
+
+                            Superkey: {Ssn, Home_phone}
+
+                         Removing the attribute “Home_phone”
+
+                                      Key: {Ssn}
+
+
+
+
+                          The value of a key attribute can be used to identify uniquely each tuple           15
+Key Constraints (Cont.)
+q Primary and Candidate Keys of Relational Schema R
+  ■ A relation schema may have more than one key
+    q   Each of the keys is called a candidate key
+  ■ It common to designate one of the candidate keys as the primary key of the relation
+    q   Used to identify tuples uniquely in the relation
+
+                                         There are two candidate keys in the CAR relation
+                                         License_number is designated as the primary key
+
+
+    Primary key is underlined
+
+
+
+
+                    Usually, it is better to choose a key with a single attribute or a small number of attributes
+
+
+                                                                                                                    16
+Entity Integrity Constraint
+q What is an Entity Integrity Constraint?
+  ■ “No primary key value can be NULL”
+    q   For every tuple t in r(R), 6 9: ≠ ;<==
+  ■ The constraint for the primary key (PK) of each relation schema R
+                                                                  Office_phone cannot become the key
+
+
+
+
+                                   Q. Why entity integrity constraints needed?
+
+                               If two or more tuples have NULL for their primary keys,
+                     we cannot distinguish them when we try to reference them from other relation
+
+
+
+                                                                                                       17
+Referential Integrity Constraint
+q What is a Referential Integrity Constraint?
+  ■ “A value of FK in a tuple 0& either has a value of PK for some tuple 0' or is NULL”
+    q Foreign Key (FK): a set of attributes in relation schema >" references >#
+    q i.e., 6" ?: = 6# (9:) (the tuple 6" references the tuple 6# )
+
+  ■ The FK of '! has the same domain(s) as the PK of '"
+
+                                                                                            Dno: Foreign key (FK)
+           EMPLOYEE:                                                                   that references DEPARTMETN
+        Referencing relation
+
+
+
+
+          DEPARTMENT:                                         Tuple for employee ‘John Smith’ references the tuple for
+         Referenced relation                                                the ‘Research’ department,
+                                                                     à ‘John Smith’ works for this department
+                                    Dnumber:
+                               PK of DEPARTMENT
+
+
+                                                                                                                         18
+Referential Integrity Constraint (Cont.)
+q Why is a Referential Integrity Constraint Needed?
+  ■ To maintain the consistency among tuples in the two relations
+    q   A tuple in one relation referring to another relation must refer to an existing tuple in that relation
+
+                                                                      The Dno of EMPLOYEE gives the department number
+                                                                                for which each employee works
+
+
+
+
+            EMPLOYEE:
+         Referencing relation                                                         3
+
+                                                                                            Q. What if the value of the Dno is 3?
+
+
+
+
+          DEPARTMENT:
+         Referenced relation
+
+                                      ?
+                                            We cannot interpret the meaning of this attribute value
+
+
+                                                                                                                               19
+Exercises: Referential Integrity Constraints
+q Exercise 1
+  ■ Consider the following relations for a database that keeps track of business trips of
+    salespersons in a sales office:
+
+
+
+
+  ■ A trip can be charged to one or more accounts
+  ■ Specify all foreign keys for this schema
+
+
+
+
+                                                                                            20
+Exercises: Referential Integrity Constraints
+q Exercise 2
+  ■ Consider the following relations for a database that keeps track of student
+    enrollment in courses and the books adopted for each course:
+
+
+
+
+  ■ Specify all foreign keys for this schema
+
+
+
+
+                                                                                  21
+Outline
+q Relational Model Concepts
+  ■ Basic Concepts and Characteristics
+  ■ Relational Model Constraints
+
+q Operations and Constraint Violations
+  ■ Basic Operations: Insert, Update, Delete
+  ■ Constraint Violations
+
+q ER-to-Relational Mapping
+  ■ Mapping of Entity Types and Multivalued Attributes
+  ■ Mapping of Relationship Types
+
+
+
+                                                         22
+Operations of Relational Model
+q Two Types of Operations
+  ■ Retrieval: to retrieve information from the database
+  ■ Update: to change the states of relations in the database
+
+q Basic Update Operations
+  ■ Insert: insert one or more new tuples into a relation
+  ■ Delete: remove tuples from a relation
+  ■ Update (or Modify): change attribute values in existing tuples
+
+
+
+
+                    Whenever these operations are applied, some constraints may be violated
+
+
+                                                                                              23
+Basic Update Operation: Insert
+q Insert Operation
+  ■ Add a single tuple (row) to a relation (table)
+       q   Need to specify the relation name and a list of values for the tuple
+
+
+
+
+                Insert a tuple with all attribute values
+            The values should be listed in the same order
+
+
+
+ Q. What kinds of constraints can be violated by Insert operations?
+
+
+
+
+                                                                                  24
+Basic Update Operation: Insert (Cont.)
+q Constraint Violations by the Insert Operation
+  ■ Key constraint: a key value in the new tuple already exist in another tuple
+  ■ Entity constraint: any part of the PK of the new tuple is NULL
+
+
+
+        à This operation violates the key constraint
+
+
+
+
+   à This operation violates the entity integrity constraint
+
+
+
+
+                                                                                  25
+Basic Update Operation: Insert (Cont.)
+q Constraint Violations by the Insert Operation
+  ■ Referential integrity constraint: referenced tuples do not exist
+
+
+
+
+  à This operation violates the referential integrity constraint
+
+
+
+
+            à This operation satisfies all constraints
+
+                                                                   There is no tuple with Dnumber=7
+
+
+
+                                                                                                      26
+Basic Update Operation: Delete
+q Delete Operation
+  ■ Remove a tuple from a relation
+    q   Need to specify the relation name and the values of PK attributes
+
+
+
+
+        Q. What kinds of constraints can be violated by Delete operations?
+
+
+
+
+                                                                             27
+Basic Update Operation: Delete (Cont.)
+q Constraint Violations by the Delete Operation
+   ■ Referential integrity constraint: the deleted tuple is referenced from other tuples
+
+
+
+  Two tuples in WORKS_ON refers to this tuple
+  à Violate the referential integrity constraint
+
+
+
+
+  Four tuples in WORKS_ON refers to this tuple
+  Two tuples in EMPLOYEE refers to this tuple
+  à Violate the referential integrity constraint
+
+
+
+
+                No tuples refers to this tuple
+ à This operation satisfies the referential integrity constraint
+
+
+                                                                                           28
+Basic Update Operation: Update
+q Update (Modify) Operation
+  ■ Modify the values of one or more attributes
+     q   Need to specify the attributes being updated and their values
+
+
+
+
+  Q. What kinds of constraints can be violated by Update operations?
+
+
+
+
+                                                                         29
+Basic Update Operation: Update (Cont.)
+q UPDATE Examples Violating Constraints
+
+
+
+  à This operation violates the referential integrity constraint
+
+
+
+
+                     à This operation violates
+       both the key and the referential integrity constraints
+
+
+
+  Only updating the attributes of PK or FK can cause the problems
+
+
+
+
+                                                                    30
+Outline
+q Relational Model Concepts
+  ■ Basic Concepts and Characteristics
+  ■ Relational Model Constraints
+
+q Operations and Constraint Violations
+  ■ Basic Operations: Insert, Update, Delete
+  ■ Constraint Violations
+
+q ER-to-Relational Mapping
+  ■ Mapping of Entity Types and Multivalued Attributes
+  ■ Mapping of Relationship Types
+
+
+
+                                                         31
+Relational Database Design
+q ER-to-Relational Mapping
+  ■ Let’s design a relational database schema based on a conceptual schema design
+
+
+
+
+                               ER-to-Relational Mapping
+                                                                                    32
+Process of ER-to-Relational Mapping
+q Mapping of Entity Types
+  ■ Regular and weak entity types
+
+
+q Mapping of Multivalued Attributes
+  ■ Multivalued attributes are not allowed
+
+
+q Mapping of Relationship Types
+  ■ Binary relationship types: 1:1, 1:N, M:N
+  ■ N-ary relationship types (e.g., ternary)
+
+
+
+                                               33
+Process 1: Regular Entity Types
+q Mapping a Regular Entity Type
+  ■ (1) Create a relation R that includes all the simple attributes of the entity type E
+     q   For a composite attribute, include only the simple component attributes of the composite attribute
+  ■ (2) Designate one of the key attributes of E as the primary key for R
+
+
+
+
+                                                                            ?
+                                                                        Locations
+                                                                           How do we map a multivalued attribute?
+
+
+
+
+                                                                                                                    34
+Process 1-2: Multivalued Attributes
+q Mapping a Multivalued Attribute
+  ■ (1) Create a separate relation R for each multivalued attribute A
+  ■ (2) Includes the attribute A and the primary key of the original relation
+     q Designate the original relation’s primary key as a foreign key in R
+     q The key attribute value of the entity (FK) is repeated
+
+  ■ (3) Set the combination of A and K as the primary key
+
+
+
+
+                                                                             5    Seoul
+
+                                                                             5   Incheon
+
+                                                                             5   Suwon
+
+                                                                             3    Seoul
+
+                                                                             3   Daejeon
+
+                                                                                           35
+Process 2: Weak Entity Types
+q Mapping a Weak Entity Type
+  ■ (1) Create a relation R including all the simple attributes of the weak entity type W
+     q   For a composite attribute, include only the simple component attributes of the composite attribute
+  ■ (2) Include the primary key of the owner entity type as a foreign key
+     q   This takes care of mapping the identifying relationship type of W
+  ■ (3) Set the combination of the owner’s PK and the partial key as the primary key
+
+
+
+
+                                                               Mapping the identifying relationship type
+
+
+
+
+                                                                                                              36
+Process 3-1: Binary Relationship Types (1:1)
+q Three Possible Approaches
+  ■ Foreign key approach (most frequently used and useful)
+  ■ Merged relation approach
+  ■ Cross-reference (relationship relation) approach
+
+
+
+
+                                                             37
+Process 3-1: Binary Relationship Types (1:1)
+q Foreign Key Approach
+  ■ (1) Identify the participating entity types S and T of the relationship type R
+  ■ (2) Choose one of the relations and include the PK of the other one as an FK
+     q   It is better to choose an entity type with total participation in the role of S (Why?)
+  ■ (3) Include simple attributes of the relationship type R as attributes of S
+
+
+
+                                                           T
+
+
+                                                           S
+
+                                                               The entity type DEPARTMENT is chosen as the role of S
+
+           Relationship type attributes can be migrated
+               into one of any participating entities
+
+
+                                                                                                                       38
+Process 3-1: Binary Relationship Types (1:1)
+q Foreign Key Approach
+  ■ (1) Identify the participating entity types S and T of the relationship type R
+  ■ (2) Choose one of the relations and include the PK of the other one as an FK
+     q   It is better to choose an entity type with total participation in the role of S (Why?)
+  ■ (3) Include simple attributes of the relationship type R as attributes of S
+
+
+
+                                                  NULL values for employees who do not manage a department
+
+                  S                                                                    D_managed     Mgr_start_date
+
+
+
+                  T
+
+
+                             What if we choose the other (partial participation) as the role of S?
+
+
+
+                                                                                                                      39
+Process 3-2: Binary Relationship Types (1:N)
+q Two Possible Approaches
+  ■ Foreign key approach (preferred as it reduces the number of relations)
+  ■ Cross-reference (relationship relation) approach
+
+
+
+
+                                                                             40
+Process 3-2: Binary Relationship Types (1:N)
+q Foreign Key Approach
+  ■ (1) Identify the relation S representing the N-side entity type of the relationship type
+  ■ (2) Include the primary key of the other relation T as a foreign key in S
+  ■ (3) Include simple attributes of the relationship type as attributes of S
+            N-side
+
+
+                                                         S                       Dno
+
+
+
+                                                         T
+
+
+
+
+      Each entity instance on the N-side is related to
+        at most one entity instance on the 1-side
+
+
+                                                                                          41
+Process 3-2: Binary Relationship Types (1:N)
+q Foreign Key Approach
+  ■ (1) Identify the relation S representing the N-side entity type of the relationship type
+  ■ (2) Include the primary key of the other relation T as a foreign key in S
+  ■ (3) Include simple attributes of the relationship type as attributes of S
+             SUPERVISION relationship type                         CONTROLS relationship type
+
+                                             Dno   Super_ssn   T
+
+
+                                                               S                          Dnum
+
+
+
+
+                                                                                                 42
+Process 3-3: Binary Relationship Types (M:N)
+q Only One Possible Approach
+  ■ Cross-reference (relationship relation) approach
+
+
+
+
+                                                       43
+Process 3-3: Binary Relationship Types (M:N)
+q Cross-Reference Approach
+  ■ (1) Create a separate relation S to represent the relationship type R
+  ■ (2) Include the primary keys of the relations representing the participating entity
+    types as foreign keys in S
+  ■ (3) Set the combination of all the foreign keys as the primary key
+  ■ (4) Include simple attributes of M:N relationship type as attributes of S
+                                                                                  R
+                                                   Dno        Super_ssn
+
+
+
+
+                                    M:N relationship type cannot be represented
+                       Dnum
+                                          by a single foreign key attribute
+
+
+ S                      Relationship relation (a.k.a lookup table)
+
+
+                                                                                          44
+Process 4: N-ary Relationship Types
+q Cross-Reference Approach
+  ■ (1) Create a separate relation S to represent the relationship type R
+  ■ (2) Include the primary keys of the relations representing the participating entity
+    types as foreign keys in S
+  ■ (3) Set the combination of all the foreign keys as the primary key
+  ■ (4) Include simple attributes of n-ary relationship type as attributes of S
+                                                              R
+
+
+
+
+               S
+
+                                                                                          45
+Exercises: ER-to-Relational Mapping
+q Exercise 3:
+  ■ Map the ER schema for UNIVERSITY database into a relational database schema
+
+
+
+
+                                                                                  46
+Takeaways: Relational Data Model
+q Relational Model Concepts
+  ■ Relations, tuples, attributes, domains
+  ■ Characteristics of Relations
+  ■ Relational database schema and states
+
+q Relational Model Constraints
+  ■ Key Constraints
+     q   Two distinct tuples cannot have the identical values for the key attributes
+  ■ Entity Integrity Constraints
+     q   No primary key value can be NULL
+  ■ Referential Integrity Constraints
+     q   A value of FK in a tuple either has a value of PK for some tuple or is NULL
+
+
+
+                                                                                       47
+Takeaways: Relational Data Model (Cont.)
+q Basic Update Operations
+  ■ Insert: insert one or more new tuples into a relation
+  ■ Delete: remove tuples from a relation
+  ■ Update (or Modify): change attribute values in existing tuples
+
+q Constraint Violations
+  ■ Insert: may violate any of constraints (key, entity integrity, and referential integrity)
+  ■ Delete: may violate the referential integrity constraint
+  ■ Update: may violate the key and referential integrity constraint
+     q   Only updating the attributes of PK or FK can cause the problems
+
+
+
+
+                                                                                            48
+Takeaways: ER-to-Relational Mapping
+q Correspondence between ER and Relational Models
+
+
+
+
+                                                    49
+        Q&A:
+Relational Data Model
+
+
+
+
+                        51
+

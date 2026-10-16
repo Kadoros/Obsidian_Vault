@@ -1,0 +1,539 @@
+Week 2. ER Modeling
+Exercise 2: ER Schema Diagram (Cont.)
+q Step 1: Describing the Entity Types
+  ■ List entity types and their attributes based on the data requirements
+q Entity Type 1: AUTHOR
+  ■ Requirements:
+    q Authors of papers are uniquely identified by e-mail id and have the first and last names
+    q Authors can submit one or more papers
+       § (Paper) Each can have multiple authors, but one of the authors is designated as the contact author
+  ■ Attributes:
+    q   A_email, First_name, Last_name, {Submits_paper(Paper, Is_Contact)}
+
+                        First_name
+
+
+                                A_email               AUTHOR                  Submits_paper                AUTHOR
+
+
+                       Last_name                                      Paper                   Is_contact
+
+
+                                                                                                                    29
+Exercise 2: ER Schema Diagram (Cont.)
+q Step 1: Describing the Entity Types
+  ■ List entity types and their attributes based on the data requirements
+q Entity Type 2: PAPER
+  ■ Requirements:
+    q Each paper is assigned a unique id by the system and described by a title, abstract, and the file name
+    q Each can have multiple authors, but one of the authors is designated as the contact author
+    q A paper is assigned between two and four reviewers
+
+  ■ Attributes:
+    q   P_id, Title, Abstract, File_name , {Author}, {Reviewer}
+
+                                                     Abstract
+                                      Title                         File_name
+                                                                                                         Paper
+
+                        Reviewer                      PAPER
+                                                                      P_id
+                                     Author
+
+                                                                                                               30
+Exercise 2: ER Schema Diagram (Cont.)
+q Step 1: Describing the Entity Types
+  ■ List entity types and their attributes based on the data requirements
+q Entity Type 3: REVIEWER
+  ■ Requirements:
+    q Reviewers of papers are uniquely identified by e-mail id
+    q Each reviewer has the first and last name, phone number, affiliation, and topics of interest
+    q A reviewer rates each paper assigned to her/him on a scale of 1 to 10 in four evaluation categories:
+      (1) technical merit, (2) readability, (3) originality, and (4) relevance to the conference.
+    q Each reviewer provides an overall recommendation to each paper assigned to her/him
+    q Each review contains two types of written comments: (1) one to be seen by the review committee
+      only and (2) the other as feedback to author(s)
+  ■ Attributes:
+    q   R_email, First_name, Last_name, Phone_no, Affiliation, {Interest_topic},
+        {Reviews_paper(Paper, Recommendation, Comments(Feedback, For_committee),
+        Rating(C1:Technical_merit, C2:Readability, C3:Originality, C4:Relevance))}
+                                                                                                             31
+Exercise 2: ER Schema Diagram (Cont.)
+q Step 1: Describing the Entity Types
+  ■ List entity types and their attributes based on the data requirements
+q Entity Type 3: REVIEWER
+  ■ Attributes:
+    q   R_email, First_name, Last_name, Phone_no, Affiliation, {Interest_topic},
+        {Reviews_paper(Paper, Recommendation, Comments(Feedback, For_committee),
+        Rating(C1:Technical_merit, C2:Readability, C3:Originality, C4:Relevance))}
+
+                                     First_name
+                                                                                         Paper
+                   R_email                          Last_name                                         Recommendation
+
+
+        Phone_no                        REVIEWER                                  Reviews_papers
+
+                                                                   Comments                            Rating
+                   Affiliation
+
+
+                                 Interest_topic    For_committee              Feedback           C1   C2        C3     C4
+
+
+
+                                                                                                                            32
+Exercise 2: ER Schema Diagram (Cont.)
+q Step 2: Describing the Relationship Types
+  ■ List and describe relationship types and their cardinality ratios
+q Relationship Type 1: SUBMITS
+  ■ Relating AUTHOR and PAPER entity types
+       q An author is required to submit a paper and a paper has to be submitted by an author to be recorded
+          § i.e., both AUTHOR and PAPER types have a total participation (the minimum cardinality = 1)
+       q Author can submit many papers and a paper can be submitted by multiple authors (N:M)
+
+
+                                                                                              Abstract
+                 Last_name                           Is_contact
+                                                                                     Title                   File_name
+
+                                     (1,N)                              (1,M)
+ First_name       AUTHOR                             SUBMITS                                 PAPER                 P_id
+
+
+                                  Does this design satisfy the following requirement?             Reviewer
+                 A_email        “One of the authors is designated as the contact author”
+
+
+                                                                                                                          33
+Exercise 2: ER Schema Diagram (Cont.)
+q Step 2: Describing the Relationship Types
+  ■ List and describe relationship types and their cardinality ratios
+q Relationship Type 2: IS_CONTACT
+  ■ Relating AUTHOR and PAPER entity types
+       q For each paper, one author should play the role of “the contact author”
+          § i.e., PAPER has a total participation (the minimum cardinality = 1)
+       q An author can be the contact for many papers but does not have to be the contact for any papers
+          § i.e., AUTHOR has a partial participation (the minimum cardinality = 0)
+
+                                                                                    Abstract
+                 Last_name
+                                                                          Title                    File_name
+                                       (0,N)                (1,1)
+ First_name       AUTHOR                       IS_CONTACT                         PAPER                  P_id
+
+
+
+                                                                                        Reviewer
+                 A_email
+
+
+                                                                                                                34
+Exercise 2: ER Schema Diagram (Cont.)
+q Step 2: Describing the Relationship Types
+    ■ List and describe relationship types and their cardinality ratios
+q Relationship Type 3: REVIEWS
+    ■ Relating REVIEWER and PAPER entity types for keeping record of reviews
+           q It has three relationship attributes including two composite attributes (Comments and Rating)
+           q A paper is reviewed by 2 to 4 reviewers, so its (min, max) constraint is (2,4) (i.e., total participation)
+           q Every reviewer has to review at least one paper to be recorded and can review many papers
+               § i.e., its (min, max) constraint is (1,N) (i.e., total participation)
+
+
+            First_name                                         For_committee
+                                                                                       Feedback
+                                                                                                    Title
+ R_email                       Last_name     Recommendation                                                   Abstract
+                                                                            Comments
+
+Phone_no             REVIEWER                              REVIEWS                                PAPER
+                                            (1,N)                              (2,4)                            File_name
+
+   Affiliation                                                Rating
+                         Interest_topic                                                            P_id
+                                             C1       C2               C3       C4
+                                                                                                                            35
+Exercise 2: ER Schema Diagram (Cont.)
+q Step 3: Drawing the ER Diagram
+                                                                                                                   Abstract
+
+                                                   (1,N)                        (1,N)
+                                                                                                           Title              File_name
+                       Last_name
+                                                                   SUBMITS
+
+
+ First_name             AUTHOR                                                                                     PAPER
+
+
+                                                  (0,N)                          (1,1)
+                       A_email                                IS_CONTACT                                                          P_id
+
+
+
+                                                                      For_committee                Feedback
+               First_name
+
+                                   Last_name       Recommendation                       Comments
+     R_email
+
+
+
+ Phone_no                    REVIEWER                                        REVIEWS
+                                                           (1,N)                                   (2,4)
+
+         Affiliation                                                          Rating
+
+                                 Interest_topic
+                                                            C1          C2              C3         C4
+                                                                                                                                         36
+Week 3. Relational Data Model
+Exercises: Referential Integrity Constraints
+q Exercise 1
+  ■ Consider the following relations for a database that keeps track of business trips of
+    salespersons in a sales office:
+
+
+
+
+  ■ A trip can be charged to one or more accounts
+  ■ Specify all foreign keys for this schema
+                      Ssn of the TRIP relation references the SALESPERSON relation:
+                          each trip has to be assigned to an existing salesperson
+
+                       Trip_id of the EXPENSE relation references the TRIP relation:
+                               An expense has to be paid for a particular trip
+
+
+                                                                                            52
+Exercises: Referential Integrity Constraints
+q Exercise 2
+  ■ Consider the following relations for a database that keeps track of student
+    enrollment in courses and the books adopted for each course:
+
+
+
+
+                                                       Ssn of the ENROLL relation references the STUDENT relation:
+  ■ Specify all foreign keys for this schema                       Each enrollment has to include an existing student
+                                                   Course# of the ENROLL relation references the COURSE relation:
+                                                                   Each enrollment has to include an existing course
+                                         Course# of the BOOK_ADOPTION relation references the COURSE relation:
+                                                          Each book that is being adopted has to belong to a course
+
+                                          Book_isbn of the BOOK_ADOPTION relation references the TEXT relation:
+                                    Each book that is being adopted has to have a valid isbn number that can be found
+                                                                                                                   53
+Exercises: ER-to-Relational Mapping (Cont.)
+q Step 1: Mapping of Regular Entity Types
+
+
+
+
+                                              54
+Exercises: ER-to-Relational Mapping (Cont.)
+q Step 2: Mapping of Binary Relationship Types (1:1)
+
+
+
+
+                                                       55
+Exercises: ER-to-Relational Mapping (Cont.)
+q Step 3: Mapping of Binary Relationship Types (1:N)
+
+
+
+
+                                                       56
+Exercises: ER-to-Relational Mapping (Cont.)
+q Step 4: Mapping of Binary Relationship Types (M:N)
+
+
+
+
+                                                       57
+Week 4. Basic SQL
+Exercises: Specifying Integrity Constraints
+q Exercise 1
+  ■ BOOK_LOANS.Book_id à BOOK.Book_id
+    q   ON DELETE REJECT (or CASCADE)
+         § Imagine if a library administrator deletes a BOOK tuple since the book is
+           removed from the list of all the books in the library
+         § However, it does not mean that there are no any loans leX, and the library
+           want all books to be returned someday
+    q   ON UPDATE CASCADE
+         § If there is a change in Book_id, the change should be reﬂected into the
+             referencing tuples in order to correctly keep track of all the book loans
+  ■ BOOK_LOANS.Branch_id àLIBRARY_BRANCH.Branch_id
+    q ON DELETE CASCADE (or REJECT)
+       § The dele=on of a LIBRARY_BRANCH tuple: actual “closing” of that branch
+       § Thus, the loaned books do not need to be returned (forgive all the loans…)
+    q ON UPDATE CASCADE
+       § If there is a change in Branch_id, the change should be reﬂected into the
+             referencing tuples in order to correctly keep track of the library branch
+             where the book is loaned
+                                                                                         47
+Exercises: Specifying Integrity Constraints
+q Exercise 1
+  ■ BOOK_LOANS.Card_no à BORROWER.Card_no
+    q   ON DELETE REJECT
+         § A library policy do not oXen permit a member (borrower) to leave the
+           library un=l the member returns all the loaned books (or paying for them)
+         § Thus, the dele=on of a referenced tuple (BORROWER) is rejected
+
+    q   ON UPDATE CASCADE
+         § If there is a change in BORROWER.Card_no, the change should be reﬂected
+            into the referencing tuples (book loans) in order to correctly keep track of
+            the certain borrower who has loaned the book
+
+
+
+
+                                                                                           48
+Exercises: Data Retrieval in SQL
+q Exercise 2: Specify the Following Queries in SQL
+  ■ Q. Retrieve the names of all employees in department 5 who work more than 10
+    hours per week on the “ProductX” project
+       Projection attributes   SELECT E.Fname, E.Minit, E.Lname
+                               FROM EMPLOYEE AS E, PROJECT AS P, WORKS_ON AS W
+                               WHERE E.Dno=5 AND P.Pname=‘ProductX’ AND W.Hours > 10
+                               AND E.Ssn=W.Essn AND E.Dno=P.Dnum;
+                                                                                       3 Selection and 2 Join conditions
+
+
+
+
+                                                                                                                           49
+Exercises: Data Retrieval in SQL
+q Exercise 3: Specify the Following Queries in SQL
+  ■ Q. Retrieve the name and transcript of each senior student (Class=4) majoring in CS.
+    A transcript includes 1) course name, 2) course number, 3) credit hours, 4) semester,
+    5) year, and 6) grade for each course completed by the student
+          SELECT   S1.Name, C.Course_name, C.Course_number, C.Credit_hours, S2.Semester, S2.Year, G.Grade
+          FROM     STUDENT AS S1, COURSE AS C, SECTION AS S2, GRADE_REPORT AS G
+          WHERE    S1.Class = ‘4’ AND S1.Major = ‘CS’ AND S1.Student_number = G.Student_number
+                   AND G.Section_identifier = S2.Section_identifier. AND S2.Course_number = C.Course_number;
+
+
+
+
+                                                                                                               50
+Week 5. Advanced SQL
+Exercise: Advanced DML
+q Exercise 1
+  ■ Specify the following queries on the COMPANY database using the concept of
+    nested queries, grouping, aggregate functions, etc.
+
+
+ Q1. Retrieve the names of all employees who work in the department
+ that has the employee with the highest salary among all employees
+
+
+SELECT       Fname, Minit, Lname
+FROM         EMPLOYEE
+WHERE        Dno = ( SELECT        Dno
+                     FROM          EMPLOYEE
+                     WHERE         Salary = ( SELECT      MAX(Salary)
+                                              FROM        EMPLOYEE ));
+
+
+
+
+                                                                                 59
+Exercise: Advanced DML
+q Exercise 1
+  ■ Specify the following queries on the COMPANY database using the concept of
+    nested queries, grouping, aggregate functions, etc.
+
+
+ Q2. Retrieve the names of all employees whose
+ supervisor’s supervisor has ‘88866555’ for Ssn.
+
+
+SELECT       Fname, Minit, Lname
+FROM         EMPLOYEE
+WHERE        Super_ssn = ( SELECT         Ssn
+                            FROM          EMPLOYEE
+                            WHERE         Super_ssn = ‘88866555’ );
+
+
+
+
+                                                                                 60
+Exercise: Advanced DML
+q Exercise 1
+  ■ Specify the following queries on the COMPANY database using the concept of
+    nested queries, grouping, aggregate functions, etc.
+
+
+ Q3. Retrieve the names of employees who make at least $10,000
+ more than the employee who is paid the least in the company
+
+
+SELECT       Fname, Minit, Lname
+FROM         EMPLOYEE
+WHERE        Salary - 10000 >= ( SELECT      MIN(Salary)
+                                 FROM        EMPLOYEE );
+
+
+
+
+                                                                                 61
+Exercise: Advanced DML
+q Exercise 2
+  ■ Specify the following query on the UNIVERSITY database schema in SQL
+     Q2-1. Retrieve the names and major department of all straight-A students who have a grade of A in any of their courses
+     Q2-2. Retrieve the names and major departments of all students who do not have a grade of A in any of their courses
+
+
+
+                                    SELECT         S.Name, S.Major
+                                    FROM           STUDENT AS S
+                                    WHERE          NOT EXIST (SELECT *
+                                                               FROM GRADE_REPORT AS G
+                                                               WHERE G.Student_number = S.Student_number AND G.Grade <> ‘A’)
+
+
+
+
+                                    SELECT Name, Major
+                                    FROM STUDENT AS S
+                                    WHERE NOT EXIST (SELECT *
+                                                       FROM GRADE_REPORT AS G
+                                                       WHERE G.Student_number = S.Student_number AND G.Grade = ‘A’)
+
+
+
+
+                                                                                                                               62
+Exercises: Boolean Functions
+q Exercise 1: Specify the Following Query
+    Q. Retrieve the name of each employee who works on all the projects controlled by department number 5
+
+
+
+
+            Set difference operation:
+         Pnumber and Pno are compatible
+
+
+
+
+                                                                                                            51
+Exercises: Aggregate Functions
+q Exercise 2: Specify the following query in SQL
+              Q. For each department whose average employee salary is more than $30,000,
+         retrieve the department name and the number of employees working for that department
+
+
+
+
+                                                           SELECT       D.Dname, COUNT(*)
+                                                           FROM         EMPLOYEE AS E, DEPARTMENT AS D
+                                                           WHERE        E.Dno = D.Dnumber
+                                                           GROUP BY     E.Dno
+                                                           HAVING       AVG(E.Salary) > 30000
+
+
+
+                                                                                                         52
+Exercises: Views in SQL
+q Exercise 3
+
+                          à A view for describing each department and its manager
+
+
+
+                          CREATE VIEW DEPT_INFO(DeptName, MgrFname, MgrLname, MgrSalary)
+                          AS SELECT D.Dname, E.Fname, E.Lname, E.Salary
+                             FROM    DEPARTMENT AS D, EMPLOYEE AS E
+                             WHERE D.Mgr_ssn=E.Ssn
+
+
+
+                                  DEPT_INFO
+
+
+
+
+                                                                                    53
+Exercises: Views in SQL
+q Exercise 4
+
+
+               à A view for describing each project and its current status
+
+
+
+                                       CREATE VIEW ProjectInfo(Pname, Dname, NumEmployees, TotalHours)
+                                       AS SELECT P.Pname, D.Dname, COUNT(*), SUM(W.Hours)
+                                          FROM    PROJECT AS P, WORKS_ON AS W, DEPARTMENT AS D
+                                          WHERE P.Pnumber = W.Pno AND D.Dnumber = P.Dnum
+                                          GROUP BY P.Pnumber, D.Dname
+
+                                                 Compute the number of employees and total hours
+                                                                Per each group
+
+
+
+
+                                                                                                     54
+Week 7. Relational Algebra
+Exercises: Rela-onal Algebra
+q Exercise 1: State the Following Query in Rela-onal Algebra
+  ■ Q. Retrieve the name and address of all employees who work for the ‘Research’
+    department
+
+
+
+
+                                                                                    55
+Exercises: Rela-onal Algebra
+q Exercise 2: State the Following Query in Rela-onal Algebra
+  ■ Q. For every project located in “Staﬀord”, list the project number, the controlling
+    department number, and the department manager’s last name, address, and birth
+    date
+
+
+
+
+                                                                                          56
+Exercises: Rela-onal Algebra
+q Exercise 3: State the Following Query in Relational Algebra
+  ■ Q. Make a list of project numbers for projects that involve an employee whose last
+    name is ‘Smith’, either as a worker or as a manager of the department that
+    controls the project
+
+                                       Get the project numbers as a worker
+
+
+
+
+                                       Get the project numbers as a manager
+
+
+
+
+                                       Combine the results
+
+
+
+
+                                                                                         57
+Exercises: Rela-onal Algebra
+q Exercise 4: State the Following Query in Rela-onal Algebra
+  ■ Q. Retrieve the names of employees who have no dependents
+
+
+
+
+                                                                58
+Exercises: Relational Algebra
+q Exercise 5: State the Following Query in Rela-onal Algebra
+  ■ Q. List the names of managers who have at least one dependent
+
+
+
+
+                                                                    59
+

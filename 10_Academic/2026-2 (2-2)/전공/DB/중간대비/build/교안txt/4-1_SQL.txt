@@ -1,0 +1,705 @@
+          Database
+        Lecture 4: Basic SQL
+
+               Yunyong Ko
+School of Computer Science and Engineering
+           Chung-Ang University
+Outline
+q Basic SQL: Data Definition Language
+  ■ Introduction to SQL
+  ■ Creating Schemas and Tables
+  ■ Specifying Constraints
+  ■ Modifying Schemas: DROP and ALTER
+
+
+q Basic SQL: Data Manipulation Language
+  ■ Data Update: INSERT, DELETE, and UPDATE
+  ■ Data Retrieval: SELECT-FROM-WHERE Structure
+
+
+
+
+                                                  2
+Structured Query Language (SQL)
+q What is a Structured Query Language (SQL)?
+  ■ Special-purpose declara've programming language
+       q Designed for IBM’s ﬁrst DBMS and originally named SEQUEL (Structured English Query Language)
+       q Pronounced by ‘S-Q-L’ or ‘SEQUEL’
+
+
+q Components of SQL
+  ■ Data Deﬁni?on Language (DDL)
+       q   Providing commands for ‘databases and tables’
+            § CREATE Schema and Table
+            § ALTER and DROP Schema and Table
+  ■ Data Manipula?on Language (DML)
+       q   Providing commands for ‘tuples’ in tables
+            § Retrieval: SELECT
+            § Modiﬁca=on: INSERT, DELETE, UPDATE
+
+ Chamberlin, Donald D., and Raymond F. Boyce. “SEQUEL: A Structured English Query Language.”
+ in Proceedings of the ACM SIGFIDET (SIGMOD) Workshop on Data Description, Access and Control, 1974.
+                                                                                                        3
+Can AI Do SQL Well?
+q What is NL-to-SQL (NL2SQL)?
+    ■ A technique to convert a natural language query into a structured SQL query to
+      retrieve the desired data from a database
+
+
+
+
+q Challenges of NL2SQL
+    ■ Natural language ambiguity
+    ■ Schema understanding and linking
+    ■ GeneralizaOon to unseen databases
+    ■ Complex query generaOon
+
+ Li, Jinyang, et al. "Can LLM already serve as a database interface? a big bench for large-scale database grounded text-to-sqls." NeurIPS 2023.   4
+Current Performance of NL-to-SQL
+q There SEll Exists the Room for Further Improvement
+
+                                                                                                    Many types of errors
+
+
+
+
+                                                                              Recent LLM-based NL-to-SQL techniques are powerful,
+                                                                                         but they are far from perfect ⚠
+
+                                                                                 à Thus, a solid understanding of SQL is crucial!
+
+
+
+ Li, Jinyang, et al. "Can LLM already serve as a database interface? a big bench for large-scale database grounded text-to-sqls." NeurIPS 2023.
+ Shen, Jiawei, et al. "A study of in-context-learning-based text-to-sql errors." arXiv preprint arXiv:2501.09310 (2025).                          5
+Crea@ng a Database Schema in SQL
+q What is a Schema in SQL?
+  ■ Tables, types, constraints, views, domains, and others that describe the schema
+    q   Identified by a schema name
+
+q CREATE SCHEMA Statement
+  ■ To specify a schema name and an authorization identifier
+    q   Authorization identifier: to indicate the user who owns the schema
+
+
+
+
+                                                                             “COMPANY” Database
+
+
+
+
+                                                                                                  6
+Crea@ng a Table in SQL
+q CREATE TABLE Statement
+  ■ To create a new rela'on by specifying its name, aDributes and ini?al constraints
+    q   Table name: for clarity, aHaching the schema name to the relaIon name
+
+
+    q A6ributes: a list of <aHribute_name, data_type> pairs
+    q Ini:al constraints: aHribute constraints, integrity constraints,
+
+
+
+
+                                                                                       7
+Specifying AFribute Constraints
+q NOT NULL Constraint for APributes
+  ■ ARribute values cannot be NULL
+    q   This is always implicitly speciﬁed for the primary key aHributes (i.e., En/ty integrity constraint)
+
+q Default Values for APributes
+  ■ To deﬁne a default value for an aRribute: the clause DEFAULT <value>
+    q   The default value is included in any new tuple if an explicit value is not provided for that aHribute
+
+
+
+
+                                                                                         Specifying a default department
+                                                                                               for a new employee
+
+
+
+
+                                                                                                                       8
+Specifying Key Constraints
+q PRIMARY KEY Clause
+ ■ To specify one or more aRributes that make up the primary key of a relaOon
+
+q UNIQUE Clause
+ ■ To specify alternate (unique) keys (i.e., candidate keys)
+
+
+
+
+                                                                                9
+Specifying Referen@al Integrity Constraints
+q FOREIGN KEY Clause
+  ■ To specify a foreign key that refers to a primary key of another relaOon
+
+
+
+
+                     When the primary key attribute values are updated or deleted,
+                            Referential integrity constraint can be violated
+
+                             The default action of SQL is to reject those operations
+                   Q. Any other way to address this issue? à Referential Triggered Actions
+
+
+                                                                                             10
+Specifying Referen@al Triggered Ac@ons
+q How to Specify ReferenEal Triggered AcEons?
+  ■ Triggers: ON DELETE, ON UPDATE
+  ■ Ac?ons: SET NULL, CASCADE, SET DEFAULT
+
+
+
+
+   “What if the tuple referenced by others is deleted/updated?”
+   Setting NULL or a Default Value / Cascading a New Value
+        to all tuples referencing the deleted/updated tuple.
+
+
+
+
+                                                                  11
+Specifying Referen@al Triggered Ac@ons
+q How to Specify ReferenEal Triggered AcEons?
+  ■ Triggers: ON DELETE, ON UPDATE
+  ■ Ac?ons: SET NULL, CASCADE, SET DEFAULT
+
+
+
+
+                                                12
+Discussion: Referential Triggered Actions
+q How to Set ReferenEal Triggered AcEons?
+  ■ Consider that the EMPLOYEE table’s constraint EMPSUPERFK is changed as follows:
+
+                                              The action for ON DELETE is changed to CASCADE
+
+
+
+
+  ■ Q. What happens when the following command is run?
+
+
+
+
+                                                                                               13
+Exercises: Specifying Integrity Constraints
+q Exercise 1
+  ■ Consider the LIBRARY relaOonal database schema
+  ■ Choose the appropriate acOon (REJECT, CASCADE,
+    SET NULL, SET DEFAULT) for each referenOal
+    integrity constraint
+    q For the dele$on of a referenced tuple
+    q For the update of a primary key a4ribute value in a referenced tuple
+
+
+
+
+                                                                             14
+Exercises: Specifying Integrity Constraints
+q Exercise 1
+  ■ BOOK_AUTHORS.Book_id à BOOK.Book_id
+    q   ON DELETE CASCADE
+         § Once a book is deleted from a database, the information about the
+             authors of the book to be deleted is no longer necessary
+    q   ON UPDATE CASCADE
+         § If the primary key of a book tuple is updated, it should be cascaded
+             to its authors to identify the authors of the book
+
+
+  ■ BOOK.Publisher_name à PUBLISHER.Name
+    q   ON DELETE REJECT
+         § If there exist books published by a publisher, we do not allow the
+             publisher to be deleted (a book must have a name of the publisher)
+    q   ON UPDATE CASCADE
+         § If the name of a publisher is changed, we want to reflect the change
+             in referencing BOOK tuples
+
+
+
+                                                                                  15
+Exercises: Specifying Integrity Constraints
+q Exercise 1
+  ■ BOOK_COPIES.Book_id à BOOK.Book_id
+    q   ON DELETE CASCADE
+         § Imagine that a library administrator want to remove a book from the list of
+           all the books in the library
+         § Then, the administrator wants to delete the corresponding tuples in BOOK
+         § Thus, any copies of this book do not need to be maintained anymore
+    q   ON UPDATE CASCADE
+         § If there is a change in Book_id of a BOOK tuple, the change should be
+             reﬂected into the referencing tuples (i.e., its copies)
+  ■ BOOK_COPIES.Branch_id àLIBRARY_BRANCH.Branch_id
+    q ON DELETE CASCADE
+       § The dele=on of a LIBRARY_BRANCH tuple: actual “closing” of that branch
+       § Thus, the book copies do not need to be kept track of anymore
+    q ON UPDATE CASCADE
+       § If there is a change in Branch_id, the change should be reﬂected into the
+             referencing tuples in order to correctly keep track of the library branch
+             where the book copies are
+                                                                                         16
+Exercises: Specifying Integrity Constraints
+q Exercise 1
+  ■ BOOK_LOANS.Book_id à BOOK.Book_id
+    q ON DELETE: ?
+    q ON UPDATE: ?
+
+
+  ■ BOOK_LOANS.Branch_id àLIBRARY_BRANCH.Branch_id
+    q ON DELETE: ?
+    q ON UPDATE: ?
+
+
+
+  ■ BOOK_LOANS.Card_no à BORROWER.Card_no
+    q ON DELETE: ?
+    q ON UPDATE: ?
+
+
+
+
+                                                     17
+Modifying Database Schemas
+q What is Schema ModiﬁcaEon?
+ ■ To modify schemas, rather than tuples
+   q   E.g., adding/dropping tables, aHributes, constraints, and other elements
+ ■ Schema modiﬁcaOon commands:
+   q   DROP SCHEMA, DROP TABLE, ALTER TABLE
+
+
+q The DROP SCHEMA Command
+ ■ To drop a whole schema if it is no longer needed
+
+
+ ■ Two drop behavior opOons for DROP SCHEMA
+   q CASCADE: delete all elements of the schema
+      § i.e., removing all its tables, domains, and other elements
+   q RESTRICT ⚠: delete the schema only if it has no elements in the schema
+      § The user must individually drop each element in the schema
+
+                                                                                  18
+Modifying Database Schemas (Cont.)
+q The DROP TABLE Command
+ ■ To drop a speciﬁc named table
+
+
+   q   It not only deletes all the tuples in the table, but also removes the table deﬁni/on from the catalog
+         § Use DELETE command if you want to delete only the tuples but to leave the table deﬁni=on
+ ■ Two drop behavior opOons for DROP TABLE
+   q CASCADE: delete all the tuples and its table deﬁniIon
+      § All constrains and other elements that reference the table are dropped automa=cally from the schema
+   q RESTRICT ⚠: delete the table only if it is not referenced in any constraints or by any other elements
+      § The user must carefully check other constraints
+
+
+                                  à Q. How can we drop other schema elements
+                                   such as domains, data types, or constraints?
+
+
+
+
+                                                                                                               19
+Modifying Database Schemas (Cont.)
+q The ALTER TABLE Command
+ ■ To change the deﬁniOon of a table or other schema elements
+   q Adding or dropping aHributes and constraints
+   q Changing a column deﬁniIon (e.g., data types or constraints)
+
+
+
+
+                                                              Job
+
+
+                                                                     CASCADE: drop all constraints that reference
+                                                                    the column automatically, along with the column
+
+                                                                    RESTRICT: drop the column only if no schema
+                                                                         elements reference the column
+
+
+
+
+                                                                                                               20
+Outline
+q Basic SQL: Data DeﬁniEon Language
+  ■ IntroducOon to SQL
+  ■ CreaOng Schemas and Tables
+  ■ Specifying Constraints
+  ■ Modifying Schemas: DROP and ALTER
+
+
+q Basic SQL: Data ManipulaEon Language
+  ■ Data Update: INSERT, DELETE, and UPDATE
+  ■ Data Retrieval: SELECT-FROM-WHERE Structure
+
+
+
+
+                                                  21
+Update Commands in SQL
+q Three Commands to Modify the Database
+  ■ INSERT: add a single tuple to a relaOon
+  ■ DELETE: remove tuples from a relaOon
+  ■ UPDATE: modify aRribute values of one or more selected tuples
+
+
+
+
+                                                                    22
+INSERT Command
+q Usage 1: All APribute Values
+  ■ Specify a relaOon name and a list of all a3ribute values for the tuple
+     q   The values should be listed in the same order in which the corresponding aHributes speciﬁed
+
+
+
+
+                                                                                                       23
+INSERT Command (Cont.)
+q Usage 2: All Explicit APribute Values
+  ■ Specify explicit aRribute names and their corresponding values
+    q   The values for all a=ributes with NOT NULL and no default value must be included
+
+
+
+
+                                                                                           24
+INSERT Command: Viola@ng Constraints
+q ViolaEng Integrity Constraints of INSERT Commands
+
+
+     No DEPARTMENT tuple with Dnumber=2 exists
+
+      à Violating the referential integrity constraint
+             Thus, this should be rejected!
+
+
+
+
+                No Ssn value is provided
+
+           à Violating NOT NULL constraint
+               This should be rejected!
+
+
+
+
+                                                         25
+DELETE Command
+q Usage
+ ■ WHERE: select the tuple(s) to be deleted from a single rela?on
+   q Tuples are explicitly deleted from only one table at a Ime
+   q The deleIon may propagate to tuples in other relaIons if referen/al triggered ac/ons are speciﬁed
+      § e.g., Trigger: ON DELETE à Ac+on: CASCASE
+ ■ The number of tuples to be deleted can be diﬀerent
+
+
+                                                                                              No tuple is deleted
+
+
+                                                                                               1 tuple is deleted
+
+
+                                                                                              4 tuples are deleted
+
+
+                                                                                              all tuples are deleted
+
+                                                              Missing WHERE deletes all tuples! ⚠
+                                                                                                                     26
+UPDATE Command
+q Usage
+ ■ WHERE: select the tuple(s) to be modiﬁed from a single rela?on
+   q   The update may propagate to tuples in other relaIons if referen/al triggered ac/ons are speciﬁed
+        § e.g., Trigger: ON UPDATE à Ac+on: CASCASE
+ ■ SET: specify the aRributes to be modiﬁed and their new values
+
+
+
+
+   Several tuples can be modified with a single UPDATE command
+
+
+
+                                                                                                          27
+Data Retrieval in SQL
+q SELECT Command
+ ■ SQL has one basic statement for retrieving informaOon from a database
+ ■ SELECT-FROM-WHERE block
+
+
+
+
+   q <a6ribute list> is a list of aHribute names whose values are to be retrieved by the query
+      § Projec=on aWributes
+   q <table list> is a list of the relaIon names required to process the query
+   q <condi:on> is a condiIonal (Boolean) expression that idenIﬁes the tuples to be retrieved by the query
+      § Selec=on condi=on and join condi=on
+
+
+
+                                                                                                         28
+Data Retrieval in SQL: Examples
+q Query 1:
+  ■ Retrieve the birth date and address of the employee(s) whose name is ‘John B. Smith’
+                                                          Projection attributes:
+                                          Specified attributes whose values are to be retrieved
+
+
+
+                                                        Selection condition:
+                                            Choose the particular tuples of interest in a table
+
+
+
+
+                                                                                                  29
+Data Retrieval in SQL: Examples (Cont.)
+q Query 2:
+  ■ Retrieve the name and address of all employees who work for the ‘Research’ dept.
+                                                      Projection attributes
+
+                                                                         Join condition:
+                                Selection condition                     Combine two tuples,
+                                                           one from DEPARTMENT and one from EMPLOYEE
+
+
+
+
+                                                                                                   30
+Ambiguous AFribute Name
+q PrevenEng Ambiguity
+  ■ The same name can be used for two (or more) aRributes in diﬀerent relaOons
+  ■ We must qualify the aRribute name with the relaOon name to prevent ambiguity
+    q   If mulItable query refers to two or more aHributes with the same name
+
+                                                                    Name           Dnumber
+
+
+
+
+     Prefixing the relation name to the attribute name and
+     separating the two by a period(.) to prevent ambiguity
+
+
+
+                                                                      Name
+
+
+
+
+   Fully qualified attribute names can be used for better clarity
+
+                                                                                    31
+Renaming AFributes
+q Alias (Tuple variable) for Table Names
+  ■ Fully qualiﬁed aRribute names can be used for beRer clarity
+  ■ But they oben require repeated typing of long table names…!
+
+
+
+
+     Q. Retrieve the employee’s first and last name and
+  the first and last name of his or her immediate supervisor.
+
+
+    SELECT         E.Fname, E.Lname, E.Fname, E.Lname,
+    FROM           EMPLOYEE AS E
+    WHERE          E.Super_ssn = E.Ssn;
+
+        The ambiguity of attribute names also arises
+       when a query refers to the same relation twice…
+
+                                                                  32
+Two More Features of SQL
+q Missing WHERE Clause
+  ■ No condiOon on tuple selecOon
+  ■ Retrieve all tuples of the relaOons speciﬁed in FROM
+
+
+
+
+                                                                                           All possible tuple combinations
+          It is extremely important to specify every condition in the WHERE Clause!
+      if any such condition is overlooked, incorrect and very large relations may result                3*8=24
+
+                                                                                                                         33
+Two More Features of SQL (Cont.)
+q Use of the Asterisk (*)
+  ■ Retrieve all the attributes values of the selected tuples
+  ■ To avoid inconvenience of specifying all attribute names
+                                             We don’t have to list the attribute names explicitly in SQL
+
+
+
+
+                                                                                                           34
+Tables as (Mul@)Sets
+q Tables as MulEsets in SQL
+  ■ SQL treats a table not as a set but rather as a mul/set
+    q   i.e., “duplicate tuples” can exist in a table (or in the result of a query)
+  ■ SQL does not automa'cally eliminate duplicate tuples in query results
+q Why SQL treats Tables as MulEsets?
+  ■ Duplicate eliminaOon is an expensive operaOon à why?
+    q   E.g., sorIng the tuples ﬁrst and eliminate duplicates whenever new tuples are inserted
+  ■ Or someOmes a user may want to see duplicate tuples in the result of a query
+  ■ Also, when aggregate func'ons are applied to tuples (à Week 5)
+
+
+
+
+                                                                                                 35
+Tables as (Mul@)Sets (Cont.)
+q ALL Keyword
+ ■ Does not eliminate duplicate tuples from the result of a query
+q DISTINCT Keyword
+ ■ Eliminate duplicate tuples from the result of an SQL query
+
+                                      Q1. Retrieve the salary of every employee
+                                        Q2. Retrieve all distinct salary values
+
+                                        Q1
+
+
+                                        Q2
+
+
+
+                                                                                       Q2
+                                                                                  Q1
+
+
+
+                                                                                            36
+Tables as (Mul@)Sets (Cont.)
+q Set Operations on Relations
+  ■ Set union, (UNION), set difference (EXCEPT), set intersection (INTERSECT)
+  ■ The relations resulting from these set operations are sets of tuples
+    q   That is, duplicate tuples are eliminated from the result
+  ■ They apply only to type-compatible relations
+
+
+
+
+                                                                   Projects in which ‘Smith’ works as a manager
+
+
+
+
+                                                                   Projects in which ‘Smith’ works as a worker
+
+
+
+
+                                                                                                                  37
+Tables as (Mul@)Sets (Cont.)
+q MulEset OperaEons
+ ■ UNION ALL, EXCETP ALL, INTERSECT ALL
+   q   SQL also has corresponding mulIset operaIons, followed by the keyword ALL
+
+
+
+
+                                                                        R(A) EXCEPT ALL R(S)
+
+
+
+
+                                                                        R(A) INTERSECT ALL R(S)
+
+
+
+                                       R(A) UNION ALL R(S)
+
+
+
+                                                                                                  38
+Ordering of Query Results in SQL
+q ORDER BY Clause
+ ■ Ordering resulOng tuples of a query by the values of one (more) of the aRributes
+ ■ The default order is in ascending order of values
+   q   DESC (Descending order) and ASC (ascending order) keywords
+
+
+
+
+                                       Or
+
+
+
+
+                                                                                      39
+Standard Arithme@c Operators
+q Arithmetic Operators Can be Applied to Numeric Attributes
+  ■ Addition (+), Subtraction (-), multiplication (*), division (/)
+
+                                               This does not change the relation states
+
+
+
+
+                                                    30,000*1.1 = 33,000
+                                                    25,000*1.1 = 27,500
+
+                                                                                          40
+Comparison Operators
+q BETWEEN Operator
+ ■ Specify the range of aRribute values in the WHERE clause
+
+
+
+
+                                                              41
+Exercises: Data Retrieval in SQL
+q Exercise 2: Specify the Following Queries in SQL
+  ■ Q. Retrieve the names of all employees in department 5 who work more than 10
+    hours per week on the “ProductX” project
+
+
+
+
+                                                                                   42
+Exercises: Data Retrieval in SQL
+q Exercise 3: Specify the Following Queries in SQL
+  ■ Q. Retrieve the name and transcript of each senior student (Class=4) majoring in CS.
+    A transcript includes 1) course name, 2) course number, 3) credit hours, 4) semester,
+    5) year, and 6) grade for each course completed by the student
+
+
+
+
+                                                                                       43
+Takeaways: Basic SQL
+q What is a Structured Query Language (SQL)?
+  ■ Special-purpose declara've programming language
+    q Designed for IBM’s ﬁrst DBMS and originally named SEQUEL
+    q Pronounced by ‘S-Q-L’ or ‘SEQUEL’
+
+
+q Data DeﬁniEon Language (DDL)
+  ■ Providing commands for ‘databases and tables’
+    q CreaIng/modifying schemas and tables
+    q Specifying constraints
+
+
+
+q Data ManipulaEon Language (DML)
+  ■ Providing commands for ‘tuples’ in tables
+    q Data Update: INSERT, DELETE, and UPDATE
+    q Data Retrieval: SELECT-FROM-WHERE Structure
+
+                                                                 44
+  Q&A:
+Basic SQL
+
+
+
+
+            45
+

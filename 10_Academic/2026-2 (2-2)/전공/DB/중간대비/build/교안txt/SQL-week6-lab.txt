@@ -1,0 +1,222 @@
+Core Content
+□ RelBench: A Benchmark for
+  Deep Learning on Relational
+  Databases
+  ■ Code
+    https://github.com/stanford-
+    star/relbench
+  ■ Huggingface
+    https://huggingface.co/stanford-
+    star
+  ■ Paper
+    https://arxiv.org/pdf/2407.20060?
+
+
+
+                                        1
+DDL: Rel-event Relational Database Schema
+□ Details
+Blue Background : Primary Key
+  - Except events.user_id
+  - Null not allowed
+
+Categorical : numerical (0 or 1)
+
+1 : One-side, anchored to the
+Primary Key
+
+* : Many-side, marks the
+Foreign Key
+
+
+                                            2
+DDL: Open ddl_practice.py
+□ Write SQL between the quotes after the PRAGMA statement.
+
+
+                                                    Below is the test code.
+                                                    Run it to check your
+                                                    implementation.
+
+
+
+                                                    Take a screenshot
+                                                    showing your source code
+                                                    and result, then add them
+                                                    to your submission folder.
+
+
+
+
+                                                                                 3
+Rel-f1 Relational Database Schema
+□ Details
+
+   : Primary Key
+
+1 : One-side, anchored to
+the Primary Key
+
+* : Many-side, points to a
+Foreign Key
+
+
+
+
+                                    4
+Step 1: Open NL_queries.txt
+□ Seven Natural Language Queries
+  ■ (Q1) Easy   : Selection and Ordering
+  ■ (Q2) Easy   : JOIN
+  ■ (Q3) Easy   : GROUP BY + COUNT + HAVING
+  ■ (Q4) Medium : JOIN + multiple aggregates
+  ■ (Q5) Medium : JOIN + multiple aggregates
+  ■ (Q6) Hard : Nested query + Multi-condition Filtering
+  ■ (Q7) Hard : JOIN + GROUP BY + COUNT + HAVING
+
+
+
+
+                                                           5
+Step 1: Open NL_queries.txt
+□ Seven Natural Language Queries
+  ■ (Q1) Easy      : Selection and Ordering
+
+
+
+
+          Retrieve the forename, surname, and nationality of all British drivers.
+           Sort the result by surname and then forename in ascending order.
+
+
+
+
+                                                                                    6
+Step 1: Open NL_queries.txt
+□ Seven Natural Language Queries
+  ■ (Q2) Easy     : JOIN
+
+
+
+
+           Retrieve the race name, year, and circuit name for all races held at
+               circuits in Italy. Sort the result by year in ascending order.
+
+
+
+
+                                                                                  7
+Step 1: Open NL_queries.txt
+□ Seven Natural Language Queries
+  ■ (Q3) Easy      : GROUP BY + COUNT + HAVING
+
+
+
+
+          For each constructor, retrieve the constructor name and the number of
+           race results associated with that constructor. Show only constructors
+                               having at least 20 race results.
+
+
+
+
+                                                                                   8
+Step 1: Open NL_queries.txt
+□ Seven Natural Language Queries
+  ■ (Q4) Medium : JOIN + multiple aggregates
+
+
+
+            For each driver who has at least 20 race results, retrieve the driver's
+           first name, last name, number of race results, and average points per
+          race result. Show only drivers whose average points are greater than 5.
+
+
+
+
+                                                                                      9
+Step 1: Open NL_queries.txt
+□ Seven Natural Language Queries
+  ■ (Q5) Medium : JOIN + multiple aggregates
+
+
+
+            A sports journalist claims: “Ferrari has never achieved 15 or more
+           podium finishes in a single season.” Write an SQL query that can be
+           used to check whether this claim is false. For each piece of evidence,
+                     report the season (year) and the relevant statistic.
+
+
+
+
+                                                                                    10
+Step 1: Open NL_queries.txt
+□ Seven Natural Language Queries
+  ■ (Q6) Hard     : Nested query + Multi-condition Filtering
+
+
+
+          A Formula 1 fan argues: “Winning in Italy and winning in the United
+           Kingdom require very different strengths. I doubt many drivers have
+          managed to win races in both countries.” Write an SQL query to find
+          drivers who have won at least one race in Italy and at least one race in
+               the United Kingdom. Report the driver's first and last name.
+
+
+
+
+                                                                                     11
+Step 1: Open NL_queries.txt
+□ Seven Natural Language Queries
+  ■ (Q7) Hard     : JOIN + GROUP BY + COUNT + HAVING
+
+
+
+            Mike is a big fan of Max Verstappen. Emily teases him by saying,
+              “Max Verstappen has never won more than 10 races in a single
+          season.” Mike believes that Emily is wrong. Write an SQL query that
+          Mike can use to find evidence in the database that disproves Emily’s
+            claim. For each piece of evidence, report the season (year) and the
+                                     relevant statistic.
+
+
+
+
+                                                                                  12
+Step 2: Open mysql.py
+□ Write SQL to Previous Seven Questions
+
+
+
+
+                                          Important: SQLite doesn’t
+                                          support ALL or ANY
+
+
+
+
+                                                                      13
+Step 3: Run test.py
+□ Procedures to Check Results
+   ■ First change “my_student_id” in test.py to your id
+   ■ Type “python test.py” in terminal
+   ■ A folder containing retrieved results is produced
+
+
+
+
+                                                          14
+Step 4: Submit
+□ Compress the Folder as Zip
+   ■ Submit to Eclass
+   ■ Be sure to check that all the CSV files and the screenshot of the DDL are included
+
+
+        Screenshot from
+        DDL practice
+
+
+
+
+                                                                                          15
+

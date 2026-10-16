@@ -1,0 +1,1003 @@
+<title>DB 중간 트레이너</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Nanum+Pen+Script&display=swap">
+<style>
+/* Layout: query notebook — faint ruled paper, teal accent, red-pen grading. Left course tree + right reading/quiz pane; stacks on phones. */
+:root{
+  --paper:#f2f5f5; --sheet:#ffffff; --ink:#152225; --muted:#56676b; --line:#d8e1e2;
+  --rule:rgba(11,114,133,.06); --accent:#0b7285; --accent-weak:#e2f1f3; --accent-ink:#ffffff;
+  --pen:#d1372b; --ok:#2b8a3e; --ok-weak:#e4f3e7; --warn:#a8670d; --warn-weak:#fbefd9; --bad:#c3352b; --bad-weak:#fbe6e4;
+  --code-bg:#f0f4f4; --hl:#fff3bf;
+  --f-body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --f-pen:"Nanum Pen Script","Apple SD Gothic Neo",cursive;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0d1416; --sheet:#141d20; --ink:#e3ecee; --muted:#93a6aa; --line:#24333a;
+  --rule:rgba(102,205,222,.05); --accent:#5fc3d6; --accent-weak:#16303a; --accent-ink:#0d1416;
+  --pen:#ff6d5f; --ok:#5cc278; --ok-weak:#15301d; --warn:#e2a84b; --warn-weak:#33270f; --bad:#ff6d5f; --bad-weak:#3a1a18;
+  --code-bg:#10181b; --hl:#3a3410; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#0d1416; --sheet:#141d20; --ink:#e3ecee; --muted:#93a6aa; --line:#24333a;
+  --rule:rgba(102,205,222,.05); --accent:#5fc3d6; --accent-weak:#16303a; --accent-ink:#0d1416;
+  --pen:#ff6d5f; --ok:#5cc278; --ok-weak:#15301d; --warn:#e2a84b; --warn-weak:#33270f; --bad:#ff6d5f; --bad-weak:#3a1a18;
+  --code-bg:#10181b; --hl:#3a3410; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65;
+  background-image:linear-gradient(var(--rule) 1px,transparent 1px);background-size:100% 28px}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:16px;padding-block:0 56px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1240px;margin:0 auto;padding:12px 16px 0;display:flex;flex-direction:column;gap:8px}
+.brand{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.brand h1{margin:0;font-size:19px;font-weight:700;letter-spacing:-.01em}
+.brand .course{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.chip{font-family:var(--f-mono);font-size:11.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:var(--sheet);color:var(--muted);white-space:nowrap}
+.chip.dday{color:var(--pen);border-color:color-mix(in srgb,var(--pen) 40%,var(--line));font-weight:600}
+.chip.live{color:var(--ok)} .chip.local{color:var(--warn)}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs button{font:inherit;font-size:14px;font-weight:500;background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);padding:8px 12px 9px;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.view{padding-top:20px}
+h2{font-size:16px;margin:0 0 10px;font-weight:700;text-wrap:balance}
+h3{font-size:15px;margin:0 0 8px;font-weight:700;text-wrap:balance}
+.label{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)} .note{font-size:12.5px;color:var(--muted)} .err{font-size:13px;color:var(--bad)}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:var(--r)}
+.btn{font:inherit;font-size:13.5px;font-weight:500;border-radius:8px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);padding:7px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;text-decoration:none}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:none;border-color:transparent;color:var(--accent);padding-inline:6px}
+.btn.sm{font-size:12.5px;padding:4px 9px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.st{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap;display:inline-block}
+.st.none{background:var(--line);color:var(--muted)} .st.weak{background:var(--bad-weak);color:var(--bad)}
+.st.mid{background:var(--warn-weak);color:var(--warn)} .st.good{background:var(--ok-weak);color:var(--ok)}
+.st.lock{background:none;color:var(--muted);border:1px dashed var(--line)}
+.tag{font-size:11.5px;padding:2px 8px;border-radius:6px;background:var(--accent-weak);color:var(--accent);font-weight:500}
+.empty{padding:28px 20px;text-align:center;color:var(--muted)}
+pre.code{margin:0;font-family:var(--f-mono);font-size:12.5px;line-height:1.55;background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;white-space:pre}
+code{font-family:var(--f-mono);font-size:.88em;background:var(--code-bg);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+select,input[type=text]{font:inherit;font-size:13.5px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);max-width:100%}
+textarea{width:100%;min-height:150px;font-family:var(--f-mono);font-size:13px;line-height:1.55;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--sheet);color:var(--ink);resize:vertical}
+/* learn layout */
+.learn{display:grid;grid-template-columns:290px minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:900px){.learn{grid-template-columns:minmax(0,1fr)}}
+.tree{position:sticky;top:118px;max-height:calc(100vh - 140px);overflow:auto;padding:10px 0}
+@media (max-width:900px){.tree{position:static;max-height:none}}
+.tree details{border-bottom:1px solid var(--line)} .tree details:last-child{border-bottom:0}
+.tree summary{list-style:none;cursor:pointer;padding:9px 14px;display:flex;flex-direction:column;gap:4px}
+.tree summary::-webkit-details-marker{display:none}
+.tree .ut{font-size:13.5px;font-weight:600;line-height:1.35}
+.ubar{height:4px;border-radius:2px;background:var(--line);overflow:hidden}.ubar>b{display:block;height:100%;background:var(--accent)}
+.lrow{display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:8px;align-items:center;width:100%;padding:6px 14px 6px 18px;border:0;background:none;color:inherit;font:inherit;font-size:13px;text-align:left;cursor:pointer;line-height:1.35}
+.lrow:hover{background:var(--accent-weak)} .lrow.cur{background:var(--accent-weak);box-shadow:inset 3px 0 0 var(--accent)}
+.lrow[disabled]{cursor:not-allowed;opacity:.55}
+.dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--line);display:inline-block}
+.dot.done{background:var(--ok);border-color:var(--ok)} .dot.weak{background:var(--bad-weak);border-color:var(--bad)} .dot.cur{border-color:var(--accent)}
+.lnum{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+/* reader */
+.reader{padding:22px 26px;min-width:0}
+@media (max-width:600px){.reader{padding:16px}}
+.rhead{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.rhead h2{font-size:21px;margin:0}
+.body{max-width:72ch}
+.sec{padding:14px 0 6px;border-bottom:1px dashed var(--line);scroll-margin-top:130px}
+.sec:last-child{border-bottom:0}
+.sec h3{font-size:16.5px;margin:0 0 10px;display:flex;gap:8px;align-items:baseline}
+.sec h3::before{content:"§";font-family:var(--f-mono);color:var(--accent);font-weight:600}
+.sec.review{background:linear-gradient(90deg,var(--hl),transparent 85%);margin-inline:-14px;padding-inline:14px;border-radius:8px}
+.sec p,.sec ul,.sec ol{margin:0 0 10px} .sec ul,.sec ol{padding-left:20px} .sec li{margin:2px 0}
+.sec .sub{font-size:14px;color:var(--muted)}
+.sec pre.code{margin:4px 0 12px}
+.tblw{overflow-x:auto;margin:4px 0 12px}
+.tblw table{border-collapse:collapse;font-size:13.5px;min-width:100%}
+.tblw th{font-size:12px;color:var(--muted);font-weight:600;text-align:left;padding:7px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+.tblw td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.callout{font-size:14px;background:var(--accent-weak);border-radius:8px;padding:9px 12px;margin:4px 0 12px}
+.callout.exam{background:var(--warn-weak)} .callout.exam::before{content:"시험 ";font-weight:700;color:var(--warn)}
+.callout.trap{background:var(--bad-weak)}
+.callout.prof{background:var(--sheet);border:1px solid var(--line);border-left:3px solid var(--accent)} .callout.prof b{color:var(--accent)} .callout.prof .src{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.rfoot{margin-top:20px;padding:16px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--accent-weak);border-radius:var(--r)}
+.banner{position:sticky;top:112px;z-index:4;margin-bottom:14px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--warn-weak);border:1px solid color-mix(in srgb,var(--warn) 35%,var(--line));border-radius:var(--r);font-size:13.5px}
+/* quiz */
+.qwrap{padding:20px 24px;display:flex;flex-direction:column;gap:14px;min-width:0}
+@media (max-width:600px){.qwrap{padding:16px}}
+.qtop{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.pips{display:flex;gap:4px}.pips i{width:22px;height:6px;border-radius:3px;background:var(--line)}
+.pips i.on{background:var(--accent)} .pips i.ok{background:var(--ok)} .pips i.no{background:var(--bad)}
+.prompt{font-size:15.5px;white-space:pre-wrap;max-width:75ch}
+.choices{display:flex;flex-direction:column;gap:6px}
+.choice{font:inherit;text-align:left;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--sheet);color:var(--ink);cursor:pointer;display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px}
+.choice:hover{border-color:var(--accent)} .choice.sel{border-color:var(--accent);background:var(--accent-weak)}
+.choice.right{border-color:var(--ok);background:var(--ok-weak)} .choice.wrongc{border-color:var(--bad);background:var(--bad-weak)}
+.choice .k{font-family:var(--f-mono);color:var(--muted)}
+.ox{display:flex;gap:10px}.ox .choice{grid-template-columns:1fr;text-align:center;font-size:22px;font-weight:700;min-width:90px}
+.blanks{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 10px;align-items:center;max-width:520px}
+.blanks label{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.result{border-top:1px dashed var(--line);padding-top:14px;display:flex;flex-direction:column;gap:12px}
+.mark{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.pen{font-family:var(--f-pen);color:var(--pen);font-size:44px;line-height:1;transform:rotate(-4deg);display:inline-block;min-width:60px}
+.pen small{font-size:26px}
+.fb{font-size:14px;max-width:70ch}
+.missed{margin:0;padding-left:18px;font-size:13.5px;color:var(--bad)}
+.tip{font-size:13.5px;background:var(--warn-weak);border-radius:8px;padding:9px 12px;max-width:75ch;white-space:pre-wrap}
+.tip b{color:var(--warn)}
+.goto{font-size:13.5px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.sumrow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.sumrow:last-child{border-bottom:0}
+.revcard{padding:14px 16px;display:flex;flex-direction:column;gap:6px;border-left:4px solid var(--bad)}
+/* home */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:20px}
+.stat{padding:12px 14px}.stat .v{font-family:var(--f-mono);font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.2}.stat .s{font-size:12px;color:var(--muted)}
+.cta{padding:18px 20px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-bottom:20px}
+.cta .t{font-size:17px;font-weight:700}
+.units{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.ucard{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.ucard .ul{display:flex;flex-direction:column}
+.ucard .li{display:grid;grid-template-columns:16px minmax(0,1fr) auto;gap:8px;align-items:center;font-size:13px;padding:5px 0;border-top:1px solid var(--line);background:none;border-left:0;border-right:0;border-bottom:0;color:inherit;font-family:inherit;text-align:left;cursor:pointer}
+.ucard .li[disabled]{cursor:not-allowed;opacity:.55}
+.weaklist{display:flex;flex-direction:column}
+.wk{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 14px;border-bottom:1px solid var(--line)}
+.wk:last-child{border-bottom:0}
+/* practice etc */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.practice{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:900px){.practice{grid-template-columns:minmax(0,1fr)}}
+.qlist{max-height:calc(100vh - 220px);overflow:auto;position:sticky;top:118px}
+@media (max-width:900px){.qlist{max-height:260px;position:static}}
+.qrow{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:8px;align-items:center;width:100%;padding:8px 12px;border:0;border-bottom:1px solid var(--line);background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.qrow:hover{background:var(--accent-weak)} .qrow.cur{background:var(--accent-weak);box-shadow:inset 3px 0 0 var(--accent)}
+.qrow .t{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sd{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.sd.good{background:var(--ok)} .sd.mid{background:var(--warn)} .sd.weak{background:var(--bad)}
+.yr{font-family:var(--f-mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.mockhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px 16px;margin-bottom:14px;position:sticky;top:112px;z-index:3}
+.timer{font-family:var(--f-mono);font-size:22px;font-weight:600;font-variant-numeric:tabular-nums}.timer.low{color:var(--pen)}
+.mockq{margin-bottom:12px}
+.chart{width:100%;height:auto;display:block}
+.hist{width:100%;border-collapse:collapse;font-size:13px}
+.hist td,.hist th{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left}
+.hist th{font-family:var(--f-mono);font-size:10.5px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+@media (max-width:700px){.cols{grid-template-columns:minmax(0,1fr)}}
+.cols pre{white-space:pre-wrap}
+.grid2{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px}
+@media (max-width:900px){.grid2{grid-template-columns:minmax(0,1fr)}}
+figure.slide{margin:6px 0 14px;display:flex;flex-direction:column;gap:6px}
+figure.slide .zoom{padding:0;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:zoom-in;overflow:hidden;display:block;max-width:100%}
+figure.slide img{display:block;width:100%;height:auto}
+figure.slide figcaption{font-size:12.5px;color:var(--muted)}
+.lightbox{position:fixed;inset:0;z-index:50;background:rgba(8,14,16,.86);display:flex;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 16px) 16px calc(env(safe-area-inset-bottom,0px) + 16px);cursor:zoom-out}
+.lightbox img{max-width:100%;max-height:100%;border-radius:6px;background:#fff}
+.lightbox .x{position:absolute;top:calc(env(safe-area-inset-top,0px) + 10px);right:14px;font:inherit;font-size:13px;color:#fff;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:6px 10px;cursor:pointer}
+.tbl-wrap{overflow-x:auto}
+table.topics{width:100%;border-collapse:collapse;font-size:13.5px}
+table.topics th{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:500;text-align:left;padding:10px 10px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.topics td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.topics tr.ugrp td{background:var(--code-bg);font-weight:600;font-size:12.5px;color:var(--muted)}
+table.topics tr.dim td{opacity:.55}
+.tname{font-weight:500}.tsub{font-size:11.5px;color:var(--muted)}
+.bar{height:8px;border-radius:4px;background:var(--line);overflow:hidden;min-width:70px}.bar>b{display:block;height:100%;background:var(--accent);border-radius:4px}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:12.5px}
+.pts{font-family:var(--f-mono);font-size:12px;font-weight:600;padding:2px 7px;border-radius:6px;background:var(--warn-weak);color:var(--warn);white-space:nowrap}
+.recs{display:flex;flex-direction:column}
+.rec{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 14px;border:0;border-bottom:1px solid var(--line);cursor:pointer;background:none;font:inherit;color:inherit;text-align:left;width:100%}
+.rec:last-child{border-bottom:0}.rec:hover{background:var(--accent-weak)}
+.rec .q{font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.why{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.prev{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.prev.ok{background:var(--ok-weak);color:var(--ok)} .prev.no{background:var(--bad-weak);color:var(--bad)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <h1>DB 중간 트레이너</h1>
+      <div class="chips" hidden>
+        <span class="chip dday" id="dday">중간고사 10/23 (금)</span>
+        <span class="chip" id="store">저장소 연결 중…</span>
+        <span class="chip" id="grader">채점: 확인 중…</span>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-v="dash" aria-selected="false">대시보드</button>
+      <button role="tab" data-v="learn" aria-selected="true">학습</button>
+      <button role="tab" data-v="practice" aria-selected="false">문제 풀기</button>
+      <button role="tab" data-v="mock" aria-selected="false">모의고사</button>
+      <button role="tab" data-v="wrong" aria-selected="false">오답노트</button>
+      <button role="tab" data-v="hist" aria-selected="false">기록</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="view" id="v-dash" hidden></section>
+  <section class="view" id="v-learn"></section>
+  <section class="view" id="v-practice" hidden></section>
+  <section class="view" id="v-mock" hidden></section>
+  <section class="view" id="v-wrong" hidden></section>
+  <section class="view" id="v-hist" hidden></section>
+</main>
+
+<script id="db-data" type="application/json">/*DATA*/</script>
+<script>
+(() => {
+const DATA = JSON.parse(document.getElementById("db-data").textContent);
+const UNITS = DATA.units;
+const LESSONS = UNITS.flatMap(u => u.lessons.map(l => ({ ...l, unit:u.id, unitTitle:u.title })));
+const LES = Object.fromEntries(LESSONS.map(l => [l.id, l]));
+const SEC = {};  // concept id -> {id,title,lesson}
+for (const l of LESSONS) for (const s of l.secs) SEC[s.id] = { ...s, lesson:l.id };
+const TYPE = { mc:"객관식", ox:"OX", blank:"빈칸", short:"서술", calc:"풀이" };
+const PASS = 0.7;
+const WEIGHT = DATA.weights || {};
+const wOf = c => WEIGHT[c] || 2;
+const QUICK = t => t === "mc" || t === "ox" || t === "blank";
+const META = DATA.meta;
+const EXAM_DAY = new Date(2026, 9, 23);
+const MOCK_MIN = META.mockMin;
+const BOOT = Date.now();  // 이 페이지를 연 시각: quiz.start가 없는 예전 퀴즈는 이 시각 이전 기록만 자동 통과
+// 예상 시험지: [레슨, 슬롯, 배점]
+const EXAM24 = META.blueprint;
+const SLOT_PTS = Object.fromEntries(EXAM24.map(([,s,p]) => [s, p]));
+
+const $ = (s, el=document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ls = {
+  get(k, d){ try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+const norm = s => String(s ?? "").toLowerCase().replace(/[\s()（）.,'"“”‘’·\-_]/g, "");
+
+let extra = [], attempts = [], progress = {};
+let db = null, sample = null;
+let view = ls.get("db-view", "learn");
+let L = ls.get("db-learn", { lesson:null, mode:"home", quiz:null, review:null });  // learn state
+let filters = ls.get("db-filters", { unit:"", concept:"", type:"", status:"" });
+let curId = ls.get("db-cur", null);
+let mock = ls.get("db-mock", null);
+const results = {};   // practice: qid -> result
+const saveL = () => ls.set("db-learn", L);
+
+/* ── derived ───────────────────────── */
+const allQ = () => DATA.questions.concat(extra);
+const qById = id => allQ().find(q => q.id === id);
+function latestBy(key){
+  const m = {};
+  for (const a of attempts){ const k = a[key]; if (k && (!m[k] || a.at > m[k].at)) m[k] = a; }
+  return m;
+}
+const latestQ = () => latestBy("qid");
+const latestC = () => latestBy("concept");
+function level(score){ if (score == null) return "none"; return score >= .85 ? "good" : score >= PASS ? "mid" : "weak"; }
+const LV = { none:"미시도", weak:"약점", mid:"보통", good:"숙달" };
+const lessonConcepts = lid => LES[lid].secs.filter(s => allQ().some(q => q.concept === s.id)).map(s => s.id);
+const lessonDone = lid => !!progress[lid]?.done;
+function lessonUnlocked(lid){
+  const i = LESSONS.findIndex(l => l.id === lid);
+  return i <= 0 || lessonDone(LESSONS[i-1].id) || lessonDone(lid);
+}
+function lessonWeak(lid){ const lc = latestC(); return lessonConcepts(lid).filter(c => lc[c] && lc[c].score < PASS); }
+function nextLesson(){ return LESSONS.find(l => !lessonDone(l.id)) || null; }
+function srcOf(concept){ const s = SEC[concept]; if (!s) return ""; const l = LES[s.lesson]; return `${l.id} §${s.title} · ${l.src}`; }
+
+/* ── storage ───────────────────────── */
+function setStoreChip(){ const el = $("#store"); el.textContent = db ? "기록 저장: 클라우드" : "기록 저장: 이 브라우저만"; el.className = "chip " + (db ? "live" : "local"); }
+function setGraderChip(){ $("#grader").textContent = sample ? "채점: Claude + 자동/자가" : "채점: 자동 + 자가채점"; }
+function toastErr(msg){ const el = document.createElement("div"); el.className = "err"; el.textContent = msg; $("main").prepend(el); setTimeout(()=>el.remove(), 6000); }
+async function saveAttempt(a){
+  a.at = Date.now(); a.answer = String(a.answer || "").slice(0, 6000);
+  const q = qById(a.qid); a.concept = q?.concept || ""; a.lesson = q?.lesson || "";
+  const id = a.at + "-" + Math.random().toString(36).slice(2,8);
+  if (db){
+    try { await db.collection("attempts").doc(id).set(a); if (!attempts.find(x => x._id === id)) attempts.push({ ...a, _id:id }); return id; }
+    catch(e){ toastErr("기록을 클라우드에 저장하지 못했어 (" + (e.code||"error") + "). 이 브라우저에만 남겨둘게."); }
+  }
+  const loc = ls.get("db-attempts", []); loc.push({ ...a, _id:id }); ls.set("db-attempts", loc);
+  attempts.push({ ...a, _id:id }); return id;
+}
+async function updateAttempt(id, patch){
+  const j = attempts.findIndex(x => x._id === id); if (j >= 0) Object.assign(attempts[j], patch);
+  if (db){ try { await db.collection("attempts").doc(id).update(patch); return; } catch {} }
+  const loc = ls.get("db-attempts", []); const i = loc.findIndex(x => x._id === id);
+  if (i >= 0){ Object.assign(loc[i], patch); ls.set("db-attempts", loc); }
+}
+async function saveProgress(lid, passedPatch){
+  const prev = progress[lid] || {};
+  const passed = { ...(prev.passed || {}), ...passedPatch };
+  const done = prev.done || lessonConcepts(lid).every(c => passed[c]);
+  progress[lid] = { ...prev, passed, done, at:Date.now() };
+  const loc = ls.get("db-progress", {}); loc[lid] = progress[lid]; ls.set("db-progress", loc);
+  if (db){ try { await db.collection("progress").doc(lid).set(progress[lid]); } catch {} }
+}
+
+/* ── grading ───────────────────────── */
+function autoGrade(q, ans){
+  if (q.type === "mc"){ const ok = Number(ans) === q.answer; return { score: ok ? 1 : 0, feedback: ok ? "정답!" : `정답은 ${q.answer+1}번.` }; }
+  if (q.type === "ox"){ const ok = ans === q.answer; return { score: ok ? 1 : 0, feedback: ok ? "정답!" : `정답은 ${q.answer ? "O" : "X"}.` }; }
+  if (q.type === "blank"){
+    const arr = Array.isArray(ans) ? ans : [];
+    let hit = 0; const missed = [];
+    q.accept.forEach((alts, i) => {
+      const v = norm(arr[i]);
+      if (v && alts.some(a => norm(a) === v)) hit++; else missed.push(`(${String.fromCharCode(97+i)}) 정답: ${alts[0]}`);
+    });
+    const score = hit / q.accept.length;
+    return { score, missed, feedback: score === 1 ? "빈칸 전부 맞았어." : `${q.accept.length}칸 중 ${hit}칸 맞음. 표현이 달라서 틀린 거면 아래 버튼으로 고쳐.` };
+  }
+  return null;
+}
+function gradingPrompt(q, ans){
+  return `You grade one answer from a midterm in Databases (데이터베이스, Chung-Ang University, Elmasri & Navathe "Fundamentals of Database Systems" 7th ed.). The course is taught in English; the student may answer in Korean or English.
+
+Grade the student's answer against the model answer and key points.
+- Accept synonyms and Korean/English term equivalents (e.g. 참조 무결성 = referential integrity, 개체 = entity, 투플 = tuple).
+- Short answer: credit each key point proportionally. Brevity is fine.
+- SQL: judge by whether the query returns the correct result on the given schema, not by matching the model text. Accept any equivalent formulation (JOIN ... ON vs WHERE join condition, IN vs EXISTS vs = ANY, aliases or none, keyword case, missing final semicolon). Deduct for: a missing join condition (Cartesian product), a wrong or missing selection condition, wrong attributes in SELECT, non-grouped attribute in SELECT with GROUP BY, a group condition put in WHERE instead of HAVING, missing DISTINCT only when the question explicitly asks for distinct values. Minor syntax slips that a reader would fix immediately lose little.
+- Relational algebra: accept Greek symbols (σ π ⋈ ρ ∪ ∩ − × ÷ ℑ) or words (SELECT, PROJECT, JOIN, RENAME, UNION, MINUS, DIVISION, FUNCTION), either a single nested expression or a sequence of named intermediate relations (TEMP ← ...). Judge correctness of the operations and conditions; the order of independent selections does not matter.
+- ER design / ER-to-relational mapping: judge entities, keys, relationship cardinality and participation, and where foreign keys go (FK on the N-side for 1:N, separate relation with composite PK for M:N and multivalued attributes, owner PK + partial key for weak entities). Accept reasonable alternatives that the textbook also allows (e.g. 1:1 FK on either side, though the total-participation side is preferred).
+- Constraint-violation questions: the student must name the violated constraint(s) correctly; extra wrong constraints lose credit.
+- An empty or "모르겠다"-style answer scores 0.
+
+Question type: ${q.type}
+Question: ${q.prompt}
+${q.code ? "Schema/data given:\n" + q.code + "\n" : ""}
+Model answer:
+${q.answer}
+${q.keys ? "Key points: " + q.keys.join(" | ") + "\n" : ""}${q.explain ? "Note: " + q.explain + "\n" : ""}
+Student answer:
+<<<
+${ans}
+>>>
+
+Reply with only this JSON:
+{"score": <number 0..1>, "verdict": "correct" | "partial" | "wrong", "feedback": "<Korean, casual 반말, 1-3 sentences, concrete: what was right/wrong>", "missed": ["<short Korean item the student missed or got wrong>", ...]}`;
+}
+async function claudeGrade(q, ans){
+  const r = await sample.json(gradingPrompt(q, ans), { modelTier: q.type === "calc" ? "default" : "quick" });
+  let score = Number(r?.score); if (!isFinite(score)) score = 0; score = Math.max(0, Math.min(1, score));
+  return { score, feedback:String(r?.feedback || ""), missed: Array.isArray(r?.missed) ? r.missed.map(String).slice(0,6) : [] };
+}
+function sampleErrMsg(e){
+  const c = e?.code;
+  if (c === "not_granted") return "Claude 채점이 허용되지 않았어. 답 보고 자가채점해줘.";
+  if (c === "rate_limited") return "채점 요청이 몰렸어. 잠깐 뒤에 다시 눌러줘.";
+  return "채점에 실패했어 (" + (c || "error") + "). 자가채점으로 기록할 수 있어.";
+}
+
+/* ── question UI (shared) ───────────────────────── */
+function blankCount(q){ return q.accept ? q.accept.length : 0; }
+function inputHTML(q, key, draft, locked){
+  if (q.type === "mc") return `<div class="choices">${q.choices.map((c,i) => {
+      let cls = "choice"; if (draft === i) cls += " sel";
+      if (locked){ if (i === q.answer) cls += " right"; else if (draft === i) cls += " wrongc"; }
+      return `<button class="${cls}" data-pick="${i}" data-k="${key}" ${locked?"disabled":""}><span class="k">${i+1}</span><span>${esc(c)}</span></button>`; }).join("")}</div>`;
+  if (q.type === "ox") return `<div class="ox">${[true,false].map(v => {
+      let cls = "choice"; if (draft === v) cls += " sel";
+      if (locked){ if (v === q.answer) cls += " right"; else if (draft === v) cls += " wrongc"; }
+      return `<button class="${cls}" data-pick="${v}" data-k="${key}" ${locked?"disabled":""}>${v ? "O" : "X"}</button>`; }).join("")}</div>`;
+  if (q.type === "blank"){
+    const d = Array.isArray(draft) ? draft : [];
+    return `<div class="blanks">${q.accept.map((_,i) => `<label for="b-${key}-${i}">(${String.fromCharCode(97+i)})</label><input type="text" id="b-${key}-${i}" data-blank="${i}" data-k="${key}" value="${esc(d[i]||"")}" ${locked?"readonly":""} autocomplete="off">`).join("")}</div>`;
+  }
+  return `<textarea id="ta-${key}" data-k="${key}" spellcheck="false" ${locked?"readonly":""} placeholder="${q.type==="calc" ? "SQL·관계대수·스키마를 그대로 써. 관계대수는 σ π ⋈ ρ 대신 SELECT, PROJECT, JOIN, RENAME 같은 단어로 써도 돼." : "핵심만 간략히 (한국어·영어 아무거나)"}">${esc(typeof draft === "string" ? draft : "")}</textarea>`;
+}
+function resultHTML(q, r, opts={}){
+  if (!r) return "";
+  if (r.state === "loading") return `<div class="result"><div class="note">${q.type==="calc" ? "Claude가 풀이를 읽고 채점하는 중… (보통 10–40초)" : "Claude가 채점하는 중…"}</div></div>`;
+  const pts = opts.pts || 1;
+  const mark = r.score == null ? "" : `<span class="pen">${opts.pts ? Math.round(r.score*pts*10)/10 + `<small>/${pts}</small>` : Math.round(r.score*100)}</span>`;
+  const sec = SEC[q.concept];
+  return `<div class="result">
+    ${r.error ? `<div class="err">${esc(r.error)}</div>` : ""}
+    ${r.score != null ? `<div class="mark">${mark}<div class="fb">${esc(r.feedback || "")}</div></div>` : ""}
+    ${r.missed?.length ? `<ul class="missed">${r.missed.map(m=>`<li>${esc(m)}</li>`).join("")}</ul>` : ""}
+    ${(q.type === "mc" || q.type === "ox") ? "" : `<div><div class="label" style="margin-bottom:6px">모범답안</div><pre class="code" style="white-space:pre-wrap">${esc(q.answer)}</pre></div>`}
+    ${q.explain ? `<div class="tip"><b>해설</b> ${esc(q.explain)}</div>` : ""}
+    ${sec ? `<div class="goto note">교안 위치: ${esc(srcOf(q.concept))} <button class="btn ghost sm" data-read="${esc(q.concept)}">이 부분 읽기 →</button></div>` : ""}
+    ${opts.self ? `<div class="actions"><span class="note">${r.score == null ? "스스로 매겨서 기록:" : "채점이 이상하면 직접 고쳐:"}</span>
+      <button class="btn sm" data-self="1" data-k="${opts.key}">맞음</button><button class="btn sm" data-self="0.5" data-k="${opts.key}">절반</button><button class="btn sm" data-self="0" data-k="${opts.key}">틀림</button>
+      ${(q.type === "blank" && sample && r.score != null && r.score < 1) ? `<button class="btn sm ghost" data-regrade="${opts.key}">Claude에게 다시 채점</button>` : ""}</div>` : ""}
+  </div>`;
+}
+const drafts = {};  // key -> draft value
+function readDraft(q, key){
+  if (q.type === "blank") return [...document.querySelectorAll(`[data-blank][data-k="${key}"]`)].map(i => i.value);
+  if (q.type === "short" || q.type === "calc") return $(`#ta-${CSS.escape(key)}`)?.value ?? "";
+  return drafts[key];
+}
+function answerText(q, d){
+  if (q.type === "mc") return d == null ? "" : `${d+1}. ${q.choices[d]}`;
+  if (q.type === "ox") return d == null ? "" : (d ? "O" : "X");
+  if (q.type === "blank") return (d||[]).map((v,i)=>`(${String.fromCharCode(97+i)}) ${v}`).join("  ");
+  return String(d || "");
+}
+async function gradeAny(q, d){
+  const auto = autoGrade(q, d);
+  if (auto) return { ...auto, grader:"auto" };
+  const ans = String(d || "").trim();
+  if (!ans) return { score:0, feedback:"빈 답으로 냈어.", grader:"blank" };
+  if (!sample) return { score:null, grader:"self", feedback:"" };
+  try { return { ...(await claudeGrade(q, ans)), grader:"claude" }; }
+  catch(e){ return { score:null, error: sampleErrMsg(e), grader:"self" }; }
+}
+
+/* ── LEARN view ───────────────────────── */
+function treeHTML(){
+  const lc = latestC();
+  return UNITS.map(u => {
+    const done = u.lessons.filter(l => lessonDone(l.id)).length;
+    const open = u.lessons.some(l => l.id === L.lesson) || (!L.lesson && u.lessons.some(l => l.id === nextLesson()?.id));
+    return `<details ${open ? "open" : ""}><summary><span class="ut">${esc(u.title)}</span>
+      <span class="ubar" title="${done}/${u.lessons.length} 레슨 완료"><b style="width:${Math.round(done/u.lessons.length*100)}%"></b></span></summary>
+      ${u.lessons.map(l => {
+        const unlocked = lessonUnlocked(l.id), weak = lessonWeak(l.id).length;
+        const dot = lessonDone(l.id) ? (weak ? "weak" : "done") : (l.id === L.lesson ? "cur" : "");
+        return `<button class="lrow ${l.id === L.lesson ? "cur" : ""}" data-lesson="${l.id}" ${unlocked ? "" : "disabled"}>
+          <span class="dot ${dot}"></span><span>${esc(l.title)}</span>
+          <span class="lnum">${unlocked ? (weak ? `<span class="st weak">복습 ${weak}</span>` : l.id) : "잠김"}</span></button>`;
+      }).join("")}</details>`;
+  }).join("");
+}
+function renderLearn(){
+  const el = $("#v-learn");
+  let main = "";
+  if (L.mode === "home" || !L.lesson) main = homeHTML();
+  else if (L.mode === "read") main = readerHTML(L.lesson);
+  else if (L.mode === "quiz") main = quizHTML();
+  else if (L.mode === "summary") main = summaryHTML();
+  el.innerHTML = `<div class="learn"><aside class="sheet tree" aria-label="단원 목록">
+      <button class="lrow ${L.mode==="home"?"cur":""}" data-home="1"><span class="dot"></span><span><b>코스 홈</b></span><span></span></button>
+      ${treeHTML()}</aside><div id="lmain" style="min-width:0">${main}</div></div>`;
+  if (L.mode === "read" && L.scrollTo){
+    const t = document.getElementById("s-" + L.scrollTo); L.scrollTo = null; saveL();
+    if (t) requestAnimationFrame(() => t.scrollIntoView({ block:"start" }));
+  }
+}
+function homeHTML(){
+  const lq = latestQ(), lc = latestC();
+  const doneN = LESSONS.filter(l => lessonDone(l.id)).length;
+  const concepts = Object.keys(SEC).filter(c => allQ().some(q => q.concept === c));
+  const mastered = concepts.filter(c => lc[c] && lc[c].score >= PASS).length;
+  const solved = Object.keys(lq).length;
+  const vals = Object.values(lq); const avg = vals.length ? vals.reduce((s,a)=>s+a.score,0)/vals.length : null;
+  const nx = nextLesson();
+  const weak = concepts.filter(c => lc[c] && lc[c].score < PASS).slice(0, 10);
+  return `<div class="stats">
+      <div class="sheet stat"><div class="label">레슨</div><div class="v">${doneN}<span class="muted" style="font-size:15px"> / ${LESSONS.length}</span></div><div class="s">이해 점검 통과</div></div>
+      <div class="sheet stat"><div class="label">개념</div><div class="v">${mastered}<span class="muted" style="font-size:15px"> / ${concepts.length}</span></div><div class="s">최근 70점 이상</div></div>
+      <div class="sheet stat"><div class="label">푼 문제</div><div class="v">${solved}<span class="muted" style="font-size:15px"> / ${allQ().length}</span></div><div class="s">문제은행</div></div>
+      <div class="sheet stat"><div class="label">평균</div><div class="v">${avg == null ? "—" : Math.round(avg*100)}</div><div class="s">문항별 최근 점수</div></div>
+    </div>
+    <div class="sheet cta">
+      <div><div class="label">${nx ? "이어서 학습" : "전 범위 완주"}</div>
+        <div class="t">${nx ? esc(nx.id + " · " + nx.title) : "모든 레슨 통과! 이제 모의고사로 실전 연습"}</div>
+        <div class="note">${nx ? esc(nx.unitTitle) + " · " + esc(nx.src) : "약점 개념은 아래에서 다시 볼 수 있어"}</div></div>
+      ${nx ? `<button class="btn primary" data-lesson="${nx.id}">읽기 시작 →</button>` : `<button class="btn primary" data-tab="mock">모의고사 →</button>`}
+    </div>
+    <div class="grid2">
+      <div><h2>단원</h2>
+        <p class="note" style="margin:-4px 0 10px">레슨 하나 읽고 → 이해 점검 퀴즈 → 틀린 개념은 교안 위치로 돌아가서 다시 읽고 → 다른 문제로 재시험. 통과해야 다음 레슨이 열려.</p>
+        <div class="units">${UNITS.map(u => {
+          const d = u.lessons.filter(l => lessonDone(l.id)).length;
+          return `<div class="sheet ucard"><div><div class="label">${u.id} · ${esc(u.src)}</div><h3 style="margin-top:4px">${esc(u.title)}</h3>
+            <div class="note">${esc(u.intro)}</div></div>
+            <span class="ubar"><b style="width:${Math.round(d/u.lessons.length*100)}%"></b></span>
+            <div class="ul">${u.lessons.map(l => { const un = lessonUnlocked(l.id), wk = lessonWeak(l.id).length;
+              return `<button class="li" data-lesson="${l.id}" ${un?"":"disabled"}><span class="dot ${lessonDone(l.id) ? (wk?"weak":"done") : ""}"></span><span>${esc(l.title)}</span>
+              <span class="st ${!un ? "lock" : lessonDone(l.id) ? (wk ? "weak" : "good") : "none"}">${!un ? "잠김" : lessonDone(l.id) ? (wk ? "복습 " + wk : "완료") : "학습 전"}</span></button>`; }).join("")}</div></div>`;
+        }).join("")}</div></div>
+      <div><h2>복습이 필요한 개념</h2>
+        <p class="note" style="margin:-4px 0 10px">최근 점수가 70점 미만인 개념. 읽고 오면 재시험.</p>
+        <div class="sheet weaklist">${weak.length ? weak.map(c => `<div class="wk"><div><div style="font-weight:500">${esc(SEC[c].title)}</div><div class="note">${esc(srcOf(c))} · 최근 ${Math.round(lc[c].score*100)}점</div></div>
+          <div class="actions"><button class="btn sm" data-read="${c}">읽기</button><button class="btn sm primary" data-retest="${c}">재시험</button></div></div>`).join("")
+          : `<div class="empty">아직 없음. 퀴즈를 풀면 여기에 약점이 모여.</div>`}</div>
+        <h2 style="margin-top:22px">범위 메모</h2>
+        <div class="sheet" style="padding:12px 14px;font-size:13px;display:flex;flex-direction:column;gap:6px">${META.notes.map(n => `<div>${n}</div>`).join("")}
+        </div>
+      </div>
+    </div>`;
+}
+function readerHTML(lid){
+  const l = LES[lid]; const rv = (L.review && L.review.lessonId === lid) ? L.review.concepts : [];
+  let body = l.html;
+  for (const c of rv) body = body.replace(`<section class="sec" id="s-${c}">`, `<section class="sec review" id="s-${c}">`);
+  const cs = lessonConcepts(lid);
+  const i = LESSONS.findIndex(x => x.id === lid);
+  return `${rv.length ? `<div class="banner"><b>복습할 곳 ${rv.length}개</b>${rv.map(c => `<button class="btn sm" data-jump="${c}">§ ${esc(SEC[c].title)}</button>`).join("")}
+      <span style="flex:1"></span><button class="btn sm primary" data-startretest="1">다 읽었어 → 재시험</button></div>` : ""}
+    <article class="sheet reader"><div class="rhead">
+      <div class="label">${esc(l.unitTitle)} · ${l.id}</div><h2>${esc(l.title)}</h2>
+      <div class="note">교안 범위: ${esc(l.src)} · 섹션 ${l.secs.length}개 · 점검 개념 ${cs.length}개</div></div>
+      <div class="body">${body}</div>
+      <div class="rfoot"><div><div style="font-weight:700">이해 점검</div><div class="note">개념 ${cs.length}개 · ${quizCount(cs)}문제 (중요한 개념일수록 많이). 개념별 평균 70점 이상이면 통과.</div></div>
+        <div class="actions">${i > 0 ? `<button class="btn ghost" data-lesson="${LESSONS[i-1].id}">← 이전 레슨</button>` : ""}
+        <button class="btn primary" data-startquiz="${lid}">${lessonDone(lid) ? "다시 점검하기" : "이해 점검 시작"} →</button></div></div>
+    </article>`;
+}
+function rankQs(list){
+  const lq = latestQ();
+  return list.map(q => ({ q, k: attempts.filter(a => a.qid === q.id).length * 10 + (lq[q.id] ? lq[q.id].score * 3 : 0) + Math.random() * 2 }))
+    .sort((a,b) => a.k - b.k).map(x => x.q);
+}
+// n questions for one concept: one written (short/calc) when n >= 2 and available, rest quick; quick ones first
+function pickN(concept, n, avoid){
+  const cand = allQ().filter(q => q.concept === concept);
+  let pool = cand.filter(q => !avoid.has(q.id)); if (pool.length < n) pool = pool.concat(rankQs(cand.filter(q => avoid.has(q.id))));
+  const quick = rankQs(pool.filter(q => QUICK(q.type))), written = rankQs(pool.filter(q => !QUICK(q.type)));
+  let out = [];
+  if (n === 1) out = rankQs(pool).slice(0, 1);
+  else {
+    const w = written.length ? 1 : 0;
+    out = quick.slice(0, n - w).concat(written.slice(0, w));
+    for (const q of rankQs(pool)) if (out.length < n && !out.includes(q)) out.push(q);
+  }
+  out = [...new Set(out)].slice(0, n);
+  return out.filter(q => QUICK(q.type)).concat(out.filter(q => !QUICK(q.type)));
+}
+function quizCount(concepts){ return concepts.reduce((s,c) => s + Math.min(wOf(c), allQ().filter(q => q.concept === c).length), 0); }
+function startQuiz(lid, concepts, round){
+  const used = new Set(L.quiz?.lessonId === lid ? L.quiz.used || [] : []);
+  const items = [];
+  for (const c of concepts) for (const q of pickN(c, wOf(c), used)){ used.add(q.id); items.push({ qid:q.id, concept:c }); }
+  L.quiz = { lessonId:lid, round, items, idx:0, res:{}, drafts:{}, used:[...used], start:Date.now() };
+  L.mode = "quiz"; L.lesson = lid; saveL(); renderLearn(); window.scrollTo({ top:0 });
+}
+function conceptScores(z){
+  const m = {};
+  for (const it of z.items){ (m[it.concept] ||= []).push(z.res[it.qid]?.score ?? 0); }
+  return Object.fromEntries(Object.entries(m).map(([c, xs]) => [c, xs.reduce((s,x)=>s+x,0) / xs.length]));
+}
+function prevBadge(qid, exclude){
+  const prev = attempts.filter(a => a.qid === qid && a._id !== exclude).sort((a,b) => b.at - a.at);
+  if (!prev.length) return "";
+  const p = prev[0], ok = p.score >= PASS;
+  return `<span class="prev ${ok ? "ok" : "no"}">전에 ${ok ? "맞힘" : "틀림"} · ${Math.round(p.score*100)}점${prev.length > 1 ? ` · ${prev.length}회` : ""}</span>`;
+}
+// 전에 맞힌 문제는 다시 풀지 않고 통과로 채워 둔다 (퀴즈 시작 전 기록만: 방금 낸 답이 db 스냅샷으로 먼저 들어와도 건너뛰지 않게)
+function autoCarry(z){
+  const lq = latestQ();
+  for (const it of z.items){
+    if (z.res[it.qid]) continue;
+    const l = lq[it.qid];
+    if (l && l.score >= PASS && l.at < (z.start || BOOT)) z.res[it.qid] = { score:l.score, carried:true, feedback:"전에 맞힌 문제라 통과로 처리했어." };
+  }
+}
+function nextOpen(z, from){
+  for (let i = from; i < z.items.length; i++){ const r = z.res[z.items[i].qid]; if (!r || !r.carried) return i; }
+  return -1;
+}
+function quizHTML(){
+  const z = L.quiz; if (!z) { L.mode = "read"; return readerHTML(L.lesson); }
+  autoCarry(z);
+  if (z.res[z.items[z.idx].qid]?.carried){
+    const j = nextOpen(z, z.idx);
+    if (j < 0){ saveL(); setTimeout(quizFinish, 0); return `<div class="sheet qwrap"><div class="note">전부 전에 맞힌 문제라 바로 결과로 넘어갈게…</div></div>`; }
+    z.idx = j; saveL();
+  }
+  const it = z.items[z.idx]; const q = qById(it.qid);
+  const r = z.res[it.qid]; const key = "z" + z.idx; const locked = !!(r && r.score != null) || (r && r.state === "loading");
+  const draft = z.drafts[it.qid];
+  if (draft !== undefined) drafts[key] = draft;
+  const pips = z.items.map((x,i) => { const rr = z.res[x.qid]; return `<i class="${rr && rr.score != null ? (rr.score >= PASS ? "ok" : "no") : (i === z.idx ? "on" : "")}"></i>`; }).join("");
+  const showSelf = r && !r.state && (q.type === "short" || q.type === "calc" || q.type === "blank");
+  const canNext = r && r.score != null;
+  return `<div class="sheet qwrap">
+    <div class="qtop"><div><div class="label">${esc(LES[z.lessonId].id)} 이해 점검${z.round > 1 ? ` · 재시험 ${z.round-1}회차` : ""} · ${z.idx+1}/${z.items.length}${(() => { const c = z.items.filter(x => z.res[x.qid]?.carried).length; return c ? ` · 전에 맞힌 ${c}개 자동 통과` : ""; })()}</div>
+      <div class="note">개념: ${esc(SEC[it.concept]?.title)} · ${TYPE[q.type]} ${prevBadge(q.id, r?.attemptId)}</div></div><div class="pips">${pips}</div></div>
+    <div class="prompt">${esc(q.prompt)}</div>
+    ${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
+    ${inputHTML(q, key, draft, locked)}
+    ${!r || (r.score == null && !r.state && !showSelf) ? `<div class="actions">
+        ${(q.type === "mc" || q.type === "ox") ? `<button class="btn primary" data-submit="${key}" ${draft == null ? "disabled" : ""}>제출</button>` :
+          q.type === "blank" ? `<button class="btn primary" data-submit="${key}">채점</button>` :
+          `${sample ? `<button class="btn primary" data-submit="${key}">Claude 채점</button>` : ""}<button class="btn" data-reveal="${key}">답 보고 자가채점</button>`}
+        <button class="btn ghost" data-skipq="${key}">모르겠어 (틀림 처리)</button></div>` : ""}
+    <div id="res-${key}">${resultHTML(q, r, { self: showSelf, key })}</div>
+    ${canNext ? `<div class="actions" style="justify-content:flex-end"><button class="btn primary" data-qnext="1">${nextOpen(z, z.idx + 1) >= 0 ? "다음 문제 →" : "결과 보기 →"}</button></div>` : ""}
+  </div>`;
+}
+function summaryHTML(){
+  const z = L.quiz; const lid = z.lessonId; const cs = conceptScores(z);
+  const rows = Object.keys(cs).map(c => ({ c, v:cs[c], items:z.items.filter(it => it.concept === c) }));
+  const failed = rows.filter(x => x.v < PASS);
+  const i = LESSONS.findIndex(x => x.id === lid); const nx = LESSONS[i+1];
+  const done = lessonDone(lid);
+  return `<div class="sheet qwrap">
+    <div class="label">${esc(LES[lid].id)} 이해 점검 결과${z.round > 1 ? ` · 재시험 ${z.round-1}회차` : ""} · ${z.items.length}문제</div>
+    <h2 style="font-size:20px;margin:0">${failed.length ? `개념 ${rows.length}개 중 ${rows.length - failed.length}개 통과. 아직 넘어가면 안 돼.` : done ? "전부 통과! 이 레슨 완료." : "이번 개념은 통과. 남은 개념도 마저 통과해야 레슨 완료."}</h2>
+    <div>${rows.map(x => `<div class="sumrow"><span class="st ${x.v >= PASS ? "good" : "weak"}">${x.v >= PASS ? "통과" : "복습"}</span>
+      <div><div style="font-weight:500">${esc(SEC[x.c].title)}</div><div class="note">${x.items.map(it => { const r = z.res[it.qid]; return `${TYPE[qById(it.qid).type]} ${r?.score == null ? "?" : Math.round(r.score*100)}${r?.carried ? "(전에 맞힘)" : ""}`; }).join(" · ")}</div></div>
+      <span class="pen" style="font-size:28px">${Math.round(x.v*100)}</span></div>`).join("")}</div>
+    ${failed.length ? `<h3 style="margin-top:6px">여기 다시 보고 와</h3>
+      ${failed.map(x => { const miss = x.items.flatMap(it => z.res[it.qid]?.missed || []);
+        return `<div class="sheet revcard"><div style="font-weight:600">§ ${esc(SEC[x.c].title)}</div>
+        <div class="note">${esc(srcOf(x.c))}</div>
+        ${miss.length ? `<div class="note">놓친 것: ${esc(miss.slice(0,6).join(" · "))}</div>` : ""}</div>`; }).join("")}
+      <div class="actions"><button class="btn primary" data-goreview="1">복습하러 가기 (해당 섹션 표시됨) →</button>
+        <button class="btn ghost" data-startretest="1">바로 재시험</button></div>`
+      : `<div class="actions">${!done ? `<button class="btn primary" data-startquiz="${lid}">남은 개념 점검 →</button>` : nx ? `<button class="btn primary" data-lesson="${nx.id}">다음 레슨: ${esc(nx.title)} →</button>` : `<button class="btn primary" data-tab="mock">모의고사로 →</button>`}
+        <button class="btn" data-home="1">코스 홈</button></div>`}
+  </div>`;
+}
+async function quizSubmit(key, override){
+  const z = L.quiz; const it = z.items[z.idx]; const q = qById(it.qid);
+  const d = override !== undefined ? override : readDraft(q, key);
+  z.drafts[it.qid] = d;
+  if (q.type === "short" || q.type === "calc"){ z.res[it.qid] = { state:"loading" }; saveL(); renderLearn(); }
+  const r = await gradeAny(q, d);
+  let attemptId = null;
+  if (r.score != null) attemptId = await saveAttempt({ qid:q.id, score:r.score, grader:r.grader, answer:answerText(q,d), feedback:r.feedback||"", missed:r.missed||[], mode:"check" });
+  z.res[it.qid] = { ...r, attemptId };
+  saveL(); if (view === "learn" && L.mode === "quiz") renderLearn();
+}
+async function quizSelf(score){
+  const z = L.quiz; const it = z.items[z.idx]; const q = qById(it.qid); const r = z.res[it.qid] || {};
+  if (r.attemptId){ await updateAttempt(r.attemptId, { score, grader: r.grader === "claude" ? "claude+self" : "self" }); }
+  else r.attemptId = await saveAttempt({ qid:q.id, score, grader:"self", answer:answerText(q, z.drafts[it.qid]), feedback:"", missed:[], mode:"check" });
+  z.res[it.qid] = { ...r, score, feedback: r.feedback || (score >= 1 ? "맞음으로 기록." : score > 0 ? "절반으로 기록." : "틀림으로 기록.") };
+  saveL(); renderLearn();
+}
+async function quizFinish(){
+  const z = L.quiz; const cs = conceptScores(z);
+  const failed = Object.keys(cs).filter(c => cs[c] < PASS);
+  await saveProgress(z.lessonId, Object.fromEntries(Object.entries(cs).map(([c,v]) => [c, v >= PASS])));
+  L.review = failed.length ? { lessonId:z.lessonId, concepts:failed } : null;
+  L.mode = "summary"; saveL(); renderLearn(); window.scrollTo({ top:0 });
+}
+
+/* ── DASHBOARD ───────────────────────── */
+function recommendations(n){
+  const lq = latestQ();
+  const studied = lid => lessonDone(lid) || attempts.some(a => a.lesson === lid);
+  return allQ().map(q => {
+    const l = lq[q.id];
+    if (l && l.score >= .85) return null;
+    const need = l ? 1 - l.score : 1.1;
+    const s = need * (1 + wOf(q.concept)) * (q.slot ? 1.6 : 1) * (studied(q.lesson) ? 1 : .25) * (0.9 + Math.random() * 0.2);
+    return { q, s };
+  }).filter(Boolean).sort((a,b) => b.s - a.s).slice(0, n).map(x => x.q);
+}
+function renderDash(){
+  const lq = latestQ();
+  const qs = allQ(); const solved = qs.filter(q => lq[q.id]);
+  const avg = solved.length ? solved.reduce((s,q)=>s+lq[q.id].score,0)/solved.length : null;
+  const wrongN = solved.filter(q => lq[q.id].score < PASS).length;
+  const t0 = new Date(); t0.setHours(0,0,0,0); const todayN = attempts.filter(a => a.at >= t0.getTime()).length;
+  const doneN = LESSONS.filter(l => lessonDone(l.id)).length;
+  const examPts = {}; for (const [lid,,p] of EXAM24) examPts[lid] = (examPts[lid] || 0) + p;
+  const rows = UNITS.map(u => {
+    const head = `<tr class="ugrp"><td colspan="5">${esc(u.title)}</td></tr>`;
+    return head + u.lessons.map(l => {
+      const lqs = qs.filter(q => q.lesson === l.id), tried = lqs.filter(q => lq[q.id]);
+      const mastery = tried.length ? tried.reduce((s,q)=>s+lq[q.id].score,0)/tried.length : null;
+      const lv = level(mastery);
+      return `<tr class="${lessonUnlocked(l.id) ? "" : "dim"}"><td><div class="tname">${esc(l.title)}</div><div class="tsub">${l.id} · ${lessonDone(l.id) ? "점검 통과" : lessonUnlocked(l.id) ? "학습 전" : "잠김"}</div></td>
+        <td>${examPts[l.id] ? `<span class="pts">${examPts[l.id]}점</span>` : `<span class="muted num">—</span>`}</td>
+        <td><div class="bar" title="${tried.length}/${lqs.length} 문항 시도"><b style="width:${Math.round((mastery ?? 0)*100)}%"></b></div><span class="num muted">${tried.length}/${lqs.length}</span></td>
+        <td><span class="st ${lv}">${LV[lv]}</span></td>
+        <td><button class="btn sm ghost" data-plesson="${l.id}">풀기 →</button></td></tr>`;
+    }).join("");
+  }).join("");
+  const recs = recommendations(8).map(q => { const l = lq[q.id];
+    return `<button class="rec" data-go="${esc(q.id)}"><span class="yr">${q.lesson} ${TYPE[q.type]}</span><span class="q">${esc(q.prompt)}</span>
+      <span class="why">${l ? `지난번 ${Math.round(l.score*100)}점` : q.slot ? "시험형 · 미시도" : "미시도"}</span></button>`; }).join("");
+  $("#v-dash").innerHTML = `<div class="stats">
+      <div class="sheet stat"><div class="label">푼 문항</div><div class="v">${solved.length}<span class="muted" style="font-size:15px"> / ${qs.length}</span></div><div class="s">문제은행 전체</div></div>
+      <div class="sheet stat"><div class="label">평균 점수</div><div class="v">${avg == null ? "—" : Math.round(avg*100)}</div><div class="s">문항별 최근 채점 기준</div></div>
+      <div class="sheet stat"><div class="label">레슨</div><div class="v">${doneN}<span class="muted" style="font-size:15px"> / ${LESSONS.length}</span></div><div class="s">이해 점검 통과</div></div>
+      <div class="sheet stat"><div class="label">오답 대기</div><div class="v" style="color:var(--bad)">${wrongN}</div><div class="s">최근 70점 미만</div></div>
+      <div class="sheet stat"><div class="label">오늘</div><div class="v">${todayN}</div><div class="s">채점한 횟수</div></div>
+    </div>
+    <div class="grid2">
+      <div><h2>레슨별 숙달도</h2>
+        <p class="note" style="margin:-4px 0 10px">노란 칸은 예상 시험지에서 그 레슨에 걸린 배점(100점 만점, 기출 받기 전 임시). 숙달도는 푼 문제의 최근 점수 평균.</p>
+        <div class="sheet tbl-wrap"><table class="topics"><thead><tr><th>레슨</th><th>예상 배점</th><th>숙달도</th><th>상태</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></div>
+      <div><h2>다음에 풀 문제</h2>
+        <p class="note" style="margin:-4px 0 10px">공부한 레슨 중에서 중요도 높고, 시험형이고, 아직 못 맞힌 순서.</p>
+        <div class="sheet recs">${recs || `<div class="empty">추천할 문제가 없어.</div>`}</div>
+        <h2 style="margin-top:22px">예상 배점 분포</h2>
+        <div class="sheet" style="padding:12px 14px;font-size:13px;display:flex;flex-direction:column;gap:6px">${META.dist.map(([p,t]) => `<div><span class="pts">${p}점</span> ${t}</div>`).join("")}
+        </div></div>
+    </div>`;
+}
+
+/* ── PRACTICE view ───────────────────────── */
+function filteredQs(){
+  const lq = latestQ();
+  return allQ().filter(q => {
+    if (filters.lesson && q.lesson !== filters.lesson) return false;
+    if (filters.unit && q.unit !== filters.unit) return false;
+    if (filters.concept && q.concept !== filters.concept) return false;
+    if (filters.type && q.type !== filters.type) return false;
+    const l = lq[q.id];
+    if (filters.status === "new" && l) return false;
+    if (filters.status === "wrong" && !(l && l.score < PASS)) return false;
+    if (filters.status === "notgood" && l && l.score >= .85) return false;
+    if (filters.status === "exam" && !q.slot) return false;
+    return true;
+  });
+}
+function renderPractice(){
+  const qs = filteredQs(), lq = latestQ();
+  if (!qs.find(q => q.id === curId)) curId = qs[0]?.id ?? null;
+  const unitOpts = UNITS.map(u => `<option value="${u.id}" ${filters.unit===u.id?"selected":""}>${esc(u.title)}</option>`).join("");
+  const conceptOpts = LESSONS.filter(l => !filters.unit || l.unit === filters.unit).map(l => `<optgroup label="${esc(l.id+" "+l.title)}">${l.secs.map(s => `<option value="${s.id}" ${filters.concept===s.id?"selected":""}>${esc(s.title)}</option>`).join("")}</optgroup>`).join("");
+  const list = qs.map(q => { const l = lq[q.id]; return `<button class="qrow ${q.id===curId?"cur":""}" data-q="${esc(q.id)}"><span class="sd ${l?level(l.score):""}"></span><span class="t">${esc(q.prompt)}</span><span class="yr">${TYPE[q.type]}</span></button>`; }).join("");
+  $("#v-practice").innerHTML = `<div class="filters">
+      <select id="f-unit" aria-label="단원"><option value="">모든 단원</option>${unitOpts}</select>
+      <select id="f-concept" aria-label="개념"><option value="">모든 개념</option>${conceptOpts}</select>
+      <select id="f-type" aria-label="유형"><option value="">모든 유형</option>${Object.entries(TYPE).map(([k,v])=>`<option value="${k}" ${filters.type===k?"selected":""}>${v}</option>`).join("")}</select>
+      <select id="f-status" aria-label="상태"><option value="" ${!filters.status?"selected":""}>전체</option><option value="new" ${filters.status==="new"?"selected":""}>안 푼 것</option><option value="notgood" ${filters.status==="notgood"?"selected":""}>숙달 전</option><option value="wrong" ${filters.status==="wrong"?"selected":""}>틀린 것</option><option value="exam" ${filters.status==="exam"?"selected":""}>시험형(배점 있는 것)</option></select>
+      ${filters.lesson ? `<button class="btn sm" data-clearlesson="1">레슨: ${esc(filters.lesson)} ✕</button>` : ""}<span class="note">${qs.length}문항</span></div>
+    <div class="practice"><div class="sheet qlist">${list || `<div class="empty">조건에 맞는 문제가 없어.</div>`}</div>
+      <div id="qpane">${curId ? practiceCard(qById(curId), qs) : `<div class="sheet empty">왼쪽에서 문제를 골라줘.</div>`}</div></div>`;
+  $(".qrow.cur")?.scrollIntoView({ block:"nearest" });
+}
+function practiceCard(q, qs){
+  const key = "p-" + q.id; const r = results[q.id]; const lq = latestQ()[q.id];
+  if (drafts[key] === undefined) drafts[key] = ls.get("db-draft-" + q.id, undefined);
+  const locked = !!(r && (r.score != null || r.state)) && (q.type === "mc" || q.type === "ox");
+  const idx = qs.findIndex(x => x.id === q.id);
+  const showSelf = r && !r.state && q.type !== "mc" && q.type !== "ox";
+  return `<div class="sheet qwrap">
+    <div class="qtop"><div class="actions"><span class="label">${esc(LES[q.lesson]?.id)} · ${TYPE[q.type]}${q.slot ? ` · 시험형 ${SLOT_PTS[q.slot]}점` : ""}</span><span class="tag">${esc(SEC[q.concept]?.title)}</span>
+      ${lq ? `<span class="st ${level(lq.score)}">최근 ${Math.round(lq.score*100)}점 · ${attempts.filter(a=>a.qid===q.id).length}회</span>` : ""}</div></div>
+    <div class="prompt">${esc(q.prompt)}</div>
+    ${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
+    ${inputHTML(q, key, drafts[key], locked)}
+    <div class="actions">
+      ${(q.type === "mc" || q.type === "ox") ? (locked ? "" : `<button class="btn primary" data-psubmit="${esc(q.id)}">제출</button>`) :
+        q.type === "blank" ? `<button class="btn primary" data-psubmit="${esc(q.id)}">채점</button>` :
+        `${sample ? `<button class="btn primary" data-psubmit="${esc(q.id)}">Claude 채점</button>` : ""}<button class="btn" data-preveal="${esc(q.id)}">답 보고 자가채점</button>`}
+      ${(q.type === "mc" || q.type === "ox") && locked ? `<button class="btn" data-pretry="${esc(q.id)}">다시 풀기</button>` : ""}
+      <span style="flex:1"></span>
+      ${idx > 0 ? `<button class="btn ghost" data-q="${esc(qs[idx-1].id)}">← 이전</button>` : ""}
+      ${idx >= 0 && idx < qs.length-1 ? `<button class="btn ghost" data-q="${esc(qs[idx+1].id)}">다음 →</button>` : ""}
+    </div>
+    <div id="pres">${resultHTML(q, r, { self: showSelf, key })}</div></div>`;
+}
+async function practiceSubmit(qid){
+  const q = qById(qid); const key = "p-" + qid; const d = readDraft(q, key);
+  drafts[key] = d;
+  if (q.type === "short" || q.type === "calc"){ if (!String(d||"").trim()){ results[qid] = { score:null, error:"답을 먼저 써줘. 모르면 '답 보고 자가채점'을 눌러." }; return renderPractice(); }
+    results[qid] = { state:"loading" }; renderPractice(); }
+  const r = await gradeAny(q, d);
+  let attemptId = null;
+  if (r.score != null) attemptId = await saveAttempt({ qid, score:r.score, grader:r.grader, answer:answerText(q,d), feedback:r.feedback||"", missed:r.missed||[], mode:"practice" });
+  results[qid] = { ...r, attemptId };
+  if (view === "practice") renderPractice();
+}
+async function practiceSelf(qid, score){
+  const q = qById(qid); const r = results[qid] || {};
+  if (r.attemptId) await updateAttempt(r.attemptId, { score, grader: r.grader === "claude" ? "claude+self" : "self" });
+  else r.attemptId = await saveAttempt({ qid, score, grader:"self", answer:answerText(q, drafts["p-"+qid]), feedback:"", missed:[], mode:"practice" });
+  results[qid] = { ...r, score, feedback: r.feedback || (score >= 1 ? "맞음으로 기록." : score > 0 ? "절반으로 기록." : "틀림으로 기록. 오답노트에 들어가.") };
+  renderPractice();
+}
+
+/* ── MOCK view ───────────────────────── */
+function buildMock(){
+  const lq = latestQ(); const items = [];
+  for (const s of Object.keys(SLOT_PTS).map(Number).sort((a,b)=>a-b)){
+    const c = allQ().filter(q => q.slot === s);
+    if (!c.length) continue;
+    c.sort((a,b) => (lq[a.id] ? 1 : 0) - (lq[b.id] ? 1 : 0) || Math.random() - .5);
+    items.push({ slot:s, qid:c[0].id, pts:SLOT_PTS[s] });
+  }
+  return { start:Date.now(), items, answers:{}, done:false, results:{} };
+}
+function renderMock(){
+  const el = $("#v-mock");
+  if (!mock){
+    const hist = ls.get("db-mock-history", []).slice().sort((a,b)=>b.at-a.at);
+    el.innerHTML = `<div class="sheet cta"><div><div class="label">${esc(META.mockLabel)} · ${Object.keys(SLOT_PTS).length}문항 · 100점 · ${MOCK_MIN}분</div>
+        <div class="t">실전 모의고사</div><div class="note">${META.mockNote}</div></div>
+        <button class="btn primary" data-mockstart="1">시작</button></div>
+      ${hist.length ? `<h2>지난 모의고사</h2><div class="sheet" style="overflow-x:auto"><table class="hist"><thead><tr><th>날짜</th><th>점수</th><th>걸린 시간</th></tr></thead><tbody>
+        ${hist.map(m => { const dt = new Date(m.at); return `<tr><td class="yr">${dt.getMonth()+1}/${dt.getDate()} ${String(dt.getHours()).padStart(2,"0")}:${String(dt.getMinutes()).padStart(2,"0")}</td><td><span class="pen" style="font-size:26px">${m.score}</span></td><td class="yr">${m.mins}분</td></tr>`; }).join("")}</tbody></table></div>` : ""}`;
+    return;
+  }
+  const graded = mock.done;
+  const total = mock.items.reduce((s,x)=>s+x.pts,0);
+  const got = mock.items.reduce((s,x)=>s+x.pts*(mock.results[x.qid]?.score||0),0);
+  el.innerHTML = `<div class="sheet mockhead"><div><div class="label">모의고사 · ${mock.items.length}문항 · ${total}점</div>
+      ${graded ? `<span class="pen">${Math.round(got)}<small>/${total}</small></span>` : `<div class="timer" id="timer">${MOCK_MIN}:00</div>`}</div>
+      <div class="actions">${graded ? `<button class="btn" data-mockexit="1">목록으로</button>` : `<span class="note" id="mock-prog"></span><button class="btn" data-mockexit="1">그만두기</button><button class="btn primary" data-mocksubmit="1">제출하고 채점</button>`}</div></div>
+    ${mock.items.map((x,i) => { const q = qById(x.qid); const key = "m" + i; const r = mock.results[x.qid];
+      if (drafts[key] === undefined) drafts[key] = mock.answers[x.qid];
+      return `<div class="sheet qwrap mockq"><div class="label">[${x.pts} pt.] ${i+1}. · ${esc(SEC[q.concept]?.title)}</div>
+        <div class="prompt">${esc(q.prompt)}</div>${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
+        ${inputHTML(q, key, drafts[key], graded)}
+        ${r ? resultHTML(q, r, { pts:x.pts }) : ""}</div>`; }).join("")}`;
+  tickTimer();
+}
+let timerHandle = null;
+function tickTimer(){
+  clearInterval(timerHandle); if (!mock || mock.done) return;
+  const upd = () => { const el = $("#timer"); if (!el) return;
+    const left = Math.max(0, MOCK_MIN*60 - Math.floor((Date.now()-mock.start)/1000));
+    el.textContent = left ? String(Math.floor(left/60)).padStart(2,"0") + ":" + String(left%60).padStart(2,"0") : "시간 끝"; el.classList.toggle("low", left < 600); };
+  upd(); timerHandle = setInterval(upd, 1000);
+}
+function collectMock(){ mock.items.forEach((x,i) => { const q = qById(x.qid); const d = readDraft(q, "m"+i); if (d !== undefined) mock.answers[x.qid] = d; }); ls.set("db-mock", mock); }
+async function submitMock(){
+  collectMock(); const btn = $("[data-mocksubmit]"); if (btn) btn.disabled = true;
+  const prog = $("#mock-prog"); let n = 0; const queue = mock.items.slice();
+  const one = async x => { const q = qById(x.qid); const d = mock.answers[x.qid];
+    const r = await gradeAny(q, d); mock.results[x.qid] = r;
+    if (r.score != null) await saveAttempt({ qid:q.id, score:r.score, grader:r.grader, answer:answerText(q,d), feedback:r.feedback||"", missed:r.missed||[], mode:"mock" });
+    n++; if (prog) prog.textContent = `채점 ${n}/${mock.items.length}`; };
+  await Promise.all([0,1,2].map(async () => { while (queue.length) await one(queue.shift()); }));
+  mock.done = true; ls.set("db-mock", mock);
+  const total = mock.items.reduce((s,x)=>s+x.pts,0), got = mock.items.reduce((s,x)=>s+x.pts*(mock.results[x.qid]?.score||0),0);
+  const rec = { score:Math.round(got/total*100), at:Date.now(), mins:Math.round((Date.now()-mock.start)/60000) };
+  const hist = ls.get("db-mock-history", []); hist.push(rec); ls.set("db-mock-history", hist);
+  if (db){ try { await db.collection("mocks").doc(String(rec.at)).set(rec); } catch {} }
+  renderMock(); window.scrollTo({ top:0 });
+}
+
+/* ── WRONG + HIST ───────────────────────── */
+function renderWrong(){
+  const lq = latestQ();
+  const wrong = allQ().filter(q => lq[q.id] && lq[q.id].score < PASS).sort((a,b)=>lq[a.id].score - lq[b.id].score);
+  $("#v-wrong").innerHTML = `<h2>오답노트</h2><p class="note" style="margin:-4px 0 14px">가장 최근 채점이 70점 미만인 문항. 다시 풀어서 맞히면 빠져.</p>
+    ${wrong.length ? wrong.map(q => { const l = lq[q.id]; return `<div class="sheet qwrap" style="margin-bottom:12px">
+      <div class="actions"><span class="label">${esc(LES[q.lesson]?.id)} · ${TYPE[q.type]}</span><span class="tag">${esc(SEC[q.concept]?.title)}</span><span class="pen" style="font-size:30px;margin-left:auto">${Math.round(l.score*100)}</span></div>
+      <div class="prompt">${esc(q.prompt)}</div>${l.feedback ? `<div class="fb">${esc(l.feedback)}</div>` : ""}
+      <div class="cols"><div><div class="label">내 답</div><pre class="code">${esc(l.answer || "(기록 없음)")}</pre></div><div><div class="label">모범답안</div><pre class="code">${esc(q.type==="mc" ? (q.answer+1)+". "+q.choices[q.answer] : q.type==="ox" ? (q.answer?"O":"X") : q.answer)}</pre></div></div>
+      <div class="actions"><button class="btn sm" data-go="${esc(q.id)}">다시 풀기 →</button><button class="btn sm ghost" data-read="${esc(q.concept)}">교안 읽기</button></div></div>`; }).join("")
+    : `<div class="sheet empty">아직 틀린 문제가 없어.</div>`}`;
+}
+function renderHist(){
+  const days = []; const d0 = new Date(); d0.setHours(0,0,0,0);
+  for (let i = 13; i >= 0; i--){ const s = d0.getTime() - i*86400000, e = s + 86400000; const as = attempts.filter(a => a.at >= s && a.at < e);
+    days.push({ s, n:as.length, avg: as.length ? as.reduce((x,a)=>x+a.score,0)/as.length : null }); }
+  const W = 640, H = 170, pad = 28, bw = (W - pad*2)/14, maxN = Math.max(5, ...days.map(d=>d.n));
+  const bars = days.map((d,i) => { const h = (H-50)*d.n/maxN, x = pad + i*bw + 4, y = H - 24 - h, dt = new Date(d.s);
+    return `<rect x="${x}" y="${y}" width="${bw-8}" height="${Math.max(h, d.n?2:0)}" rx="3" fill="var(--accent)" opacity="${d.n?.85:0}"/>
+      ${d.avg != null ? `<circle cx="${x+(bw-8)/2}" cy="${H-24-(H-50)*d.avg}" r="3.5" fill="var(--pen)"/>` : ""}
+      ${d.n ? `<text x="${x+(bw-8)/2}" y="${y-5}" font-size="10" text-anchor="middle" fill="var(--muted)" font-family="JetBrains Mono, monospace">${d.n}</text>` : ""}
+      <text x="${x+(bw-8)/2}" y="${H-8}" font-size="10" text-anchor="middle" fill="var(--muted)" font-family="JetBrains Mono, monospace">${dt.getMonth()+1}/${dt.getDate()}</text>`; }).join("");
+  const rows = attempts.slice().sort((a,b)=>b.at-a.at).slice(0,60).map(a => { const q = qById(a.qid); const dt = new Date(a.at);
+    return `<tr><td class="yr">${dt.getMonth()+1}/${dt.getDate()} ${String(dt.getHours()).padStart(2,"0")}:${String(dt.getMinutes()).padStart(2,"0")}</td>
+      <td><button class="btn ghost sm" data-go="${esc(a.qid)}">${esc(q ? SEC[q.concept]?.title : a.qid)}</button></td>
+      <td class="note">${q ? TYPE[q.type] : ""}</td><td><span class="st ${level(a.score)}">${Math.round(a.score*100)}</span></td>
+      <td class="note">${{auto:"자동",claude:"Claude",self:"자가","claude+self":"Claude→자가",blank:"빈칸"}[a.grader]||a.grader} · ${{check:"점검",practice:"연습",mock:"모의"}[a.mode]||""}</td></tr>`; }).join("");
+  $("#v-hist").innerHTML = `<h2>최근 2주</h2><div class="sheet" style="padding:12px 14px;margin-bottom:22px;overflow-x:auto">
+      <svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="일별 채점 횟수와 평균 점수"><line x1="${pad}" x2="${W-pad}" y1="${H-24}" y2="${H-24}" stroke="var(--line)"/>
+      <line x1="${pad}" x2="${W-pad}" y1="26" y2="26" stroke="var(--line)" stroke-dasharray="3 4"/>
+      <text x="${W-pad}" y="20" font-size="10" text-anchor="end" fill="var(--muted)" font-family="JetBrains Mono, monospace">● 평균 점수 (점선 = 100)</text>${bars}</svg>
+      <div class="note">막대: 그날 채점한 횟수 · 빨간 점: 그날 평균 점수</div></div>
+    <h2>채점 기록</h2><div class="sheet" style="overflow-x:auto">${rows ? `<table class="hist"><thead><tr><th>시각</th><th>개념</th><th>유형</th><th>점수</th><th>방식</th></tr></thead><tbody>${rows}</tbody></table>` : `<div class="empty">아직 기록이 없어.</div>`}</div>`;
+}
+
+/* ── shell ───────────────────────── */
+function renderAll(force){
+  const d = Math.ceil((EXAM_DAY - new Date(new Date().toDateString()))/86400000);
+  $("#dday").textContent = d > 0 ? `중간고사 D-${d} (10/23 금)` : d === 0 ? "오늘 중간고사" : "중간고사 끝";
+  const ae = document.activeElement;
+  if (!force && ae && (ae.tagName === "TEXTAREA" || ae.tagName === "INPUT")) return;  // don't clobber typing
+  if (view === "dash") renderDash();
+  else if (view === "learn") renderLearn();
+  else if (view === "practice") renderPractice();
+  else if (view === "mock"){ if (!mock || mock.done) renderMock(); }
+  else if (view === "wrong") renderWrong();
+  else if (view === "hist") renderHist();
+}
+function show(v){
+  if (view === "mock" && mock && !mock.done) collectMock();
+  view = v; ls.set("db-view", v);
+  document.querySelectorAll("nav.tabs button").forEach(b => b.setAttribute("aria-selected", String(b.dataset.v === v)));
+  document.querySelectorAll("section.view").forEach(s => s.hidden = s.id !== "v-" + v);
+  if (v === "mock") renderMock(); else renderAll(true);
+  window.scrollTo({ top:0 });
+}
+function openRead(concept){
+  const s = SEC[concept]; if (!s) return;
+  L.lesson = s.lesson; L.mode = "read"; L.scrollTo = concept;
+  if (!L.review || L.review.lessonId !== s.lesson) L.review = { lessonId:s.lesson, concepts:[concept] };
+  else if (!L.review.concepts.includes(concept)) L.review.concepts.push(concept);
+  saveL(); show("learn");
+}
+
+function closeZoom(){ document.querySelector(".lightbox")?.remove(); }
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeZoom(); });
+document.addEventListener("click", async e => {
+  if (e.target.closest(".lightbox")){ closeZoom(); return; }
+  const t = e.target.closest("button"); if (!t) return;
+  const ds = t.dataset;
+  if (ds.zoom){ closeZoom(); const lb = document.createElement("div"); lb.className = "lightbox"; lb.setAttribute("role","dialog"); lb.setAttribute("aria-label","슬라이드 크게 보기");
+    lb.innerHTML = `<button class="x" aria-label="닫기">닫기 ✕</button><img src="${esc(ds.zoom)}" alt="">`; document.body.appendChild(lb); return; }
+  if (t.matches("nav.tabs button")) return show(ds.v);
+  if (ds.tab) return show(ds.tab);
+  if (ds.plesson){ filters = { unit:"", concept:"", type:"", status:"", lesson:ds.plesson }; ls.set("db-filters", filters); curId = null; return show("practice"); }
+  if (ds.clearlesson){ filters.lesson = ""; ls.set("db-filters", filters); curId = null; return renderPractice(); }
+  if (ds.home){ L.mode = "home"; L.lesson = null; saveL(); return renderLearn(); }
+  if (ds.lesson){ if (!lessonUnlocked(ds.lesson)) return; L.lesson = ds.lesson; L.mode = "read"; if (L.review && L.review.lessonId !== ds.lesson) L.review = null; saveL(); if (view !== "learn") show("learn"); else { renderLearn(); window.scrollTo({ top:0 }); } return; }
+  if (ds.read) return openRead(ds.read);
+  if (ds.jump){ document.getElementById("s-" + ds.jump)?.scrollIntoView({ block:"start", behavior:"smooth" }); return; }
+  if (ds.startquiz) return startQuiz(ds.startquiz, lessonConcepts(ds.startquiz), 1);
+  if (ds.startretest){ const rv = L.review; if (!rv) return; return startQuiz(rv.lessonId, rv.concepts, (L.quiz?.lessonId === rv.lessonId ? L.quiz.round : 1) + 1); }
+  if (ds.retest){ const c = ds.retest; const lid = SEC[c].lesson; L.review = { lessonId:lid, concepts:[c] }; return startQuiz(lid, [c], 2); }
+  if (ds.goreview){ const rv = L.review; L.lesson = rv.lessonId; L.mode = "read"; L.scrollTo = rv.concepts[0]; saveL(); renderLearn(); return; }
+  if (ds.pick != null){
+    const key = ds.k; const v = ds.pick === "true" ? true : ds.pick === "false" ? false : Number(ds.pick);
+    drafts[key] = v;
+    if (key.startsWith("z")){ const z = L.quiz; z.drafts[z.items[z.idx].qid] = v; saveL(); return renderLearn(); }
+    if (key.startsWith("p-")){ ls.set("db-draft-" + key.slice(2), v); return renderPractice(); }
+    if (key.startsWith("m")){ const i = Number(key.slice(1)); mock.answers[mock.items[i].qid] = v; ls.set("db-mock", mock);
+      t.parentElement.querySelectorAll(".choice").forEach(b => b.classList.toggle("sel", b === t)); return; }
+  }
+  if (ds.submit){ t.disabled = true; return quizSubmit(ds.submit); }
+  if (ds.reveal){ const z = L.quiz; const it = z.items[z.idx]; const q = qById(it.qid); z.drafts[it.qid] = readDraft(q, ds.reveal); z.res[it.qid] = { score:null }; saveL(); return renderLearn(); }
+  if (ds.skipq){ const z = L.quiz; const it = z.items[z.idx]; const q = qById(it.qid);
+    const id = await saveAttempt({ qid:q.id, score:0, grader:"self", answer:"(모르겠음)", feedback:"", missed:[], mode:"check" });
+    z.res[it.qid] = { score:0, feedback:"모른다고 표시했어. 모범답안 보고, 결과 화면에서 교안 위치로 가자.", attemptId:id }; saveL(); return renderLearn(); }
+  if (ds.self != null){ const k = ds.k; if (k.startsWith("z")) return quizSelf(Number(ds.self)); if (k.startsWith("p-")) return practiceSelf(k.slice(2), Number(ds.self)); }
+  if (ds.regrade){ const k = ds.regrade;
+    if (k.startsWith("z")){ const z = L.quiz; const it = z.items[z.idx]; const q = qById(it.qid); const r0 = z.res[it.qid];
+      t.disabled = true; try { const r = await claudeGrade(q, answerText(q, z.drafts[it.qid])); if (r0.attemptId) await updateAttempt(r0.attemptId, { score:r.score, grader:"claude" }); z.res[it.qid] = { ...r0, ...r, grader:"claude" }; } catch(err){ z.res[it.qid] = { ...r0, error:sampleErrMsg(err) }; }
+      saveL(); return renderLearn(); }
+    if (k.startsWith("p-")){ const qid = k.slice(2); const q = qById(qid); const r0 = results[qid];
+      t.disabled = true; try { const r = await claudeGrade(q, answerText(q, drafts[k])); if (r0.attemptId) await updateAttempt(r0.attemptId, { score:r.score, grader:"claude" }); results[qid] = { ...r0, ...r, grader:"claude" }; } catch(err){ results[qid] = { ...r0, error:sampleErrMsg(err) }; }
+      return renderPractice(); } }
+  if (ds.qnext){ const z = L.quiz; const j = nextOpen(z, z.idx + 1); if (j >= 0){ z.idx = j; saveL(); renderLearn(); window.scrollTo({ top:0 }); } else quizFinish(); return; }
+  if (ds.q && (t.classList.contains("qrow") || t.classList.contains("ghost"))){ curId = ds.q; ls.set("db-cur", curId); return renderPractice(); }
+  if (ds.go){ curId = ds.go; ls.set("db-cur", curId); const q = qById(curId); if (q && !filteredQs().find(x => x.id === curId)){ filters = { unit:"", concept:"", type:"", status:"" }; ls.set("db-filters", filters); } return show("practice"); }
+  if (ds.psubmit){ t.disabled = true; return practiceSubmit(ds.psubmit); }
+  if (ds.preveal){ const q = qById(ds.preveal); drafts["p-"+q.id] = readDraft(q, "p-"+q.id); results[q.id] = { score:null }; return renderPractice(); }
+  if (ds.pretry){ delete results[ds.pretry]; drafts["p-"+ds.pretry] = undefined; return renderPractice(); }
+  if (ds.mockstart){ mock = buildMock(); ls.set("db-mock", mock); Object.keys(drafts).filter(k => /^m\d/.test(k)).forEach(k => delete drafts[k]); return renderMock(); }
+  if (ds.mocksubmit) return submitMock();
+  if (ds.mockexit){ mock = null; ls.set("db-mock", null); clearInterval(timerHandle); Object.keys(drafts).filter(k => /^m\d/.test(k)).forEach(k => delete drafts[k]); return renderMock(); }
+});
+document.addEventListener("input", e => {
+  const t = e.target; const k = t.dataset.k; if (!k) return;
+  if (k.startsWith("p-")){ const q = qById(k.slice(2)); if (q){ drafts[k] = readDraft(q, k); ls.set("db-draft-" + q.id, drafts[k]); } }
+  else if (k.startsWith("z") && L.quiz){ const z = L.quiz; const q = qById(z.items[z.idx].qid); z.drafts[q.id] = readDraft(q, k); saveL(); }
+  else if (k.startsWith("m") && mock){ const i = Number(k.slice(1)); const q = qById(mock.items[i].qid); mock.answers[q.id] = readDraft(q, k); ls.set("db-mock", mock); }
+});
+document.addEventListener("change", e => {
+  const t = e.target; const map = { "f-unit":"unit", "f-concept":"concept", "f-type":"type", "f-status":"status" };
+  if (!map[t.id]) return; filters[map[t.id]] = t.value; filters.lesson = ""; if (t.id === "f-unit") filters.concept = "";
+  ls.set("db-filters", filters); curId = null; renderPractice();
+});
+
+/* ── boot ───────────────────────── */
+async function boot(){
+  attempts = ls.get("db-attempts", []).map(a => ({ ...a, _id:a._id || "local" }));
+  progress = ls.get("db-progress", {});
+  if (L.mode === "quiz" && !L.quiz) L.mode = "home";
+  show(view); setStoreChip(); setGraderChip();
+  if (!window.claude?.use) return;
+  claude.use("sample").then(s => { sample = s; setGraderChip(); renderAll(); }).catch(() => {});
+  const d = await claude.use("db").catch(() => null);
+  if (!d) return;
+  db = d; setStoreChip();
+  db.collection("attempts").orderBy("at","desc").limit(2000).onSnapshot(snap => {
+    const remote = snap.docs.map(x => ({ ...x.data(), _id:x.id }));
+    const local = ls.get("db-attempts", []).map(a => ({ ...a, _id:a._id || "local" }));
+    attempts = remote.concat(local.filter(l => !remote.find(r => r._id === l._id)));
+    renderAll();
+  }, () => { db = null; setStoreChip(); });
+  db.collection("progress").onSnapshot(snap => {
+    const remote = Object.fromEntries(snap.docs.map(x => [x.id, x.data()]));
+    progress = { ...ls.get("db-progress", {}), ...remote };
+    renderAll();
+  }, () => {});
+  db.collection("extra_questions").onSnapshot(snap => {
+    extra = snap.docs.map(x => ({ id:x.id, type:"short", prompt:"", answer:"", ...x.data() }))
+      .filter(q => SEC[q.concept]).map(q => ({ ...q, lesson:SEC[q.concept].lesson, unit:LES[SEC[q.concept].lesson].unit, extra:true }));
+    renderAll();
+  }, () => {});
+}
+boot();
+})();
+</script>

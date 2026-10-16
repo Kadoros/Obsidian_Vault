@@ -1,0 +1,459 @@
+            Databases
+Lecture 2-2: ER Model (Hands-on Practices)
+
+                   Yunyong Ko
+    School of Computer Science and Engineering
+               Chung-Ang University
+Outline
+q Recap: Conceptual Data Modeling
+  ■ Entity-Relationship (ER) Model
+  ■ Designing ER Schema
+
+
+q Practices: Designing ER Schema
+  ■ Draw.io installation
+  ■ Exercise 1: MOVIE Database
+  ■ Exercise 2: CONFERENCE_REVIEW Database
+
+
+
+
+                                             2
+Recap: Entity-Relationship (ER) Model
+q Describe Data as a Collection of Entities and Relationships
+  ■ Entity: a “thing” or “object” that is distinguishable from others
+  ■ Relationship: an association among several entities
+q Focus on the Schema, Rather Than the Instances
+
+
+
+
+               Requirement Analysis
+
+                                                                        3
+Recap: Designing ER Schema
+q Process of Designing ER Schema Diagram
+  ■ (1) Describe entity types and their attributes based on the data requirements
+  ■ (2) Specify relationship types and their constraints
+  ■ (3) Change the attributes representing relationships into relationship types
+
+
+
+
+                                                                                    4
+Recap: Constrains on Relationship Types
+q Constraints of Relationship Types
+  ■ Relationship types usually have certain constraints about participating entities
+     q   e.g., the company has a rule that each employee must work for exactly one department
+
+q Constraint 1: Cardinality Ratio
+  ■ Specify the maximum number of relationship instances that an entity can participate in
+  ■ Three types of cardinality ratios for a binary relationship
+     q   1:1, 1:N, M:N
+
+q Constraint 2: Participation Constraint
+  ■ Specifies whether it should participate in a relationship type
+  ■ Two types of a participation constraint
+     q Total: every entity should participate in the relationship
+     q Partial: every entity does not need to participate in the relationship
+
+
+
+                                                                                                5
+   Recap: Attributes of Relationship Types
+   q Relationship Types Can Have Attributes
+                                                         The company wants to keep track of:
+                                    (1) the start date of a manager when the employee manage the department;
+                                  (2) the start date of an employee when the employee works for the department
+                                   (3) the number of working hours of each employee on a specific project and
+
+          1:1 Relationship Type                              1:N Relationship Type                        M:N Relationship Type
+
+
+
+
+         StartDate for MANAGES
+
+Migrated to one of any participating entities                                                            Hours for WORKS_ON
+                                                          StartDate for WORKS_FOR
+                                                                                                    Cannot be migrated to any entities
+                                                Migrated only to the N-side participating entity
+
+                                                                                                                                         6
+Recap: Notations of ER Model
+
+
+
+
+                               7
+Outline
+q Recap: Conceptual Data Modeling
+  ■ Entity-Relationship (ER) Model
+  ■ Designing ER Schema
+
+
+q Exercises: Designing ER Schema
+  ■ Draw.io installation
+  ■ Exercise 1: MOVIE Database
+  ■ Exercise 2: CONFERENCE_REVIEW Database
+
+
+
+
+                                             8
+Draw.io Desktop Version Installation
+q Access the latest version from the draw.io desktop GitHub releases
+  page
+  ■ https://github.com/jgraph/drawio-desktop/releases/tag/v28.1.2
+
+
+
+
+                                                                    9
+Draw.io Desktop Version Installation (Cont.)
+q Click the appropriate link for your operating system and install
+
+
+
+
+                                                                 10
+Draw.io Mobile (No Laptop)
+q Search for draw.io web on google and click the link
+
+
+
+
+                                                        11
+Draw.io Simple Tutorial
+q Click the ER toggle in the left side panel to access predefined
+  shapes such as Entity and Attribute
+
+
+
+
+                                                               12
+Draw.io Simple Tutorial
+q You can connect relations with cardinality and adjust the
+  position of the cardinality labels
+
+
+
+
+                                                          13
+Exercise 1: ER Schema Diagram
+q Designing ER Diagram for MOVIE Database
+  ■ Consider a MOVIE database in which data is recorded about the movie industry.
+    q MOVIE
+       § Each movie is identified by (title and year of release)
+       § Each has a length in minutes and a plot outline
+       § Each is classified under one or more genres (e.g., horror, action, drama, …)
+       § Each movie has a production company, one or more directors, and one or more actors appearing in it
+    q ACTOR
+       § Actors are identified by (name and date of birth) and appear in one or more movies
+       § Each actor has a role in the movie and has zero or more quotable quotes to speak
+    q DIRECTOR
+       § Directors are identified by (name and date of birth) and direct one or more movies
+       § It is possible for a director to act in a movie (including one that she/he may also direct)
+    q PRODUCTION
+       § Production companies are identified by (name) and each has an address
+       § A production company produces one or more movies
+
+
+                                                                                                              14
+Exercise 1: ER Schema Diagram (Cont.)
+q Step 1: Describing the Entity Types
+  ■ List entity types and their attributes based on the data requirements
+q Entity Type 1: MOVIE
+  ■ Requirements:
+    q Each movie is identified by (title and year of release)
+    q Each has a length in minutes and a plot outline
+    q Each is classified under one or more genres (e.g., horror, action, drama, …)
+    q Each movie has a production company, one or more directors, and one or more actors appearing in it
+
+  ■ Attributes:
+    q   Mkey(Title, Year), Length, Plot_outline, {Genre}, Production, {Directors}, {Actors}
+                                        Length            Plot_outline
+                                                                                 Genre
+                           Title
+
+                                       MKey                MOVIE
+                                                                                  Production
+                           Year
+
+                                                 Actors              Directors
+                                                                                                           15
+Exercise 1: ER Schema Diagram (Cont.)
+q Step 1: Describing the Entity Types
+  ■ List entity types and their attributes based on the data requirements
+q Entity Type 2: ACTOR
+  ■ Requirements:
+    q Actors are identified by (name and date of birth) and appear in one or more movies
+    q Each actor has a role in the movie and has zero or more quotable quotes to speak
+
+  ■ Attributes:
+    q   Akey(Name, Date_of_birth), {Acts_on(Movie, Role, {Quotes})}
+
+
+                          Name                                              Role
+
+                                        AKey    ACTOR         Acts_on
+
+
+                        Date_of_birth                                      Quotes
+
+
+
+
+                                                                                           16
+Exercise 1: ER Schema Diagram (Cont.)
+q Step 1: Describing the Entity Types
+  ■ List entity types and their attributes based on the data requirements
+q Entity Type 3: DIRECTOR
+  ■ Requirements:
+    q Directors are identified by (name and date of birth) and direct one or more movies
+    q It is possible for a director to act in a movie (including one that she/he may also direct)
+
+  ■ Attributes
+    q   Dkey(Name, Date_of_birth), {Directs}, {Acts_on(Movie, Role, {Quotes})}
+
+
+                                                Directs
+                         Name
+                                                                                  Role
+
+                                      DKey     DIRECTOR           Acts_on
+
+                                                                                   Quotes
+                      Date_of_birth
+
+
+
+                                                                                                    17
+Exercise 1: ER Schema Diagram (Cont.)
+q Step 1: Describing the Entity Types
+  ■ List entity types and their attributes based on the data requirements
+q Entity Type 4: PRODUCTION
+  ■ Requirements:
+    q Production companies are identified by (name) and each has an address
+    q A production company produces one or more movies
+
+  ■ Attributes:
+    q   Name, Address, {Movies}
+
+                                        Name                Address
+
+
+                                               PRODUCTION
+
+
+
+                                                 Movies
+
+
+
+
+                                                                              18
+Exercise 1: ER Schema Diagram (Cont.)
+q Step 2: Describing the Relationship Types
+  ■ Specify relationship types and their constraints
+q How Many Relationship Types Exist?
+                                      Plot_outline                                                                          Directs
+                   Length                                                             Name
+                                                               Genre
+   Title
+                                                                                                      DKey         DIRECTOR
+                   MKey                MOVIE
+                                                                   Production
+   Year                                                                              Date_of_birth                         Acts_on
+
+                            Actors               Directors
+                                                                                                                Role                  Quotes
+
+
+
+     Name                                                                                 Name                         Address
+                                                                            Role
+
+                   AKey              ACTOR               Acts_on                                     PRODUCTION
+
+
+   Date_of_birth                                                            Quotes
+                                                                                                       Movies
+
+
+                                                                                                                                               19
+Exercise 1: ER Schema Diagram (Cont.)
+q Step 2: Describing the Relationship Types
+  ■ Specify relationship types and their constraints
+q Relationship Type 1: PRODUCES
+  ■ Relating PRODUCTION and MOVIE entity types
+      q A single production company can produce many movies, but a movie has to be produced by a single
+        production company
+         § i.e., Cardinality ratio of this relationship type: (1:N)
+      q The MOVIE entity type has a total participation constraint
+
+
+
+               Length            Plot_outline           Genre                  Name                Address
+   Title
+
+               MKey               MOVIE                         PRODUCES              PRODUCTION
+                                                          N                1
+   Year
+
+                        Actors              Directors
+
+
+
+                                                                                                             20
+Exercise 1: ER Schema Diagram (Cont.)
+q Step 2: Describing the Relationship Types
+  ■ Specify relationship types and their constraints
+q Relationship Type 2: ACTS
+  ■ Relating ACTOR and MOVIE entity types
+          q An actor can act in many movies, and a movie can have many actors
+             § i.e., Cardinality ratio of this relationship type: (M:N)
+          q This relationship type has two relationship attributes Role and Quotes (the multivalued attribute)
+             § The Role attribute names a role that the actor plays in the movie, and the Quotes are quotes spoken by an actor
+          q The both entity types have a total participation constraint
+
+
+                 Length         Plot_outline       Genre            Quotes
+                                                                                                                     Name
+  Title
+                                                           N                     M
+                  MKey                  MOVIE                        ACTS                   ACTOR             AKey
+
+  Year
+
+                            Directors                                                                             Date_of_birth
+                                                                     Role
+
+
+                                                                                                                                  21
+Exercise 1: ER Schema Diagram (Cont.)
+q Step 2: Describing the Relationship Types
+  ■ Specify relationship types and their constraints
+q Relationship Type 3: DIRECTS
+  ■ Relating DIRECTOR and MOVIE entity types
+    q A director can direct many movies, and a movie is directed by at least one director
+       § i.e., Cardinality ratio of this relationship type: (M:N)
+    q The MOVIE entity type has a total participation constraint
+
+                                                                             Name              Date_of_birth
+
+            Length      Plot_outline     Genre
+                                                                                      DKey
+
+    Title
+                               MOVIE                  DIRECTS                       DIRECTOR
+                 MKey                       N                          M
+
+     Year                                                                            Acts_on
+
+                                                                            Role                 Quotes
+
+
+                                                                                                               22
+Exercise 1: ER Schema Diagram (Cont.)
+q Step 3: Drawing the ER Diagram
+
+
+
+
+                                        23
+Exercise 2: ER Schema Diagram
+q Exercise 2: Design ER Diagram for CONF_REVIEW Database
+  ■ Consider a CONFERENCE REVIEW database in which researchers submit their
+    research papers for publication
+  ■ Reviews by reviewers are recorded for use in the paper selection process
+  ■ The database system caters primarily to reviewers who record answers to
+    evaluation questions for each paper they review and make recommendations
+    regarding whether to accept or reject the paper.
+                                                             Accept or Reject!
+
+
+                         Submit                    Review
+
+
+
+
+          Researchers                Papers                   Reviewers
+
+
+                                                                                 24
+Exercise 2: ER Schema Diagram (Cont.)
+q Designing ER Diagram for CONF_REVIEW Database
+  ■ The data requirements are summarized as follows:
+    q AUTHOR
+       § Authors of papers are uniquely identified by e-mail id and have the first and last names
+       § Authors can submit one or more papers
+       § An author should submit a paper to be recorded
+    q PAPER
+       § Each paper is assigned a unique id by the system and is described by a title, abstract, and the file name
+       § Each can have multiple authors, but one of the authors should be designated as the contact author
+       § A paper is assigned at least two and at most four reviewers
+    q REVIEWER
+       § Reviewers of papers are uniquely identified by e-mail id
+       § Every reviewer has to review at least one paper to be recorded and can review many papers
+       § Each reviewer has the first and last name, phone number, affiliation, and topics of interest
+       § A reviewer rates each paper assigned to her/him on a scale of 1 to 10 in four evaluation categories: (1) technical
+           merit, (2) readability, (3) originality, and (4) relevance to the conference.
+         § Each reviewer provides an overall recommendation to each paper assigned to her/him
+         § Each review contains two types of written comments: (1) one to be seen by the review committee only and (2)
+           the other as feedback to author(s)
+
+
+                                                                                                                              25
+Exercise 2: ER Schema Diagram (Cont.)
+q Step 1: Describing the Entity Types
+  ■ List entity types and their attributes based on the data requirements
+
+
+q Step 2: Describing the Relationship Types
+  ■ List and describe relationship types and their cardinality ratios
+
+
+q Step 3: Drawing the ER Diagram
+
+
+
+
+                                                                            26
+Course Schedule (Tentative)
+ Week                         Topic                              Week                       Topic
+        2026.09.01             Course Introduction                      2026.10.27        AI for Databases: NL2SQL
+  1                                                               9
+        2026.09.04                    No Class                          2026.10.30            Hands-on Practice
+
+        2026.09.08           ER Model (Video Lecture)                   2026.11.03        AI for Databases: NL2SQL
+  2                                                               10
+        2026.09.11              Lab: ER Modeling                        2026.11.06            Hands-on Practice
+        2026.09.15      Relational Database (Video Lecture)             2026.11.10      Disk Storage and File Structure
+  3                                                               11
+        2026.09.18                Lab: SQL Setup                        2026.11.13         Parallelizing Disk Access
+                                                                                     Indexing for Physical Database Design
+        2026.09.22           Basic SQL (Video Lecture)                  2026.11.17
+  4                                                               12                            (Assignment #2)
+        2026.09.25      Lab: SQL DDL (No Class, 추석연휴)                   2026.11.20      Advanced Indexing Techniques
+        2026.09.29        Advanced SQL (Assignment #1)                  2026.11.24            Query Processing
+  5                                                               13
+        2026.10.02              Lab: SQL Retrieval                      2026.11.27            Query Optimization
+        2026.10.06              Relational Algebra                      2026.12.01          Transaction Processing
+  6                                                               14
+        2026.10.09     Lab: SQL Retrieval (No Class, 한글날)               2026.12.04    Concurrency Control and Recovery
+
+        2026.10.13   Functional Dependencies and Normalization          2026.12.08           Advanced Topic: TBD
+  7                                                               15
+        2026.10.16              Office Hours (Q&A)                      2026.12.11              No class (Q&A)
+  8     2026.10.23                Midterm Exam                    16    2026.12.18               Final Exam
+
+                                                                                                                             27
+           Q&A:
+ER Model (Hands-on Practices)
+
+
+
+
+                                28
+

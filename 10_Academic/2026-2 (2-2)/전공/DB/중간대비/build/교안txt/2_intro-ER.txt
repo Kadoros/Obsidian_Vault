@@ -1,0 +1,872 @@
+              Databases
+Lecture 2: DB System Architecture & ER Model
+
+                     Yunyong Ko
+      School of Computer Science and Engineering
+                 Chung-Ang University
+Outline
+q Database System Architecture
+  ■ Conceptual, representational, and physical data models
+  ■ Three-schema architecture and data independence
+
+q ER Model: Entities and Attributes
+  ■ Process of conceptual data modeling
+  ■ Entity types and attributes
+  ■ Initial conceptual design
+
+q ER Model: Relationships and Constraints
+  ■ Relationship types, constraints, and attributes
+  ■ Weak entity types
+  ■ Refining conceptual design
+                                                             2
+Data Model and Abstraction
+q What is a Data Model?
+  ■ A collection of concepts that describe the structure of a database
+  ■ Providing the necessary “Tools” to achieve data abstraction
+    q e.g., data types, relations, and constraints that apply to the data
+    q e.g., basic operations for specifying retrievals and updates on the DB
+
+                                                                               The highlighting of the essential features
+                                                                                      for understanding of data
+q Three Categories of Data Models                                                   The suppression of details of
+                                                                                    data organization and storage
+  ■ Conceptual data models (high-level)
+  ■ Representational data models (between the two levels)
+  ■ Physical data models (low-level)
+
+
+
+                                                                                                                       3
+Conceptual Data Model
+q Providing Concepts Close to the Way Users Perceive Data
+  ■ Example: Company Database
+    Employee
+                  Name, Salary, Age,
+                  Address, Department, …
+
+
+   Department
+
+                  Name, Dnumber,
+                  Manager, Location, …
+
+
+    Project
+
+                  Name, Pnumber,
+                  Controlling_Dept., Location, …
+
+     Careful requirement analysis                  Conceptual Design for Company Database
+
+
+
+                                                                                            4
+Representational Data Model
+q Describing How Data is Managed by Software
+  ■ Managed by Database management system (DBMS)
+  ■ Bridging the Gap between Conceptual and Physical Models
+
+
+
+                         Data definition                                              Data manipulation
+
+
+
+
+Conceptual data design
+                                     Hiding many details of physical data storage on disk,
+                                    but can be implemented on a computer system directly
+
+
+
+
+                                                                                                          5
+Physical Data Model
+q Describing How Data is Stored in a Computer System
+  ■ Representing information such as record formats, orderings, and access paths
+    q   The provided concepts are meant for computer specialists, not for end users
+
+                                                                     How to access a specific data?
+
+
+
+
+                       Name          ID   C Major
+        Record 1
+        Record 2
+                         …
+
+
+
+
+        Record N
+
+
+
+                                                                                                      6
+Three-Schema Architecture
+q Goal: To Separate User Apps from Physical DB
+  ■ For the independence between a user program and data
+
+             App A                                  App B
+
+
+                                                    To describes the part of the database structure
+                                                      that a particular user group is interested in
+
+
+
+                                           To describes the logical structure of the databases
+                                                 using a representational data model
+                                          à Hiding the details of the physical storage structure
+
+                                         To describes the physical storage structure of the database
+                                                        using a physical data model
+
+
+                                            However, the actual data is stored at the physical level only.
+                                              Thus, how can the DBMS support each user request?
+
+                                                                                                             7
+Three-Schema Architecture: Mapping
+q Transforming Requests and Results between Levels
+   ■ Actual data is stored at the physical level only
+   ■ The DBMS must transform a request specified on a high-level schema into a
+     request against a lower-level schema
+
+      Transform a user request:
+                                                                                    Reformatted to match the user’s external view
+
+External schema à Conceptual schema
+
+
+Conceptual schema à Internal schema
+
+
+
+                                                                                   The data is extracted from the stored database
+       Processing the request
+        (e.g., data retrieval)
+
+                                      Mapping information is also stored in the catalog
+
+                                                                                                                               8
+Three-Schema Architecture: Example
+q University Database
+
+                                      The part of the database structure
+  External Level                 that a particular user group is interested in
+
+
+
+
+                                              High-level concepts:
+Conceptual Level                       Entities, data types, relationships,
+                                       user operations, and constraints
+
+
+
+
+   Internal Level                    The complete details of data storage
+                                      and access paths for the database
+
+
+
+
+                                                                         9
+Data Independence
+q What is the Data Independence?
+  ■ The capacity to change the schema at one level of a database system without
+    having to change the schema at the next higher level
+
+                                                                    What if we change the conceptual schema?
+                                                                    E.g., adding a new data or removing a data
+
+
+                                                                Logical Data Independence
+                                                               à The Capacity to Change the Conceptual Schema
+
+                                                               Physical Data Independence
+                                                               à The Capacity to Change the Internal Schema
+                                                                 What if we change the physical storage organization?
+                                                               (e.g., providing an access path to improve retrieval speed)
+
+
+
+                Significantly reduces the maintenance overhead of existing application programs
+
+                                                                                                                             10
+Outline
+q Database System Architecture
+  ■ Conceptual, representational, and physical data models
+  ■ Three-schema architecture and data independence
+
+q ER Model: Entities and Attributes
+  ■ Process of conceptual data modeling
+  ■ Entity types and attributes
+  ■ Initial conceptual design
+
+q ER Model: Relationships and Constraints
+  ■ Relationship types, constraints, and attributes
+  ■ Weak entity types
+  ■ Refining conceptual design
+                                                             11
+Database Design Process
+q Phase 1: Requirements Collection and Analysis
+  ■ Characterize the data needs of the prospective DB users
+  ■ Collect and analyze data requirements for the database
+    q   Output: a set of users’ detailed requirements
+
+
+q Phase 2: Conceptual Design
+  ■ Choosing a data model
+  ■ Translating the requirements into a conceptual schema
+
+q Phase 3: Implementation
+  ■ Implementing the DB based on the conceptual DB schema
+    q Logical design: the database schema
+    q Physical design: the physical layout of the DB
+
+
+                                                              12
+Requirement Analysis
+q What Information Should be Managed?
+  ■ We want to keep track of a company’s employees, departments, and projects
+  ■ Department
+    q   The company is organized into ‘department’s
+         § Each has a unique name, a unique number, locations, manager, start date when that manager began, …
+  ■ Project
+    q   A department can control a number of ‘project’s
+         § Each has a unique name, a unique number, a single location, controlling department
+  ■ Employee
+    q   ‘Employee’s are working in the company
+          § Each has a name, SSN, address, salary, gender, birth date, projects that the employee works on, …
+  ■ Dependent
+    q   For insurance purposes, the ‘dependent’s of each employee are needed
+         § Each has a first name, gender, birth date, relationships to the employee, …
+
+
+                                                                                                                13
+Conceptual Data Modeling
+q Entity-Relationship (ER) Model
+  ■ Describing data as a collection of entities and relationships
+     q Entity: a “thing” or “object” that is distinguishable from others
+     q Relationship: an association among several entities
+
+  ■ Represented diagrammatically by an ER diagram
+
+
+
+
+                                                                           14
+Entities and Attributes
+q Entity
+  ■ A thing or an object in real world with independent existence
+    q   An entity may be an object with a physical existence or a conceptual existence
+         § E.g., employee vs company
+
+q Attribute
+  ■ A particular property that describes the entity
+    q E.g., employee: Name, address, age, and home_phone
+    q E.g., company: Name, headquarters, and president
+
+
+
+
+                                   Employee                      Company
+                                                                                         15
+Categorization of Attributes
+q Category 1: Composite vs Simple Attributes
+  ■ Composite attributes: can be divided into smaller subparts
+     q   e.g., Address consists of Street_address, city, state, and zip
+  ■ Simple (atomic) attributes: non-divisible
+     q   e.g., city, state, zip, number, street, apartment_number
+
+q Category 2: Single-Valued vs Multivalued Attributes
+  ■ Single-valued attributes: have a single value for a particular entity
+     q   e.g., (most attributes) age, gender, birth date, SSN, …
+  ■ Multivalued-valued attributes: have a set of values for the same entity
+     q   e.g., phone numbers, college degrees, …
+q Category 3: Stored vs Derived Attributes
+  ■ Stored attributes: actually stored in the database
+     q   e.g., birth date
+  ■ Derived attributes: not stored in the database, but can be derived from others
+     q   e.g., age (derived from the birth date)
+                                                                                     16
+Key Attributes of an Entity Type
+q What is a Key Attribute?
+  ■ An attribute whose value is distinct for each individual entity
+     q i.e., used to identify each entity uniquely
+     q e.g., student number of STUDENT entity and SSN of PERSON entity
+
+  ■ Multiple attributes can form a key
+  ■ An entity type can have more than two keys
+
+
+
+                                                             The “Registration” attribute consists of two attributes
+
+
+                                                             The CAR entity has two keys: Registration and Vehicle_id
+
+
+
+
+                                                                                                                       17
+Representation of Entity Types
+q How to Represent an Entity Type and its Attributes?
+
+
+
+
+                                                        18
+Initial Conceptual Design: COMPANY
+q DEPARTMENT
+ ■ Attributes: Name, Number, Locations, Manager, and Manager_start_date
+   q Name and Number are key attributes (underlined) since each was specified to be unique
+   q Locations is the multivalued attributed
+
+q PROJECT
+ ■ Attributes: Name, Number, Location, Controlling_department
+   q   NAME and Number are key attributes
+
+
+
+
+                                                                                             19
+Initial Conceptual Design: COMPANY (Cont’d)
+q EMPLOYEE
+ ■ Attributes: Name, SSN, Address, Salary, Birth_date, Sex, Department, Supervisor,
+   Works_on
+   q SSN is a key attribute , Name is a composite attribute (Fname, Minit, Lname)
+   q An employee can work on several projects,
+      § The number of hours per week an employee works on each project is managed
+ ■ DEPENDENT
+   q   Attributes: Employee, Depedent_name, Sex, Birth_date, Relationship
+
+
+
+
+                                                                                      20
+Initial Conceptual Design: COMPANY (Cont’d)
+q Is It Enough to Model Relationships Among Entities?
+                 Q. What relationships do they have?
+
+
+
+
+    (Implicit) Relationships are captured in the form of attributes
+                                                                      Let’s represent relationships among entities explicitly
+   à These references should be represented as “Relationships”
+
+
+
+
+                                                                                                                        21
+Outline
+q Database System Architecture
+  ■ Conceptual, representational, and physical data models
+  ■ Three-schema architecture and data independence
+
+q ER Model: Entities and Attributes
+  ■ Process of conceptual data modeling
+  ■ Entity types and attributes
+  ■ Initial conceptual design
+
+q ER Model: Relationships and Constraints
+  ■ Relationship types, constraints, and attributes
+  ■ Weak entity types
+  ■ Refining conceptual design
+                                                             22
+Relationship Type
+q Relationship Type
+  ■ Described by its name and participating entity types
+  ■ Define a set of associations among participating entity types
+q Example: WORKS_FOR
+  ■ Relationships between EMPLOYEE and DEPARTMENT
+    q   Associating each employee with the department for which the employee works
+
+
+
+
+                                                                        Participating entity types:
+                                                                      EMPLOYEE and DEPARTMENT
+
+
+
+
+                                                                                                      23
+Relationship: Degree and Role Name
+q Degree of a Relationship Type
+  ■ Number of participating entity types (binary, ternary, …)
+  ■ Relationships can generally be of any degree
+     q   Most relationships in a DB system are binary
+
+q Role Name of a Relationship Type
+  ■ Signifying a role that a participating entity plays in each relationship instance
+     q   It helps us to understand what the relationship means
+
+
+
+
+      Role: Worker                                Role: Employer
+
+
+                                       !! = ($" , &# )                             !! = ((" , )# , *$ )
+
+                        Binary Relationship                        Ternary Relationship
+                                                                                                          24
+Relationship: Recursive Relationships
+q Recursive Relationship
+  ■ The same entity type participates more than once in a relationship type
+    q   Essential to specify the role name for distinguishing the participating entities
+
+
+
+                                                                       Line marked ‘1’: the supervisor role
+                   Kim
+                   Lee                                                 Line marked ‘2’: the supervisee role
+
+
+                                                                                    !% = ($&, $%)
+                   Kang                                                  “Kim” is the supervisor of “Lee”
+
+
+                                                                                    !& = ($', $&)
+                                                                         “Kim” is a supervisee of “Kang”
+
+
+
+
+                                                                                                              25
+Constrains on Relationship Types
+q Why Constraints of a Relationship Type Need?
+  ■ Relationship types usually have certain constraints about participating entities
+     q e.g., each employee must “work for” exactly one department
+     q e.g., each employee can “work on” multiple projects and should be “supervised” by exactly one employee
+
+
+q Types of Constraints
+  ■ Constraint 1: Cardinality Ratio
+     q To specify the maximum number of relationship instances that an entity can participate in
+     q Three types of cardinality ratios for a binary relationship: 1:1, 1:N, M:N
+
+  ■ Constraint 2: Participation Constraint
+     q To specify whether the existence of an entity depends on its being related to another entity
+     q Two types of a participation constraint
+        § Total: every entity should participate in the relationship
+        § Partial: every entity does not need to participate in the relationship
+
+
+                                                                                                         26
+Constraint 1: Cardinality Ratio
+q 1:N Cardinality Ratio
+  ■ A 1:N binary relationship relates an entity to any number of entities
+                                       N-side entity                       1-side entity
+
+
+
+
+     An employee can be related to                                                         Each department can be related to
+        at most one department                                                                any number of employees
+
+
+
+
+                                                    Real-world Constraints:
+                                        (1) An employee can work for only one department
+                                     (2) A department can employ any number of employees
+
+                                                                                                                               27
+Constraint 1: Cardinality Ratio (Cont.)
+q 1:1 Cardinality Ratio
+  ■ A 1:1 binary relationship relates an entity to another entity
+
+
+
+
+   An employee can be related to                                                       Each department can be related to
+      at most one department                                                              an employee as a manager
+
+
+
+
+                                                  Real-world Constraints:
+                                   (1) An employee can manage at most one department
+                                      (2) A department can have at most one manager
+
+
+
+                                                                                                                           28
+Constraint 1: Cardinality Ratio (Cont.)
+q M:N Cardinality Ratio
+  ■ A M:N binary relationship relates any number of entities to any number of entities
+
+
+
+     Each employee can be related to                                                  Each project can be related to
+         any number of projects                                                       any number of employees
+
+
+
+
+                                                   Real-world Constraints:
+                                    (1) An employee can work on any number of projects
+                                (2) A project can be conducted by any number of employees
+
+                                                                                                                       29
+Constraint 2: Participation Constraint
+q Total Participation
+  ■ Every entity should participate in the relationship
+q Partial Participation
+  ■ Every entity does not need to participate in the relationship
+
+
+
+
+       The participation of EMPLOYEE in WORKS_FOR:   The participation of EMPLOYEE in MANAGES:
+                       Total Participation                        Partial Participation
+                                                                                                 30
+Attributes of Relationship Types
+q Relationship Types Can Have Attributes
+                                    The company wants to keep track of:
+               (1) the start date of a manager when the employee manage the department
+              (2) the number of working hours of each employee on a specific project and
+
+
+
+
+           StartDate for MANAGES
+                                                                     Hours for WORKS_ON
+
+
+
+
+                                                                                           31
+Attributes of Relationship Types (Cont.)
+q Representation of 1:1 and 1:N Relationship Type Attributes
+  ■ The attributes can be migrated to one of the participating entity types
+
+
+
+
+                                                                                          1:N Relationship Type
+                    1:1 Relationship Type
+
+
+                  StartDate for MANAGES                          StartDate for WORKS_FOR
+
+
+          Migrated to one of any relationship types   Migrated only to the N-side of the relationship type
+
+                   Q. Which one is better?
+
+                                                                                                                  32
+Attributes of Relationship Types (Cont.)
+q Representation of M:N Relationship Type Attributes
+  ■ Some attributes may be determined only by the combination of participating
+    entities in a relationship instance, not by any single entity
+    q   i.e., Those attributes cannot be migrated to any participating entities
+
+
+
+
+                                                 The number of hours per week an employee ‘works on’ a project
+                                                       is determined by an employee-project combination.
+
+
+
+                                                     Hours cannot be migrated into one of the participating entities
+
+
+
+
+               Hours for WORKS_ON
+
+
+                                                                                                                       33
+Weak Entity Types
+q What is a Weak Entity Type?
+  ■ An entity type has no key attributes of its own inside the entity type
+  ■ A weak entity type depends on its identifying entity type
+     q   Each weak entity must be associated with an identifying entity
+
+q Identifying Relationship
+  ■ Relating a weak entity type to its owner entity type
+  ■ A weak entity type always has a total participation constraint
+
+                              Employee         Dependent_of          Dependent
+
+                                 !!                  #!             "! (son)
+
+                                 !"                  #"             "" (spouse)
+                                 …
+
+
+
+
+                                                                                  34
+Weak Entity Types (Cont.)
+q Partial Key
+  ■ To uniquely identify weak entities that are related to the same owner entity
+  ■ Example 1: EMPLOYEE-DEPENDENT
+    q   The Dependent_Name of DEPENDENT is the partial key since no two dependents have the same name
+
+
+                         Employee           Dependent_of           Dependent
+
+                                                  #!              "! (son)       Tom
+                            !!
+                                                  #"              "" (spouse)    Jane
+
+                            !"                    ##              "! (son)       Tom
+
+                                                  #$              "" (daughter) Alice
+
+
+                  However, a partial key alone cannot identify its corresponding weak entity
+                   Thus, it can be used as a key together with the identifying relationship
+
+                                                                                                        35
+Representation of Relationship Types
+q How to Represent a Relationship Type and its Constraints?
+
+
+
+
+                                              1                             1
+                                 Employee                 Manage                   Department
+
+                                            Participation/cardinality constraint
+
+                                            (0,1)                          (1,1)
+                                 Employee                 Manage                   Department
+
+                                                    (min,max) constraint
+
+                                                                                                36
+Exercise 1: Constraints on ER Diagram
+q Suggest the (min, max) constraints on the following diagram
+  ■ A course may or may not use a textbook
+  ■ A course may not use more than five books
+  ■ A course can be taught by at least one instructor and by a maximum of 4 instructors
+  ■ A textbook is used in some courses
+  ■ An instructor teaches from two to four courses
+
+                                (2, 4)
+                                (?, ?)         (1, 4)
+                                               (?, ?)
+
+
+                                                              (0, 5)
+                                                              (?, ?)
+
+
+
+
+                                                   (1, N)
+                                                   (?, ?)
+
+                                                                                     37
+Refining Conceptual Design
+q Let’s Refine the Conceptual Design for COMPANY Database
+  ■ By changing the attributes representing relationships into relationship types
+
+
+
+
+                                                                                    38
+Refining Conceptual Design: MANAGES
+q Relationship Type 1: MANAGES
+  ■ Participating entity types: EMPLOYEE and DEPARTMENT
+  ■ Cardinality ratio: 1:1
+  ■ EMPLOYEE participation is partial, DEPARTMENT participation is total
+  ■ The attribute Manager_start_date is assigned to the relationship type
+    q   *This attribute can be assigned to one of the DEPARTMENT and EMPLOYEE entity type
+
+
+
+
+                                             MANAGES
+
+
+
+
+                                                                                            39
+Refining Conceptual Design: WORKS_FOR
+q Relationship Type 2: WORKS_FOR
+  ■ Participating entity types: EMPLOYEE and DEPARTMENT
+  ■ Cardinality ratio: 1:N
+    q   i.e., 1-side: DEPARTMENT, N-side: EMPLOYEE
+  ■ Both participations are total
+  ■ No relationship type attribute
+
+
+
+
+                                           WORKS_FOR
+
+
+
+
+                                                          40
+Refining Conceptual Design: CONTROLS
+q Relationship Type 3: CONTROLS
+  ■ Participating entity types: DEPARTMENT and PROJECT
+  ■ Cardinality ratio: 1:N
+    q   i.e., 1-side: DEPARTMENT, N-side: PROJECT
+  ■ PROJECT participation is total, DEPARTMENT participation is partial
+  ■ No relationship type attribute
+
+
+
+
+                                                CONTROLS
+
+
+
+
+                                                                          41
+Refining Conceptual Design: SUPERVISION
+q Relationship Type 4: SUPERVISION
+  ■ Participating entity types: EMPLOYEE
+  ■ Cardinality ratio: 1:N
+    q   i.e., 1-side: EMPLOYEE (in the supervisee role), N-side: EMPLOYEE (in the supervisor role)
+  ■ Both participations are partial
+  ■ No relationship type attribute
+
+
+
+
+                                                  SUPERVISON
+
+
+
+
+                                                                                                     42
+Refining Conceptual Design: WORKS_ON
+q Relationship Type 5: WORKS_ON
+  ■ Participating entity types: EMPLOYEE and PROJECT
+  ■ Cardinality ratio: M:N
+    q   i.e., an employee can work on several projects and a project can have several employees
+  ■ Both participations are total
+    q   An employee must work on at least one project; a project must be conducted by at least one employee
+  ■ The attribute Hours is assigned to the relationship type
+    q   It is determined by an employee-project combination
+
+
+
+
+                                                    WORKS_ON
+
+
+
+
+                                                                                                          43
+Refining Conceptual Design: DEPENDENT_OF
+q Relationship Type 6: DEPENDENTS_OF
+  ■ Participating entity types: EMPLOYEE and DEPENDENT
+     q Identifying entity type: EMPLOYEE, weak entity type: DEPENDENT
+     q The DEPENDENTS_OF is the identifying relationship for the weak entity type DEPENDENT
+
+  ■ Cardinality ratio: 1:N
+     q   1-side: EMPLOYEE, N-side: DEPENDENT (i.e., an employee can have several dependents)
+  ■ EMPLOYEE participation is partial, DEPENDENT participation is total
+     q   i.e., an employee may or may not have dependents, but a dependent must have its employee
+
+
+
+
+                                             DEPENDENT_OF
+
+
+
+
+                                                                                                    44
+Refining Conceptual Design: Result
+q Process of Refinement
+  ■ Specifying all relationship types
+  ■ Changing the attributes representing
+    relationships into relationship types
+
+   Manager and Manager_start_date from DEPARTMENT
+                  à To MANAGES
+
+
+         Controlling_department from PROJECT
+                    à To CONTROLS
+
+
+  Department, Supervisor, and Works_on from EMPLOYEE
+    à To WORKS_FOR, EMPLOYEE, and WORKS_ON
+
+
+              Employee from DEPENDENT
+               à To DEPENDENTS_OF
+
+
+
+                                                       45
+Takeaways: Database System Architecture
+q Data Model: A Collection of Concepts Describing DB Structure
+
+
+
+
+ Real-world Data   Conceptual Data Model   Representational Data Model   Physical Data Model
+
+
+q Three-Schema Architecture
+  ■ Internal, conceptual, and external schemas
+q Data Independence
+  ■ Logical data independence
+  ■ Physical data independence
+                                                                                               46
+Takeaways: ER Data Modeling
+q Process of Designing ER Schema Diagram
+  ■ (1) Describe entity types and their attributes based on the data requirements
+  ■ (2) Specify relationship types and their constraints
+  ■ (3) Change the attributes representing relationships into relationship types
+q Focus on the Schema, Rather Than the Instances
+
+
+
+
+                                                                                    47
+Course Schedule (Tentative)
+ Week                         Topic                              Week                       Topic
+        2026.09.01              Course Introduction                     2026.10.27        AI for Databases: NL2SQL
+  1                                                               9
+        2026.09.04                    No class                          2026.10.30            Hands-on Practice
+
+        2026.09.08          ER Model (Video Lecture)                    2026.11.03        AI for Databases: NL2SQL
+  2                                                               10
+        2026.09.11               Hands-on Practice                      2026.11.06            Hands-on Practice
+        2026.09.15      Relational Database (Video Lecture)             2026.11.10      Disk Storage and File Structure
+  3                                                               11
+        2026.09.18    ER-to-Relational Mapping (Video Lecture)          2026.11.13         Parallelizing Disk Access
+                                                                                     Indexing for Physical Database Design
+        2026.09.22           Basic SQL (Video Lecture)                  2026.11.17
+  4                                                               12                            (Assignment #2)
+        2026.09.25              No class (추석연휴)                         2026.11.20      Advanced Indexing Techniques
+        2026.09.29        Advanced SQL (Assignment #1)                  2026.11.24            Query Processing
+  5                                                               13
+        2026.10.02               Hands-on Practice                      2026.11.27            Query Optimization
+        2026.10.06               Relational Algebra                     2026.12.01          Transaction Processing
+  6                                                               14
+        2026.10.09   Hands-on Practice (Video Lecture, 한글날)             2026.12.04    Concurrency Control and Recovery
+
+        2026.10.13   Functional Dependencies and Normalization          2026.12.08           Advanced Topic: TBD
+  7                                                               15
+        2026.10.16               Hands-on Practice                      2026.12.11              No class (Q&A)
+  8     2026.10.23                Midterm Exam                    16    2026.12.18               Final Exam
+
+                                                                                                                             48
+              Q&A:
+DB System Architecture & ER Model
+
+
+
+
+                                    49
+

@@ -1,0 +1,817 @@
+          Database
+  Lecture 6: Rela-onal Algebra
+
+               Yunyong Ko
+School of Computer Science and Engineering
+           Chung-Ang University
+Outline
+q Introduc-on to Rela-onal Algebra
+
+
+q Unary Rela-onal Opera-ons
+
+
+q Set Opera-ons
+
+q Binary Rela-onal Opera-ons
+
+
+q Addi-onal Rela-onal Opera-ons
+
+                                     2
+Introduction to Relational Algebra
+q What is the Algebra?
+  ■ Represent numbers and quan//es in equa/ons with le5ers and symbols
+  ■ Basic opera/ons: +, -, *, /
+
+q What is the Linear Algebra?
+  ■ Linear transforma/on in vector spaces
+  ■ Basic opera/ons
+    q   Vector addi+on and scalar mul+plica+on, Matrix opera+ons, …
+
+
+q What is the Rela-onal Algebra?
+  ■ Theore/cal and mathema/cal model for “how to get data” (i.e., procedural)
+    q   SQL is a high-level declara+ve language à What data is needed? (don’t care about how to get)
+  ■ The set of basic opera2ons for the formal rela2onal model
+
+                                                                                                       3
+Mo4va4on of Rela4onal Algebra
+q Why Rela-onal Algebra Important?
+  ■ Formal founda/on for rela/onal model opera/ons
+    q Selec+on, projec+on, renaming, join, cartesian product, …
+    q Strictly based on the mathema+cal concepts of sets
+
+
+
+
+               SQL: What data is needed?                                Relational Algebra: How to get data?
+
+
+  ■ A basis for query processing and op2miza2on
+    q   i.e., specifying a “sequence” of opera<ons to get the results
+
+                                                                                                               4
+Application of Relational Algebra
+q What is a Query (Execu-on) Tree?
+  ■ Tree data structure for the internal representa2on of the query in DMBS
+      q i.e., a rela+onal algebra expression (a set of rela+onal algebra opera+ons to be executed)
+      q Leaf nodes: the input rela+ons, Internal nodes: the rela+onal algebra opera+ons
+
+                Q. For every project located in ‘Stafford’,
+     list the project number, the controlling department number,                                                  Terminate
+  and the department manager’s last name, address, and birth date                                                 at the root
+
+
+
+
+                                                                                                                    Start
+                                                                                                                 from the leaf
+
+                                                                           Explicitly representing the sequence of operations
+                                                                    à A good visual representation and understanding of the query
+                                                                                                                                 5
+Application of Relational Algebra (Cont.)
+q What is Query Processing?
+  ■ The process of choosing a suitable query tree of possible execu2on strategies
+
+
+
+
+                                                                      Which one is the best?
+                                                                   à Query Optimization in Week 13
+
+
+     Multiple query trees (plans) exist for a single SQL
+
+                                                                                              6
+Outline
+q Introduc-on to Rela-onal Algebra
+
+
+q Unary Rela-onal Opera-ons
+
+
+q Set Opera-ons
+
+q Binary Rela-onal Opera-ons
+
+
+q Addi-onal Rela-onal Opera-ons
+
+                                     7
+Unary Relational Operations: SELECT
+q What is the SELECT Opera-on?
+  ■ To choose a subset of the tuples from “a rela=on” sa/sfying a selec/on condi/on
+    q   i.e., a ﬁlter that keeps only those tuples sa+sfying a qualifying condi+on, while discards the others
+
+            The SELECT operator (sigma)                                             A relational algebra expression (relation)
+
+                                    A Boolean expression specified on the attributes of R
+
+  ■ Result of the SELECT Opera/on
+    q   The rela+on includes tuples sa)sfying the speciﬁed condi)ons and has the same a5ributes as R
+         § i.e., the degree of the resul0ng rela0on = the degree of R
+
+
+
+
+              Applied to each tuple individually
+
+
+
+                                                                             Horizontal filtering
+                                                                                                                                 8
+Selec4on Condi4ons of SELECT Opera4on
+q The Boolean Expression of the SELECT Opera-on
+  ■ It is made up of a number of clauses of the form:
+
+                                                                                  or
+
+
+
+    q <aJribute name>: the name of an aJribute of R
+    q <comparison op>: normally one of the operators {=, <, ≤, >, ≥, ≠}
+       § Ordered values {=, <, ≤, >, ≥, ≠} (numeric and date) vs unordered values {=, ≠} (e.g., Color={‘red’, ‘blue’, …}
+    q <constant value>: a constant value from the aJribute domain
+
+  ■ Clauses can be connected by AND and OR
+
+
+
+
+                                                                                                                           9
+Proper4es of SELECT Opera4on
+q The SELECT Opera-on is Commuta've
+  ■ A sequence of SELECTs can be applied in an order
+
+
+  ■ A sequence of SELECTs can be combined into a single SELECT
+
+
+
+q Correspondence to SQL
+  ■ SELECT opera/on is diﬀerent from the SELECT clause of SQL
+                                                                            Containing all attributes of R
+
+
+
+                    The SELECT condition is specified in the WHERE clause of a query
+
+
+
+
+                                                                                                             10
+Unary Rela4onal Opera4ons: PROJECT
+q What is the PROJECT Opera-on?
+  ■ To select certain columns from the table and discards the other columns
+    q   i.e., a ﬁlter that keeps only the columns, while discards the others
+
+                 The PROJECT operator (pi)                                            A relational algebra expression (relation)
+
+                                         The desired list of attributes to retrieve
+
+  ■ Result of the PROJECT Opera/on
+    q   The rela+on has only the aJributes speciﬁed in <aJribute list>
+         § i.e., its degree is the same as the number of aAributes in <aAribute list>
+
+
+
+
+                                                                                 Vertical filtering
+                                                                                                                                   11
+Proper4es of PROJECT Opera4on
+q Duplicate Elimina-on
+  ■ Duplicate tuples are likely to occur if the a;ribute list includes only nonkey a;ributes
+  ■ The PROJECT opera/on removes any duplicate tuples
+     q   i.e., the result of the PROJECT opera+on is a “set” of dis+nct tuples
+
+
+
+
+                                                                                                    Set of distinct tuples
+
+q Correspondence to SQL
+
+                          The PROJECT attribute list is specified in the SELECT clause of a query
+
+                                                                                                                             12
+RENAME Opera4on
+q What is the RENAME Opera-on?
+ ■ To rename either the rela/on name or the a5ribute names, or both
+
+           Both the relation and its attributes   The relation only    The attributes only
+
+   q The symbol * (rho): the RENAME operator
+   q S: the new rela+on name
+   q +! : the new aJribute name (1 ≤ - ≤ ., . is the degree of R)
+
+
+
+
+                                                                                                      R
+                                                  TEMP
+
+
+
+
+                                                         R ⟵ ρ "#$%&_()*,,)%&_()*-,.)/)$0 ) (3"()*-,,()*-,.)/)$0 (TEMP))
+
+
+                                                                                                                   13
+Correspondence to SQL
+q Rela-onal Algebra Expression vs SQL Query
+  ■ A single query typically represents a complex rela/onal algebra expression
+
+           Q. Retrieve the first name, last name, and salary of all employees who work in department number 5
+
+
+
+
+                                                            Renaming in SQL is accomplished by aliasing using AS
+
+
+
+
+                                                                                                                   14
+Sequences of Relational Operations
+q What If Need to Apply Several Relational Algebra Operations?
+           Q. Retrieve the first name, last name, and salary of all employees who work in department number 5
+
+
+       Method 1:                                                           Explicitly show the sequence of operations
+                                                                           by giving a name to each intermediate relation
+
+
+                                                                           Write the operations as a relational algebra expression
+       Method 2:                                                           by nesting the operations
+
+
+
+                                                       DEP5_EMPS                                                    RESULT
+
+
+
+
+      It is usually simpler to break down a complex sequence of operations by specifying intermediate result relations
+                                       than to write a single relational algebra expression
+
+
+                                                                                                                                 15
+Outline
+q Introduc-on to Rela-onal Algebra
+
+
+q Unary Rela-onal Opera-ons
+
+
+q Set Opera-ons
+
+q Binary Rela-onal Opera-ons
+
+
+q Addi-onal Rela-onal Opera-ons
+
+                                     16
+Set Opera4ons
+q Set Opera-ons as Rela-onal Algebra Opera-ons
+                         Q. Retrieve the SSNs of all employees who either work in department 5 or
+                                 directly supervise an employee who works in department 5
+
+
+                                                                                    RESULT1 and RESULT2 are type-compatible
+
+
+
+
+                                                                                 The SSN value ‘33344555’ appears only once
+q Types of Set Opera-ons
+  ■ UNION, INTERSECTION, SET DIFFERENCE (MINUS or EXCEPT)
+    q   Those opera+ons can be applied rela+ons that are type-compa+ble
+         § Two rela0ons *(,!, … , ," ) and /(0!, … , 0" ) are said to be type compa+ble:
+                                                                 The two relations have the same number of attributes,
+                      If dom(!! ) = dom("! ) for 1 ≤ % ≤ &
+                                                             and each corresponding pair of attributes has the same domain
+                                                                                                                              17
+Set Opera4ons: UNION and INTERSECTION
+q UNION Operation
+  ■ The result is a relation including all tuples
+    that are either in R or in S or in both
+     q   Denoted by 9 ∪ ;, duplicate tuples are eliminated
+
+
+q INTERSECTION Operation                                     STUDENT and INSTRUCTOR are type-compatible
+
+  ■ The result is a relation including all tuples
+    that are in both R and S
+     q   Denoted by 9 ∩ ;
+
+
+q Properties of UNION and INTERSECTION
+  ■ ! ∪ # = # ∪ !, ! ∩ # = # ∩ ! (i.e., Commutative)                              STUDENT ∩ INSTRUCTOR
+
+  ■ ! ∪ (# ∪ ') = (# ∪ !) ∪ ',                               STUDENT ∪ INSTRUCTOR
+    ! ∩ (# ∩ ') = (# ∩ !) ∩ ' (i.e., Associative)
+                                                                                                    18
+Set Opera4ons: SET DIFFERENCE
+q SET DIFFERENCE (MINUS) Opera-on
+  ■ The result is a rela/on including all tuples that are in R but not in S
+     q   Denoted by 9 − ;
+
+
+                                        STUDENT − INSTRUCTOR
+
+
+
+
+                                        INSTRUCTOR − STUDENT
+
+
+
+
+q The MINUS Opera-on is Not Commuta've
+  ■ !−# ≠#−!
+
+
+                                                                              19
+CARTESIAN PRODUCT
+q What is the CARTESIAN PRODUCT Opera-on?
+  ■ A binary set opera/on, which can be applied to not type-compa/ble rela/ons
+    q   a.k.a CROSS PRODUCT or CROSS JOIN
+  ■ Produce new tuples by concatena/ng all possible combina2ons of tuples
+    q   Denoted by 9 >2, … , >3 × ; +2, … , +4 → B >2, … , >3 , +2, … , +4
+         § The number of aAributes: 1 + 3
+         § The number of tuples: * ∗ / (all possible combina0ons)
+
+
+q Usage of the CARTESIAN PRODUCT
+  ■ This opera/on alone is generally meaningless
+  ■ Useful only when followed by a selec2on matching certain values of a;ributes
+
+
+
+
+                                                                                   20
+CARTESIAN PRODUCT: Example
+q When the CARTESIAN PRODUCT Useful?
+                              Q. Retrieve a list of names of each female employee’s dependents
+
+
+
+
+3 tuples             X
+                                                                                                                         3*7 tuples
+
+                                                            7 tuples
+
+           Every tuple from EMPNAMES is combined
+              with every tuple from DEPENDENT
+                                                                                   This result is not that meaningful!          21
+CARTESIAN PRODUCT: Example (Cont.)
+q When the CARTESIAN PRODUCT Useful?
+              Q. Retrieve a list of names of each female employee’s dependents
+
+
+
+
+                                  We want to combine a female employee tuple only with her particular dependents
+
+
+
+
+                                           CARTESIAN PRODUCT followed by SELECT combines related tuples
+                                                          from two relations (à JOIN)
+
+
+                                                                                                               22
+Outline
+q Introduction to Relational Algebra
+
+
+q Unary Relational Operations
+
+
+q Set Operations
+
+q Binary Relational Operations
+
+
+q Additional Relational Operations
+
+                                       23
+Binary Rela4onal Opera4ons: JOIN
+q What is the JOIN Opera-on?
+  ■ Combine related tuples from two rela/ons into single “longer” tuples
+                    The JOIN operator (bowtie)
+
+
+  ■ Result of the JOIN Opera/on: + ,!, … , ,# , /!, … , /$
+    q   Contain only the combina3ons of tuples sa3sfying the join condi3on
+         § The join condi0on is evaluated for each tuple combina0on; then included it if it sa0sﬁes the condi0on
+
+      Q. Retrieve the name of the manager of each department:
+
+
+
+                                                                Mgr_ssn is a foreign key of the DEPARTMENT that references
+                                                                           Ssn, the primary key of the EMPLOYEE
+
+
+
+
+                                                                 Combine each department tuple with the employee tuple
+
+                                                                                                                             24
+CARRESIAN PRODUCT vs JOIN Opera4on
+q Comparison of JOIN with CARTESIAN PRODUCT
+  ■ The JOIN can be speciﬁed as a CARTESIAN PRODUCT followed by SELECT
+
+
+
+                   These two operations can be replaced with a single JOIN operation
+
+
+
+
+                                                                                       25
+Generalized JOIN Opera4on
+q Join Opera-on with General Join Condi-ons
+  ■ Made up of mul/ple Boolean expressions, combined with AND
+
+
+                                                                        Include tuples only if all conditions are satisfied
+  ■ Each <condi/on> is of the form “,% 0 /& ”
+    q >! : an aJribute of R
+    q +5 : an aJribute of S
+    q C (theta): one of the comparison opera+ons {=, <, ≤, >, ≥, ≠}
+
+
+                     A JOIN operation with such general join conditions is called a THETA JOIN
+
+
+
+                                        Two widely used variations of JOIN:
+                                         EQUIJOIN and NATURAL JOIN
+
+
+                                                                                                                              26
+Varia4ons of JOIN: EQUIJOIN
+q What is the EQUIJOIN?
+  ■ A JOIN opera/on, where the only comparison operator used is “=”
+  ■ One of more pairs of a5ributes should have iden/cal values in every tuple
+    q   The join condi+on speciﬁed on these aJributes requires the values to be iden3cal
+
+
+
+
+                                                       One of each pair of attributes with identical values is unnecessary
+                                                                               à NATURAL JOIN
+
+
+
+
+                                                                                                                             27
+Variations of JOIN: NATURAL JOIN
+q What is the NATURAL JOIN?
+  ■ A JOIN opera/on to get rid of the redundant a;ribute in an EQUIJOIN condi/on
+    q The join a<ributes should have the same name in both rela+ons; otherwise, a renaming is needed
+    q Denoted by
+
+
+
+
+   Two relations have the same names
+                                                                  Rename first
+
+
+
+
+         Only one join attribute                                   Only one join attribute
+
+                                                                                                       28
+Properties of JOIN Operation
+q The Size of the Result of JOIN Opera-on
+                       +←                                        0 ≤ # ≤ $ ∗ |'|
+
+  ■ (Minimum) If no combina/on of tuples sa/sﬁes the join condi/on
+    q   à The result is an empty rela+on
+  ■ (Maximum) If all combina/ons of tuples sa/sfy the condi/on or no join condi/on
+    q   à The result includes all possible combina+ons of tuples (i.e., CARTESIAN PRODUCT)
+
+
+q Join Selec-vity of a Join Condi-on
+                                     Expected Size of the Join Result
+                                                 9 ∗ |;|
+
+                        It can be used to estimate the cost of query plans in query optimization
+
+
+                                                                                                   29
+Binary Relational Operations: DIVISION
+q What is the DIVISION Opera-on?
+  ■ Useful for a special kind of query that some/mes occurs in DB applica/ons
+    q   This opera+on, denoted by ÷, can be performed with the basic rela+onal algebra opera+ons
+  ■ Example:
+    q   Retrieve the names of employees who work on all the projects that ’John Smith’ works on
+
+
+                                                                                              All the projects,
+                                                                                        not a single specific project
+
+
+
+
+                                                                                                                30
+Example of DIVISION Opera4on
+q How to Specify the DIVISION Opera-on in Rela-onal Algebra?
+                Q.Retrieve the names of employees who work on all the projects that ‘John Smith’ works on
+
+     Find all the projects that ‘John Smith’ works on                       Create a relation about employees working on projects
+
+
+
+
+                                                                                                            <Pno, Essn> Relation
+
+
+
+
+                                                                                                                               31
+Example of DIVISION Opera4on (Cont.)
+q How to Specify the DIVISION Opera-on in Rela-onal Algebra?
+                 Q.Retrieve the names of employees who work on all the projects that ‘John Smith’ works on
+
+
+
+
+                            ÷                 =                   ∗
+
+
+
+
+   By applying the DIVISION operation, the desired SSNs are retrieved
+
+                                                                                                             32
+Form of the DIVISION Opera4on
+q How to Use DIVISION Opera-on?
+  ■ Formally, the DIVISION opera/on is applied to two rela/ons R(Z) and S(X)
+    q   9 G ÷ ; H , H ⊆ G (the aJributes of S are a subset of the aJributes of R)
+  ■ The result of this opera/on is a rela/on T(Y)
+    q   J = G − H (i. e. , H ∪ J = G)
+
+           / = {!, "}
+                                               * = {!}                . = {"}
+
+
+
+                                    ÷                       =                     N ←9÷;
+
+                                            Denominator
+
+                                              The tuples in the denominator relation S restrict the numerator relation R
+                                        by selecting those tuples in the result matching all values present in the denominator.
+                        Numerator
+
+
+
+                                                                                                                                  33
+Complete Set of Rela4onal Algebra Opera4ons
+q A Complete Set of Relational Algebra Operations
+  ■ The following six operations are elements of this set
+                                                  {", $,∪, &, −,×}
+      q   Any other original relational algebra operations can be expressed as a sequence of these operations
+
+
+                      INTERSECTION                                                 JOIN
+
+
+
+                                                                      JOIN = CARTESIAN PRODUCT followed by SELECT
+
+      Strictly, INTERSECTION and JOIN are not required.
+                                                                 NATURAL JOIN can be specified as a CARTESIAN PRODUCT,
+ However, they are important to include as separate operations   preceded by RENAME and followed by SELECT and PROJECT
+    since they are very commonly used in DB applications
+
+
+
+
+                                                                                                                     34
+Outline
+q Introduc-on to Rela-onal Algebra
+
+
+q Unary Rela-onal Opera-ons
+
+
+q Set Opera-ons
+
+q Binary Rela-onal Opera-ons
+
+
+q Addi-onal Rela-onal Opera-ons
+
+                                     35
+Addi4onal Rela4onal Opera4ons
+q The Basic Operations Are Not Enough
+  ■ Some common DB Requests cannot be performed with the basic operations
+
+q Examples
+  ■ Requests involving aggregate functions on collections of values from the database
+    q   To summarize information from the database tuples such as SUM, AVERAGE, MAXIMUM, and COUNT
+  ■ Requests involving grouping the tuples in a relation by the value of some attributes
+    q   Then, apply an aggregate function independently to each group
+  ■ Requests involving outer join operations on two relations
+
+                     Additional relational operations are needed to express these requests
+                     à Enhancing the expressive power of the original relational algebra!
+
+
+
+
+                                                                                                     36
+Aggregate Func4ons and Grouping
+q How to Specify Aggregate Func-ons in Rela-onal Algebra?
+  ■ Mathema/cal aggregate func/ons on collec/ons of values from database
+    q   e.g., AVERAGE, SUM, MAXIMUM, MINIMUM, and COUNT
+                             Q1. Retrieve the average and total salary of all employees
+                                    Q2. Retrieve the total number of employees
+
+
+q How to Specify Requests Involving Grouping the Tuples?
+  ■ Grouping tuples by value of some a5ributes and applying an aggregate func/on
+                                        Q3. Group EMPLOYEE tuples by Dno,
+                so that each group includes the tuples for employees working in the same department.
+
+                    Q3-1. Retrieve the average and total salary of employees in each department
+                           Q3-2. Retrieve the number of employees in each department
+
+
+
+
+                                                                                                       37
+Form of Aggregate Func4ons and Grouping
+q How to Formally Deﬁne an Aggregate Func-on?
+
+
+
+  ■ Symbol ℑ (Script F): the aggregate func/on operator
+  ■ Grouping a5ributes: a list of a5ributes of the rela/on R to be used for grouping
+  ■ Func/on list: a list of (<func/on> <a5ribute>) pairs
+    q <func+on>: one of the func+ons such as SUM, AVERAGE, MAXIMUM, MINIMUM, and COUT
+    q <aJribute>: an aJribute of the rela+on speciﬁed by R
+
+
+
+q Output of an Aggregate Func-on
+  ■ A rela/on involving the grouping a5ributes with one a5ribute for each element in
+    the func/on list
+
+                                                                                        38
+Aggregate Func4ons and Grouping: Examples
+q Examples of AGGREGATE FUNCTION Opera-ons
+     Q. Retrieve each department number, the number of employees in the department, and their average salary,
+                             while renaming the resulting attributes as indicated below
+
+
+
+
+              Renaming the attributes   Grouping attribute   Function list
+
+
+
+                                                                   Grouping attribute + one element for each function
+
+
+
+
+                                                                   Q. What if no renaming operation is specified?
+                                                                    Q. What if no grouping attribute is specified?
+
+
+
+
+                                                                                                                        39
+Aggregate Functions and Grouping: Examples
+q Examples of AGGREGATE FUNCTION Opera-ons
+     Q. Retrieve each department number, the number of employees in the department, and their average salary,
+                             while renaming the resulting attributes as indicated below
+
+
+
+
+                                                              The concatenation of the function name with the attribute name:
+                                                                             Form of <function>_<attribute>
+
+
+
+
+                                                                  The functions are applied to all the tuples in the relation
+                                                                    Thus, the resulting relation has a single tuple only
+
+                                                                                                                                40
+Aggregate Func4ons and Grouping: Proper4es
+q Duplicate Tuples and NULL in Aggregate Func-ons
+  ■ Duplicates are not eliminated when an aggregate func/on is applied
+    q   e.g., compute the sum of salaries or the average of salaries in each department
+  ■ NULL values are not considered in the aggrega/on
+
+q Rela-onal Algebra As a Closed Mathema-cal System
+  ■ The result of an aggregate func/on is also a “rela/on”, not a scalar number
+    q   Even if it has a single value or tuple
+
+
+
+
+                                                                   This is a relation not a scalar number
+
+
+
+
+                                                                                                            41
+OUTER JOIN Operations
+q Results of the JOIN Opera-ons (EQUIJOIN & NATURAL JOIN)
+  ■ Only tuples sa/sfying the join condi/ons are included in the resul/ng rela/on
+    q   Tuples with no matching tuple are eliminated (i.e., inner join)
+
+             What if some users want the result of the JOIN to include all the tuples without the matching tuples?
+
+
+         Example: What if we want a list of all employee names as well as the name of the departments they manage
+                             if they happen to manage a department; if they do not manage one
+
+
+
+
+q How to Specify OUTER JOIN Opera-ons in Rela-onal Algebra?
+  ■ OUTER JOIN opera/ons can be used for those cases
+    q Users want to keep all the tuples in one or more of the rela+ons in the result of the JOIN
+    q Regardless of whether they have matching tuples in the other rela+on
+
+
+
+
+                                                                                                                     42
+OUTER JOIN Opera4ons: Example
+q How to Specify OUTER JOIN Opera-ons in Rela-onal Algebra?
+           Q. Retrieve all employee names as well as the name of the departments they manage
+                     if they happen to manage a department; if they do not manage one
+
+
+
+
+                                                                                                        Padded with NULL values
+
+
+
+
+                                                               Including every tuple in the first (left) relation
+q Types of OUTER JOIN Opera-ons
+
+           LEFT OUTER JOIN               RIGHT OUTER JOIN                 FULL OUTER JOIN
+                                                                                                                          43
+Takeaways: Relational Algebra Operations
+   Unary Relational
+     Operations
+
+
+
+
+   Binary Relational
+      Operations
+
+
+
+
+     Set Operations
+
+
+
+
+                                           44
+Takeaways: Addi4onal Rela4onal Opera4ons
+q DIVISION Operation
+  ■ ! 3 ÷ # 5 = ' 6 , 5 ⊆ 3, 6 = 3 − 5
+    q   The attributes of S are a subset of the attributes of R
+
+
+q Aggregate and Grouping Functions
+
+
+    q   Output: A relation with the grouping attributes with one attribute for each element in the function list
+
+
+q Outer Join Operations
+
+                    LEFT OUTER JOIN            RIGHT OUTER JOIN          FULL OUTER JOIN
+
+
+                                                                                                                   45
+      Q&A:
+Rela4onal Algebra
+
+
+
+
+                    46
+

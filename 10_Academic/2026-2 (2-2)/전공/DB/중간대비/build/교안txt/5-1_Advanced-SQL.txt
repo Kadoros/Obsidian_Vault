@@ -1,0 +1,827 @@
+          Database
+     Lecture 5: Advanced SQL
+
+               Yunyong Ko
+School of Computer Science and Engineering
+           Chung-Ang University
+Outline
+q Advanced SQL: Data Retrieval
+  ■ Nested Query
+  ■ Joined Tables
+  ■ Aggregation Functions and Grouping in SQL
+
+
+q Advanced SQL: More Functions
+  ■ Assertions and Triggers
+  ■ Virtual Table: View
+
+
+
+
+                                                2
+Nested Query
+q What is a Nested Query?
+  ■ Complete SELECT-FROM-WHERE Blocks within a WHERE clause of another query
+    q   Useful to fetch existing values in a database and then use them for a comparison in a WHERE condition
+  ■ Returns a (multi)set of tuples
+
+
+                                                                Outer query
+
+
+                                                                Inner query
+
+
+
+
+                                                                Inner query
+
+
+
+
+                                                                                                                3
+Comparison Operator
+q IN Operator
+  ■ Compares a value v with a set (or multiset) of values V
+  ■ Evaluates to TRUE if v is one of the elements in V
+
+
+                   Is this Pnumber in V1?
+
+
+                                            V1: A set of tuples
+
+
+                   Is this Pno in V2?
+
+                                            V2: A set of tuples
+
+
+
+
+                                                                  4
+Comparison Operator (Cont.)
+q = ALL or ANY
+  ■ Evaluates to TRUE if value v is equal to some (or all) value in set V
+  ■ In addition to ‘=‘, other operators can be combined
+     q   >, >=, <, <=, <> (not equal)
+
+
+     Q. List the names of employees whose salary is greater than
+             the salary of all the employees in department 5                                     Equivalent to IN operator
+                                                                                  Salary = ALL      Pnumber = ANY
+                                                                                  (SELECT …)        (SELECT …)
+
+                                                                                  Salary > ALL      Pnumber > ANY
+                                                                                  (SELECT …)        (SELECT …)
+
+                                                                                  Salary < ALL      Pnumber < ANY
+                                                                                  (SELECT …)        (SELECT …)
+                                  The salaries of the employees in Department 5
+
+
+
+
+                                                                                       …
+
+
+
+
+                                                                                                          …
+                                                                                                                             5
+Ambiguity in Nested Queries
+q Multiple Levels of Nested Queries
+  ■ Possible ambiguity among attribute names if same attribute names exist
+     q   One in FROM of the outer query, another in FROM of the nested query
+  ■ Specify an alias to avoid this ambiguity
+
+
+
+
+               It is generally advisable to create tuple variables (aliases) for all the tables referenced
+                               in an SQL query to avoid potential errors and ambiguities
+
+
+                                                                                                             6
+Boolean Functions
+q EXISTS and NOT EXISTS Function
+  ■ Check whether the result of a nested query is empty or not
+    q   Usually used in a WHERE clause condition
+  ■ Return TRUE if there are (no) tuples in the result of the nested query
+
+
+
+
+                                                                             7
+Boolean Functions (Cont.)
+q When Boolean Functions Useful?
+  ■ Q. List the names of managers who have at least one dependent
+    q First nested query: select all DEPENDENT tuples related to an EMPLOYEE
+    q Second nested query: select all DEPARTMENT tuples managed by the EMPLOYEE
+
+
+
+
+                                                                     “Franklin, Wong” is retrieved
+
+                                                                     “Jennifer, Wallace” is retrieved
+
+
+                                                                                                        8
+Exercises: Boolean Functions
+q Exercise 1: Specify the Following Query
+    Q. Retrieve the name of each employee who works on all the projects controlled by department number 5
+
+
+
+
+                                                                                                            9
+JOIN Tables in SQL
+q What is a Joined Table?
+  ■ Table resulting from a join operation in the FROM clause
+    q   Mixing together all the selection and join conditions in WHERE clause
+                                Q. Retrieve the name and address of all employees
+                                     who work for the ‘Research’ department
+
+
+                                                      =
+                                                                           First table                           Second table
+
+
+                                +
+
+
+
+
+                                                           The joined table have all the attributes of the first table (EMPLOYEE),
+                                                             followed by all the attributes of the second table (DEPARTMENT)
+
+                                                           à The joined attributes are included only once in the resulting relation
+
+                                                                                                                              10
+Natural Join
+q What is a Natural Join?
+  ■ Creates an implicit condition for each pair of attributes with the same name
+    q   i.e., No join condition is specified
+                                   Q. Retrieve the name and address of all employees
+                                        who work for the ‘Research’ department
+
+
+
+
+                                                                              First table                           Second table
+
+                                           Dno
+
+                                  +
+
+
+
+
+                                                              The joined table have all the attributes of the first table (EMPLOYEE),
+                                                                followed by all the attributes of the second table (DEPARTMENT)
+
+                                                              à The joined attributes are included only once in the resulting relation
+
+                                                                                                                                 11
+Inner Join
+q What is Inner Join?
+  ■ Default type of join is called an inner join,
+     q   A tuple is included in the result only if a matching tuple exists in the other relation
+
+
+
+
+                                                                         Only employees who have a supervisor are retrieved.
+                             In the inner join,                         A tuple whose value for Super_ssn is NULL is excluded.
+     only pairs of tuples that match the join condition are retrieved
+                                                                          Q. What if we want that all employees are retrieved?
+                                                                                           à OUTER JOIN!
+
+                                                                                                                                 12
+Outer Join
+q What is Outer Join?
+  ■ To retrieve tuples if it does not have a matching tuple
+     q   It is padded with NULL values for the attributes
+
+
+
+
+                                                                            In LEFT OUTER JOIN,
+                                                            every tuple in the left table must appear in the result.
+
+                                                                                                                       13
+Visualization of Inner and Outer Joins
+q Visualized Different Types of Joins
+
+
+
+
+     Inner join
+
+
+
+
+                    LEFT OUTER JOIN   FULL OUTER JOIN   RIGHT OUTER JOIN
+
+
+                                                                           14
+Aggregate Functions in SQL
+q What is an Aggregate function?
+  ■ Summarize information from multiple tuples into a single-tuple summary
+    q   Usually used in the SELECT (or HAVING) clause
+
+
+q Built-In Aggregate Functions
+  ■ COUNT
+    q   Returns the number of tuples or values as specified in a query
+  ■ SUM, MAX, MIN, and AVG
+    q Can be applied to a set or multiset of numeric values
+    q Return the sum, maximum value, minimum value, and average of those values
+
+
+
+
+                                                                                  15
+Aggregate Functions in SQL (Cont.)
+q SUM, MAX, MIN, and AVG Functions
+  ■ Can be applied to a set or multiset of numeric values
+  ■ Return the sum, maximum value, minimum value, and average of those values
+
+
+
+
+   It returns a single-row summary of all the rows in the EMPLOYEE table
+
+
+                                                                                16
+Aggregate Functions in SQL (Cont.)
+q COUNT Function
+ ■ Counting the number of tuples as specified in a query
+
+
+
+
+                The asterisk (*) refers to the rows (tuples),
+       COUNT (*) returns the number of rows in the result of the query.
+
+
+ ■ Counting the number of values as specified in a query
+   q   NULL values are not counted
+
+
+
+
+                                                                          17
+Aggregate Functions in SQL (Cont.)
+q Other Usage of Aggregate Functions
+  ■ Can be used in selection conditions involving nested queries as well
+    q (1) Specify a nested query with an aggregate function
+    q (2) Use the nested query result in the WHERE clause of an outer query
+
+
+                     Q. Retrieve the names of all employees who have two or more dependents
+
+
+
+
+                                        à Counting the number of dependents
+
+
+
+
+                                                                                              18
+Grouping in SQL
+q What is Grouping?
+  ■ Partition non-overlapping subsets (groups) of tuples in a relation
+     q   We may want to apply the aggregate functions to groups of tuples in a relation
+          § e.g., Find the average salary of employees in each department or the number of employees who work on each project
+  ■ Useful when we want to summarize those groups independently
+q Grouping Attributes
+  ■ Attributes used as the criteria for grouping
+     q   Each group consists of the tuples that have the same value for grouping attribute(s)
+  ■ Specified by GROUP BY clause
+
+
+
+
+                                                                        The EMPLOYEE tuples are partitioned into groups,
+                                                                       Each group has the same group attribute value (Dno)
+                                                                                                                             19
+Grouping in SQL (Cont.)
+q Example of Grouping in the COMPANY Database
+  ■ Q. For each project, retrieve the project number, the project name, and the
+    number of employees who work on that project
+
+                                                                                  2
+
+                                                                                  3
+
+                                                                                  2
+
+                                                                                  3
+
+                                                                                  3
+
+                                                                                  3
+
+                                                       1, ProductX, 2
+                                                       2, ProductY, 3
+                                                       3, ProductZ, 2
+
+
+
+
+                                                             …
+                                                                                      20
+Grouping in SQL (Cont.)
+q HAVING Clause
+ ■ Specify a “condition” on the summary information regarding the group of tuples
+ ■ Can appear in conjunction with a GROUP BY clause
+
+
+
+
+   Only groups satisfying this condition
+              are retrieved
+
+
+
+
+                                                                                    21
+Exercises: Aggregate Functions
+q Exercise 2: Specify the following query in SQL
+              Q. For each department whose average employee salary is more than $30,000,
+         retrieve the department name and the number of employees working for that department
+
+
+
+
+                                                                                                22
+Outline
+q Advanced SQL: Data Retrieval
+  ■ Nested Query
+  ■ Joined Tables
+  ■ Aggregation Functions and Grouping in SQL
+
+
+q Advanced SQL: More Functions
+  ■ Assertions and Triggers
+  ■ Virtual Table: View
+
+
+
+
+                                                23
+Specifying General Constraints & Actions
+q Assertions
+  ■ Specifying general constraints that do not fall into any of the built-in constraints
+     q i.e., not covered by the key constraint, entity and referential integrity constraints
+     q e.g., the salary of an employee must not be greater than the salary of the manager of the department
+
+q Triggers
+  ■ Specifying automatic actions to be taken when certain events and conditions occur
+     q   e.g., a manager may want to be informed if an employee’s travel expenses exceed a certain limit
+
+
+
+
+                                                                                 Triggers
+
+                    Assertions
+                                                                                                              24
+Specifying Constraints as Assertions
+q The CREATE ASSERTION Command
+ ■ Specifying a general constraint that users want to check
+ ■ Example: SALARY_CONSTRAINT
+   q   CHECK is followed by a condition in parentheses() that must hold true on every database state
+        § Constraints are usually specified using the EXISTS and NOT EXISTS style of SQL conditions
+
+
+
+
+                                                                                                 à True: the result is empty
+                                                                                                 à False: the result is not empty
+
+
+
+
+                 Specifying a query that selects any tuples that violate the desired condition
+                                         with a NOT EXISTS clause
+
+
+
+                                                                                                                                    25
+Specifying Actions as Triggers
+q The CREATE TRIGGER Command
+ ■ Specifying the type of action to be taken when certain conditions are satisfied
+ ■ Example: SALARY_VIOLATION
+    q We want to check whenever an employee’s salary is greater than the salary of his/her direct supervisor
+    q Several events can trigger this rule
+       § Inserting a new employee tuple, changing an employee’s salary, or changing an employee’s supervisor
+    q The action to take is to call an external stored procedure SALARY_VIOLATION
+
+ ■ A trigger is regarded as an ECA (Event, Condition, Action) rule
+
+
+
+
+                                        Triggers can be used in various applications,
+  such as (1) maintaining database consistency, (2) monitoring database updates, and (3) updating derived data automatically
+
+                                                                                                                               26
+Specifying Actions as Triggers: Event
+q Three Components of Triggers: Event
+  ■ Update operations explicitly applied to the database
+    q   E.g, Inserting a new employee tuple, changing an employee’s salary, or changing an employee’s supervisor
+  ■ The events are specified with the keyword BEFORE or AFTER
+    q The trigger should be executed before/after the triggering operation is executed
+    q All possible events should be considered
+
+
+
+
+                                                                                                            27
+Specifying Actions as Triggers: Condition
+q Three Components of Triggers: Condition
+  ■ Determines whether the action should be executed when a triggering event occurs
+    q   Once the triggering event has occurred, an optional condition may be evaluated
+  ■ The condition is specified in WHEN clause of the trigger
+    q   Only if it evaluates to true, the action will be executed
+
+
+
+
+                                                                                         28
+Specifying Actions as Triggers: Action
+q Three Components of Triggers: Action
+  ■ The rule action to be executed automatically
+  ■ The action is a sequence of SQL statements, or a database transaction, or an
+    external program
+
+
+
+
+                                                                                   29
+Virtual Table: View
+q What is a View in SQL?
+  ■ A virtual table derived from base tables
+     q   Not necessarily exist in a physical form
+
+q Operations on a View
+  ■ Retrieval operations on a view does not have any limitations
+  ■ Update operations on a view are usually limited (i.e., a view is ‘read-only’)
+
+
+
+
+                                                                                    30
+Motivation of Views
+q When to Use Views? à To Simplify Complex Queries!
+  ■ When frequently used queries reference multiple tables with complex conditions
+    q   e.g., join operations, aggregate functions, …
+
+                                                    à Whenever we execute this query,
+                                                         three tables are joined
+
+                                                    à Whenever we execute this query,
+                                                    two tables are joined and aggregate
+                                                            functions are applied
+
+                        What if we create a view?
+
+
+                                                    à We can retrieve the same results
+                                                          by a single-table query
+
+
+    A View can be specified
+    as the result of the joins
+                                                                                          31
+Specification of Views in SQL
+q The CREATE VIEW Command
+ ■ CREATE VIEW <View Name> AS <Select Query>
+   q If attribute names for the view are not specified, they would be the same as those of the defining tables
+   q Attribute names can be specified explicitly
+
+
+                                                                                    Attribute names not specified
+
+
+
+
+                                                                                                  Specified
+
+
+
+
+                                                                                                               32
+Specifying Queries on a View
+q Data Retrieval from Views
+  ■ Specifying queries on a view in the same way as we do on a base table
+         Q. Retrieve the last name and first name of all employees who work on the ‘ProductX’ project
+
+
+
+
+                                                                                          Single-table retrieval!
+
+
+
+
+                                                                    We do not need to joint three tables
+                                                                      every time we issue this query
+
+
+
+
+                                                                                                                    33
+Characteristics of Views
+q A View Should Be Up-to-Date
+  ■ What if the tuples in the defining tables are updated?
+  ■ DBMS is responsible for reflecting the changes to the view
+
+                                       Q. How can the DBMS keep a view up-to-date?
+
+
+                                                         The changes in the defining tables should be reflected on the view
+
+
+
+                                                                                        Query on View
+ Some changes in the defining tables
+
+
+
+
+                                                                  Should be Up-to-Date
+
+
+
+
+                                                                                                                              34
+View Implementation in the DBMS
+q Two Approaches
+  ■ Query modification
+  ■ View materialization
+
+q Query Modification (Approach 1)
+  ■ Transforming the view query into a query on the underlying base tables
+    q   Not maintaining views physically
+
+
+
+
+                                           Transforming the view query
+                                                                                  Can be convenient to users,
+                              à Not aligned with the philosophy of Views in SQL    But not to the DB system
+
+
+
+                                                                                                                35
+View Implementation in the DBMS (Cont.)
+q View Materialization (Approach 2)
+  ■ Physically create a view table when the view is first queried
+  ■ Keep that a virtual table “for a while” (i.e., how long?)
+     q   Assumption: other retrieval queries on the view will follow frequently (hopefully)
+  ■ Incremental updates
+     q   When an update is applied to one of the defining tables, it should be reflected to the view incrementally
+
+
+
+
+                                                                   Q. When the defining tables are updated,
+                                                                       How/when to update the view?
+
+
+
+
+                                              Additional storage
+
+
+                                                                                                                36
+View Implementation in the DBMS (Cont.)
+q When/How to Update the View?
+ ■ Immediate update
+   q Update a view as soon as the defining base tables are updated
+   q Always up-to-date, but sometime unnecessary and inefficient
+
+
+ ■ Periodic update
+                                                                     When? How frequently?
+   q Updates a view periodically
+   q A view query may get a result that is not up-to-date
+
+
+ ■ Lazy update
+   q Update a view when it is needed by a view query
+   q Not up-to-date until a query is specified on the view
+
+
+
+
+                                                                                             37
+Dropping a View in SQL
+q The DROP VIEW Command
+ ■ We can use the DROP VIEW command if we do not need a view anymore
+   q   The result of this command does not affect on its defining tables
+
+
+
+
+                      Not affect on the defining tables   Q. What if the view is not queried for a certain period of time?
+                                                                               à Remove the view
+
+
+                                                                   Q. What if the view is needed in the future?
+                                                                         à Recompute it from scratch
+                        +
+                                                                                                                             38
+Update Operations on Views
+q Can a View be Updated?
+  ■ We can always issue any retrieval queries against any views
+  ■ INSERT, DELETE, or UPDATE command on a view is not possible in many cases
+
+                                  Can it be reflected on the defining table?
+
+
+
+
+                                                                         UPDATE query on a view
+
+
+
+
+                                                                                                  39
+Two Cases of View Updates
+q Case 1 (Allowed)
+  ■ Update on a view defined on a single table without any aggregate functions
+     q   It can be mapped to an update on the underlying base table
+
+q Case 2 (Not Allowed)
+  ■ Update on a view involving joins (i.e., multiple tables) or aggregation functions
+     q   It may be mapped to update operations on the underlying base relations in multiple ways
+
+                                                                      This update can be interpreted in multiple ways
+                     Update on a view can be allowed                              Which one is correct?
+
+
+
+
+                                                                                                                    40
+Case 2: Potential Problem of View Update
+q Example: Update on WORKS_ON1 View
+ ■ Consider the WORKS_ON1 view, suppose that we issue the command:
+
+
+
+
+                                                                           John    Smith   ProductX   17
+
+
+
+
+                                                                           John    Smith   ProductY   17
+
+
+                                                                      Q. What is the purpose of this update?
+
+                               Update the name of the project that “John Smith” is working on
+                                                            VS
+                                     Update the project name “ProductX” to “ProductY”
+
+                                                                                                               41
+Case 2: Potential Problem of View Update
+q Multiple Interpretations
+   ■ It can be mapped into several updates to give the desired update effect on the view
+
+
+                                                                            Update the name of the ‘ProductX’ tuple
+Update the name of the project that “John Smith” is working on
+                                                                             in the PROJECT relation to ‘ProductY’
+
+
+
+
+                                                                       This also give the desired update effect on the view,
+                                                                  but additional side effects affecting the result of other queries
+
+                                                                     à Changing all the view tuples with Pname=’ProductX’
+
+
+     This relates ‘John Smith’ to the ‘ProductY’ PROJECT tuple,
+              instead of the ‘ProductX’ PROJECT tuple
+
+                                                                                                                                 42
+Case 2: Potential Problem of View Update
+q Impossible Update
+  ■ Some view updates may not make much sense
+
+
+
+
+                                                                                   The value computed
+                                                                                 by an aggregate function
+
+
+
+                                                  Resaerch   10       95,000     Not stored physically
+
+
+                                                  Resaerch   10       100,000
+
+
+                                                Q. What does this update mean?
+
+
+                                                                                                     43
+View Update: Observations
+q View Update
+  ■ View update is feasible when only one possible update on the base relations can
+    accomplish the desired update operation on the view
+q Observations
+  ■ Case 1: Multiple Tables with Joins
+    q   Views defined on multiple tables using joins are generally not updatable
+         § Since a query specified on this view can be mapped to more than one update
+  ■ Case 2: Grouping and Aggregate Functions
+    q   Views defined using grouping and aggregate functions are not updatable
+         § Since a query specified on this view does not make sense
+  ■ Case 3: Single Table
+    q   A view with a single defining table is updatable if the view attributes contain:
+         § 1) The primary key of the base relation;
+         § 2) All attributes with the NOT NULL constraint that do not have default values (à why?)
+
+                                                                                                     44
+Views as Authorization
+q Authorization Mechanisms using Views
+  ■ Views can be used to hide certain attributes or tuples from unauthorized users.
+  ■ Example 1: DEPT5EMP
+    q   The manager of department 5 is only allowed to see information for employees working for department 5
+         § Create the view ‘DEPT5EMP’ and grant the user the privilege to query the view but not EMPLOYEE
+  ■ Example 2: BASIC_EMP_DATA
+    q Similarly, a view can restrict a user to only see certain columns
+    q Normal employees can see only the basic data: first name, last name, and address of an employee
+
+
+
+
+                                                                                                          45
+Exercise: Views in SQL
+q Exercise 3
+  ■ Specify the following view in SQL on the COMPANY database schema
+  ■ Explain when the view can be useful (i.e., guess the purpose)
+
+
+
+
+                                                                       46
+Exercise: Views in SQL
+q Exercise 4
+  ■ Specify the following view in SQL on the COMPANY database schema
+  ■ Explain when the view can be useful (i.e., guess the purpose)
+
+
+
+
+                                                                       47
+Takeaways: Advanced DML
+q Nested Query
+  ■ Complete SELECT-FROM-WHERE Blocks
+    within a WHERE clause of another query
+q Joined Table
+  ■ Inner and outer joins
+q Aggregate Functions
+  ■ Summarize information from multiple tuples
+    into a single-tuple summary
+                                                    FROM → WHERE → GROUP BY →
+q Grouping                                          HAVING → SELECT → ORDER BY
+                                                           Execution order
+  ■ Partition non-overlapping subsets (groups) of
+    tuples in a relation
+
+                                                                                 48
+Takeaways: Advanced Functions
+q Specifying General Constraints as Assertions
+  ■ User-defined constraints that outside the scope of the built-in constraints
+
+q Specifying General Actions as Triggers
+  ■ User-defined type of action to be taken when certain events occur
+
+q Virtual Table: View
+  ■ A virtual table derived from base tables
+  ■ A view should be up-to-date
+    q Immediate update
+    q Periodic update
+    q Lazy update
+
+  ■ View update is feasible only when
+    q   One update is the only desired update
+                                                                                  49
+   Q&A:
+Advanced SQL
+
+
+
+
+               50
+
