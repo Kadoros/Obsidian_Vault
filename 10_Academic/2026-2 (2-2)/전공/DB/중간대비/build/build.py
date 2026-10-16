@@ -34,7 +34,7 @@ def md2html(lines):
             buf=[]
             while i<n and lines[i].startswith('>'): buf.append(lines[i][1:].strip()); i+=1
             txt=' '.join(buf)
-            cls='callout exam' if '시험' in txt[:12] else ('callout trap' if re.match(r'(함정|실수|주의)',txt) else 'callout')
+            cls='callout exam' if ('시험' in txt[:12] or txt.startswith('Exam')) else ('callout trap' if re.match(r'(함정|실수|주의|Trap|Caution|Pitfall|Mistake)',txt) else 'callout')
             out.append(f'<div class="{cls}">{inline(txt)}</div>'); continue
         if is_li(l):
             ordered=bool(re.match(r'^\s*\d+\. ',l))
@@ -98,6 +98,15 @@ for u in units:
             hs.append(f'<section class="sec" id="s-{c["id"]}"><h3>{inline(c["title"])}</h3>{md2html(c["lines"])}{prof}{figs}</section>')
             for f,cap in FIGS.get(c["id"],[]): c["lines"].append(f"\n![[img/{f}.jpg]]\n*{cap}*")
         l["html"]='\n'.join(hs); del l["_lines"]
+
+# 영어판 (lessonsN.en.md, figs_en.py, prof_en.py) → html_en·title_en
+import os as _os
+if _os.path.exists('lessons1.en.md'):
+    sys.path.insert(0, '../../../_shared'); from en_lessons import attach_en; from figs_en import CAP_EN
+    try: from prof_en import PROF_EN
+    except ImportError: PROF_EN = {}
+    attach_en(units, [f'lessons{k}.en.md' for k in range(1, 7)], md2html, inline, FIGS, CAP_EN, PROF_EN)
+    print("english: ok")
 
 qs=qdsl.QS
 ids=set()
