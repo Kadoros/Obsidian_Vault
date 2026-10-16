@@ -57,7 +57,7 @@ A database system contains not only the database itself but also **metadata**.
 ## 3) Support of Multiple Views {#multi-views}
 
 Each user may need a different perspective of the data.
-- **View**: **virtual data** derived from the database but **not explicitly stored**
+- **View**: **virtual data that is derived from the database but not explicitly stored**
 - Users do not need to know whether the data they see is stored or derived
 - e.g., in a university DB, view 1 = print each student's transcript, view 2 = check each course's prerequisites
 

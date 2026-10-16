@@ -1,5 +1,5 @@
 @unit U4 | Ch.4 The Processor: Datapath and Control (Simplified Version) | week6-수업.pdf
-@intro In Week 6-2 the professor said "today's goal is to completely understand this one slide (p.3, the simplified CPU)". The key is which wires the data flows through for each instruction, and whether each MUX gets 0 or 1. After reading the concepts, use the 'Follow the Lecture' tab to see the professor's explanation scene by scene, and the 'Datapath Playground' to check the path for each instruction.
+@intro In Week 6-2 the professor said "today's goal is to completely understand this one slide (p.3, the simplified CPU)". The key is which wires the data flows through for each instruction, and whether each MUX gets 0 or 1. After reading the concepts, use the '수업 따라가기' (Follow the Lecture) tab to see the professor's explanation scene by scene, and the '데이터패스 놀이터' (Datapath Playground) to check the path for each instruction.
 
 @lesson L4-1 | Processor Overview · Instruction Execution Steps | week6 p.2–7 | Only these instructions
 
