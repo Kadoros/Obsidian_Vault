@@ -584,13 +584,8 @@
  "2-rec-4": {
   "prompt": "In the recursive relationship SUPERVISION, EMPLOYEE participates in the (a) role and the (b) role.",
   "accept_add": [
-   [
-    "boss",
-    "manager"
-   ],
-   [
-    "subordinate"
-   ]
+   [],
+   []
   ]
  },
  "2-card-1": {
