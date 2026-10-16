@@ -5,7 +5,7 @@
 
 ## 중간 대비
 - [[중간대비/객체프 기출 문제은행|기출 문제은행]]: 2009–2025 중간 161문항을 주제별로 묶음. 모범답안은 접어둠
-- [객체프 중간 트레이너](https://claude.ai/artifact/Mz7gyUZZeB25YwCnfBaYci): Claude 채점, 숙달도·오답노트·모의고사 기록
+- [객체프 중간 트레이너](https://claude.ai/artifact/Mz7gyUZZeB25YwCnfBaYci): **학습** 탭(레슨 23개 + 이해 점검 199문제, 교안 L02–L04·Operator Overloading), Claude 채점, 숙달도·오답노트·모의고사 기록
 - `중간대비/객체프 중간 트레이너.html`: 오프라인 사본. 브라우저로 열고 자가채점만 됨, 기록은 그 브라우저에만 저장
 
 ## 교안

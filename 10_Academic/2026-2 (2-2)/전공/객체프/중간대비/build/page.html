@@ -8,7 +8,7 @@
   --paper:#f3f5fa; --sheet:#ffffff; --ink:#1a2132; --muted:#5b6478; --line:#dde2ec;
   --grid:rgba(52,84,196,.07); --accent:#2d52cf; --accent-weak:#e7edfd; --accent-ink:#ffffff;
   --pen:#d1372b; --ok:#1d8656; --ok-weak:#e3f4ec; --warn:#a96d12; --warn-weak:#fbf0dc; --bad:#c3352b; --bad-weak:#fbe6e4;
-  --code-bg:#f2f4f9;
+  --code-bg:#f2f4f9; --hl:#fff3bf;
   --f-body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --f-pen:"Nanum Pen Script","Apple SD Gothic Neo",cursive;
@@ -18,12 +18,12 @@
   --paper:#0e121a; --sheet:#151b26; --ink:#e5e9f2; --muted:#97a0b4; --line:#262e3f;
   --grid:rgba(125,155,255,.05); --accent:#7b98ff; --accent-weak:#1c2643; --accent-ink:#0e121a;
   --pen:#ff6d5f; --ok:#4cc28d; --ok-weak:#143024; --warn:#e2a84b; --warn-weak:#33270f; --bad:#ff6d5f; --bad-weak:#3a1a18;
-  --code-bg:#10151f; color-scheme:dark }}
+  --code-bg:#10151f; --hl:#3a3410; color-scheme:dark }}
 :root[data-theme="dark"]{
   --paper:#0e121a; --sheet:#151b26; --ink:#e5e9f2; --muted:#97a0b4; --line:#262e3f;
   --grid:rgba(125,155,255,.05); --accent:#7b98ff; --accent-weak:#1c2643; --accent-ink:#0e121a;
   --pen:#ff6d5f; --ok:#4cc28d; --ok-weak:#143024; --warn:#e2a84b; --warn-weak:#33270f; --bad:#ff6d5f; --bad-weak:#3a1a18;
-  --code-bg:#10151f; color-scheme:dark }
+  --code-bg:#10151f; --hl:#3a3410; color-scheme:dark }
 *{box-sizing:border-box}
 body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
@@ -162,6 +162,86 @@ textarea{width:100%;min-height:150px;font-family:var(--f-mono);font-size:13px;li
 .verdict{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 14px;border-radius:8px}
 .verdict.ok{background:var(--ok-weak)} .verdict.no{background:var(--bad-weak)}
 .verdict .msg{font-weight:600;flex:1;min-width:200px}
+/* learn (학습 탭) */
+code{font-family:var(--f-mono);font-size:.88em;background:var(--code-bg);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+pre.code code{all:unset}
+.st.lock{background:none;color:var(--muted);border:1px dashed var(--line)}
+/* learn layout */
+.learn{display:grid;grid-template-columns:290px minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:900px){.learn{grid-template-columns:minmax(0,1fr)}}
+.tree{position:sticky;top:118px;max-height:calc(100vh - 140px);overflow:auto;padding:10px 0}
+@media (max-width:900px){.tree{position:static;max-height:none}}
+.tree details{border-bottom:1px solid var(--line)} .tree details:last-child{border-bottom:0}
+.tree summary{list-style:none;cursor:pointer;padding:9px 14px;display:flex;flex-direction:column;gap:4px}
+.tree summary::-webkit-details-marker{display:none}
+.tree .ut{font-size:13.5px;font-weight:600;line-height:1.35}
+.ubar{height:4px;border-radius:2px;background:var(--line);overflow:hidden}.ubar>b{display:block;height:100%;background:var(--accent)}
+.lrow{display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:8px;align-items:center;width:100%;padding:6px 14px 6px 18px;border:0;background:none;color:inherit;font:inherit;font-size:13px;text-align:left;cursor:pointer;line-height:1.35}
+.lrow:hover{background:var(--accent-weak)} .lrow.cur{background:var(--accent-weak);box-shadow:inset 3px 0 0 var(--accent)}
+.lrow[disabled]{cursor:not-allowed;opacity:.55}
+.dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--line);display:inline-block}
+.dot.done{background:var(--ok);border-color:var(--ok)} .dot.weak{background:var(--bad-weak);border-color:var(--bad)} .dot.cur{border-color:var(--accent)}
+.lnum{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+/* reader */
+.reader{padding:22px 26px;min-width:0}
+@media (max-width:600px){.reader{padding:16px}}
+.rhead{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.rhead h2{font-size:21px;margin:0}
+.body{max-width:72ch}
+.sec{padding:14px 0 6px;border-bottom:1px dashed var(--line);scroll-margin-top:130px}
+.sec:last-child{border-bottom:0}
+.sec h3{font-size:16.5px;margin:0 0 10px;display:flex;gap:8px;align-items:baseline}
+.sec h3::before{content:"§";font-family:var(--f-mono);color:var(--accent);font-weight:600}
+.sec.review{background:linear-gradient(90deg,var(--hl),transparent 85%);margin-inline:-14px;padding-inline:14px;border-radius:8px}
+.sec p,.sec ul,.sec ol{margin:0 0 10px} .sec ul,.sec ol{padding-left:20px} .sec li{margin:2px 0}
+.sec .sub{font-size:14px;color:var(--muted)}
+.sec pre.code{margin:4px 0 12px}
+.tblw{overflow-x:auto;margin:4px 0 12px}
+.tblw table{border-collapse:collapse;font-size:13.5px;min-width:100%}
+.tblw th{font-size:12px;color:var(--muted);font-weight:600;text-align:left;padding:7px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
+.tblw td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.callout{font-size:14px;background:var(--accent-weak);border-radius:8px;padding:9px 12px;margin:4px 0 12px}
+.callout.exam{background:var(--warn-weak)} .callout.exam::before{content:"시험 ";font-weight:700;color:var(--warn)}
+.callout.trap{background:var(--bad-weak)}
+.callout.prof{background:var(--sheet);border:1px solid var(--line);border-left:3px solid var(--accent)} .callout.prof b{color:var(--accent)} .callout.prof .src{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.rfoot{margin-top:20px;padding:16px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--accent-weak);border-radius:var(--r)}
+.banner{position:sticky;top:112px;z-index:4;margin-bottom:14px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--warn-weak);border:1px solid color-mix(in srgb,var(--warn) 35%,var(--line));border-radius:var(--r);font-size:13.5px}
+/* quiz */
+.qwrap{padding:20px 24px;display:flex;flex-direction:column;gap:14px;min-width:0}
+@media (max-width:600px){.qwrap{padding:16px}}
+.qtop{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.pips{display:flex;gap:4px}.pips i{width:22px;height:6px;border-radius:3px;background:var(--line)}
+.pips i.on{background:var(--accent)} .pips i.ok{background:var(--ok)} .pips i.no{background:var(--bad)}
+.choices{display:flex;flex-direction:column;gap:6px}
+.choice{font:inherit;text-align:left;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--sheet);color:var(--ink);cursor:pointer;display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px}
+.choice:hover{border-color:var(--accent)} .choice.sel{border-color:var(--accent);background:var(--accent-weak)}
+.choice.right{border-color:var(--ok);background:var(--ok-weak)} .choice.wrongc{border-color:var(--bad);background:var(--bad-weak)}
+.choice .k{font-family:var(--f-mono);color:var(--muted)}
+.ox{display:flex;gap:10px}.ox .choice{grid-template-columns:1fr;text-align:center;font-size:22px;font-weight:700;min-width:90px}
+.blanks{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 10px;align-items:center;max-width:520px}
+.blanks label{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.goto{font-size:13.5px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.sumrow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.sumrow:last-child{border-bottom:0}
+.revcard{padding:14px 16px;display:flex;flex-direction:column;gap:6px;border-left:4px solid var(--bad)}
+/* home */
+.cta{padding:18px 20px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-bottom:20px}
+.cta .t{font-size:17px;font-weight:700}
+.units{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.ucard{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.ucard .ul{display:flex;flex-direction:column}
+.ucard .li{display:grid;grid-template-columns:16px minmax(0,1fr) auto;gap:8px;align-items:center;font-size:13px;padding:5px 0;border-top:1px solid var(--line);background:none;border-left:0;border-right:0;border-bottom:0;color:inherit;font-family:inherit;text-align:left;cursor:pointer}
+.ucard .li[disabled]{cursor:not-allowed;opacity:.55}
+.weaklist{display:flex;flex-direction:column}
+.wk{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 14px;border-bottom:1px solid var(--line)}
+.wk:last-child{border-bottom:0}
+figure.slide{margin:6px 0 14px;display:flex;flex-direction:column;gap:6px}
+figure.slide .zoom{padding:0;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:zoom-in;overflow:hidden;display:block;max-width:100%}
+figure.slide img{display:block;width:100%;height:auto}
+figure.slide figcaption{font-size:12.5px;color:var(--muted)}
+.lightbox{position:fixed;inset:0;z-index:50;background:rgba(8,14,16,.86);display:flex;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 16px) 16px calc(env(safe-area-inset-bottom,0px) + 16px);cursor:zoom-out}
+.lightbox img{max-width:100%;max-height:100%;border-radius:6px;background:#fff}
+.lightbox .x{position:absolute;top:calc(env(safe-area-inset-top,0px) + 10px);right:14px;font:inherit;font-size:13px;color:#fff;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:6px 10px;cursor:pointer}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
@@ -178,6 +258,7 @@ textarea{width:100%;min-height:150px;font-family:var(--f-mono);font-size:13px;li
     </div>
     <nav class="tabs" role="tablist">
       <button role="tab" data-v="course" aria-selected="false" id="tab-course" hidden>오늘의 코스</button>
+      <button role="tab" data-v="learn" aria-selected="false">학습</button>
       <button role="tab" data-v="dash" aria-selected="true">대시보드</button>
       <button role="tab" data-v="practice" aria-selected="false">문제 풀기</button>
       <button role="tab" data-v="mock" aria-selected="false">모의고사</button>
@@ -189,6 +270,7 @@ textarea{width:100%;min-height:150px;font-family:var(--f-mono);font-size:13px;li
 
 <main class="wrap">
   <section class="view" id="v-course" hidden></section>
+  <section class="view" id="v-learn" hidden></section>
   <section class="view" id="v-dash"></section>
   <section class="view" id="v-practice" hidden></section>
   <section class="view" id="v-mock" hidden></section>
@@ -735,6 +817,7 @@ function renderAll(){
     if (results[curId]?.state === "loading") return;
     renderCourse();
   }
+  else if (view === "learn"){ if (document.activeElement?.matches?.("#v-learn input")) return; lxRender(); }
   else if (view === "dash") renderDash();
   else if (view === "practice"){
     const ta = $("#ans"); const focused = document.activeElement === ta;
@@ -816,10 +899,300 @@ document.addEventListener("change", e => {
   ls.set("oop-filters", filters); curId = null; renderPractice();
 });
 
+/* ── LEARN (학습) ───────────────────────── 레슨 읽기 → 이해 점검(개념마다 2문제, 자동 채점) → 틀린 개념 복습 → 재시험.
+   점검 기록은 문제은행 attempts와 섞지 않고 db "checks" / "progress"에 따로 (없으면 localStorage oop-checks / oop-progress). */
+let LX = null;                                   // learn.json: {units, checks}
+let LXU = [], LXL = [], LXLES = Object.create(null), LXSEC = Object.create(null);  // 개념 id에 'constructor'가 있어서 프로토타입 없는 객체
+let checks = [], progress = {};
+let LS = ls.get("oop-learn", { lesson:null, mode:"home", quiz:null, review:null });
+const lxSave = () => ls.set("oop-learn", LS);
+const LX_PASS = 0.7, LX_PER = 2;
+const LX_TYPE = { mc:"객관식", ox:"OX", blank:"빈칸" };
+const lxNorm = s => String(s ?? "").toLowerCase().replace(/[\s()（）.,'"“”‘’·\-_;]/g, "");
+
+function lxLoad(data){
+  LX = data; LXU = data.units;
+  LXL = LXU.flatMap(u => u.lessons.map(l => ({ ...l, unit:u.id, unitTitle:u.title })));
+  LXLES = Object.assign(Object.create(null), Object.fromEntries(LXL.map(l => [l.id, l])));
+  LXSEC = Object.create(null); for (const l of LXL) for (const s of l.secs) LXSEC[s.id] = { ...s, lesson:l.id };
+  if (LS.lesson && !LXLES[LS.lesson]) LS = { lesson:null, mode:"home", quiz:null, review:null };
+  if (LS.mode === "quiz" && !LS.quiz) LS.mode = "home";
+}
+const cById = id => LX.checks.find(q => q.id === id);
+function lxLatest(key){ const m = Object.create(null); for (const a of checks){ const k = a[key]; if (k && (!m[k] || a.at > m[k].at)) m[k] = a; } return m; }
+const lxConcepts = lid => LXLES[lid].secs.map(s => s.id);
+const lxDone = lid => !!progress[lid]?.done;
+function lxWeak(lid){ const lc = lxLatest("concept"); return lxConcepts(lid).filter(c => lc[c] && lc[c].score < LX_PASS); }
+const lxNext = () => LXL.find(l => !lxDone(l.id)) || null;
+function lxSrc(c){ const s = LXSEC[c]; if (!s) return ""; const l = LXLES[s.lesson]; return `${l.id} §${s.title} · ${l.src}`; }
+const lxTopicN = t => bank.filter(q => q.topics.includes(t) && q.scope !== "out").length;
+function lxTopicBtn(t){ const n = lxTopicN(t); return n ? `<button class="btn sm" data-topic="${t}">${esc(TOPICS[t]?.[0] || t)} 기출 ${n} →</button>` : ""; }
+
+async function lxSaveCheck(a){
+  a.at = Date.now(); const q = cById(a.qid); a.concept = q.concept; a.lesson = q.lesson;
+  const id = a.at + "-" + Math.random().toString(36).slice(2,8);
+  checks.push({ ...a, _id:id });
+  if (db){ try { await db.collection("checks").doc(id).set(a); return id; } catch {} }
+  const loc = ls.get("oop-checks", []); loc.push({ ...a, _id:id }); ls.set("oop-checks", loc.slice(-3000)); return id;
+}
+async function lxUpdateCheck(id, patch){
+  const j = checks.findIndex(x => x._id === id); if (j >= 0) Object.assign(checks[j], patch);
+  if (db){ try { await db.collection("checks").doc(id).update(patch); return; } catch {} }
+  const loc = ls.get("oop-checks", []); const i = loc.findIndex(x => x._id === id); if (i >= 0){ Object.assign(loc[i], patch); ls.set("oop-checks", loc); }
+}
+async function lxSaveProgress(lid, patch){
+  const prev = progress[lid] || {};
+  const passed = { ...(prev.passed || {}), ...patch };
+  const done = prev.done || lxConcepts(lid).every(c => passed[c]);
+  progress[lid] = { ...prev, passed, done, at:Date.now() };
+  const loc = ls.get("oop-progress", {}); loc[lid] = progress[lid]; ls.set("oop-progress", loc);
+  if (db){ try { await db.collection("progress").doc(lid).set(progress[lid]); } catch {} }
+}
+
+function lxGrade(q, ans){
+  if (q.type === "mc"){ const ok = Number(ans) === q.answer; return { score: ok ? 1 : 0, feedback: ok ? "정답!" : `정답은 ${q.answer+1}번.` }; }
+  if (q.type === "ox"){ const ok = ans === q.answer; return { score: ok ? 1 : 0, feedback: ok ? "정답!" : `정답은 ${q.answer ? "O" : "X"}.` }; }
+  const arr = Array.isArray(ans) ? ans : []; let hit = 0; const missed = [];
+  q.accept.forEach((alts, i) => { const v = lxNorm(arr[i]); if (v && alts.some(a => lxNorm(a) === v)) hit++; else missed.push(`(${String.fromCharCode(97+i)}) 정답: ${alts[0]}`); });
+  const score = hit / q.accept.length;
+  return { score, missed, feedback: score === 1 ? "빈칸 전부 맞았어." : `${q.accept.length}칸 중 ${hit}칸 맞음. 표현만 다른 거면 아래에서 고쳐.` };
+}
+const lxDrafts = {};
+function lxInput(q, key, draft, locked){
+  if (q.type === "mc") return `<div class="choices">${q.choices.map((c,i) => { let cls = "choice"; if (draft === i) cls += " sel";
+      if (locked){ if (i === q.answer) cls += " right"; else if (draft === i) cls += " wrongc"; }
+      return `<button class="${cls}" data-lpick="${i}" ${locked?"disabled":""}><span class="k">${i+1}</span><span>${esc(c)}</span></button>`; }).join("")}</div>`;
+  if (q.type === "ox") return `<div class="ox">${[true,false].map(v => { let cls = "choice"; if (draft === v) cls += " sel";
+      if (locked){ if (v === q.answer) cls += " right"; else if (draft === v) cls += " wrongc"; }
+      return `<button class="${cls}" data-lpick="${v}" ${locked?"disabled":""}>${v ? "O" : "X"}</button>`; }).join("")}</div>`;
+  const d = Array.isArray(draft) ? draft : [];
+  return `<div class="blanks">${q.accept.map((_,i) => `<label for="lb-${key}-${i}">(${String.fromCharCode(97+i)})</label><input type="text" id="lb-${key}-${i}" data-lblank="${i}" value="${esc(d[i]||"")}" ${locked?"readonly":""} autocomplete="off" autocapitalize="off" spellcheck="false">`).join("")}</div>`;
+}
+const lxReadDraft = q => q.type === "blank" ? [...document.querySelectorAll("#v-learn [data-lblank]")].map(i => i.value) : LS.quiz.drafts[q.id];
+const lxAnsText = (q, d) => q.type === "mc" ? (d == null ? "" : `${d+1}. ${q.choices[d]}`) : q.type === "ox" ? (d == null ? "" : d ? "O" : "X") : (d||[]).map((v,i)=>`(${String.fromCharCode(97+i)}) ${v}`).join("  ");
+function lxResult(q, r){
+  if (!r || r.score == null) return "";
+  return `<div class="result"><div class="mark"><span class="pen">${Math.round(r.score*100)}</span><div class="fb">${esc(r.feedback || "")}</div></div>
+    ${r.missed?.length ? `<ul class="missed">${r.missed.map(m=>`<li>${esc(m)}</li>`).join("")}</ul>` : ""}
+    ${q.type === "blank" ? `<div><div class="label" style="margin-bottom:6px">정답</div><pre class="code" style="white-space:pre-wrap">${esc(q.answer)}</pre></div>` : ""}
+    ${q.explain ? `<div class="tip"><b>해설</b> ${esc(q.explain)}</div>` : ""}
+    <div class="goto note">교안 위치: ${esc(lxSrc(q.concept))} <button class="btn ghost sm" data-lread="${esc(q.concept)}">이 부분 읽기 →</button></div>
+    ${q.type === "blank" && !r.carried ? `<div class="actions"><span class="note">채점이 이상하면 직접 고쳐:</span><button class="btn sm" data-lself="1">맞음</button><button class="btn sm" data-lself="0.5">절반</button><button class="btn sm" data-lself="0">틀림</button></div>` : ""}</div>`;
+}
+
+function lxTree(){
+  return LXU.map(u => {
+    const done = u.lessons.filter(l => lxDone(l.id)).length;
+    const open = u.lessons.some(l => l.id === LS.lesson) || (!LS.lesson && u.lessons.some(l => l.id === lxNext()?.id));
+    return `<details ${open ? "open" : ""}><summary><span class="ut">${esc(u.title)}</span>
+      <span class="ubar" title="${done}/${u.lessons.length} 레슨 완료"><b style="width:${Math.round(done/u.lessons.length*100)}%"></b></span></summary>
+      ${u.lessons.map(l => { const wk = lxWeak(l.id).length; const dot = lxDone(l.id) ? (wk ? "weak" : "done") : (l.id === LS.lesson ? "cur" : "");
+        return `<button class="lrow ${l.id === LS.lesson ? "cur" : ""}" data-lesson="${l.id}"><span class="dot ${dot}"></span><span>${esc(l.title)}</span>
+          <span class="lnum">${wk ? `<span class="st weak">복습 ${wk}</span>` : l.id}</span></button>`; }).join("")}</details>`;
+  }).join("");
+}
+function lxRender(){
+  const el = $("#v-learn");
+  if (!LX){ el.innerHTML = `<div class="sheet empty">학습 자료(learn.json)를 불러오는 중…</div>`; return; }
+  let main = "";
+  if (LS.mode === "read" && LS.lesson) main = lxReader(LS.lesson);
+  else if (LS.mode === "quiz" && LS.quiz) main = lxQuiz();
+  else if (LS.mode === "summary" && LS.quiz) main = lxSummary();
+  else main = lxHome();
+  el.innerHTML = `<div class="learn"><aside class="sheet tree" aria-label="단원 목록">
+      <button class="lrow ${LS.mode==="home"||!LS.lesson?"cur":""}" data-lhome="1"><span class="dot"></span><span><b>학습 홈</b></span><span></span></button>
+      ${lxTree()}</aside><div id="lmain" style="min-width:0">${main}</div></div>`;
+  if (LS.mode === "read" && LS.scrollTo){
+    const t = document.getElementById("s-" + LS.scrollTo); LS.scrollTo = null; lxSave();
+    if (t) requestAnimationFrame(() => t.scrollIntoView({ block:"start" }));
+  }
+}
+function lxHome(){
+  const lc = lxLatest("concept");
+  const doneN = LXL.filter(l => lxDone(l.id)).length, concepts = Object.keys(LXSEC);
+  const mastered = concepts.filter(c => lc[c] && lc[c].score >= LX_PASS).length;
+  const nx = lxNext();
+  const weak = concepts.filter(c => lc[c] && lc[c].score < LX_PASS).slice(0, 10);
+  return `<div class="stats">
+      <div class="sheet stat"><div class="label">레슨</div><div class="v">${doneN}<span class="muted" style="font-size:15px"> / ${LXL.length}</span></div><div class="s">이해 점검 통과</div></div>
+      <div class="sheet stat"><div class="label">개념</div><div class="v">${mastered}<span class="muted" style="font-size:15px"> / ${concepts.length}</span></div><div class="s">최근 70점 이상</div></div>
+      <div class="sheet stat"><div class="label">점검 문제</div><div class="v">${Object.keys(lxLatest("qid")).length}<span class="muted" style="font-size:15px"> / ${LX.checks.length}</span></div><div class="s">풀어 본 문제</div></div>
+    </div>
+    <div class="sheet cta">
+      <div><div class="label">${nx ? "이어서 학습" : "전 범위 완주"}</div>
+        <div class="t">${nx ? esc(nx.id + " · " + nx.title) : "모든 레슨 통과! 이제 기출로 실전 연습"}</div>
+        <div class="note">${nx ? esc(nx.unitTitle) + " · " + esc(nx.src) : "약점 개념은 아래에서 다시 볼 수 있어"}</div></div>
+      ${nx ? `<button class="btn primary" data-lesson="${nx.id}">읽기 시작 →</button>` : `<button class="btn primary" data-ltab="mock">모의고사 →</button>`}
+    </div>
+    <div class="grid2">
+      <div><h2>단원</h2>
+        <p class="note" style="margin:-4px 0 10px">레슨 읽고 → 이해 점검(개념마다 ${LX_PER}문제) → 틀린 개념은 교안 위치로 돌아가 다시 읽고 → 다른 문제로 재시험. 순서는 자유라 아는 단원은 건너뛰어도 돼. 레슨 끝의 '기출' 버튼은 문제 풀기 탭으로 바로 가.</p>
+        <div class="units">${LXU.map(u => { const d = u.lessons.filter(l => lxDone(l.id)).length;
+          return `<div class="sheet ucard"><div><div class="label">${u.id} · ${esc(u.src)}</div><h3 style="margin-top:4px">${esc(u.title)}</h3><div class="note">${esc(u.intro)}</div></div>
+            <span class="ubar"><b style="width:${Math.round(d/u.lessons.length*100)}%"></b></span>
+            <div class="ul">${u.lessons.map(l => { const wk = lxWeak(l.id).length;
+              return `<button class="li" data-lesson="${l.id}"><span class="dot ${lxDone(l.id) ? (wk?"weak":"done") : ""}"></span><span>${esc(l.title)}</span>
+              <span class="st ${lxDone(l.id) ? (wk ? "weak" : "good") : "none"}">${lxDone(l.id) ? (wk ? "복습 " + wk : "완료") : "학습 전"}</span></button>`; }).join("")}</div></div>`; }).join("")}</div></div>
+      <div><h2>복습이 필요한 개념</h2>
+        <p class="note" style="margin:-4px 0 10px">최근 점검 점수가 70점 미만인 개념.</p>
+        <div class="sheet weaklist">${weak.length ? weak.map(c => `<div class="wk"><div><div style="font-weight:500">${esc(LXSEC[c].title)}</div><div class="note">${esc(lxSrc(c))} · 최근 ${Math.round(lc[c].score*100)}점</div></div>
+          <div class="actions"><button class="btn sm" data-lread="${c}">읽기</button><button class="btn sm primary" data-lretest="${c}">재시험</button></div></div>`).join("")
+          : `<div class="empty">아직 없음. 점검을 풀면 여기에 약점이 모여.</div>`}</div>
+      </div>
+    </div>`;
+}
+function lxReader(lid){
+  const l = LXLES[lid]; const rv = (LS.review && LS.review.lessonId === lid) ? LS.review.concepts : [];
+  let body = l.html;
+  for (const c of rv) body = body.replace(`<section class="sec" id="s-${c}">`, `<section class="sec review" id="s-${c}">`);
+  const cs = lxConcepts(lid), i = LXL.findIndex(x => x.id === lid);
+  const tb = l.topics.map(lxTopicBtn).filter(Boolean).join("");
+  return `${rv.length ? `<div class="banner"><b>복습할 곳 ${rv.length}개</b>${rv.map(c => `<button class="btn sm" data-ljump="${c}">§ ${esc(LXSEC[c].title)}</button>`).join("")}
+      <span style="flex:1"></span><button class="btn sm primary" data-lretestall="1">다 읽었어 → 재시험</button></div>` : ""}
+    <article class="sheet reader"><div class="rhead">
+      <div class="label">${esc(l.unitTitle)} · ${l.id}</div><h2>${esc(l.title)}</h2>
+      <div class="note">교안 범위: ${esc(l.src)} · 섹션 ${l.secs.length}개</div></div>
+      <div class="body">${body}</div>
+      <div class="rfoot"><div><div style="font-weight:700">이해 점검</div><div class="note">개념 ${cs.length}개 · ${cs.length * LX_PER}문제. 개념별 평균 70점 이상이면 통과.</div>
+        ${tb ? `<div class="actions" style="margin-top:8px"><span class="note">관련 기출:</span>${tb}</div>` : ""}</div>
+        <div class="actions">${i > 0 ? `<button class="btn ghost" data-lesson="${LXL[i-1].id}">← 이전</button>` : ""}
+        ${i < LXL.length - 1 ? `<button class="btn ghost" data-lesson="${LXL[i+1].id}">다음 →</button>` : ""}
+        <button class="btn primary" data-lquiz="${lid}">${lxDone(lid) ? "다시 점검하기" : "이해 점검 시작"} →</button></div></div>
+    </article>`;
+}
+function lxPick(concept, n, avoid){
+  const lq = lxLatest("qid");
+  const rank = list => list.map(q => ({ q, k: checks.filter(a => a.qid === q.id).length * 10 + (lq[q.id] ? lq[q.id].score * 3 : 0) + Math.random() * 2 })).sort((a,b) => a.k - b.k).map(x => x.q);
+  const cand = LX.checks.filter(q => q.concept === concept);
+  return rank(cand.filter(q => !avoid.has(q.id))).concat(rank(cand.filter(q => avoid.has(q.id)))).slice(0, n);
+}
+function lxStart(lid, concepts, round){
+  const used = new Set(LS.quiz?.lessonId === lid ? LS.quiz.used || [] : []);
+  const items = [];
+  for (const c of concepts) for (const q of lxPick(c, LX_PER, used)){ used.add(q.id); items.push({ qid:q.id, concept:c }); }
+  LS.quiz = { lessonId:lid, round, items, idx:0, res:{}, drafts:{}, used:[...used] };
+  LS.mode = "quiz"; LS.lesson = lid; lxSave(); lxRender(); window.scrollTo({ top:0 });
+}
+function lxScores(z){
+  const m = Object.create(null); for (const it of z.items) (m[it.concept] ||= []).push(z.res[it.qid]?.score ?? 0);
+  return Object.fromEntries(Object.entries(m).map(([c, xs]) => [c, xs.reduce((s,x)=>s+x,0) / xs.length]));
+}
+function lxQuiz(){
+  const z = LS.quiz; const it = z.items[z.idx]; const q = cById(it.qid);
+  if (!q){ LS.mode = "read"; LS.quiz = null; lxSave(); return lxReader(LS.lesson); }
+  const r = z.res[it.qid]; const key = "z" + z.idx; const locked = !!(r && r.score != null);
+  const draft = z.drafts[it.qid];
+  const pips = z.items.map((x,i) => { const rr = z.res[x.qid]; return `<i class="${rr && rr.score != null ? (rr.score >= LX_PASS ? "ok" : "no") : (i === z.idx ? "on" : "")}"></i>`; }).join("");
+  return `<div class="sheet qwrap">
+    <div class="qtop"><div><div class="label">${esc(z.lessonId)} 이해 점검${z.round > 1 ? ` · 재시험 ${z.round-1}회차` : ""} · ${z.idx+1}/${z.items.length}</div>
+      <div class="note">개념: ${esc(LXSEC[it.concept]?.title)} · ${LX_TYPE[q.type]}</div></div><div class="pips">${pips}</div></div>
+    <div class="prompt">${esc(q.prompt)}</div>
+    ${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
+    ${lxInput(q, key, draft, locked)}
+    ${!locked ? `<div class="actions"><button class="btn primary" data-lsubmit="1" ${q.type !== "blank" && draft == null ? "disabled" : ""}>${q.type === "blank" ? "채점" : "제출"}</button>
+        <button class="btn ghost" data-lskip="1">모르겠어 (틀림 처리)</button></div>` : ""}
+    ${lxResult(q, r)}
+    ${locked ? `<div class="actions" style="justify-content:flex-end"><button class="btn primary" data-lnext="1">${z.idx + 1 < z.items.length ? "다음 문제 →" : "결과 보기 →"}</button></div>` : ""}
+  </div>`;
+}
+function lxSummary(){
+  const z = LS.quiz; const lid = z.lessonId; const cs = lxScores(z);
+  const rows = Object.keys(cs).map(c => ({ c, v:cs[c], items:z.items.filter(it => it.concept === c) }));
+  const failed = rows.filter(x => x.v < LX_PASS);
+  const i = LXL.findIndex(x => x.id === lid); const nx = LXL[i+1]; const done = lxDone(lid);
+  return `<div class="sheet qwrap">
+    <div class="label">${esc(lid)} 이해 점검 결과${z.round > 1 ? ` · 재시험 ${z.round-1}회차` : ""} · ${z.items.length}문제</div>
+    <h2 style="font-size:20px;margin:0">${failed.length ? `개념 ${rows.length}개 중 ${rows.length - failed.length}개 통과. 틀린 곳 다시 보고 오자.` : done ? "전부 통과! 이 레슨 완료." : "이번 개념은 통과. 남은 개념도 통과해야 레슨 완료."}</h2>
+    <div>${rows.map(x => `<div class="sumrow"><span class="st ${x.v >= LX_PASS ? "good" : "weak"}">${x.v >= LX_PASS ? "통과" : "복습"}</span>
+      <div><div style="font-weight:500">${esc(LXSEC[x.c].title)}</div><div class="note">${x.items.map(it => { const r = z.res[it.qid]; return `${LX_TYPE[cById(it.qid).type]} ${r?.score == null ? "?" : Math.round(r.score*100)}`; }).join(" · ")}</div></div>
+      <span class="pen" style="font-size:28px">${Math.round(x.v*100)}</span></div>`).join("")}</div>
+    ${failed.length ? `<h3 style="margin-top:6px">여기 다시 보고 와</h3>
+      ${failed.map(x => { const miss = x.items.flatMap(it => z.res[it.qid]?.missed || []);
+        return `<div class="sheet revcard"><div style="font-weight:600">§ ${esc(LXSEC[x.c].title)}</div><div class="note">${esc(lxSrc(x.c))}</div>
+        ${miss.length ? `<div class="note">놓친 것: ${esc(miss.slice(0,6).join(" · "))}</div>` : ""}</div>`; }).join("")}
+      <div class="actions"><button class="btn primary" data-lgoreview="1">복습하러 가기 (해당 섹션 표시됨) →</button><button class="btn ghost" data-lretestall="1">바로 재시험</button></div>`
+      : `<div class="actions">${!done ? `<button class="btn primary" data-lquiz="${lid}">전체 개념 점검 →</button>` : nx ? `<button class="btn primary" data-lesson="${nx.id}">다음 레슨: ${esc(nx.title)} →</button>` : `<button class="btn primary" data-ltab="mock">모의고사로 →</button>`}
+        ${LXLES[lid].topics.map(lxTopicBtn).join("")}<button class="btn" data-lhome="1">학습 홈</button></div>`}
+  </div>`;
+}
+async function lxSubmit(override){
+  const z = LS.quiz; const it = z.items[z.idx]; const q = cById(it.qid);
+  const d = override !== undefined ? override : lxReadDraft(q);
+  z.drafts[it.qid] = d;
+  const r = lxGrade(q, d);
+  const id = await lxSaveCheck({ qid:q.id, score:r.score, answer:lxAnsText(q, d), mode: z.round > 1 ? "retest" : "check" });
+  z.res[it.qid] = { ...r, checkId:id }; lxSave(); lxRender();
+}
+async function lxFinish(){
+  const z = LS.quiz; const cs = lxScores(z);
+  const failed = Object.keys(cs).filter(c => cs[c] < LX_PASS);
+  await lxSaveProgress(z.lessonId, Object.fromEntries(Object.entries(cs).map(([c,v]) => [c, v >= LX_PASS])));
+  LS.review = failed.length ? { lessonId:z.lessonId, concepts:failed } : null;
+  LS.mode = "summary"; lxSave(); lxRender(); window.scrollTo({ top:0 });
+}
+function lxOpenRead(c){
+  const s = LXSEC[c]; if (!s) return;
+  LS.lesson = s.lesson; LS.mode = "read"; LS.scrollTo = c;
+  if (!LS.review || LS.review.lessonId !== s.lesson) LS.review = { lessonId:s.lesson, concepts:[c] };
+  else if (!LS.review.concepts.includes(c)) LS.review.concepts.push(c);
+  lxSave(); if (view !== "learn") show("learn"); else lxRender();
+}
+function lxZoomClose(){ document.querySelector(".lightbox")?.remove(); }
+document.addEventListener("keydown", e => { if (e.key === "Escape") lxZoomClose(); });
+document.addEventListener("click", async e => {
+  if (e.target.closest(".lightbox")){ lxZoomClose(); return; }
+  const t = e.target.closest("button"); if (!t || !LX) return;
+  const ds = t.dataset;
+  if (ds.zoom){ lxZoomClose(); const lb = document.createElement("div"); lb.className = "lightbox"; lb.setAttribute("role","dialog"); lb.setAttribute("aria-label","슬라이드 크게 보기");
+    lb.innerHTML = `<button class="x" aria-label="닫기">닫기 ✕</button><img src="${esc(ds.zoom)}" alt="">`; document.body.appendChild(lb); return; }
+  if (ds.ltab) return show(ds.ltab);
+  if (ds.lhome){ LS.mode = "home"; LS.lesson = null; lxSave(); return lxRender(); }
+  if (ds.lesson){ LS.lesson = ds.lesson; LS.mode = "read"; if (LS.review && LS.review.lessonId !== ds.lesson) LS.review = null; lxSave(); if (view !== "learn") show("learn"); else { lxRender(); window.scrollTo({ top:0 }); } return; }
+  if (ds.lread) return lxOpenRead(ds.lread);
+  if (ds.ljump){ document.getElementById("s-" + ds.ljump)?.scrollIntoView({ block:"start", behavior:"smooth" }); return; }
+  if (ds.lquiz) return lxStart(ds.lquiz, lxConcepts(ds.lquiz), 1);
+  if (ds.lretestall){ const rv = LS.review; if (!rv) return; return lxStart(rv.lessonId, rv.concepts, (LS.quiz?.lessonId === rv.lessonId ? LS.quiz.round : 1) + 1); }
+  if (ds.lretest){ const c = ds.lretest; const lid = LXSEC[c].lesson; LS.review = { lessonId:lid, concepts:[c] }; return lxStart(lid, [c], 2); }
+  if (ds.lgoreview){ const rv = LS.review; if (!rv) return; LS.lesson = rv.lessonId; LS.mode = "read"; LS.scrollTo = rv.concepts[0]; lxSave(); return lxRender(); }
+  if (ds.lpick != null){ const z = LS.quiz; const v = ds.lpick === "true" ? true : ds.lpick === "false" ? false : Number(ds.lpick); z.drafts[z.items[z.idx].qid] = v; lxSave(); return lxRender(); }
+  if (ds.lsubmit){ t.disabled = true; return lxSubmit(); }
+  if (ds.lskip){ const z = LS.quiz; const q = cById(z.items[z.idx].qid); z.drafts[q.id] = q.type === "blank" ? lxReadDraft(q) : z.drafts[q.id];
+    const id = await lxSaveCheck({ qid:q.id, score:0, answer:"(모르겠음)", mode:"check" });
+    z.res[q.id] = { score:0, feedback:"모른다고 표시했어. 정답 보고, 결과 화면에서 교안 위치로 가자.", checkId:id, missed:q.type === "blank" ? q.accept.map((a,i) => `(${String.fromCharCode(97+i)}) 정답: ${a[0]}`) : [] }; lxSave(); return lxRender(); }
+  if (ds.lself != null){ const z = LS.quiz; const it = z.items[z.idx]; const r = z.res[it.qid]; const score = Number(ds.lself);
+    if (r?.checkId) await lxUpdateCheck(r.checkId, { score, self:true });
+    z.res[it.qid] = { ...r, score, missed: score >= 1 ? [] : r.missed, feedback: score >= 1 ? "맞음으로 고쳤어." : score > 0 ? "절반으로 고쳤어." : "틀림으로 고쳤어." }; lxSave(); return lxRender(); }
+  if (ds.lnext){ const z = LS.quiz; if (z.idx + 1 < z.items.length){ z.idx++; lxSave(); lxRender(); window.scrollTo({ top:0 }); } else lxFinish(); return; }
+});
+document.addEventListener("keydown", e => {
+  if (e.key !== "Enter" || !e.target.matches?.("#v-learn [data-lblank]")) return;
+  const ins = [...document.querySelectorAll("#v-learn [data-lblank]")]; const i = ins.indexOf(e.target);
+  e.preventDefault(); if (i < ins.length - 1) ins[i+1].focus(); else $("#v-learn [data-lsubmit]")?.click();
+});
+document.addEventListener("input", e => {
+  if (!e.target.matches?.("#v-learn [data-lblank]") || !LS.quiz) return;
+  const z = LS.quiz; const q = cById(z.items[z.idx].qid); z.drafts[q.id] = lxReadDraft(q); lxSave();
+});
+function lxBootLocal(){ checks = ls.get("oop-checks", []); progress = ls.get("oop-progress", {}); }
+function lxBootDb(){
+  db.collection("checks").orderBy("at","desc").limit(3000).onSnapshot(snap => {
+    const remote = snap.docs.map(x => ({ ...x.data(), _id:x.id }));
+    const local = ls.get("oop-checks", []);
+    checks = remote.concat(local.filter(l => !remote.find(r => r._id === l._id)));
+    if (view === "learn" && LS.mode !== "quiz") lxRender();
+  }, () => {});
+  db.collection("progress").onSnapshot(snap => {
+    progress = { ...ls.get("oop-progress", {}), ...Object.fromEntries(snap.docs.map(x => [x.id, x.data()])) };
+    if (view === "learn" && LS.mode !== "quiz") lxRender();
+  }, () => {});
+}
+
 /* ── boot ───────────────────────── */
 async function boot(){
   attempts = ls.get("oop-attempts", []).map(a => ({ ...a, _id: a._id || "local" }));
+  lxBootLocal();
   show(view);
+  fetch("learn.json").then(r => r.json()).then(d => { lxLoad(d); if (view === "learn") lxRender(); else renderAll(); }).catch(() => { if (view === "learn") $("#v-learn").innerHTML = `<div class="sheet empty">학습 자료(learn.json)를 불러오지 못했어. 새로고침해줘.</div>`; });
   try { const r = await fetch("bank.json"); bank = (await r.json()).questions; }
   catch { $("main").innerHTML = `<div class="sheet empty">문제은행(bank.json)을 불러오지 못했어. 새로고침해줘.</div>`; return; }
   renderAll(); setStoreChip(); setGraderChip();
@@ -828,6 +1201,7 @@ async function boot(){
     const d = await claude.use("db").catch(() => null);
     if (d){
       db = d; setStoreChip();
+      lxBootDb();
       db.collection("attempts").orderBy("at","desc").limit(1000).onSnapshot(snap => {
         const remote = snap.docs.map(x => ({ ...x.data(), _id: x.id }));
         const local = ls.get("oop-attempts", []).map(a => ({ ...a, _id: a._id || "local" }));
