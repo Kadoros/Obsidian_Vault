@@ -1,0 +1,899 @@
+{
+ "c-cri-2": {
+  "prompt": "According to the slides, what is the cause of the software crisis?",
+  "choices": [
+   "Shortage of programmers",
+   "Hardware prices",
+   "Complexity",
+   "Maintenance costs"
+  ]
+ },
+ "c-cri-3": {
+  "prompt": "Symptoms of the software crisis include being over-budget, over-time, and failing to meet requirements."
+ },
+ "c-lc-2": {
+  "prompt": "Which is the correct order of the software life cycle?"
+ },
+ "c-lc-3": {
+  "prompt": "The Test phase includes unit testing and integration testing."
+ },
+ "c-sed-2": {
+  "prompt": "Which goal of SE is 'the ability to trust that the software will work properly when needed'?"
+ },
+ "c-sed-4": {
+  "prompt": "According to the IEEE definition, SE is the application of a systematic, disciplined, quantifiable approach to the development, operation, and maintenance of software."
+ },
+ "c-qual-1": {
+  "prompt": "According to Handout 1, which of the following is NOT part of maintainability?"
+ },
+ "c-qual-3": {
+  "prompt": "Correctness means satisfying the user requirements and specification without errors."
+ },
+ "c-rob-2": {
+  "prompt": "Which property means maintaining correct functionality even in exceptional situations such as disasters or invalid input?"
+ },
+ "c-sp-1": {
+  "prompt": "Which software property corresponds to 'divide and conquer'?"
+ },
+ "c-sp-2": {
+  "prompt": "Which software property corresponds to 'be able to prove that the software works properly'?"
+ },
+ "c-sp-3": {
+  "prompt": "Localization means collecting similar things together."
+ },
+ "c-uns-2": {
+  "prompt": "Spaghetti code is code in which GOTOs jump all over the place, making the flow hard to follow and the code hard to modify."
+ },
+ "c-pro-2": {
+  "prompt": "In modular programming, what is visible and what is hidden?",
+  "choices": [
+   "The interface is visible; the implementation is hidden",
+   "The implementation is visible; the interface is hidden",
+   "Both are visible",
+   "Both are hidden"
+  ]
+ },
+ "c-pro-3": {
+  "prompt": "In procedural programming, a program is a sequence of procedure calls."
+ },
+ "c-gv-2": {
+  "prompt": "What solution to the problem of global variables do the slides present?",
+  "choices": [
+   "Make global variables const",
+   "Localize data inside modules (modularized data)",
+   "Use goto",
+   "Give global variables longer names"
+  ]
+ },
+ "c-gv-3": {
+  "prompt": "Using global variables means that no module can be developed or understood independently."
+ },
+ "c-ow-1": {
+  "prompt": "Which problem of procedural/modular programming is given in the slides?",
+  "choices": [
+   "Data and operations are bundled into a single object",
+   "There is too much inheritance",
+   "Data and operations are decoupled, which makes large systems hard to debug, extend, and maintain",
+   "Compilation is slow"
+  ]
+ },
+ "c-ow-3": {
+  "prompt": "In OOP, 'object + object = program', whereas in procedural programming, 'data + function = program'."
+ },
+ "c-adt-1": {
+  "prompt": "Why is an ADT called 'abstract'?",
+  "choices": [
+   "Because it uses abstract classes",
+   "Because its data and operations are specified independently of any particular implementation",
+   "Because it has no data",
+   "Because it uses inheritance"
+  ]
+ },
+ "c-adt-3": {
+  "prompt": "In C++, an ADT is defined with a class."
+ },
+ "c-co-2": {
+  "prompt": "Objects created from the same class share the same memory space, so they are effectively a single object.",
+  "explain": "Each object gets its own memory space (address) and is a distinct object. What they share are the class's methods."
+ },
+ "c-co-3": {
+  "prompt": "What can access an object's internal data?",
+  "choices": [
+   "Any function",
+   "The main function",
+   "Global functions",
+   "The methods of its class"
+  ]
+ },
+ "c-ei-2": {
+  "prompt": "Encapsulation hides the functional details of a class from the objects that send messages to it."
+ },
+ "c-ip-1": {
+  "prompt": "Which of the following is NOT a C++ feature that supports polymorphism?"
+ },
+ "c-ip-2": {
+  "prompt": "The goal of inheritance is the reuse of objects (classes)."
+ },
+ "c-io-1": {
+  "prompt": "What does cout << Hello; print?",
+  "choices": [
+   "The string Hello",
+   "The value of the variable Hello",
+   "It always causes a compile error",
+   "Nothing"
+  ]
+ },
+ "c-io-2": {
+  "prompt": "cout is the (a) stream object (standard output), and cin is the (b) stream object (standard input).",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "c-io-3": {
+  "prompt": "You may use C code (printf, etc.) inside a C++ program."
+ },
+ "c-bas-1": {
+  "prompt": "What is the execution order of for (A; B; C) { body }?"
+ },
+ "c-bas-2": {
+  "prompt": "Unlike C strings (char*), C++ string manages its memory automatically."
+ },
+ "c-bas-3": {
+  "prompt": "When are a function's local variables (including parameters) created and destroyed?",
+  "choices": [
+   "At program start and end",
+   "At compile time",
+   "Created when the function is called, destroyed when it returns",
+   "At new and delete"
+  ]
+ },
+ "c-ptr-1": {
+  "prompt": "In int *x; what does * mean?",
+  "choices": [
+   "Multiplication",
+   "The pointed-to value (dereference)",
+   "Pointer type declaration",
+   "Address-of operator"
+  ]
+ },
+ "c-ptr-2": {
+  "prompt": "In x = &y; what does & mean?",
+  "choices": [
+   "Bitwise AND",
+   "Address-of operator",
+   "Reference type declaration",
+   "Logical AND"
+  ]
+ },
+ "c-ptr-3": {
+  "prompt": "In int& y = x; what does & mean?",
+  "choices": [
+   "Bitwise AND",
+   "Address-of operator",
+   "Pointer declaration",
+   "Reference type declaration"
+  ]
+ },
+ "c-ptr-4": {
+  "prompt": "The output of int *xPtr, x; x = 5; xPtr = &x; *xPtr = 10; cout << x; is (a).",
+  "accept_add": [
+   []
+  ]
+ },
+ "c-nd-1": {
+  "prompt": "Dynamic memory allocation means memory allocation occurs at (a). C's malloc/free correspond to C++'s (b)/(c).",
+  "accept_add": [
+   [],
+   [],
+   []
+  ]
+ },
+ "c-nd-2": {
+  "prompt": "Which statement correctly frees memory allocated with int* p = new int[10];?"
+ },
+ "c-nd-3": {
+  "prompt": "Like Java, C++ has garbage collection, so you do not need to call delete."
+ },
+ "c-sd-1": {
+  "prompt": "What is the disadvantage of a statically allocated array int x[10];?",
+  "choices": [
+   "Its size is fixed at compile time and cannot be changed at run time",
+   "You must free it yourself",
+   "Risk of dangling pointers",
+   "It is slow"
+  ]
+ },
+ "c-sd-2": {
+  "prompt": "What is the disadvantage of a dynamically allocated array new int[n]?",
+  "choices": [
+   "Its size cannot be determined at run time",
+   "It causes a compile error",
+   "The programmer must free it manually with delete[], so there is a risk of memory leaks and dangling pointers",
+   "It is allocated on the stack"
+  ]
+ },
+ "c-sd-3": {
+  "prompt": "A statically allocated array's memory is freed automatically when it goes out of scope."
+ },
+ "c-cb-1": {
+  "prompt": "Constructors and destructors are called automatically when an object is created and destroyed."
+ },
+ "c-cb-2": {
+  "prompt": "What happens if a constructor does not initialize the member variables?",
+  "choices": [
+   "Compile error",
+   "They hold garbage values, which is dangerous and unstable",
+   "They automatically become 0",
+   "The destructor is not called"
+  ]
+ },
+ "c-op-1": {
+  "prompt": "Given Rectangle *foo; Rectangle obj(3,4); which statement makes foo point to obj?"
+ },
+ "c-op-2": {
+  "prompt": "Given bar = new Rectangle(5,6); which expression correctly calls the area function?"
+ },
+ "c-op-3": {
+  "prompt": "If baz = new Rectangle[2];, the default constructor (width=1, height=1) is called (a) times, and the value of baz[0].area() is (b). It is freed with (c) baz;.",
+  "accept_add": [
+   [],
+   [],
+   []
+  ]
+ },
+ "c-op-4": {
+  "prompt": "An array element baz[0] is an object, so its members are accessed with a dot (.), as in baz[0].area()."
+ },
+ "c-fs-2": {
+  "prompt": "Which function checks whether a file was opened successfully?"
+ },
+ "c-fs-3": {
+  "prompt": "Which stream state function returns true if the end of the file has been reached?"
+ },
+ "c-om-2": {
+  "prompt": "What is the default open mode of ofstream?"
+ },
+ "c-om-3": {
+  "prompt": "What does ios::ate mean?",
+  "choices": [
+   "Binary mode",
+   "All output is appended at the end",
+   "Previous content is deleted",
+   "The initial position is set to the end of the file"
+  ]
+ },
+ "c-om-4": {
+  "prompt": "Multiple open mode flags are combined with the bitwise (a) operator. Example: ios::out (b) ios::binary",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "c-st-1": {
+  "prompt": "Getting the file size: begin = myfile.(a); myfile.seekg(0, ios::(b)); end = myfile.tellg(); size = end − begin",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "c-st-2": {
+  "prompt": "Which function changes the get (read) position?"
+ },
+ "c-st-3": {
+  "prompt": "In seekg(offset, direction), which direction means 'from the current position'?"
+ },
+ "c-bin-1": {
+  "prompt": "When reading an entire binary file into memory, what value does tellg() return right after opening with ios::ate?",
+  "choices": [
+   "0",
+   "The current line number",
+   "The file size",
+   "The length of the file name"
+  ]
+ },
+ "c-bin-2": {
+  "prompt": "To copy a binary file, you can read and write it line by line with getline.",
+  "explain": "Copy the whole byte block with read/write. getline is for text and corrupts binary data (points were deducted on a past exam)."
+ },
+ "c-bin-3": {
+  "prompt": "Binary I/O functions: file.(a)(memblock, size); out.(b)(memblock, size); where memblock has type char*.",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "c-bin-4": {
+  "prompt": "After opening with ios::ate and getting the size, what must you do before read?",
+  "choices": [
+   "Rewind to the beginning with seekg(0, ios::beg)",
+   "close()",
+   "seekp(0, ios::end)",
+   "clear()"
+  ]
+ },
+ "c-rdd-1": {
+  "prompt": "In responsibility-driven design, the responsibilities within a single object should be:",
+  "choices": [
+   "Unrelated to each other",
+   "Closely related to each other",
+   "Only one",
+   "Overlapping with other objects"
+  ]
+ },
+ "c-rdd-2": {
+  "prompt": "In responsibility-driven design, the activities (responsibilities) the system must perform are distributed among the objects of the system."
+ },
+ "c-dp-1": {
+  "prompt": "In the 9-step development process, at which step are CRC cards used?"
+ },
+ "c-dp-2": {
+  "prompt": "In the 9-step development process, at which step are stubs used?"
+ },
+ "c-dp-3": {
+  "prompt": "The last step of the development process is Maintenance & (a), and the first step is Initial (b) (Specification).",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "c-sc-1": {
+  "prompt": "What is the main tool for refining the ambiguous initial specification of IIKH?",
+  "choices": [
+   "Walking through scenarios",
+   "UML class diagrams",
+   "Unit testing",
+   "Stubs"
+  ]
+ },
+ "c-sc-2": {
+  "prompt": "Other authors call the process of developing scenarios (a).",
+  "accept_add": [
+   []
+  ]
+ },
+ "c-sc-3": {
+  "prompt": "When walking through scenarios, you assume the application already works and walk through how it would be used."
+ },
+ "c-cmp-1": {
+  "prompt": "Which of the following is NOT a property of a good component?",
+  "choices": [
+   "A small, well-defined set of responsibilities",
+   "Minimal interaction with other components",
+   "An abstract design unit to which responsibilities can be associated",
+   "As many responsibilities as possible"
+  ]
+ },
+ "c-cmp-2": {
+  "prompt": "A component should interact with other components as much as possible."
+ },
+ "c-crc-1": {
+  "prompt": "The C-R-C of a CRC card stands for Component, (a), and (b).",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "c-crc-2": {
+  "prompt": "On the IIKH Greeter card, what are the Collaborators?",
+  "choices": [
+   "Recipe, Meal",
+   "Database Manager, Plan Manager",
+   "Date, Meal",
+   "None"
+  ]
+ },
+ "c-ik-1": {
+  "prompt": "Which IIKH component maintains the list of ingredients for a single recipe and knows how to edit, display, and print itself?"
+ },
+ "c-ik-2": {
+  "prompt": "Which component automatically scales the recipes when the number of people is set, and produces a grocery list for one meal?"
+ },
+ "c-ik-3": {
+  "prompt": "IIKH can be done with (a) software components, and at this point the components can be assigned to different (b) for development.",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "c-ik-4": {
+  "prompt": "RecipeDB (Recipe Database) maintains the collection of recipes and allows browsing, searching, adding, and editing."
+ },
+ "c-bs-1": {
+  "prompt": "Which term means all the information (data values) held within a component?"
+ },
+ "c-bs-2": {
+  "prompt": "There are many Recipe instances, but they all behave the same way, so their behavior is common to the Recipe class."
+ },
+ "c-cc-3": {
+  "prompt": "What is the problem when coupling is high?",
+  "choices": [
+   "The code becomes shorter",
+   "Cohesion automatically increases",
+   "A change in one module affects other modules, making maintenance and reuse difficult",
+   "Compilation becomes faster"
+  ]
+ },
+ "c-cc-4": {
+  "explain": "The definition is correct, but coupling should be minimized."
+ },
+ "c-ii-1": {
+  "prompt": "In 'Two views of a software system', what are 'text buffer, window pointer, ingredient list'?"
+ },
+ "c-pp-1": {
+  "prompt": "The private view consists of features (data or behavior) used only within the component."
+ },
+ "c-pp-2": {
+  "prompt": "Which view contains the features that other components can see and use?"
+ },
+ "c-nm-1": {
+  "prompt": "Which of the following is NOT a guideline for selecting names?"
+ },
+ "c-nm-3": {
+  "prompt": "It is easy to make a component with only one behavior a function, and a component with several behaviors a class."
+ },
+ "c-im-1": {
+  "prompt": "Which kind of testing validates subsystems individually?"
+ },
+ "c-im-2": {
+  "prompt": "In the Design step, you design the data structures of each component and turn the behavior descriptions into algorithms."
+ },
+ "c-stub-2": {
+  "prompt": "What does 'components are slowly integrated' mean?",
+  "choices": [
+   "Code slowly",
+   "Add and test components one (or a few) at a time rather than all at once",
+   "Integrate everything at once at the end",
+   "Do not use stubs"
+  ]
+ },
+ "c-stub-3": {
+  "prompt": "If all components are integrated at once, it is hard to find where a problem occurred."
+ },
+ "c-mt-2": {
+  "prompt": "Among common design flaws, 'directly modifying another component's data' violates what?",
+  "choices": [
+   "Coding conventions",
+   "Inheritance",
+   "Encapsulation",
+   "Polymorphism"
+  ]
+ },
+ "c-mt-3": {
+  "prompt": "A good design acknowledges that change is inevitable and prepares for it from the start."
+ },
+ "c-ae-2": {
+  "prompt": "Which best expresses data abstraction in one sentence?"
+ },
+ "c-ae-3": {
+  "prompt": "The professor said to treat data abstraction, data encapsulation, and information hiding as almost the same concept."
+ },
+ "c-tv-2": {
+  "prompt": "The service view is the view that you must know how an object performs its work in order to characterize the object.",
+  "explain": "The opposite: it is the ability to characterize an object by the services it provides, without knowing how it does them."
+ },
+ "c-eb-2": {
+  "prompt": "Which benefit is 'A change in implementation should not affect the interface seen by the clients'?"
+ },
+ "c-eb-3": {
+  "prompt": "Which benefit is 'Clients cannot directly access encapsulated data'?"
+ },
+ "c-eb-4": {
+  "prompt": "Readability benefit: clients using the interface do not need to know how the interface functions use the encapsulated information."
+ },
+ "c-mth-2": {
+  "prompt": "Methods with the same name are distinguished if their signatures (argument types) differ."
+ },
+ "c-mth-3": {
+  "prompt": "Where is the data (state) that an object must maintain to perform its behavior successfully stored?",
+  "choices": [
+   "Global variables",
+   "Instance variables (data members)",
+   "Local variables",
+   "Registers"
+  ]
+ },
+ "c-mp-1": {
+  "prompt": "In aGame.displayCard(aCard, 42, 27);, aGame is the message (a), displayCard is the message (b), and the values in parentheses are the arguments.",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "c-mp-2": {
+  "prompt": "Which correctly describes the difference between a message and a function call?",
+  "choices": [
+   "A message has no return value",
+   "A message is always given to some object (the receiver), and the receiver determines the behavior performed in response",
+   "A function call can be made only to an object",
+   "There is no difference"
+  ]
+ },
+ "c-avp-2": {
+  "prompt": "What is the most serious problem if all members of a class are made private?",
+  "choices": [
+   "There is no interface, so clients cannot use the object at all",
+   "Encapsulation is broken",
+   "The compiler does not generate a default constructor",
+   "It becomes slow"
+  ]
+ },
+ "c-avp-3": {
+  "prompt": "What is the problem if all members are made public?",
+  "choices": [
+   "Objects cannot be created",
+   "Compile error",
+   "There is no encapsulation, so clients can directly access and corrupt the data",
+   "The destructor is not called"
+  ]
+ },
+ "c-avp-4": {
+  "prompt": "Putting data members in the public section is a syntax error.",
+  "explain": "It is syntactically fine, but it is bad from an OOP point of view."
+ },
+ "c-gs-1": {
+  "prompt": "Which of the following is NOT a reason for using getters (accessors)?",
+  "choices": [
+   "Makes the data read-only",
+   "Better documents that the data can be accessed",
+   "Makes it easier to change the way of access later",
+   "To make the data public"
+  ]
+ },
+ "c-gs-2": {
+  "prompt": "Setters (mutators) are less common than getters."
+ },
+ "c-as-2": {
+  "prompt": "What does assert(x = 3); do?",
+  "choices": [
+   "Checks whether x is 3",
+   "Always fails",
+   "Assigns 3 to x, and since 3 is true it always passes",
+   "Compile error"
+  ]
+ },
+ "c-vis-1": {
+  "prompt": "What can access private members?",
+  "choices": [
+   "All clients",
+   "The member functions of that class",
+   "The main function",
+   "All functions in the same file"
+  ]
+ },
+ "c-vis-2": {
+  "prompt": "Without inheritance, protected is the same as private."
+ },
+ "c-vis-3": {
+  "prompt": "Why is color not stored as a data member in PlayingCard?",
+  "choices": [
+   "Because it is private",
+   "Because it is a constant",
+   "Because it is an enum",
+   "Because it can be computed from the suit value"
+  ]
+ },
+ "c-ctor-2": {
+  "prompt": "Which constructor uses a member initializer?"
+ },
+ "c-ctor-3": {
+  "prompt": "There can be multiple constructors (if their parameters differ)."
+ },
+ "c-dc-2": {
+  "prompt": "If you write even one constructor yourself, the compiler does not automatically generate a default constructor."
+ },
+ "c-dc-3": {
+  "prompt": "Which statement about destructors is correct?",
+  "choices": [
+   "There can be several of them",
+   "Its return type is void",
+   "It is ~ClassName() and is called automatically when an object is destroyed",
+   "It runs only when called explicitly"
+  ]
+ },
+ "c-cw-1": {
+  "prompt": "In which statement is the copy constructor NOT called?",
+  "choices": [
+   "Person r(p);",
+   "Person p = q;",
+   "f(p);  // value parameter",
+   "p = q;  // existing object"
+  ]
+ },
+ "c-cw-2": {
+  "prompt": "A copy constructor is called whenever a new object is created from (a) object with the same type. Declaration: Person(const Person& p)",
+  "accept_add": [
+   []
+  ]
+ },
+ "c-cw-3": {
+  "prompt": "How is p = q; interpreted?",
+  "choices": [
+   "Person p(q);",
+   "p.operator=(q);",
+   "Copy constructor",
+   "Destructor followed by constructor"
+  ]
+ },
+ "c-shd-1": {
+  "prompt": "What problem arises when the default copy constructor is used for a class with a pointer member?",
+  "choices": [
+   "Shallow copy: both objects share the same array, and delete[] is called twice on destruction",
+   "Compile error",
+   "Deep copy wastes memory",
+   "The copy constructor is not called"
+  ]
+ },
+ "c-shd-2": {
+  "prompt": "A deep-copy copy constructor allocates new memory with (a) and (b) the elements one by one.",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "c-shd-3": {
+  "prompt": "If a shallow copy is fine, do not write a copy constructor yourself."
+ },
+ "c-r3-2": {
+  "prompt": "Why does inf_int in Project 2 need a copy constructor?",
+  "choices": [
+   "Because it has a static member",
+   "Because it has a pointer to dynamically allocated digits, so a deep copy is needed",
+   "Because it has a const member function",
+   "Because it has a friend function"
+  ]
+ },
+ "c-oc-1": {
+  "prompt": "Which statement frees PlayingCard* CardsPtr = new PlayingCard[100];?"
+ },
+ "c-oc-2": {
+  "prompt": "Local objects are destroyed in the order they were created (the first created is destroyed first).",
+  "explain": "They are destroyed in the reverse order of creation."
+ },
+ "c-ld-2": {
+  "prompt": "What does memory leak mean?",
+  "choices": [
+   "Dynamically allocated memory is not freed and can no longer be used",
+   "A pointer pointing to freed memory",
+   "Stack overflow",
+   "Array index out of bounds"
+  ]
+ },
+ "c-ld-3": {
+  "prompt": "Accessing a dangling pointer can cause undefined behavior (a crash, corruption of other data)."
+ },
+ "c-stc-2": {
+  "prompt": "What can a static member function NOT do?",
+  "choices": [
+   "Be called without an object as ClassName::function()",
+   "Access static member variables",
+   "Access non-static member variables",
+   "Return a value"
+  ]
+ },
+ "c-stc-3": {
+  "prompt": "In the File example, what happens if open_files is not static?",
+  "choices": [
+   "Compile error",
+   "Each object has its own open_files, so the total number of File objects cannot be counted",
+   "All objects share 0",
+   "The destructor is not called"
+  ]
+ },
+ "c-stc-4": {
+  "prompt": "A static member variable is defined and initialized outside the class: int (a)::open_files = 0;",
+  "accept_add": [
+   []
+  ]
+ },
+ "c-cf-2": {
+  "prompt": "Which is the correct declaration of a const member function?"
+ },
+ "c-cf-3": {
+  "prompt": "A const member function guarantees its benign nature (harmlessness) to clients, improving safety and readability."
+ },
+ "c-inl-1": {
+  "prompt": "What is the main advantage of an inline function?",
+  "choices": [
+   "Function call overhead is eliminated, so execution is faster",
+   "Code size is reduced",
+   "Recursion becomes possible",
+   "There are no memory leaks"
+  ]
+ },
+ "c-inl-2": {
+  "prompt": "What is the disadvantage of inline?",
+  "choices": [
+   "It becomes slower",
+   "It cannot be reused",
+   "Code size increases (code bloat), especially when the function is large or called from many places",
+   "It cannot be compiled"
+  ]
+ },
+ "c-inl-3": {
+  "prompt": "inline pays off for functions with a small body (getters/setters) or functions that are called very frequently."
+ },
+ "c-sdf-1": {
+  "prompt": "What is the first line when defining PlayingCard's color() outside the class?"
+ },
+ "c-sdf-2": {
+  "prompt": "When defining a constructor outside the class, you write TIntStack::TIntStack(...) without a return type."
+ },
+ "c-fr-2": {
+  "prompt": "Why is the non-member function int get_area(Rect c) { return c.width * c.height; } a compile error, and how do you fix it? (width and height are private)",
+  "choices": [
+   "A non-member function accesses private members → add friend int get_area(Rect c); inside the class",
+   "Because width is int → change to double",
+   "Because c is passed by value → pass by reference",
+   "Because there is no return"
+  ]
+ },
+ "c-fr-3": {
+  "prompt": "A member function can also access the private members of 'another object' of the same class."
+ },
+ "c-ref-2": {
+  "prompt": "Output of int x=5; int* y; int& z=x; y=&x; int w=*y; x=9; z=*y*x; x++; z=x&*y; cout << x << \" \" << *y << \" \" << z << \" \" << w; : (a) (b) (c) (d)",
+  "accept_add": [
+   [],
+   [],
+   [],
+   []
+  ]
+ },
+ "c-ref-3": {
+  "prompt": "After passing foo = 10.0 to double square(double &x) { return x *= x; }, what is the value of foo?",
+  "choices": [
+   "10",
+   "20",
+   "100",
+   "Unchanged (only the copy changes)"
+  ]
+ },
+ "c-rvp-1": {
+  "prompt": "Which correctly describes the difference between references and pointers?",
+  "choices": [
+   "A pointer must always refer to an actual object",
+   "A reference must always refer to an actual object, while a pointer can also hold a value such as NULL",
+   "A reference can be NULL",
+   "There is no difference"
+  ]
+ },
+ "c-rvp-2": {
+  "prompt": "printDouble(const double& rd) does not need to check whether rd is NULL."
+ },
+ "c-pm-1": {
+  "prompt": "In void X::f(T& arg), what are the two purposes of & compared with void X::f(T arg)?",
+  "choices": [
+   "Avoids copying (efficiency), and lets the function modify the original",
+   "Prevents modifying the original, and makes a copy",
+   "Turns it into a pointer, and allows NULL",
+   "Allows recursion, and inline"
+  ]
+ },
+ "c-pm-2": {
+  "prompt": "In void X::f(const T& arg), what is the purpose of const?",
+  "choices": [
+   "Forces a copy",
+   "Makes arg NULL",
+   "Avoids copying while guaranteeing the original cannot be modified",
+   "Makes arg static"
+  ]
+ },
+ "c-pm-3": {
+  "prompt": "A non-const reference parameter (T&) should not be used for read-only parameters."
+ },
+ "c-pg-1": {
+  "prompt": "Why is passing a large object by value expensive?",
+  "choices": [
+   "Because a pointer can be NULL",
+   "Because the whole object is copied into the parameter, invoking the copy constructor, memory allocation, and the destructor",
+   "Because the compiler cannot inline it",
+   "Because there is no stack"
+  ]
+ },
+ "c-pg-2": {
+  "prompt": "For built-in types (int, etc.) or small objects, passing by value is safer."
+ },
+ "c-pg-3": {
+  "prompt": "Why is the overhead of passing by reference very small?",
+  "choices": [
+   "Because it is const",
+   "Because it is inline",
+   "Because it is static",
+   "Because only an address (alias) is passed and nothing is copied"
+  ]
+ },
+ "c-ms-1": {
+  "prompt": "Which of the following is NOT a guideline for writing memory safe classes?",
+  "choices": [
+   "Avoid copying objects",
+   "Use const reference parameters",
+   "Safety first initially, optimize later",
+   "Optimize with tricks from the early stages"
+  ]
+ },
+ "c-ms-2": {
+  "prompt": "Clients should not rely on undocumented details of a class and should follow only its interface and documentation."
+ },
+ "c-rl-1": {
+  "prompt": "What is the problem with int& h() { int k = 2; return k; }?",
+  "choices": [
+   "It returns a reference to a local variable that disappears after the return → dangling",
+   "The value is copied",
+   "It is always guaranteed not to compile",
+   "No problem"
+  ]
+ },
+ "c-rl-2": {
+  "prompt": "int f() { int i = 2; return i; } is safe because it returns a copy of the value."
+ },
+ "c-cow-2": {
+  "prompt": "s, k, and m share \"ADD ONE TO COBOL\" (use_count=3). What happens after s.to_lower();?",
+  "choices": [
+   "All three become lowercase",
+   "Only k and m get new memory",
+   "Only s gets new memory (use_count=1); k and m continue to share (use_count=2)",
+   "use_count=0"
+  ]
+ },
+ "c-ts-1": {
+  "prompt": "What must a deep-copy copy constructor for TIntStack contain?",
+  "choices": [
+   "_sp = that._sp;",
+   "_sp = new int[_size]; followed by copying the elements in a for loop",
+   "delete[] that._sp;",
+   "static _count"
+  ]
+ },
+ "c-ts-2": {
+  "prompt": "bool TIntStack::Push(int thisValue) { if (_count >= _size) return (a); _sp[_count++] = thisValue; return true; } The destructor does (b) _sp;.",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "c-ts-3": {
+  "prompt": "After pushing 1, 3, 4 onto a stack in that order, in what order do they come out when popped?"
+ },
+ "c-ts-4": {
+  "prompt": "With a default argument as in TIntStack(unsigned int stackSize = DEFAULT_SIZE), an object can also be created with TIntStack s;."
+ },
+ "c-oo-1": {
+  "prompt": "In member-function operator overloading, what is the left operand of a binary operator?",
+  "choices": [
+   "It is received implicitly as this",
+   "The first parameter",
+   "The second parameter",
+   "friend"
+  ]
+ },
+ "c-oo-2": {
+  "prompt": "What must a non-member operator function be in order to access private data?",
+  "choices": [
+   "A public member",
+   "static",
+   "friend",
+   "inline"
+  ]
+ },
+ "c-oo-3": {
+  "prompt": "Member version: c = a + b; → c = a.(a)(b);  Non-member version: c = operator+((b), b);",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "c-oo-4": {
+  "prompt": "With the non-member function approach, the left operand may be an object of a different class."
+ },
+ "c-cx-1": {
+  "prompt": "Given a = 1.2+3.4i and b = 5.6+7.8i, a+b = (a) and a−b = (b)",
+  "accept_add": [
+   [],
+   []
+  ]
+ },
+ "c-cx-2": {
+  "prompt": "How is the real part computed in Complex operator*?"
+ }
+}

@@ -15,7 +15,8 @@
 "code": "",
 "answer": "(a) the class  (b) created object (instance)",
 "tip": "L04 보충 'Static Members': static members of a class can be used when handling property of the class / it can be accessed even if there is no created object.",
-"src": "L04 static"
+"src": "L04 static",
+"tip_en": "L04 supplement 'Static Members': static members of a class can be used when handling property of the class / it can be accessed even if there is no created object."
 },
 {
 "id": "2025-1c",
@@ -31,7 +32,8 @@
 "code": "",
 "answer": "(c) reliability",
 "tip": "dependability(믿고 쓸 수 있음)와 헷갈리기 쉬움. '고장 없이 지정된 기간 동안' = reliability.",
-"src": "L02, Handout1"
+"src": "L02, Handout1",
+"tip_en": "Easy to confuse with dependability (being able to trust it). 'Without failure for a specified period' = reliability."
 },
 {
 "id": "2025-1de",
@@ -95,7 +97,8 @@
 "code": "",
 "answer": "(i) const  (j) modify  (k) the compiler",
 "tip": "3년 연속 나온 문장. 통째로 외우기.",
-"src": "L04 const member functions"
+"src": "L04 const member functions",
+"tip_en": "This sentence appeared three years in a row. Memorize it whole."
 },
 {
 "id": "2025-1lm",
@@ -127,7 +130,8 @@
 "code": "",
 "answer": "(i) Protection of implementation (safety): clients cannot directly access encapsulated data.\n(ii) Readability (understandability): clients need not know how interface functions use encapsulated data.\n(iii) Implementation independence: a change in implementation should not affect the interface seen by clients.",
 "tip": "Handout 2 원문 그대로. 이름 + 한 줄 설명 세트로 외우기.",
-"src": "Handout 2"
+"src": "Handout 2",
+"tip_en": "Verbatim from Handout 2. Memorize each name together with its one-line description."
 },
 {
 "id": "2025-3",
@@ -143,7 +147,8 @@
 "code": "",
 "answer": "Components are added and tested one at a time (incrementally), not all at once.",
 "tip": "핵심: incrementally / one by one + test each step → 에러 위치를 좁힐 수 있음.",
-"src": "L03 8. Integration"
+"src": "L03 8. Integration",
+"tip_en": "Key point: incrementally / one by one + test at each step → you can narrow down where an error is."
 },
 {
 "id": "2025-4",
@@ -191,7 +196,8 @@
 "code": "",
 "answer": "(i) maintain one recipe's data (ingredients, steps) and edit/display/print itself.\n(ii) maintain the collection of recipes: browse, search, add, and edit recipes.",
 "tip": "단일 객체 vs 컬렉션 관리. Budd Ch3: Recipe Database = maintain/browse/edit/add; Recipe = ingredients + know how to edit/display/print itself.",
-"src": "L03 IIKH"
+"src": "L03 IIKH",
+"tip_en": "Managing a single object vs. a collection. Budd Ch3: Recipe Database = maintain/browse/edit/add; Recipe = ingredients + know how to edit/display/print itself."
 },
 {
 "id": "2025-7",
@@ -223,7 +229,9 @@
 "code": "#include <iostream>\n#include <fstream>\nusing namespace std;\nint main() {\n    // your code\n}",
 "answer": "#include <iostream>\n#include <fstream>\nusing namespace std;\nint main() {\n    ifstream in(\"src.bin\", ios::in | ios::binary | ios::ate);\n    if (!in.is_open()) return 1;\n    streampos size = in.tellg();          // ate: 끝에서 열었으니 tellg = 파일 크기\n    char* memblock = new char[size];\n    in.seekg(0, ios::beg);                // 처음으로 되감기\n    in.read(memblock, size);\n    in.close();\n\n    ofstream out(\"des.bin\", ios::out | ios::binary);\n    out.write(memblock, size);\n    out.close();\n    delete[] memblock;\n    return 0;\n}",
 "tip": "2024 5번과 거의 동일. ios::binary | ios::ate → tellg로 크기 → seekg(0, ios::beg) → read → write → delete[]. 실제로 컴파일해서 복사 확인함.",
-"src": "C++ in Summary 13"
+"src": "C++ in Summary 13",
+"answer_en": "#include <iostream>\n#include <fstream>\nusing namespace std;\nint main() {\n    ifstream in(\"src.bin\", ios::in | ios::binary | ios::ate);\n    if (!in.is_open()) return 1;\n    streampos size = in.tellg();          // ate: opened at the end, so tellg = file size\n    char* memblock = new char[size];\n    in.seekg(0, ios::beg);                // rewind to the beginning\n    in.read(memblock, size);\n    in.close();\n\n    ofstream out(\"des.bin\", ios::out | ios::binary);\n    out.write(memblock, size);\n    out.close();\n    delete[] memblock;\n    return 0;\n}",
+"tip_en": "Almost identical to 2024 Q5. ios::binary | ios::ate → get the size with tellg → seekg(0, ios::beg) → read → write → delete[]. Actually compiled and verified that it copies."
 },
 {
 "id": "2025-9",
@@ -240,7 +248,9 @@
 "code": " 1: #include <iostream>\n 2: using namespace std;\n 3: class Rect {\n 4: public:\n 5:     int w,h;\n 6:     Rect(int x, int y): w(x), h(y) { cout << \"c1\\n\"; }\n 7:     Rect(const Rect& x) { w=x.w; h=x.h; cout << \"c2\\n\"; }\n 8:     int area() { return w*h; }\n 9: };\n10:\n11: void func(Rect obj, int y) {\n12:     cout << \"f3\\n\";\n13:     obj.h = y;\n14: }\n15: int main() {\n16:     Rect a(5,6);\n17:     Rect *b, *c;\n18:     b = a;\n19:     c = new Rect(7,8);\n20:     func(a,9);\n21:     Rect d(a);\n22:     b.w = 9;\n23:     cout << \"=======\"<< endl;\n24:     cout << a.area() << endl;\n25:     cout << b.area() << endl;\n26:     cout << c.area() << endl;\n27:     cout << d.area() << endl;\n28:     delete b;\n29:     delete c;\n30:     return 0;\n31: }",
 "answer": "(1)\nline 18: b = &a;\nline 22: b->w = 9;\nline 25: cout << b->area() << endl;\nline 26: cout << c->area() << endl;\nline 28: delete b; 삭제 (b는 new로 만든 게 아니라 스택 객체 a를 가리킴)\n\n(2) 출력\nc1\nc1\nc2\nf3\nc2\n=======\n54\n54\n56\n30",
 "tip": "func(a,9)는 값 전달 → 복사생성자 c2가 f3보다 먼저 출력. obj.h=9는 복사본만 바뀌어서 a에 영향 없음. d는 b->w=9 하기 전에 복사돼서 5*6=30. g++로 실행해서 확인한 출력.",
-"src": "C++ in Summary 12, L04"
+"src": "C++ in Summary 12, L04",
+"answer_en": "(1)\nline 18: b = &a;\nline 22: b->w = 9;\nline 25: cout << b->area() << endl;\nline 26: cout << c->area() << endl;\nline 28: delete b; — remove it (b was not created with new; it points to the stack object a)\n\n(2) Output\nc1\nc1\nc2\nf3\nc2\n=======\n54\n54\n56\n30",
+"tip_en": "func(a,9) is pass-by-value → the copy constructor's c2 is printed before f3. obj.h=9 changes only the copy, so a is unaffected. d is copied before b->w=9, so 5*6=30. Output verified by running with g++."
 },
 {
 "id": "2024-1ab",
@@ -288,7 +298,8 @@
 "code": "",
 "answer": "(d) global  (e) dependent",
 "tip": "매년 나옴. 'dependent on one another'.",
-"src": "L02"
+"src": "L02",
+"tip_en": "Appears every year. 'dependent on one another'."
 },
 {
 "id": "2024-1fg",
@@ -384,7 +395,8 @@
 "code": "",
 "answer": "(r) the costs  (s) the maintenance  (t) maintained",
 "tip": "L02 원문 그대로.",
-"src": "L02"
+"src": "L02",
+"tip_en": "Verbatim from L02."
 },
 {
 "id": "2024-2",
@@ -416,7 +428,8 @@
 "code": "",
 "answer": "(a) No interface: clients cannot use the object at all, since nothing is accessible.\n(b) No encapsulation: clients can directly modify internal data, breaking safety and implementation independence.",
 "tip": "private only → 쓸모없는 클래스. public only → 캡슐화 장점 3개 다 잃음.",
-"src": "L04"
+"src": "L04",
+"tip_en": "private only → a useless class. public only → you lose all three benefits of encapsulation."
 },
 {
 "id": "2024-4",
@@ -432,7 +445,8 @@
 "code": "int main() {\n    streampos begin, end;\n    ________________________;\n    begin = ________________;\n    myfile.________________;\n    end = __________________;\n    myfile.close();\n    cout << \"size: \" << (end-begin) << \" bytes\\n\";\n    return 0;\n}",
 "answer": "ifstream myfile(\"in.bin\", ios::binary);\nbegin = myfile.tellg();\nmyfile.seekg(0, ios::end);\nend = myfile.tellg();",
 "tip": "cplusplus.com 'File Position Example' 그대로. tellg/seekg는 get 위치, tellp/seekp는 put 위치.",
-"src": "C++ in Summary 13"
+"src": "C++ in Summary 13",
+"tip_en": "Exactly the cplusplus.com 'File Position Example'. tellg/seekg are for the get position; tellp/seekp are for the put position."
 },
 {
 "id": "2024-5",
@@ -448,7 +462,9 @@
 "code": "",
 "answer": "#include <iostream>\n#include <fstream>\nusing namespace std;\nint main() {\n    ifstream in(\"src.bin\", ios::in | ios::binary | ios::ate);\n    if (!in.is_open()) return 1;\n    streampos size = in.tellg();          // ate: 끝에서 열었으니 tellg = 파일 크기\n    char* memblock = new char[size];\n    in.seekg(0, ios::beg);                // 처음으로 되감기\n    in.read(memblock, size);\n    in.close();\n\n    ofstream out(\"des.bin\", ios::out | ios::binary);\n    out.write(memblock, size);\n    out.close();\n    delete[] memblock;\n    return 0;\n}",
 "tip": "2025 8번과 동일.",
-"src": "C++ in Summary 13"
+"src": "C++ in Summary 13",
+"answer_en": "#include <iostream>\n#include <fstream>\nusing namespace std;\nint main() {\n    ifstream in(\"src.bin\", ios::in | ios::binary | ios::ate);\n    if (!in.is_open()) return 1;\n    streampos size = in.tellg();          // ate: opened at the end, so tellg = file size\n    char* memblock = new char[size];\n    in.seekg(0, ios::beg);                // rewind to the beginning\n    in.read(memblock, size);\n    in.close();\n\n    ofstream out(\"des.bin\", ios::out | ios::binary);\n    out.write(memblock, size);\n    out.close();\n    delete[] memblock;\n    return 0;\n}",
+"tip_en": "Same as 2025 Q8."
 },
 {
 "id": "2024-6",
@@ -466,7 +482,8 @@
 "code": " 1: #include <iostream>\n 2: using namespace std;\n 3: class X {\n 4: public:\n 5:     int w,h;\n 6:     X() { w=0; h=0; cout << \"c1\\n\"; }\n 7:     X(int a,int b) { w=a; h=b; cout << \"c2\\n\"; }\n 8:     X(const X& x) { w=x.w; h=x.h; cout << \"c3\\n\"; }\n 9:     ~X() { cout << \"d\\n\"; }\n10: };\n11: void func(X obj, int a, int b) {\n12:     cout << \"f1 called!\\n\";\n13:     obj.w = a; obj.h = b;\n14: }\n15: int main() {\n16:     X a(5,6);\n17:     X* b;\n18:     b = &a;\n19:     a.w = 2;\n20:     func(a,7,8);\n21:     X c(a);\n22:     b.h = 9;\n23:     c.w = 1;\n24:     cout << \"==========\"<< endl;\n25:     cout << a.w <<\" \"<< a.h << endl;\n26:     cout << b.w <<\" \"<< b.h << endl;\n27:     cout << c.w <<\" \"<< c.h << endl;\n28:     return 0;\n29: }",
 "answer": "(a) line 22, line 26\n(b) line 22 → b->h = 9;\n    line 26 → cout << b->w << \" \" << b->h << endl;\n(c)\nc2\nc3\nf1 called!\nd\nc3\n==========\n2 9\n2 9\n1 6\nd\nd",
 "tip": "func 값 전달 → c3, 함수 끝날 때 obj 소멸 → d. b는 a를 가리켜서 b->h=9가 a.h를 바꿈. c는 그 전에 복사돼서 (2,6) 상태에서 c.w=1 → 1 6. main 끝에 c, a 순서로 소멸 → d d. g++로 확인.",
-"src": "L04"
+"src": "L04",
+"tip_en": "func is pass-by-value → c3; obj is destroyed when the function ends → d. b points to a, so b->h=9 changes a.h. c was copied before that, in state (2,6); then c.w=1 → 1 6. At the end of main, c and a are destroyed in that order → d d. Verified with g++."
 },
 {
 "id": "2023-1ab",
@@ -498,7 +515,8 @@
 "code": "",
 "answer": "(c) end",
 "tip": "ios::app = append: 모든 출력이 파일 끝에 덧붙음.",
-"src": "C++ in Summary 13"
+"src": "C++ in Summary 13",
+"tip_en": "ios::app = append: all output is added at the end of the file."
 },
 {
 "id": "2023-1de",
@@ -594,7 +612,8 @@
 "code": "",
 "answer": "Static\n advantage: simple and fast; memory is freed automatically.\n   why: size is fixed at compile time; allocated on the stack and released at scope exit.\n disadvantage: size cannot change at run time (waste or shortage).\n   why: array size must be decided at compile time.\nDynamic\n advantage: size can be decided at run time; memory used efficiently.\n   why: memory is allocated with new during execution as needed.\n disadvantage: programmer must free it; risk of memory leak, dangling pointers.\n   why: heap memory is not released automatically; needs delete[].",
 "tip": "토론 자료 'static vs dynamic memory allocation' 그대로 출제됨. dynamic = 'occurs at run-time'.",
-"src": "static vs dynamic 토론"
+"src": "static vs dynamic 토론",
+"tip_en": "The discussion material 'static vs dynamic memory allocation' was asked verbatim. dynamic = 'occurs at run-time'."
 },
 {
 "id": "2023-3",
@@ -610,7 +629,8 @@
 "code": " 3: class Rectangle {\n 4:     int width, height;\n 5:     [        ]\n 6:     Rectangle() { width=1; height=1; }\n 7:     Rectangle(int x, int y) [        ] {}\n 8:     int area() { return width*height; }\n 9: };\n10: int main() {\n11:     Rectangle obj(3,4);\n12:     Rectangle *foo, [        ];\n13:     foo = [        ];\n14:     bar = new Rectangle (5,6);\n15:     baz = new Rectangle[2];\n16:     cout << \"Area Calculation: \";\n17:     cout << \"obj:\" << obj[        ] << \", \";\n18:     cout << \"foo:\" << foo[        ] << \", \";\n19:     cout << \"bar:\" << bar[        ] << \", \";\n20:     cout << \"baz[0]:\" << baz[0][        ] << \"\\n\";\n21:     delete bar; delete[] baz; return 0;\n22: }",
 "answer": "line 5 : public:\nline 7 : Rectangle(int x, int y) : width(x), height(y) {}\nline 12: Rectangle *foo, *bar, *baz;\nline 13: foo = &obj;\nline 17: obj.area()\nline 18: foo->area()\nline 19: bar->area()\nline 20: baz[0].area()",
 "tip": "baz[0]은 기본생성자(1,1) → 1. 포인터는 ->, 배열 원소는 객체라서 '.'",
-"src": "C++ in Summary 12"
+"src": "C++ in Summary 12",
+"tip_en": "baz[0] uses the default constructor (1,1) → 1. Pointers use ->; array elements are objects, so they use '.'"
 },
 {
 "id": "2023-4",
@@ -644,7 +664,8 @@
 "code": " 4: class X {\n 5: private:\n 6:    int w,h;\n 7: public:\n 8:    X() { cout << \"c1 called\\n\"; }\n 9:    X(int a,int b) { w=a; h=b; cout << \"c3 called\\n\"; }\n10:    X(const X& x) { w=x.w; h=x.h; cout << \"c5 called\\n\"; }\n11:    ~X() { cout << \"d called\\n\"; }\n12:\n13: };\n15: int f1(X obj)\n16: {\n17:     cout << \"f1 called!\\n\";\n18:     return obj.w*obj.h;\n19: }\n20: int main()\n21: {\n22:     int z;\n23:     X a(5,6), b;\n24:     X c = a;\n25:     b = c;\n26:     z = f1(b);\n27:     cout << \"area: \" << z << \"\\n\";\n28:     return 0;\n29: }",
 "answer": "(a) line 18 (obj.w*obj.h)\n(b) w and h are private; f1 is a non-member function, so it cannot access them.\n(c) friend int f1(X obj);\n(d)\nc3 called\nc1 called\nc5 called\nc5 called\nf1 called!\nd called\narea: 30\nd called\nd called\nd called",
 "tip": "X c = a; → 복사생성자(c5). b = c; → 대입연산자라 출력 없음! f1(b) 값 전달 → c5, 리턴 후 obj 소멸 d. main 끝에 c,b,a 소멸 d×3. g++ 확인.",
-"src": "L04"
+"src": "L04",
+"tip_en": "X c = a; → copy constructor (c5). b = c; → assignment operator, so no output! f1(b) is pass-by-value → c5; after it returns, obj is destroyed → d. At the end of main, c, b, a are destroyed → d×3. Verified with g++."
 },
 {
 "id": "2022-1a-e",
@@ -708,7 +729,8 @@
 "code": "",
 "answer": "(i) software engineering  (j) economically",
 "tip": "Fritz Bauer 정의. 'economically' 자주 나옴.",
-"src": "L02"
+"src": "L02",
+"tip_en": "Fritz Bauer's definition. 'economically' is asked often."
 },
 {
 "id": "2022-1k",
@@ -788,7 +810,8 @@
 "code": "",
 "answer": "(q) top-down approach  (r) divide and conquer",
 "tip": "L02 Structured Programming: Top-down approach / Divide and conquer / Functional decomposition. (procedural/modular programming도 맥락상 인정될 수 있음)",
-"src": "L02"
+"src": "L02",
+"tip_en": "L02 Structured Programming: Top-down approach / Divide and conquer / Functional decomposition. (procedural/modular programming may also be accepted depending on context)"
 },
 {
 "id": "2022-2",
@@ -836,7 +859,8 @@
 "code": "",
 "answer": "(1) A function whose call is replaced by its body (code expanded at the call site) by the compiler.\n(2) ① the function body is small (e.g. getters/setters)  ② the function is called very frequently (e.g. in a loop).\n(3) Faster execution — because function-call overhead (passing arguments, jump, stack frame, return) is removed.\n(4) Code size increases (code bloat) — especially when the function is large or called in many places.",
 "tip": "강의 슬라이드는 'What is inline function? / Why useful?' 질문만 있음 → 수업 설명으로 채워야 하는 부분.",
-"src": "L04 inline"
+"src": "L04 inline",
+"tip_en": "The lecture slides only have the questions 'What is inline function? / Why useful?' → this part must be filled in from the in-class explanation."
 },
 {
 "id": "2022-5",
@@ -886,7 +910,8 @@
 "code": "#include <iostream>\nconst unsigned int DEFAULT_SIZE = 256;\nclass TIntStack {\npublic :\n    TIntStack(unsigned int stackSize = DEFAULT_SIZE);\n    TIntStack(const TIntStack& that);\n    ~TIntStack();\n    bool Push(int thisValue); // return true if successful, false if stack is full\n    unsigned int getCount() const { return _count; }\nprivate :\n    int* _sp;             // memory is dynamically allocated during constructor call\n    unsigned int _count;  // number of elements in stack\n    unsigned int _size;   // size (capacity) of stack\n};",
 "answer": "// (1)\nTIntStack::TIntStack(unsigned int stackSize) {\n    _size = stackSize;\n    _count = 0;\n    _sp = new int[_size];\n}\n// (2) deep copy\nTIntStack::TIntStack(const TIntStack& that) {\n    _size = that._size;\n    _count = that._count;\n    _sp = new int[_size];\n    for (unsigned int i = 0; i < _count; i++)\n        _sp[i] = that._sp[i];\n}\n// (3)\nTIntStack::~TIntStack() {\n    delete[] _sp;\n}\n// (4)\nbool TIntStack::Push(int thisValue) {\n    if (_count >= _size) return false;\n    _sp[_count++] = thisValue;\n    return true;\n}",
 "tip": "깊은 복사의 핵심: 새 배열 new + 원소 복사. 포인터만 복사(_sp = that._sp)하면 얕은 복사 → 감점. g++로 확인.",
-"src": "L04 TIntStack"
+"src": "L04 TIntStack",
+"tip_en": "The key to a deep copy: allocate a new array with new + copy the elements. Copying only the pointer (_sp = that._sp) is a shallow copy → points deducted. Verified with g++."
 },
 {
 "id": "2019-1abc",
@@ -998,7 +1023,8 @@
 "code": "",
 "answer": "(l) Data abstraction  (m) what  (n) how",
 "tip": "L04 첫 슬라이드.",
-"src": "L04"
+"src": "L04",
+"tip_en": "The first slide of L04."
 },
 {
 "id": "2019-2",
@@ -1031,7 +1057,9 @@
 "code": "",
 "answer": "(1) Activities after delivery of the initial working version: correcting errors, adapting to changed requirements/hardware, and improving the software.\n(2) (a) modify  (b) extend  (c) reuse  (debug/test, port도 인정)",
 "tip": "Handout 1 maintainability 하위항목: readability, modifiability, extensibility, reusability, testability, modularity, portability.",
-"src": "L03 9, Handout 1"
+"src": "L03 9, Handout 1",
+"answer_en": "(1) Activities after delivery of the initial working version: correcting errors, adapting to changed requirements/hardware, and improving the software.\n(2) (a) modify  (b) extend  (c) reuse  (debug/test and port are also accepted)",
+"tip_en": "Sub-items of maintainability in Handout 1: readability, modifiability, extensibility, reusability, testability, modularity, portability."
 },
 {
 "id": "2019-4",
@@ -1063,7 +1091,9 @@
 "code": "class Complex {\nprivate:\n    double re, im;\npublic :\n    Complex( double r, double i ) : re(r), im(i) {}\n    friend Complex operator-(Complex&, Complex&);\n    friend ostream& operator<<(ostream &o, Complex &x);\n    // prints \"a+bi\": re=3.2,im=2.3 → 3.2+2.3i ; im=-2.3 → 3.2-2.3i ; im=0 → 3.2\n};",
 "answer": "Complex operator-(Complex& x, Complex& y) {\n    return Complex(x.re - y.re, x.im - y.im);\n}\nostream& operator<<(ostream &o, Complex& x) {\n    o << x.re;\n    if (x.im > 0)      o << \"+\" << x.im << \"i\";\n    else if (x.im < 0) o << x.im << \"i\";   // 음수는 '-'가 자동으로 붙음\n    return o;\n}",
 "tip": "friend라서 private re, im에 접근 가능. return o; 빠뜨리면 감점. g++ 확인.",
-"src": "Operator Overloading"
+"src": "Operator Overloading",
+"answer_en": "Complex operator-(Complex& x, Complex& y) {\n    return Complex(x.re - y.re, x.im - y.im);\n}\nostream& operator<<(ostream &o, Complex& x) {\n    o << x.re;\n    if (x.im > 0)      o << \"+\" << x.im << \"i\";\n    else if (x.im < 0) o << x.im << \"i\";   // a negative value prints its '-' automatically\n    return o;\n}",
+"tip_en": "Because it is a friend, it can access the private re and im. Forgetting return o; costs points. Verified with g++."
 },
 {
 "id": "2019-6",
@@ -1127,7 +1157,8 @@
 "code": "",
 "answer": "(c) Dependability",
 "tip": "L02 Goals of SE: Dependability 정의 그대로.",
-"src": "L02"
+"src": "L02",
+"tip_en": "Verbatim definition of Dependability from L02 Goals of SE."
 },
 {
 "id": "2017-1d",
@@ -1207,7 +1238,8 @@
 "code": " 3: class Rectangle {\n 4:     int width, height;\n 5: public :\n 6:     Rectangle(int x,int y) : width(x),height(y){}\n 7:     int area() { return width*height; }\n 8: };\n 9: int main() {\n10:     Rectangle a(3,4);\n11:     Rectangle *b, *c;\n12:     b = a;\n13:     c = new Rectangle (5,6);\n14:     cout << \"area:\" << a.area() << \"\\n\";\n15:     cout << \"area:\" << b.area() << \"\\n\";\n16:     cout << \"area:\" << c.area() << \"\\n\";\n17:     delete b;\n18:     delete c;\n19:     return 0;\n20: }",
 "answer": "line 12: b = a; → b = &a;   (b is a pointer; must store the address of a)\nline 15: b.area() → b->area()   (b is a pointer; use ->)\nline 16: c.area() → c->area()   (c is a pointer)\nline 17: delete b; → remove it   (b points to a stack object not created by new)",
 "tip": "2025 9번의 원형.",
-"src": "C++ in Summary 12"
+"src": "C++ in Summary 12",
+"tip_en": "The original version of 2025 Q9."
 },
 {
 "id": "2017-5",
@@ -1224,7 +1256,8 @@
 "code": "",
 "answer": "// (1)\nTIntStack::TIntStack(const TIntStack& that) {\n    _size = that._size;  _count = that._count;\n    _sp = new int[_size];\n    for (unsigned int i = 0; i < _count; i++) _sp[i] = that._sp[i];\n}\n// (2)\nTIntStack::~TIntStack() { delete[] _sp; }\n// (3)\nvoid TIntStack::Push(int thisValue) {\n    assert(_count < _size);      // 또는 if (_count >= _size) return;\n    _sp[_count++] = thisValue;\n}\n(4) what happens: the compiler's default copy constructor does a shallow copy — only the pointer _sp is copied, so both stacks share the same array.\nwhy a problem: changing one stack changes the other, and when both are destroyed delete[] is called twice on the same memory (double free / dangling pointer).",
 "tip": "",
-"src": "L04"
+"src": "L04",
+"answer_en": "// (1)\nTIntStack::TIntStack(const TIntStack& that) {\n    _size = that._size;  _count = that._count;\n    _sp = new int[_size];\n    for (unsigned int i = 0; i < _count; i++) _sp[i] = that._sp[i];\n}\n// (2)\nTIntStack::~TIntStack() { delete[] _sp; }\n// (3)\nvoid TIntStack::Push(int thisValue) {\n    assert(_count < _size);      // or: if (_count >= _size) return;\n    _sp[_count++] = thisValue;\n}\n(4) what happens: the compiler's default copy constructor does a shallow copy — only the pointer _sp is copied, so both stacks share the same array.\nwhy a problem: changing one stack changes the other, and when both are destroyed delete[] is called twice on the same memory (double free / dangling pointer)."
 },
 {
 "id": "2017-6",
@@ -1240,7 +1273,8 @@
 "code": "",
 "answer": "(a) a new object is created from an existing object of the same type.\n(b) case 1: Person r(p);\n    case 2: Person p = q;   (initialization in declaration)\n    case 3: f(p);            (passing an object by value)",
 "tip": "주의: p = q; (이미 있는 객체에 대입)는 operator=라서 복사생성자 아님.",
-"src": "L04 Copy Constructor (1)"
+"src": "L04 Copy Constructor (1)",
+"tip_en": "Caution: p = q; (assigning to an already existing object) is operator=, not the copy constructor."
 },
 {
 "id": "2016-1ab",
@@ -1256,7 +1290,8 @@
 "code": "",
 "answer": "(a) depends upon  (b) minimize",
 "tip": "L03 원문.",
-"src": "L03"
+"src": "L03",
+"tip_en": "Verbatim from L03."
 },
 {
 "id": "2016-1c",
@@ -1385,7 +1420,8 @@
 "code": "",
 "answer": "The name should call to mind (suggest) the meaning/role of the thing in the problem domain.",
 "tip": "L03 'The selection of names' 첫 항목.",
-"src": "L03"
+"src": "L03",
+"tip_en": "The first item of L03 'The selection of names'."
 },
 {
 "id": "2016-5code",
@@ -1402,7 +1438,9 @@
 "code": "class inf_int {\nprivate:\n    char* digits;         // string of digits, dynamically allocated\n    unsigned int length;  // number of actual digits\n    bool thesign;         // false if negative, true otherwise\n    // digits stored in reverse order\n    // ex) 15311111111111111 : digits -> \"11111111111111351\", length=17, thesign=true\npublic:\n    inf_int(int n);\n    inf_int(const inf_int& x);\n    friend bool operator>(const inf_int&, const inf_int&);\n};",
 "answer": "bool operator>(const inf_int& x, const inf_int& y) {\n    if (x.thesign != y.thesign) return x.thesign;     // 양수 > 음수\n    bool absGreater;\n    if (x.length != y.length) absGreater = x.length > y.length;\n    else {\n        int i = x.length - 1;                          // 최상위 자리부터 비교\n        while (i >= 0 && x.digits[i] == y.digits[i]) i--;\n        if (i < 0) return false;                       // 같음\n        absGreater = x.digits[i] > y.digits[i];\n    }\n    return x.thesign ? absGreater : !absGreater;       // 음수면 절댓값 큰 쪽이 작음\n}\ninf_int::inf_int(const inf_int& x) {\n    length = x.length;\n    thesign = x.thesign;\n    digits = new char[length + 1];   // deep copy\n    strcpy(digits, x.digits);\n}\ninf_int::inf_int(int n) {\n    char buf[100]; int i = 0;\n    long long m = n;               // INT_MIN 대비\n    thesign = (m >= 0);\n    if (m < 0) m = -m;\n    do { buf[i++] = '0' + m % 10; m /= 10; } while (m > 0);   // 역순 저장\n    buf[i] = '\\0';\n    length = i;\n    digits = new char[length + 1];\n    strcpy(digits, buf);\n}",
 "tip": "Project 2 범위(마감 11/1)라 올해 중간엔 가능성 낮음. g++ 확인.",
-"src": "Project 2"
+"src": "Project 2",
+"answer_en": "bool operator>(const inf_int& x, const inf_int& y) {\n    if (x.thesign != y.thesign) return x.thesign;     // positive > negative\n    bool absGreater;\n    if (x.length != y.length) absGreater = x.length > y.length;\n    else {\n        int i = x.length - 1;                          // compare from the most significant digit\n        while (i >= 0 && x.digits[i] == y.digits[i]) i--;\n        if (i < 0) return false;                       // equal\n        absGreater = x.digits[i] > y.digits[i];\n    }\n    return x.thesign ? absGreater : !absGreater;       // if negative, the larger absolute value is smaller\n}\ninf_int::inf_int(const inf_int& x) {\n    length = x.length;\n    thesign = x.thesign;\n    digits = new char[length + 1];   // deep copy\n    strcpy(digits, x.digits);\n}\ninf_int::inf_int(int n) {\n    char buf[100]; int i = 0;\n    long long m = n;               // guards against INT_MIN\n    thesign = (m >= 0);\n    if (m < 0) m = -m;\n    do { buf[i++] = '0' + m % 10; m /= 10; } while (m > 0);   // stored in reverse order\n    buf[i] = '\\0';\n    length = i;\n    digits = new char[length + 1];\n    strcpy(digits, buf);\n}",
+"tip_en": "This is Project 2 material (due 11/1), so it is unlikely on this year's midterm. Verified with g++."
 },
 {
 "id": "2016-5why",
@@ -1466,7 +1504,8 @@
 "code": "",
 "answer": "(d) internal data  (e) an interface",
 "tip": "2025 1(l)(m)과 동일.",
-"src": "L02"
+"src": "L02",
+"tip_en": "Same as 2025 Q1(l)(m)."
 },
 {
 "id": "2015-1f",
@@ -1562,7 +1601,8 @@
 "code": "",
 "answer": "(1) the program just continues.\n(2) the program is stopped with an error message indicating the failure of the assertion.\n(3) To check that conditions (class invariants) always hold, making programs more reliable.",
 "tip": "L04 원문.",
-"src": "L04"
+"src": "L04",
+"tip_en": "Verbatim from L04."
 },
 {
 "id": "2015-4",
@@ -1595,7 +1635,8 @@
 "code": "",
 "answer": "bool operator==(const inf_int& x, const inf_int& y) {\n    return x.thesign == y.thesign && x.length == y.length\n        && strcmp(x.digits, y.digits) == 0;\n}\ninf_int::inf_int(const inf_int& x) {\n    length = x.length;\n    thesign = x.thesign;\n    digits = new char[length + 1];   // deep copy\n    strcpy(digits, x.digits);\n}\ninf_int::inf_int(int n) {\n    char buf[100]; int i = 0;\n    long long m = n;               // INT_MIN 대비\n    thesign = (m >= 0);\n    if (m < 0) m = -m;\n    do { buf[i++] = '0' + m % 10; m /= 10; } while (m > 0);   // 역순 저장\n    buf[i] = '\\0';\n    length = i;\n    digits = new char[length + 1];\n    strcpy(digits, buf);\n}",
 "tip": "",
-"src": "Project 2"
+"src": "Project 2",
+"answer_en": "bool operator==(const inf_int& x, const inf_int& y) {\n    return x.thesign == y.thesign && x.length == y.length\n        && strcmp(x.digits, y.digits) == 0;\n}\ninf_int::inf_int(const inf_int& x) {\n    length = x.length;\n    thesign = x.thesign;\n    digits = new char[length + 1];   // deep copy\n    strcpy(digits, x.digits);\n}\ninf_int::inf_int(int n) {\n    char buf[100]; int i = 0;\n    long long m = n;               // guards against INT_MIN\n    thesign = (m >= 0);\n    if (m < 0) m = -m;\n    do { buf[i++] = '0' + m % 10; m /= 10; } while (m > 0);   // stored in reverse order\n    buf[i] = '\\0';\n    length = i;\n    digits = new char[length + 1];\n    strcpy(digits, buf);\n}"
 },
 {
 "id": "2014-1a",
@@ -1804,7 +1845,8 @@
 "code": "",
 "answer": "Complex operator+(Complex& x, Complex& y) {\n    return Complex(x.re + y.re, x.im + y.im);\n}\nostream& operator<<(ostream &o, const Complex& x) {\n    o << x.re;\n    if (x.im > 0)      o << \"+\" << x.im << \"i\";\n    else if (x.im < 0) o << x.im << \"i\";   // 음수는 '-'가 자동으로 붙음\n    return o;\n}",
 "tip": "",
-"src": "Operator Overloading"
+"src": "Operator Overloading",
+"answer_en": "Complex operator+(Complex& x, Complex& y) {\n    return Complex(x.re + y.re, x.im + y.im);\n}\nostream& operator<<(ostream &o, const Complex& x) {\n    o << x.re;\n    if (x.im > 0)      o << \"+\" << x.im << \"i\";\n    else if (x.im < 0) o << x.im << \"i\";   // a negative value prints its '-' automatically\n    return o;\n}"
 },
 {
 "id": "2013-1ab",
@@ -1949,7 +1991,8 @@
 "code": "",
 "answer": "bool operator==(const inf_int& x, const inf_int& y) {\n    return x.thesign == y.thesign && x.length == y.length\n        && strcmp(x.digits, y.digits) == 0;\n}\ninf_int::inf_int(const char* str) {\n    thesign = true;\n    if (str[0] == '-') { thesign = false; str++; }\n    length = strlen(str);\n    digits = new char[length + 1];\n    for (unsigned int i = 0; i < length; i++)\n        digits[i] = str[length - 1 - i];   // 역순 저장\n    digits[length] = '\\0';\n}",
 "tip": "",
-"src": "Project 2"
+"src": "Project 2",
+"answer_en": "bool operator==(const inf_int& x, const inf_int& y) {\n    return x.thesign == y.thesign && x.length == y.length\n        && strcmp(x.digits, y.digits) == 0;\n}\ninf_int::inf_int(const char* str) {\n    thesign = true;\n    if (str[0] == '-') { thesign = false; str++; }\n    length = strlen(str);\n    digits = new char[length + 1];\n    for (unsigned int i = 0; i < length; i++)\n        digits[i] = str[length - 1 - i];   // stored in reverse order\n    digits[length] = '\\0';\n}"
 },
 {
 "id": "2012-1abc",
@@ -1982,7 +2025,8 @@
 "code": "",
 "answer": "(d) pure virtual function",
 "tip": "상속 파트 — 올해 중간 범위 밖일 가능성 큼.",
-"src": ""
+"src": "",
+"tip_en": "Inheritance part — likely outside this year's midterm scope."
 },
 {
 "id": "2012-2a",
@@ -2095,7 +2139,8 @@
 "code": "",
 "answer": "inf_int::inf_int() {\n    digits = new char[2];\n    digits[0] = '0'; digits[1] = '\\0';\n    length = 1; thesign = true;\n}\ninf_int::inf_int(const inf_int& x) {\n    length = x.length;\n    thesign = x.thesign;\n    digits = new char[length + 1];   // deep copy\n    strcpy(digits, x.digits);\n}\ninf_int::inf_int(int n) {\n    char buf[100]; int i = 0;\n    long long m = n;               // INT_MIN 대비\n    thesign = (m >= 0);\n    if (m < 0) m = -m;\n    do { buf[i++] = '0' + m % 10; m /= 10; } while (m > 0);   // 역순 저장\n    buf[i] = '\\0';\n    length = i;\n    digits = new char[length + 1];\n    strcpy(digits, buf);\n}",
 "tip": "",
-"src": "Project 2"
+"src": "Project 2",
+"answer_en": "inf_int::inf_int() {\n    digits = new char[2];\n    digits[0] = '0'; digits[1] = '\\0';\n    length = 1; thesign = true;\n}\ninf_int::inf_int(const inf_int& x) {\n    length = x.length;\n    thesign = x.thesign;\n    digits = new char[length + 1];   // deep copy\n    strcpy(digits, x.digits);\n}\ninf_int::inf_int(int n) {\n    char buf[100]; int i = 0;\n    long long m = n;               // guards against INT_MIN\n    thesign = (m >= 0);\n    if (m < 0) m = -m;\n    do { buf[i++] = '0' + m % 10; m /= 10; } while (m > 0);   // stored in reverse order\n    buf[i] = '\\0';\n    length = i;\n    digits = new char[length + 1];\n    strcpy(digits, buf);\n}"
 },
 {
 "id": "2011-1ac",
@@ -2127,7 +2172,8 @@
 "code": "",
 "answer": "(b) virtual function  (d) run time",
 "tip": "범위 밖일 가능성 큼.",
-"src": ""
+"src": "",
+"tip_en": "Likely outside the scope."
 },
 {
 "id": "2011-2",
@@ -2175,7 +2221,8 @@
 "code": "",
 "answer": "(1) Members accessible within the class and its derived classes, but not by other clients.\n(2) It weakens encapsulation: derived classes depend on the implementation, so changes break them.",
 "tip": "상속 파트.",
-"src": ""
+"src": "",
+"tip_en": "Inheritance part."
 },
 {
 "id": "2011-5",
@@ -2207,7 +2254,8 @@
 "code": "",
 "answer": "Complex Complex::operator+(const Complex& x) {\n    return Complex(re + x.re, im + x.im);\n}\nostream& operator<<(ostream &o, const Complex& x) {\n    o << x.re;\n    if (x.im > 0)      o << \"+\" << x.im << \"i\";\n    else if (x.im < 0) o << x.im << \"i\";   // 음수는 '-'가 자동으로 붙음\n    return o;\n}",
 "tip": "",
-"src": "Operator Overloading"
+"src": "Operator Overloading",
+"answer_en": "Complex Complex::operator+(const Complex& x) {\n    return Complex(re + x.re, im + x.im);\n}\nostream& operator<<(ostream &o, const Complex& x) {\n    o << x.re;\n    if (x.im > 0)      o << \"+\" << x.im << \"i\";\n    else if (x.im < 0) o << x.im << \"i\";   // a negative value prints its '-' automatically\n    return o;\n}"
 },
 {
 "id": "2011-6theory",
@@ -2305,7 +2353,8 @@
 "code": "",
 "answer": "(g) An assertion  (h) bugs",
 "tip": "2022 1(l)(m)과 동일.",
-"src": "L04"
+"src": "L04",
+"tip_en": "Same as 2022 Q1(l)(m)."
 },
 {
 "id": "2010-1i",
@@ -2418,7 +2467,8 @@
 "code": "",
 "answer": "// (1) 2016 해설의 copy constructor와 동일 (digit 이름만 다름)\n// (2)\nbool operator<(const inf_int& l, const inf_int& r) {\n    return r > l;   // 시험에선 operator> 로직을 직접 써야 함 (다른 멤버 호출 금지)\n}\n(3) length is unsigned int, so up to 2^32 − 1 (4294967295) digits: max ≈ 10^4294967295 − 1 (all digits 9). In practice limited by available memory.",
 "tip": "",
-"src": "Project 2"
+"src": "Project 2",
+"answer_en": "// (1) Same as the copy constructor in the 2016 solution (only the digit member name differs)\n// (2)\nbool operator<(const inf_int& l, const inf_int& r) {\n    return r > l;   // on the exam you must write the operator> logic directly (calling other members is not allowed)\n}\n(3) length is unsigned int, so up to 2^32 − 1 (4294967295) digits: max ≈ 10^4294967295 − 1 (all digits 9). In practice limited by available memory."
 },
 {
 "id": "2010-7",
@@ -2450,7 +2500,8 @@
 "code": "",
 "answer": "correctness, efficiency, maintainability (readability, modifiability, extensibility, reusability), reliability (robustness), usability, portability  (+ security, completeness, consistency...)",
 "tip": "Handout 1 목록.",
-"src": "Handout 1"
+"src": "Handout 1",
+"tip_en": "The list from Handout 1."
 },
 {
 "id": "2009-1-12",
@@ -2467,7 +2518,8 @@
 "code": "",
 "answer": "(1) cost  (2) quality, understandability, scalability (extensibility, reusability), lifetime (maintainability) of software",
 "tip": "L02 'Why Object Oriented?' 목록.",
-"src": "L02"
+"src": "L02",
+"tip_en": "The list in L02 'Why Object Oriented?'."
 },
 {
 "id": "2009-1-345",
@@ -2533,7 +2585,8 @@
 "code": "",
 "answer": "(1) purpose1: avoid copying a large object (only an address is passed → efficient).\n    purpose2: allow the function to modify the caller's object.\n(2) Prevent the function from modifying the pointed-to object (read-only) while keeping the efficiency.",
 "tip": "2022 기말 4번과 같은 유형 (T& 버전).",
-"src": "L04 Argument Passing"
+"src": "L04 Argument Passing",
+"tip_en": "Same type as 2022 final Q4 (T& version)."
 },
 {
 "id": "2009-4",
@@ -2549,7 +2602,8 @@
 "code": "",
 "answer": "0 : -1\n1 : -2\n2 : 2\n3 : -4",
 "tip": "gv2는 B에서 non-virtual이라 B*로 부르면 B::gv2. D2(4)는 B() 기본생성자 → z=-2 → -4. g++ 확인.",
-"src": ""
+"src": "",
+"tip_en": "gv2 is non-virtual in B, so calling it through a B* calls B::gv2. D2(4) uses the default constructor B() → z=-2 → -4. Verified with g++."
 },
 {
 "id": "2009-5",
@@ -2582,7 +2636,8 @@
 "code": "1: int x=5;\n2: int* y;\n3: int& z=x;\n4: y=&x;\n5: int w=*y;\n6: x=9;\n7: z=*y*x;\n8: x++;\n9: cout << x << \" \" << *y << \" \" << z << \" \" << w << endl;",
 "answer": "(1) pointer type declaration (y is a pointer to int)\n(2) reference type declaration (z is an alias of x)\n(3) address-of operator\n(4) first: the value-of (dereference) operator / second: multiplication\n(5) 82 82 82 5",
 "tip": "L04 ref.cpp와 거의 같은 코드! x=9 → z=*y*x=81 (z가 x라서 x=81) → x++ → 82. w는 5에서 고정.",
-"src": "L04 ref.cpp, C++ in Summary 10"
+"src": "L04 ref.cpp, C++ in Summary 10",
+"tip_en": "Almost the same code as L04 ref.cpp! x=9 → z=*y*x=81 (z is x, so x=81) → x++ → 82. w stays fixed at 5."
 },
 {
 "id": "2022F-4",

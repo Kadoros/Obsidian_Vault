@@ -1,0 +1,155 @@
+{
+ "2025-1ab": {
+  "tip": "L04 supplement 'Static Members': static members of a class can be used when handling property of the class / it can be accessed even if there is no created object."
+ },
+ "2025-1c": {
+  "tip": "Easy to confuse with dependability (being able to trust it). 'Without failure for a specified period' = reliability."
+ },
+ "2025-1ijk": {
+  "tip": "This sentence appeared three years in a row. Memorize it whole."
+ },
+ "2025-2": {
+  "tip": "Verbatim from Handout 2. Memorize each name together with its one-line description."
+ },
+ "2025-3": {
+  "tip": "Key point: incrementally / one by one + test at each step → you can narrow down where an error is."
+ },
+ "2025-6": {
+  "tip": "Managing a single object vs. a collection. Budd Ch3: Recipe Database = maintain/browse/edit/add; Recipe = ingredients + know how to edit/display/print itself."
+ },
+ "2025-8": {
+  "answer": "#include <iostream>\n#include <fstream>\nusing namespace std;\nint main() {\n    ifstream in(\"src.bin\", ios::in | ios::binary | ios::ate);\n    if (!in.is_open()) return 1;\n    streampos size = in.tellg();          // ate: opened at the end, so tellg = file size\n    char* memblock = new char[size];\n    in.seekg(0, ios::beg);                // rewind to the beginning\n    in.read(memblock, size);\n    in.close();\n\n    ofstream out(\"des.bin\", ios::out | ios::binary);\n    out.write(memblock, size);\n    out.close();\n    delete[] memblock;\n    return 0;\n}",
+  "tip": "Almost identical to 2024 Q5. ios::binary | ios::ate → get the size with tellg → seekg(0, ios::beg) → read → write → delete[]. Actually compiled and verified that it copies."
+ },
+ "2025-9": {
+  "answer": "(1)\nline 18: b = &a;\nline 22: b->w = 9;\nline 25: cout << b->area() << endl;\nline 26: cout << c->area() << endl;\nline 28: delete b; — remove it (b was not created with new; it points to the stack object a)\n\n(2) Output\nc1\nc1\nc2\nf3\nc2\n=======\n54\n54\n56\n30",
+  "tip": "func(a,9) is pass-by-value → the copy constructor's c2 is printed before f3. obj.h=9 changes only the copy, so a is unaffected. d is copied before b->w=9, so 5*6=30. Output verified by running with g++."
+ },
+ "2024-1de": {
+  "tip": "Appears every year. 'dependent on one another'."
+ },
+ "2024-1rst": {
+  "tip": "Verbatim from L02."
+ },
+ "2024-3": {
+  "tip": "private only → a useless class. public only → you lose all three benefits of encapsulation."
+ },
+ "2024-4": {
+  "tip": "Exactly the cplusplus.com 'File Position Example'. tellg/seekg are for the get position; tellp/seekp are for the put position."
+ },
+ "2024-5": {
+  "answer": "#include <iostream>\n#include <fstream>\nusing namespace std;\nint main() {\n    ifstream in(\"src.bin\", ios::in | ios::binary | ios::ate);\n    if (!in.is_open()) return 1;\n    streampos size = in.tellg();          // ate: opened at the end, so tellg = file size\n    char* memblock = new char[size];\n    in.seekg(0, ios::beg);                // rewind to the beginning\n    in.read(memblock, size);\n    in.close();\n\n    ofstream out(\"des.bin\", ios::out | ios::binary);\n    out.write(memblock, size);\n    out.close();\n    delete[] memblock;\n    return 0;\n}",
+  "tip": "Same as 2025 Q8."
+ },
+ "2024-6": {
+  "tip": "func is pass-by-value → c3; obj is destroyed when the function ends → d. b points to a, so b->h=9 changes a.h. c was copied before that, in state (2,6); then c.w=1 → 1 6. At the end of main, c and a are destroyed in that order → d d. Verified with g++."
+ },
+ "2023-1c": {
+  "tip": "ios::app = append: all output is added at the end of the file."
+ },
+ "2023-2": {
+  "tip": "The discussion material 'static vs dynamic memory allocation' was asked verbatim. dynamic = 'occurs at run-time'."
+ },
+ "2023-3": {
+  "tip": "baz[0] uses the default constructor (1,1) → 1. Pointers use ->; array elements are objects, so they use '.'"
+ },
+ "2023-5": {
+  "tip": "X c = a; → copy constructor (c5). b = c; → assignment operator, so no output! f1(b) is pass-by-value → c5; after it returns, obj is destroyed → d. At the end of main, c, b, a are destroyed → d×3. Verified with g++."
+ },
+ "2022-1ij": {
+  "tip": "Fritz Bauer's definition. 'economically' is asked often."
+ },
+ "2022-1qr": {
+  "tip": "L02 Structured Programming: Top-down approach / Divide and conquer / Functional decomposition. (procedural/modular programming may also be accepted depending on context)"
+ },
+ "2022-4": {
+  "tip": "The lecture slides only have the questions 'What is inline function? / Why useful?' → this part must be filled in from the in-class explanation."
+ },
+ "2022-7": {
+  "tip": "The key to a deep copy: allocate a new array with new + copy the elements. Copying only the pointer (_sp = that._sp) is a shallow copy → points deducted. Verified with g++."
+ },
+ "2019-1lmn": {
+  "tip": "The first slide of L04."
+ },
+ "2019-3": {
+  "answer": "(1) Activities after delivery of the initial working version: correcting errors, adapting to changed requirements/hardware, and improving the software.\n(2) (a) modify  (b) extend  (c) reuse  (debug/test and port are also accepted)",
+  "tip": "Sub-items of maintainability in Handout 1: readability, modifiability, extensibility, reusability, testability, modularity, portability."
+ },
+ "2019-5": {
+  "answer": "Complex operator-(Complex& x, Complex& y) {\n    return Complex(x.re - y.re, x.im - y.im);\n}\nostream& operator<<(ostream &o, Complex& x) {\n    o << x.re;\n    if (x.im > 0)      o << \"+\" << x.im << \"i\";\n    else if (x.im < 0) o << x.im << \"i\";   // a negative value prints its '-' automatically\n    return o;\n}",
+  "tip": "Because it is a friend, it can access the private re and im. Forgetting return o; costs points. Verified with g++."
+ },
+ "2017-1c": {
+  "tip": "Verbatim definition of Dependability from L02 Goals of SE."
+ },
+ "2017-4": {
+  "tip": "The original version of 2025 Q9."
+ },
+ "2017-5": {
+  "answer": "// (1)\nTIntStack::TIntStack(const TIntStack& that) {\n    _size = that._size;  _count = that._count;\n    _sp = new int[_size];\n    for (unsigned int i = 0; i < _count; i++) _sp[i] = that._sp[i];\n}\n// (2)\nTIntStack::~TIntStack() { delete[] _sp; }\n// (3)\nvoid TIntStack::Push(int thisValue) {\n    assert(_count < _size);      // or: if (_count >= _size) return;\n    _sp[_count++] = thisValue;\n}\n(4) what happens: the compiler's default copy constructor does a shallow copy — only the pointer _sp is copied, so both stacks share the same array.\nwhy a problem: changing one stack changes the other, and when both are destroyed delete[] is called twice on the same memory (double free / dangling pointer)."
+ },
+ "2017-6": {
+  "tip": "Caution: p = q; (assigning to an already existing object) is operator=, not the copy constructor."
+ },
+ "2016-1ab": {
+  "tip": "Verbatim from L03."
+ },
+ "2016-4": {
+  "tip": "The first item of L03 'The selection of names'."
+ },
+ "2016-5code": {
+  "answer": "bool operator>(const inf_int& x, const inf_int& y) {\n    if (x.thesign != y.thesign) return x.thesign;     // positive > negative\n    bool absGreater;\n    if (x.length != y.length) absGreater = x.length > y.length;\n    else {\n        int i = x.length - 1;                          // compare from the most significant digit\n        while (i >= 0 && x.digits[i] == y.digits[i]) i--;\n        if (i < 0) return false;                       // equal\n        absGreater = x.digits[i] > y.digits[i];\n    }\n    return x.thesign ? absGreater : !absGreater;       // if negative, the larger absolute value is smaller\n}\ninf_int::inf_int(const inf_int& x) {\n    length = x.length;\n    thesign = x.thesign;\n    digits = new char[length + 1];   // deep copy\n    strcpy(digits, x.digits);\n}\ninf_int::inf_int(int n) {\n    char buf[100]; int i = 0;\n    long long m = n;               // guards against INT_MIN\n    thesign = (m >= 0);\n    if (m < 0) m = -m;\n    do { buf[i++] = '0' + m % 10; m /= 10; } while (m > 0);   // stored in reverse order\n    buf[i] = '\\0';\n    length = i;\n    digits = new char[length + 1];\n    strcpy(digits, buf);\n}",
+  "tip": "This is Project 2 material (due 11/1), so it is unlikely on this year's midterm. Verified with g++."
+ },
+ "2015-1de": {
+  "tip": "Same as 2025 Q1(l)(m)."
+ },
+ "2015-3": {
+  "tip": "Verbatim from L04."
+ },
+ "2015-5": {
+  "answer": "bool operator==(const inf_int& x, const inf_int& y) {\n    return x.thesign == y.thesign && x.length == y.length\n        && strcmp(x.digits, y.digits) == 0;\n}\ninf_int::inf_int(const inf_int& x) {\n    length = x.length;\n    thesign = x.thesign;\n    digits = new char[length + 1];   // deep copy\n    strcpy(digits, x.digits);\n}\ninf_int::inf_int(int n) {\n    char buf[100]; int i = 0;\n    long long m = n;               // guards against INT_MIN\n    thesign = (m >= 0);\n    if (m < 0) m = -m;\n    do { buf[i++] = '0' + m % 10; m /= 10; } while (m > 0);   // stored in reverse order\n    buf[i] = '\\0';\n    length = i;\n    digits = new char[length + 1];\n    strcpy(digits, buf);\n}"
+ },
+ "2014-5": {
+  "answer": "Complex operator+(Complex& x, Complex& y) {\n    return Complex(x.re + y.re, x.im + y.im);\n}\nostream& operator<<(ostream &o, const Complex& x) {\n    o << x.re;\n    if (x.im > 0)      o << \"+\" << x.im << \"i\";\n    else if (x.im < 0) o << x.im << \"i\";   // a negative value prints its '-' automatically\n    return o;\n}"
+ },
+ "2013-5": {
+  "answer": "bool operator==(const inf_int& x, const inf_int& y) {\n    return x.thesign == y.thesign && x.length == y.length\n        && strcmp(x.digits, y.digits) == 0;\n}\ninf_int::inf_int(const char* str) {\n    thesign = true;\n    if (str[0] == '-') { thesign = false; str++; }\n    length = strlen(str);\n    digits = new char[length + 1];\n    for (unsigned int i = 0; i < length; i++)\n        digits[i] = str[length - 1 - i];   // stored in reverse order\n    digits[length] = '\\0';\n}"
+ },
+ "2012-1d": {
+  "tip": "Inheritance part — likely outside this year's midterm scope."
+ },
+ "2012-6": {
+  "answer": "inf_int::inf_int() {\n    digits = new char[2];\n    digits[0] = '0'; digits[1] = '\\0';\n    length = 1; thesign = true;\n}\ninf_int::inf_int(const inf_int& x) {\n    length = x.length;\n    thesign = x.thesign;\n    digits = new char[length + 1];   // deep copy\n    strcpy(digits, x.digits);\n}\ninf_int::inf_int(int n) {\n    char buf[100]; int i = 0;\n    long long m = n;               // guards against INT_MIN\n    thesign = (m >= 0);\n    if (m < 0) m = -m;\n    do { buf[i++] = '0' + m % 10; m /= 10; } while (m > 0);   // stored in reverse order\n    buf[i] = '\\0';\n    length = i;\n    digits = new char[length + 1];\n    strcpy(digits, buf);\n}"
+ },
+ "2011-1bd": {
+  "tip": "Likely outside the scope."
+ },
+ "2011-4": {
+  "tip": "Inheritance part."
+ },
+ "2011-6code": {
+  "answer": "Complex Complex::operator+(const Complex& x) {\n    return Complex(re + x.re, im + x.im);\n}\nostream& operator<<(ostream &o, const Complex& x) {\n    o << x.re;\n    if (x.im > 0)      o << \"+\" << x.im << \"i\";\n    else if (x.im < 0) o << x.im << \"i\";   // a negative value prints its '-' automatically\n    return o;\n}"
+ },
+ "2010-1gh": {
+  "tip": "Same as 2022 Q1(l)(m)."
+ },
+ "2010-6": {
+  "answer": "// (1) Same as the copy constructor in the 2016 solution (only the digit member name differs)\n// (2)\nbool operator<(const inf_int& l, const inf_int& r) {\n    return r > l;   // on the exam you must write the operator> logic directly (calling other members is not allowed)\n}\n(3) length is unsigned int, so up to 2^32 − 1 (4294967295) digits: max ≈ 10^4294967295 − 1 (all digits 9). In practice limited by available memory."
+ },
+ "2010-8": {
+  "tip": "The list from Handout 1."
+ },
+ "2009-1-12": {
+  "tip": "The list in L02 'Why Object Oriented?'."
+ },
+ "2009-3": {
+  "tip": "Same type as 2022 final Q4 (T& version)."
+ },
+ "2009-4": {
+  "tip": "gv2 is non-virtual in B, so calling it through a B* calls B::gv2. D2(4) uses the default constructor B() → z=-2 → -4. Verified with g++."
+ },
+ "2022F-2": {
+  "tip": "Almost the same code as L04 ref.cpp! x=9 → z=*y*x=81 (z is x, so x=81) → x++ → 82. w stays fixed at 5."
+ }
+}
