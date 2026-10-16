@@ -203,7 +203,8 @@ pre.code code{all:unset}
 .tblw td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 .callout{font-size:14px;background:var(--accent-weak);border-radius:8px;padding:9px 12px;margin:4px 0 12px}
 .callout.exam{background:var(--warn-weak)} .callout.exam::before{content:"시험 ";font-weight:700;color:var(--warn)} [lang="en"] .callout.exam::before{content:none}
-.langsw{display:flex;gap:4px;align-items:center;padding:4px 14px 10px;border-bottom:1px solid var(--line);margin-bottom:4px}.langsw .note{margin-right:auto}.langsw button{font:inherit;font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer}.langsw button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.langsw{display:flex;gap:4px;align-items:center;padding:4px 14px 10px;border-bottom:1px solid var(--line);margin-bottom:4px}.hlang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}.hlang button{font:inherit;font-family:var(--f-mono,monospace);font-size:11.5px;padding:3px 9px;border:0;background:var(--sheet);color:var(--muted);cursor:pointer}.hlang button.on{background:var(--accent);color:var(--accent-ink,#fff)}
+.langsw .note{margin-right:auto}.langsw button{font:inherit;font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer}.langsw button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .callout.trap{background:var(--bad-weak)}
 .callout.prof{background:var(--sheet);border:1px solid var(--line);border-left:3px solid var(--accent)} .callout.prof b{color:var(--accent)} .callout.prof .src{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
 .rfoot{margin-top:20px;padding:16px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--accent-weak);border-radius:var(--r)}
@@ -254,6 +255,7 @@ figure.slide figcaption{font-size:12.5px;color:var(--muted)}
       <span class="course">49156 · 손봉수 · 기출 2009–2025</span>
       <div class="chips">
         <span class="chip dday" id="dday">중간고사 주간 10/20–10/26</span>
+        <span class="hlang" role="group" aria-label="언어"><button data-lang="ko">한</button><button data-lang="en">EN</button></span>
         <span class="chip" id="store">저장소 연결 중…</span>
         <span class="chip" id="grader">채점: 확인 중…</span>
       </div>
@@ -395,10 +397,10 @@ Grade the student's answer against the model answer.
 - An empty or "모르겠다"-style answer scores 0.
 
 Question type: ${q.type} | points: ${q.pts}
-Question: ${q.prompt}
+Question: ${q.prompt}${q.prompt_en ? "\n(English version) " + q.prompt_en : ""}
 ${q.code ? "Code given in the question:\n" + q.code + "\n" : ""}
 Model answer:
-${q.answer}
+${q.answer}${q.answer_en ? "\n(English version) " + q.answer_en : ""}
 ${q.tip ? "Grading note (Korean): " + q.tip + "\n" : ""}
 Student answer:
 <<<
@@ -530,7 +532,7 @@ function renderDash(){
     const l = latest[q.id];
     const why = l ? `지난번 ${Math.round(l.score*100)}점` : (q.year >= 2022 ? "최근 기출 · 미시도" : "미시도");
     return `<button class="rec" data-go="${esc(q.id)}"><span class="yr">${q.year}${String(q.id).includes("F")?" 기말":""} ${esc(q.no)}</span>
-      <span class="q">${esc(q.prompt)}</span><span class="why">${why}</span></button>`;
+      <span class="q">${esc(T(q,"prompt"))}</span><span class="why">${why}</span></button>`;
   }).join("");
 
   $("#v-dash").innerHTML = `
@@ -589,7 +591,7 @@ function renderPractice(keepFocus){
   const list = qs.map(q => {
     const l = latest[q.id];
     return `<button class="qrow ${q.id===curId?"cur":""}" data-q="${esc(q.id)}"><span class="sd ${l?level(l.score):""}"></span>
-      <span class="t">${esc(q.prompt)}</span><span class="yr">${q.source==="claude"?"변형":q.year} ${esc(q.no)}</span></button>`;
+      <span class="t">${esc(T(q,"prompt"))}</span><span class="yr">${q.source==="claude"?"변형":q.year} ${esc(q.no)}</span></button>`;
   }).join("");
   $("#v-practice").innerHTML = `
     <div class="filters">
@@ -622,7 +624,7 @@ function questionCard(q, qs, inCourse){
       <span class="tag scope-${q.scope}">${SCOPE[q.scope]}</span>
       ${latest ? `<span class="st ${level(latest.score)}">최근 ${Math.round(latest.score*100)}점 · ${attempts.filter(a=>a.qid===q.id).length}회</span>` : ""}
     </div>
-    <div class="prompt">${esc(q.prompt)}</div>
+    <div class="prompt">${esc(T(q,"prompt"))}</div>
     ${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
     <label class="label" for="ans">내 답 (실전처럼 영어로)</label>
     <textarea id="ans" data-q="${esc(q.id)}" ${inCourse ? 'data-course="1"' : ""} spellcheck="false" placeholder="${q.type==="blank" ? "(a) ...  (b) ..." : q.type==="trace" ? "(a) line ...\n출력:\n..." : "Answer in English"}">${esc(draft)}</textarea>
@@ -644,8 +646,8 @@ function resultBlock(q, r){
     ${r.score != null ? `<div class="mark">${mark}<div class="fb">${esc(r.feedback || "")}</div></div>` : ""}
     ${r.missed?.length ? `<ul class="missed">${r.missed.map(m=>`<li>${esc(m)}</li>`).join("")}</ul>` : ""}
     ${r.english ? `<div class="tip"><b>영어 표현</b> ${esc(r.english)}</div>` : ""}
-    <div><div class="label" style="margin-bottom:6px">모범답안</div><pre class="code" style="white-space:pre-wrap">${esc(q.answer)}</pre></div>
-    ${q.tip ? `<div class="tip"><b>포인트</b> ${esc(q.tip)}${q.src ? ` <span class="muted">· ${esc(q.src)}</span>` : ""}</div>` : (q.src ? `<div class="note">출처: ${esc(q.src)}</div>` : "")}
+    <div><div class="label" style="margin-bottom:6px">모범답안</div><pre class="code" style="white-space:pre-wrap">${esc(T(q,"answer"))}</pre></div>
+    ${q.tip ? `<div class="tip"><b>포인트</b> ${esc(T(q,"tip"))}${q.src ? ` <span class="muted">· ${esc(q.src)}</span>` : ""}</div>` : (q.src ? `<div class="note">출처: ${esc(q.src)}</div>` : "")}
     <div class="selfgrade"><span class="note">${r.attemptId ? (r.grader === "claude" ? "채점이 이상하면 직접 고쳐:" : "기록됨. 다시 매기려면:") : "스스로 매겨서 기록:"}</span>
       <button class="btn sm" data-self="1">맞음</button><button class="btn sm" data-self="0.5">절반</button><button class="btn sm" data-self="0">틀림</button></div>
   </div>`;
@@ -681,7 +683,7 @@ function renderMock(){
     const r = mock.results?.[q.id];
     return `<div class="sheet mockq">
       <div class="qmeta"><span class="label">${esc(q.no)} · ${q.pts}점 · ${TYPE[q.type]}</span></div>
-      <div class="prompt">${esc(q.prompt)}</div>
+      <div class="prompt">${esc(T(q,"prompt"))}</div>
       ${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
       <textarea id="m-${i}" data-mq="${esc(q.id)}" spellcheck="false" ${graded?"readonly":""}>${esc(mock.answers?.[q.id] || "")}</textarea>
       ${r ? resultBlockMock(q, r) : ""}
@@ -704,7 +706,7 @@ function resultBlockMock(q, r){
     ${r.error ? `<div class="err">${esc(r.error)}</div>` : ""}
     <div class="mark"><span class="pen">${r.score==null?"?":Math.round(r.score*q.pts*10)/10}<small>/${q.pts}</small></span><div class="fb">${esc(r.feedback||"")}</div></div>
     ${r.missed?.length ? `<ul class="missed">${r.missed.map(m=>`<li>${esc(m)}</li>`).join("")}</ul>` : ""}
-    <details><summary class="note" style="cursor:pointer">모범답안 보기</summary><pre class="code" style="white-space:pre-wrap;margin-top:8px">${esc(q.answer)}</pre>${q.tip?`<div class="tip" style="margin-top:8px"><b>포인트</b> ${esc(q.tip)}</div>`:""}</details>
+    <details><summary class="note" style="cursor:pointer">모범답안 보기</summary><pre class="code" style="white-space:pre-wrap;margin-top:8px">${esc(T(q,"answer"))}</pre>${q.tip?`<div class="tip" style="margin-top:8px"><b>포인트</b> ${esc(T(q,"tip"))}</div>`:""}</details>
   </div>`;
 }
 let timerHandle = null;
@@ -756,10 +758,10 @@ function renderWrong(){
     ${wrong.length ? wrong.map(q => { const l = latest[q.id]; return `<div class="sheet wrong">
       <div class="qmeta"><span class="label">${q.source==="claude"?"변형":q.year} · ${esc(q.no)} · ${q.pts}점</span>${q.topics.map(t=>`<span class="tag">${esc(TOPICS[t]?.[0]||t)}</span>`).join("")}
         <span class="pen" style="font-size:30px;margin-left:auto">${Math.round(l.score*100)}</span></div>
-      <div class="prompt">${esc(q.prompt)}</div>
+      <div class="prompt">${esc(T(q,"prompt"))}</div>
       ${l.feedback ? `<div class="fb">${esc(l.feedback)}</div>` : ""}
       <div class="cols"><div><div class="label">내 답</div><pre class="code">${esc(l.answer || "(기록 없음)")}</pre></div>
-        <div><div class="label">모범답안</div><pre class="code">${esc(q.answer)}</pre></div></div>
+        <div><div class="label">모범답안</div><pre class="code">${esc(T(q,"answer"))}</pre></div></div>
       <div><button class="btn sm" data-go="${esc(q.id)}">다시 풀기 →</button></div></div>`; }).join("")
     : `<div class="sheet empty">아직 틀린 문제가 없어. 문제를 풀고 채점하면 여기 모여.</div>`}`;
 }
@@ -904,7 +906,9 @@ document.addEventListener("change", e => {
 /* ── LEARN (학습) ───────────────────────── 레슨 읽기 → 이해 점검(개념마다 2문제, 자동 채점) → 틀린 개념 복습 → 재시험.
    점검 기록은 문제은행 attempts와 섞지 않고 db "checks" / "progress"에 따로 (없으면 localStorage oop-checks / oop-progress). */
 let LANG = ls.get("oop-lang", "ko");
-const T = (o, k) => (o ? ((LANG === "en" && o[k + "_en"]) || o[k] || "") : "");  // 학습 탭 한/영
+function syncLang(){ document.querySelectorAll("[data-lang]").forEach(b => { b.classList.toggle("on", b.dataset.lang === LANG); b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)); }); document.documentElement.lang = LANG; }
+setTimeout(syncLang, 0);
+const T = (o, k) => (!o ? "" : (LANG === "en" && o[k + "_en"] != null) ? o[k + "_en"] : (o[k] ?? ""));  // 학습 탭 한/영
 let LX = null;                                   // learn.json: {units, checks}
 let LXU = [], LXL = [], LXLES = Object.create(null), LXSEC = Object.create(null);  // 개념 id에 'constructor'가 있어서 프로토타입 없는 객체
 let checks = [], progress = {};
@@ -963,7 +967,7 @@ function lxGrade(q, ans){
 }
 const lxDrafts = {};
 function lxInput(q, key, draft, locked){
-  if (q.type === "mc") return `<div class="choices">${q.choices.map((c,i) => { let cls = "choice"; if (draft === i) cls += " sel";
+  if (q.type === "mc") return `<div class="choices">${T(q,"choices").map((c,i) => { let cls = "choice"; if (draft === i) cls += " sel";
       if (locked){ if (i === q.answer) cls += " right"; else if (draft === i) cls += " wrongc"; }
       return `<button class="${cls}" data-lpick="${i}" ${locked?"disabled":""}><span class="k">${i+1}</span><span>${esc(c)}</span></button>`; }).join("")}</div>`;
   if (q.type === "ox") return `<div class="ox">${[true,false].map(v => { let cls = "choice"; if (draft === v) cls += " sel";
@@ -973,13 +977,13 @@ function lxInput(q, key, draft, locked){
   return `<div class="blanks">${q.accept.map((_,i) => `<label for="lb-${key}-${i}">(${String.fromCharCode(97+i)})</label><input type="text" id="lb-${key}-${i}" data-lblank="${i}" value="${esc(d[i]||"")}" ${locked?"readonly":""} autocomplete="off" autocapitalize="off" spellcheck="false">`).join("")}</div>`;
 }
 const lxReadDraft = q => q.type === "blank" ? [...document.querySelectorAll("#v-learn [data-lblank]")].map(i => i.value) : LS.quiz.drafts[q.id];
-const lxAnsText = (q, d) => q.type === "mc" ? (d == null ? "" : `${d+1}. ${q.choices[d]}`) : q.type === "ox" ? (d == null ? "" : d ? "O" : "X") : (d||[]).map((v,i)=>`(${String.fromCharCode(97+i)}) ${v}`).join("  ");
+const lxAnsText = (q, d) => q.type === "mc" ? (d == null ? "" : `${d+1}. ${T(q,"choices")[d]}`) : q.type === "ox" ? (d == null ? "" : d ? "O" : "X") : (d||[]).map((v,i)=>`(${String.fromCharCode(97+i)}) ${v}`).join("  ");
 function lxResult(q, r){
   if (!r || r.score == null) return "";
   return `<div class="result"><div class="mark"><span class="pen">${Math.round(r.score*100)}</span><div class="fb">${esc(r.feedback || "")}</div></div>
     ${r.missed?.length ? `<ul class="missed">${r.missed.map(m=>`<li>${esc(m)}</li>`).join("")}</ul>` : ""}
-    ${q.type === "blank" ? `<div><div class="label" style="margin-bottom:6px">정답</div><pre class="code" style="white-space:pre-wrap">${esc(q.answer)}</pre></div>` : ""}
-    ${q.explain ? `<div class="tip"><b>해설</b> ${esc(q.explain)}</div>` : ""}
+    ${q.type === "blank" ? `<div><div class="label" style="margin-bottom:6px">정답</div><pre class="code" style="white-space:pre-wrap">${esc(T(q,"answer"))}</pre></div>` : ""}
+    ${q.explain ? `<div class="tip"><b>해설</b> ${esc(T(q,"explain"))}</div>` : ""}
     <div class="goto note">교안 위치: ${esc(lxSrc(q.concept))} <button class="btn ghost sm" data-lread="${esc(q.concept)}">이 부분 읽기 →</button></div>
     ${q.type === "blank" && !r.carried ? `<div class="actions"><span class="note">채점이 이상하면 직접 고쳐:</span><button class="btn sm" data-lself="1">맞음</button><button class="btn sm" data-lself="0.5">절반</button><button class="btn sm" data-lself="0">틀림</button></div>` : ""}</div>`;
 }
@@ -1090,7 +1094,7 @@ function lxQuiz(){
   return `<div class="sheet qwrap">
     <div class="qtop"><div><div class="label">${esc(z.lessonId)} 이해 점검${z.round > 1 ? ` · 재시험 ${z.round-1}회차` : ""} · ${z.idx+1}/${z.items.length}</div>
       <div class="note">개념: ${esc(T(LXSEC[it.concept],"title"))} · ${LX_TYPE[q.type]}</div></div><div class="pips">${pips}</div></div>
-    <div class="prompt">${esc(q.prompt)}</div>
+    <div class="prompt">${esc(T(q,"prompt"))}</div>
     ${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
     ${lxInput(q, key, draft, locked)}
     ${!locked ? `<div class="actions"><button class="btn primary" data-lsubmit="1" ${q.type !== "blank" && draft == null ? "disabled" : ""}>${q.type === "blank" ? "채점" : "제출"}</button>
@@ -1150,7 +1154,7 @@ document.addEventListener("click", async e => {
   if (ds.zoom){ lxZoomClose(); const lb = document.createElement("div"); lb.className = "lightbox"; lb.setAttribute("role","dialog"); lb.setAttribute("aria-label","슬라이드 크게 보기");
     lb.innerHTML = `<button class="x" aria-label="닫기">닫기 ✕</button><img src="${esc(ds.zoom)}" alt="">`; document.body.appendChild(lb); return; }
   if (ds.ltab) return show(ds.ltab);
-  if (ds.lang){ LANG = ds.lang; ls.set("oop-lang", LANG); return lxRender(); }
+  if (ds.lang){ LANG = ds.lang; ls.set("oop-lang", LANG); syncLang(); if (view === "mock") return; return view === "learn" ? lxRender() : renderAll(); }
   if (ds.lhome){ LS.mode = "home"; LS.lesson = null; lxSave(); return lxRender(); }
   if (ds.lesson){ LS.lesson = ds.lesson; LS.mode = "read"; if (LS.review && LS.review.lessonId !== ds.lesson) LS.review = null; lxSave(); if (view !== "learn") show("learn"); else { lxRender(); window.scrollTo({ top:0 }); } return; }
   if (ds.lread) return lxOpenRead(ds.lread);

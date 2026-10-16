@@ -44,3 +44,24 @@ def attach_en(units, paths, md2html, inline, figs, cap_en, prof_en=None):
             l["html_en"] = '\n'.join(hs)
     missing = [f for fl in figs.values() for f, _ in fl if f not in cap_en]
     assert not missing, ("captions missing", missing)
+
+def attach_q_en(qs, paths):
+    """q_en*.json ({id: {prompt, choices, answer, explain, keys, tip, accept_add}}) → q[*_en]. accept_add는 accept에 합침 (채점은 언어와 상관없이 둘 다 인정)."""
+    import json, os
+    en = {}
+    for p in paths:
+        if os.path.exists(p): en.update(json.load(open(p)))
+    byid = {q["id"]: q for q in qs}
+    bad = [k for k in en if k not in byid]; assert not bad, ("unknown question ids", bad[:5])
+    for qid, e in en.items():
+        q = byid[qid]
+        for k in ("prompt", "answer", "explain", "tip"):
+            if k in e and isinstance(e[k], str): q[k + "_en"] = e[k]
+        if "choices" in e:
+            assert q.get("choices") and len(e["choices"]) == len(q["choices"]), ("choices", qid); q["choices_en"] = e["choices"]
+        if "keys" in e:
+            assert q.get("keys") and len(e["keys"]) == len(q["keys"]), ("keys", qid); q["keys_en"] = e["keys"]
+        if e.get("accept_add"):
+            assert len(e["accept_add"]) == len(q["accept"]), ("accept_add", qid)
+            q["accept"] = [a + [x for x in add if x not in a] for a, add in zip(q["accept"], e["accept_add"])]
+    return len(en)

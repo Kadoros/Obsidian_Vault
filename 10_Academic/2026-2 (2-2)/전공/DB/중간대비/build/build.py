@@ -134,6 +134,12 @@ print("below 2x weight:",short)
 print("weights:",Counter(W.values()))
 for c in config.WEIGHTS: assert c in sec_of, ("weight for unknown concept", c)
 for lid,_,_ in config.BLUEPRINT: assert any(l["id"]==lid for u in units for l in u["lessons"]), lid
+# 문제 영어판 (q_en*.json)
+import glob as _glob
+if _glob.glob('q_en*.json'):
+    sys.path.insert(0, '../../../_shared'); from en_lessons import attach_q_en
+    print("english questions:", attach_q_en(qs, sorted(_glob.glob('q_en*.json'))))
+
 data={"units":units,"questions":qs,"weights":W,"meta":config.META}
 json.dump(data,open('data.json','w'),ensure_ascii=False)
 json.dump({"version":1,"questions":qs},open('bank.json','w'),ensure_ascii=False,indent=1)

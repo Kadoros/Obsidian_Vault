@@ -101,7 +101,8 @@ textarea{width:100%;min-height:150px;font-family:var(--f-mono);font-size:13px;li
 .tblw td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 .callout{font-size:14px;background:var(--accent-weak);border-radius:8px;padding:9px 12px;margin:4px 0 12px}
 .callout.exam{background:var(--warn-weak)} .callout.exam::before{content:"시험 ";font-weight:700;color:var(--warn)} [lang="en"] .callout.exam::before{content:none}
-.langsw{display:flex;gap:4px;align-items:center;padding:4px 14px 10px;border-bottom:1px solid var(--line);margin-bottom:4px}.langsw .note{margin-right:auto}.langsw button{font:inherit;font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer}.langsw button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink,#fff)}
+.langsw{display:flex;gap:4px;align-items:center;padding:4px 14px 10px;border-bottom:1px solid var(--line);margin-bottom:4px}.hlang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}.hlang button{font:inherit;font-family:var(--f-mono,monospace);font-size:11.5px;padding:3px 9px;border:0;background:var(--sheet);color:var(--muted);cursor:pointer}.hlang button.on{background:var(--accent);color:var(--accent-ink,#fff)}
+.langsw .note{margin-right:auto}.langsw button{font:inherit;font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer}.langsw button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink,#fff)}
 .callout.trap{background:var(--bad-weak)}
 .callout.prof{background:var(--sheet);border:1px solid var(--line);border-left:3px solid var(--accent)} .callout.prof b{color:var(--accent)} .callout.prof .src{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
 .rfoot{margin-top:20px;padding:16px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--accent-weak);border-radius:var(--r)}
@@ -249,6 +250,7 @@ table.topics tr.dim td{opacity:.55}
       <h1>컴구 중간 트레이너</h1>
       <div class="chips" hidden>
         <span class="chip dday" id="dday">중간고사 10/20 (화) 17:00</span>
+        <span class="hlang" role="group" aria-label="언어"><button data-lang="ko">한</button><button data-lang="en">EN</button></span>
         <span class="chip" id="store">저장소 연결 중…</span>
         <span class="chip" id="grader">채점: 확인 중…</span>
       </div>
@@ -299,7 +301,9 @@ const SIGS = ["RegDst","ALUSrc","MemtoReg","RegWrite","MemRead","MemWrite","Bran
 const $ = (s, el=document) => el.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let LANG = "ko"; try { LANG = JSON.parse(localStorage.getItem("ca-lang")) || "ko"; } catch {}
-const T = (o, k) => (o ? ((LANG === "en" && o[k + "_en"]) || o[k] || "") : "");  // 학습 탭 한/영
+function syncLang(){ document.querySelectorAll("[data-lang]").forEach(b => { b.classList.toggle("on", b.dataset.lang === LANG); b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)); }); document.documentElement.lang = LANG; }
+setTimeout(syncLang, 0);
+const T = (o, k) => (!o ? "" : (LANG === "en" && o[k + "_en"] != null) ? o[k + "_en"] : (o[k] ?? ""));  // 학습 탭 한/영
 const ls = {
   get(k, d){ try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
   set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
@@ -402,11 +406,11 @@ Grade the student's answer against the model answer and key points.
 - An empty or "모르겠다"-style answer scores 0.
 
 Question type: ${q.type}
-Question: ${q.prompt}
+Question: ${q.prompt}${q.prompt_en ? "\n(English version) " + q.prompt_en : ""}
 ${q.code ? "Code/table given:\\n" + q.code + "\\n" : ""}
 Model answer:
-${q.answer}
-${q.keys ? "Key points: " + q.keys.join(" | ") + "\\n" : ""}${q.explain ? "Note: " + q.explain + "\\n" : ""}
+${q.answer}${q.answer_en ? "\n(English version) " + q.answer_en : ""}
+${q.keys ? "Key points: " + q.keys.join(" | ") + (q.keys_en ? " || (English) " + q.keys_en.join(" | ") : "") + "\\n" : ""}${q.explain ? "Note: " + q.explain + "\\n" : ""}
 Student answer:
 <<<
 ${ans}
@@ -430,7 +434,7 @@ function sampleErrMsg(e){
 /* ── question UI (shared) ───────────────────────── */
 function blankCount(q){ return q.accept ? q.accept.length : 0; }
 function inputHTML(q, key, draft, locked){
-  if (q.type === "mc") return `<div class="choices">${q.choices.map((c,i) => {
+  if (q.type === "mc") return `<div class="choices">${T(q,"choices").map((c,i) => {
       let cls = "choice"; if (draft === i) cls += " sel";
       if (locked){ if (i === q.answer) cls += " right"; else if (draft === i) cls += " wrongc"; }
       return `<button class="${cls}" data-pick="${i}" data-k="${key}" ${locked?"disabled":""}><span class="k">${i+1}</span><span>${esc(c)}</span></button>`; }).join("")}</div>`;
@@ -461,8 +465,8 @@ function resultHTML(q, r, opts={}){
     ${r.error ? `<div class="err">${esc(r.error)}</div>` : ""}
     ${r.score != null ? `<div class="mark">${mark}<div class="fb">${esc(r.feedback || "")}</div></div>` : ""}
     ${r.missed?.length ? `<ul class="missed">${r.missed.map(m=>`<li>${esc(m)}</li>`).join("")}</ul>` : ""}
-    ${(q.type === "mc" || q.type === "ox") ? "" : `<div><div class="label" style="margin-bottom:6px">모범답안</div><pre class="code" style="white-space:pre-wrap">${esc(q.answer)}</pre></div>`}
-    ${q.explain ? `<div class="tip"><b>해설</b> ${esc(q.explain)}</div>` : ""}
+    ${(q.type === "mc" || q.type === "ox") ? "" : `<div><div class="label" style="margin-bottom:6px">모범답안</div><pre class="code" style="white-space:pre-wrap">${esc(T(q,"answer"))}</pre></div>`}
+    ${q.explain ? `<div class="tip"><b>해설</b> ${esc(T(q,"explain"))}</div>` : ""}
     ${sec ? `<div class="goto note">교안 위치: ${esc(srcOf(q.concept))} <button class="btn ghost sm" data-read="${esc(q.concept)}">이 부분 읽기 →</button></div>` : ""}
     ${opts.self ? `<div class="actions"><span class="note">${r.score == null ? "스스로 매겨서 기록:" : "채점이 이상하면 직접 고쳐:"}</span>
       <button class="btn sm" data-self="1" data-k="${opts.key}">맞음</button><button class="btn sm" data-self="0.5" data-k="${opts.key}">절반</button><button class="btn sm" data-self="0" data-k="${opts.key}">틀림</button>
@@ -477,7 +481,7 @@ function readDraft(q, key){
   return drafts[key];
 }
 function answerText(q, d){
-  if (q.type === "mc") return d == null ? "" : `${d+1}. ${q.choices[d]}`;
+  if (q.type === "mc") return d == null ? "" : `${d+1}. ${T(q,"choices")[d]}`;
   if (q.type === "ox") return d == null ? "" : (d ? "O" : "X");
   if (q.type === "blank") return (d||[]).map((v,i)=>`(${String.fromCharCode(97+i)}) ${v}`).join("  ");
   if (q.type === "sig") return Object.keys(q.sig).map(k => `${k}=${(d||{})[k] ?? "?"}`).join(" ");
@@ -655,7 +659,7 @@ function quizHTML(){
   return `<div class="sheet qwrap">
     <div class="qtop"><div><div class="label">${esc(LES[z.lessonId].id)} 이해 점검${z.round > 1 ? ` · 재시험 ${z.round-1}회차` : ""} · ${z.idx+1}/${z.items.length}${(() => { const c = z.items.filter(x => z.res[x.qid]?.carried).length; return c ? ` · 전에 맞힌 ${c}개 자동 통과` : ""; })()}</div>
       <div class="note">개념: ${esc(T(SEC[it.concept],"title"))} · ${TYPE[q.type]} ${prevBadge(q.id, r?.attemptId)}</div></div><div class="pips">${pips}</div></div>
-    <div class="prompt">${esc(q.prompt)}</div>
+    <div class="prompt">${esc(T(q,"prompt"))}</div>
     ${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
     ${inputHTML(q, key, draft, locked)}
     ${!r || (r.score == null && !r.state && !showSelf) ? `<div class="actions">
@@ -749,7 +753,7 @@ function renderDash(){
     }).join("");
   }).join("");
   const recs = recommendations(8).map(q => { const l = lq[q.id];
-    return `<button class="rec" data-go="${esc(q.id)}"><span class="yr">${q.lesson} ${TYPE[q.type]}</span><span class="q">${esc(q.prompt)}</span>
+    return `<button class="rec" data-go="${esc(q.id)}"><span class="yr">${q.lesson} ${TYPE[q.type]}</span><span class="q">${esc(T(q,"prompt"))}</span>
       <span class="why">${l ? `지난번 ${Math.round(l.score*100)}점` : q.slot ? "시험형 · 미시도" : "미시도"}</span></button>`; }).join("");
   $("#v-dash").innerHTML = `<div class="stats">
       <div class="sheet stat"><div class="label">푼 문항</div><div class="v">${solved.length}<span class="muted" style="font-size:15px"> / ${qs.length}</span></div><div class="s">문제은행 전체</div></div>
@@ -791,7 +795,7 @@ function renderPractice(){
   if (!qs.find(q => q.id === curId)) curId = qs[0]?.id ?? null;
   const unitOpts = UNITS.map(u => `<option value="${u.id}" ${filters.unit===u.id?"selected":""}>${esc(T(u,"title"))}</option>`).join("");
   const conceptOpts = LESSONS.filter(l => !filters.unit || l.unit === filters.unit).map(l => `<optgroup label="${esc(l.id+" "+l.title)}">${l.secs.map(s => `<option value="${s.id}" ${filters.concept===s.id?"selected":""}>${esc(T(s,"title"))}</option>`).join("")}</optgroup>`).join("");
-  const list = qs.map(q => { const l = lq[q.id]; return `<button class="qrow ${q.id===curId?"cur":""}" data-q="${esc(q.id)}"><span class="sd ${l?level(l.score):""}"></span><span class="t">${esc(q.prompt)}</span><span class="yr">${TYPE[q.type]}</span></button>`; }).join("");
+  const list = qs.map(q => { const l = lq[q.id]; return `<button class="qrow ${q.id===curId?"cur":""}" data-q="${esc(q.id)}"><span class="sd ${l?level(l.score):""}"></span><span class="t">${esc(T(q,"prompt"))}</span><span class="yr">${TYPE[q.type]}</span></button>`; }).join("");
   $("#v-practice").innerHTML = `<div class="filters">
       <select id="f-unit" aria-label="단원"><option value="">모든 단원</option>${unitOpts}</select>
       <select id="f-concept" aria-label="개념"><option value="">모든 개념</option>${conceptOpts}</select>
@@ -811,7 +815,7 @@ function practiceCard(q, qs){
   return `<div class="sheet qwrap">
     <div class="qtop"><div class="actions"><span class="label">${esc(LES[q.lesson]?.id)} · ${TYPE[q.type]}${q.slot ? ` · 시험형 ${SLOT_PTS[q.slot]}점` : ""}</span><span class="tag">${esc(T(SEC[q.concept],"title"))}</span>
       ${lq ? `<span class="st ${level(lq.score)}">최근 ${Math.round(lq.score*100)}점 · ${attempts.filter(a=>a.qid===q.id).length}회</span>` : ""}</div></div>
-    <div class="prompt">${esc(q.prompt)}</div>
+    <div class="prompt">${esc(T(q,"prompt"))}</div>
     ${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
     ${inputHTML(q, key, drafts[key], locked)}
     <div class="actions">
@@ -875,7 +879,7 @@ function renderMock(){
     ${mock.items.map((x,i) => { const q = qById(x.qid); const key = "m" + i; const r = mock.results[x.qid];
       if (drafts[key] === undefined) drafts[key] = mock.answers[x.qid];
       return `<div class="sheet qwrap mockq"><div class="label">[${x.pts} pt.] ${i+1}. · ${esc(T(SEC[q.concept],"title"))}</div>
-        <div class="prompt">${esc(q.prompt)}</div>${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
+        <div class="prompt">${esc(T(q,"prompt"))}</div>${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
         ${inputHTML(q, key, drafts[key], graded)}
         ${r ? resultHTML(q, r, { pts:x.pts }) : ""}</div>`; }).join("")}`;
   tickTimer();
@@ -912,8 +916,8 @@ function renderWrong(){
   $("#v-wrong").innerHTML = `<h2>오답노트</h2><p class="note" style="margin:-4px 0 14px">가장 최근 채점이 70점 미만인 문항. 다시 풀어서 맞히면 빠져.</p>
     ${wrong.length ? wrong.map(q => { const l = lq[q.id]; return `<div class="sheet qwrap" style="margin-bottom:12px">
       <div class="actions"><span class="label">${esc(LES[q.lesson]?.id)} · ${TYPE[q.type]}</span><span class="tag">${esc(T(SEC[q.concept],"title"))}</span><span class="pen" style="font-size:30px;margin-left:auto">${Math.round(l.score*100)}</span></div>
-      <div class="prompt">${esc(q.prompt)}</div>${l.feedback ? `<div class="fb">${esc(l.feedback)}</div>` : ""}
-      <div class="cols"><div><div class="label">내 답</div><pre class="code">${esc(l.answer || "(기록 없음)")}</pre></div><div><div class="label">모범답안</div><pre class="code">${esc(q.type==="mc" ? (q.answer+1)+". "+q.choices[q.answer] : q.type==="ox" ? (q.answer?"O":"X") : q.answer)}</pre></div></div>
+      <div class="prompt">${esc(T(q,"prompt"))}</div>${l.feedback ? `<div class="fb">${esc(l.feedback)}</div>` : ""}
+      <div class="cols"><div><div class="label">내 답</div><pre class="code">${esc(l.answer || "(기록 없음)")}</pre></div><div><div class="label">모범답안</div><pre class="code">${esc(q.type==="mc" ? (q.answer+1)+". "+T(q,"choices")[q.answer] : q.type==="ox" ? (q.answer?"O":"X") : T(q,"answer"))}</pre></div></div>
       <div class="actions"><button class="btn sm" data-go="${esc(q.id)}">다시 풀기 →</button><button class="btn sm ghost" data-read="${esc(q.concept)}">교안 읽기</button></div></div>`; }).join("")
     : `<div class="sheet empty">아직 틀린 문제가 없어.</div>`}`;
 }
@@ -1064,7 +1068,7 @@ document.addEventListener("click", async e => {
   if (ds.tab) return show(ds.tab);
   if (ds.plesson){ filters = { unit:"", concept:"", type:"", status:"", lesson:ds.plesson }; ls.set("ca-filters", filters); curId = null; return show("practice"); }
   if (ds.clearlesson){ filters.lesson = ""; ls.set("ca-filters", filters); curId = null; return renderPractice(); }
-  if (ds.lang){ LANG = ds.lang; try { localStorage.setItem("ca-lang", JSON.stringify(LANG)); } catch {} return view === "learn" ? renderLearn() : renderAll(true); }
+  if (ds.lang){ LANG = ds.lang; try { localStorage.setItem("ca-lang", JSON.stringify(LANG)); } catch {} syncLang(); if (view === "mock") return; return view === "learn" ? renderLearn() : renderAll(true); }
   if (ds.home){ L.mode = "home"; L.lesson = null; saveL(); return renderLearn(); }
   if (ds.lesson){ if (!lessonUnlocked(ds.lesson)) return; L.lesson = ds.lesson; L.mode = "read"; if (L.review && L.review.lessonId !== ds.lesson) L.review = null; saveL(); if (view !== "learn") show("learn"); else { renderLearn(); window.scrollTo({ top:0 }); } return; }
   if (ds.read) return openRead(ds.read);

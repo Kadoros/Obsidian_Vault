@@ -141,5 +141,11 @@ for u in units:
         del l["md"]
 print("units", len(units), "lessons", sum(len(u["lessons"]) for u in units), "sections", len(sec_of), "checks", len(qs), Counter(q["type"] for q in qs))
 print("1-check concepts:", [c for c, v in cc.items() if v == 1])
+# 문제 영어판 (q_en*.json)
+import glob as _glob
+if _glob.glob('checks_en.json'):
+    sys.path.insert(0, '../../../../_shared'); from en_lessons import attach_q_en
+    print("english questions:", attach_q_en(qs, sorted(_glob.glob('checks_en.json'))))
+
 json.dump({"version":1, "units":units, "checks":qs}, open("../../learn.json","w"), ensure_ascii=False)
 print("learn.json bytes", os.path.getsize("../../learn.json"))

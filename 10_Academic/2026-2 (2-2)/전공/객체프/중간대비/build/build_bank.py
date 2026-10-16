@@ -946,5 +946,9 @@ q("2022F-4",Y,"기말 4",12,"short",["passing"],"likely",
 
 out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "bank.json")
 ids = [x["id"] for x in Q]; assert len(ids)==len(set(ids)), "dup id"
+# 영어판 (bank_en.json: tip·answer 번역) → *_en
+import sys as _sys; _sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../../_shared"))
+from en_lessons import attach_q_en
+print("english:", attach_q_en(Q, [os.path.join(os.path.dirname(os.path.abspath(__file__)), "bank_en.json")]))
 json.dump({"version":1,"questions":Q}, open(out,"w"), ensure_ascii=False, indent=0)
 print(len(Q), "questions;", sum(1 for x in Q if x["scope"]!="out"), "in-scope-ish")
