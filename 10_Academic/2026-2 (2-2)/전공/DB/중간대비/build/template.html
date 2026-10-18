@@ -96,6 +96,8 @@ textarea{width:100%;min-height:150px;font-family:var(--f-mono);font-size:13px;li
 .sec .sub{font-size:14px;color:var(--muted)}
 .sec pre.code{margin:4px 0 12px}
 .tblw{overflow-x:auto;margin:4px 0 12px}
+.refdb{border:1px solid var(--line);border-radius:8px;background:var(--sheet);margin:2px 0 4px}.refdb>summary{cursor:pointer;padding:7px 12px;font-size:13px;font-weight:600;color:var(--accent)}.refgrid{display:flex;flex-direction:column;gap:10px;padding:0 12px 12px}.refn{font-family:var(--f-mono,monospace);font-size:12px;font-weight:600;margin-bottom:3px}.reft table{font-size:12px;font-family:var(--f-mono,monospace)}.reft th.pk{text-decoration:underline;text-underline-offset:3px;color:var(--ink)}.reft td.nul{color:var(--muted);font-style:italic}.reft table{min-width:0;width:auto}.reft th,.reft td{white-space:nowrap;padding:3px 14px 3px 8px}
+
 .tblw table{border-collapse:collapse;font-size:13.5px;min-width:100%}
 .tblw th{font-size:12px;color:var(--muted);font-weight:600;text-align:left;padding:7px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
 .tblw td{padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
@@ -379,6 +381,40 @@ function sampleErrMsg(e){
   return "채점에 실패했어 (" + (c || "error") + "). 자가채점으로 기록할 수 있어.";
 }
 
+
+/* ── 문제 화면의 참고 테이블: 문제에 COMPANY·UNIVERSITY 릴레이션이 나오면 상태(데이터)를 펼쳐볼 수 있게 ── */
+const REF = DATA.ref || {};
+const REF_RE = {};
+for (const [db, ts] of Object.entries(REF)) REF_RE[db] = ts.map(t => [t.name, new RegExp("\\b" + t.name + "\\b")]);
+// 릴레이션 이름이 없어도 한국어 명사·속성 이름·교재 데이터 값이 나오면 그 테이블을 보여 줌
+const REF_HINT = { company: [
+  [/사원|직원|급여|상사|Ssn\b|Salary|Super_ssn|Fname|Lname|Bdate|\b(Smith|Wong|Zelaya|Wallace|Narayan|Jabbar|Borg|Franklin|Jennifer|Ahmad|Ramesh|Alicia|Joyce)\b/, ["EMPLOYEE"]],
+  [/부서|관리자|Dno\b|Dnumber|Dname|Mgr_ssn|\b(Research|Administration|Headquarters)\b/, ["DEPARTMENT"]],
+  [/부서 위치|위치한 부서|Dlocation/, ["DEPT_LOCATIONS"]],
+  [/프로젝트|Pnumber|Pname|Plocation|Dnum\b|Product[XYZ]|Computerization|Reorganization|Newbenefits/, ["PROJECT"]],
+  [/일하는|일한|근무 시간|Hours|Essn|\bPno\b/, ["WORKS_ON"]],
+  [/부양가족|Dependent_name|Relationship/, ["DEPENDENT"]]],
+  university: [[/학생|성적|선수과목|Student_number|Course_number|Section_identifier|\bGrade\b|CS1310|CS3320|MATH2410/, ["STUDENT","COURSE","SECTION","GRADE_REPORT","PREREQUISITE"]]] };
+const REF_IMG = [[/LIBRARY|BOOK_LOANS|BOOK_COPIES|BORROWER/, "SQL-p14", "LIBRARY (04 p.14)"], [/\bMOVIE\b/, "ERP-p23", "MOVIE ER (02-2 p.23)"], [/CONF_REVIEW/, "EX-p9", "CONF_REVIEW ER"]];
+function refHTML(q){
+  const txt = (q.prompt || "") + "\n" + (q.prompt_en || "") + "\n" + (q.code || "");
+  let out = "";
+  for (const [db, ts] of Object.entries(REF)){
+    let hit = REF_RE[db].filter(([, re]) => re.test(txt)).map(([n]) => n);
+    for (const [re, rels] of (REF_HINT[db] || [])) if (re.test(txt)) for (const r of rels) if (!hit.includes(r)) hit.push(r);
+    const whole = new RegExp("\\b" + db + "\\b", "i").test(txt);
+    if (!hit.length && !whole) continue;
+    if (!hit.length) hit = ts.map(t => t.name);
+    const show = ts.filter(t => hit.includes(t.name));
+    const label = db.toUpperCase();
+    out += `<details class="refdb" ${q.type === "calc" ? "open" : ""}><summary>${label} ${LANG === "en" ? "tables" : "테이블 보기"} · ${show.map(t => t.name).join(", ")}</summary>
+      <div class="refgrid">${show.map(t => `<div class="reft"><div class="refn">${t.name}</div><div class="tblw"><table><thead><tr>${t.cols.map(c => `<th${t.pk.includes(c) ? ' class="pk"' : ""}>${esc(c)}</th>`).join("")}</tr></thead>
+        <tbody>${t.rows.map(r => `<tr>${r.map(v => `<td${v === "NULL" ? ' class="nul"' : ""}>${esc(v)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></div>`).join("")}</div></details>`;
+  }
+  for (const [re, img, cap] of REF_IMG) if (re.test(txt))
+    out += `<details class="refdb" open><summary>${LANG === "en" ? "Schema (slide)" : "스키마 (교안 그림)"} · ${esc(cap)}</summary><div class="refgrid"><button class="zoom" data-zoom="img/${img}.jpg" aria-label="크게 보기" style="padding:0;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:zoom-in;max-width:560px"><img src="img/${img}.jpg" alt="${esc(cap)}" style="display:block;width:100%;height:auto"></button></div></details>`;
+  return out;
+}
 /* ── question UI (shared) ───────────────────────── */
 function blankCount(q){ return q.accept ? q.accept.length : 0; }
 function inputHTML(q, key, draft, locked){
@@ -599,7 +635,7 @@ function quizHTML(){
   return `<div class="sheet qwrap">
     <div class="qtop"><div><div class="label">${esc(LES[z.lessonId].id)} 이해 점검${z.round > 1 ? ` · 재시험 ${z.round-1}회차` : ""} · ${z.idx+1}/${z.items.length}${(() => { const c = z.items.filter(x => z.res[x.qid]?.carried).length; return c ? ` · 전에 맞힌 ${c}개 자동 통과` : ""; })()}</div>
       <div class="note">개념: ${esc(T(SEC[it.concept],"title"))} · ${TYPE[q.type]} ${prevBadge(q.id, r?.attemptId)}</div></div><div class="pips">${pips}</div></div>
-    <div class="prompt">${esc(T(q,"prompt"))}</div>
+    <div class="prompt">${esc(T(q,"prompt"))}</div>${refHTML(q)}
     ${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
     ${inputHTML(q, key, draft, locked)}
     ${!r || (r.score == null && !r.state && !showSelf) ? `<div class="actions">
@@ -757,7 +793,7 @@ function practiceCard(q, qs){
   return `<div class="sheet qwrap">
     <div class="qtop"><div class="actions"><span class="label">${esc(LES[q.lesson]?.id)} · ${TYPE[q.type]}${q.slot ? ` · 시험형 ${SLOT_PTS[q.slot]}점` : ""}</span><span class="tag">${esc(T(SEC[q.concept],"title"))}</span>
       ${lq ? `<span class="st ${level(lq.score)}">최근 ${Math.round(lq.score*100)}점 · ${attempts.filter(a=>a.qid===q.id).length}회</span>` : ""}</div></div>
-    <div class="prompt">${esc(T(q,"prompt"))}</div>
+    <div class="prompt">${esc(T(q,"prompt"))}</div>${refHTML(q)}
     ${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
     ${inputHTML(q, key, drafts[key], locked)}
     <div class="actions">
@@ -821,7 +857,7 @@ function renderMock(){
     ${mock.items.map((x,i) => { const q = qById(x.qid); const key = "m" + i; const r = mock.results[x.qid];
       if (drafts[key] === undefined) drafts[key] = mock.answers[x.qid];
       return `<div class="sheet qwrap mockq"><div class="label">[${x.pts} pt.] ${i+1}. · ${esc(T(SEC[q.concept],"title"))}</div>
-        <div class="prompt">${esc(T(q,"prompt"))}</div>${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
+        <div class="prompt">${esc(T(q,"prompt"))}</div>${refHTML(q)}${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ""}
         ${inputHTML(q, key, drafts[key], graded)}
         ${r ? resultHTML(q, r, { pts:x.pts }) : ""}</div>`; }).join("")}`;
   tickTimer();
@@ -858,7 +894,7 @@ function renderWrong(){
   $("#v-wrong").innerHTML = `<h2>오답노트</h2><p class="note" style="margin:-4px 0 14px">가장 최근 채점이 70점 미만인 문항. 다시 풀어서 맞히면 빠져.</p>
     ${wrong.length ? wrong.map(q => { const l = lq[q.id]; return `<div class="sheet qwrap" style="margin-bottom:12px">
       <div class="actions"><span class="label">${esc(LES[q.lesson]?.id)} · ${TYPE[q.type]}</span><span class="tag">${esc(T(SEC[q.concept],"title"))}</span><span class="pen" style="font-size:30px;margin-left:auto">${Math.round(l.score*100)}</span></div>
-      <div class="prompt">${esc(T(q,"prompt"))}</div>${l.feedback ? `<div class="fb">${esc(l.feedback)}</div>` : ""}
+      <div class="prompt">${esc(T(q,"prompt"))}</div>${refHTML(q)}${l.feedback ? `<div class="fb">${esc(l.feedback)}</div>` : ""}
       <div class="cols"><div><div class="label">내 답</div><pre class="code">${esc(l.answer || "(기록 없음)")}</pre></div><div><div class="label">모범답안</div><pre class="code">${esc(q.type==="mc" ? (q.answer+1)+". "+T(q,"choices")[q.answer] : q.type==="ox" ? (q.answer?"O":"X") : T(q,"answer"))}</pre></div></div>
       <div class="actions"><button class="btn sm" data-go="${esc(q.id)}">다시 풀기 →</button><button class="btn sm ghost" data-read="${esc(q.concept)}">교안 읽기</button></div></div>`; }).join("")
     : `<div class="sheet empty">아직 틀린 문제가 없어.</div>`}`;

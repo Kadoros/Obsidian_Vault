@@ -140,7 +140,19 @@ if _glob.glob('q_en*.json'):
     sys.path.insert(0, '../../../_shared'); from en_lessons import attach_q_en
     print("english questions:", attach_q_en(qs, sorted(_glob.glob('q_en*.json'))))
 
-data={"units":units,"questions":qs,"weights":W,"meta":config.META}
+import company as _co
+def _tables(ddl, mod):
+    out = []
+    for m in re.finditer(r'CREATE TABLE (\w+) \((.*?)\);', ddl, re.S):
+        name, body = m.group(1), ' '.join(m.group(2).split())
+        cols = [c.split()[0] for c in re.split(r',(?![^()]*\))', body) if c.strip() and not c.strip().startswith('PRIMARY KEY')]
+        pk = re.search(r'PRIMARY KEY \(([^)]*)\)', body)
+        pk = [x.strip() for x in pk.group(1).split(',')] if pk else [c.split()[0] for c in re.split(r',(?![^()]*\))', body) if 'PRIMARY KEY' in c and not c.strip().startswith('PRIMARY KEY')]
+        rows = [[("NULL" if v is None else (int(v) if isinstance(v, float) and v.is_integer() else v)) for v in r] for r in getattr(mod, name)]
+        out.append({"name": name, "cols": cols, "pk": pk, "rows": rows})
+    return out
+REF = {"company": _tables(_co.COMPANY_DDL, _co), "university": _tables(_co.UNIV_DDL, _co)}
+data={"units":units,"questions":qs,"weights":W,"meta":config.META,"ref":REF}
 json.dump(data,open('data.json','w'),ensure_ascii=False)
 json.dump({"version":1,"questions":qs},open('bank.json','w'),ensure_ascii=False,indent=1)
 print("data.json bytes",len(json.dumps(data,ensure_ascii=False).encode()))
