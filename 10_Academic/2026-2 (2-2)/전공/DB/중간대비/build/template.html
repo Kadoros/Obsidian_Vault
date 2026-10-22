@@ -289,10 +289,7 @@ function level(score){ if (score == null) return "none"; return score >= .85 ? "
 const LV = { none:"미시도", weak:"약점", mid:"보통", good:"숙달" };
 const lessonConcepts = lid => LES[lid].secs.filter(s => allQ().some(q => q.concept === s.id)).map(s => s.id);
 const lessonDone = lid => !!progress[lid]?.done;
-function lessonUnlocked(lid){
-  const i = LESSONS.findIndex(l => l.id === lid);
-  return i <= 0 || lessonDone(LESSONS[i-1].id) || lessonDone(lid);
-}
+function lessonUnlocked(lid){ return true; }  // 시험 직전이라 잠금 해제: 어느 레슨이든 바로 열림
 function lessonWeak(lid){ const lc = latestC(); return lessonConcepts(lid).filter(c => lc[c] && lc[c].score < PASS); }
 function nextLesson(){ return LESSONS.find(l => !lessonDone(l.id)) || null; }
 function srcOf(concept){ const s = SEC[concept]; if (!s) return ""; const l = LES[s.lesson]; return `${l.id} §${T(s,"title")} · ${l.src}`; }
@@ -527,7 +524,7 @@ function homeHTML(){
     </div>
     <div class="grid2">
       <div><h2>단원</h2>
-        <p class="note" style="margin:-4px 0 10px">레슨 하나 읽고 → 이해 점검 퀴즈 → 틀린 개념은 교안 위치로 돌아가서 다시 읽고 → 다른 문제로 재시험. 통과해야 다음 레슨이 열려.</p>
+        <p class="note" style="margin:-4px 0 10px">레슨 하나 읽고 → 이해 점검 퀴즈 → 틀린 개념은 교안 위치로 돌아가서 다시 읽고 → 다른 문제로 재시험. 순서는 자유라 아는 레슨은 건너뛰어도 돼.</p>
         <div class="units">${UNITS.map(u => {
           const d = u.lessons.filter(l => lessonDone(l.id)).length;
           return `<div class="sheet ucard"><div><div class="label">${u.id} · ${esc(u.src)}</div><h3 style="margin-top:4px">${esc(T(u,"title"))}</h3>
